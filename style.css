@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik+Bubbles&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Bubbles&family=Fredoka:wght@400;500&display=swap');
 
 body {
   margin: 0;
   padding: 2rem 1rem;
-  font-family: 'Rubik Bubbles', cursive;
+  font-family: 'Fredoka', sans-serif;
   background-color: #ffeaf4;
   color: white;
   line-height: 1.7;
@@ -25,6 +25,7 @@ header {
 
 h1 {
   font-size: 2.8rem;
+  font-family: 'Rubik Bubbles', cursive;
   margin-bottom: 0.5rem;
   color: white;
   background-color: #f06292;
@@ -36,6 +37,7 @@ h1 {
 .subtitle {
   font-size: 1.1rem;
   color: white;
+  font-family: 'Fredoka', sans-serif;
 }
 
 nav ul {
@@ -50,7 +52,8 @@ nav ul {
 nav a {
   text-decoration: none;
   color: #ff4081;
-  font-weight: 400;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 500;
   padding: 0.25rem 0.5rem;
   border-bottom: 2px solid transparent;
   transition: border-color 0.2s;
@@ -64,6 +67,7 @@ main h2 {
   font-size: 1.6rem;
   margin-top: 2rem;
   color: #e91e63;
+  font-family: 'Rubik Bubbles', cursive;
 }
 
 main ul {
@@ -73,16 +77,23 @@ main ul {
 main a {
   color: #f50057;
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 500;
+  font-family: 'Fredoka', sans-serif;
 }
 
 main a:hover {
   text-decoration: underline;
 }
 
+main p {
+  font-family: 'Fredoka', sans-serif;
+  color: white;
+}
+
 footer {
   margin-top: 3rem;
   text-align: center;
   font-size: 0.9rem;
+  font-family: 'Fredoka', sans-serif;
   color: white;
 }
