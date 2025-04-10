@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&family=Patrick+Hand&display=swap');
+
+body {
+  margin: 0;
+  padding: 2rem 1rem;
+  font-family: 'Quicksand', sans-serif;
+  background-color: #fcf9f4;
+  color: #3a3a3a;
+  line-height: 1.7;
+}
+
+.container {
+  max-width: 750px;
+  margin: 0 auto;
+  background: #ffffffcc;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+}
+
+header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+h1 {
+  font-size: 2.75rem;
+  font-family: 'Patrick Hand', cursive;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #6e6e6e;
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  list-style: none;
+  padding: 0;
+  margin-bottom: 2rem;
+}
+
+nav a {
+  text-decoration: none;
+  color: #3a674f;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s;
+}
+
+nav a:hover {
+  border-color: #3a674f;
+}
+
+main h2 {
+  font-size: 1.6rem;
+  margin-top: 2rem;
+  color: #3a674f;
+}
+
+main ul {
+  padding-left: 1rem;
+}
+
+main a {
+  color: #33717a;
+  text-decoration: none;
+}
+
+main a:hover {
+  text-decoration: underline;
+}
+
+footer {
+  margin-top: 3rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #999;
+}
