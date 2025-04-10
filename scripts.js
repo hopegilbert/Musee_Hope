@@ -1,5 +1,4 @@
-<script>
-  function toggleDropdown() {
+function toggleDropdown() {
     const menu = document.getElementById('dropdownMenu');
     menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
   }
@@ -10,10 +9,14 @@
     }
   }
 
-  document.addEventListener('click', (e) => {
-    const dropdown = document.querySelector('.dropdown-wrapper');
-    if (!dropdown.contains(e.target)) {
-      document.getElementById('dropdownMenu').style.display = 'none';
-    }
+document.addEventListener("DOMContentLoaded", function () {
+  const grid = document.querySelector('.masonry-grid');
+  imagesLoaded(grid, function () {
+    new Masonry(grid, {
+      itemSelector: '.grid-item',
+      columnWidth: 200,
+      gutter: 16,
+      fitWidth: true
+    });
   });
-</script>
+});

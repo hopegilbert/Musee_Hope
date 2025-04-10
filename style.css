@@ -45,7 +45,22 @@ body {
   padding: 0 2rem;
   text-align: center;
 }
+.masonry-grid {
+  max-width: 1200px;
+  margin: 4rem auto;
+}
 
+.grid-item {
+  width: 200px;
+  margin-bottom: 1rem;
+}
+
+.grid-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 6px;
+}
 .subtitle-frame {
   backdrop-filter: blur(9px);
   background-color: rgba(245, 232, 199, 0.2);
