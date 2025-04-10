@@ -47,20 +47,30 @@ body {
 }
 .masonry-grid {
   max-width: 1200px;
-  margin: 4rem auto;
+  margin: 5rem auto;
 }
 
+/* This ensures each grid item is floated for Masonry to position them */
 .grid-item {
   width: 200px;
   margin-bottom: 1rem;
+  float: left;
 }
 
+/* Make sure images don’t overflow */
 .grid-item img {
   width: 100%;
   height: auto;
   display: block;
-  border-radius: 6px;
+  border-radius: 4px;
 }
+
+.masonry-grid::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
 .subtitle-frame {
   backdrop-filter: blur(9px);
   background-color: rgba(245, 232, 199, 0.2);
