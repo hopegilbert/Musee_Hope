@@ -170,3 +170,12 @@ footer {
 .dropdown-menu li:hover {
   background-color: #9e2a2a;
 }
+#dropdownMenu {
+  display: none;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+#dropdownMenu.show {
+  display: flex;
+}
