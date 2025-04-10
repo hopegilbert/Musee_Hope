@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Digital Garden</title>
+  <title>MY DIGITAL MUSEUM</title>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,15 +13,18 @@
   <!-- Stylesheet -->
   <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
-  <header>
-    <h1>My Digital Garden</h1>
+  <div class="title-frame">
+    <h1>MY DIGITAL MUSEUM</h1>
+  </div>
+
+  <div class="subtitle-frame">
     <p class="subtitle">A semi-organised mess of thoughts, half-formed theories, and things I’m still figuring out.</p>
-  </header>
+  </div>
 
   <div class="frame-gallery">
-    <div class="frame">
+    <!-- Recent Brain Dumps -->
+    <div class="frame frame-1">
       <div class="frame-content">
         <h2>Recent Brain Dumps</h2>
         <ul>
@@ -31,24 +34,26 @@
       </div>
     </div>
 
-    <div class="frame">
+    <!-- Custom Dropdown -->
+    <div class="frame frame-2">
       <div class="frame-content">
         <h2>Jump to a category:</h2>
-        <div class="custom-dropdown">
+        <div class="dropdown-wrapper">
           <button class="dropdown-toggle" onclick="toggleDropdown()">Choose your brain dump...</button>
-          <ul class="dropdown-menu" id="dropdownMenu">
-            <li onclick="navigateTo('hot-takes.html')">Hot Takes</li>
-            <li onclick="navigateTo('works-in-progress.html')">Works in Progress</li>
-            <li onclick="navigateTo('unfinished-business.html')">Unfinished Business</li>
-            <li onclick="navigateTo('stuff-i-cant-stop.html')">Stuff I Can't Stop Thinking About</li>
-            <li onclick="navigateTo('stuff-not-ready.html')">Stuff I'm Not Ready to Talk About</li>
-            <li onclick="navigateTo('maybe-genius.html')">Stuff That Might Be Genius (Eventually)</li>
-          </ul>
+          <div id="dropdownMenu" class="dropdown-menu">
+            <div onclick="navigateTo('hot-takes.html')">Hot Takes</div>
+            <div onclick="navigateTo('works-in-progress.html')">Works in Progress</div>
+            <div onclick="navigateTo('unfinished-business.html')">Unfinished Business</div>
+            <div onclick="navigateTo('stuff-i-cant-stop.html')">Stuff I Can't Stop Thinking About</div>
+            <div onclick="navigateTo('stuff-not-ready.html')">Stuff I'm Not Ready to Talk About</div>
+            <div onclick="navigateTo('maybe-genius.html')">Stuff That Might Be Genius (Eventually)</div>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="frame wide">
+    <!-- What This Even Is -->
+    <div class="frame frame-3 wide">
       <div class="frame-content">
         <h2>What This Even Is</h2>
         <p>This isn’t a blog. It’s not a portfolio. It’s definitely not polished. Just a space for whatever I'm mentally chewing on — sometimes raw, sometimes weird. Might disagree with myself tomorrow.</p>
@@ -56,17 +61,31 @@
     </div>
   </div>
 
-  <footer>
-    <p>I promise it’ll make sense later. Maybe.</p>
-  </footer>
+  <div class="footer-frame">
+    <footer>
+      <p>I promise it’ll make sense later. Maybe.</p>
+    </footer>
+  </div>
 
+  <!-- JavaScript -->
   <script>
-    function navigateTo(selectElement) {
-      const page = selectElement.value;
-      if (page && page !== "") {
+    function toggleDropdown() {
+      const menu = document.getElementById('dropdownMenu');
+      menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    }
+
+    function navigateTo(page) {
+      if (page) {
         window.location.href = page;
       }
     }
+
+    document.addEventListener('click', (e) => {
+      const dropdown = document.querySelector('.dropdown-wrapper');
+      if (!dropdown.contains(e.target)) {
+        document.getElementById('dropdownMenu').style.display = 'none';
+      }
+    });
   </script>
 </body>
 </html>
