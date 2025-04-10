@@ -1,18 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&family=Patrick+Hand&family=Rubik+Bubbles&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Bubbles&display=swap');
 
 body {
   margin: 0;
   padding: 2rem 1rem;
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Rubik Bubbles', cursive;
   background-color: #ffeaf4;
-  color: #3a3a3a;
+  color: white;
   line-height: 1.7;
 }
 
 .container {
   max-width: 750px;
   margin: 0 auto;
-  background: #fff0f8;
+  background: #ffcee4;
   padding: 2rem;
   border-radius: 20px;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.07);
@@ -25,7 +25,6 @@ header {
 
 h1 {
   font-size: 2.8rem;
-  font-family: 'Rubik Bubbles', cursive;
   margin-bottom: 0.5rem;
   color: white;
   background-color: #f06292;
@@ -36,8 +35,7 @@ h1 {
 
 .subtitle {
   font-size: 1.1rem;
-  color: #6e6e6e;
-  font-family: 'Quicksand', sans-serif;
+  color: white;
 }
 
 nav ul {
@@ -51,22 +49,21 @@ nav ul {
 
 nav a {
   text-decoration: none;
-  color: #d81b60;
-  font-weight: 600;
+  color: #ff4081;
+  font-weight: 400;
   padding: 0.25rem 0.5rem;
   border-bottom: 2px solid transparent;
   transition: border-color 0.2s;
 }
 
 nav a:hover {
-  border-color: #d81b60;
+  border-color: #ff80ab;
 }
 
 main h2 {
   font-size: 1.6rem;
   margin-top: 2rem;
-  color: #ad1457;
-  font-family: 'Patrick Hand', cursive;
+  color: #e91e63;
 }
 
 main ul {
@@ -74,8 +71,9 @@ main ul {
 }
 
 main a {
-  color: #ba2d65;
+  color: #f50057;
   text-decoration: none;
+  font-weight: 600;
 }
 
 main a:hover {
@@ -86,5 +84,5 @@ footer {
   margin-top: 3rem;
   text-align: center;
   font-size: 0.9rem;
-  color: #999;
+  color: white;
 }
