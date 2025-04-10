@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik+Bubbles&family=Fredoka:wght@400;500&display=swap');
 
 body {
-  background-image: url('Media/downloaded_image 2.jpeg');
+  background-image: url('media/background.jpg');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
