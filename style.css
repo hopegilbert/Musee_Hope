@@ -7,50 +7,105 @@ body {
   background-attachment: fixed;
   background-repeat: no-repeat;
   font-family: 'Lora', serif;
+  font-weight: bold;
   color: #f5e8c7;
   margin: 0;
   padding: 2rem 1rem;
   line-height: 1.7;
+  position: relative;
+  z-index: 1;
 }
 
-.title-frame,
-.subtitle-frame,
-.footer-frame {
+/* Decorative background frames */
+.background-collage {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.bg-frame {
+  position: absolute;
+  z-index: 0;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.frame-a { top: 5%; left: 5%; width: 200px; }
+.frame-b { top: 15%; right: 10%; width: 220px; }
+.frame-c { bottom: 15%; left: 8%; width: 180px; }
+.frame-d { top: 35%; left: 40%; width: 150px; }
+.frame-e { bottom: 8%; right: 12%; width: 200px; }
+.frame-f { top: 55%; right: 5%; width: 180px; }
+.frame-g { top: 75%; left: 20%; width: 150px; }
+.frame-h { top: 20%; left: 70%; width: 160px; }
+.frame-i { top: 40%; left: 5%; width: 180px; }
+.frame-j { top: 60%; right: 8%; width: 190px; }
+.frame-k { bottom: 8%; left: 30%; width: 200px; }
+
+/* Title Frame */
+.title-frame {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.title-image-frame {
   background-image: url('media/title frame.png');
-  background-size: contain;
   background-repeat: no-repeat;
+  background-size: contain;
   background-position: center;
-  padding: 3rem 2rem;
-  text-align: center;
-  margin: 2rem auto;
-  max-width: 500px;
+  width: 1000px;
+  height: 220px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.title-frame h1,
-.subtitle-frame p,
-.footer-frame p {
-  margin: 0;
-}
-
-header {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-h1 {
-  font-size: 2.8rem;
+.title-image-frame h1 {
   font-family: 'Playfair Display', serif;
-  color: #821818;
+  font-size: 2.5rem;
+  color: #f5e8c7;
+  margin: 0;
+  padding: 0 2rem;
+  text-align: center;
 }
 
 .subtitle {
-  font-size: 1.1rem;
-  margin-top: 0.5rem;
-  font-family: 'Lora', serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 0rem;
   color: #821818;
+  text-align: center;
+}
+
+.subtitle-frame {
+  backdrop-filter: blur(9px);
+  background-color: rgba(245, 232, 199, 0.2);
+  padding: 1.5rem 2rem;
+  border-radius: 8px;
+  margin: 2rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+.subtitle-frame .subtitle {
+  margin: 0;
+  color: #821818;
+  font-weight: bold;
+  font-family: 'Lora', serif;
+  font-size: 1.5rem;
+  line-height: 1;
+  text-align: center;
 }
 
 .frame-gallery {
@@ -59,6 +114,8 @@ h1 {
   justify-content: center;
   gap: 2rem;
   padding: 2rem;
+  position: relative;
+  z-index: 1;
 }
 
 .frame {
@@ -90,17 +147,16 @@ h1 {
   font-family: 'Lora', serif;
 }
 
-/* Unique frame backgrounds */
 .frame-1 {
   background-image: url('media/frame flower 1.png');
 }
 
 .frame-2 {
-  background-image: url('media/frame flower 2.png');
+  background-image: url('media/frame flower 3.png');
 }
 
 .frame-3 {
-  background-image: url('media/frame flower 3.png');
+  background-image: url('media/frame flower 2.png');
 }
 
 .frame.wide .frame-content {
@@ -115,9 +171,11 @@ h2 {
 }
 
 ul {
-  list-style: disc;
-  padding-left: 1rem;
-  text-align: left;
+  list-style: none;
+  padding-left: 0;
+  margin: 0 auto;
+  text-align: center;
+  display: inline-block;
 }
 
 a {
@@ -129,7 +187,6 @@ a:hover {
   text-decoration: underline;
 }
 
-/* Custom dropdown styles */
 .dropdown-wrapper {
   position: relative;
   display: inline-block;
@@ -176,11 +233,34 @@ a:hover {
 
 footer {
   text-align: center;
+  margin-top: 0rem;
   font-size: 0.85rem;
   color: #821818;
 }
 
-/* Responsive tweaks */
+footer p {
+  margin: 0;
+  color: #821818;
+  font-weight: bold;
+  font-family: 'Lora', serif;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.footer-frame {
+  backdrop-filter: blur(9px);
+  background-color: rgba(245, 232, 199, 0.2);
+  padding: 1.5rem 2rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
   .frame {
     max-width: 90vw;
@@ -196,11 +276,19 @@ footer {
     padding: 0.5rem 1rem;
   }
 
-  h1 {
-    font-size: 2rem;
+  .title-image-frame {
+    width: 90vw;
+    height: auto;
+    aspect-ratio: 4 / 1;
+  }
+
+  .title-image-frame h1 {
+    font-size: 1.8rem;
+    padding: 0 1rem;
   }
 
   h2 {
     font-size: 1.1rem;
+    font-weight: bold;
   }
 }
