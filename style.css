@@ -8,35 +8,9 @@ body {
   background-repeat: no-repeat;
   font-family: 'Fredoka', sans-serif;
   color: white;
-  line-height: 1.7;
   margin: 0;
   padding: 2rem 1rem;
-}
-
-/* Ornate gold frame wrapper */
-.frame-wrap {
-  background-image: url('media/frame.png');
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  padding: 2rem;
-  margin: 2rem auto;
-  max-width: 850px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-  position: relative;
-}
-
-.frame-wrap::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-color: rgba(0, 0, 0, 0.3); /* dark overlay for readability */
-  border-radius: 12px;
-  z-index: 0;
-}
-
-.frame-wrap > * {
-  position: relative;
-  z-index: 1;
+  line-height: 1.7;
 }
 
 header {
@@ -47,30 +21,49 @@ header {
 h1 {
   font-size: 2.8rem;
   font-family: 'Rubik Bubbles', cursive;
-  margin-bottom: 0.5rem;
-  color: white;
   background-color: #831416;
-  padding: 1rem;
+  padding: 1rem 2rem;
   border-radius: 16px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  display: inline-block;
 }
 
 .subtitle {
   font-size: 1.1rem;
-  color: white;
-  font-family: 'Fredoka', sans-serif;
+  margin-top: 0.5rem;
 }
 
-nav {
+.frame-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.frame {
+  position: relative;
+  width: 300px;
+  height: 350px;
+  background-image: url('media/frame.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  margin-bottom: 2rem;
 }
 
-.nav-label {
-  font-family: 'Rubik Bubbles', cursive;
-  font-size: 1rem;
-  margin-right: 0.5rem;
-  color: #831416;
+.frame-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 1rem;
+  color: white;
+  font-size: 0.95rem;
+  width: 80%;
+  z-index: 2;
 }
 
 select {
@@ -81,10 +74,10 @@ select {
   border: none;
   background-color: #831416;
   color: white;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  margin-top: 0.5rem;
   cursor: pointer;
   appearance: none;
-  transition: background-color 0.2s;
 }
 
 select:hover {
@@ -92,37 +85,29 @@ select:hover {
 }
 
 h2 {
-  text-align: left;
-  margin-bottom: 0.5rem;
-  font-size: 1.6rem;
   font-family: 'Rubik Bubbles', cursive;
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
 }
 
-main ul {
-  padding-left: 1.2rem;
-  margin-top: 0.5rem;
+ul {
+  list-style: disc;
+  padding-left: 1rem;
+  text-align: left;
 }
 
-main ul li a {
-  text-decoration: none;
+a {
   color: white;
-  font-weight: 600;
-  font-size: 1.05rem;
+  text-decoration: none;
 }
 
-main ul li a:hover {
+a:hover {
   text-decoration: underline;
-  color: #ffeef6;
-}
-
-main p {
-  margin-top: 0.8rem;
-  line-height: 1.8;
 }
 
 footer {
   text-align: center;
   margin-top: 3rem;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: white;
 }
