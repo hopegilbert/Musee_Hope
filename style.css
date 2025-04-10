@@ -1,20 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik+Bubbles&family=Fredoka:wght@400;500&display=swap');
 
 body {
-  background-image: url('downloaded_image 2.jpeg'); /* can be .png, .webp etc */
+  background-image: url('Media/downloaded_image 2.jpeg');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
   background-repeat: no-repeat;
-}
-
-.container {
-  max-width: 750px;
-  margin: 2rem auto;
-  background: #ffcee4;
-  padding: 3rem 2rem;
-  border-radius: 30px;
-  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.06);
+  font-family: 'Fredoka', sans-serif;
+  color: white;
+  line-height: 1.7;
+  margin: 0;
+  padding: 2rem 1rem;
 }
 
 header {
@@ -37,15 +33,6 @@ h1 {
   font-size: 1.1rem;
   color: white;
   font-family: 'Fredoka', sans-serif;
-}
-
-nav ul {
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  list-style: none;
-  padding: 0;
-  margin-bottom: 2rem;
 }
 
 nav {
@@ -78,24 +65,6 @@ select:hover {
   background-color: #ec407a;
 }
 
-nav a {
-  display: inline-block;
-  padding: 0.6rem 1.2rem;
-  background-color: #f06292;
-  color: white;
-  font-family: 'Rubik Bubbles', cursive;
-  font-size: 0.9rem;
-  text-decoration: none;
-  border-radius: 999px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.2s, transform 0.2s;
-}
-
-nav a:hover {
-  background-color: #ec407a;
-  transform: translateY(-2px);
-}
-
 h2 {
   text-align: left;
   margin-bottom: 0.5rem;
@@ -108,10 +77,6 @@ main ul {
   margin-top: 0.5rem;
 }
 
-main p {
-  margin-top: 0.8rem;
-  line-height: 1.8;
-}
 main ul li a {
   text-decoration: none;
   color: white;
@@ -122,4 +87,16 @@ main ul li a {
 main ul li a:hover {
   text-decoration: underline;
   color: #ffeef6;
+}
+
+main p {
+  margin-top: 0.8rem;
+  line-height: 1.8;
+}
+
+footer {
+  text-align: center;
+  margin-top: 3rem;
+  font-size: 0.9rem;
+  color: white;
 }
