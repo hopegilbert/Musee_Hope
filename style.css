@@ -34,16 +34,17 @@ h1 {
 
 .frame-gallery {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: center;
   gap: 2rem;
   padding: 2rem;
+  overflow-x: auto;
 }
 
 .frame {
   position: relative;
-  width: 300px;
-  height: 350px;
+  width: 350px;
+  height: 450px;
   background-image: url('media/frame.png');
   background-size: cover;
   background-repeat: no-repeat;
@@ -51,19 +52,32 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
+  box-sizing: border-box;
 }
 
 .frame-content {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 1rem;
+  top: 66px;
+  left: 66px;
+  right: 66px;
+  bottom: 66px;
+  overflow: auto;
+  background: transparent;
   color: white;
-  font-size: 0.95rem;
-  width: 80%;
+  font-size: 1rem;
+  text-align: center;
+  line-height: 1.75;
   z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.frame.wide .frame-content {
+  top: 60px;
+  left: 65px;
+  right: 65px;
+  bottom: 60px;
 }
 
 select {
@@ -75,7 +89,7 @@ select {
   background-color: #831416;
   color: white;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  margin-top: 0.5rem;
+  margin-top: 1rem;
   cursor: pointer;
   appearance: none;
 }
@@ -110,4 +124,49 @@ footer {
   margin-top: 3rem;
   font-size: 0.85rem;
   color: white;
+}
+.custom-dropdown {
+  position: relative;
+  font-family: 'Rubik Bubbles', cursive;
+  margin-top: 1rem;
+}
+
+.dropdown-toggle {
+  background-color: #831416;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #831416;
+  border-radius: 10px;
+  list-style: none;
+  padding: 0.5rem 0;
+  margin: 0;
+  display: none;
+  flex-direction: column;
+  min-width: 250px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+
+.dropdown-menu li {
+  padding: 0.6rem 1rem;
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s;
+  text-align: center;
+}
+
+.dropdown-menu li:hover {
+  background-color: #9e2a2a;
 }
