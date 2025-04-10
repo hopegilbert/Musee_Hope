@@ -129,14 +129,14 @@ body {
   z-index: 0;
 }
 
-.p-frame-1 { top: 10%; left: 2%; width: 120px; height: 150px; background-image: url('media/picture frames/fashion frame.png'); }
-.p-frame-2 { top: 20%; right: 4%; width: 140px; height: 160px; background-image: url('media/picture frames/louvre frame.png'); }
-.p-frame-3 { top: 50%; left: 5%; width: 100px; height: 130px; background-image: url('media/picture frames/monet frame.png'); }
-.p-frame-4 { top: 70%; right: 5%; width: 160px; height: 160px; background-image: url('media/picture frames/paris frame.png'); }
-.p-frame-5 { top: 40%; left: 35%; width: 150px; height: 140px; background-image: url('media/picture frames/shoe frame.png'); }
-.p-frame-6 { top: 85%; left: 10%; width: 130px; height: 130px; background-image: url('media/picture frames/ski frame.png'); }
-.p-frame-7 { top: 15%; left: 60%; width: 100px; height: 100px; background-image: url('media/picture frames/strawberry frame.png'); }
-.p-frame-8 { top: 35%; right: 20%; width: 150px; height: 150px; background-image: url('media/picture frames/webster frame.png'); }
+.p-frame-1 { top: 10%; left: 2%; width: 120px; height: 150px; background-image: url('media/picture frames/fashion.png'); }
+.p-frame-2 { top: 20%; right: 4%; width: 140px; height: 160px; background-image: url('media/picture frames/louvre.png'); }
+.p-frame-3 { top: 50%; left: 5%; width: 100px; height: 130px; background-image: url('media/picture frames/monet.png'); }
+.p-frame-4 { top: 70%; right: 5%; width: 160px; height: 160px; background-image: url('media/picture frames/paris.png'); }
+.p-frame-5 { top: 40%; left: 35%; width: 150px; height: 140px; background-image: url('media/picture frames/shoe.png'); }
+.p-frame-6 { top: 85%; left: 10%; width: 130px; height: 130px; background-image: url('media/picture frames/ski'); }
+.p-frame-7 { top: 15%; left: 60%; width: 100px; height: 100px; background-image: url('media/picture frames/strawberry.png'); }
+.p-frame-8 { top: 35%; right: 20%; width: 150px; height: 150px; background-image: url('media/picture frames/webster.png'); }
 
 h2 {
   font-family: 'Playfair Display', serif;
