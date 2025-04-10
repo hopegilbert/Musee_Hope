@@ -9,14 +9,14 @@ function toggleDropdown() {
     }
   }
 
-document.addEventListener("DOMContentLoaded", function () {
-  const grid = document.querySelector('.masonry-grid');
-  imagesLoaded(grid, function () {
-    new Masonry(grid, {
-      itemSelector: '.grid-item',
-      columnWidth: 200,
-      gutter: 16,
-      fitWidth: true
+  document.addEventListener("DOMContentLoaded", function () {
+    const grid = document.querySelector(".masonry-grid");
+    imagesLoaded(grid, function () {
+      new Masonry(grid, {
+        itemSelector: ".grid-item",
+        columnWidth: ".grid-sizer", // optional but better layout
+        percentPosition: true,
+        gutter: 16
+      });
     });
   });
-});
