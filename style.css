@@ -1,12 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik+Bubbles&family=Fredoka:wght@400;500&display=swap');
 
 body {
-  margin: 0;
-  padding: 2rem 1rem;
-  font-family: 'Fredoka', sans-serif;
-  background-color: #ffeaf4;
-  color: white;
-  line-height: 1.7;
+  background-image: url('downloaded_image 2.jpeg'); /* can be .png, .webp etc */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
 }
 
 .container {
@@ -50,11 +49,33 @@ nav ul {
 }
 
 nav {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.75rem;
+  text-align: center;
   margin-bottom: 2rem;
+}
+
+.nav-label {
+  font-family: 'Rubik Bubbles', cursive;
+  font-size: 1rem;
+  margin-right: 0.5rem;
+  color: #d81b60;
+}
+
+select {
+  font-family: 'Rubik Bubbles', cursive;
+  font-size: 0.9rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 999px;
+  border: none;
+  background-color: #f06292;
+  color: white;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  cursor: pointer;
+  appearance: none;
+  transition: background-color 0.2s;
+}
+
+select:hover {
+  background-color: #ec407a;
 }
 
 nav a {
@@ -90,4 +111,15 @@ main ul {
 main p {
   margin-top: 0.8rem;
   line-height: 1.8;
+}
+main ul li a {
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+main ul li a:hover {
+  text-decoration: underline;
+  color: #ffeef6;
 }
