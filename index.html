@@ -8,62 +8,62 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&family=Patrick+Hand&family=Rubik+Bubbles&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Rubik+Bubbles&family=Fredoka:wght@400;500&display=swap" rel="stylesheet">
 
   <!-- Stylesheet -->
   <link rel="stylesheet" href="style.css" />
 </head>
-<script>
-  function navigateTo(selectElement) {
-    const page = selectElement.value;
-    if (page && page !== "") {
-      window.location.href = page;
-    }
-  }
-</script>
+
 <body>
-  <div class="container">
-    <header>
-      <h1>My Digital Garden</h1>
-      <p class="subtitle">A semi-organised mess of thoughts, half-formed theories, and things I’m still figuring out.</p>
-    </header>
+  <img src="media/background.jpg" alt="test" style="width: 200px; border: 2px solid white;">
+  <header>
+    <h1>My Digital Garden</h1>
+    <p class="subtitle">A semi-organised mess of thoughts, half-formed theories, and things I’m still figuring out.</p>
+  </header>
 
-    <nav>
-      <label for="nav-dropdown" class="nav-label">Jump to a category:</label>
-      <select id="nav-dropdown" onchange="navigateTo(this)">
-        <option disabled selected value="">Choose your brain dump...</option>
-        <option value="hot-takes.html">Hot Takes</option>
-        <option value="works-in-progress.html">Works in Progress</option>
-        <option value="unfinished-business.html">Unfinished Business</option>
-        <option value="stuff-i-cant-stop.html">Stuff I Can't Stop Thinking About</option>
-        <option value="stuff-not-ready.html">Stuff I'm Not Ready to Talk About</option>
-        <option value="maybe-genius.html">Stuff That Might Be Genius (Eventually)</option>
-      </select>
-    </nav>
-    <main>
-      <section id="featured">
-        <h2>Recent Brain Dumps</h2>
-        <ul>
-          <li><a href="#">Why I Overthink Everything</a></li>
-          <li><a href="#">What If Learning Wasn't So Linear?</a></li>
-        </ul>
-      </section>
+  <nav>
+    <label for="nav-dropdown" class="nav-label">Jump to a category:</label>
+    <select id="nav-dropdown" onchange="navigateTo(this)">
+      <option disabled selected value="">Choose your brain dump...</option>
+      <option value="hot-takes.html">Hot Takes</option>
+      <option value="works-in-progress.html">Works in Progress</option>
+      <option value="unfinished-business.html">Unfinished Business</option>
+      <option value="stuff-i-cant-stop.html">Stuff I Can't Stop Thinking About</option>
+      <option value="stuff-not-ready.html">Stuff I'm Not Ready to Talk About</option>
+      <option value="maybe-genius.html">Stuff That Might Be Genius (Eventually)</option>
+    </select>
+  </nav>
 
-      <section id="about">
-        <h2>What This Even Is</h2>
-        <p>
-          This isn’t a blog. It’s not a portfolio. It’s definitely not polished. 
-          It’s just a space where I dump whatever I’m chewing on mentally - sometimes raw, sometimes refined, usually weird. 
-          Expect ideas in-progress, tangents, and things I might completely disagree with tomorrow.
-        </p>
-      </section>
-    </main>
+  <main>
+    <section id="featured">
+      <h2>Recent Brain Dumps</h2>
+      <ul>
+        <li><a href="#">Why I Overthink Everything</a></li>
+        <li><a href="#">What If Learning Wasn't So Linear?</a></li>
+      </ul>
+    </section>
 
-    <footer>
-      <p>I promise it’ll make sense later. Maybe.</p>
-    </footer>
-  </div>
+    <section id="about">
+      <h2>What This Even Is</h2>
+      <p>
+        This isn’t a blog. It’s not a portfolio. It’s definitely not polished. 
+        It’s just a space where I dump whatever I’m chewing on mentally — sometimes raw, sometimes refined, usually weird. 
+        Expect ideas in-progress, tangents, and things I might completely disagree with tomorrow.
+      </p>
+    </section>
+  </main>
 
-  <script src="scripts.js"></script>
+  <footer>
+    <p>I promise it’ll make sense later. Maybe.</p>
+  </footer>
+
+  <script>
+    function navigateTo(selectElement) {
+      const page = selectElement.value;
+      if (page && page !== "") {
+        window.location.href = page;
+      }
+    }
+  </script>
 </body>
 </html>
