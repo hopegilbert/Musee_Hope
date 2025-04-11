@@ -233,7 +233,7 @@ h1 {
   position: absolute;
   width: 1px;
   height: 1px;
-  transform: scale(3);
+  transform: scale(6);
   transform-origin: top left;
   z-index: 999999;
   pointer-events: none;
@@ -283,20 +283,31 @@ h1 {
 /* Glitter trail effect */
 .trail {
   position: fixed;
-  width: 6px;
-  height: 6px;
-  background: #ffb6c1;
+  width: 8px;
+  height: 8px;
+  background: linear-gradient(45deg, #ffb6c1, #ffd700);
   border-radius: 50%;
   pointer-events: none;
   z-index: 9998;
-  opacity: 0.6;
-  box-shadow: 0 0 5px #ff69b4;
-  animation: fadeOut 0.5s forwards;
+  opacity: 0.8;
+  box-shadow: 
+    0 0 8px #ff69b4,
+    0 0 15px #ffd700,
+    0 0 20px #ffffff;
+  animation: fadeOut 0.8s forwards;
   transform: translate(-50%, -50%);
 }
 
 @keyframes fadeOut {
-  to {
+  0% {
+    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+  100% {
     opacity: 0;
     transform: translate(-50%, -50%) scale(0.5);
   }
