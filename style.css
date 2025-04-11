@@ -86,6 +86,42 @@ body {
   display: block;
 }
 
+.image-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.image-wrapper img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: filter 0.4s ease;
+}
+
+.image-wrapper:hover img {
+  filter: brightness(55%);
+}
+
+.hover-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #f5e8c7;
+  font-family: 'Lora', serif;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  padding: 1rem;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.image-wrapper:hover .hover-text {
+  opacity: 1;
+}
+
 .overlay-content {
   position: absolute;
   top: 0;
