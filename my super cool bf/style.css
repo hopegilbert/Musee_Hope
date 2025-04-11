@@ -237,8 +237,8 @@ h1 {
   transform-origin: center;
   z-index: 999999;
   pointer-events: none;
-  left: 2px;
-  top: 2px;
+  left: -7px;
+  top: -8px;
   box-shadow: 
     5px 3px #f4b4da,
     5px 4px #f98ccc,
