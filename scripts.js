@@ -19,35 +19,36 @@ if (window.innerWidth <= 768) {
 }
 
 // Animate frames on scroll
-document.addEventListener("DOMContentLoaded", () => {
-  const gridItems = document.querySelectorAll(".grid-item");
-
-  const observer = new IntersectionObserver(
-    entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    {
-      threshold: 0.1
-    }
-  );
-
-  gridItems.forEach(item => {
-    observer.observe(item);
-  });
-
-  // Initialize Masonry after images are loaded
+document.addEventListener("DOMContentLoaded", function () {
   const grid = document.querySelector(".masonry-grid");
+
+  // Wait for all images to load before Masonry
   imagesLoaded(grid, function () {
     new Masonry(grid, {
       itemSelector: ".grid-item",
-      columnWidth: ".grid-item",
-      gutter: 10,
-      percentPosition: true
+      gutter: 16,
+      fitWidth: true,
+      percentPosition: true,
+    });
+
+    // Reveal each image using IntersectionObserver
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in-view");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.2,
+      }
+    );
+
+    const items = document.querySelectorAll(".grid-item");
+    items.forEach((item) => {
+      observer.observe(item);
     });
   });
 });

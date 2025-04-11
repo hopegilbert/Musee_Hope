@@ -91,10 +91,10 @@ html {
 .grid-item {
   opacity: 0;
   transform: translateY(40px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition: all 0.6s ease-out;
 }
 
-.grid-item.visible {
+.grid-item.in-view {
   opacity: 1;
   transform: translateY(0);
 }
