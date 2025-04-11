@@ -305,8 +305,6 @@ h1 {
     2px 2px #ffffff;
   animation: pixelGlitter 0.8s forwards;
   transform: translate(-50%, -50%);
-  margin-top: 78px;
-  margin-left: 54px;
 }
 
 .trail.visible {

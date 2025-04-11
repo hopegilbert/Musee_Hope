@@ -33,8 +33,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const trail = document.createElement('div');
     trail.className = 'trail visible';
-    trail.style.left = e.clientX + 'px';
-    trail.style.top = e.clientY + 'px';
+    
+    // Calculate the bottom point of the cursor
+    // Scale factor is 4.5, and the bottom point is at pixel (9,13)
+    const xOffset = 9 * 4.5; // 40.5px
+    const yOffset = 13 * 4.5; // 58.5px
+    
+    trail.style.left = (e.clientX + xOffset) + 'px';
+    trail.style.top = (e.clientY + yOffset) + 'px';
     document.body.appendChild(trail);
 
     // Remove trail element after animation
