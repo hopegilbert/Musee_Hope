@@ -287,23 +287,18 @@ h1 {
 /* Glitter trail effect */
 .trail {
   position: fixed;
-  width: 3px;
-  height: 3px;
-  background: #ffffff;
+  width: 8px;
+  height: 8px;
+  background: linear-gradient(45deg, #ffb6c1, #ffd700);
+  border-radius: 50%;
   pointer-events: none;
   z-index: 9998;
-  opacity: 0.9;
-  visibility: visible; /* Make visible by default */
+  opacity: 0.8;
   box-shadow: 
-    1px 0 #ffffff,
-    2px 0 #ffffff,
-    0 1px #ffffff,
-    1px 1px #ffffff,
-    2px 1px #ffffff,
-    0 2px #ffffff,
-    1px 2px #ffffff,
-    2px 2px #ffffff;
-  animation: pixelGlitter 0.8s forwards;
+    0 0 8px #ff69b4,
+    0 0 15px #ffd700,
+    0 0 20px #ffffff;
+  animation: fadeOut 0.8s forwards;
   transform: translate(-50%, -50%);
 }
 
@@ -339,6 +334,21 @@ h1 {
     -2px 2px #ffffff,
     -1px 1px #ffffff,
     2px -2px #ffffff;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
 }
 
 @keyframes pixelGlitter {
