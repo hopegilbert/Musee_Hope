@@ -29,8 +29,8 @@ body {
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  width: 2000px;
-  height: 440px;
+  width: 1600px;
+  height: 352px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -38,7 +38,7 @@ body {
 
 .title-image-frame h1 {
   font-family: 'Playfair Display', serif;
-  font-size: 5rem;
+  font-size: 4rem;
   color: #f5e8c7;
   margin: 0;
   padding: 0 2rem;
