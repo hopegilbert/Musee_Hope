@@ -31,3 +31,30 @@ if (window.innerWidth <= 768) {
     });
   });
 }
+document.addEventListener("DOMContentLoaded", function () {
+  const frames = document.querySelectorAll(".grid-item");
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target); // Animate only once
+        }
+      });
+    },
+    {
+      threshold: 0.2 // Trigger when 20% of frame is visible
+    }
+  );
+
+  frames.forEach(frame => {
+    observer.observe(frame);
+  });
+});
+frames.forEach((frame, index) => {
+  frame.style.transitionDelay = `${index * 100}ms`;
+  observer.observe(frame);
+});
+  
+  
