@@ -4,19 +4,17 @@ html {
   scroll-behavior: smooth;
 }
 
-body {
+.background-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   background-image: url('media/background.jpg');
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
   background-repeat: no-repeat;
-  font-family: 'Lora', serif;
-  color: #f5e8c7;
-  margin: 0;
-  padding: 2rem 1rem;
-  line-height: 1.7;
-  position: relative;
-  z-index: 1;
+  z-index: -1;
 }
 
 .title-frame {
@@ -93,6 +91,7 @@ body {
 .image-wrapper {
   position: relative;
   overflow: hidden;
+  z-index: 0; /* Ensure stacking context */
 }
 
 .image-wrapper img {
@@ -100,10 +99,8 @@ body {
   width: 100%;
   height: auto;
   transition: filter 0.4s ease;
-}
-
-.image-wrapper:hover img {
-  filter: brightness(55%);
+  z-index: 1;
+  position: relative;
 }
 
 .hover-text {
@@ -120,9 +117,16 @@ body {
   opacity: 0;
   transition: opacity 0.4s ease;
   pointer-events: none;
+  z-index: 2;
 }
 
-.image-wrapper:hover .hover-text {
+.image-wrapper:hover img,
+.image-wrapper.active img {
+  filter: brightness(55%);
+}
+
+.image-wrapper:hover .hover-text,
+.image-wrapper.active .hover-text {
   opacity: 1;
 }
 
@@ -300,13 +304,13 @@ footer p {
   }
 
   .subtitle {
-    font-size: 1.2rem;
+    font-size: 0.8rem;
     line-height: 1.5;
     padding: 0 0.5rem;
   }
 
   .footer-frame {
-    font-size: 0.95rem;
+    font-size: 0.8rem;
     padding: 1rem 0.2rem;
   }
 
