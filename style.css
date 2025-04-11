@@ -91,14 +91,19 @@ html {
 .grid-item {
   opacity: 0;
   transform: translateY(40px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-  will-change: opacity, transform;
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
 .grid-item.visible {
   opacity: 1;
   transform: translateY(0);
 }
+
+.grid-item {
+  min-height: 200px; /* or whatever is the average */
+  background: transparent;
+}
+
 
 .image-wrapper {
   position: relative;

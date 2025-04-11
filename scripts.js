@@ -9,52 +9,45 @@ function navigateTo(page) {
   }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  const grid = document.querySelector(".masonry-grid");
-  imagesLoaded(grid, function () {
-    new Masonry(grid, {
-      itemSelector: ".grid-item",
-      columnWidth: ".grid-item", // Use one of your items as size reference
-      gutter: 16,
-      percentPosition: true,
-      fitWidth: true
-    });
-  });
-});
-
-// Only enable this on mobile
+// Image tap support for hover text (mobile only)
 if (window.innerWidth <= 768) {
   document.querySelectorAll('.image-wrapper').forEach(wrapper => {
     wrapper.addEventListener('click', () => {
-      // Toggle the active state
       wrapper.classList.toggle('active');
     });
   });
 }
-document.addEventListener("DOMContentLoaded", function () {
-  const frames = document.querySelectorAll(".grid-item");
+
+// Animate frames on scroll
+document.addEventListener("DOMContentLoaded", () => {
+  const gridItems = document.querySelectorAll(".grid-item");
 
   const observer = new IntersectionObserver(
-    (entries) => {
+    entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add("visible");
-          observer.unobserve(entry.target); // Animate only once
+          observer.unobserve(entry.target);
         }
       });
     },
     {
-      threshold: 0.2 // Trigger when 20% of frame is visible
+      threshold: 0.1
     }
   );
 
-  frames.forEach(frame => {
-    observer.observe(frame);
+  gridItems.forEach(item => {
+    observer.observe(item);
+  });
+
+  // Initialize Masonry after images are loaded
+  const grid = document.querySelector(".masonry-grid");
+  imagesLoaded(grid, function () {
+    new Masonry(grid, {
+      itemSelector: ".grid-item",
+      columnWidth: ".grid-item",
+      gutter: 10,
+      percentPosition: true
+    });
   });
 });
-frames.forEach((frame, index) => {
-  frame.style.transitionDelay = `${index * 100}ms`;
-  observer.observe(frame);
-});
-  
-  
