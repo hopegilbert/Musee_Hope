@@ -9,7 +9,7 @@ function navigateTo(page) {
   }
 }
 
-// Image tap support for hover text (mobile only)
+// Mobile support for showing hover-text on tap
 if (window.innerWidth <= 768) {
   document.querySelectorAll('.image-wrapper').forEach(wrapper => {
     wrapper.addEventListener('click', () => {
@@ -18,37 +18,43 @@ if (window.innerWidth <= 768) {
   });
 }
 
-// Animate frames on scroll
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
   const grid = document.querySelector(".masonry-grid");
+  const gridItems = document.querySelectorAll(".grid-item");
 
-  // Wait for all images to load before Masonry
-  imagesLoaded(grid, function () {
-    new Masonry(grid, {
+  // Ensure width and height are preserved
+  document.querySelectorAll("img").forEach(img => {
+    if (img.complete && img.naturalWidth) {
+      img.setAttribute("width", img.naturalWidth);
+      img.setAttribute("height", img.naturalHeight);
+    }
+  });
+
+  imagesLoaded(grid, () => {
+    // Now initialize Masonry
+    const msnry = new Masonry(grid, {
       itemSelector: ".grid-item",
-      gutter: 16,
-      fitWidth: true,
-      percentPosition: true,
+      columnWidth: ".grid-item",
+      gutter: 10,
+      percentPosition: true
     });
 
-    // Reveal each image using IntersectionObserver
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("in-view");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        threshold: 0.2,
-      }
-    );
+    // Delay animations to allow layout to stabilize
+    setTimeout(() => {
+      const observer = new IntersectionObserver(
+        entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("in-view");
+              observer.unobserve(entry.target);
+              msnry.layout();
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
 
-    const items = document.querySelectorAll(".grid-item");
-    items.forEach((item) => {
-      observer.observe(item);
-    });
+      gridItems.forEach(item => observer.observe(item));
+    }, 300);
   });
 });
