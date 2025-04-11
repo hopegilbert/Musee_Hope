@@ -298,6 +298,8 @@ h1 {
     0 0 20px #ffffff;
   animation: fadeOut 0.8s forwards;
   transform: translate(-50%, -50%);
+  margin-top: 78px;
+  margin-left: 54px;
 }
 
 @keyframes fadeOut {
