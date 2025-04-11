@@ -1,5 +1,6 @@
 /* Y2K Style CSS for My Super Cool BF Page */
 
+
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 body {
@@ -8,7 +9,10 @@ body {
   color: #fff;
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
+  overflow-x: hidden;  
+}
+body {
+  cursor: url('images/pink-cursor.png') 0 0, auto;
 }
 
 .container {
@@ -159,73 +163,53 @@ h1 {
   
   .window-header {
     display: flex;
+    justify-content: space-between; /* pushes title to left, buttons to right */
     align-items: center;
-    justify-content: space-between;
-    padding: 2px 8px;
+    padding: 0.5rem 0.75rem;
     background: linear-gradient(to right, #f4a8c9, #fdd4f1);
-    border-bottom: 2px solid #d4d0c8;
+    border-bottom: 2px solid #ccc;
     cursor: move;
-    font-weight: bold;
-    font-size: 0.85rem;
-    font-family: 'Courier New', monospace;
-    height: 24px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
   }
   
-/* Base styles */
-.window-buttons {
+  .window-title {
+    font-weight: bold;
+    color: white;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+  }
+  
+  .window-buttons {
     display: flex;
     gap: 6px;
-    margin-right: auto;
-    position: relative;
   }
   
-  /* Buttons */
-  .window-buttons span {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    display: inline-block;
-    position: relative;
-    box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.3);
-    transition: background 0.2s ease;
-  }
-  
-  .window-buttons .red { background-color: #ff605c; }
-  .window-buttons .yellow { background-color: #ffbd44; }
-  .window-buttons .green { background-color: #00ca4e; }
-  
-  /* Shared hover symbols */
-  .window-buttons span::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    font-size: 0.65rem;
-    color: #421616;
-    transform: translate(-50%, -50%);
-    opacity: 0;
-    font-weight: bold;
-    pointer-events: none;
-  }
-  
-  /* When any button is hovered, show all icons */
-  .window-buttons:has(span:hover) .red::before {
-    content: '✕';
-    opacity: 1;
-  }
-  .window-buttons:has(span:hover) .yellow::before {
-    content: '–';
-    opacity: 1;
-  }
-  .window-buttons:has(span:hover) .green::before {
-    content: '◻';
-    opacity: 1;
-  }
-  
-  .window-body {
-    padding: 10px;
+  .win-btn {
+    width: 20px;
+    height: 20px;
     background-color: #fce4f3;
-    color: #333;
-    font-size: 0.9rem;
-    border-top: 1px solid #d4d0c8;
+    border: 1px solid #c26d9c;
+    border-radius: 3px;
+    text-align: center;
+    line-height: 18px;
+    font-size: 0.8rem;
+    font-family: 'Courier New', monospace;
+    cursor: pointer;
+    color: #a03d70;
+    box-shadow: inset 0 1px #fff, inset 0 -1px #ccc;
+    transition: background-color 0.2s ease, color 0.2s ease;
   }
+  
+  .win-btn:hover {
+    background-color: #f6b8d2;
+    color: #721f4e;
+  }
+
+ .window-body {
+  padding: 10px;
+  background-color: #fce4f3;
+  color: #333;
+  font-size: 0.9rem;
+  border-top: 1px solid #d4d0c8;
+}
