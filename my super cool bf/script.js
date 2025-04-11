@@ -4,11 +4,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // Handle cursor visibility
   document.addEventListener('mousemove', (e) => {
     // Check if cursor is within viewport
-    if (e.clientX >= 0 && e.clientX <= window.innerWidth &&
-        e.clientY >= 0 && e.clientY <= window.innerHeight) {
-      cursor.classList.add('visible');
+    if (e.clientX < 0 || e.clientX > window.innerWidth ||
+        e.clientY < 0 || e.clientY > window.innerHeight) {
+      cursor.classList.add('hidden');
     } else {
-      cursor.classList.remove('visible');
+      cursor.classList.remove('hidden');
     }
     
     // Update cursor position
@@ -17,11 +17,11 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   document.addEventListener('mouseenter', () => {
-    cursor.classList.add('visible');
+    cursor.classList.remove('hidden');
   });
 
   document.addEventListener('mouseleave', () => {
-    cursor.classList.remove('visible');
+    cursor.classList.add('hidden');
   });
 
   // Handle trail effect
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const trail = document.createElement('div');
-    trail.className = 'trail visible';
+    trail.className = 'trail';
     
     // Calculate the bottom point of the cursor
     // Scale factor is 4.5, and the bottom point is at pixel (9,13)

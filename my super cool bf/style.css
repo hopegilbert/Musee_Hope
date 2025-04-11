@@ -226,11 +226,11 @@ h1 {
   pointer-events: none;
   z-index: 999999;
   transform: translate(-50%, -50%);
-  visibility: hidden; /* Hide by default */
+  visibility: visible; /* Make visible by default */
 }
 
-#cursor.visible {
-  visibility: visible; /* Show when class is added */
+#cursor.hidden {
+  visibility: hidden; /* Hide when class is added */
 }
 
 #cursor::after {
@@ -293,7 +293,7 @@ h1 {
   pointer-events: none;
   z-index: 9998;
   opacity: 0.9;
-  visibility: hidden; /* Hide by default */
+  visibility: visible; /* Make visible by default */
   box-shadow: 
     1px 0 #ffffff,
     2px 0 #ffffff,
@@ -307,8 +307,8 @@ h1 {
   transform: translate(-50%, -50%);
 }
 
-.trail.visible {
-  visibility: visible; /* Show when class is added */
+.trail.hidden {
+  visibility: hidden; /* Hide when class is added */
 }
 
 .trail::before {
