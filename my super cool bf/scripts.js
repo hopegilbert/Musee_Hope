@@ -11,7 +11,7 @@ function toggleDropdown() {
   
   // Custom cursor and trail effect
   document.addEventListener('DOMContentLoaded', () => {
-    const cursor = document.querySelector(".custom-cursor");
+    const cursor = document.getElementById('cursor');
 
     document.addEventListener("mousemove", (e) => {
       cursor.style.top = e.clientY + "px";

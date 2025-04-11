@@ -214,20 +214,48 @@ h1 {
 }
 
 /* Custom Cursor Styles */
-/* Custom Cursor Dot */
-.custom-cursor {
+/* Base cursor removal */
+body {
+  cursor: none;
+}
+
+#cursor {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 20px;
-  height: 20px;
-  background: radial-gradient(circle, #ff69b4, #ffb6c1);
-  border-radius: 50%;
+  width: 1px;
+  height: 1px;
   pointer-events: none;
-  z-index: 9999;
-  box-shadow: 0 0 8px #ff69b4, 0 0 12px #ffb6c1;
-  animation: pulse 1s infinite alternate;
-  transform: translate(-50%, -50%);
+  z-index: 10000;
+}
+
+#cursor::after {
+  content: '';
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  box-shadow:
+    0px 0px #ff69b4,
+    1px 0px #ff69b4,
+    2px 0px #ff69b4,
+    3px 0px #ff69b4,
+    4px 0px #ff69b4,
+    5px 0px #ff1493,
+    6px 0px #ff1493,
+    
+    0px 1px #ff69b4,
+    1px 1px #ffffff,
+    2px 1px #ffb6c1,
+    3px 1px #ff1493,
+
+    0px 2px #ff69b4,
+    1px 2px #ff69b4,
+    2px 2px #ffffff,
+    3px 2px #ff69b4,
+
+    /* add more sparkly pixels */
+    8px 4px #ffd700,
+    9px 4px #fff8dc,
+    8px 5px #ffd700,
+    9px 5px #fff8dc;
 }
 
 /* Glitter trail effect */
@@ -243,17 +271,6 @@ h1 {
   box-shadow: 0 0 5px #ff69b4;
   animation: fadeOut 0.5s forwards;
   transform: translate(-50%, -50%);
-}
-
-@keyframes pulse {
-  from {
-    transform: translate(-50%, -50%) scale(1);
-    box-shadow: 0 0 8px #ff69b4;
-  }
-  to {
-    transform: translate(-50%, -50%) scale(1.2);
-    box-shadow: 0 0 16px #ffc0cb;
-  }
 }
 
 @keyframes fadeOut {
