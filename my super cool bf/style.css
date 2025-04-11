@@ -214,7 +214,7 @@ h1 {
 
 /* Custom Cursor Styles */
 * {
-  cursor: none !important;
+  cursor: url('images/pink-cursor.gif'), auto !important;
 }
 
 #cursor {

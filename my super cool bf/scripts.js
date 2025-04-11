@@ -34,7 +34,7 @@ function toggleDropdown() {
     });
   }
   
-  // Initialize all draggable windows and custom cursor
+  // Initialize draggable windows and sparkle effect
   document.addEventListener("DOMContentLoaded", () => {
     // Initialize draggable windows
     const windows = document.querySelectorAll('.draggable-window');
@@ -42,24 +42,6 @@ function toggleDropdown() {
       const handle = win.querySelector('.retro-header') || win.querySelector('.window-header');
       if (handle) makeDraggable(win, handle);
     });
-
-    // Custom cursor initialization
-    const cursor = document.getElementById('cursor');
-    if (cursor) {
-      document.addEventListener('mousemove', (e) => {
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
-      });
-
-      // Scale effect when clicking
-      document.addEventListener('mousedown', () => {
-        cursor.style.transform = 'translate(-50%, -50%) scale(0.8)';
-      });
-
-      document.addEventListener('mouseup', () => {
-        cursor.style.transform = 'translate(-50%, -50%) scale(1)';
-      });
-    }
 
     // Sparkle trail
     const trailCount = 15;
