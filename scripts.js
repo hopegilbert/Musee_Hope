@@ -40,3 +40,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+// Subtle Parallax Effect on Scroll
+window.addEventListener('scroll', () => {
+  document.querySelectorAll('.grid-item.parallax').forEach(item => {
+    const rect = item.getBoundingClientRect();
+    const offset = rect.top * 0.05; // adjust multiplier for intensity
+    item.style.transform = `translateY(${offset}px)`;
+  });
+});
