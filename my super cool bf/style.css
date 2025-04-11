@@ -1,0 +1,231 @@
+/* Y2K Style CSS for My Super Cool BF Page */
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body {
+  background: linear-gradient(to bottom right, #ffc0cb, #ff99cc);
+  font-family: 'Press Start 2P', cursive;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+.container {
+  padding: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 4px double #fff;
+  border-radius: 12px;
+  box-shadow: 0 0 20px #ff69b4;
+}
+.page-title {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1.5rem;
+    color: #ff4eb1;
+    background: none;
+    text-align: center;
+    padding: 2rem 1rem 1rem;
+    text-shadow: 2px 2px 0 white;
+    letter-spacing: 4px;
+  }
+  .page-title {
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid #ff4eb1;
+    width: fit-content;
+    margin: 0 auto;
+    animation: typing 3s steps(30, end), blink 0.75s step-end infinite;
+  }
+  
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 20ch }
+  }
+  
+  @keyframes blink {
+    50% { border-color: transparent }
+  }
+
+h1 {
+  text-align: center;
+  font-size: 1.8rem;
+  color: #ff69b4;
+  margin-bottom: 2rem;
+  text-shadow: 2px 2px #fff;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.gallery img {
+  width: 100%;
+  border: 4px dashed #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 15px #ff69b4;
+  transition: transform 0.3s ease-in-out;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px #ff1493;
+}
+
+.caption {
+  margin-top: 0.5rem;
+  font-size: 0.7rem;
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 0.5rem;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.footer {
+  text-align: center;
+  font-size: 0.6rem;
+  color: #fff;
+  margin-top: 2rem;
+  opacity: 0.8;
+}
+.retro-window {
+    position: absolute;
+    width: 280px;
+    max-width: 90vw;
+    background: rgba(255, 255, 255, 0.65);
+    border: 2px solid #000;
+    box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.3);
+    font-family: 'Courier New', Courier, monospace;
+    z-index: 2;
+    border-radius: 4px;
+    backdrop-filter: blur(5px);
+  }
+  
+  .retro-header {
+    background: #c12669; /* dark pink */
+    color: white;
+    padding: 0.4rem 0.75rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    font-size: 0.85rem;
+    border-bottom: 2px solid #000;
+  }
+  
+  .retro-buttons {
+    display: flex;
+    gap: 0.4rem;
+  }
+  
+  .retro-buttons span {
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    border: 1px solid #000;
+    border-radius: 50%;
+  }
+  
+  .retro-body {
+    padding: 1rem;
+    font-size: 0.8rem;
+    color: #111;
+  }
+  .draggable-window {
+    position: absolute;
+    width: 320px;
+    background: rgba(255, 255, 255, 0.7);
+    border: 2px solid #e75480;
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    z-index: 1;
+    transition: box-shadow 0.2s ease;
+  }
+  
+  .draggable-window {
+    position: absolute;
+    width: 350px;
+    border: 2px solid #d4d0c8;
+    background-color: #fff;
+    font-family: 'Courier New', monospace;
+    box-shadow: 4px 4px #c4bebe;
+    z-index: 10;
+  }
+  
+  .window-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2px 8px;
+    background: linear-gradient(to right, #f4a8c9, #fdd4f1);
+    border-bottom: 2px solid #d4d0c8;
+    cursor: move;
+    font-weight: bold;
+    font-size: 0.85rem;
+    font-family: 'Courier New', monospace;
+    height: 24px;
+  }
+  
+/* Base styles */
+.window-buttons {
+    display: flex;
+    gap: 6px;
+    margin-right: auto;
+    position: relative;
+  }
+  
+  /* Buttons */
+  .window-buttons span {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.3);
+    transition: background 0.2s ease;
+  }
+  
+  .window-buttons .red { background-color: #ff605c; }
+  .window-buttons .yellow { background-color: #ffbd44; }
+  .window-buttons .green { background-color: #00ca4e; }
+  
+  /* Shared hover symbols */
+  .window-buttons span::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 0.65rem;
+    color: #421616;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    font-weight: bold;
+    pointer-events: none;
+  }
+  
+  /* When any button is hovered, show all icons */
+  .window-buttons:has(span:hover) .red::before {
+    content: '✕';
+    opacity: 1;
+  }
+  .window-buttons:has(span:hover) .yellow::before {
+    content: '–';
+    opacity: 1;
+  }
+  .window-buttons:has(span:hover) .green::before {
+    content: '◻';
+    opacity: 1;
+  }
+  
+  .window-body {
+    padding: 10px;
+    background-color: #fce4f3;
+    color: #333;
+    font-size: 0.9rem;
+    border-top: 1px solid #d4d0c8;
+  }
