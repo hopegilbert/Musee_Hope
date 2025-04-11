@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Lora:wght@400;500&display=swap');
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-image: url('media/background.jpg');
   background-size: cover;
@@ -7,7 +11,6 @@ body {
   background-attachment: fixed;
   background-repeat: no-repeat;
   font-family: 'Lora', serif;
-  font-weight: bold;
   color: #f5e8c7;
   margin: 0;
   padding: 2rem 1rem;
@@ -67,6 +70,7 @@ body {
   font-family: 'Lora', serif;
   text-align: center;
 }
+
 .masonry-grid {
   column-count: 4;
   column-gap: 1rem;
@@ -141,7 +145,7 @@ body {
 }
 
 .overlay-content h2 {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Lora', serif;
   font-size: 1.3rem;
   margin-bottom: 0.5rem;
   color: #831416;
@@ -164,7 +168,10 @@ body {
 }
 
 .dropdown-wrapper {
+  position: relative;
+  display: inline-block;
   pointer-events: auto;
+  width: 100%;
 }
 
 .dropdown-toggle {
@@ -176,9 +183,11 @@ body {
   color: #821818;
   border: none;
   border-radius: 999px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   text-align: center;
+  z-index: 2;
+  position: relative;
 }
 
 .dropdown-menu {
@@ -189,8 +198,8 @@ body {
   width: 100%;
   background-color: #f5e8c7;
   border-radius: 12px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-  z-index: 10;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  z-index: 1;
   pointer-events: auto;
 }
 
@@ -203,7 +212,7 @@ body {
 }
 
 .dropdown-menu div:hover {
-  background-color: #f5e8c7;
+  background-color: #dbc692;
 }
 
 .footer-frame {
@@ -243,19 +252,71 @@ footer p {
 
 @media (max-width: 768px) {
   .masonry-grid {
-    column-count: 1;
-  }
-  .title-image-frame {
-    width: 90vw;
-    height: auto;
-    aspect-ratio: 4 / 1;
-  }
-  .title-image-frame h1 {
-    font-size: 1.8rem;
+    column-count: 2;
+    column-gap: 0.5rem;
     padding: 0 1rem;
   }
+
+  .title-frame img {
+    max-width: 250vw;
+    height: auto;
+  }
+
+  .title-image-frame {
+    width: 250vw;
+    height: auto;
+    aspect-ratio: 4 / 1;
+    background-size: contain;
+    background-position: center;
+  }
+
+  .title-image-frame h1 {
+    font-size: 1rem;
+    padding: 0 1rem;
+    line-height: 1.2;
+  }
+
   .overlay-content h2 {
+    font-size: 0.6rem;
+  }
+
+  .overlay-content p,
+  .overlay-content ul,
+  .overlay-content li,
+  .overlay-content a {
+    font-size: 0.4rem;
+    line-height: 1.4;
+  }
+
+  .overlay-content .body-text {
+    font-size: 0.4rem;
+    padding: 0 0.5rem;
+    line-height: 1.5;
+  }
+
+  .subtitle-frame {
+    padding: 0.2rem;
     font-size: 1.1rem;
-    font-weight: bold;
+  }
+
+  .subtitle {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    padding: 0 0.5rem;
+  }
+
+  .footer-frame {
+    font-size: 0.95rem;
+    padding: 1rem 0.2rem;
+  }
+
+  .dropdown-toggle {
+    font-size: 0.6rem;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .dropdown-menu div {
+    font-size: 0.6rem;
+    padding: 0.6rem 0.75rem;
   }
 }
