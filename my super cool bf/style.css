@@ -10,6 +10,7 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;  
+  cursor: none;
 }
 
 
@@ -213,33 +214,51 @@ h1 {
 }
 
 /* Custom Cursor Styles */
-* {
-  cursor: url('images/pink-cursor.png'), auto !important;
-}
-
-#cursor {
+/* Custom Cursor Dot */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 20px;
   height: 20px;
-  background: pink;
+  background: radial-gradient(circle, #ff69b4, #ffb6c1);
   border-radius: 50%;
-  position: fixed;
   pointer-events: none;
   z-index: 9999;
-  mix-blend-mode: difference;
-  border: 2px solid white;
-  box-shadow: 0 0 8px rgba(255, 192, 203, 0.8);
-  transition: transform 0.2s ease;
+  box-shadow: 0 0 8px #ff69b4, 0 0 12px #ffb6c1;
+  animation: pulse 1s infinite alternate;
   transform: translate(-50%, -50%);
 }
 
-.sparkle {
-  pointer-events: none;
+/* Glitter trail effect */
+.trail {
   position: fixed;
-  width: 10px;
-  height: 10px;
-  background: white;
+  width: 6px;
+  height: 6px;
+  background: #ffb6c1;
   border-radius: 50%;
-  mix-blend-mode: screen;
-  transform: translate(-50%, -50%);
+  pointer-events: none;
   z-index: 9998;
+  opacity: 0.6;
+  box-shadow: 0 0 5px #ff69b4;
+  animation: fadeOut 0.5s forwards;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes pulse {
+  from {
+    transform: translate(-50%, -50%) scale(1);
+    box-shadow: 0 0 8px #ff69b4;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1.2);
+    box-shadow: 0 0 16px #ffc0cb;
+  }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
 }

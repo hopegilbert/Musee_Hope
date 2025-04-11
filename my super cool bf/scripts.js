@@ -9,7 +9,28 @@ function toggleDropdown() {
     }
   }
   
-  // DRAGGABLE LOGIC
+  // Custom cursor and trail effect
+  document.addEventListener('DOMContentLoaded', () => {
+    const cursor = document.querySelector(".custom-cursor");
+
+    document.addEventListener("mousemove", (e) => {
+      cursor.style.top = e.clientY + "px";
+      cursor.style.left = e.clientX + "px";
+
+      // Create glitter trail
+      const trail = document.createElement("div");
+      trail.className = "trail";
+      trail.style.top = e.clientY + "px";
+      trail.style.left = e.clientX + "px";
+      document.body.appendChild(trail);
+
+      setTimeout(() => {
+        trail.remove();
+      }, 500);
+    });
+  });
+  
+  // Draggable window logic
   function makeDraggable(windowElement, handleElement) {
     let isDragging = false;
     let offsetX = 0;
@@ -34,40 +55,11 @@ function toggleDropdown() {
     });
   }
   
-  // Initialize draggable windows and sparkle effect
+  // Initialize draggable windows
   document.addEventListener("DOMContentLoaded", () => {
-    // Initialize draggable windows
     const windows = document.querySelectorAll('.draggable-window');
     windows.forEach(win => {
       const handle = win.querySelector('.retro-header') || win.querySelector('.window-header');
       if (handle) makeDraggable(win, handle);
-    });
-
-    // Sparkle trail
-    const trailCount = 15;
-    const sparkles = [];
-
-    for (let i = 0; i < trailCount; i++) {
-      const sparkle = document.createElement("div");
-      sparkle.className = "sparkle";
-      document.body.appendChild(sparkle);
-      sparkles.push(sparkle);
-    }
-
-    document.addEventListener("mousemove", (e) => {
-      let i = 0;
-      function animate() {
-        if (i >= sparkles.length) return;
-        const sparkle = sparkles[i];
-        sparkle.style.left = `${e.pageX}px`;
-        sparkle.style.top = `${e.pageY}px`;
-        sparkle.style.opacity = 1;
-        sparkle.style.transition = "opacity 0.5s ease-out, transform 0.5s ease-out";
-        sparkle.style.transform = `translate(${Math.random() * 20 - 10}px, ${Math.random() * 20 - 10}px) scale(0.5)`;
-        setTimeout(() => sparkle.style.opacity = 0, 10);
-        i++;
-        requestAnimationFrame(animate);
-      }
-      animate();
     });
   });
