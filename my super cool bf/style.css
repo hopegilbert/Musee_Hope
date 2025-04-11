@@ -226,8 +226,6 @@ h1 {
   pointer-events: none;
   z-index: 999999;
   transform: translate(-50%, -50%);
-  left: -4px;
-  top: -4px;
 }
 
 #cursor::after {
@@ -239,8 +237,8 @@ h1 {
   transform-origin: center;
   z-index: 999999;
   pointer-events: none;
-  left: 7px;
-  top: 7px;
+  left: 2px;
+  top: 2px;
   box-shadow: 
     5px 3px #f4b4da,
     5px 4px #f98ccc,
@@ -300,8 +298,6 @@ h1 {
     0 0 20px #ffffff;
   animation: fadeOut 0.8s forwards;
   transform: translate(-50%, -50%);
-  margin-left: -4px;
-  margin-top: -4px;
 }
 
 @keyframes fadeOut {
