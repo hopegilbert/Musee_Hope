@@ -11,9 +11,7 @@ body {
   padding: 0;
   overflow-x: hidden;  
 }
-body {
-  cursor: url('images/pink-cursor.png') 0 0, auto;
-}
+
 
 .container {
   padding: 2rem;

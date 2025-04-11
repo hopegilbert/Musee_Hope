@@ -70,3 +70,22 @@ function toggleDropdown() {
       animate();
     });
   });
+  <div id="cursor"></div>
+  // Custom cursor
+document.addEventListener('DOMContentLoaded', () => {
+  const cursor = document.getElementById('cursor');
+  
+  document.addEventListener('mousemove', (e) => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+  });
+
+  // Scale effect when clicking
+  document.addEventListener('mousedown', () => {
+    cursor.style.transform = 'scale(0.8)';
+  });
+
+  document.addEventListener('mouseup', () => {
+    cursor.style.transform = 'scale(1)';
+  });
+});
