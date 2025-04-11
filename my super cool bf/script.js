@@ -1,19 +1,20 @@
 document.addEventListener('DOMContentLoaded', () => {
   const cursor = document.getElementById('cursor');
   
-  // Handle cursor visibility
+  // Handle cursor visibility and position
   document.addEventListener('mousemove', (e) => {
     // Check if cursor is within viewport
     if (e.clientX < 0 || e.clientX > window.innerWidth ||
         e.clientY < 0 || e.clientY > window.innerHeight) {
       cursor.classList.add('hidden');
+      // Don't update cursor position when outside viewport
+      return;
     } else {
       cursor.classList.remove('hidden');
+      // Only update position when inside viewport
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
     }
-    
-    // Update cursor position
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
   });
 
   document.addEventListener('mouseenter', () => {
@@ -36,13 +37,10 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Calculate the bottom point of the cursor
     // The cursor art is 15x15 pixels, scaled by 4.5
-    // We want the bottom point, which is at (9,13) in the original pixel art
     const cursorSize = 15 * 4.5; // Total size after scaling
-    const bottomX = 9 * 4.5; // X position of bottom point
-    const bottomY = 13 * 4.5; // Y position of bottom point
     
     // Position trail at the bottom point of the cursor
-    trail.style.left = (e.clientX) + 'px';
+    trail.style.left = e.clientX + 'px';
     trail.style.top = (e.clientY + cursorSize/2) + 'px';
     document.body.appendChild(trail);
 
@@ -53,4 +51,14 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   document.addEventListener('mousemove', createTrail);
+
+  // Handle window resize
+  window.addEventListener('resize', () => {
+    // Check if cursor should be hidden after resize
+    const rect = cursor.getBoundingClientRect();
+    if (rect.left < 0 || rect.left > window.innerWidth ||
+        rect.top < 0 || rect.top > window.innerHeight) {
+      cursor.classList.add('hidden');
+    }
+  });
 }); 
