@@ -233,50 +233,50 @@ h1 {
   position: absolute;
   width: 1px;
   height: 1px;
-  transform: scale(6);
+  transform: scale(4.5);
   transform-origin: center;
   z-index: 999999;
   pointer-events: none;
   left: -7px;
   top: -11px;
   box-shadow: 
-    5px 3px #f4b4da,
-    5px 4px #f98ccc,
-    6px 4px #f9c8e9,
-    10px 4px #fda1db,
-    5px 5px #f296ca,
-    7px 5px #f9b0de,
-    5px 6px #fb93cf,
-    6px 6px #f094ce,
-    7px 6px #f887c9,
-    8px 6px #f9b4dd,
-    5px 7px #ee7ebe,
-    6px 7px #ef93c7,
-    7px 7px #ff9edb,
-    8px 7px #ffc8f2,
-    9px 7px #fabde1,
-    5px 8px #f891cd,
-    6px 8px #f8a2d7,
-    7px 8px #f77ec4,
-    8px 8px #f786c5,
-    9px 8px #f896d2,
-    5px 9px #ed82bd,
-    6px 9px #ed8ac4,
-    7px 9px #f895cf,
-    8px 9px #f789c9,
-    9px 9px #ef3298,
-    10px 9px #d9218c,
-    5px 10px #f787c3,
-    6px 10px #ffb2e0,
-    7px 10px #fb9fd6,
-    8px 10px #ff8fd2,
-    9px 10px #db2c91,
-    5px 11px #dd3595,
-    8px 11px #e780bb,
-    9px 11px #f483c3,
-    8px 12px #e483ba,
-    9px 12px #fb9fd7,
-    9px 13px #dd3694;
+    5px 3px #ffc4e4,
+    5px 4px #ffacd6,
+    6px 4px #ffd8ef,
+    10px 4px #ffb1e1,
+    5px 5px #ffa6d4,
+    7px 5px #ffc0e4,
+    5px 6px #ffa3d5,
+    6px 6px #ffa4d8,
+    7px 6px #ff97d3,
+    8px 6px #ffc4e7,
+    5px 7px #ff8ece,
+    6px 7px #ffa3d7,
+    7px 7px #ffaee1,
+    8px 7px #ffd8f8,
+    9px 7px #ffcde7,
+    5px 8px #ffa1d7,
+    6px 8px #ffb2dd,
+    7px 8px #ff8ece,
+    8px 8px #ff96cf,
+    9px 8px #ffa6dc,
+    5px 9px #ff92cd,
+    6px 9px #ff9ad4,
+    7px 9px #ffa5d9,
+    8px 9px #ff99d3,
+    9px 9px #ff42a8,
+    10px 9px #e931a2,
+    5px 10px #ff97d3,
+    6px 10px #ffc2e6,
+    7px 10px #ffafdc,
+    8px 10px #ff9fdc,
+    9px 10px #eb3ca1,
+    5px 11px #ed45a5,
+    8px 11px #f790cb,
+    9px 11px #ff93d3,
+    8px 12px #f493ca,
+    9px 12px #ffafdd,
+    9px 13px #ed46a4;
 }
 
 /* Glitter trail effect */
