@@ -8,33 +8,38 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Handle cursor visibility and position
   document.addEventListener('mousemove', (e) => {
-    // Check if cursor is within viewport
-    if (e.clientX < 0 || e.clientX > window.innerWidth ||
-        e.clientY < 0 || e.clientY > window.innerHeight) {
+    // Get the element under the cursor
+    const elementUnderCursor = document.elementFromPoint(e.clientX, e.clientY);
+    
+    // Hide cursor if outside document body or null
+    if (!elementUnderCursor || elementUnderCursor === document.documentElement) {
       cursor.classList.add('hidden');
-      // Don't update cursor position when outside viewport
       return;
-    } else {
-      cursor.classList.remove('hidden');
-      // Only update position when inside viewport
-      cursor.style.left = e.clientX + 'px';
-      cursor.style.top = e.clientY + 'px';
     }
-  });
-
-  document.addEventListener('mouseenter', () => {
+    
     cursor.classList.remove('hidden');
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
   });
 
+  // Hide cursor when mouse leaves the document
   document.addEventListener('mouseleave', () => {
     cursor.classList.add('hidden');
   });
 
+  // Show cursor when mouse enters the document body
+  document.body.addEventListener('mouseenter', () => {
+    cursor.classList.remove('hidden');
+  });
+
   // Handle trail effect
   function createTrail(e) {
-    if (e.clientX < 0 || e.clientX > window.innerWidth ||
-        e.clientY < 0 || e.clientY > window.innerHeight) {
-      return; // Don't create trail particles outside viewport
+    // Get the element under the cursor
+    const elementUnderCursor = document.elementFromPoint(e.clientX, e.clientY);
+    
+    // Don't create trail if outside document body
+    if (!elementUnderCursor || elementUnderCursor === document.documentElement) {
+      return;
     }
 
     const trail = document.createElement('div');
@@ -62,8 +67,8 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('resize', () => {
     // Check if cursor should be hidden after resize
     const rect = cursor.getBoundingClientRect();
-    if (rect.left < 0 || rect.left > window.innerWidth ||
-        rect.top < 0 || rect.top > window.innerHeight) {
+    const elementAtRect = document.elementFromPoint(rect.left + rect.width/2, rect.top + rect.height/2);
+    if (!elementAtRect || elementAtRect === document.documentElement) {
       cursor.classList.add('hidden');
     }
   });
