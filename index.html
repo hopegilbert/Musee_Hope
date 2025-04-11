@@ -1,119 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MY DIGITAL MUSEUM</title>
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Rubik+Bubbles&family=Fredoka:wght@400;500&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Lora:wght@400;500&display=swap" rel="stylesheet">
-
-  <!-- Stylesheet -->
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <div class="title-frame">
-    <div class="title-image-frame">
-      <h1>MY DIGITAL MUSEUM</h1>
-    </div>
-  </div>
-
-  <div class="masonry-grid">
-    <div class="grid-item flower1size"><img src="media/frame flower 1.png" alt="flower 1" /></div>
-    <div class="grid-item fashionsize"><img src="media/picture frames/fashion.png" alt="fashion frame" /></div>
-    <div class="grid-item parissize"><img src="media/picture frames/paris.png" alt="paris frame" /></div>
-    <div class="grid-item louvresize"><img src="media/picture frames/louvre.png" alt="louvre frame" /></div>
-    <div class="grid-item webstersize"><img src="media/picture frames/webster.png" alt="webster frame" /></div>
-    <div class="grid-item shoessize"><img src="media/picture frames/shoes.png" alt="shoes frame" /></div>
-    <div class="grid-item flower2size"><img src="media/frame flower 3.png" alt="flower 2" /></div>
-    <div class="grid-item hopesize"><img src="media/picture frames/hope.png" alt="hope frame" /></div>
-    <div class="grid-item flower3size"><img src="media/frame flower 2.png" alt="flower 3" /></div>
-    <div class="grid-item dinnersize"><img src="media/picture frames/dinner.png" alt="dinner frame" /></div>
-    <div class="grid-item skisize"><img src="media/picture frames/ski.png" alt="ski frame" /></div>
-    <div class="grid-item strawberrysize"><img src="media/picture frames/strawberry.png" alt="strawberry frame" /></div>
-    <div class="grid-item monetsize"><img src="media/picture frames/monet.png" alt="monet frame" /></div>
-  </div>
-
-
-
-  <div class="subtitle-frame">
-    <p class="subtitle">A semi-organised mess of thoughts, half-formed theories, and things I’m still figuring out.</p>
-  </div>
-
-  <div class="frame-gallery">
-    <div class="frame frame-1">
-      <div class="frame-content">
-        <h2>Recent Brain Dumps</h2>
-        <ul>
-          <li><a href="#">Why I Overthink Everything</a></li>
-          <li><a href="#">What If Learning Wasn't So Linear?</a></li>
-        </ul>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Digital Museum</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="title-frame">
+      <div class="title-image-frame">
+        <h1>MY DIGITAL MUSEUM</h1>
       </div>
     </div>
+    <div class="subtitle-frame">
+      <p class="subtitle">A semi-organised mess of thoughts, half-formed theories, and things I’m still figuring out.</p>
+    </div>
 
-    <div class="frame frame-2">
-      <div class="frame-content">
-        <h2>Jump to a category:</h2>
-        <div class="dropdown-wrapper">
-          <button class="dropdown-toggle" onclick="toggleDropdown()">Choose your brain dump...</button>
-          <div id="dropdownMenu" class="dropdown-menu">
-            <div onclick="navigateTo('hot-takes.html')">Hot Takes</div>
-            <div onclick="navigateTo('works-in-progress.html')">Works in Progress</div>
-            <div onclick="navigateTo('unfinished-business.html')">Unfinished Business</div>
-            <div onclick="navigateTo('stuff-i-cant-stop.html')">Stuff I Can't Stop Thinking About</div>
-            <div onclick="navigateTo('stuff-not-ready.html')">Stuff I'm Not Ready to Talk About</div>
-            <div onclick="navigateTo('maybe-genius.html')">Stuff That Might Be Genius (Eventually)</div>
+    <div class="masonry-grid">
+      <div class="grid-item flower1size">
+        <img src="media/frame flower 1.png" alt="Flower 1 frame" />
+        <div class="overlay-content">
+          <h2>Recent Brain Dumps</h2>
+          <ul>
+            <li><a href="#">Why I Overthink Everything</a></li>
+            <li><a href="#">What If Learning Wasn't So Linear?</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="grid-item fashionsize">
+        <img src="media/picture frames/fashion.png" alt="fashion frame" />
+      </div>
+
+      
+
+      <div class="grid-item parissize">
+        <img src="media/picture frames/paris.png" alt="paris frame" />
+      </div>
+
+      <div class="grid-item louvresize">
+        <img src="media/picture frames/louvre.png" alt="louvre frame" />
+      </div>
+
+      <div class="grid-item webstersize">
+        <img src="media/picture frames/webster.png" alt="webster frame" />
+      </div>
+
+      <div class="grid-item flower3size">
+        <img src="media/frame flower 2.png" alt="Flower 3 frame" />
+        <div class="overlay-content">
+          <h2>What This Even Is</h2>
+          <p>This isn’t a blog. It’s not a portfolio. It’s definitely not polished. Just a space for whatever I'm mentally chewing on — sometimes raw, sometimes weird. Might disagree with myself tomorrow.</p>
+        </div>
+      </div>
+
+      <div class="grid-item shoessize">
+        <img src="media/picture frames/shoes.png" alt="shoes frame" />
+      </div>
+
+      <div class="grid-item hopesize">
+        <img src="media/picture frames/hope.png" alt="hope frame" />
+      </div>
+
+      <div class="grid-item flower2size">
+        <img src="media/frame flower 3.png" alt="Flower 2 frame" />
+        <div class="overlay-content">
+          <h2>Jump to a category:</h2>
+          <div class="dropdown-wrapper">
+            <button class="dropdown-toggle" onclick="toggleDropdown()">Choose your brain dump...</button>
+            <div id="dropdownMenu" class="dropdown-menu">
+              <div onclick="navigateTo('hot-takes.html')">Hot Takes</div>
+              <div onclick="navigateTo('works-in-progress.html')">Works in Progress</div>
+              <div onclick="navigateTo('unfinished-business.html')">Unfinished Business</div>
+              <div onclick="navigateTo('stuff-i-cant-stop.html')">Stuff I Can't Stop Thinking About</div>
+              <div onclick="navigateTo('stuff-not-ready.html')">Stuff I'm Not Ready to Talk About</div>
+              <div onclick="navigateTo('maybe-genius.html')">Stuff That Might Be Genius (Eventually)</div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="frame frame-3 wide">
-      <div class="frame-content">
-        <h2>What This Even Is</h2>
-        <p>This isn’t a blog. It’s not a portfolio. It’s definitely not polished. Just a space for whatever I'm mentally chewing on — sometimes raw, sometimes weird. Might disagree with myself tomorrow.</p>
+      <div class="grid-item dinnersize">
+        <img src="media/picture frames/dinner.png" alt="dinner frame" />
+      </div>
+
+      <div class="grid-item skisize">
+        <img src="media/picture frames/ski.png" alt="ski frame" />
+      </div>
+
+      <div class="grid-item strawberrysize">
+        <img src="media/picture frames/strawberry.png" alt="strawberry frame" />
+      </div>
+
+      <div class="grid-item monetsize">
+        <img src="media/picture frames/monet.png" alt="monet frame" />
       </div>
     </div>
-
-    <div class="frame frame-4"></div>
-    <div class="frame frame-5"></div>
-    <div class="frame frame-6"></div>
-    <div class="frame frame-7"></div>
-    <div class="frame frame-8"></div>
-    <div class="frame frame-9"></div>
-    <div class="frame frame-10"></div>
-  </div>
-
-  <div class="footer-frame">
-    <footer>
-      <p>I promise it’ll make sense later. Maybe.</p>
-    </footer>
-  </div>
-
-  <script>
-    function toggleDropdown() {
-      const menu = document.getElementById('dropdownMenu');
-      menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
-    }
-
-    function navigateTo(page) {
-      if (page) {
-        window.location.href = page;
-      }
-    }
-
-    document.addEventListener('click', (e) => {
-      const dropdown = document.querySelector('.dropdown-wrapper');
-      if (!dropdown.contains(e.target)) {
-        document.getElementById('dropdownMenu').style.display = 'none';
-      }
-    });
-  </script>
-<script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
-<script src="js/masonry.pkgd.min.js"></script>
-<script src="scripts.js"></script>
+    <div class="footer-frame">
+      <footer>
+        <p>I promise it’ll make sense later. Maybe.</p>
+      </footer>
+    </div>
+    <script src="scripts.js"></script>
   </body>
-  </html>
+</html>
