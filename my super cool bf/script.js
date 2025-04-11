@@ -35,12 +35,15 @@ document.addEventListener('DOMContentLoaded', () => {
     trail.className = 'trail';
     
     // Calculate the bottom point of the cursor
-    // Scale factor is 4.5, and the bottom point is at pixel (9,13)
-    const xOffset = 9 * 4.5; // 40.5px
-    const yOffset = 13 * 4.5; // 58.5px
+    // The cursor art is 15x15 pixels, scaled by 4.5
+    // We want the bottom point, which is at (9,13) in the original pixel art
+    const cursorSize = 15 * 4.5; // Total size after scaling
+    const bottomX = 9 * 4.5; // X position of bottom point
+    const bottomY = 13 * 4.5; // Y position of bottom point
     
-    trail.style.left = (e.clientX + xOffset) + 'px';
-    trail.style.top = (e.clientY + yOffset) + 'px';
+    // Position trail at the bottom point of the cursor
+    trail.style.left = (e.clientX) + 'px';
+    trail.style.top = (e.clientY + cursorSize/2) + 'px';
     document.body.appendChild(trail);
 
     // Remove trail element after animation
