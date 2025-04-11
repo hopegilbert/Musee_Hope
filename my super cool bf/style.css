@@ -246,13 +246,10 @@ h1 {
     10px 4px #fda1db,
     5px 5px #f296ca,
     7px 5px #f9b0de,
-    11px 5px #fdc729,
     5px 6px #fb93cf,
     6px 6px #f094ce,
     7px 6px #f887c9,
     8px 6px #f9b4dd,
-    11px 6px #fdffa9,
-    12px 6px #fec733,
     5px 7px #ee7ebe,
     6px 7px #ef93c7,
     7px 7px #ff9edb,
@@ -295,12 +292,12 @@ h1 {
   box-shadow: 
     0 0 3px #fff,
     0 0 6px #fff,
-    0 0 9px #ffd700,
-    0 0 12px #ff69b4,
-    2px 2px 4px #ffd700,
-    -2px -2px 4px #ff69b4,
-    2px -2px 4px #fff,
-    -2px 2px 4px #ffd700;
+    0 0 12px #fff,
+    0 0 18px rgba(255, 255, 255, 0.8),
+    2px 2px 4px rgba(255, 255, 255, 0.9),
+    -2px -2px 4px rgba(255, 255, 255, 0.9),
+    2px -2px 4px rgba(255, 255, 255, 0.9),
+    -2px 2px 4px rgba(255, 255, 255, 0.9);
   animation: glitter 0.8s forwards;
   transform: translate(-50%, -50%);
   margin-top: 78px;
@@ -322,9 +319,9 @@ h1 {
   left: -3px;
   top: 2px;
   box-shadow: 
-    0 0 3px #fff,
-    0 0 6px #ffd700,
-    0 0 9px #ff69b4;
+    0 0 4px #fff,
+    0 0 8px #fff,
+    0 0 12px rgba(255, 255, 255, 0.8);
 }
 
 .trail::after {
@@ -332,8 +329,8 @@ h1 {
   top: -2px;
   box-shadow: 
     0 0 4px #fff,
-    0 0 8px #ff69b4,
-    0 0 12px #ffd700;
+    0 0 8px #fff,
+    0 0 12px rgba(255, 255, 255, 0.8);
 }
 
 @keyframes glitter {
