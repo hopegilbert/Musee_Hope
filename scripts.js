@@ -21,3 +21,13 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+
+// Only enable this on mobile
+if (window.innerWidth <= 768) {
+  document.querySelectorAll('.image-wrapper').forEach(wrapper => {
+    wrapper.addEventListener('click', () => {
+      // Toggle the active state
+      wrapper.classList.toggle('active');
+    });
+  });
+}

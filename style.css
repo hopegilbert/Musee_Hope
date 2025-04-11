@@ -319,4 +319,26 @@ footer p {
     font-size: 0.6rem;
     padding: 0.6rem 0.75rem;
   }
+  .image-wrapper .hover-text {
+    opacity: 1;
+    position: static;
+    transform: none;
+    background-color: rgba(0, 0, 0, 0.5); /* optional dark background for contrast */
+    color: #f5e8c7;
+    padding: 0.5rem;
+    margin-top: 0.3rem;
+    text-align: center;
+    font-size: 0.7rem;
+    line-height: 1.4;
+  }
+/* Keep hover hidden by default */
+.image-wrapper .hover-text {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+/* Add this class with JS when tapped */
+.image-wrapper.active .hover-text {
+  opacity: 1;
+}
 }
