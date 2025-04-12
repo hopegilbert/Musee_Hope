@@ -1,12 +1,12 @@
 const cursor = document.getElementById('cursor');
-let isCursorVisible = true;
+let isCursorVisible = false;
 let lastMouseMoveTime = Date.now();
 let lastKnownPosition = { x: 0, y: 0 };
 let targetPosition = { x: 0, y: 0 };
 
 // Utility to check if mouse is inside the window bounds
 function isInViewport(e) {
-  const buffer = 50;
+  const buffer = 20; // Small buffer zone
   return e.clientX > -buffer && e.clientY > -buffer &&
          e.clientX < window.innerWidth + buffer &&
          e.clientY < window.innerHeight + buffer;
@@ -39,18 +39,17 @@ function updateCursorPosition() {
 // Check cursor position periodically
 function checkCursorPosition() {
   const timeSinceLastMove = Date.now() - lastMouseMoveTime;
+  const rect = cursor.getBoundingClientRect();
+  const centerX = rect.left + rect.width / 2;
+  const centerY = rect.top + rect.height / 2;
   
-  if (timeSinceLastMove > 3000) {
-    const rect = cursor.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-    
-    if (centerX < 0 || centerX > window.innerWidth ||
-        centerY < 0 || centerY > window.innerHeight) {
-      cursor.style.opacity = '0';
-      isCursorVisible = false;
-    }
+  // Only hide cursor if it's actually out of bounds
+  if (centerX < 0 || centerX > window.innerWidth ||
+      centerY < 0 || centerY > window.innerHeight) {
+    cursor.style.opacity = '0';
+    isCursorVisible = false;
   } else {
+    // Keep cursor visible if it's within bounds
     cursor.style.opacity = '1';
     isCursorVisible = true;
   }
