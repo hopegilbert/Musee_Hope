@@ -225,9 +225,17 @@ h1 {
   opacity: 0;
 }
 
-/* Remove the ::after pseudo-element that was causing the pink circle */
+/* Purple cursor effect */
 #cursor::after {
-  display: none;
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: #9370db;
+  border-radius: 50%;
+  opacity: 0.3;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease;
 }
 
 /* Glitter trail effect */
