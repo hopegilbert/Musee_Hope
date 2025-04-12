@@ -34,10 +34,11 @@ document.addEventListener("DOMContentLoaded", () => {
   updateCursor();
 });
 
-document.addEventListener('mousemove', (e) => {
+document.addEventListener('pointermove', (e) => {
   const cursor = document.getElementById('cursor');
   if (cursor) {
-    cursor.style.left = `${e.clientX - 2}px`;
-    cursor.style.top = `${e.clientY - 2}px`;
+    cursor.style.transform = 'translate(0, 0)';
+    cursor.style.left = `${e.clientX}px`;
+    cursor.style.top = `${e.clientY}px`;
   }
 }); 
