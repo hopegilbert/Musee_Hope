@@ -229,9 +229,9 @@ h1 {
 #cursor::after {
   content: '';
   position: absolute;
-  width: 5px;
-  height: 5px;
-  transform: scale(5);
+  width: 1px;
+  height: 1px;
+  transform: scale(10);
   transform-origin: center;
   z-index: 999999;
   pointer-events: none;
