@@ -162,7 +162,7 @@ h1 {
     justify-content: space-between;
     align-items: center;
     padding: 0.5rem 0.75rem;
-    background: #b92c6d;
+    background: #b92d6d
     border-bottom: 2px solid #fff;
     cursor: move;
     border-top-left-radius: 6px;
@@ -204,7 +204,7 @@ h1 {
 
  .window-body {
   padding: 10px;
-  background-color: #fff0f7;
+  background-color: #fef1f7;
   color: #333;
   font-size: 0.9rem;
   border-top: 1px solid #fff;
