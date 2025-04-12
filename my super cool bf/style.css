@@ -5,17 +5,14 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: transparent;
-  background-image: url('images/background.png');
+  background-image: url('images/quilted-background.png');
   background-size: cover;
-  background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
   font-family: 'Courier New', monospace;
   overflow-x: hidden;
   min-height: 100vh;
   position: relative;
-  z-index: 1;
 }
 
 .container {
@@ -146,12 +143,7 @@ h1 {
   }
   .draggable-window {
     position: absolute;
-    width: 350px;
-    border: 2px solid #d4d0c8;
-    background-color: #fff;
-    font-family: 'Courier New', monospace;
-    box-shadow: 4px 4px #c4bebe;
-    z-index: 100;
+    z-index: 20;
   }
   
   .window-header {
@@ -442,19 +434,11 @@ h1 {
 
 /* Microsoft Word Style Toolbar */
 .toolbar {
-  background: linear-gradient(to bottom, #bf2769, #ff99cc);
-  border: 2px solid #d48da6;
-  font-family: 'Verdana', sans-serif;
-  width: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  box-sizing: border-box;
-  overflow-x: hidden;
-  padding: 0;
-  margin: 0;
+  position: relative;
+  z-index: 10;
+  background-color: rgba(255, 255, 255, 0.6);
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #ccc;
 }
 
 .toolbar-top {
@@ -492,34 +476,8 @@ h1 {
 }
 
 .toolbar-buttons {
-  display: flex;
-  flex-wrap: nowrap;
-  gap: 0.3rem;
-  padding: 0.3rem;
-  background: #fff0f5;
-  border-top: 1px solid #ffd4e8;
-  overflow-x: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  width: 100%;
-}
-
-.toolbar-button {
-  background: #ffeaf4;
-  border: 2px solid #c12669;
-  padding: 3px 8px;
-  border-radius: 2px;
-  box-shadow: 1px 1px 0 #ffb3d1, -1px -1px 0 #fff;
-  color: #c12669;
-  cursor: pointer;
-  user-select: none;
-  transition: all 0.15s ease-in-out;
-}
-
-.toolbar-button:hover {
-  background: #ffc8e4;
-  box-shadow: inset 1px 1px 2px #c12669;
-  color: #831416;
+  height: 100vh;
+  background: white;
 }
 
 .icon-group {
