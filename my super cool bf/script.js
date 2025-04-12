@@ -7,23 +7,34 @@ document.addEventListener('DOMContentLoaded', () => {
     y: 13  // y position of bottom-left point in original pixel art
   };
   
+  function hideCursor() {
+    cursor.classList.add('hidden');
+    // Force cursor to hide by moving it off-screen
+    cursor.style.left = '-100px';
+    cursor.style.top = '-100px';
+  }
+  
   function shouldHideCursor(x, y) {
-    // Check viewport bounds
-    if (x < 0 || x > window.innerWidth || y < 0 || y > window.innerHeight) {
+    // More strict viewport bounds check
+    if (x <= 1 || x >= window.innerWidth - 1 || y <= 1 || y >= window.innerHeight - 1) {
       return true;
     }
     
-    // Check element under cursor
+    // Check if we're really over the document
     const elementUnderCursor = document.elementFromPoint(x, y);
-    return !elementUnderCursor || 
-           elementUnderCursor === document.documentElement || 
-           elementUnderCursor === document.body;
+    if (!elementUnderCursor || 
+        elementUnderCursor === document.documentElement || 
+        elementUnderCursor === document.body) {
+      return true;
+    }
+    
+    return false;
   }
   
   // Handle cursor visibility and position
   document.addEventListener('mousemove', (e) => {
     if (shouldHideCursor(e.clientX, e.clientY)) {
-      cursor.classList.add('hidden');
+      hideCursor();
       return;
     }
     
@@ -35,19 +46,21 @@ document.addEventListener('DOMContentLoaded', () => {
   // Hide cursor when mouse leaves the window
   window.addEventListener('mouseout', (e) => {
     if (e.relatedTarget === null) {
-      cursor.classList.add('hidden');
+      hideCursor();
     }
   });
 
   // Hide cursor when mouse leaves the document
   document.addEventListener('mouseleave', () => {
-    cursor.classList.add('hidden');
+    hideCursor();
   });
 
-  // Show cursor when mouse enters the document body
-  document.body.addEventListener('mouseenter', (e) => {
+  // Handle mouse entering document
+  document.addEventListener('mouseenter', (e) => {
     if (!shouldHideCursor(e.clientX, e.clientY)) {
       cursor.classList.remove('hidden');
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
     }
   });
 
@@ -80,10 +93,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Handle window resize
   window.addEventListener('resize', () => {
-    // Check if cursor should be hidden after resize
-    const rect = cursor.getBoundingClientRect();
-    if (shouldHideCursor(rect.left + rect.width/2, rect.top + rect.height/2)) {
-      cursor.classList.add('hidden');
-    }
+    hideCursor();
   });
+
+  // Initial state
+  hideCursor();
 }); 
