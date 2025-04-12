@@ -4,13 +4,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 body {
-  background: linear-gradient(to bottom right, #ffc0cb, #ff99cc);
-  font-family: 'Press Start 2P', cursive;
-  color: #fff;
   margin: 0;
   padding: 0;
-  overflow-x: hidden;  
-  cursor: none;
+  font-family: 'Courier New', monospace;
+  background: repeating-linear-gradient(
+    to bottom,
+    #f9bfdc,
+    #f9bfdc 150px,
+    #f7a4ca 150px,
+    #f7a4ca 300px
+  );
+  background-attachment: fixed;
+  overflow-x: hidden;
 }
 
 
@@ -668,4 +673,14 @@ h1 {
 .icon-font::before {
   background: linear-gradient(to top, #c12669 50%, #fff 50%);
   clip-path: polygon(10% 90%, 50% 10%, 90% 90%);
+}
+
+.gitter-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
 }
