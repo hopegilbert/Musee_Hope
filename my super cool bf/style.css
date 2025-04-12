@@ -238,6 +238,7 @@ h1 {
 .cursor-hidden {
   opacity: 0 !important;
   visibility: hidden !important;
+  display: none !important;
 }
 
 /* Sparkle dots */
