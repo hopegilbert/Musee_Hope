@@ -450,7 +450,7 @@ h1 {
 
 /* Top Pink Title Bar */
 .toolbar-titlebar {
-  background-color: transparent;
+  background-color: #b92c6d;
   color: white;
   font-weight: bold;
   padding: 6px 12px;
@@ -460,7 +460,7 @@ h1 {
 /* Tabs Bar (File, Insert, etc) */
 .toolbar-tabs {
   display: flex;
-  background-color: transparent;
+  background-color: #fae1ec;
   padding: 4px 10px;
   gap: 1.5rem;
   border-bottom: 1px solid #e5b3cc;
@@ -486,7 +486,7 @@ h1 {
   flex-wrap: wrap;
   gap: 2rem;
   padding: 10px 16px;
-  background-color: transparent;
+  background-color: #fff0f7;
 }
 
 .icon-group {
