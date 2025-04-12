@@ -7,24 +7,49 @@ document.addEventListener('DOMContentLoaded', () => {
     y: 13  // y position of bottom point in original pixel art
   };
   
-  function isOverWebContent(e) {
-    const element = document.elementFromPoint(e.clientX, e.clientY);
-    return element && element.tagName !== 'HTML' && element.tagName !== 'BODY';
+  function isMouseOutsideWebpage(e) {
+    // Get the dimensions of the webpage content
+    const html = document.documentElement;
+    const body = document.body;
+    
+    // Calculate the actual content boundaries
+    const contentWidth = Math.max(
+      body.scrollWidth,
+      body.offsetWidth,
+      html.clientWidth,
+      html.scrollWidth,
+      html.offsetWidth
+    );
+    const contentHeight = Math.max(
+      body.scrollHeight,
+      body.offsetHeight,
+      html.clientHeight,
+      html.scrollHeight,
+      html.offsetHeight
+    );
+    
+    // Check if mouse is outside content area
+    return (
+      e.pageX < 0 ||
+      e.pageY < 0 ||
+      e.pageX > contentWidth ||
+      e.pageY > contentHeight
+    );
   }
 
   // Handle cursor visibility and position
   document.addEventListener('mousemove', (e) => {
     // Always update position
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
+    cursor.style.left = e.pageX + 'px';
+    cursor.style.top = e.pageY + 'px';
     
     // Update opacity based on position
-    cursor.style.opacity = isOverWebContent(e) ? '1' : '0';
+    cursor.style.opacity = isMouseOutsideWebpage(e) ? '0' : '1';
   });
 
   // Handle trail effect
   function createTrail(e) {
-    if (!isOverWebContent(e)) return;
+    if (isMouseOutsideWebpage(e)) return;
 
     const trail = document.createElement('div');
     trail.className = 'trail';
@@ -33,8 +58,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const centerToBottom = ((CURSOR_SIZE / 2) - BOTTOM_LEFT_POINT.y) * SCALE;
     const horizontalOffset = (BOTTOM_LEFT_POINT.x - (CURSOR_SIZE / 2)) * SCALE;
     
-    trail.style.left = (e.clientX + horizontalOffset) + 'px';
-    trail.style.top = (e.clientY - centerToBottom) + 'px';
+    trail.style.left = (e.pageX + horizontalOffset) + 'px';
+    trail.style.top = (e.pageY - centerToBottom) + 'px';
     document.body.appendChild(trail);
 
     // Remove trail element after animation
