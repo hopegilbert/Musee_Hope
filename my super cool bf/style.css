@@ -526,6 +526,22 @@ h1 {
   display: inline-block;
 }
 
+.dropdown-toggle {
+  background: none;
+  border: none;
+  color: #6b1a3b;
+  font-size: 0.8rem;
+  font-weight: bold;
+  padding: 4px 10px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.dropdown-toggle:hover {
+  background-color: #f9c9dd;
+  color: #4b0e29;
+}
+
 .dropdown-content {
   display: none;
   position: absolute;

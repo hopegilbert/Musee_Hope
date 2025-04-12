@@ -41,8 +41,9 @@
       <div class="tab">References</div>
       <div class="tab">Mailings</div>
       <div class="tab">Review</div>
-      <div class="tab dropdown" onclick="event.stopPropagation()">View
-        <div class="dropdown-content" style="display: none;">
+      <div class="tab dropdown">
+        <button class="dropdown-toggle" onclick="toggleDropdown()">View</button>
+        <div id="dropdownMenu" class="dropdown-content">
           <div onclick="navigateTo('my super cool bf/my-super-cool-bf.html')">My Super Cool BF</div>
           <div onclick="navigateTo('works-in-progress.html')">Works in Progress</div>
           <div onclick="navigateTo('unfinished-business.html')">Unfinished Business</div>
