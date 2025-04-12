@@ -223,15 +223,14 @@ h1 {
   background: url('images/pink-cursor.png') no-repeat top left;
   background-size: contain;
   pointer-events: none;
-  z-index: 2147483647; /* max on top */
+  z-index: 2147483647;
   opacity: 1;
   left: 0;
   top: 0;
 }
 
-/* Remove the old cursor-hidden class since we're using opacity now */
 .cursor-hidden {
-  display: none;
+  opacity: 0;
 }
 
 /* Ensure no other elements can override cursor visibility */
