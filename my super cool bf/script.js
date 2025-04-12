@@ -3,8 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const SCALE = 4.5;
   const CURSOR_SIZE = 15; // pixels
   const BOTTOM_LEFT_POINT = {
-    x: 5,  // x position of bottom-left point in original pixel art
-    y: 13  // y position of bottom-left point in original pixel art
+    x: 9,  // x position of bottom point in original pixel art
+    y: 13  // y position of bottom point in original pixel art
   };
   
   function hideCursor() {
