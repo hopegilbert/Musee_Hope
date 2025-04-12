@@ -73,15 +73,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const trail = document.createElement('div');
     trail.className = 'trail';
     
-    // Position trail directly at the bottom of the cursor
-    // The cursor is 15x15 pixels, scaled by 4.5
-    // We want the trail to appear at the bottom center
-    const xOffset = 0; // Center horizontally
-    const yOffset = (CURSOR_SIZE * SCALE) / 2; // Move to bottom of cursor
+    // Calculate trail position
+    // Since cursor is centered on mouse position and scaled 4.5x:
+    // - Original cursor is 15x15 pixels
+    // - Mouse is at the center
+    // - Need to offset from center to bottom
+    const centerToBottom = ((CURSOR_SIZE / 2) - BOTTOM_LEFT_POINT.y) * SCALE;
+    const horizontalOffset = (BOTTOM_LEFT_POINT.x - (CURSOR_SIZE / 2)) * SCALE;
     
-    // Position trail
-    trail.style.left = (e.clientX + xOffset) + 'px';
-    trail.style.top = (e.clientY + yOffset) + 'px';
+    // Position trail relative to mouse position
+    trail.style.left = (e.clientX + horizontalOffset) + 'px';
+    trail.style.top = (e.clientY - centerToBottom) + 'px';
     document.body.appendChild(trail);
 
     // Remove trail element after animation
