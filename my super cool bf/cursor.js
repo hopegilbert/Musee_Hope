@@ -34,13 +34,10 @@ document.addEventListener("DOMContentLoaded", () => {
   updateCursor();
 });
 
-document.addEventListener('pointermove', (e) => {
+document.addEventListener('mousemove', (e) => {
   const cursor = document.getElementById('cursor');
   if (cursor) {
-    // Adjust the offset so the image tip matches the real cursor point
-    const offsetX = 0;  // move left if too far right
-    const offsetY = 0;  // move up if too low
-    cursor.style.left = `${e.clientX + offsetX}px`;
-    cursor.style.top = `${e.clientY + offsetY}px`;
+    cursor.style.left = `${e.clientX}px`;
+    cursor.style.top = `${e.clientY}px`;
   }
 }); 
