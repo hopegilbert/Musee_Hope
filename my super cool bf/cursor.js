@@ -29,7 +29,9 @@ function updateCursorPosition() {
   lastKnownPosition.x += dx * 0.3;
   lastKnownPosition.y += dy * 0.3;
   
-  cursor.style.transform = `translate(${lastKnownPosition.x}px, ${lastKnownPosition.y}px)`;
+  // Position the cursor at the exact mouse position
+  cursor.style.left = lastKnownPosition.x + 'px';
+  cursor.style.top = lastKnownPosition.y + 'px';
   
   animationFrameId = requestAnimationFrame(updateCursorPosition);
 }
