@@ -488,7 +488,7 @@ h1 {
 .dropdown-tab {
   position: relative;
   cursor: pointer;
-  z-index: 9999;
+  z-index: 10000;
 }
 
 .dropdown-content {
@@ -500,7 +500,7 @@ h1 {
   border: 1px solid #999;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
   min-width: 200px;
-  z-index: 9999;
+  z-index: 10000;
   margin-top: 2px;
 }
 
