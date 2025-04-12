@@ -8,10 +8,10 @@ body {
   padding: 0;
   background: repeating-linear-gradient(
     to bottom,
-    #ffc0cb,     /* Light pink */
-    #ffc0cb 150px,
-    #f4a8c9 150px,
-    #f4a8c9 300px
+    #f9a9c2 0px,
+    #f9a9c2 200px,
+    #f4c1d4 200px,
+    #f4c1d4 400px
   );
   background-attachment: fixed;
   font-family: 'Press Start 2P', cursive;
