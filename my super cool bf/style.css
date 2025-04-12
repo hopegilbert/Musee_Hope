@@ -217,29 +217,16 @@ h1 {
 }
 
 #cursor {
-  position: fixed;
-  width: 48px;
-  height: 48px;
-  pointer-events: none;
-  z-index: 999999;
-  transform: translate(-50%, -50%);
-  will-change: transform;
-  transition: all 0.05s ease;
   opacity: 1;
-  mix-blend-mode: normal;
-  image-rendering: pixelated;
-  display: block;
-  visibility: visible;
-  top: 0;
-  left: 0;
-  object-fit: contain;
-  pointer-events: none !important;
+  transition: opacity 0.2s ease;
+  position: fixed;
+  pointer-events: none;
+  z-index: 99999;
 }
 
+/* Remove the old cursor-hidden class since we're using opacity now */
 .cursor-hidden {
-  opacity: 0 !important;
-  visibility: hidden !important;
-  display: none !important;
+  display: none;
 }
 
 /* Ensure no other elements can override cursor visibility */
