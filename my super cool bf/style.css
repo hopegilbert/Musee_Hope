@@ -441,7 +441,7 @@ h1 {
   z-index: 9999;
   background-color: #fce4f3;
   border-bottom: 2px solid #cba4ba;
-  font-family: 'Courier New', monospace;
+  font-family: 'Tahoma', sans-serif;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
 }
 
