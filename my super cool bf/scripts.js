@@ -99,10 +99,11 @@ document.addEventListener('DOMContentLoaded', () => {
             // Remove trail element after animation
             setTimeout(() => {
                 trail.remove();
-            }, 800); // Match animation duration
+            }, 1000);
         }
     }
 
+    // Add trail effect on mousemove
     document.addEventListener('mousemove', createTrail);
 
     // Initialize draggable windows
@@ -111,4 +112,19 @@ document.addEventListener('DOMContentLoaded', () => {
         const handle = win.querySelector('.window-header');
         if (handle) makeDraggable(win, handle);
     });
+});
+
+// Hide cursor when leaving viewport
+document.addEventListener('mouseleave', () => {
+  const cursor = document.getElementById('cursor');
+  if (cursor) {
+    cursor.classList.add('cursor-hidden');
+  }
+});
+
+document.addEventListener('mouseenter', () => {
+  const cursor = document.getElementById('cursor');
+  if (cursor) {
+    cursor.classList.remove('cursor-hidden');
+  }
 });
