@@ -7,10 +7,26 @@ document.addEventListener('DOMContentLoaded', () => {
     y: 13  // y position of bottom point in original pixel art
   };
   
-  function isOverWebContent(e) {
+  function isOverBrowserUI(e) {
+    // Check if we're outside the viewport
+    if (e.clientX < 0 || e.clientY < 0 || 
+        e.clientX > window.innerWidth || e.clientY > window.innerHeight) {
+      return true;
+    }
+
     const element = document.elementFromPoint(e.clientX, e.clientY);
-    // Check if we're over the main content container
-    return element && element.closest('.container');
+    
+    // If no element or we're on the root elements, we're probably on browser UI
+    if (!element || element === document.documentElement || element === document.body) {
+      return true;
+    }
+
+    // Check if we're over an interactive element that needs the system cursor
+    if (element.matches('a, button, input, select, textarea')) {
+      return true;
+    }
+
+    return false;
   }
 
   // Handle cursor visibility and position
@@ -18,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
     cursor.style.left = e.clientX + 'px';
     cursor.style.top = e.clientY + 'px';
     
-    if (isOverWebContent(e)) {
+    if (!isOverBrowserUI(e)) {
       cursor.classList.remove('hidden');
     } else {
       cursor.classList.add('hidden');
@@ -27,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Handle trail effect
   function createTrail(e) {
-    if (!isOverWebContent(e)) return;
+    if (isOverBrowserUI(e)) return;
 
     const trail = document.createElement('div');
     trail.className = 'trail';
@@ -47,6 +63,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   document.addEventListener('mousemove', createTrail);
+
+  // Hide cursor when mouse leaves window
+  document.addEventListener('mouseleave', () => {
+    cursor.classList.add('hidden');
+  });
 
   // Initial state
   cursor.classList.add('hidden');
