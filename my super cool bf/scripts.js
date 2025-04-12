@@ -44,29 +44,26 @@ function toggleDropdown() {
       y: 13  // y position of bottom point in original pixel art
     };
     
-    // Move cursor
+    // Move the custom cursor with the real one
     document.addEventListener('mousemove', (e) => {
       cursor.style.left = e.pageX + 'px';
       cursor.style.top = e.pageY + 'px';
       cursor.style.opacity = '1';
     });
 
-    // Hide when mouse leaves window
-    document.addEventListener('mouseout', (e) => {
-      // Check if the mouse actually left the window
-      if (!e.relatedTarget && !e.toElement) {
-        cursor.style.opacity = '0';
-      }
-    });
-
-    // Hide cursor on blur
-    window.addEventListener('blur', () => {
+    // Detect if cursor leaves the visible viewport (top, left, right, bottom)
+    document.addEventListener('mouseleave', () => {
       cursor.style.opacity = '0';
     });
 
-    // Restore on focus
-    window.addEventListener('focus', () => {
-      cursor.style.opacity = '1';
+    // Extra: hide if the cursor is literally off the screen (failsafe)
+    document.addEventListener('mousemove', (e) => {
+      const { clientX, clientY } = e;
+      const { innerWidth, innerHeight } = window;
+
+      if (clientX < 0 || clientY < 0 || clientX > innerWidth || clientY > innerHeight) {
+        cursor.style.opacity = '0';
+      }
     });
 
     // Handle trail effect
