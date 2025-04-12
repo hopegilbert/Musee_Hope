@@ -231,7 +231,7 @@ h1 {
   position: absolute;
   width: 1px;
   height: 1px;
-  transform: scale(2.5);
+  transform: scale(5);
   transform-origin: center;
   z-index: 999999;
   pointer-events: none;
