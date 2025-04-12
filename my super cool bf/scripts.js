@@ -37,37 +37,43 @@ function toggleDropdown() {
   // Custom cursor and trail effect
   document.addEventListener('DOMContentLoaded', () => {
     const cursor = document.getElementById('cursor');
+    let isCursorVisible = false;
+    let hideTimeout;
+    
     const SCALE = 4.5;
     const CURSOR_SIZE = 15; // pixels
     const BOTTOM_LEFT_POINT = {
       x: 9,  // x position of bottom point in original pixel art
       y: 13  // y position of bottom point in original pixel art
     };
-    
-    // Move the custom cursor with the real one
+
+    // Show and move the cursor on mouse move
     document.addEventListener('mousemove', (e) => {
       cursor.style.left = e.pageX + 'px';
       cursor.style.top = e.pageY + 'px';
-      cursor.style.opacity = '1';
+
+      if (!isCursorVisible) {
+        cursor.style.opacity = '1';
+        isCursorVisible = true;
+      }
+
+      clearTimeout(hideTimeout);
+      hideTimeout = setTimeout(() => {
+        cursor.style.opacity = '0';
+        isCursorVisible = false;
+      }, 200); // hide cursor 200ms after no movement
     });
 
-    // Detect if cursor leaves the visible viewport (top, left, right, bottom)
+    // Ensure it's hidden when mouse leaves window
     document.addEventListener('mouseleave', () => {
       cursor.style.opacity = '0';
-    });
-
-    // Extra: hide if the cursor is literally off the screen (failsafe)
-    document.addEventListener('mousemove', (e) => {
-      const { clientX, clientY } = e;
-      const { innerWidth, innerHeight } = window;
-
-      if (clientX < 0 || clientY < 0 || clientX > innerWidth || clientY > innerHeight) {
-        cursor.style.opacity = '0';
-      }
+      isCursorVisible = false;
     });
 
     // Handle trail effect
     function createTrail(e) {
+      if (!isCursorVisible) return;
+
       const trail = document.createElement('div');
       trail.className = 'trail';
       
