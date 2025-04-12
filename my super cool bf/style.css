@@ -462,10 +462,12 @@ h1 {
   font-size: 0.8rem;
   cursor: pointer;
   transition: background-color 0.2s ease;
+  color: #c12669;
 }
 
 .office-tab:hover {
   background: #ffd6ea;
+  color: #831416;
 }
 
 .office-buttons {
@@ -484,10 +486,12 @@ h1 {
   display: flex;
   align-items: center;
   transition: background-color 0.2s ease;
+  color: #c12669;
 }
 
 .office-button:hover {
   background: #ffd6ea;
+  color: #831416;
 }
 
 .office-button::before {
