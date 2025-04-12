@@ -289,25 +289,25 @@ h1 {
   position: fixed;
   width: 2px;
   height: 2px;
-  background: linear-gradient(45deg, #ffb6c1, #ffd700);
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
   border-radius: 50%;
   pointer-events: none;
   z-index: 9998;
   opacity: 0.8;
   box-shadow: 
     /* Base sparkles */
-    0 0 4px #ff69b4,
-    0 0 8px #ffd700,
-    0 0 10px #ffffff,
+    0 0 4px rgba(255, 255, 255, 0.9),
+    0 0 8px rgba(255, 255, 255, 0.7),
+    0 0 10px rgba(255, 255, 255, 0.5),
     /* Additional sparkle points */
-    3px 3px 0 0.5px #ffffff,
-    -3px 3px 0 0.5px #ffffff,
-    3px -3px 0 0.5px #ffffff,
-    -3px -3px 0 0.5px #ffffff,
-    4px 0px 0 0.5px #ffd700,
-    -4px 0px 0 0.5px #ffd700,
-    0px 4px 0 0.5px #ffd700,
-    0px -4px 0 0.5px #ffd700;
+    3px 3px 0 0.5px rgba(255, 255, 255, 0.9),
+    -3px 3px 0 0.5px rgba(255, 255, 255, 0.8),
+    3px -3px 0 0.5px rgba(255, 255, 255, 0.7),
+    -3px -3px 0 0.5px rgba(255, 255, 255, 0.9),
+    4px 0px 0 0.5px rgba(255, 255, 255, 0.8),
+    -4px 0px 0 0.5px rgba(255, 255, 255, 0.7),
+    0px 4px 0 0.5px rgba(255, 255, 255, 0.9),
+    0px -4px 0 0.5px rgba(255, 255, 255, 0.8);
   animation: fadeOut 0.8s forwards;
   transform: translate(-50%, -50%);
   margin-top: 63px;
@@ -326,23 +326,23 @@ h1 {
   animation: pixelSparkle 0.8s forwards;
   box-shadow: 
     /* Inner scattered pixels */
-    2px 1px 0 0px #ffffff,
-    -1px 2px 0 0px #ffffff,
-    -2px -1px 0 0px #ffffff,
-    1px -2px 0 0px #ffffff,
+    2px 1px 0 0px rgba(255, 255, 255, 0.9),
+    -1px 2px 0 0px rgba(255, 255, 255, 0.8),
+    -2px -1px 0 0px rgba(255, 255, 255, 0.9),
+    1px -2px 0 0px rgba(255, 255, 255, 0.8),
     3px 2px 0 0px rgba(255, 255, 255, 0.7),
     -2px 3px 0 0px rgba(255, 255, 255, 0.7),
     -3px -2px 0 0px rgba(255, 255, 255, 0.7),
     2px -3px 0 0px rgba(255, 255, 255, 0.7),
     /* Middle scattered pixels */
-    4px 2px 0 0px #ffd700,
-    -2px 4px 0 0px #ffd700,
-    -4px -2px 0 0px #ffd700,
-    2px -4px 0 0px #ffd700,
-    5px 3px 0 0px rgba(255, 215, 0, 0.6),
-    -3px 5px 0 0px rgba(255, 215, 0, 0.6),
-    -5px -3px 0 0px rgba(255, 215, 0, 0.6),
-    3px -5px 0 0px rgba(255, 215, 0, 0.6);
+    4px 2px 0 0px rgba(255, 255, 255, 0.8),
+    -2px 4px 0 0px rgba(255, 255, 255, 0.9),
+    -4px -2px 0 0px rgba(255, 255, 255, 0.8),
+    2px -4px 0 0px rgba(255, 255, 255, 0.9),
+    5px 3px 0 0px rgba(255, 255, 255, 0.6),
+    -3px 5px 0 0px rgba(255, 255, 255, 0.6),
+    -5px -3px 0 0px rgba(255, 255, 255, 0.6),
+    3px -5px 0 0px rgba(255, 255, 255, 0.6);
   filter: drop-shadow(0 0 0.5px rgba(255, 255, 255, 0.6));
 }
 
@@ -363,10 +363,10 @@ h1 {
     -7px -3px 0 0px rgba(255, 255, 255, 0.4),
     3px -7px 0 0px rgba(255, 255, 255, 0.4),
     /* Far scattered pixels */
-    8px 1px 0 0px rgba(255, 215, 0, 0.5),
-    -1px 8px 0 0px rgba(255, 215, 0, 0.5),
-    -8px -1px 0 0px rgba(255, 215, 0, 0.5),
-    1px -8px 0 0px rgba(255, 215, 0, 0.5),
+    8px 1px 0 0px rgba(255, 255, 255, 0.5),
+    -1px 8px 0 0px rgba(255, 255, 255, 0.5),
+    -8px -1px 0 0px rgba(255, 255, 255, 0.5),
+    1px -8px 0 0px rgba(255, 255, 255, 0.5),
     7px -2px 0 0px rgba(255, 255, 255, 0.5),
     -2px 7px 0 0px rgba(255, 255, 255, 0.5),
     -7px 2px 0 0px rgba(255, 255, 255, 0.5),
