@@ -434,63 +434,66 @@ h1 {
 
 /* Microsoft Word Style Toolbar */
 .toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  background: linear-gradient(to bottom, #f4a8c9, #fdd4f1);
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-  padding: 0;
-  margin: 0;
-  border-bottom: 2px solid #d4d0c8;
-  position: relative;
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
+  background: linear-gradient(to bottom, #fce4f3, #f9d6ec);
+  border-bottom: 2px solid #caa2bd;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  z-index: 9999;
   font-family: 'Courier New', monospace;
+  padding: 0.3rem 1rem;
+  box-sizing: border-box;
 }
 
 .toolbar-tabs {
   display: flex;
-  background-color: #fce4f3;
-  border-bottom: 2px solid #d4d0c8;
+  gap: 1rem;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #83164a;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid #d9a5c6;
 }
 
-.toolbar-tabs .tab {
-  padding: 0.5rem 1rem;
-  border-right: 1px solid #ccc;
+.tab {
   cursor: pointer;
-  font-size: 0.85rem;
-  color: #333;
-  font-weight: bold;
-  text-shadow: 1px 1px #fff;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+}
+
+.tab:hover {
+  background-color: #f9b8d5;
+  color: #600c3f;
 }
 
 .toolbar-buttons {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
-  padding: 0.75rem 1.5rem;
-  background-color: rgba(255, 255, 255, 0.4);
+  gap: 2rem;
+  margin-top: 0.4rem;
 }
 
 .icon-group {
   display: flex;
-  align-items: center;
   gap: 0.5rem;
+  align-items: center;
 }
 
 .icon-group img {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
+  border: 1px solid #d19cb6;
+  border-radius: 4px;
   background-color: #fff;
-  border: 1px solid #999;
   padding: 2px;
-  box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-  border-radius: 2px;
-  transition: transform 0.2s ease;
+  transition: background-color 0.2s, box-shadow 0.2s;
 }
 
 .icon-group img:hover {
-  transform: scale(1.1);
-  background-color: #ffe6f0;
+  background-color: #ffe0f0;
+  box-shadow: 0 0 4px #e69ac1;
 }
 
 .desktop {
