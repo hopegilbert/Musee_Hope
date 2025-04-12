@@ -9,8 +9,17 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Handle cursor visibility and position
   document.addEventListener('mousemove', (e) => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
+    // Get window scroll position
+    const scrollX = window.scrollX || window.pageXOffset;
+    const scrollY = window.scrollY || window.pageYOffset;
+    
+    // Calculate cursor position relative to viewport
+    const cursorX = e.screenX - window.screenX - 50; // offset to allow movement past left edge
+    const cursorY = e.screenY - window.screenY - 50; // offset to allow movement past top edge
+    
+    cursor.style.left = cursorX + 'px';
+    cursor.style.top = cursorY + 'px';
+    cursor.style.position = 'fixed';
     cursor.classList.remove('hidden');
   });
 
@@ -19,12 +28,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const trail = document.createElement('div');
     trail.className = 'trail';
     
+    // Calculate trail position using same offsets as cursor
+    const cursorX = e.screenX - window.screenX - 50;
+    const cursorY = e.screenY - window.screenY - 50;
+    
     // Calculate trail position
     const centerToBottom = ((CURSOR_SIZE / 2) - BOTTOM_LEFT_POINT.y) * SCALE;
     const horizontalOffset = (BOTTOM_LEFT_POINT.x - (CURSOR_SIZE / 2)) * SCALE;
     
-    trail.style.left = (e.clientX + horizontalOffset) + 'px';
-    trail.style.top = (e.clientY - centerToBottom) + 'px';
+    trail.style.left = (cursorX + horizontalOffset) + 'px';
+    trail.style.top = (cursorY - centerToBottom) + 'px';
+    trail.style.position = 'fixed';
     document.body.appendChild(trail);
 
     // Remove trail element after animation
