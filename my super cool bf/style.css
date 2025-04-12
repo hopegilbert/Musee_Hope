@@ -7,13 +7,21 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Courier New', monospace;
-  background: repeating-linear-gradient(
-    to bottom,
-    #f9bfdc,
-    #f9bfdc 150px,
-    #f7a4ca 150px,
-    #f7a4ca 300px
-  );
+  background-color: #f8b9d4;
+  background-image: 
+    linear-gradient(
+      to bottom,
+      #f8b9d4 0%, 
+      #f8b9d4 100%
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 80px,
+      rgba(255, 255, 255, 0.05) 80px,
+      rgba(255, 255, 255, 0.05) 160px
+    );
+  background-repeat: repeat;
   background-attachment: fixed;
   overflow-x: hidden;
 }
