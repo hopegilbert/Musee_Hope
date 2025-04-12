@@ -7,34 +7,31 @@ document.addEventListener('DOMContentLoaded', () => {
     y: 13  // y position of bottom point in original pixel art
   };
   
-  function isOverBrowserUI(e) {
-    // Check if we're outside the viewport
-    if (e.clientX < 0 || e.clientY < 0 || 
-        e.clientX > window.innerWidth || e.clientY > window.innerHeight) {
-      return true;
-    }
-
+  function shouldShowCursor(e) {
     const element = document.elementFromPoint(e.clientX, e.clientY);
-    
-    // If no element or we're on the root elements, we're probably on browser UI
-    if (!element || element === document.documentElement || element === document.body) {
-      return true;
-    }
-
-    // Check if we're over an interactive element that needs the system cursor
-    if (element.matches('a, button, input, select, textarea')) {
-      return true;
-    }
-
-    return false;
+    // Only show cursor if we're over the main content or specific elements we know are part of the webpage
+    return element && (
+      element.id === 'cursor' ||
+      element.classList.contains('trail') ||
+      element.tagName === 'DIV' ||
+      element.tagName === 'MAIN' ||
+      element.tagName === 'SECTION' ||
+      element.tagName === 'P' ||
+      element.tagName === 'IMG' ||
+      element.tagName === 'H1' ||
+      element.tagName === 'H2' ||
+      element.tagName === 'H3'
+    );
   }
 
   // Handle cursor visibility and position
   document.addEventListener('mousemove', (e) => {
+    // Always update position
     cursor.style.left = e.clientX + 'px';
     cursor.style.top = e.clientY + 'px';
     
-    if (!isOverBrowserUI(e)) {
+    // Update visibility
+    if (shouldShowCursor(e)) {
       cursor.classList.remove('hidden');
     } else {
       cursor.classList.add('hidden');
@@ -43,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Handle trail effect
   function createTrail(e) {
-    if (isOverBrowserUI(e)) return;
+    if (!shouldShowCursor(e)) return;
 
     const trail = document.createElement('div');
     trail.className = 'trail';
