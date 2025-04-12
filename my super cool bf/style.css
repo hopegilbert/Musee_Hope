@@ -213,7 +213,7 @@ h1 {
 /* Custom Cursor Styles */
 /* Base cursor removal */
 * {
-  cursor: none !important;
+  cursor: auto !important;
 }
 
 #cursor {
