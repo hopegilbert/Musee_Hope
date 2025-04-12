@@ -8,10 +8,9 @@ function toggleDropdown() {
   dropdown.style.display = isVisible ? 'none' : 'block';
 }
 
-function navigateTo(page) {
-  if (page) {
-    window.location.href = page;
-  }
+// Navigation function
+function navigateTo(url) {
+  window.location.href = url;
 }
 
 // Draggable window logic
@@ -59,71 +58,50 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    const cursor = document.getElementById('cursor');
-    let isCursorVisible = false;
-    let hideTimeout;
-    
-    const SCALE = 4.5;
-    const CURSOR_SIZE = 15; // pixels
-    const BOTTOM_LEFT_POINT = {
-        x: 9,  // x position of bottom point in original pixel art
-        y: 13  // y position of bottom point in original pixel art
-    };
-
-    // Utility to check if mouse is inside the window bounds
-    function isInViewport(e) {
-        return e.clientX > 0 && e.clientY > 0 &&
-               e.clientX < window.innerWidth &&
-               e.clientY < window.innerHeight;
+    // Create cursor element if it doesn't exist
+    let cursor = document.getElementById('cursor');
+    if (!cursor) {
+        cursor = document.createElement('div');
+        cursor.id = 'cursor';
+        document.body.appendChild(cursor);
     }
+    
+    // Initialize cursor
+    cursor.style.display = 'block';
+    cursor.style.opacity = '1';
 
+    // Update cursor position
     document.addEventListener('mousemove', (e) => {
-        cursor.style.left = e.pageX + 'px';
-        cursor.style.top = e.pageY + 'px';
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+    });
 
-        // If mouse is in bounds, show cursor
-        if (isInViewport(e)) {
-            if (!isCursorVisible) {
-                cursor.style.opacity = '1';
-                isCursorVisible = true;
-            }
-
-            clearTimeout(hideTimeout);
-            hideTimeout = setTimeout(() => {
-                cursor.style.opacity = '0';
-                isCursorVisible = false;
-            }, 200);
-        } else {
-            // Cursor has moved to edge/out of bounds
-            cursor.style.opacity = '0';
-            isCursorVisible = false;
-        }
+    // Show/hide cursor based on mouse position
+    document.addEventListener('mouseenter', () => {
+        cursor.style.opacity = '1';
+        cursor.classList.remove('hidden');
     });
 
     document.addEventListener('mouseleave', () => {
         cursor.style.opacity = '0';
-        isCursorVisible = false;
+        cursor.classList.add('hidden');
     });
 
     // Handle trail effect
     function createTrail(e) {
-        if (!isCursorVisible || !isInViewport(e)) return;
+        if (!cursor.classList.contains('hidden')) {
+            const trail = document.createElement('div');
+            trail.className = 'trail';
+            
+            trail.style.left = e.clientX + 'px';
+            trail.style.top = e.clientY + 'px';
+            document.body.appendChild(trail);
 
-        const trail = document.createElement('div');
-        trail.className = 'trail';
-        
-        // Calculate trail position
-        const centerToBottom = ((CURSOR_SIZE / 2) - BOTTOM_LEFT_POINT.y) * SCALE;
-        const horizontalOffset = (BOTTOM_LEFT_POINT.x - (CURSOR_SIZE / 2)) * SCALE;
-        
-        trail.style.left = (e.pageX + horizontalOffset) + 'px';
-        trail.style.top = (e.pageY - centerToBottom) + 'px';
-        document.body.appendChild(trail);
-
-        // Remove trail element after animation
-        setTimeout(() => {
-            trail.remove();
-        }, 800); // Match animation duration
+            // Remove trail element after animation
+            setTimeout(() => {
+                trail.remove();
+            }, 800); // Match animation duration
+        }
     }
 
     document.addEventListener('mousemove', createTrail);

@@ -512,11 +512,54 @@ h1 {
   color: #6b1a3b;
   cursor: pointer;
   border-radius: 4px;
+  position: relative;
 }
 
 .toolbar-tabs .tab:hover {
   background-color: #f9c9dd;
   color: #4b0e29;
+}
+
+/* Dropdown menu styles */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #fef1f7;
+  min-width: 200px;
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+  z-index: 1000;
+  border: 1px solid #c26d9c;
+  border-radius: 4px;
+  top: 100%;
+  left: 0;
+}
+
+.dropdown-content div {
+  color: #6b1a3b;
+  padding: 8px 12px;
+  text-decoration: none;
+  display: block;
+  font-size: 0.8rem;
+  cursor: pointer;
+  border-bottom: 1px solid #e5b3cc;
+}
+
+.dropdown-content div:last-child {
+  border-bottom: none;
+}
+
+.dropdown-content div:hover {
+  background-color: #f9c9dd;
+  color: #4b0e29;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
 }
 
 /* Icon button groups */
