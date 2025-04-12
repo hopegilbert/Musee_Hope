@@ -448,6 +448,8 @@ h1 {
   z-index: 1000;
   box-sizing: border-box;
   overflow-x: hidden;
+  padding: 0;
+  margin: 0;
 }
 
 .toolbar-top {
@@ -459,6 +461,7 @@ h1 {
   border-bottom: 1px solid #d48da6;
   box-sizing: border-box;
   width: 100%;
+  max-width: 100%;
 }
 
 .toolbar-title {
@@ -467,6 +470,7 @@ h1 {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  max-width: 200px;
 }
 
 .toolbar-tabs {
@@ -474,6 +478,13 @@ h1 {
   background: #fff0f5;
   padding: 0.2rem 0.5rem;
   border-bottom: 1px solid #ffd4e8;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.toolbar-tabs::-webkit-scrollbar {
+  display: none;
 }
 
 .tab {
@@ -492,6 +503,13 @@ h1 {
   padding: 0.5rem;
   background: #fff0f5;
   border-top: 1px solid #ffd4e8;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.toolbar-buttons::-webkit-scrollbar {
+  display: none;
 }
 
 .icon-group {
