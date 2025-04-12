@@ -3,18 +3,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 body {
-  background: repeating-linear-gradient(
-    to bottom,
-    #ffc0cb,     /* Light pink */
-    #ffc0cb 150px,
-    #f4a8c9 150px,
-    #f4a8c9 300px
-  );
-  background-attachment: fixed;
-  font-family: 'Press Start 2P', cursive;
-  color: #fff;
   margin: 0;
   padding: 0;
+  background-color: transparent;
+  background-image: url('images/pink-padding-background.png'); /* your padded pink BG */
+  background-size: 100px 100px;
+  background-repeat: repeat;
+  background-attachment: fixed;
+  background-position: center;
+  font-family: 'Courier New', monospace;
   overflow-x: hidden;
 }
 
