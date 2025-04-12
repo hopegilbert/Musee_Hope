@@ -3,9 +3,23 @@ let isCursorVisible = false;
 
 // Utility to check if mouse is inside the window bounds
 function isInViewport(e) {
-  return e.clientX > 0 && e.clientY > 0 &&
-         e.clientX < window.innerWidth &&
-         e.clientY < window.innerHeight;
+  const buffer = 20; // Add a small buffer zone
+  return e.clientX > -buffer && e.clientY > -buffer &&
+         e.clientX < window.innerWidth + buffer &&
+         e.clientY < window.innerHeight + buffer;
+}
+
+// Check cursor position periodically
+function checkCursorPosition() {
+  const rect = cursor.getBoundingClientRect();
+  const centerX = rect.left + rect.width / 2;
+  const centerY = rect.top + rect.height / 2;
+  
+  if (centerX < 0 || centerX > window.innerWidth ||
+      centerY < 0 || centerY > window.innerHeight) {
+    cursor.style.opacity = '0';
+    isCursorVisible = false;
+  }
 }
 
 document.addEventListener('mousemove', (e) => {
@@ -24,6 +38,9 @@ document.addEventListener('mousemove', (e) => {
     isCursorVisible = false;
   }
 });
+
+// Check cursor position every 50ms
+setInterval(checkCursorPosition, 50);
 
 document.addEventListener('mouseleave', () => {
   cursor.style.opacity = '0';
