@@ -91,25 +91,39 @@
       return false;
     }
 
+    function getGridPosition(gridX, gridY, gridSize, cellWidth, cellHeight) {
+      const x = gridX * cellWidth + Math.random() * (cellWidth - 100);
+      const y = gridY * cellHeight + Math.random() * (cellHeight - 100);
+      return { x, y };
+    }
+
     function createGitterGif() {
       const container = document.getElementById('gitterContainer');
       const existingGifs = Array.from(document.querySelectorAll('.gitter-gif'));
-      const maxAttempts = 50; // Maximum attempts to find a non-overlapping position
+      const maxAttempts = 50;
       let attempts = 0;
+      
+      // Create a 4x4 grid
+      const gridSize = 4;
+      const cellWidth = window.innerWidth / gridSize;
+      const cellHeight = window.innerHeight / gridSize;
+      
+      // Get random grid position
+      const gridX = Math.floor(Math.random() * gridSize);
+      const gridY = Math.floor(Math.random() * gridSize);
       
       while (attempts < maxAttempts) {
         const gif = document.createElement('img');
         gif.src = 'images/glitter.gif';
         gif.className = 'gitter-gif';
         
-        // Random size between 30px and 100px (smaller to fit more)
+        // Random size between 30px and 100px
         const size = Math.floor(Math.random() * 70) + 30;
         gif.style.width = `${size}px`;
         gif.style.height = 'auto';
         
-        // Random position
-        const x = Math.random() * (window.innerWidth - size);
-        const y = Math.random() * (window.innerHeight - size);
+        // Get position within the grid cell
+        const { x, y } = getGridPosition(gridX, gridY, gridSize, cellWidth, cellHeight);
         gif.style.left = `${x}px`;
         gif.style.top = `${y}px`;
         
@@ -123,17 +137,27 @@
       }
     }
 
-    // Create more initial GIFs
-    for (let i = 0; i < 15; i++) {
+    // Create initial GIFs with grid distribution
+    const initialGifs = 20;
+    for (let i = 0; i < initialGifs; i++) {
       createGitterGif();
     }
 
     // Add more GIFs periodically
     setInterval(() => {
-      if (document.querySelectorAll('.gitter-gif').length < 30) {
+      if (document.querySelectorAll('.gitter-gif').length < 40) {
         createGitterGif();
       }
     }, 3000);
+
+    // Redistribute GIFs when window is resized
+    window.addEventListener('resize', () => {
+      const gifs = document.querySelectorAll('.gitter-gif');
+      gifs.forEach(gif => gif.remove());
+      for (let i = 0; i < gifs.length; i++) {
+        createGitterGif();
+      }
+    });
   </script>
 </body>
 </html>
