@@ -586,3 +586,42 @@ h1 {
   background: linear-gradient(to top, #c12669 50%, #fff 50%);
   clip-path: polygon(10% 90%, 50% 10%, 90% 90%);
 }
+
+.dropdown-tab {
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #f0f0f0;
+  border: 1px solid #999;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  min-width: 160px;
+  z-index: 1000;
+}
+
+.dropdown-tab:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-item {
+  padding: 4px 8px;
+  font-size: 0.8rem;
+  color: #000;
+  cursor: default;
+  white-space: nowrap;
+}
+
+.dropdown-item:hover {
+  background: #316ac5;
+  color: white;
+}
+
+.dropdown-separator {
+  height: 1px;
+  background: #999;
+  margin: 4px 0;
+}
