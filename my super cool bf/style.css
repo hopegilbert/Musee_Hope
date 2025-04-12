@@ -452,6 +452,33 @@ h1 {
   font-weight: bold;
   padding: 6px 12px;
   font-size: 0.85rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.toolbar-titlebar .window-buttons {
+  display: flex;
+  gap: 6px;
+}
+
+.toolbar-titlebar .window-buttons span {
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fce4f3;
+  border: 1px solid #c26d9c;
+  border-radius: 3px;
+  font-size: 0.7rem;
+  color: #a03d70;
+  cursor: pointer;
+}
+
+.toolbar-titlebar .window-buttons span:hover {
+  background: #f6b8d2;
+  color: #721f4e;
 }
 
 /* Tabs Bar (File, Insert, etc) */
