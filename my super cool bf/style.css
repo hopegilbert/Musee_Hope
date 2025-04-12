@@ -231,12 +231,12 @@ h1 {
   position: absolute;
   width: 1px;
   height: 1px;
-  transform: scale(10);
+  transform: scale(8);
   transform-origin: center;
   z-index: 999999;
   pointer-events: none;
-  left: -7px;
-  top: -11px;
+  left: -4px;
+  top: -8px;
   box-shadow: 
     5px 3px #e6c4ff,
     5px 4px #d6acff,
