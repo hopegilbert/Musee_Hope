@@ -479,9 +479,9 @@ h1 {
 .toolbar-tabs {
   display: flex;
   flex-wrap: nowrap;
-  background: transparent;
+  background: #fff0f5;
   padding: 0.2rem 0.3rem;
-  border-bottom: 1px solid #fff;
+  border-bottom: 1px solid #ffd4e8;
   overflow-x: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -513,8 +513,8 @@ h1 {
   flex-wrap: nowrap;
   gap: 0.3rem;
   padding: 0.3rem;
-  background: transparent;
-  border-top: 1px solid #fff;
+  background: #fff0f5;
+  border-top: 1px solid #ffd4e8;
   overflow-x: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -530,9 +530,9 @@ h1 {
   align-items: center;
   gap: 0.3rem;
   padding: 0.15rem;
-  background: transparent;
+  background: rgba(255, 255, 255, 0.5);
   border-radius: 4px;
-  border: 1px solid #fff;
+  border: 1px solid #ffd4e8;
   flex-shrink: 0;
 }
 
