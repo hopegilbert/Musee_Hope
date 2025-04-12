@@ -395,6 +395,7 @@ h1 {
   border: 2px solid #d48da6;
   font-family: 'Verdana', sans-serif;
   width: 100%;
+  max-width: 100%;
   box-shadow: 3px 3px #aaa;
   position: fixed;
   top: 0;
