@@ -444,7 +444,7 @@ h1 {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000;
+  z-index: 100;
   box-sizing: border-box;
   overflow-x: hidden;
   padding: 0;
@@ -589,6 +589,7 @@ h1 {
 
 .dropdown-tab {
   position: relative;
+  z-index: 1000;
 }
 
 .dropdown-content {
@@ -600,7 +601,7 @@ h1 {
   border: 1px solid #999;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
   min-width: 160px;
-  z-index: 9999;
+  z-index: 10000;
 }
 
 .dropdown-tab:hover .dropdown-content {
