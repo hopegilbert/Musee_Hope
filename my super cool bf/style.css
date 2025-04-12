@@ -436,99 +436,76 @@ h1 {
 
 /* Microsoft Word Style Toolbar */
 .toolbar {
-  position: fixed;
+  background: linear-gradient(to bottom, #bf2769, #ff99cc);
+  border: 2px solid #d48da6;
+  font-family: 'Verdana', sans-serif;
+  width: 100%;
+  position: relative;
   top: 0;
   left: 0;
-  width: 100%;
-  background: #f0f0f0;
-  border-bottom: 1px solid #ccc;
+  right: 0;
   z-index: 100;
-}
-
-.toolbar-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.2rem 0.3rem;
-  background: #bf2769;
-  border-bottom: 1px solid #d48da6;
   box-sizing: border-box;
-  width: 100%;
-}
-
-.toolbar-title {
-  font-size: 0.9rem;
-  color: #ffffff;
-  white-space: nowrap;
-  overflow: visible;
-  text-overflow: clip;
-  max-width: none;
+  overflow-x: hidden;
+  padding: 0;
+  margin: 0;
 }
 
 .toolbar-tabs {
   display: flex;
-  gap: 1rem;
-  padding: 0.5rem 1rem;
-  background: #f0f0f0;
-  border-bottom: 1px solid #ccc;
-  z-index: 100;
-}
-
-.tab {
-  padding: 0.2rem 0.3rem;
-  margin-right: 0.3rem;
-  cursor: pointer;
-  font-size: 0.8rem;
-  color: #333;
-  border-radius: 3px;
-  transition: all 0.2s;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-
-.tab:hover {
-  background-color: #ffc0cb;
-  color: #fff;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-}
-
-.toolbar-buttons {
-  display: flex;
   flex-wrap: nowrap;
-  gap: 0.3rem;
-  padding: 0.3rem;
   background: #fff0f5;
-  border-top: 1px solid #ffd4e8;
+  padding: 0.2rem 0.3rem;
+  border-bottom: 1px solid #ffd4e8;
   overflow-x: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
   width: 100%;
+  position: relative;
+  z-index: 100;
 }
 
-.icon-group {
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-  padding: 0.15rem;
-  background: rgba(255, 255, 255, 0.5);
-  border-radius: 4px;
-  border: 1px solid #ffd4e8;
-  flex-shrink: 0;
-}
-
-.icon-group img {
-  height: 20px;
-  width: auto;
-  padding: 4px;
-  border-radius: 3px;
-  transition: all 0.2s;
+.dropdown-tab {
+  position: relative;
   cursor: pointer;
+  z-index: 101;
 }
 
-.icon-group img:hover {
-  background: #ffc0cb;
-  transform: scale(1.1);
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #f0f0f0;
+  border: 1px solid #999;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  min-width: 200px;
+  z-index: 102;
+  margin-top: 2px;
+}
+
+.dropdown-item {
+  padding: 6px 12px;
+  font-size: 0.8rem;
+  color: #000;
+  cursor: pointer;
+  white-space: nowrap;
+  border-bottom: 1px solid #ddd;
+}
+
+.dropdown-item:last-child {
+  border-bottom: none;
+}
+
+.dropdown-item:hover {
+  background: #316ac5;
+  color: white;
+}
+
+.dropdown-separator {
+  height: 1px;
+  background: #999;
+  margin: 4px 0;
 }
 
 /* Example retro pixel-style icons via simple block colors or shapes */
@@ -576,38 +553,4 @@ h1 {
 .icon-font::before {
   background: linear-gradient(to top, #c12669 50%, #fff 50%);
   clip-path: polygon(10% 90%, 50% 10%, 90% 90%);
-}
-
-.dropdown-tab {
-  position: relative;
-  cursor: pointer;
-  z-index: 101;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: #fff;
-  min-width: 200px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-  z-index: 102;
-  border: 1px solid #ccc;
-}
-
-.dropdown-item {
-  padding: 8px 12px;
-  color: #333;
-  cursor: pointer;
-  font-size: 0.8rem;
-  border-bottom: 1px solid #eee;
-}
-
-.dropdown-item:hover {
-  background-color: #f0f0f0;
-}
-
-.dropdown-item:last-child {
-  border-bottom: none;
 }
