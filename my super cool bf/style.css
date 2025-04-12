@@ -218,8 +218,8 @@ h1 {
 
 #cursor {
   position: fixed;
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   pointer-events: none;
   z-index: 999999;
   transform: translate(-50%, -50%);
@@ -232,6 +232,7 @@ h1 {
   visibility: visible !important;
   top: 0;
   left: 0;
+  object-fit: contain;
 }
 
 .cursor-hidden {
