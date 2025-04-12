@@ -436,7 +436,7 @@ h1 {
 
 /* Microsoft Word Style Toolbar */
 .toolbar {
-  background: linear-gradient(to bottom, #ffc0cb, #ff99cc);
+  background: linear-gradient(to bottom, #ff9cb2, #ff99cc);
   border: 2px solid #d48da6;
   font-family: 'Verdana', sans-serif;
   width: 100%;
@@ -452,7 +452,7 @@ h1 {
   justify-content: space-between;
   align-items: center;
   padding: 0.3rem 0.5rem;
-  background: #ffc0cb;
+  background: #ff9cb2;
   border-bottom: 1px solid #d48da6;
 }
 
