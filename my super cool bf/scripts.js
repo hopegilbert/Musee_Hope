@@ -79,8 +79,8 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('mousemove', (e) => {
       const cursor = document.getElementById('cursor');
       const { clientX, clientY } = e;
-      const withinX = clientX >= 0 && clientX <= window.innerWidth;
-      const withinY = clientY >= 0 && clientY <= window.innerHeight;
+      const withinX = clientX >= 0 && clientX < window.innerWidth;
+      const withinY = clientY >= 0 && clientY < window.innerHeight;
 
       if (cursor) {
         if (!withinX || !withinY) {
