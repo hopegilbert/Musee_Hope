@@ -18,7 +18,8 @@ function isInBrowserChrome(e) {
 
 document.addEventListener('mousemove', (e) => {
   // Update cursor position directly without any animation
-  cursor.style.left = e.pageX + 'px';
+  // Offset the position to make the top right corner the click point
+  cursor.style.left = (e.pageX - cursor.offsetWidth) + 'px';
   cursor.style.top = e.pageY + 'px';
 
   // If mouse is in bounds or in browser chrome, show cursor
