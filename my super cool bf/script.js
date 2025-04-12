@@ -2,9 +2,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const cursor = document.getElementById('cursor');
   const SCALE = 4.5;
   const CURSOR_SIZE = 15; // pixels
-  const BOTTOM_POINT = {
-    x: 9,  // x position of bottom point in original pixel art
-    y: 13  // y position of bottom point in original pixel art
+  const BOTTOM_LEFT_POINT = {
+    x: 5,  // x position of bottom-left point in original pixel art
+    y: 13  // y position of bottom-left point in original pixel art
   };
   
   function shouldHideCursor(x, y) {
@@ -60,12 +60,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const trail = document.createElement('div');
     trail.className = 'trail';
     
-    // Calculate the offset from cursor center to bottom point
+    // Calculate the offset from cursor center to bottom-left point
     const centerOffset = CURSOR_SIZE / 2; // half of the cursor size
-    const xOffset = (BOTTOM_POINT.x - centerOffset) * SCALE;
-    const yOffset = (BOTTOM_POINT.y - centerOffset) * SCALE;
+    const xOffset = (BOTTOM_LEFT_POINT.x - centerOffset) * SCALE;
+    const yOffset = (BOTTOM_LEFT_POINT.y - centerOffset) * SCALE;
     
-    // Position trail at the bottom point of the cursor
+    // Position trail at the bottom-left point of the cursor
     trail.style.left = (e.clientX + xOffset) + 'px';
     trail.style.top = (e.clientY + yOffset) + 'px';
     document.body.appendChild(trail);
