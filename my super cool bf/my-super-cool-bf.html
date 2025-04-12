@@ -164,28 +164,6 @@
       menu.style.display = menu.style.display === "block" ? "none" : "block";
     }
 
-    // Initialize cursor
-    const cursor = document.getElementById('cursor');
-    cursor.style.display = 'block';
-    cursor.style.opacity = '1';
-
-    // Update cursor position
-    document.addEventListener('mousemove', (e) => {
-      cursor.style.left = e.clientX + 'px';
-      cursor.style.top = e.clientY + 'px';
-    });
-
-    // Show/hide cursor based on mouse position
-    document.addEventListener('mouseenter', () => {
-      cursor.style.opacity = '1';
-      cursor.classList.remove('hidden');
-    });
-
-    document.addEventListener('mouseleave', () => {
-      cursor.style.opacity = '0';
-      cursor.classList.add('hidden');
-    });
-
     function checkOverlap(newGif, existingGifs) {
       const newRect = newGif.getBoundingClientRect();
       
