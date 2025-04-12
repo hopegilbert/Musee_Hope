@@ -14,40 +14,26 @@ document.addEventListener('DOMContentLoaded', () => {
     cursor.style.top = '-100px';
   }
   
-  function shouldHideCursor(x, y) {
-    // Check if we're in a non-content area
-    const elementUnderCursor = document.elementFromPoint(x, y);
+  function isMouseInContentArea(x, y) {
+    // Get the main content container (assuming it's the first div in the body)
+    const contentArea = document.querySelector('body > div');
+    if (!contentArea) return false;
+
+    // Get the content area bounds
+    const bounds = contentArea.getBoundingClientRect();
     
-    // Hide cursor if:
-    // 1. No element found
-    // 2. We're on the root html element
-    // 3. We're on the body with no other content
-    // 4. We're on a scrollbar (checking if click point is past content width)
-    // 5. We're in browser chrome areas (y < 0)
-    if (!elementUnderCursor || 
-        elementUnderCursor === document.documentElement ||
-        (elementUnderCursor === document.body && !elementUnderCursor.children.length) ||
-        x >= document.documentElement.clientWidth ||
-        y < 0) {
-      return true;
-    }
-    
-    // Get the computed style of the element
-    const style = window.getComputedStyle(elementUnderCursor);
-    
-    // Hide cursor if we're over a form control or clickable element
-    // that shows the default cursor
-    if (elementUnderCursor.matches('input, button, select, textarea, a') ||
-        style.cursor !== 'none') {
-      return true;
-    }
-    
-    return false;
+    // Check if mouse is within the content area
+    return (
+      x >= bounds.left &&
+      x <= bounds.right &&
+      y >= bounds.top &&
+      y <= bounds.bottom
+    );
   }
   
   // Handle cursor visibility and position
   document.addEventListener('mousemove', (e) => {
-    if (shouldHideCursor(e.clientX, e.clientY)) {
+    if (!isMouseInContentArea(e.clientX, e.clientY)) {
       hideCursor();
       return;
     }
@@ -71,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Handle mouse entering document
   document.addEventListener('mouseenter', (e) => {
-    if (!shouldHideCursor(e.clientX, e.clientY)) {
+    if (isMouseInContentArea(e.clientX, e.clientY)) {
       cursor.classList.remove('hidden');
       cursor.style.left = e.clientX + 'px';
       cursor.style.top = e.clientY + 'px';
@@ -80,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Handle trail effect
   function createTrail(e) {
-    if (shouldHideCursor(e.clientX, e.clientY)) {
+    if (!isMouseInContentArea(e.clientX, e.clientY)) {
       return;
     }
 
