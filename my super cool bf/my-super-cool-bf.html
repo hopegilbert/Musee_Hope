@@ -75,37 +75,65 @@
   <!-- Scripts -->
   <script src="scripts.js"></script>
   <script>
-    function createGitterGif() {
-      const container = document.getElementById('gitterContainer');
-      const gif = document.createElement('img');
-      gif.src = 'images/glitter.gif';
-      gif.className = 'gitter-gif';
+    function checkOverlap(newGif, existingGifs) {
+      const newRect = newGif.getBoundingClientRect();
       
-      // Random size between 50px and 200px
-      const size = Math.floor(Math.random() * 150) + 50;
-      gif.style.width = `${size}px`;
-      gif.style.height = 'auto';
-      
-      // Random position
-      const x = Math.random() * (window.innerWidth - size);
-      const y = Math.random() * (window.innerHeight - size);
-      gif.style.left = `${x}px`;
-      gif.style.top = `${y}px`;
-      
-      container.appendChild(gif);
+      for (const existingGif of existingGifs) {
+        const existingRect = existingGif.getBoundingClientRect();
+        
+        if (!(newRect.right < existingRect.left || 
+              newRect.left > existingRect.right || 
+              newRect.bottom < existingRect.top || 
+              newRect.top > existingRect.bottom)) {
+          return true;
+        }
+      }
+      return false;
     }
 
-    // Create multiple Gitter GIFs
-    for (let i = 0; i < 5; i++) {
+    function createGitterGif() {
+      const container = document.getElementById('gitterContainer');
+      const existingGifs = Array.from(document.querySelectorAll('.gitter-gif'));
+      const maxAttempts = 50; // Maximum attempts to find a non-overlapping position
+      let attempts = 0;
+      
+      while (attempts < maxAttempts) {
+        const gif = document.createElement('img');
+        gif.src = 'images/glitter.gif';
+        gif.className = 'gitter-gif';
+        
+        // Random size between 30px and 100px (smaller to fit more)
+        const size = Math.floor(Math.random() * 70) + 30;
+        gif.style.width = `${size}px`;
+        gif.style.height = 'auto';
+        
+        // Random position
+        const x = Math.random() * (window.innerWidth - size);
+        const y = Math.random() * (window.innerHeight - size);
+        gif.style.left = `${x}px`;
+        gif.style.top = `${y}px`;
+        
+        // Check for overlap
+        if (!checkOverlap(gif, existingGifs)) {
+          container.appendChild(gif);
+          return;
+        }
+        
+        attempts++;
+      }
+    }
+
+    // Create more initial GIFs
+    for (let i = 0; i < 15; i++) {
       createGitterGif();
     }
 
     // Add more GIFs periodically
     setInterval(() => {
-      if (document.querySelectorAll('.gitter-gif').length < 10) {
+      if (document.querySelectorAll('.gitter-gif').length < 30) {
         createGitterGif();
       }
-    }, 5000);
+    }, 3000);
   </script>
 </body>
 </html>
