@@ -510,7 +510,11 @@ h1 {
 .dropdown-tab {
   position: relative;
   cursor: pointer;
-  z-index: 10000;
+  z-index: 9999;
+}
+
+.dropdown-tab:hover .dropdown-content {
+  display: block;
 }
 
 .dropdown-content {
