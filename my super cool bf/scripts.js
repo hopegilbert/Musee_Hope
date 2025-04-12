@@ -36,6 +36,25 @@ function toggleDropdown() {
   
   // Custom cursor and trail effect
   document.addEventListener('DOMContentLoaded', () => {
+    // Initialize dropdown
+    const dropdownTab = document.querySelector('.dropdown-tab');
+    if (dropdownTab) {
+      dropdownTab.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleDropdown();
+      });
+    }
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!dropdownTab.contains(e.target)) {
+        const dropdown = document.querySelector('.dropdown-content');
+        if (dropdown) {
+          dropdown.style.display = 'none';
+        }
+      }
+    });
+
     const cursor = document.getElementById('cursor');
     let isCursorVisible = false;
     let hideTimeout;
