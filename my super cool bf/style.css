@@ -220,14 +220,16 @@ h1 {
 }
 
 #cursor {
+  position: absolute;
   pointer-events: none;
-  position: fixed;
+  z-index: 9999;
+  opacity: 1;
+  transition: opacity 0.3s ease;
   width: 15px;
   height: 15px;
   background-image: url('images/cursor.png');
   background-size: contain;
   transform: scale(4.5);
-  z-index: 9999;
 }
 
 #cursor.hidden {
