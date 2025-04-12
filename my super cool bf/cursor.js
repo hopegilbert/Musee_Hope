@@ -25,9 +25,9 @@ function updateCursorPosition() {
   const dx = targetPosition.x - lastKnownPosition.x;
   const dy = targetPosition.y - lastKnownPosition.y;
   
-  // Move the cursor with a small easing factor for smoothness
-  lastKnownPosition.x += dx * 0.3;
-  lastKnownPosition.y += dy * 0.3;
+  // Move the cursor with a higher easing factor for more responsiveness
+  lastKnownPosition.x += dx * 0.6;
+  lastKnownPosition.y += dy * 0.6;
   
   // Position the cursor at the exact mouse position
   cursor.style.left = lastKnownPosition.x + 'px';
