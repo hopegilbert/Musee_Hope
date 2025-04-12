@@ -435,12 +435,13 @@ h1 {
   color: #831416;
 }
 
-/* Office Toolbar Styles */
-.office-toolbar {
-  background: linear-gradient(to bottom, #f4a8c9, #fdd4f1);
-  padding: 8px;
-  border-bottom: 2px solid #c12669;
-  font-family: 'Courier New', monospace;
+/* Microsoft Word Style Toolbar */
+.toolbar {
+  background: linear-gradient(to bottom, #ffc0cb, #ff99cc);
+  border: 2px solid #d48da6;
+  font-family: 'Verdana', sans-serif;
+  width: 100%;
+  box-shadow: 3px 3px #aaa;
   position: fixed;
   top: 0;
   left: 0;
@@ -448,61 +449,79 @@ h1 {
   z-index: 1000;
 }
 
-.office-tabs {
+.toolbar-top {
   display: flex;
-  gap: 4px;
-  margin-bottom: 8px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  background: #ff78b3;
+  color: white;
+  font-weight: bold;
 }
 
-.office-tab {
-  padding: 4px 8px;
-  background: #fff;
-  border: 1px solid #c12669;
-  border-radius: 3px;
-  font-size: 0.8rem;
+.toolbar-title {
+  font-size: 0.9rem;
+}
+
+.window-buttons span {
+  background: white;
+  color: #ff78b3;
+  border: 1px solid #ff78b3;
+  padding: 0.2rem 0.5rem;
+  margin-left: 0.3rem;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  border-radius: 3px;
+}
+
+.window-buttons span:hover {
+  background: #ffe4ef;
+}
+
+.toolbar-tabs {
+  display: flex;
+  background: #ffd4e8;
+  padding: 0.3rem 0.5rem;
+  border-top: 2px solid #fff;
+  border-bottom: 2px solid #ccc;
+}
+
+.tab {
+  margin-right: 1rem;
+  padding: 0.2rem 0.5rem;
+  cursor: pointer;
+  font-size: 0.85rem;
   color: #c12669;
 }
 
-.office-tab:hover {
-  background: #ffd6ea;
-  color: #831416;
+.tab:hover {
+  background: #ffebf3;
+  border-radius: 4px;
 }
 
-.office-buttons {
+.toolbar-buttons {
   display: flex;
-  gap: 4px;
   flex-wrap: wrap;
+  gap: 1rem;
+  padding: 0.5rem;
+  background: #fff0f5;
 }
 
-.office-button {
-  padding: 4px 8px;
-  background: #fff;
-  border: 1px solid #c12669;
-  border-radius: 3px;
-  font-size: 0.8rem;
-  cursor: pointer;
+.icon-group {
   display: flex;
   align-items: center;
-  transition: background-color 0.2s ease;
-  color: #c12669;
+  gap: 0.5rem;
 }
 
-.office-button:hover {
-  background: #ffd6ea;
-  color: #831416;
+.icon-group img {
+  height: 24px;
+  vertical-align: middle;
+  cursor: pointer;
+  transition: transform 0.2s ease;
 }
 
-.office-button::before {
-  content: "";
-  display: inline-block;
-  width: 12px;
-  height: 12px;
-  margin-right: 6px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
+.icon-group img:hover {
+  transform: scale(1.1);
+  filter: brightness(1.1);
 }
 
 /* Example retro pixel-style icons via simple block colors or shapes */
