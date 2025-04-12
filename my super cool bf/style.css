@@ -220,17 +220,19 @@ h1 {
 }
 
 #cursor {
-  position: fixed;
-  width: 3px;
-  height: 3px;
   pointer-events: none;
-  z-index: 999999;
-  transform: translate(-50%, -50%);
-  visibility: visible; /* Make visible by default */
+  position: fixed;
+  width: 15px;
+  height: 15px;
+  background-image: url('images/cursor.png');
+  background-size: contain;
+  transform: scale(4.5);
+  z-index: 9999;
 }
 
 #cursor.hidden {
-  visibility: hidden; /* Hide when class is added */
+  visibility: hidden;
+  opacity: 0;
 }
 
 #cursor::after {
