@@ -426,7 +426,11 @@ h1 {
   flex-wrap: wrap;
   justify-content: start;
 }
-
+.toolbar-button:hover {
+  background: #ffc8e4;
+  box-shadow: inset 1px 1px 2px #c12669;
+  color: #831416;
+}
 .icon-group {
   display: flex;
   gap: 0.6rem;
@@ -533,13 +537,20 @@ h1 {
 
 .dropdown-item {
   padding: 6px 12px;
-  font-size: 0.8rem;
+  font-size: 0.8rem;  color: #333;
+  border-radius: 3px;
+  transition: all 0.2s;
   color: #000;
   cursor: pointer;
   white-space: nowrap;
+  flex-shrink: 0;
   border-bottom: 1px solid #ddd;
 }
-
+.tab:hover {
+  background-color: #ffc0cb;
+  color: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
 .dropdown-item:last-child {
   border-bottom: none;
 }
