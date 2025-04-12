@@ -421,6 +421,91 @@ h1 {
   gap: 6px;
 }
 
+.toolbar-button {
+  background: #ffeaf4;
+  border: 2px solid #c12669;
+  padding: 3px 8px;
+  border-radius: 2px;
+  box-shadow: 1px 1px 0 #ffb3d1, -1px -1px 0 #fff;
+  color: #c12669;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.15s ease-in-out;
+}
+
+.toolbar-button:hover {
+  background: #ffc8e4;
+  box-shadow: inset 1px 1px 2px #c12669;
+  color: #831416;
+}
+
+/* Microsoft Word Style Toolbar */
+.toolbar {
+  background: linear-gradient(to bottom, #bf2769, #ff99cc);
+  border: 2px solid #d48da6;
+  font-family: 'Verdana', sans-serif;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  padding: 0;
+  margin: 0;
+}
+
+.toolbar-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.2rem 0.3rem;
+  background: #bf2769;
+  border-bottom: 1px solid #d48da6;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.toolbar-title {
+  font-size: 0.9rem;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: visible;
+  text-overflow: clip;
+  max-width: none;
+}
+
+.toolbar-tabs {
+  display: flex;
+  flex-wrap: nowrap;
+  background: #fff0f5;
+  padding: 0.2rem 0.3rem;
+  border-bottom: 1px solid #ffd4e8;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  width: 100%;
+}
+
+.tab {
+  padding: 0.2rem 0.3rem;
+  margin-right: 0.3rem;
+  cursor: pointer;
+  font-size: 0.8rem;
+  color: #333;
+  border-radius: 3px;
+  transition: all 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.tab:hover {
+  background-color: #ffc0cb;
+  color: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
 .toolbar-buttons {
   display: flex;
   flex-wrap: nowrap;
