@@ -38,12 +38,12 @@ body {
 
 .page-title {
     font-family: 'Press Start 2P', monospace;
-    font-size: 1.5rem;
-    color: #ff4eb1;
+    font-size: 3rem;
+    color: #e6c4ff;
     background: none;
     text-align: center;
     padding: 8rem 1rem 1rem;
-    text-shadow: 2px 2px 0 white;
+    text-shadow: 2px 2px 0 #000;
     letter-spacing: 4px;
   }
   .page-title {
