@@ -89,10 +89,12 @@
     // Show/hide cursor based on mouse position
     document.addEventListener('mouseenter', () => {
       cursor.style.opacity = '1';
+      cursor.classList.remove('hidden');
     });
 
     document.addEventListener('mouseleave', () => {
       cursor.style.opacity = '0';
+      cursor.classList.add('hidden');
     });
 
     function checkOverlap(newGif, existingGifs) {
