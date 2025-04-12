@@ -218,18 +218,31 @@ h1 {
 
 #cursor {
   position: fixed;
+  width: 20px;
+  height: 20px;
+  background: url('images/cursor.png') no-repeat center center;
+  background-size: contain;
   pointer-events: none;
-  z-index: 10000;
-  opacity: 1;
-  transition: opacity 0.3s ease;
-  width: 1px;
-  height: 1px;
+  z-index: 9999;
   transform: translate(-50%, -50%);
+  transition: transform 0.1s ease;
 }
 
 #cursor.hidden {
-  visibility: hidden;
   opacity: 0;
+  visibility: hidden;
+}
+
+.sparkle {
+  pointer-events: none;
+  opacity: 0;
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: radial-gradient(circle, #fff 0%, #ffc0ff 70%);
+  border-radius: 50%;
+  z-index: 9999;
+  transition: opacity 0.3s ease-out;
 }
 
 /* Purple cursor effect */
