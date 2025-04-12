@@ -51,21 +51,47 @@ document.addEventListener('DOMContentLoaded', () => {
     cursor.id = 'cursor';
     document.body.appendChild(cursor);
   }
-  
-  document.addEventListener('mousemove', (e) => {
-    const cursor = document.getElementById('cursor');
-    
-    // Only show cursor if inside bounds
-    const withinX = e.clientX >= 0 && e.clientX <= window.innerWidth;
-    const withinY = e.clientY >= 0 && e.clientY <= window.innerHeight;
 
-    if (withinX && withinY) {
-      cursor.classList.remove('hidden');
-      cursor.style.left = `${e.clientX}px`;
-      cursor.style.top = `${e.clientY}px`;
-    } else {
-      cursor.classList.add('hidden');
+  let lastX = 0;
+  let lastY = 0;
+  const sparkles = Array.from(document.querySelectorAll('.sparkle'));
+
+  document.addEventListener("mousemove", (e) => {
+    const x = e.clientX;
+    const y = e.clientY;
+
+    const insideViewport =
+      x >= 0 && x <= window.innerWidth &&
+      y >= 0 && y <= window.innerHeight;
+
+    if (!insideViewport) {
+      cursor.classList.add("hidden");
+      sparkles.forEach(s => s.style.opacity = 0);
+      return;
     }
+
+    cursor.classList.remove("hidden");
+    cursor.style.left = `${x}px`;
+    cursor.style.top = `${y}px`;
+
+    // Animate sparkles trail
+    let i = 0;
+    function animateTrail() {
+      if (i >= sparkles.length) return;
+      const sparkle = sparkles[i];
+      sparkle.style.left = `${x}px`;
+      sparkle.style.top = `${y}px`;
+      sparkle.style.opacity = 1;
+      sparkle.style.transition = "opacity 0.5s ease-out, transform 0.5s ease-out";
+      sparkle.style.transform = `translate(${Math.random() * 20 - 10}px, ${Math.random() * 20 - 10}px) scale(0.5)`;
+      setTimeout(() => (sparkle.style.opacity = 0), 10);
+      i++;
+      requestAnimationFrame(animateTrail);
+    }
+    animateTrail();
+
+    lastX = x;
+    lastY = y;
   });
 
   // Scale effect when clicking
@@ -75,34 +101,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.addEventListener('mouseup', () => {
     cursor.style.transform = 'translate(-50%, -50%) scale(1)';
-  });
-
-  // Create sparkle trail
-  const trailCount = 15;
-  const sparkles = [];
-
-  for (let i = 0; i < trailCount; i++) {
-    const sparkle = document.createElement("div");
-    sparkle.className = "sparkle";
-    document.body.appendChild(sparkle);
-    sparkles.push(sparkle);
-  }
-
-  document.addEventListener("mousemove", (e) => {
-    let i = 0;
-    function animate() {
-      if (i >= sparkles.length) return;
-      const sparkle = sparkles[i];
-      sparkle.style.left = `${e.pageX}px`;
-      sparkle.style.top = `${e.pageY}px`;
-      sparkle.style.opacity = 1;
-      sparkle.style.transition = "opacity 0.5s ease-out, transform 0.5s ease-out";
-      sparkle.style.transform = `translate(${Math.random() * 20 - 10}px, ${Math.random() * 20 - 10}px) scale(0.5)`;
-      setTimeout(() => sparkle.style.opacity = 0, 10);
-      i++;
-      requestAnimationFrame(animate);
-    }
-    animate();
   });
 });
 
