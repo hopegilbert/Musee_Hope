@@ -53,8 +53,19 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   
   document.addEventListener('mousemove', (e) => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
+    const cursor = document.getElementById('cursor');
+    
+    // Only show cursor if inside bounds
+    const withinX = e.clientX >= 0 && e.clientX <= window.innerWidth;
+    const withinY = e.clientY >= 0 && e.clientY <= window.innerHeight;
+
+    if (withinX && withinY) {
+      cursor.classList.remove('hidden');
+      cursor.style.left = `${e.clientX}px`;
+      cursor.style.top = `${e.clientY}px`;
+    } else {
+      cursor.classList.add('hidden');
+    }
   });
 
   // Scale effect when clicking
