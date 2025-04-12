@@ -58,3 +58,14 @@ window.addEventListener("load", () => {
       if (handle) makeDraggable(win, handle);
     });
   });
+
+// Hide custom cursor when leaving viewport
+document.addEventListener("mouseleave", () => {
+    cursor.style.opacity = "0";
+    sparkles.forEach(s => s.style.opacity = "0");
+  });
+  
+  document.addEventListener("mouseenter", () => {
+    cursor.style.opacity = "1";
+    sparkles.forEach(s => s.style.opacity = "1");
+  });
