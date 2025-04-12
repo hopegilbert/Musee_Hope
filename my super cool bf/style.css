@@ -589,7 +589,7 @@ h1 {
 
 .dropdown-tab {
   position: relative;
-  z-index: 1000;
+  cursor: pointer;
 }
 
 .dropdown-content {
@@ -600,8 +600,9 @@ h1 {
   background: #f0f0f0;
   border: 1px solid #999;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-  min-width: 160px;
-  z-index: 10000;
+  min-width: 200px;
+  z-index: 9999;
+  margin-top: 2px;
 }
 
 .dropdown-tab:hover .dropdown-content {
@@ -609,11 +610,16 @@ h1 {
 }
 
 .dropdown-item {
-  padding: 4px 8px;
+  padding: 6px 12px;
   font-size: 0.8rem;
   color: #000;
-  cursor: default;
+  cursor: pointer;
   white-space: nowrap;
+  border-bottom: 1px solid #ddd;
+}
+
+.dropdown-item:last-child {
+  border-bottom: none;
 }
 
 .dropdown-item:hover {
