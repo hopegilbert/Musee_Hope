@@ -218,12 +218,13 @@ h1 {
 
 #cursor {
   position: fixed;
-  width: 20px;
-  height: 20px;
-  background-color: transparent;
+  width: 23px;  /* Match actual image */
+  height: 42px; /* Match actual image */
+  background: url('images/pink-cursor.png') no-repeat center center;
+  background-size: contain;
   pointer-events: none;
   z-index: 99999;
-  transform: translate(-50%, -50%);
+  transform: translate(0, 0);
   transition: opacity 0.2s ease;
   opacity: 1;
 }
