@@ -451,6 +451,26 @@ h1 {
   margin: 0;
 }
 
+.toolbar-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.2rem 0.3rem;
+  background: #bf2769;
+  border-bottom: 1px solid #d48da6;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.toolbar-title {
+  font-size: 0.9rem;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: visible;
+  text-overflow: clip;
+  max-width: none;
+}
+
 .toolbar-tabs {
   display: flex;
   flex-wrap: nowrap;
@@ -480,7 +500,7 @@ h1 {
   border: 1px solid #999;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
   min-width: 200px;
-  z-index: 102;
+  z-index: 9999;
   margin-top: 2px;
 }
 
