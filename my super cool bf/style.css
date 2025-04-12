@@ -456,7 +456,7 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.3rem 0.5rem;
+  padding: 0.2rem 0.3rem;
   background: #bf2769;
   border-bottom: 1px solid #d48da6;
   box-sizing: border-box;
@@ -465,18 +465,18 @@ h1 {
 }
 
 .toolbar-title {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: #ffffff;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 200px;
+  max-width: 180px;
 }
 
 .toolbar-tabs {
   display: flex;
   background: #fff0f5;
-  padding: 0.2rem 0.5rem;
+  padding: 0.1rem 0.3rem;
   border-bottom: 1px solid #ffd4e8;
   overflow-x: auto;
   scrollbar-width: none;
@@ -488,10 +488,10 @@ h1 {
 }
 
 .tab {
-  padding: 0.3rem 0.5rem;
-  margin-right: 0.5rem;
+  padding: 0.2rem 0.3rem;
+  margin-right: 0.3rem;
   cursor: pointer;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: #333;
   border-radius: 3px;
   transition: background-color 0.2s;
@@ -499,8 +499,8 @@ h1 {
 
 .toolbar-buttons {
   display: flex;
-  gap: 0.5rem;
-  padding: 0.5rem;
+  gap: 0.3rem;
+  padding: 0.3rem;
   background: #fff0f5;
   border-top: 1px solid #ffd4e8;
   overflow-x: auto;
@@ -515,15 +515,15 @@ h1 {
 .icon-group {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.2rem;
+  gap: 0.3rem;
+  padding: 0.15rem;
   background: rgba(255, 255, 255, 0.5);
   border-radius: 4px;
   border: 1px solid #ffd4e8;
 }
 
 .icon-group img {
-  height: 20px;
+  height: 18px;
   width: auto;
   transition: transform 0.2s;
 }
