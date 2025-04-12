@@ -150,7 +150,7 @@ h1 {
     background-color: #fff;
     font-family: 'Courier New', monospace;
     box-shadow: 4px 4px #c4bebe;
-    z-index: 1000;
+    z-index: 100;
   }
   
   .window-header {
@@ -479,13 +479,15 @@ h1 {
 .toolbar-tabs {
   display: flex;
   flex-wrap: nowrap;
-  background: #fff0f5;
+  background: transparent;
   padding: 0.2rem 0.3rem;
-  border-bottom: 1px solid #ffd4e8;
+  border-bottom: 1px solid #fff;
   overflow-x: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
   width: 100%;
+  position: relative;
+  z-index: 10000;
 }
 
 .tab {
