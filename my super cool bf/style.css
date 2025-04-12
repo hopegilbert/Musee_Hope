@@ -436,24 +436,19 @@ h1 {
 
 /* Microsoft Word Style Toolbar */
 .toolbar {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 8px 12px;
-  background: linear-gradient(to bottom, #fce4f3, #eaa0c6);
-  border-bottom: 2px solid #ccc;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  background: linear-gradient(to bottom, #bf2769, #ff99cc);
+  border: 2px solid #d48da6;
+  font-family: 'Verdana', sans-serif;
   width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
   box-sizing: border-box;
-  overflow-x: auto;
-}
-
-.toolbar img,
-.toolbar .icon-button {
-  height: 28px;
-  margin-right: 8px;
-  flex-shrink: 0;
+  overflow-x: hidden;
+  padding: 0;
+  margin: 0;
 }
 
 .toolbar-top {
