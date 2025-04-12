@@ -444,7 +444,7 @@ h1 {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 100;
+  z-index: 9999;
   box-sizing: border-box;
   overflow-x: hidden;
   padding: 0;
@@ -482,13 +482,13 @@ h1 {
   -ms-overflow-style: none;
   width: 100%;
   position: relative;
-  z-index: 100;
+  z-index: 9999;
 }
 
 .dropdown-tab {
   position: relative;
   cursor: pointer;
-  z-index: 101;
+  z-index: 9999;
 }
 
 .dropdown-content {
