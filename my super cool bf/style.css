@@ -447,89 +447,155 @@ h1 {
   left: 0;
   right: 0;
   z-index: 1000;
+  box-sizing: border-box;
 }
 
 .toolbar-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem;
-  background: #ff78b3;
-  color: white;
-  font-weight: bold;
+  padding: 0.3rem 0.5rem;
+  background: #ffc0cb;
+  border-bottom: 1px solid #d48da6;
 }
 
 .toolbar-title {
   font-size: 0.9rem;
-}
-
-.window-buttons span {
-  background: white;
-  color: #ff78b3;
-  border: 1px solid #ff78b3;
-  padding: 0.2rem 0.5rem;
-  margin-left: 0.3rem;
-  cursor: pointer;
-  border-radius: 3px;
-}
-
-.window-buttons span:hover {
-  background: #ffe4ef;
+  color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
 }
 
 .toolbar-tabs {
   display: flex;
-  background: #ffd4e8;
-  padding: 0.3rem 0.5rem;
-  border-top: 2px solid #fff;
-  border-bottom: 2px solid #ccc;
+  background: #fff0f5;
+  padding: 0.2rem 0.5rem;
+  border-bottom: 1px solid #ffd4e8;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.toolbar-tabs::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
 }
 
 .tab {
-  margin-right: 1rem;
-  padding: 0.2rem 0.5rem;
+  padding: 0.3rem 0.5rem;
+  margin-right: 0.5rem;
   cursor: pointer;
-  font-size: 0.85rem;
-  color: #c12669;
-}
-
-.tab:hover {
-  background: #ffebf3;
-  border-radius: 4px;
+  font-size: 0.8rem;
+  color: #333;
+  border-radius: 3px;
+  transition: background-color 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .toolbar-buttons {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.5rem;
-  padding: 0.8rem;
+  gap: 0.5rem;
+  padding: 0.5rem;
   background: #fff0f5;
   border-top: 1px solid #ffd4e8;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.toolbar-buttons::-webkit-scrollbar {
+  display: none;
 }
 
 .icon-group {
   display: flex;
   align-items: center;
-  gap: 0.8rem;
-  padding: 0.3rem;
+  gap: 0.5rem;
+  padding: 0.2rem;
   background: rgba(255, 255, 255, 0.5);
   border-radius: 4px;
   border: 1px solid #ffd4e8;
+  flex-shrink: 0;
 }
 
 .icon-group img {
-  height: 22px;
-  vertical-align: middle;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  padding: 2px;
-  border-radius: 3px;
+  height: 20px;
+  width: auto;
+  transition: transform 0.2s;
 }
 
-.icon-group img:hover {
-  transform: scale(1.1);
-  background: rgba(255, 192, 203, 0.2);
-  box-shadow: 0 0 5px rgba(255, 192, 203, 0.3);
+/* Media Queries for Responsive Design */
+@media screen and (max-width: 1200px) {
+  .toolbar-buttons {
+    gap: 0.4rem;
+  }
+  
+  .icon-group {
+    gap: 0.4rem;
+  }
+  
+  .icon-group img {
+    height: 18px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .toolbar-buttons {
+    gap: 0.3rem;
+    padding: 0.4rem;
+  }
+  
+  .icon-group {
+    gap: 0.3rem;
+    padding: 0.15rem;
+  }
+  
+  .icon-group img {
+    height: 16px;
+  }
+  
+  .toolbar-title {
+    font-size: 0.8rem;
+    max-width: 150px;
+  }
+  
+  .tab {
+    font-size: 0.75rem;
+    margin-right: 0.3rem;
+    padding: 0.2rem 0.3rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .toolbar-buttons {
+    gap: 0.2rem;
+    padding: 0.3rem;
+  }
+  
+  .icon-group {
+    gap: 0.2rem;
+    padding: 0.1rem;
+  }
+  
+  .icon-group img {
+    height: 14px;
+  }
+  
+  .toolbar-title {
+    font-size: 0.7rem;
+    max-width: 120px;
+  }
+  
+  .tab {
+    font-size: 0.7rem;
+    margin-right: 0.2rem;
+    padding: 0.15rem 0.2rem;
+  }
 }
 
 /* Example retro pixel-style icons via simple block colors or shapes */
