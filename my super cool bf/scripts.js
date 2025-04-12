@@ -86,9 +86,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const { clientX, clientY } = e;
       const withinX = clientX >= 0 && clientX < window.innerWidth;
       const withinY = clientY >= 0 && clientY < window.innerHeight;
+      const isInToolbar = clientY < 50; // Toolbar area
 
       if (cursor) {
-        if (!withinX || !withinY) {
+        if (!withinX || (!withinY && !isInToolbar)) {
           cursor.classList.add('cursor-hidden');
         } else {
           cursor.classList.remove('cursor-hidden');
