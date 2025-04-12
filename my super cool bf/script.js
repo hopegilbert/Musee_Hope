@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   const cursor = document.getElementById('cursor');
   const SCALE = 4.5;
+  const CURSOR_SIZE = 15; // pixels
   const BOTTOM_POINT = {
     x: 9,  // x position of bottom point in original pixel art
     y: 13  // y position of bottom point in original pixel art
@@ -46,9 +47,9 @@ document.addEventListener('DOMContentLoaded', () => {
     trail.className = 'trail';
     
     // Calculate the offset from cursor center to bottom point
-    // Since cursor is centered on mouse position, we need to offset by the scaled amount
-    const xOffset = (BOTTOM_POINT.x - 7.5) * SCALE; // 7.5 is half of 15px cursor size
-    const yOffset = (BOTTOM_POINT.y - 7.5) * SCALE;
+    const centerOffset = CURSOR_SIZE / 2; // half of the cursor size
+    const xOffset = (BOTTOM_POINT.x - centerOffset) * SCALE;
+    const yOffset = (BOTTOM_POINT.y - centerOffset) * SCALE;
     
     // Position trail at the bottom point of the cursor
     trail.style.left = (e.clientX + xOffset) + 'px';
