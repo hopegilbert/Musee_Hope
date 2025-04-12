@@ -217,11 +217,15 @@ h1 {
 }
 
 #cursor {
-  opacity: 1;
-  transition: opacity 0.2s ease;
   position: fixed;
+  width: 20px;
+  height: 20px;
+  background-color: transparent;
   pointer-events: none;
   z-index: 99999;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.2s ease;
+  opacity: 1;
 }
 
 /* Remove the old cursor-hidden class since we're using opacity now */
