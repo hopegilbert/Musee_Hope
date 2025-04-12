@@ -15,16 +15,30 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   
   function shouldHideCursor(x, y) {
-    // More strict viewport bounds check
-    if (x <= 1 || x >= window.innerWidth - 1 || y <= 1 || y >= window.innerHeight - 1) {
+    // Check if we're in a non-content area
+    const elementUnderCursor = document.elementFromPoint(x, y);
+    
+    // Hide cursor if:
+    // 1. No element found
+    // 2. We're on the root html element
+    // 3. We're on the body with no other content
+    // 4. We're on a scrollbar (checking if click point is past content width)
+    // 5. We're in browser chrome areas (y < 0)
+    if (!elementUnderCursor || 
+        elementUnderCursor === document.documentElement ||
+        (elementUnderCursor === document.body && !elementUnderCursor.children.length) ||
+        x >= document.documentElement.clientWidth ||
+        y < 0) {
       return true;
     }
     
-    // Check if we're really over the document
-    const elementUnderCursor = document.elementFromPoint(x, y);
-    if (!elementUnderCursor || 
-        elementUnderCursor === document.documentElement || 
-        elementUnderCursor === document.body) {
+    // Get the computed style of the element
+    const style = window.getComputedStyle(elementUnderCursor);
+    
+    // Hide cursor if we're over a form control or clickable element
+    // that shows the default cursor
+    if (elementUnderCursor.matches('input, button, select, textarea, a') ||
+        style.cursor !== 'none') {
       return true;
     }
     
@@ -74,10 +88,6 @@ document.addEventListener('DOMContentLoaded', () => {
     trail.className = 'trail';
     
     // Calculate trail position
-    // Since cursor is centered on mouse position and scaled 4.5x:
-    // - Original cursor is 15x15 pixels
-    // - Mouse is at the center
-    // - Need to offset from center to bottom
     const centerToBottom = ((CURSOR_SIZE / 2) - BOTTOM_LEFT_POINT.y) * SCALE;
     const horizontalOffset = (BOTTOM_LEFT_POINT.x - (CURSOR_SIZE / 2)) * SCALE;
     
