@@ -156,8 +156,8 @@ h1 {
     justify-content: space-between; /* pushes title to left, buttons to right */
     align-items: center;
     padding: 0.5rem 0.75rem;
-    background: linear-gradient(to right, #f4a8c9, #fdd4f1);
-    border-bottom: 2px solid #ccc;
+    background: transparent;
+    border-bottom: 2px solid #fff;
     cursor: move;
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
