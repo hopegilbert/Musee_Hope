@@ -629,16 +629,3 @@ h1 {
   box-shadow: 0 0 10px rgba(255, 105, 180, 0.3);
   z-index: 2;
 }
-
-.background-image {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-image: url('images/background.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  z-index: -1;
-}
