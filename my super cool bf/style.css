@@ -5,8 +5,9 @@
 body {
   margin: 0;
   padding: 0;
-  background-image: url('images/quilted-background.png');
+  background-image: url('images/background.png');
   background-size: cover;
+  background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
   font-family: 'Courier New', monospace;
