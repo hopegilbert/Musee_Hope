@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
     cursor.style.opacity = '1';
     cursor.style.position = 'fixed';
     cursor.style.pointerEvents = 'none';
-    cursor.style.zIndex = '9999';
+    cursor.style.zIndex = '2147483647'; // Maximum z-index value
     cursor.style.willChange = 'transform';
     cursor.style.transform = 'translate(-50%, -50%)';
 
