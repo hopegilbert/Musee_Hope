@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const trailLength = 10;
   const sparkles = [];
   let isCursorVisible = false;
-  let hideTimeout;
 
   // Create sparkles
   for (let i = 0; i < trailLength; i++) {
@@ -33,12 +32,6 @@ document.addEventListener("DOMContentLoaded", () => {
         cursor.style.opacity = '1';
         isCursorVisible = true;
       }
-
-      clearTimeout(hideTimeout);
-      hideTimeout = setTimeout(() => {
-        cursor.style.opacity = '0';
-        isCursorVisible = false;
-      }, 200);
 
       // Throttle sparkle animation
       if (now - lastMove > 30) {
