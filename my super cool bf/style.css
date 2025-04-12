@@ -6,23 +6,16 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Courier New', monospace;
-  background-color: #f8b9d4;
-  background-image: 
-    linear-gradient(
-      to bottom,
-      #f8b9d4 0%, 
-      #f8b9d4 100%
-    ),
-    repeating-linear-gradient(
-      to bottom,
-      transparent 0px,
-      transparent 80px,
-      rgba(255, 255, 255, 0.05) 80px,
-      rgba(255, 255, 255, 0.05) 160px
-    );
-  background-repeat: repeat;
+  background: repeating-linear-gradient(
+    to bottom,
+    #ffc0cb,     /* Light pink */
+    #ffc0cb 150px,
+    #f4a8c9 150px,
+    #f4a8c9 300px
+  );
   background-attachment: fixed;
+  font-family: 'Press Start 2P', cursive;
+  color: #fff;
   overflow-x: hidden;
 }
 
