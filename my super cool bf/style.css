@@ -585,6 +585,7 @@ h1 {
   min-height: 100vh;
   padding: 2rem;
   position: relative;
+  background: transparent;
 }
 
 .window.bar {
