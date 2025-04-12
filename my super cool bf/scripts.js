@@ -3,8 +3,9 @@ window.addEventListener("load", () => {
 });
 
 function toggleDropdown() {
-  const menu = document.getElementById("dropdownMenu");
-  menu.style.display = menu.style.display === "block" ? "none" : "block";
+  const dropdown = document.querySelector('.dropdown-content');
+  const isVisible = dropdown.style.display === 'block';
+  dropdown.style.display = isVisible ? 'none' : 'block';
 }
 
 function navigateTo(page) {
