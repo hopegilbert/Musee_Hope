@@ -1,11 +1,12 @@
 const cursor = document.getElementById('cursor');
-let isCursorVisible = true; // Start with cursor visible
+let isCursorVisible = true;
 let lastMouseMoveTime = Date.now();
 let lastKnownPosition = { x: 0, y: 0 };
+let targetPosition = { x: 0, y: 0 };
 
 // Utility to check if mouse is inside the window bounds
 function isInViewport(e) {
-  const buffer = 50; // Increased buffer zone
+  const buffer = 50;
   return e.clientX > -buffer && e.clientY > -buffer &&
          e.clientX < window.innerWidth + buffer &&
          e.clientY < window.innerHeight + buffer;
@@ -19,17 +20,24 @@ function isInBrowserChrome(e) {
 }
 
 // Update cursor position with requestAnimationFrame for smoother movement
-function updateCursorPosition(x, y) {
-  cursor.style.left = x + 'px';
-  cursor.style.top = y + 'px';
-  lastKnownPosition = { x, y };
+function updateCursorPosition() {
+  // Calculate the distance between current and target position
+  const dx = targetPosition.x - lastKnownPosition.x;
+  const dy = targetPosition.y - lastKnownPosition.y;
+  
+  // Move the cursor with a small easing factor for smoothness
+  lastKnownPosition.x += dx * 0.3;
+  lastKnownPosition.y += dy * 0.3;
+  
+  cursor.style.transform = `translate(${lastKnownPosition.x}px, ${lastKnownPosition.y}px)`;
+  
+  animationFrameId = requestAnimationFrame(updateCursorPosition);
 }
 
 // Check cursor position periodically
 function checkCursorPosition() {
   const timeSinceLastMove = Date.now() - lastMouseMoveTime;
   
-  // If mouse hasn't moved in 3 seconds, start checking visibility
   if (timeSinceLastMove > 3000) {
     const rect = cursor.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
@@ -41,7 +49,6 @@ function checkCursorPosition() {
       isCursorVisible = false;
     }
   } else {
-    // Keep cursor visible if mouse has moved recently
     cursor.style.opacity = '1';
     isCursorVisible = true;
   }
@@ -49,19 +56,12 @@ function checkCursorPosition() {
 
 // Use requestAnimationFrame for smoother updates
 let animationFrameId;
-function animateCursor() {
-  updateCursorPosition(lastKnownPosition.x, lastKnownPosition.y);
-  animationFrameId = requestAnimationFrame(animateCursor);
-}
-
-// Start the animation loop
-animateCursor();
+updateCursorPosition();
 
 document.addEventListener('mousemove', (e) => {
   lastMouseMoveTime = Date.now();
-  lastKnownPosition = { x: e.pageX, y: e.pageY };
+  targetPosition = { x: e.pageX, y: e.pageY };
   
-  // If mouse is in bounds or in browser chrome, show cursor
   if (isInViewport(e) || isInBrowserChrome(e)) {
     cursor.style.opacity = '1';
     isCursorVisible = true;
