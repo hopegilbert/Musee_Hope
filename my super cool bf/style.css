@@ -447,7 +447,6 @@ h1 {
   left: 0;
   right: 0;
   z-index: 1000;
-  box-sizing: border-box;
 }
 
 .toolbar-top {
@@ -462,10 +461,6 @@ h1 {
 .toolbar-title {
   font-size: 0.9rem;
   color: #333;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 200px;
 }
 
 .toolbar-tabs {
@@ -473,14 +468,6 @@ h1 {
   background: #fff0f5;
   padding: 0.2rem 0.5rem;
   border-bottom: 1px solid #ffd4e8;
-  overflow-x: auto;
-  white-space: nowrap;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
-}
-
-.toolbar-tabs::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
 }
 
 .tab {
@@ -491,8 +478,6 @@ h1 {
   color: #333;
   border-radius: 3px;
   transition: background-color 0.2s;
-  white-space: nowrap;
-  flex-shrink: 0;
 }
 
 .toolbar-buttons {
@@ -502,14 +487,6 @@ h1 {
   padding: 0.5rem;
   background: #fff0f5;
   border-top: 1px solid #ffd4e8;
-  overflow-x: auto;
-  white-space: nowrap;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.toolbar-buttons::-webkit-scrollbar {
-  display: none;
 }
 
 .icon-group {
@@ -520,82 +497,12 @@ h1 {
   background: rgba(255, 255, 255, 0.5);
   border-radius: 4px;
   border: 1px solid #ffd4e8;
-  flex-shrink: 0;
 }
 
 .icon-group img {
   height: 20px;
   width: auto;
   transition: transform 0.2s;
-}
-
-/* Media Queries for Responsive Design */
-@media screen and (max-width: 1200px) {
-  .toolbar-buttons {
-    gap: 0.4rem;
-  }
-  
-  .icon-group {
-    gap: 0.4rem;
-  }
-  
-  .icon-group img {
-    height: 18px;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .toolbar-buttons {
-    gap: 0.3rem;
-    padding: 0.4rem;
-  }
-  
-  .icon-group {
-    gap: 0.3rem;
-    padding: 0.15rem;
-  }
-  
-  .icon-group img {
-    height: 16px;
-  }
-  
-  .toolbar-title {
-    font-size: 0.8rem;
-    max-width: 150px;
-  }
-  
-  .tab {
-    font-size: 0.75rem;
-    margin-right: 0.3rem;
-    padding: 0.2rem 0.3rem;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .toolbar-buttons {
-    gap: 0.2rem;
-    padding: 0.3rem;
-  }
-  
-  .icon-group {
-    gap: 0.2rem;
-    padding: 0.1rem;
-  }
-  
-  .icon-group img {
-    height: 14px;
-  }
-  
-  .toolbar-title {
-    font-size: 0.7rem;
-    max-width: 120px;
-  }
-  
-  .tab {
-    font-size: 0.7rem;
-    margin-right: 0.2rem;
-    padding: 0.15rem 0.2rem;
-  }
 }
 
 /* Example retro pixel-style icons via simple block colors or shapes */
