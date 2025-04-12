@@ -441,18 +441,16 @@ h1 {
   left: 0;
   width: 100%;
   z-index: 9999;
-  background: linear-gradient(to bottom, #fce4f3, #f6b8d2);
-  border: 2px solid #fff;
-  border-radius: 8px;
+  background: transparent;
+  border: none;
   padding: 0.5rem;
   margin-bottom: 1rem;
   font-family: 'Tahoma', sans-serif;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* Top Pink Title Bar */
 .toolbar-titlebar {
-  background-color: #b92c6d;
+  background-color: transparent;
   color: white;
   font-weight: bold;
   padding: 6px 12px;
@@ -462,7 +460,7 @@ h1 {
 /* Tabs Bar (File, Insert, etc) */
 .toolbar-tabs {
   display: flex;
-  background-color: #fae1ec;
+  background-color: transparent;
   padding: 4px 10px;
   gap: 1.5rem;
   border-bottom: 1px solid #e5b3cc;
@@ -488,7 +486,7 @@ h1 {
   flex-wrap: wrap;
   gap: 2rem;
   padding: 10px 16px;
-  background-color: #fff0f7;
+  background-color: transparent;
 }
 
 .icon-group {
