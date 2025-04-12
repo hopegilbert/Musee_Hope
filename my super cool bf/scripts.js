@@ -44,28 +44,33 @@ function toggleDropdown() {
       y: 13  // y position of bottom point in original pixel art
     };
     
+    // Move cursor
     document.addEventListener('mousemove', (e) => {
-      // Update position
       cursor.style.left = e.pageX + 'px';
       cursor.style.top = e.pageY + 'px';
+      cursor.style.opacity = '1';
+    });
 
-      // Check if cursor is outside the viewport (not just document content)
-      const isOutsideViewport =
-        e.clientX < 0 || e.clientY < 0 ||
-        e.clientX > window.innerWidth || e.clientY > window.innerHeight;
+    // Hide when mouse leaves window
+    document.addEventListener('mouseout', (e) => {
+      // Check if the mouse actually left the window
+      if (!e.relatedTarget && !e.toElement) {
+        cursor.style.opacity = '0';
+      }
+    });
 
-      // Set visibility based on viewport bounds
-      cursor.style.opacity = isOutsideViewport ? '0' : '1';
+    // Hide cursor on blur
+    window.addEventListener('blur', () => {
+      cursor.style.opacity = '0';
+    });
+
+    // Restore on focus
+    window.addEventListener('focus', () => {
+      cursor.style.opacity = '1';
     });
 
     // Handle trail effect
     function createTrail(e) {
-      const isOutsideViewport =
-        e.clientX < 0 || e.clientY < 0 ||
-        e.clientX > window.innerWidth || e.clientY > window.innerHeight;
-
-      if (isOutsideViewport) return;
-
       const trail = document.createElement('div');
       trail.className = 'trail';
       
@@ -84,15 +89,6 @@ function toggleDropdown() {
     }
 
     document.addEventListener('mousemove', createTrail);
-
-    // Hide cursor when mouse leaves window
-    document.addEventListener('mouseleave', () => {
-      cursor.style.opacity = '0';
-    });
-
-    // Initial state
-    cursor.style.opacity = '0';
-    cursor.style.transition = 'opacity 0.15s ease';
 
     // Initialize draggable windows
     const windows = document.querySelectorAll('.draggable-window');
