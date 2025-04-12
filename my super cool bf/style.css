@@ -650,3 +650,66 @@ h1 {
   pointer-events: none;
   z-index: 0;
 }
+
+.desktop {
+  min-height: 100vh;
+  padding: 2rem;
+  position: relative;
+}
+
+.window.bar {
+  background: linear-gradient(to right, #f4a8c9, #fdd4f1);
+  padding: 1rem;
+  text-align: center;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.pixel-title {
+  font-family: 'Press Start 2P', cursive;
+  color: white;
+  text-shadow: 2px 2px #ff69b4;
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.dot.red { background-color: #ff5f57; }
+.dot.yellow { background-color: #ffbd2e; }
+.dot.green { background-color: #28c940; }
+
+.polaroid {
+  background: white;
+  padding: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  margin: 2rem;
+  transform: rotate(-2deg);
+  transition: transform 0.3s ease;
+}
+
+.polaroid:hover {
+  transform: rotate(0deg) scale(1.02);
+}
+
+.polaroid img {
+  width: 100%;
+  height: auto;
+  border: 2px solid #ffc0cb;
+}
+
+.polaroid .caption {
+  text-align: center;
+  margin-top: 1rem;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.8rem;
+  color: #ff69b4;
+}
