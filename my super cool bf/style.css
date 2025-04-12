@@ -222,16 +222,17 @@ h1 {
   height: 30px;
   pointer-events: none;
   z-index: 999999;
-  background-image: url('./images/pink-cursor.png');
+  background-image: url('images/pink-cursor.png');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  transform: translate(-50%, -50%);
   will-change: transform;
-  transition: transform 0.05s ease;
+  transition: all 0.05s ease;
   opacity: 1;
   mix-blend-mode: normal;
   image-rendering: pixelated;
+  display: block !important;
+  visibility: visible !important;
 }
 
 .cursor-hidden {
