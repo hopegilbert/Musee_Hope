@@ -71,8 +71,10 @@ document.addEventListener('DOMContentLoaded', () => {
     cursor.style.position = 'fixed';
     cursor.style.pointerEvents = 'none';
     cursor.style.zIndex = '9999';
+    cursor.style.willChange = 'transform';
+    cursor.style.transform = 'translate(-50%, -50%)';
 
-    // Update cursor position directly
+    // Update cursor position with transform for smooth movement
     document.addEventListener('mousemove', (e) => {
         cursor.style.left = e.pageX + 'px';
         cursor.style.top = e.pageY + 'px';
