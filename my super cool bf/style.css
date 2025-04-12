@@ -220,11 +220,13 @@ h1 {
   position: fixed;
   width: 69px;
   height: 125px;
-  background: url('images/pink-cursor.png') no-repeat center center;
+  background: url('images/pink-cursor.png') no-repeat top left;
   background-size: contain;
   pointer-events: none;
   z-index: 99999;
   opacity: 1;
+  left: 0;
+  top: 0;
 }
 
 /* Remove the old cursor-hidden class since we're using opacity now */

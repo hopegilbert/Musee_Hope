@@ -37,8 +37,10 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener('pointermove', (e) => {
   const cursor = document.getElementById('cursor');
   if (cursor) {
-    cursor.style.transform = 'translate(0, 0)';
-    cursor.style.left = `${e.clientX}px`;
-    cursor.style.top = `${e.clientY}px`;
+    // Adjust the offset so the image tip matches the real cursor point
+    const offsetX = 0;  // move left if too far right
+    const offsetY = 0;  // move up if too low
+    cursor.style.left = `${e.clientX + offsetX}px`;
+    cursor.style.top = `${e.clientY + offsetY}px`;
   }
 }); 
