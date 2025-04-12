@@ -434,110 +434,63 @@ h1 {
 
 /* Microsoft Word Style Toolbar */
 .toolbar {
+  width: 100%;
+  background: linear-gradient(to bottom, #f4a8c9, #fdd4f1);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  padding: 0;
+  margin: 0;
+  border-bottom: 2px solid #d4d0c8;
   position: relative;
   z-index: 10;
-  background-color: rgba(255, 255, 255, 0.6);
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid #ccc;
-}
-
-.toolbar-top {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.2rem 0.3rem;
-  background: #bf2769;
-  border-bottom: 1px solid #d48da6;
-  box-sizing: border-box;
-  width: 100%;
-}
-
-.toolbar-title {
-  font-size: 0.9rem;
-  color: #ffffff;
-  white-space: nowrap;
-  overflow: visible;
-  text-overflow: clip;
-  max-width: none;
+  flex-direction: column;
+  font-family: 'Courier New', monospace;
 }
 
 .toolbar-tabs {
   display: flex;
-  flex-wrap: nowrap;
-  background: #fff0f5;
-  padding: 0.2rem 0.3rem;
-  border-bottom: 1px solid #ffd4e8;
-  overflow-x: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  width: 100%;
-  position: relative;
-  z-index: 10000;
+  background-color: #fce4f3;
+  border-bottom: 2px solid #d4d0c8;
+}
+
+.toolbar-tabs .tab {
+  padding: 0.5rem 1rem;
+  border-right: 1px solid #ccc;
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: #333;
+  font-weight: bold;
+  text-shadow: 1px 1px #fff;
 }
 
 .toolbar-buttons {
-  height: 100vh;
-  background: white;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 0.75rem 1.5rem;
+  background-color: rgba(255, 255, 255, 0.4);
 }
 
 .icon-group {
   display: flex;
   align-items: center;
-  gap: 0.3rem;
-  padding: 0.15rem;
-  background: rgba(255, 255, 255, 0.5);
-  border-radius: 4px;
-  border: 1px solid #ffd4e8;
-  flex-shrink: 0;
+  gap: 0.5rem;
 }
 
 .icon-group img {
+  width: 20px;
   height: 20px;
-  width: auto;
-  padding: 4px;
-  border-radius: 3px;
-  transition: all 0.2s;
-  cursor: pointer;
+  background-color: #fff;
+  border: 1px solid #999;
+  padding: 2px;
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+  border-radius: 2px;
+  transition: transform 0.2s ease;
 }
 
 .icon-group img:hover {
-  background: #ffc0cb;
   transform: scale(1.1);
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-}
-
-.tab {
-  padding: 0.2rem 0.3rem;
-  margin-right: 0.3rem;
-  cursor: pointer;
-  font-size: 0.8rem;
-  color: #333;
-  border-radius: 3px;
-  transition: all 0.2s;
-  white-space: nowrap;
-  flex-shrink: 0;
-  background-color: #ffc0cb;
-}
-
-.tab:hover {
-  background-color: #ffc0cb;
-  color: #fff;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-}
-
-.dropdown-item:last-child {
-  border-bottom: none;
-}
-
-.dropdown-item:hover {
-  background: #316ac5;
-  color: white;
-}
-
-.dropdown-separator {
-  height: 1px;
-  background: #999;
-  margin: 4px 0;
+  background-color: #ffe6f0;
 }
 
 .desktop {
