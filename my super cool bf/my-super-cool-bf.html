@@ -5,9 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>My Super Cool BF</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    .gitter-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .gitter-gif {
+      position: absolute;
+      pointer-events: none;
+    }
+  </style>
 </head>
 <body>
   <div id="cursor"></div>
+  <div class="gitter-container" id="gitterContainer"></div>
   
   <h1 class="page-title">My Super Cool BF</h1>
 
@@ -58,5 +74,38 @@
 
   <!-- Scripts -->
   <script src="scripts.js"></script>
+  <script>
+    function createGitterGif() {
+      const container = document.getElementById('gitterContainer');
+      const gif = document.createElement('img');
+      gif.src = 'media/gitter.gif';
+      gif.className = 'gitter-gif';
+      
+      // Random size between 50px and 200px
+      const size = Math.floor(Math.random() * 150) + 50;
+      gif.style.width = `${size}px`;
+      gif.style.height = 'auto';
+      
+      // Random position
+      const x = Math.random() * (window.innerWidth - size);
+      const y = Math.random() * (window.innerHeight - size);
+      gif.style.left = `${x}px`;
+      gif.style.top = `${y}px`;
+      
+      container.appendChild(gif);
+    }
+
+    // Create multiple Gitter GIFs
+    for (let i = 0; i < 5; i++) {
+      createGitterGif();
+    }
+
+    // Add more GIFs periodically
+    setInterval(() => {
+      if (document.querySelectorAll('.gitter-gif').length < 10) {
+        createGitterGif();
+      }
+    }, 5000);
+  </script>
 </body>
 </html>
