@@ -1,5 +1,6 @@
 const cursor = document.getElementById('cursor');
 let isCursorVisible = false;
+let lastMouseMoveTime = Date.now();
 
 // Utility to check if mouse is inside the window bounds
 function isInViewport(e) {
@@ -11,7 +12,11 @@ function isInViewport(e) {
 
 // Check if cursor is in browser chrome (top area)
 function isInBrowserChrome(e) {
-  return e.screenY < window.screenY + 100; // Approximate browser chrome height
+  // Different handling for Safari and Chrome
+  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+  const chromeHeight = isSafari ? 60 : 100; // Safari has a smaller chrome area
+  
+  return e.screenY < window.screenY + chromeHeight;
 }
 
 // Check cursor position periodically
@@ -20,14 +25,27 @@ function checkCursorPosition() {
   const centerX = rect.left + rect.width / 2;
   const centerY = rect.top + rect.height / 2;
   
-  if (centerX < 0 || centerX > window.innerWidth ||
-      centerY < 0 || centerY > window.innerHeight) {
-    cursor.style.opacity = '0';
-    isCursorVisible = false;
+  // If cursor hasn't moved in 2 seconds, keep it visible
+  const timeSinceLastMove = Date.now() - lastMouseMoveTime;
+  if (timeSinceLastMove < 2000) {
+    if (centerX < 0 || centerX > window.innerWidth ||
+        centerY < 0 || centerY > window.innerHeight) {
+      cursor.style.opacity = '0';
+      isCursorVisible = false;
+    }
   }
 }
 
+// Throttle mousemove events for better performance
+let lastMoveTime = 0;
+const moveThrottle = 16; // ~60fps
+
 document.addEventListener('mousemove', (e) => {
+  const now = Date.now();
+  if (now - lastMoveTime < moveThrottle) return;
+  lastMoveTime = now;
+  lastMouseMoveTime = now;
+
   cursor.style.left = e.pageX + 'px';
   cursor.style.top = e.pageY + 'px';
 
@@ -48,6 +66,17 @@ document.addEventListener('mousemove', (e) => {
 setInterval(checkCursorPosition, 50);
 
 document.addEventListener('mouseleave', () => {
+  cursor.style.opacity = '0';
+  isCursorVisible = false;
+});
+
+// Handle window focus/blur
+window.addEventListener('focus', () => {
+  cursor.style.opacity = '1';
+  isCursorVisible = true;
+});
+
+window.addEventListener('blur', () => {
   cursor.style.opacity = '0';
   isCursorVisible = false;
 }); 
