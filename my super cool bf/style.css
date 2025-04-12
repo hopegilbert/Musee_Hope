@@ -216,34 +216,21 @@ h1 {
   cursor: none !important;
 }
 
+/* Overriding cursor style */
 #cursor {
   position: fixed;
-  width: 20px;
-  height: 20px;
-  background-color: transparent;
+  width: 23px;
+  height: 42px;
+  background: url('images/pink-cursor.png') no-repeat center center;
+  background-size: contain;
   pointer-events: none;
   z-index: 99999;
-  transform: translate(-50%, -50%);
+  transform: translate(-2px, -2px);
   transition: opacity 0.2s ease;
   opacity: 1;
 }
 
-/* Remove the old cursor-hidden class since we're using opacity now */
-.cursor-hidden {
-  display: none;
-}
-
-/* Ensure no other elements can override cursor visibility */
-html, body {
-  cursor: none !important;
-}
-
-/* Make sure the cursor stays on top of all other elements */
-#cursor {
-  z-index: 2147483647; /* Maximum z-index value */
-}
-
-/* Sparkle dots */
+.sparkle {
 .sparkle {
   position: fixed;
   width: 6px;
