@@ -549,11 +549,18 @@ h1 {
   flex-shrink: 0;
   border-bottom: 1px solid #ddd;
 }
-.tab:hover {
-  background-color: #ffc0cb;
-  color: #fff;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+.tab {
+  padding: 0.2rem 0.3rem;
+  margin-right: 0.3rem;
+  cursor: pointer;
+  font-size: 0.8rem;
+  color: #333;
+  border-radius: 3px;
+  transition: all 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
+
 .dropdown-item:last-child {
   border-bottom: none;
 }
@@ -608,20 +615,7 @@ h1 {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
-.tab {
-  padding: 0.2rem 0.3rem;
-  margin-right: 0.3rem;
-  cursor: pointer;
-  font-size: 0.8rem;
-  color: #333;
-  border-radius: 3px;
-  transition: all 0.2s;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-
 .tab:hover {
-  background-color: #ffc0cb;
   color: #fff;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
