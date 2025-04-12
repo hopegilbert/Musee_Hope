@@ -233,12 +233,23 @@ h1 {
   top: 0;
   left: 0;
   object-fit: contain;
+  pointer-events: none !important;
 }
 
 .cursor-hidden {
   opacity: 0 !important;
   visibility: hidden !important;
   display: none !important;
+}
+
+/* Ensure no other elements can override cursor visibility */
+html, body {
+  cursor: none !important;
+}
+
+/* Make sure the cursor stays on top of all other elements */
+#cursor {
+  z-index: 2147483647; /* Maximum z-index value */
 }
 
 /* Sparkle dots */
