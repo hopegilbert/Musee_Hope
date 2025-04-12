@@ -140,18 +140,6 @@ h1 {
   }
   .draggable-window {
     position: absolute;
-    width: 320px;
-    background: rgba(255, 255, 255, 0.7);
-    border: 2px solid #e75480;
-    border-radius: 8px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
-    z-index: 1;
-    transition: box-shadow 0.2s ease;
-  }
-  
-  .draggable-window {
-    position: absolute;
     width: 350px;
     border: 2px solid #d4d0c8;
     background-color: #fff;
@@ -227,8 +215,8 @@ h1 {
   transition: opacity 0.3s ease;
   width: 10px;
   height: 10px;
-  background-image: url('images/cursor.png');
-  background-size: contain;
+  background-color: #ff69b4;
+  border-radius: 50%;
   transform: scale(2.5);
 }
 
@@ -418,41 +406,31 @@ h1 {
 
 .retro-toolbar {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  background: linear-gradient(to bottom, #f8f8f8, #dcdcdc);
-  border-bottom: 2px solid #a0a0a0;
-  padding: 4px 6px;
+  padding: 4px 8px;
+  background: linear-gradient(to bottom, #ffd2e8, #f7a7cd); /* soft pink gradient */
+  border-top: 2px solid #fff;
+  border-bottom: 2px solid #c12669;
+  box-shadow: inset 0 1px #fff, inset 0 -1px #c12669;
   font-family: 'Courier New', monospace;
   font-size: 0.7rem;
-  box-shadow: inset 0 1px #fff, inset 0 -1px #ccc;
-  overflow-x: auto;
-  border-top: 2px solid #eee;
-  border-radius: 0 0 4px 4px;
-}
-
-.toolbar-left {
-  display: flex;
-  flex-wrap: nowrap;
-  gap: 4px;
+  gap: 6px;
 }
 
 .toolbar-button {
-  display: inline-flex;
-  align-items: center;
-  padding: 3px 6px;
-  background: #fff;
-  border: 1px solid #999;
+  background: #ffeaf4;
+  border: 2px solid #c12669;
+  padding: 3px 8px;
   border-radius: 2px;
-  box-shadow: inset -1px -1px 0 #ccc, inset 1px 1px 0 #fff;
+  box-shadow: 1px 1px 0 #ffb3d1, -1px -1px 0 #fff;
+  color: #c12669;
   cursor: pointer;
-  transition: all 0.2s ease;
-  white-space: nowrap;
+  user-select: none;
+  transition: all 0.15s ease-in-out;
 }
 
 .toolbar-button:hover {
-  background: #ffe4f0;
-  border-color: #ff69b4;
-  color: #c12669;
-  box-shadow: inset -1px -1px 0 #ffb3d1, inset 1px 1px 0 #fff;
+  background: #ffc8e4;
+  box-shadow: inset 1px 1px 2px #c12669;
+  color: #831416;
 }

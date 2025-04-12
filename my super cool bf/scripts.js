@@ -108,7 +108,7 @@ function toggleDropdown() {
     // Initialize draggable windows
     const windows = document.querySelectorAll('.draggable-window');
     windows.forEach(win => {
-      const handle = win.querySelector('.retro-header') || win.querySelector('.window-header');
+      const handle = win.querySelector('.window-header');
       if (handle) makeDraggable(win, handle);
     });
   });
