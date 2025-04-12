@@ -68,11 +68,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize cursor
     cursor.style.display = 'block';
     cursor.style.opacity = '1';
+    cursor.style.position = 'fixed';
+    cursor.style.pointerEvents = 'none';
+    cursor.style.zIndex = '9999';
 
-    // Update cursor position with transform for better performance
+    // Update cursor position directly
     document.addEventListener('mousemove', (e) => {
-        // Offset the position to make the top right corner the click point
-        cursor.style.transform = `translate(${e.clientX - cursor.offsetWidth}px, ${e.clientY}px)`;
+        cursor.style.left = e.pageX + 'px';
+        cursor.style.top = e.pageY + 'px';
     });
 
     // Check if cursor is within viewport bounds
