@@ -287,8 +287,8 @@ h1 {
 /* Glitter trail effect */
 .trail {
   position: fixed;
-  width: 8px;
-  height: 8px;
+  width: 4px;
+  height: 4px;
   background: linear-gradient(45deg, #ffb6c1, #ffd700);
   border-radius: 50%;
   pointer-events: none;
@@ -300,14 +300,14 @@ h1 {
     0 0 15px #ffd700,
     0 0 20px #ffffff,
     /* Additional sparkle points */
-    2px 2px #ffffff,
-    -2px 2px #ffffff,
-    2px -2px #ffffff,
-    -2px -2px #ffffff,
-    3px 0px #ffd700,
-    -3px 0px #ffd700,
-    0px 3px #ffd700,
-    0px -3px #ffd700;
+    3px 3px 0 1px #ffffff,
+    -3px 3px 0 1px #ffffff,
+    3px -3px 0 1px #ffffff,
+    -3px -3px 0 1px #ffffff,
+    4px 0px 0 1px #ffd700,
+    -4px 0px 0 1px #ffd700,
+    0px 4px 0 1px #ffd700,
+    0px -4px 0 1px #ffd700;
   animation: fadeOut 0.8s forwards;
   transform: translate(-50%, -50%);
   margin-top: 63px;
@@ -325,30 +325,25 @@ h1 {
   height: 100%;
   animation: pixelSparkle 0.8s forwards;
   box-shadow: 
-    /* Inner ring */
-    1px 0 #ffffff,
-    0 1px #ffffff,
-    -1px 0 #ffffff,
-    0 -1px #ffffff,
-    1px 1px rgba(255, 255, 255, 0.8),
-    -1px 1px rgba(255, 255, 255, 0.8),
-    1px -1px rgba(255, 255, 255, 0.8),
-    -1px -1px rgba(255, 255, 255, 0.8),
-    /* Middle ring */
-    2px 0 #ffd700,
-    0 2px #ffd700,
-    -2px 0 #ffd700,
-    0 -2px #ffd700,
-    2px 2px rgba(255, 215, 0, 0.7),
-    -2px 2px rgba(255, 215, 0, 0.7),
-    2px -2px rgba(255, 215, 0, 0.7),
-    -2px -2px rgba(255, 215, 0, 0.7),
-    /* Diagonal points */
-    3px 3px #ffffff,
-    -3px 3px #ffffff,
-    3px -3px #ffffff,
-    -3px -3px #ffffff;
-  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.8));
+    /* Inner scattered pixels */
+    2px 1px 0 0px #ffffff,
+    -1px 2px 0 0px #ffffff,
+    -2px -1px 0 0px #ffffff,
+    1px -2px 0 0px #ffffff,
+    3px 2px 0 0px rgba(255, 255, 255, 0.8),
+    -2px 3px 0 0px rgba(255, 255, 255, 0.8),
+    -3px -2px 0 0px rgba(255, 255, 255, 0.8),
+    2px -3px 0 0px rgba(255, 255, 255, 0.8),
+    /* Middle scattered pixels */
+    4px 2px 0 0px #ffd700,
+    -2px 4px 0 0px #ffd700,
+    -4px -2px 0 0px #ffd700,
+    2px -4px 0 0px #ffd700,
+    5px 3px 0 0px rgba(255, 215, 0, 0.7),
+    -3px 5px 0 0px rgba(255, 215, 0, 0.7),
+    -5px -3px 0 0px rgba(255, 215, 0, 0.7),
+    3px -5px 0 0px rgba(255, 215, 0, 0.7);
+  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.8));
 }
 
 .trail::after {
@@ -358,25 +353,25 @@ h1 {
   height: 100%;
   animation: pixelSparkle 0.8s forwards;
   box-shadow: 
-    /* Outer ring */
-    4px 0 rgba(255, 255, 255, 0.6),
-    0 4px rgba(255, 255, 255, 0.6),
-    -4px 0 rgba(255, 255, 255, 0.6),
-    0 -4px rgba(255, 255, 255, 0.6),
-    4px 4px rgba(255, 255, 255, 0.5),
-    -4px 4px rgba(255, 255, 255, 0.5),
-    4px -4px rgba(255, 255, 255, 0.5),
-    -4px -4px rgba(255, 255, 255, 0.5),
-    /* Random sparkles */
-    5px 2px #ffd700,
-    -5px 2px #ffd700,
-    2px 5px #ffd700,
-    -2px 5px #ffd700,
-    5px -2px #ffffff,
-    -5px -2px #ffffff,
-    2px -5px #ffffff,
-    -2px -5px #ffffff;
-  filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.6));
+    /* Outer scattered pixels */
+    6px 2px 0 0px rgba(255, 255, 255, 0.6),
+    2px 6px 0 0px rgba(255, 255, 255, 0.6),
+    -6px -2px 0 0px rgba(255, 255, 255, 0.6),
+    -2px -6px 0 0px rgba(255, 255, 255, 0.6),
+    7px 3px 0 0px rgba(255, 255, 255, 0.5),
+    -3px 7px 0 0px rgba(255, 255, 255, 0.5),
+    -7px -3px 0 0px rgba(255, 255, 255, 0.5),
+    3px -7px 0 0px rgba(255, 255, 255, 0.5),
+    /* Far scattered pixels */
+    8px 1px 0 0px #ffd700,
+    -1px 8px 0 0px #ffd700,
+    -8px -1px 0 0px #ffd700,
+    1px -8px 0 0px #ffd700,
+    7px -2px 0 0px #ffffff,
+    -2px 7px 0 0px #ffffff,
+    -7px 2px 0 0px #ffffff,
+    2px -7px 0 0px #ffffff;
+  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.6));
 }
 
 @keyframes fadeOut {
