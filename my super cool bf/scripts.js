@@ -47,24 +47,36 @@ function toggleDropdown() {
       y: 13  // y position of bottom point in original pixel art
     };
 
-    // Show and move the cursor on mouse move
+    // Utility to check if mouse is inside the window bounds
+    function isInViewport(e) {
+      return e.clientX > 0 && e.clientY > 0 &&
+             e.clientX < window.innerWidth &&
+             e.clientY < window.innerHeight;
+    }
+
     document.addEventListener('mousemove', (e) => {
       cursor.style.left = e.pageX + 'px';
       cursor.style.top = e.pageY + 'px';
 
-      if (!isCursorVisible) {
-        cursor.style.opacity = '1';
-        isCursorVisible = true;
-      }
+      // If mouse is in bounds, show cursor
+      if (isInViewport(e)) {
+        if (!isCursorVisible) {
+          cursor.style.opacity = '1';
+          isCursorVisible = true;
+        }
 
-      clearTimeout(hideTimeout);
-      hideTimeout = setTimeout(() => {
+        clearTimeout(hideTimeout);
+        hideTimeout = setTimeout(() => {
+          cursor.style.opacity = '0';
+          isCursorVisible = false;
+        }, 200);
+      } else {
+        // Cursor has moved to edge/out of bounds
         cursor.style.opacity = '0';
         isCursorVisible = false;
-      }, 200); // hide cursor 200ms after no movement
+      }
     });
 
-    // Ensure it's hidden when mouse leaves window
     document.addEventListener('mouseleave', () => {
       cursor.style.opacity = '0';
       isCursorVisible = false;
@@ -72,7 +84,7 @@ function toggleDropdown() {
 
     // Handle trail effect
     function createTrail(e) {
-      if (!isCursorVisible) return;
+      if (!isCursorVisible || !isInViewport(e)) return;
 
       const trail = document.createElement('div');
       trail.className = 'trail';
