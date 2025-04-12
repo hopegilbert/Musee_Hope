@@ -315,12 +315,22 @@ h1 {
   height: 100%;
   animation: pixelSparkle 0.8s forwards;
   box-shadow: 
-    -2px -2px #ffffff,
+    -3px -3px #ffffff,
+    -2px -3px rgba(255, 255, 255, 0.9),
+    -1px -3px #f0f0f0,
+    0px -3px rgba(255, 255, 255, 0.95),
+    1px -3px #ffffff,
+    -3px -2px #f8f8f8,
+    -2px -2px rgba(255, 255, 255, 0.85),
     -1px -2px #ffffff,
-    0px -2px #ffffff,
-    -2px -1px #ffffff,
+    0px -2px #fafafa,
+    1px -2px rgba(255, 255, 255, 0.9),
+    -3px -1px #ffffff,
+    -2px -1px #f5f5f5,
+    -1px -1px rgba(255, 255, 255, 0.95),
     0px -1px #ffffff,
-    -2px 0px #ffffff;
+    1px -1px #f7f7f7;
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.8));
 }
 
 .trail::after {
@@ -330,12 +340,22 @@ h1 {
   height: 100%;
   animation: pixelSparkle 0.8s forwards;
   box-shadow: 
-    2px 2px #ffffff,
-    1px 2px #ffffff,
-    2px 1px #ffffff,
+    -3px 0px rgba(255, 255, 255, 0.9),
+    -2px 0px #ffffff,
+    -1px 0px #f9f9f9,
+    0px 0px rgba(255, 255, 255, 0.95),
+    1px 0px #ffffff,
+    -3px 1px #ffffff,
+    -2px 1px rgba(255, 255, 255, 0.85),
+    -1px 1px #fcfcfc,
+    0px 1px #ffffff,
+    1px 1px rgba(255, 255, 255, 0.9),
     -2px 2px #ffffff,
-    -1px 1px #ffffff,
-    2px -2px #ffffff;
+    -1px 2px #f6f6f6,
+    0px 2px rgba(255, 255, 255, 0.95),
+    1px 2px #ffffff,
+    -1px 3px rgba(255, 255, 255, 0.85);
+  filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.6));
 }
 
 @keyframes fadeOut {
@@ -371,14 +391,14 @@ h1 {
 @keyframes pixelSparkle {
   0% {
     opacity: 0.9;
-    transform: scale(1);
+    transform: scale(1) rotate(0deg);
   }
   50% {
-    opacity: 0.6;
-    transform: scale(1.2);
+    opacity: 0.7;
+    transform: scale(1.2) rotate(45deg);
   }
   100% {
     opacity: 0;
-    transform: scale(0.8);
+    transform: scale(0.8) rotate(90deg);
   }
 }
