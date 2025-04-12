@@ -571,29 +571,3 @@ h1 {
   background: linear-gradient(to top, #c12669 50%, #fff 50%);
   clip-path: polygon(10% 90%, 50% 10%, 90% 90%);
 }
-html, body {
-  width: 100%;
-  height: 100%;
-  overflow-x: hidden;
-}
-
-.draggable-window {
-  max-width: 90vw;
-  max-height: 90vh;
-  overflow: auto;
-  box-sizing: border-box;
-  /* fallback size if no inline style is applied */
-  width: 360px;
-}
-
-.window-body {
-  word-wrap: break-word;
-}
-
-/* Prevent windows from starting too far left or top */
-@media screen and (min-width: 769px) {
-  .draggable-window {
-    left: clamp(20px, 10vw, 600px);
-    top: clamp(20px, 10vh, 600px);
-  }
-}
