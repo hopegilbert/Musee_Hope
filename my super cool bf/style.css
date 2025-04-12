@@ -513,8 +513,9 @@ h1 {
   z-index: 9999;
 }
 
+/* Remove hover behavior to prevent conflicts with JavaScript */
 .dropdown-tab:hover .dropdown-content {
-  display: block;
+  /* Remove this rule to prevent hover behavior */
 }
 
 .dropdown-content {
