@@ -6,7 +6,13 @@
 body {
   margin: 0;
   padding: 0;
-  background: #ffc0cb;     /* Light pink */
+  background: repeating-linear-gradient(
+    to bottom,
+    #ffc0cb,     /* Light pink */
+    #ffc0cb 150px,
+    #f4a8c9 150px,
+    #f4a8c9 300px
+  );
   background-attachment: fixed;
   font-family: 'Press Start 2P', cursive;
   color: #fff;
