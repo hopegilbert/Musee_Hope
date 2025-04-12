@@ -1,6 +1,7 @@
 window.addEventListener("load", () => {
   window.scrollTo(0, 0);
 });
+
 function toggleDropdown() {
   const menu = document.getElementById("dropdownMenu");
   menu.style.display = menu.style.display === "block" ? "none" : "block";
@@ -38,14 +39,6 @@ document.addEventListener("DOMContentLoaded", () => {
       gutter: 10,
       percentPosition: true
     });
-  });
-});
-// Subtle Parallax Effect on Scroll
-window.addEventListener('scroll', () => {
-  document.querySelectorAll('.grid-item.parallax').forEach(item => {
-    const rect = item.getBoundingClientRect();
-    const offset = rect.top * 0.05; // adjust multiplier for intensity
-    item.style.transform = `translateY(${offset}px)`;
   });
 });
 
@@ -99,5 +92,14 @@ document.addEventListener('DOMContentLoaded', () => {
       requestAnimationFrame(animate);
     }
     animate();
+  });
+});
+
+// Subtle Parallax Effect on Scroll
+window.addEventListener('scroll', () => {
+  document.querySelectorAll('.grid-item.parallax').forEach(item => {
+    const rect = item.getBoundingClientRect();
+    const offset = rect.top * 0.05; // adjust multiplier for intensity
+    item.style.transform = `translateY(${offset}px)`;
   });
 });
