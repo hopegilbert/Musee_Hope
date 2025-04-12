@@ -440,11 +440,14 @@ h1 {
   border: 2px solid #d48da6;
   font-family: 'Verdana', sans-serif;
   width: 100%;
+  max-width: 100vw;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 .toolbar-top {
@@ -454,11 +457,16 @@ h1 {
   padding: 0.3rem 0.5rem;
   background: #bf2769;
   border-bottom: 1px solid #d48da6;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .toolbar-title {
   font-size: 0.9rem;
   color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .toolbar-tabs {
