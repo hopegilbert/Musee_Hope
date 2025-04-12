@@ -1,12 +1,12 @@
 const cursor = document.getElementById('cursor');
 let isCursorVisible = false;
 
-// Utility to check if cursor is inside the window bounds
-function isCursorInViewport() {
-  const rect = cursor.getBoundingClientRect();
-  return rect.left >= 0 && rect.top >= 0 &&
-         rect.right <= window.innerWidth &&
-         rect.bottom <= window.innerHeight;
+// Utility to check if mouse is inside the window bounds
+function isInViewport(e) {
+  const buffer = 5; // Small buffer zone
+  return e.clientX > buffer && e.clientY > buffer &&
+         e.clientX < window.innerWidth - buffer &&
+         e.clientY < window.innerHeight - buffer;
 }
 
 // Check if cursor is in browser chrome (top area)
@@ -22,11 +22,8 @@ document.addEventListener('mousemove', (e) => {
   cursor.style.left = (e.pageX - cursor.offsetWidth) + 'px';
   cursor.style.top = e.pageY + 'px';
 
-  // Check if cursor is in viewport or browser chrome
-  const inViewport = isCursorInViewport();
-  const inChrome = isInBrowserChrome(e);
-
-  if (inViewport || inChrome) {
+  // Show cursor only when mouse is in viewport
+  if (isInViewport(e)) {
     cursor.style.opacity = '1';
     isCursorVisible = true;
   } else {
