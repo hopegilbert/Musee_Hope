@@ -667,17 +667,6 @@ h1 {
   clip-path: polygon(10% 90%, 50% 10%, 90% 90%);
 }
 
-.gitter-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 0;
-  background-color: transparent;
-}
-
 .desktop {
   min-height: 100vh;
   padding: 2rem;
