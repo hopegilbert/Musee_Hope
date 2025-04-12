@@ -71,7 +71,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Update cursor position with transform for better performance
     document.addEventListener('mousemove', (e) => {
-        cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+        // Offset the position to make the top right corner the click point
+        cursor.style.transform = `translate(${e.clientX - cursor.offsetWidth}px, ${e.clientY}px)`;
     });
 
     // Check if cursor is within viewport bounds
