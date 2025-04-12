@@ -228,8 +228,8 @@ h1 {
   opacity: 1;
   mix-blend-mode: normal;
   image-rendering: pixelated;
-  display: block !important;
-  visibility: visible !important;
+  display: block;
+  visibility: visible;
   top: 0;
   left: 0;
   object-fit: contain;

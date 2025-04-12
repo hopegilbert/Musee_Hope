@@ -20,11 +20,11 @@ document.addEventListener("DOMContentLoaded", () => {
       e.clientX < 0 || e.clientX > window.innerWidth ||
       e.clientY < 0 || e.clientY > window.innerHeight
     ) {
-      cursor.classList.add("cursor-hidden");
+      cursor.style.display = 'none';
       return;
     }
 
-    cursor.classList.remove("cursor-hidden");
+    cursor.style.display = 'block';
     cursor.style.left = `${e.clientX}px`;
     cursor.style.top = `${e.clientY}px`;
 
@@ -43,6 +43,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   document.addEventListener("mouseleave", () => {
-    cursor.classList.add("cursor-hidden");
+    cursor.style.display = 'none';
   });
 }); 
