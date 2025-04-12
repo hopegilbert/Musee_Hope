@@ -75,18 +75,24 @@
   <!-- Scripts -->
   <script src="scripts.js"></script>
   <script>
-    // Hide cursor initially
+    // Initialize cursor
     const cursor = document.getElementById('cursor');
-    cursor.style.display = 'none';
+    cursor.style.display = 'block';
+    cursor.style.opacity = '1';
 
-    // Show cursor when mouse enters the page
-    document.addEventListener('mouseenter', () => {
-      cursor.style.display = 'block';
+    // Update cursor position
+    document.addEventListener('mousemove', (e) => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
     });
 
-    // Hide cursor when mouse leaves the page
+    // Show/hide cursor based on mouse position
+    document.addEventListener('mouseenter', () => {
+      cursor.style.opacity = '1';
+    });
+
     document.addEventListener('mouseleave', () => {
-      cursor.style.display = 'none';
+      cursor.style.opacity = '0';
     });
 
     function checkOverlap(newGif, existingGifs) {

@@ -220,72 +220,27 @@ h1 {
 }
 
 #cursor {
-  position: absolute;
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  background-color: #ff69b4;
+  border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
-  opacity: 1;
   transition: opacity 0.3s ease;
-  width: 10px;
-  height: 10px;
-  background-image: url('images/cursor.png');
-  background-size: contain;
-  transform: scale(2.5);
-}
-
-#cursor.hidden {
-  visibility: hidden;
-  opacity: 0;
+  transform: translate(-50%, -50%);
 }
 
 #cursor::after {
   content: '';
   position: absolute;
-  width: 1px;
-  height: 1px;
-  transform: scale(2.5);
-  transform-origin: center;
-  z-index: 999999;
-  pointer-events: none;
-  left: -7px;
-  top: -11px;
-  box-shadow: 
-    5px 3px #e6c4ff,
-    5px 4px #d6acff,
-    6px 4px #e8d8ff,
-    10px 4px #d1b1ff,
-    5px 5px #c6a6ff,
-    7px 5px #e0c0ff,
-    5px 6px #c3a3ff,
-    6px 6px #c4a4ff,
-    7px 6px #b797ff,
-    8px 6px #d4c4ff,
-    5px 7px #ae8eff,
-    6px 7px #c3a3ff,
-    7px 7px #ceaeff,
-    8px 7px #e8d8ff,
-    9px 7px #ddcdff,
-    5px 8px #c1a1ff,
-    6px 8px #d2b2ff,
-    7px 8px #ae8eff,
-    8px 8px #b696ff,
-    9px 8px #c6a6ff,
-    5px 9px #b292ff,
-    6px 9px #ba9aff,
-    7px 9px #c5a5ff,
-    8px 9px #b999ff,
-    9px 9px #9242ff,
-    10px 9px #8931e9,
-    5px 10px #b797ff,
-    6px 10px #d2c2ff,
-    7px 10px #cfafff,
-    8px 10px #bf9fff,
-    9px 10px #913ceb,
-    5px 11px #9d45ed,
-    8px 11px #b790f7,
-    9px 11px #b393ff,
-    8px 12px #b493f4,
-    9px 12px #cfafff,
-    9px 13px #9d46ed;
+  width: 8px;
+  height: 8px;
+  background-color: white;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 /* Glitter trail effect */
