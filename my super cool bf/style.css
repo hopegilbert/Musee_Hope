@@ -222,10 +222,6 @@ h1 {
   height: 30px;
   pointer-events: none;
   z-index: 999999;
-  background-image: url('../my super cool bf/images/pink-cursor.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
   transform: translate(-50%, -50%);
   will-change: transform;
   transition: all 0.05s ease;
