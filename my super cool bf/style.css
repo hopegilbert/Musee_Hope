@@ -6,9 +6,9 @@ body {
   margin: 0;
   padding: 0;
   background-color: transparent;
-  background-image: url('images/pink-padding-background.png'); /* your padded pink BG */
-  background-size: 100px 100px;
-  background-repeat: repeat;
+  background-image: url('images/background.png');
+  background-size: cover;
+  background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
   font-family: 'Courier New', monospace;
