@@ -466,9 +466,9 @@ h1 {
   font-size: 0.9rem;
   color: #ffffff;
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 200px;
+  overflow: visible;
+  text-overflow: clip;
+  max-width: none;
 }
 
 .toolbar-tabs {
