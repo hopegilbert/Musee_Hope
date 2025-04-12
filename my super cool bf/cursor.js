@@ -9,6 +9,11 @@ function isInViewport(e) {
          e.clientY < window.innerHeight + buffer;
 }
 
+// Check if cursor is in browser chrome (top area)
+function isInBrowserChrome(e) {
+  return e.screenY < window.screenY + 100; // Approximate browser chrome height
+}
+
 // Check cursor position periodically
 function checkCursorPosition() {
   const rect = cursor.getBoundingClientRect();
@@ -26,8 +31,8 @@ document.addEventListener('mousemove', (e) => {
   cursor.style.left = e.pageX + 'px';
   cursor.style.top = e.pageY + 'px';
 
-  // If mouse is in bounds, show cursor
-  if (isInViewport(e)) {
+  // If mouse is in bounds or in browser chrome, show cursor
+  if (isInViewport(e) || isInBrowserChrome(e)) {
     if (!isCursorVisible) {
       cursor.style.opacity = '1';
       isCursorVisible = true;
