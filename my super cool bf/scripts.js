@@ -75,6 +75,22 @@ document.addEventListener('DOMContentLoaded', () => {
         cursor.style.top = e.clientY + 'px';
     });
 
+    // Check if cursor is within viewport bounds
+    document.addEventListener('mousemove', (e) => {
+      const cursor = document.getElementById('cursor');
+      const { clientX, clientY } = e;
+      const withinX = clientX >= 0 && clientX <= window.innerWidth;
+      const withinY = clientY >= 0 && clientY <= window.innerHeight;
+
+      if (cursor) {
+        if (!withinX || !withinY) {
+          cursor.classList.add('cursor-hidden');
+        } else {
+          cursor.classList.remove('cursor-hidden');
+        }
+      }
+    });
+
     // Show/hide cursor based on mouse position
     document.addEventListener('mouseenter', () => {
         cursor.style.opacity = '1';
