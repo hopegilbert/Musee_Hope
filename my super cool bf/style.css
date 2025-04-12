@@ -295,9 +295,19 @@ h1 {
   z-index: 9998;
   opacity: 0.8;
   box-shadow: 
+    /* Base sparkles */
     0 0 8px #ff69b4,
     0 0 15px #ffd700,
-    0 0 20px #ffffff;
+    0 0 20px #ffffff,
+    /* Additional sparkle points */
+    2px 2px #ffffff,
+    -2px 2px #ffffff,
+    2px -2px #ffffff,
+    -2px -2px #ffffff,
+    3px 0px #ffd700,
+    -3px 0px #ffd700,
+    0px 3px #ffd700,
+    0px -3px #ffd700;
   animation: fadeOut 0.8s forwards;
   transform: translate(-50%, -50%);
   margin-top: 63px;
@@ -315,36 +325,29 @@ h1 {
   height: 100%;
   animation: pixelSparkle 0.8s forwards;
   box-shadow: 
-    /* Top cluster */
-    -4px -4px #ffffff,
-    -3px -4px rgba(255, 255, 255, 0.9),
-    -2px -4px #f0f0f0,
-    -1px -4px #ffffff,
-    0px -4px rgba(255, 255, 255, 0.95),
-    1px -4px #ffffff,
-    2px -4px #f8f8f8,
-    /* Upper middle cluster */
-    -3px -3px #ffffff,
-    -2px -3px #fcfcfc,
-    -1px -3px rgba(255, 255, 255, 0.85),
-    0px -3px #ffffff,
-    1px -3px #fafafa,
-    2px -3px rgba(255, 255, 255, 0.9),
-    /* Middle cluster */
-    -4px -2px #ffffff,
-    -3px -2px #f5f5f5,
-    -2px -2px rgba(255, 255, 255, 0.95),
-    -1px -2px #ffffff,
-    0px -2px #f7f7f7,
-    1px -2px #ffffff,
-    2px -2px rgba(255, 255, 255, 0.85),
-    /* Lower middle cluster */
-    -3px -1px #ffffff,
-    -2px -1px #ffffff,
-    -1px -1px #f9f9f9,
-    0px -1px rgba(255, 255, 255, 0.9),
-    1px -1px #ffffff,
-    2px -1px #f6f6f6;
+    /* Inner ring */
+    1px 0 #ffffff,
+    0 1px #ffffff,
+    -1px 0 #ffffff,
+    0 -1px #ffffff,
+    1px 1px rgba(255, 255, 255, 0.8),
+    -1px 1px rgba(255, 255, 255, 0.8),
+    1px -1px rgba(255, 255, 255, 0.8),
+    -1px -1px rgba(255, 255, 255, 0.8),
+    /* Middle ring */
+    2px 0 #ffd700,
+    0 2px #ffd700,
+    -2px 0 #ffd700,
+    0 -2px #ffd700,
+    2px 2px rgba(255, 215, 0, 0.7),
+    -2px 2px rgba(255, 215, 0, 0.7),
+    2px -2px rgba(255, 215, 0, 0.7),
+    -2px -2px rgba(255, 215, 0, 0.7),
+    /* Diagonal points */
+    3px 3px #ffffff,
+    -3px 3px #ffffff,
+    3px -3px #ffffff,
+    -3px -3px #ffffff;
   filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.8));
 }
 
@@ -355,36 +358,24 @@ h1 {
   height: 100%;
   animation: pixelSparkle 0.8s forwards;
   box-shadow: 
-    /* Center cluster */
-    -4px 0px #ffffff,
-    -3px 0px rgba(255, 255, 255, 0.9),
-    -2px 0px #ffffff,
-    -1px 0px #f9f9f9,
-    0px 0px #ffffff,
-    1px 0px #ffffff,
-    2px 0px rgba(255, 255, 255, 0.95),
-    /* Lower top cluster */
-    -3px 1px #ffffff,
-    -2px 1px #fcfcfc,
-    -1px 1px rgba(255, 255, 255, 0.85),
-    0px 1px #ffffff,
-    1px 1px #f8f8f8,
-    2px 1px rgba(255, 255, 255, 0.9),
-    /* Bottom middle cluster */
-    -4px 2px #ffffff,
-    -3px 2px #f5f5f5,
-    -2px 2px #ffffff,
-    -1px 2px #ffffff,
-    0px 2px rgba(255, 255, 255, 0.95),
-    1px 2px #ffffff,
-    2px 2px #f7f7f7,
-    /* Bottom cluster */
-    -3px 3px rgba(255, 255, 255, 0.9),
-    -2px 3px #ffffff,
-    -1px 3px #f9f9f9,
-    0px 3px #ffffff,
-    1px 3px rgba(255, 255, 255, 0.85),
-    2px 3px #ffffff;
+    /* Outer ring */
+    4px 0 rgba(255, 255, 255, 0.6),
+    0 4px rgba(255, 255, 255, 0.6),
+    -4px 0 rgba(255, 255, 255, 0.6),
+    0 -4px rgba(255, 255, 255, 0.6),
+    4px 4px rgba(255, 255, 255, 0.5),
+    -4px 4px rgba(255, 255, 255, 0.5),
+    4px -4px rgba(255, 255, 255, 0.5),
+    -4px -4px rgba(255, 255, 255, 0.5),
+    /* Random sparkles */
+    5px 2px #ffd700,
+    -5px 2px #ffd700,
+    2px 5px #ffd700,
+    -2px 5px #ffd700,
+    5px -2px #ffffff,
+    -5px -2px #ffffff,
+    2px -5px #ffffff,
+    -2px -5px #ffffff;
   filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.6));
 }
 
@@ -403,32 +394,17 @@ h1 {
   }
 }
 
-@keyframes pixelGlitter {
-  0% {
-    opacity: 0.9;
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-  50% {
-    opacity: 0.7;
-    transform: translate(-50%, -50%) rotate(90deg);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(-50%, -50%) rotate(180deg);
-  }
-}
-
 @keyframes pixelSparkle {
   0% {
-    opacity: 0.9;
+    opacity: 1;
     transform: scale(1) rotate(0deg);
   }
   50% {
-    opacity: 0.7;
-    transform: scale(1.2) rotate(45deg);
+    opacity: 0.8;
+    transform: scale(1.3) rotate(45deg);
   }
   100% {
     opacity: 0;
-    transform: scale(0.8) rotate(90deg);
+    transform: scale(0.7) rotate(90deg);
   }
 }
