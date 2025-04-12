@@ -1,8 +1,5 @@
 const cursor = document.getElementById('cursor');
 let isCursorVisible = false;
-let lastMouseMoveTime = Date.now();
-let lastKnownPosition = { x: 0, y: 0 };
-let targetPosition = { x: 0, y: 0 };
 
 // Utility to check if mouse is inside the window bounds
 function isInViewport(e) {
@@ -19,58 +16,20 @@ function isInBrowserChrome(e) {
   return e.screenY < window.screenY + chromeHeight;
 }
 
-// Update cursor position with requestAnimationFrame for smoother movement
-function updateCursorPosition() {
-  // Calculate the distance between current and target position
-  const dx = targetPosition.x - lastKnownPosition.x;
-  const dy = targetPosition.y - lastKnownPosition.y;
-  
-  // Move the cursor with a higher easing factor for more responsiveness
-  lastKnownPosition.x += dx * 0.6;
-  lastKnownPosition.y += dy * 0.6;
-  
-  // Position the cursor at the exact mouse position
-  cursor.style.left = lastKnownPosition.x + 'px';
-  cursor.style.top = lastKnownPosition.y + 'px';
-  
-  animationFrameId = requestAnimationFrame(updateCursorPosition);
-}
-
-// Check cursor position periodically
-function checkCursorPosition() {
-  const timeSinceLastMove = Date.now() - lastMouseMoveTime;
-  const rect = cursor.getBoundingClientRect();
-  const centerX = rect.left + rect.width / 2;
-  const centerY = rect.top + rect.height / 2;
-  
-  // Only hide cursor if it's actually out of bounds
-  if (centerX < 0 || centerX > window.innerWidth ||
-      centerY < 0 || centerY > window.innerHeight) {
-    cursor.style.opacity = '0';
-    isCursorVisible = false;
-  } else {
-    // Keep cursor visible if it's within bounds
-    cursor.style.opacity = '1';
-    isCursorVisible = true;
-  }
-}
-
-// Use requestAnimationFrame for smoother updates
-let animationFrameId;
-updateCursorPosition();
-
 document.addEventListener('mousemove', (e) => {
-  lastMouseMoveTime = Date.now();
-  targetPosition = { x: e.pageX, y: e.pageY };
-  
+  // Update cursor position directly without any animation
+  cursor.style.left = e.pageX + 'px';
+  cursor.style.top = e.pageY + 'px';
+
+  // If mouse is in bounds or in browser chrome, show cursor
   if (isInViewport(e) || isInBrowserChrome(e)) {
     cursor.style.opacity = '1';
     isCursorVisible = true;
+  } else {
+    cursor.style.opacity = '0';
+    isCursorVisible = false;
   }
 });
-
-// Check cursor position every 100ms
-setInterval(checkCursorPosition, 100);
 
 document.addEventListener('mouseleave', () => {
   cursor.style.opacity = '0';
@@ -86,9 +45,4 @@ window.addEventListener('focus', () => {
 window.addEventListener('blur', () => {
   cursor.style.opacity = '0';
   isCursorVisible = false;
-});
-
-// Clean up animation frame on page unload
-window.addEventListener('unload', () => {
-  cancelAnimationFrame(animationFrameId);
 }); 
