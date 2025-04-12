@@ -528,6 +528,63 @@ h1 {
   margin: 4px 0;
 }
 
+.toolbar-buttons {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.3rem;
+  padding: 0.3rem;
+  background: #fff0f5;
+  border-top: 1px solid #ffd4e8;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  width: 100%;
+}
+
+.icon-group {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.15rem;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 4px;
+  border: 1px solid #ffd4e8;
+  flex-shrink: 0;
+}
+
+.icon-group img {
+  height: 20px;
+  width: auto;
+  padding: 4px;
+  border-radius: 3px;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.icon-group img:hover {
+  background: #ffc0cb;
+  transform: scale(1.1);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.tab {
+  padding: 0.2rem 0.3rem;
+  margin-right: 0.3rem;
+  cursor: pointer;
+  font-size: 0.8rem;
+  color: #333;
+  border-radius: 3px;
+  transition: all 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.tab:hover {
+  background-color: #ffc0cb;
+  color: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
 /* Example retro pixel-style icons via simple block colors or shapes */
 .icon-save::before {
   background-image: linear-gradient(#f7c1d4, #c12669);
