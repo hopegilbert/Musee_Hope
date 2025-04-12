@@ -1,49 +1,60 @@
-const cursor = document.getElementById('cursor');
-let isCursorVisible = false;
-
-// Utility to check if mouse is inside the window bounds
-function isInViewport(e) {
-  const buffer = 5; // Small buffer zone
-  return e.clientX > buffer && e.clientY > buffer &&
-         e.clientX < window.innerWidth - buffer &&
-         e.clientY < window.innerHeight - buffer;
-}
-
-// Check if cursor is in browser chrome (top area)
-function isInBrowserChrome(e) {
-  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-  const chromeHeight = isSafari ? 60 : 100;
-  return e.screenY < window.screenY + chromeHeight;
-}
-
-document.addEventListener('mousemove', (e) => {
-  // Update cursor position directly without any animation
-  // Offset the position to make the top right corner the click point
-  cursor.style.left = (e.pageX - cursor.offsetWidth) + 'px';
-  cursor.style.top = e.pageY + 'px';
-
-  // Show cursor only when mouse is in viewport
-  if (isInViewport(e)) {
-    cursor.style.opacity = '1';
-    isCursorVisible = true;
-  } else {
-    cursor.style.opacity = '0';
-    isCursorVisible = false;
+window.addEventListener("load", () => {
+    window.scrollTo(0, 0);
+  });
+  
+  function toggleDropdown() {
+    const menu = document.getElementById("dropdownMenu");
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
   }
-});
-
-document.addEventListener('mouseleave', () => {
-  cursor.style.opacity = '0';
-  isCursorVisible = false;
-});
-
-// Handle window focus/blur
-window.addEventListener('focus', () => {
-  cursor.style.opacity = '1';
-  isCursorVisible = true;
-});
-
-window.addEventListener('blur', () => {
-  cursor.style.opacity = '0';
-  isCursorVisible = false;
-}); 
+  
+  function navigateTo(url) {
+    window.location.href = url;
+  }
+  
+  function makeDraggable(windowElement, handleElement) {
+    let isDragging = false;
+    let offsetX = 0;
+    let offsetY = 0;
+  
+    handleElement.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      offsetX = e.clientX - windowElement.offsetLeft;
+      offsetY = e.clientY - windowElement.offsetTop;
+      windowElement.style.zIndex = 1000;
+    });
+  
+    document.addEventListener('mousemove', (e) => {
+      if (isDragging) {
+        windowElement.style.left = `${e.clientX - offsetX}px`;
+        windowElement.style.top = `${e.clientY - offsetY}px`;
+      }
+    });
+  
+    document.addEventListener('mouseup', () => {
+      isDragging = false;
+    });
+  }
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    const dropdownTab = document.querySelector('.dropdown-tab');
+    const dropdownContent = document.querySelector('.dropdown-content');
+  
+    if (dropdownTab) {
+      dropdownTab.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleDropdown();
+      });
+    }
+  
+    document.addEventListener('click', (e) => {
+      if (!dropdownTab.contains(e.target) && !dropdownContent.contains(e.target)) {
+        dropdownContent.style.display = 'none';
+      }
+    });
+  
+    const windows = document.querySelectorAll('.draggable-window');
+    windows.forEach(win => {
+      const handle = win.querySelector('.window-header');
+      if (handle) makeDraggable(win, handle);
+    });
+  });
