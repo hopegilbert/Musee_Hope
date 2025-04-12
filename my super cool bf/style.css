@@ -643,3 +643,62 @@ h1 {
   font-size: 0.8rem;
   color: #ff69b4;
 }
+
+/* Office Button Styles */
+.office-button::before {
+  content: "";
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-right: 6px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Example retro pixel-style icons via simple block colors or shapes */
+.icon-save::before {
+  background-image: linear-gradient(#f7c1d4, #c12669);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.icon-new::before {
+  background: #fce4f3;
+  border: 1px solid #c12669;
+}
+
+.icon-open::before {
+  background: #ffd6ea;
+  border: 2px solid #c12669;
+  clip-path: polygon(0 0, 100% 0, 100% 70%, 50% 100%, 0 70%);
+}
+
+.icon-print::before {
+  background: repeating-linear-gradient(
+    45deg,
+    #c12669,
+    #c12669 1px,
+    #fff 1px,
+    #fff 2px
+  );
+  border: 1px solid #c12669;
+}
+
+.icon-cut::before {
+  background: conic-gradient(#c12669 25%, transparent 0 75%, #c12669 0);
+}
+
+.icon-paste::before {
+  background: #ffcce0;
+  border: 1px solid #c12669;
+}
+
+.icon-zoom::before {
+  background: radial-gradient(circle at center, #c12669 20%, transparent 21%);
+  border: 1px solid #c12669;
+}
+
+.icon-font::before {
+  background: linear-gradient(to top, #c12669 50%, #fff 50%);
+  clip-path: polygon(10% 90%, 50% 10%, 90% 90%);
+}
