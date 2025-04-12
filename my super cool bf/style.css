@@ -523,23 +523,21 @@ h1 {
   border-radius: 4px;
   border: 1px solid #ffd4e8;
   flex-shrink: 0;
-  transition: all 0.2s;
-}
-
-.icon-group:hover {
-  background: #ffc0cb;
-  border-color: #ff99cc;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
 .icon-group img {
   height: 20px;
   width: auto;
-  transition: transform 0.2s;
+  padding: 4px;
+  border-radius: 3px;
+  transition: all 0.2s;
+  cursor: pointer;
 }
 
-.icon-group:hover img {
+.icon-group img:hover {
+  background: #ffc0cb;
   transform: scale(1.1);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
 /* Example retro pixel-style icons via simple block colors or shapes */
