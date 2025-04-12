@@ -1,6 +1,5 @@
 /* Y2K Style CSS for My Super Cool BF Page */
 
-
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 body {
@@ -12,7 +11,6 @@ body {
   overflow-x: hidden;
 }
 
-
 .container {
   padding: 2rem;
   max-width: 1000px;
@@ -22,33 +20,6 @@ body {
   border-radius: 12px;
   box-shadow: 0 0 20px #ff69b4;
 }
-.page-title {
-    font-family: 'Press Start 2P', monospace;
-    font-size: 1.5rem;
-    color: #ff4eb1;
-    background: none;
-    text-align: center;
-    padding: 8rem 1rem 1rem;
-    text-shadow: 2px 2px 0 white;
-    letter-spacing: 4px;
-  }
-  .page-title {
-    white-space: nowrap;
-    overflow: hidden;
-    border-right: 2px solid #ff4eb1;
-    width: fit-content;
-    margin: 0 auto;
-    animation: typing 3s steps(30, end), blink 0.75s step-end infinite;
-  }
-  
-  @keyframes typing {
-    from { width: 0 }
-    to { width: 20ch }
-  }
-  
-  @keyframes blink {
-    50% { border-color: transparent }
-  }
 
 h1 {
   text-align: center;
@@ -94,6 +65,7 @@ h1 {
   margin-top: 2rem;
   opacity: 0.8;
 }
+
 .retro-window {
     position: absolute;
     width: 280px;
