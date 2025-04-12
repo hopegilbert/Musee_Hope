@@ -158,6 +158,11 @@
       window.location.href = url;
     }
 
+    function toggleDropdown() {
+      const menu = document.getElementById("dropdownMenu");
+      menu.style.display = menu.style.display === "block" ? "none" : "block";
+    }
+
     // Initialize cursor
     const cursor = document.getElementById('cursor');
     cursor.style.display = 'block';
@@ -165,19 +170,8 @@
 
     // Update cursor position
     document.addEventListener('mousemove', (e) => {
-      const cursor = document.getElementById('cursor');
-      
-      // Only show cursor if inside bounds
-      const withinX = e.clientX >= 0 && e.clientX <= window.innerWidth;
-      const withinY = e.clientY >= 0 && e.clientY <= window.innerHeight;
-
-      if (withinX && withinY) {
-        cursor.classList.remove('hidden');
-        cursor.style.left = `${e.clientX}px`;
-        cursor.style.top = `${e.clientY}px`;
-      } else {
-        cursor.classList.add('hidden');
-      }
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
     });
 
     // Show/hide cursor based on mouse position
