@@ -225,11 +225,11 @@ h1 {
   z-index: 9999;
   opacity: 1;
   transition: opacity 0.3s ease;
-  width: 15px;
-  height: 15px;
+  width: 6px;
+  height: 6px;
   background-image: url('images/cursor.png');
   background-size: contain;
-  transform: scale(4.5);
+  transform: scale(1.8);
 }
 
 #cursor.hidden {
@@ -242,7 +242,7 @@ h1 {
   position: absolute;
   width: 1px;
   height: 1px;
-  transform: scale(4.5);
+  transform: scale(1.8);
   transform-origin: center;
   z-index: 999999;
   pointer-events: none;
