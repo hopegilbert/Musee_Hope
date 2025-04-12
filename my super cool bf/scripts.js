@@ -69,10 +69,9 @@ document.addEventListener('DOMContentLoaded', () => {
     cursor.style.display = 'block';
     cursor.style.opacity = '1';
 
-    // Update cursor position
+    // Update cursor position with transform for better performance
     document.addEventListener('mousemove', (e) => {
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
+        cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
     });
 
     // Check if cursor is within viewport bounds
