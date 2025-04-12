@@ -407,3 +407,11 @@ h1 {
     transform: scale(0.5) rotate(90deg);
   }
 }
+
+.glitter-piece {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9997;
+  opacity: 0.7;
+  mix-blend-mode: screen;
+}
