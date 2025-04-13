@@ -5,99 +5,90 @@
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    background-color: #008080;
-    font-family: 'MS Sans Serif', Arial, sans-serif;
-    overflow: hidden;
-}
-
-.paint-window {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #c0c0c0;
-    border: 2px solid #000000;
-    box-shadow: 2px 2px 0 #000000;
-    min-width: 800px;
-    min-height: 600px;
-}
-
-.paint-header {
-    background-color: #000080;
-    color: white;
-    padding: 4px;
+    font-family: 'Tahoma', sans-serif;
+    background-color: #f0f0f0;
+    height: 100vh;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: move;
-    user-select: none;
-}
-
-.paint-title {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.paint-icon {
-    width: 16px;
-    height: 16px;
-}
-
-.paint-controls {
-    display: flex;
-    gap: 4px;
-}
-
-.paint-controls button {
-    background: #c0c0c0;
-    border: 1px solid #ffffff;
-    border-right-color: #808080;
-    border-bottom-color: #808080;
-    width: 20px;
-    height: 20px;
-    display: flex;
-    align-items: center;
     justify-content: center;
-    cursor: pointer;
-    font-family: 'MS Sans Serif', Arial, sans-serif;
-    font-size: 16px;
-    color: #000000;
+    align-items: center;
 }
 
-.paint-controls button:active {
-    border: 1px solid #808080;
-    border-right-color: #ffffff;
-    border-bottom-color: #ffffff;
+.paint-container {
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.paint-toolbar {
+.toolbar {
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #ccc;
     padding: 4px;
-    border-bottom: 2px solid #808080;
     display: flex;
     flex-direction: column;
     gap: 4px;
 }
 
-.toolbar-buttons {
-    display: flex;
-    gap: 2px;
+.top-toolbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #c0c0c8;
+    padding: 4px;
+    border-bottom: 1px solid #808080;
+    z-index: 1000;
 }
 
-.paint-tool {
-    background: #c0c0c0;
-    border: 1px solid #ffffff;
+.toolbar-buttons {
+    display: flex;
+    gap: 4px;
+}
+
+.toolbar-buttons button {
+    background: #c0c0c8;
+    border: 1px solid #fff;
     border-right-color: #808080;
     border-bottom-color: #808080;
-    width: 24px;
-    height: 24px;
+    padding: 4px;
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
+}
+
+.toolbar-buttons button:hover {
+    background: #d4d0c8;
+}
+
+.toolbar-buttons button:active {
+    border: 1px solid #808080;
+    border-right-color: #fff;
+    border-bottom-color: #fff;
+}
+
+.toolbar-buttons img {
+    width: 16px;
+    height: 16px;
+}
+
+.paint-tool {
+    background: none;
+    border: 1px solid transparent;
     padding: 2px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.paint-tool:hover {
+    background-color: #e0e0e0;
+    border: 1px solid #ccc;
+}
+
+.paint-tool.active {
+    background-color: #c0c0c0;
+    border: 1px solid #808080;
 }
 
 .paint-tool img {
@@ -105,54 +96,26 @@ body {
     height: 16px;
 }
 
-.paint-tool:hover {
-    background: #d4d0c8;
-}
-
-.paint-tool:active {
-    border: 1px solid #808080;
-    border-right-color: #ffffff;
-    border-bottom-color: #ffffff;
-}
-
-.paint-tool.active {
-    background: #d4d0c8;
-    border: 1px solid #808080;
-    border-right-color: #ffffff;
-    border-bottom-color: #ffffff;
-}
-
-.color-picker {
+.color-palette {
     display: flex;
+    flex-wrap: wrap;
     gap: 2px;
     padding: 4px;
-    background: #c0c0c0;
-    border: 1px solid #808080;
-    border-right-color: #ffffff;
-    border-bottom-color: #ffffff;
 }
 
 .color-box {
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
     border: 1px solid #808080;
     cursor: pointer;
 }
 
 .color-box:hover {
-    border: 1px solid #000000;
-}
-
-.paint-canvas-container {
-    padding: 4px;
-    background: #ffffff;
-    margin: 4px;
-    border: 1px solid #808080;
-    border-right-color: #ffffff;
-    border-bottom-color: #ffffff;
+    border: 1px solid #000;
 }
 
 #paintCanvas {
-    background: #ffffff;
+    background-color: white;
+    display: block;
     cursor: crosshair;
 }
