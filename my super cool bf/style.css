@@ -790,7 +790,7 @@ h1 {
   color: #4b0e29;
 }
 
-.tab:hover .dropdown-content {
+.tab.dropdown:hover .dropdown-content {
   display: block;
 }
 
