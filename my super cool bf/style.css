@@ -64,26 +64,28 @@ body {
     display: flex;
     flex-wrap: nowrap;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
     overflow-x: auto;
     gap: 12px;
     padding: 6px 10px;
     white-space: nowrap;
-    -webkit-overflow-scrolling: touch;
   }
 
   .icon-group {
-    height: 32px;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex: 0 0 auto;
+    align-items: flex-start;
+    gap: 4px;
+    padding: 0;
+    margin: 0;
   }
 
   .icon-group img {
     width: 18px;
     height: 18px;
-    padding: 2px;
-    margin: auto;
+    padding: 1px;
+    display: block;
+    margin: 0;
   }
 
   .page-title {
@@ -944,30 +946,28 @@ h1 {
     display: flex;
     flex-wrap: nowrap;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
     overflow-x: auto;
-    gap: 10px;
-    padding: 6px 8px;
+    gap: 12px;
+    padding: 6px 10px;
     white-space: nowrap;
-    -webkit-overflow-scrolling: touch;
   }
 
   .icon-group {
     display: flex;
     flex: 0 0 auto;
+    align-items: flex-start;
     gap: 4px;
-    align-items: center;
-    min-width: 0;
     padding: 0;
     margin: 0;
-    justify-content: center;
   }
 
   .icon-group img {
-    width: 16px;
-    height: 16px;
-    padding: 2px;
-    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    padding: 1px;
+    display: block;
+    margin: 0;
   }
 
   .draggable-window {
@@ -1054,29 +1054,27 @@ h1 {
     display: flex;
     flex-wrap: nowrap;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
     overflow-x: auto;
-    gap: 10px;
-    padding: 6px 8px;
+    gap: 12px;
+    padding: 6px 10px;
     white-space: nowrap;
-    -webkit-overflow-scrolling: touch;
   }
 
   .icon-group {
     display: flex;
     flex: 0 0 auto;
+    align-items: flex-start;
     gap: 4px;
-    align-items: center;
-    min-width: 0;
     padding: 0;
     margin: 0;
-    justify-content: center;
   }
 
   .icon-group img {
-    width: 16px;
-    height: 16px;
-    padding: 2px;
-    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    padding: 1px;
+    display: block;
+    margin: 0;
   }
 }
