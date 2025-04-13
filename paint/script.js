@@ -56,6 +56,13 @@ document.addEventListener('DOMContentLoaded', () => {
     isDrawing = true;
     const pos = getMousePos(e);
     
+    if (currentTool === 'fill') {
+        floodFill(Math.round(pos.x), Math.round(pos.y), currentColor);
+        isDrawing = false;
+        saveState();
+        return;
+    }
+    
     if (['rectangle', 'ellipse', 'line'].includes(currentTool)) {
         startX = pos.x;
         startY = pos.y;
@@ -116,6 +123,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const pos = getMousePos(e);
     
     switch(currentTool) {
+        case 'fill':
+            floodFill(Math.round(pos.x), Math.round(pos.y), currentColor);
+            isDrawing = false;  // Fill only needs one click
+            saveState();
+            break;
+            
         case 'spray':
             drawSpray(pos.x, pos.y);
             break;
@@ -191,11 +204,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   
   function drawSpray(x, y) {
-    const density = 50;
-    const radius = 10;
+    const density = 50;  // Number of particles
+    const radius = brushSize * 2;  // Spray radius based on brush size
     
-    mainCtx.globalCompositeOperation = 'source-over';
-    mainCtx.fillStyle = currentColor;
+    tempCtx.fillStyle = currentColor;
     
     for (let i = 0; i < density; i++) {
       const angle = Math.random() * Math.PI * 2;
@@ -203,10 +215,15 @@ document.addEventListener('DOMContentLoaded', () => {
       const dx = x + r * Math.cos(angle);
       const dy = y + r * Math.sin(angle);
       
-      mainCtx.beginPath();
-      mainCtx.arc(dx, dy, 0.5, 0, Math.PI * 2);
-      mainCtx.fill();
+      tempCtx.beginPath();
+      tempCtx.arc(dx, dy, 0.5, 0, Math.PI * 2);
+      tempCtx.fill();
     }
+    
+    // Update main canvas
+    mainCtx.fillStyle = '#FFFFFF';
+    mainCtx.fillRect(0, 0, mainCanvas.width, mainCanvas.height);
+    mainCtx.drawImage(tempCanvas, 0, 0);
   }
   
   function stopDrawing() {
@@ -393,55 +410,103 @@ document.addEventListener('DOMContentLoaded', () => {
   let initialY;
   let xOffset = 0;
   let yOffset = 0;
-  
-  paintHeader.addEventListener("mousedown", dragStart);
-  document.addEventListener("mousemove", drag);
-  document.addEventListener("mouseup", dragEnd);
-  
-  function dragStart(e) {
-    initialX = e.clientX - xOffset;
-    initialY = e.clientY - yOffset;
 
-    if (e.target === paintHeader) {
-      isDragging = true;
+  function getWindowBoundaries() {
+    const screenWidth = window.innerWidth;
+    const screenHeight = window.innerHeight;
+    const paintWindow = document.querySelector('.paint-window');
+    const windowWidth = paintWindow.offsetWidth;
+    const windowHeight = paintWindow.offsetHeight;
+    
+    return {
+      minX: 0,
+      maxX: screenWidth - windowWidth,
+      minY: 0,
+      maxY: screenHeight - windowHeight
+    };
+  }
+
+  function setTranslate(element, pos) {
+    const boundaries = getWindowBoundaries();
+    const x = Math.min(Math.max(pos.x, boundaries.minX), boundaries.maxX);
+    const y = Math.min(Math.max(pos.y, boundaries.minY), boundaries.maxY);
+    
+    if (window.innerWidth <= 768) {
+      // On mobile, only allow vertical movement
+      element.style.top = `${y}px`;
+    } else {
+      element.style.transform = `translate(${x}px, ${y}px)`;
     }
   }
-  
+
+  function dragStart(e) {
+    if (e.type === "touchstart") {
+      initialX = e.touches[0].clientX - xOffset;
+      initialY = e.touches[0].clientY - yOffset;
+    } else {
+      initialX = e.clientX - xOffset;
+      initialY = e.clientY - yOffset;
+    }
+
+    const clickedElement = e.target;
+    if (clickedElement.closest('.paint-header')) {
+      isDragging = true;
+      document.querySelector('.paint-window').classList.add('dragging');
+    }
+  }
+
   function drag(e) {
     if (isDragging) {
       e.preventDefault();
-      currentX = e.clientX - initialX;
-      currentY = e.clientY - initialY;
+      
+      if (e.type === "touchmove") {
+        currentX = e.touches[0].clientX - initialX;
+        currentY = e.touches[0].clientY - initialY;
+      } else {
+        currentX = e.clientX - initialX;
+        currentY = e.clientY - initialY;
+      }
 
       xOffset = currentX;
       yOffset = currentY;
 
-      setTranslate(currentX, currentY, paintWindow);
+      setTranslate(document.querySelector('.paint-window'), { x: currentX, y: currentY });
     }
   }
-  
-  function setTranslate(xPos, yPos, el) {
-    // Get toolbar height based on screen size
-    const toolbarHeight = window.innerWidth <= 768 ? 120 : 92;
-    
-    // Get window boundaries
-    const maxX = window.innerWidth - el.offsetWidth;
-    const maxY = window.innerHeight - el.offsetHeight;
-    
-    // Constrain position
-    xPos = Math.max(0, Math.min(xPos, maxX));
-    yPos = Math.max(toolbarHeight, Math.min(yPos, maxY));
-    
-    el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
-    el.classList.toggle('dragging', isDragging);
-  }
-  
-  function dragEnd(e) {
-    initialX = currentX;
-    initialY = currentY;
+
+  function dragEnd() {
     isDragging = false;
+    document.querySelector('.paint-window').classList.remove('dragging');
   }
-  
+
+  // Add event listeners for both mouse and touch events
+  document.addEventListener('touchstart', dragStart, { passive: false });
+  document.addEventListener('touchend', dragEnd, { passive: false });
+  document.addEventListener('touchmove', drag, { passive: false });
+
+  document.addEventListener('mousedown', dragStart);
+  document.addEventListener('mouseup', dragEnd);
+  document.addEventListener('mousemove', drag);
+
+  // Handle window resize
+  window.addEventListener('resize', () => {
+    const paintWindow = document.querySelector('.paint-window');
+    const boundaries = getWindowBoundaries();
+    
+    // Ensure window stays within boundaries after resize
+    setTranslate(paintWindow, { x: xOffset, y: yOffset });
+  });
+
+  // Set initial position
+  window.addEventListener('load', () => {
+    const paintWindow = document.querySelector('.paint-window');
+    if (window.innerWidth <= 768) {
+      paintWindow.style.top = '80px';
+    } else {
+      paintWindow.style.transform = 'translate(20px, 20px)';
+    }
+  });
+
   // Touch handling for drawing
   function handleTouchStart(e) {
     e.preventDefault();
@@ -508,7 +573,7 @@ document.addEventListener('DOMContentLoaded', () => {
     currentY = touch.clientY - initialY;
     xOffset = currentX;
     yOffset = currentY;
-    setTranslate(currentX, currentY, paintWindow);
+    setTranslate(document.querySelector('.paint-window'), { x: currentX, y: currentY });
   }
 
   function handleWindowTouchEnd(e) {
@@ -612,7 +677,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (sprayBtn) {
     sprayBtn.addEventListener('click', () => {
       setActiveTool('sprayBtn', 'spray');
-      brushSize = 1;
+      brushSize = 10;  // Larger default size for spray
     });
   }
 
@@ -650,5 +715,64 @@ document.addEventListener('DOMContentLoaded', () => {
         eraserBtn.classList.add('active');
       }
     });
+  }
+
+  // Add fill tool function
+  function floodFill(startX, startY, fillColor) {
+    const imageData = tempCtx.getImageData(0, 0, tempCanvas.width, tempCanvas.height);
+    const pixels = imageData.data;
+    
+    // Get the color we're filling
+    const startPos = (startY * tempCanvas.width + startX) * 4;
+    const startR = pixels[startPos];
+    const startG = pixels[startPos + 1];
+    const startB = pixels[startPos + 2];
+    const startA = pixels[startPos + 3];
+    
+    // Convert fill color from string to RGBA
+    const fillStyle = tempCtx.fillStyle;
+    tempCtx.fillStyle = fillColor;
+    const dummyCanvas = document.createElement('canvas');
+    const dummyCtx = dummyCanvas.getContext('2d');
+    dummyCtx.fillStyle = fillColor;
+    dummyCtx.fillRect(0, 0, 1, 1);
+    const fillRGBA = dummyCtx.getImageData(0, 0, 1, 1).data;
+    tempCtx.fillStyle = fillStyle;
+    
+    // Check if we're trying to fill with the same color
+    if (startR === fillRGBA[0] && startG === fillRGBA[1] && 
+        startB === fillRGBA[2] && startA === fillRGBA[3]) {
+      return;
+    }
+    
+    // Queue for flood fill
+    const queue = [[startX, startY]];
+    
+    while (queue.length > 0) {
+      const [x, y] = queue.pop();
+      const pos = (y * tempCanvas.width + x) * 4;
+      
+      // Check if this pixel should be filled
+      if (x < 0 || x >= tempCanvas.width || y < 0 || y >= tempCanvas.height ||
+          pixels[pos] !== startR || pixels[pos + 1] !== startG ||
+          pixels[pos + 2] !== startB || pixels[pos + 3] !== startA) {
+        continue;
+      }
+      
+      // Fill the pixel
+      pixels[pos] = fillRGBA[0];
+      pixels[pos + 1] = fillRGBA[1];
+      pixels[pos + 2] = fillRGBA[2];
+      pixels[pos + 3] = fillRGBA[3];
+      
+      // Add adjacent pixels to queue
+      queue.push([x + 1, y], [x - 1, y], [x, y + 1], [x, y - 1]);
+    }
+    
+    // Update the canvas with filled area
+    tempCtx.putImageData(imageData, 0, 0);
+    mainCtx.fillStyle = '#FFFFFF';
+    mainCtx.fillRect(0, 0, mainCanvas.width, mainCanvas.height);
+    mainCtx.drawImage(tempCanvas, 0, 0);
   }
 }); 

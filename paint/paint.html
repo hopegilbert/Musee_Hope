@@ -19,6 +19,8 @@
             right: 20px;
             display: flex;
             flex-direction: column;
+            transform: translate3d(0, 0, 0);
+            transition: none;
         }
 
         .paint-header {
@@ -226,6 +228,48 @@
             border-right-color: #808080;
             border-bottom-color: #808080;
         }
+
+        @media (max-width: 768px) {
+            .paint-window {
+                width: 95vw;
+                height: 80vh;
+                top: 120px;
+                right: 2.5vw;
+                transform: none !important;
+            }
+
+            .paint-canvas-container {
+                min-width: auto;
+            }
+
+            .paint-canvas {
+                width: 100%;
+                height: 100%;
+            }
+
+            .paint-toolbar {
+                width: 36px;
+            }
+
+            .paint-tool {
+                width: 28px;
+                height: 28px;
+            }
+
+            .paint-items {
+                width: 50px;
+            }
+
+            .paint-item {
+                width: 42px;
+                height: 42px;
+            }
+
+            .paint-colors {
+                grid-template-columns: repeat(7, 16px);
+                grid-template-rows: repeat(4, 16px);
+            }
+        }
     </style>
 </head>
 <body>
@@ -260,6 +304,9 @@
                 <button id="eraserBtn" title="Eraser">
                     <img src="./images/eraser.png" alt="Eraser">
                 </button>
+                <button id="fillBtn" title="Fill">
+                    <img src="./images/fill.png" alt="Fill">
+                </button>
                 <button id="rectangleBtn" title="Rectangle">
                     <img src="./images/rectangle.png" alt="Rectangle">
                 </button>
@@ -273,7 +320,7 @@
                     <img src="./images/text.png" alt="Text">
                 </button>
                 <button id="sprayBtn" title="Spray">
-                    <img src="./images/spray.png" alt="Spray">
+                    <img src="./images/spray-can.png" alt="Spray">
                 </button>
                 <button id="undoBtn" title="Undo (Ctrl+Z)">
                     <img src="./images/undo.png" alt="Undo">
@@ -310,7 +357,7 @@
                     <img src="./images/eraser.png" alt="Eraser" width="16" height="16">
                 </div>
                 <div class="paint-tool" title="Spray Can">
-                    <img src="./images/spray-can.png" alt="Spray Can" width="16" height="16">
+                    <img src="./images/spray-can.png" alt="Spray" width="16" height="16">
                 </div>
                 <div class="paint-tool" title="Fill">
                     <img src="./images/fill.png" alt="Fill" width="16" height="16">
