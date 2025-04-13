@@ -567,10 +567,10 @@ h1 {
   flex-wrap: wrap;
   gap: 1rem;
   margin: 0;
+  padding: 0;
   background-color: #fff0f7;
   justify-content: flex-start;
   align-items: flex-start;
-  padding: 0;
 }
 
 .icon-group {
@@ -947,7 +947,11 @@ h1 {
 }
 
 .toolbar-inner {
-  padding: 0 12px;
-  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
   width: 100%;
+  max-width: 100%;
+  padding-left: 12px;
+  padding-right: 12px;
+  box-sizing: border-box;
 }
