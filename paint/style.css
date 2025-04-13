@@ -336,77 +336,18 @@ body {
     box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
     font-family: 'Tahoma', sans-serif;
     z-index: 900;
-    top: 92px; /* Match toolbar height */
-    right: 20px;
     display: flex;
     flex-direction: column;
-    min-width: 300px; /* Minimum width for usability */
-    min-height: 400px; /* Minimum height for usability */
-    max-width: calc(100vw - 40px); /* Maximum width with margins */
-    max-height: calc(100vh - 112px); /* Maximum height accounting for toolbar */
-    transition: transform 0.1s ease-out;
-    touch-action: none;
-    will-change: transform;
+    transform: translate3d(0, 0, 0);
+    transition: none;
 }
 
-/* Mobile styles */
 @media (max-width: 768px) {
     .paint-window {
-        transition: top 0.1s ease-out;
-        right: 2.5vw !important;
         width: 95vw;
         height: 80vh;
         transform: none !important;
     }
-    
-    .paint-window.dragging {
-        transition: none;
-    }
-    
-    .paint-canvas-container {
-        height: calc(80vh - 120px);
-    }
-    
-    .paint-canvas {
-        max-width: 100%;
-        max-height: 100%;
-    }
-
-    .paint-toolbar {
-        width: 36px;
-        padding: 2px;
-    }
-
-    .paint-tool {
-        width: 28px;
-        height: 28px;
-    }
-
-    .paint-items {
-        width: 40px;
-    }
-
-    .paint-item {
-        width: 36px;
-        height: 36px;
-    }
-
-    .paint-colors {
-        grid-template-columns: repeat(7, 14px);
-        grid-template-rows: repeat(4, 14px);
-        padding: 1px 2px;
-    }
-
-    .color-box {
-        width: 14px;
-        height: 14px;
-    }
-}
-
-/* Ensure the window doesn't go above the toolbar */
-.paint-window.dragging {
-    transition: none;
-    cursor: grabbing;
 }
 
 .paint-header {

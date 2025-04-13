@@ -831,4 +831,133 @@ document.addEventListener('DOMContentLoaded', () => {
     mainCtx.fillRect(0, 0, mainCanvas.width, mainCanvas.height);
     mainCtx.drawImage(tempCanvas, 0, 0);
   }
+
+  function makeDraggable(element, handle) {
+    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    let isDragging = false;
+    const toolbar = document.querySelector('.toolbar');
+    const toolbarRect = toolbar ? toolbar.getBoundingClientRect() : null;
+
+    handle.addEventListener('mousedown', dragMouseDown);
+    handle.addEventListener('touchstart', dragTouchStart, { passive: false });
+
+    function dragMouseDown(e) {
+        e.preventDefault();
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        isDragging = true;
+        document.addEventListener('mousemove', elementDrag);
+        document.addEventListener('mouseup', closeDragElement);
+    }
+
+    function dragTouchStart(e) {
+        e.preventDefault();
+        const touch = e.touches[0];
+        pos3 = touch.clientX;
+        pos4 = touch.clientY;
+        isDragging = true;
+        document.addEventListener('touchmove', elementTouchDrag, { passive: false });
+        document.addEventListener('touchend', closeTouchDragElement);
+    }
+
+    function elementDrag(e) {
+        if (!isDragging) return;
+        e.preventDefault();
+
+        pos1 = pos3 - e.clientX;
+        pos2 = pos4 - e.clientY;
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+
+        // Get window boundaries
+        const windowWidth = window.innerWidth;
+        const windowHeight = window.innerHeight;
+        const rect = element.getBoundingClientRect();
+
+        // Calculate new position
+        let newTop = element.offsetTop - pos2;
+        let newLeft = element.offsetLeft - pos1;
+
+        // Check toolbar boundary
+        if (toolbarRect) {
+            if (newTop < toolbarRect.bottom) {
+                newTop = toolbarRect.bottom;
+            }
+        }
+
+        // Keep window within viewport bounds
+        if (newLeft < 0) newLeft = 0;
+        if (newTop < 0) newTop = 0;
+        if (newLeft + rect.width > windowWidth) {
+            newLeft = windowWidth - rect.width;
+        }
+        if (newTop + rect.height > windowHeight) {
+            newTop = windowHeight - rect.height;
+        }
+
+        element.style.top = newTop + "px";
+        element.style.left = newLeft + "px";
+    }
+
+    function elementTouchDrag(e) {
+        if (!isDragging) return;
+        e.preventDefault();
+
+        const touch = e.touches[0];
+        pos1 = pos3 - touch.clientX;
+        pos2 = pos4 - touch.clientY;
+        pos3 = touch.clientX;
+        pos4 = touch.clientY;
+
+        // Get window boundaries
+        const windowWidth = window.innerWidth;
+        const windowHeight = window.innerHeight;
+        const rect = element.getBoundingClientRect();
+
+        // Calculate new position
+        let newTop = element.offsetTop - pos2;
+        let newLeft = element.offsetLeft - pos1;
+
+        // Check toolbar boundary
+        if (toolbarRect) {
+            if (newTop < toolbarRect.bottom) {
+                newTop = toolbarRect.bottom;
+            }
+        }
+
+        // Keep window within viewport bounds
+        if (newLeft < 0) newLeft = 0;
+        if (newTop < 0) newTop = 0;
+        if (newLeft + rect.width > windowWidth) {
+            newLeft = windowWidth - rect.width;
+        }
+        if (newTop + rect.height > windowHeight) {
+            newTop = windowHeight - rect.height;
+        }
+
+        element.style.top = newTop + "px";
+        element.style.left = newLeft + "px";
+    }
+
+    function closeDragElement() {
+        isDragging = false;
+        document.removeEventListener('mousemove', elementDrag);
+        document.removeEventListener('mouseup', closeDragElement);
+    }
+
+    function closeTouchDragElement() {
+        isDragging = false;
+        document.removeEventListener('touchmove', elementTouchDrag);
+        document.removeEventListener('touchend', closeTouchDragElement);
+    }
+  }
+
+  // Initialize draggable window
+  document.addEventListener('DOMContentLoaded', function() {
+    const paintWindow = document.getElementById('paintWindow');
+    const paintHeader = document.getElementById('paintHeader');
+    if (paintWindow && paintHeader) {
+        makeDraggable(paintWindow, paintHeader);
+    }
+  });
 }); 
