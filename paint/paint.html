@@ -8,8 +8,8 @@
     <style>
         .paint-window {
             position: absolute;
-            width: 800px;
-            height: 600px;
+            width: 500px;
+            height: 800px;
             background-color: #f0f0f0;
             border: 2px solid #000;
             box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
@@ -17,6 +17,8 @@
             z-index: 900;
             top: 100px;
             left: 100px;
+            display: flex;
+            flex-direction: column;
         }
 
         .paint-header {
@@ -65,18 +67,25 @@
             background: #d4d0c8;
         }
 
+        .paint-content {
+            display: flex;
+            flex: 1;
+        }
+
         .paint-toolbar {
-            background: #c0c0c0;
+            background: #c0c0c8;
             padding: 4px;
             display: flex;
+            flex-direction: column;
             gap: 4px;
-            border-bottom: 1px solid #808080;
+            border-right: 1px solid #808080;
+            width: 40px;
         }
 
         .paint-tool {
-            width: 24px;
-            height: 24px;
-            background: #c0c0c0;
+            width: 32px;
+            height: 32px;
+            background: #c0c0c8;
             border: 1px solid #fff;
             border-right-color: #808080;
             border-bottom-color: #808080;
@@ -104,16 +113,18 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            position: relative;
         }
 
         .paint-canvas {
             background: white;
             border: 1px solid #000;
             box-shadow: inset 1px 1px 0 #808080;
+            position: relative;
         }
 
         .paint-status {
-            background: #c0c0c0;
+            background: #c0c0c8;
             padding: 2px 4px;
             font-size: 12px;
             border-top: 1px solid #808080;
@@ -153,38 +164,41 @@
                 <div class="paint-btn">×</div>
             </div>
         </div>
-        <div class="paint-toolbar">
-            <div class="paint-tool" title="Pencil">
-                <img src="images/pencil.png" alt="Pencil" width="16" height="16">
+        <div class="paint-content">
+            <div class="paint-toolbar">
+                <div class="paint-tool" title="Pencil">
+                    <img src="images/pencil.png" alt="Pencil" width="16" height="16">
+                </div>
+                <div class="paint-tool" title="Brush">
+                    <img src="images/brush.png" alt="Brush" width="16" height="16">
+                </div>
+                <div class="paint-tool" title="Eraser">
+                    <img src="images/eraser.png" alt="Eraser" width="16" height="16">
+                </div>
+                <div class="paint-tool" title="Fill">
+                    <img src="images/fill.png" alt="Fill" width="16" height="16">
+                </div>
+                <div class="paint-tool" title="Text">
+                    <img src="images/text.png" alt="Text" width="16" height="16">
+                </div>
+                <div class="paint-tool" title="Line">
+                    <img src="images/line.png" alt="Line" width="16" height="16">
+                </div>
+                <div class="paint-tool" title="Rectangle">
+                    <img src="images/rectangle.png" alt="Rectangle" width="16" height="16">
+                </div>
+                <div class="paint-tool" title="Ellipse">
+                    <img src="images/ellipse.png" alt="Ellipse" width="16" height="16">
+                </div>
             </div>
-            <div class="paint-tool" title="Brush">
-                <img src="images/brush.png" alt="Brush" width="16" height="16">
+            <div class="paint-canvas-container">
+                <canvas class="paint-canvas" id="paintCanvas" width="400" height="600"></canvas>
+                <img src="images/hope.png" alt="Hope" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); max-width: 80%; max-height: 80%;">
             </div>
-            <div class="paint-tool" title="Eraser">
-                <img src="images/eraser.png" alt="Eraser" width="16" height="16">
-            </div>
-            <div class="paint-tool" title="Fill">
-                <img src="images/fill.png" alt="Fill" width="16" height="16">
-            </div>
-            <div class="paint-tool" title="Text">
-                <img src="images/text.png" alt="Text" width="16" height="16">
-            </div>
-            <div class="paint-tool" title="Line">
-                <img src="images/line.png" alt="Line" width="16" height="16">
-            </div>
-            <div class="paint-tool" title="Rectangle">
-                <img src="images/rectangle.png" alt="Rectangle" width="16" height="16">
-            </div>
-            <div class="paint-tool" title="Ellipse">
-                <img src="images/ellipse.png" alt="Ellipse" width="16" height="16">
-            </div>
-        </div>
-        <div class="paint-canvas-container">
-            <canvas class="paint-canvas" id="paintCanvas" width="600" height="400"></canvas>
         </div>
         <div class="paint-status">
             <span>100%</span>
-            <span>600 x 400</span>
+            <span>400 x 600</span>
         </div>
     </div>
 
