@@ -131,8 +131,7 @@
             min-width: 40px;
             max-width: 60px;
             overflow-y: auto;
-            overflow-x: visible;
-            position: relative;
+            overflow-x: hidden;
         }
 
         .paint-tool {
@@ -281,13 +280,14 @@
         }
 
         .color-dropdown {
-            position: fixed;
+            position: absolute;
+            top: 100%;
+            left: 0;
             background: #c0c0c8;
             border: 1px solid #808080;
             padding: 4px;
-            z-index: 99999;
+            z-index: 10000;
             display: none;
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
         }
 
         .menu-item:hover .color-dropdown {
@@ -312,13 +312,14 @@
         }
 
         .color-options {
-            position: fixed;
+            display: none;
+            position: absolute;
+            left: 100%;
+            top: 0;
             background: #c0c0c8;
             border: 1px solid #808080;
             padding: 4px;
-            z-index: 99999;
-            display: none;
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 10000;
         }
 
         .color-option {
@@ -331,8 +332,10 @@
             cursor: pointer;
         }
 
-        .paint-tool:hover .color-dropdown {
-            display: block;
+        .color-dropdown:hover .color-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2px;
         }
 
         @media (max-width: 768px) {
