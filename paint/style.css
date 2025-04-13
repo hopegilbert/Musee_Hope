@@ -186,24 +186,22 @@ body {
     left: 0;
     background: #fff;
     border: 1px solid #999;
-    border-radius: 3px;
-    padding: 4px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    z-index: 1000;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1001;
 }
 
-.color-menu-container:hover .menu-dropdown {
+.menu-dropdown.show {
     display: block;
 }
 
-.color-grid {
+.colour-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 2px;
     width: 120px;
 }
 
-.color-box {
+.colour-box {
     width: 24px;
     height: 24px;
     border: 1px solid #808080;
@@ -211,13 +209,18 @@ body {
     transition: transform 0.1s;
 }
 
-.color-box:hover {
+.colour-box:hover {
     transform: scale(1.1);
     border: 2px solid #000;
 }
 
-.color-box.selected {
+.colour-box.selected {
     border: 2px solid #000;
+}
+
+/* Remove hover-based display */
+.color-menu-container:hover .menu-dropdown {
+    display: none;
 }
 
 .toolbar {
@@ -342,7 +345,7 @@ body {
 /* Touch-specific styles */
 .paint-tool, 
 .toolbar-buttons button,
-.color-box {
+.colour-box {
     touch-action: none;
     -webkit-tap-highlight-color: transparent;
 }
@@ -418,7 +421,7 @@ body {
         padding: 1px 2px;
     }
 
-    .color-box {
+    .colour-box {
         width: 14px;
         height: 14px;
     }
@@ -490,7 +493,7 @@ body {
     display: grid;
 }
 
-.color-menu .color-box {
+.color-menu .colour-box {
     width: 24px;
     height: 24px;
     border: 1px solid #808080;
@@ -498,11 +501,11 @@ body {
     transition: transform 0.1s;
 }
 
-.color-menu .color-box:hover {
+.color-menu .colour-box:hover {
     transform: scale(1.1);
     border: 2px solid #000;
 }
 
-.color-menu .color-box.selected {
+.color-menu .colour-box.selected {
     border: 2px solid #000;
 }
