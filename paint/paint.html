@@ -133,14 +133,15 @@
         }
 
         .paint-colors {
-            background: #ffffff;
-            padding: 4px;
+            background: #c0c0c8;
+            padding: 2px 4px;
             display: grid;
-            grid-template-columns: repeat(14, 1fr);
-            grid-template-rows: repeat(2, 1fr);
-            gap: 1px;
+            grid-template-columns: repeat(14, 16px);
+            grid-template-rows: repeat(2, 16px);
+            gap: 0;
             border-top: 1px solid #808080;
             border-bottom: 1px solid #808080;
+            justify-content: start;
         }
 
         .color-box {
@@ -148,7 +149,6 @@
             height: 16px;
             border: 1px outset #808080;
             cursor: pointer;
-            margin: 0 auto;
         }
 
         .color-box:hover {
