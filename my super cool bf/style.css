@@ -552,12 +552,14 @@ h1 {
   gap: 2rem;
   padding: 10px 16px;
   background-color: #fff0f7;
+  row-gap: 0.5rem;
 }
 
 .icon-group {
   display: flex;
   gap: 8px;
   align-items: center;
+  margin-bottom: 0.25rem;
 }
 
 .icon-group img {
@@ -715,6 +717,15 @@ h1 {
     margin-top: 70px;
     padding: 4rem 1rem 1rem;
   }
+
+  .toolbar-buttons {
+    gap: 1.5rem;
+    padding: 8px 12px;
+  }
+  
+  .icon-group {
+    gap: 6px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -741,5 +752,10 @@ h1 {
   .page-title {
     margin-top: 60px;
     padding: 3rem 1rem 1rem;
+  }
+
+  .toolbar-buttons {
+    gap: 1rem;
+    padding: 6px 10px;
   }
 }
