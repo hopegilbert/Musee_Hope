@@ -45,6 +45,7 @@ body {
     padding: 8rem 1rem 1rem;
     text-shadow: 2px 2px 0 #fff;
     letter-spacing: 4px;
+    margin-top: 120px;
   }
   .page-title {
     white-space: nowrap;
@@ -706,6 +707,11 @@ h1 {
   .window-body {
     font-size: 0.8rem;
   }
+
+  .page-title {
+    margin-top: 100px;
+    padding: 4rem 1rem 1rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -727,5 +733,10 @@ h1 {
     height: 16px;
     font-size: 0.7rem;
     line-height: 14px;
+  }
+
+  .page-title {
+    margin-top: 80px;
+    padding: 3rem 1rem 1rem;
   }
 }
