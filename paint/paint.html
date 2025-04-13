@@ -77,33 +77,41 @@
             padding: 4px;
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: 8px;
             border-right: 1px solid #808080;
-            width: 40px;
+            width: 64px;
         }
 
-        .paint-tool {
-            width: 32px;
-            height: 32px;
-            background: #c0c0c8;
-            border: 1px solid #fff;
-            border-right-color: #808080;
-            border-bottom-color: #808080;
+        .clothing-box {
+            width: 56px;
+            height: 56px;
+            background: #ffffff;
+            border: 1px solid #808080;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
+            padding: 4px;
         }
 
-        .paint-tool:hover {
-            background: #d4d0c8;
+        .clothing-box img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
         }
 
-        .paint-tool.active {
+        .clothing-box:hover {
+            background: #efefef;
+        }
+
+        .clothing-box.active {
             background: #d4d0c8;
             border: 1px solid #808080;
-            border-right-color: #fff;
-            border-bottom-color: #fff;
+        }
+
+        .empty-box {
+            background: #f0f0f0;
+            border: 1px dashed #808080;
         }
 
         .paint-canvas-container {
@@ -199,32 +207,22 @@
         </div>
         <div class="paint-content">
             <div class="paint-toolbar">
-                <div class="paint-tool" title="Pencil">
-                    <img src="images/pencil.png" alt="Pencil" width="16" height="16">
+                <div class="clothing-box" title="Hair Style">
+                    <img src="images/hope-top.png" alt="Hair">
                 </div>
-                <div class="paint-tool" title="Brush">
-                    <img src="images/brush.png" alt="Brush" width="16" height="16">
+                <div class="clothing-box" title="Top">
+                    <img src="images/hope-bottoms.png" alt="Top">
                 </div>
-                <div class="paint-tool" title="Eraser">
-                    <img src="images/eraser.png" alt="Eraser" width="16" height="16">
+                <div class="clothing-box" title="Bag">
+                    <img src="images/hope.png" alt="Bag">
                 </div>
-                <div class="paint-tool" title="Spray Can">
-                    <img src="images/spray-can.png" alt="Spray Can" width="16" height="16">
+                <div class="clothing-box empty-box" title="Empty Slot">
                 </div>
-                <div class="paint-tool" title="Fill">
-                    <img src="images/fill.png" alt="Fill" width="16" height="16">
+                <div class="clothing-box" title="Dress">
+                    <img src="images/hope.png" alt="Dress">
                 </div>
-                <div class="paint-tool" title="Text">
-                    <img src="images/text.png" alt="Text" width="16" height="16">
-                </div>
-                <div class="paint-tool" title="Line">
-                    <img src="images/line.png" alt="Line" width="16" height="16">
-                </div>
-                <div class="paint-tool" title="Rectangle">
-                    <img src="images/rectangle.png" alt="Rectangle" width="16" height="16">
-                </div>
-                <div class="paint-tool" title="Ellipse">
-                    <img src="images/ellipse.png" alt="Ellipse" width="16" height="16">
+                <div class="clothing-box" title="Shoes">
+                    <img src="images/hope.png" alt="Shoes">
                 </div>
             </div>
             <div class="paint-canvas-container">
