@@ -198,66 +198,82 @@ h1 {
     font-size: 0.8rem;
     color: #111;
   }
-  .draggable-window {
-    position: absolute;
-    z-index: 900;
-    min-width: 250px;
-    max-width: 90vw;
-    width: 350px;
-    transition: width 0.3s ease;
-    font-family: 'Tahoma', sans-serif;
-    top: 60px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  
-  .window-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.5rem 0.75rem;
-    background-color: #b92c6d;
-    border-bottom: 2px solid #fff;
-    cursor: move;
-    border-top-left-radius: 6px;
-    border-top-right-radius: 6px;
-    font-family: 'Tahoma', sans-serif;
-  }
-  
-  .window-title {
-    font-weight: bold;
-    color: white;
-    font-family: 'Tahoma', sans-serif;
-    font-size: 0.85rem;
-  }
-  
-  .window-buttons {
-    display: flex;
-    gap: 6px;
-  }
-  
-  .win-btn {
-    width: 20px;
-    height: 20px;
-    background-color: #fce4f3;
-    border: 1px solid #c26d9c;
-    border-radius: 3px;
-    text-align: center;
-    line-height: 18px;
-    font-size: 0.8rem;
-    font-family: 'Tahoma', sans-serif;
-    cursor: pointer;
-    color: #a03d70;
-    box-shadow: inset 0 1px #fff, inset 0 -1px #ccc;
-    transition: background-color 0.2s ease, color 0.2s ease;
-  }
-  
-  .win-btn:hover {
-    background-color: #f6b8d2;
-    color: #721f4e;
-  }
 
- .window-body {
+/* Masonry Grid for Windows */
+.windows-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.draggable-window {
+  position: relative;
+  z-index: 900;
+  min-width: 250px;
+  max-width: 90vw;
+  width: 350px;
+  transition: all 0.3s ease;
+  font-family: 'Tahoma', sans-serif;
+  margin: 0 auto;
+  break-inside: avoid;
+}
+
+.draggable-window.masonry-item {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.window-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  background-color: #b92c6d;
+  border-bottom: 2px solid #fff;
+  cursor: move;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  font-family: 'Tahoma', sans-serif;
+}
+
+.window-title {
+  font-weight: bold;
+  color: white;
+  font-family: 'Tahoma', sans-serif;
+  font-size: 0.85rem;
+}
+
+.window-buttons {
+  display: flex;
+  gap: 6px;
+}
+
+.win-btn {
+  width: 20px;
+  height: 20px;
+  background-color: #fce4f3;
+  border: 1px solid #c26d9c;
+  border-radius: 3px;
+  text-align: center;
+  line-height: 18px;
+  font-size: 0.8rem;
+  font-family: 'Tahoma', sans-serif;
+  cursor: pointer;
+  color: #a03d70;
+  box-shadow: inset 0 1px #fff, inset 0 -1px #ccc;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.win-btn:hover {
+  background-color: #f6b8d2;
+  color: #721f4e;
+}
+
+.window-body {
   padding: 10px;
   background-color: #fef1f7;
   color: #333;
@@ -901,6 +917,12 @@ h1 {
     font-size: 0.6rem;
     padding: 0.4rem;
   }
+
+  .windows-container {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 15px;
+    padding: 15px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -978,6 +1000,12 @@ h1 {
 
   .dropdown-content {
     min-width: 160px;
+  }
+
+  .windows-container {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 10px;
   }
 }
 
