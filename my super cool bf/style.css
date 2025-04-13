@@ -160,6 +160,7 @@ h1 {
     width: 350px;
     transition: width 0.3s ease;
     font-family: 'Tahoma', sans-serif;
+    top: 60px; /* Minimum distance from top to stay below toolbar */
   }
   
   .window-header {

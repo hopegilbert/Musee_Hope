@@ -13,50 +13,61 @@ function navigateTo(url) {
 }
 
 // Draggable window logic
-function makeDraggable(windowElement, handleElement) {
-    let isDragging = false;
-    let offsetX = 0;
-    let offsetY = 0;
+function makeDraggable(element) {
+  let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  const header = element.querySelector('.window-header');
+  
+  if (header) {
+    header.onmousedown = dragMouseDown;
+  }
 
-    function updateWindowPosition(x, y) {
-        const windowWidth = windowElement.offsetWidth;
-        const windowHeight = windowElement.offsetHeight;
-        const maxX = window.innerWidth - windowWidth;
-        const maxY = window.innerHeight - windowHeight;
+  function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // get the mouse cursor position at startup
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    // call a function whenever the cursor moves
+    document.onmousemove = elementDrag;
+  }
 
-        // Ensure window stays within viewport bounds
-        const boundedX = Math.max(0, Math.min(x, maxX));
-        const boundedY = Math.max(0, Math.min(y, maxY));
-
-        windowElement.style.left = `${boundedX}px`;
-        windowElement.style.top = `${boundedY}px`;
+  function elementDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // calculate the new cursor position
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    
+    // calculate the new position
+    let newTop = element.offsetTop - pos2;
+    let newLeft = element.offsetLeft - pos1;
+    
+    // Prevent going above the toolbar (60px from top)
+    if (newTop < 60) {
+      newTop = 60;
     }
+    
+    // Prevent going off-screen
+    const maxTop = window.innerHeight - element.offsetHeight;
+    const maxLeft = window.innerWidth - element.offsetWidth;
+    
+    if (newTop > maxTop) newTop = maxTop;
+    if (newLeft > maxLeft) newLeft = maxLeft;
+    if (newLeft < 0) newLeft = 0;
+    
+    // set the element's new position
+    element.style.top = newTop + "px";
+    element.style.left = newLeft + "px";
+  }
 
-    handleElement.addEventListener('mousedown', (e) => {
-        isDragging = true;
-        offsetX = e.clientX - windowElement.offsetLeft;
-        offsetY = e.clientY - windowElement.offsetTop;
-        windowElement.style.zIndex = 1000; // bring to front
-    });
-
-    document.addEventListener('mousemove', (e) => {
-        if (isDragging) {
-            const x = e.clientX - offsetX;
-            const y = e.clientY - offsetY;
-            updateWindowPosition(x, y);
-        }
-    });
-
-    document.addEventListener('mouseup', () => {
-        isDragging = false;
-    });
-
-    // Handle window resize
-    window.addEventListener('resize', () => {
-        const currentX = parseInt(windowElement.style.left) || 0;
-        const currentY = parseInt(windowElement.style.top) || 0;
-        updateWindowPosition(currentX, currentY);
-    });
+  function closeDragElement() {
+    // stop moving when mouse button is released
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
 }
 
 // Custom cursor and trail effect
@@ -153,8 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize draggable windows
     const windows = document.querySelectorAll('.draggable-window');
     windows.forEach(win => {
-        const handle = win.querySelector('.window-header');
-        if (handle) makeDraggable(win, handle);
+        makeDraggable(win);
     });
 });
 
