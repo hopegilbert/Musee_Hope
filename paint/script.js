@@ -607,31 +607,38 @@ document.addEventListener('DOMContentLoaded', () => {
     // Calculate responsive size based on viewport
     const updateWindowSize = () => {
       const windowWidth = window.innerWidth;
-      const windowHeight = window.innerHeight;
+      const viewportHeight = window.innerHeight;
       
       // Calculate window size (30% of viewport width, max 600px)
       const windowSize = Math.min(windowWidth * 0.3, 600);
+      const paintWindowHeight = windowSize * 1.2; // 20% taller than width
       
       // Set window dimensions
       paintWindow.style.width = windowSize + 'px';
-      paintWindow.style.height = (windowSize * 1.2) + 'px'; // 20% taller than width
+      paintWindow.style.height = paintWindowHeight + 'px';
       
-      // Position window on the right side with padding
-      const rightPadding = Math.min(windowWidth * 0.02, 20); // 2% of viewport width or 20px
-      paintWindow.style.left = (windowWidth - windowSize - rightPadding) + 'px';
-      paintWindow.style.top = (windowHeight * 0.1) + 'px'; // 10% from top
+      // Position window in the center of the screen
+      const leftPosition = (windowWidth - windowSize) / 2;
+      const topPosition = (viewportHeight - paintWindowHeight) / 2;
+      paintWindow.style.left = leftPosition + 'px';
+      paintWindow.style.top = Math.max(toolbarBottom, topPosition) + 'px';
 
       // Update header font size based on window size
-      const headerFontSize = Math.max(12, Math.min(16, windowSize * 0.04)); // Between 12px and 16px
+      const headerFontSize = Math.max(12, Math.min(16, windowSize * 0.04));
       paintHeader.style.fontSize = headerFontSize + 'px';
       
       // Update header padding
-      const headerPadding = Math.max(4, Math.min(8, windowSize * 0.02)); // Between 4px and 8px
+      const headerPadding = Math.max(4, Math.min(8, windowSize * 0.02));
       paintHeader.style.padding = headerPadding + 'px ' + (headerPadding * 2) + 'px';
 
       // Ensure main canvas stays full screen
       setCanvasSize();
     };
+    
+    // Get toolbar height
+    const toolbar = document.querySelector('.main-window');
+    const toolbarRect = toolbar?.getBoundingClientRect();
+    const toolbarBottom = toolbarRect ? toolbarRect.bottom : 0;
     
     // Initial size update
     updateWindowSize();
