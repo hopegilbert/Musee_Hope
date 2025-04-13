@@ -490,7 +490,7 @@ h1 {
 }
 
 .toolbar-tabs .tab {
-  padding: 0;
+  padding: 8px 12px;
   margin: 0;
   font-size: 0.8rem;
   font-weight: bold;
@@ -498,6 +498,15 @@ h1 {
   cursor: pointer;
   border-radius: 0;
   position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.toolbar-tabs .tab img {
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
 }
 
 .toolbar-tabs .tab:hover {
