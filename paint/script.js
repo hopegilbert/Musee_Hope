@@ -251,10 +251,21 @@ document.addEventListener('DOMContentLoaded', () => {
   
   if (eraserBtn) {
     eraserBtn.addEventListener('click', function() {
-      currentTool = 'eraser';
-      mainCanvas.style.cursor = 'cell';
-      document.querySelectorAll('.paint-tool').forEach(t => t.classList.remove('active'));
-      document.querySelector('.paint-tool[title="Eraser"]').classList.add('active');
+      if (currentTool === 'eraser') {
+        // Switch back to pencil
+        currentTool = 'pencil';
+        mainCanvas.style.cursor = 'crosshair';
+        document.querySelectorAll('.paint-tool').forEach(t => t.classList.remove('active'));
+        document.querySelector('.paint-tool[title="Pencil"]').classList.add('active');
+        eraserBtn.classList.remove('active');
+      } else {
+        // Switch to eraser
+        currentTool = 'eraser';
+        mainCanvas.style.cursor = 'cell';
+        document.querySelectorAll('.paint-tool').forEach(t => t.classList.remove('active'));
+        document.querySelector('.paint-tool[title="Eraser"]').classList.add('active');
+        eraserBtn.classList.add('active');
+      }
     });
   }
   
