@@ -513,7 +513,7 @@ h1 {
 }
 
 .toolbar-tabs .tab {
-  padding: 6px 12px;
+  padding: 0 12px;
   margin: 0;
   font-size: 0.8rem;
   font-weight: bold;
@@ -526,10 +526,11 @@ h1 {
   justify-content: center;
   gap: 6px;
   height: 32px;
-  line-height: 1;
+  line-height: 32px;
   white-space: nowrap;
   flex-shrink: 0;
   min-width: fit-content;
+  box-sizing: border-box;
 }
 
 .toolbar-tabs .tab:hover {
@@ -548,9 +549,10 @@ h1 {
 
 @media screen and (max-width: 768px) {
   .toolbar-tabs .tab {
-    padding: 6px 8px;
+    padding: 0 8px;
     margin: 0;
     height: 32px;
+    line-height: 32px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -567,9 +569,10 @@ h1 {
 
 @media screen and (max-width: 480px) {
   .toolbar-tabs .tab {
-    padding: 6px 8px;
+    padding: 0 8px;
     margin: 0;
     height: 32px;
+    line-height: 32px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
