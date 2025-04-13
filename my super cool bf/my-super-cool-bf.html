@@ -42,7 +42,7 @@
         <div class="tab">References</div>
         <div class="tab">Mailings</div>
         <div class="tab">Review</div>
-        <div class="tab dropdown">
+        <div class="tab dropdown" onclick="toggleDropdown(event)">
           <div class="dropdown-toggle">View</div>
           <div class="dropdown-content">
             <div onclick="navigateTo('../my super cool bf/my-super-cool-bf.html')">My Super Cool BF</div>
@@ -159,10 +159,22 @@
       window.location.href = url;
     }
 
-    function toggleDropdown() {
-      const menu = document.getElementById("dropdownMenu");
-      menu.style.display = menu.style.display === "block" ? "none" : "block";
+    function toggleDropdown(event) {
+      event.stopPropagation(); // Prevent event from bubbling up
+      const dropdown = event.currentTarget;
+      const content = dropdown.querySelector('.dropdown-content');
+      content.style.display = content.style.display === 'block' ? 'none' : 'block';
     }
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(event) {
+      const dropdowns = document.querySelectorAll('.dropdown-content');
+      dropdowns.forEach(dropdown => {
+        if (!event.target.closest('.tab.dropdown')) {
+          dropdown.style.display = 'none';
+        }
+      });
+    });
 
     function checkOverlap(newGif, existingGifs) {
       const newRect = newGif.getBoundingClientRect();
