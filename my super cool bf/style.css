@@ -790,6 +790,12 @@ h1 {
   color: #4b0e29;
 }
 
+.tab:hover {
+  background-color: #ffc0cb;
+  color: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
 .tab.dropdown:hover .dropdown-content {
   display: block;
 }
