@@ -916,7 +916,7 @@ h1 {
   background: none !important;
   border: none !important;
   box-shadow: none !important;
-  z-index: 2147483648;
+  z-index: 2147483647;
 }
 
 .tab.dropdown .dropdown-toggle {
@@ -961,19 +961,17 @@ h1 {
 
 .dropdown-content {
   display: none;
-  position: fixed;
-  top: 0;
+  position: absolute;
+  top: 110%;
   left: 0;
   min-width: 200px;
   background-color: #f5e8c7;
   border-radius: 12px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-  z-index: 2147483648;
+  z-index: 2147483647;
   pointer-events: auto;
   border: 2px solid #b92c6d;
   overflow: hidden;
-  transform: translate(0, 0);
-  will-change: transform;
 }
 
 .dropdown-content div {
