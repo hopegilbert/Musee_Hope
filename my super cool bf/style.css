@@ -218,57 +218,29 @@ h1 {
 
 #cursor {
   position: fixed;
-  top: 0;
+  width: 23px; /* actual image size */
+  height: 42px;
+  background: url('images/pink-cursor.png') no-repeat top left;
+  background-size: contain;
+  pointer-events: none;
+  z-index: 2147483647;
+  opacity: 1;
   left: 0;
-  width: 20px;
-  height: 20px;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  z-index: 999999;
-  will-change: transform;
-  transition: transform 0.05s ease;
-}
-
-#cursor::after {
-  content: '';
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  transform: scale(5);
-  transform-origin: center;
-  left: -7px;
-  top: -11px;
-  z-index: 999999;
-  pointer-events: none;
-  box-shadow: 0 0 2px #fff, 0 0 4px #ffc0ff, 0 0 6px #ffb3ff, 0 0 8px #ffa6ff;
+  top: 0;
 }
 
 .cursor-hidden {
   opacity: 0;
-  visibility: hidden;
 }
 
-/* Ensure no other elements can override cursor visibility */
-html, body {
-  cursor: none !important;
+/* Remove the old cursor styles */
+#cursor::after {
+  display: none;
 }
 
-/* Make sure the cursor stays on top of all other elements */
-#cursor {
-  z-index: 2147483647; /* Maximum z-index value */
-}
-
-/* Sparkle dots */
+/* Remove sparkle styles since we're using an image cursor */
 .sparkle {
-  position: fixed;
-  width: 6px;
-  height: 6px;
-  background: radial-gradient(circle, #fff 0%, #ffc0ff 70%);
-  border-radius: 50%;
-  pointer-events: none;
-  opacity: 0;
-  z-index: 99999;
-  will-change: transform, opacity;
+  display: none;
 }
 
 /* Glitter trail effect */
