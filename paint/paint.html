@@ -229,16 +229,16 @@
     </style>
 </head>
 <body>
-    <div class="paint-window" id="paintWindow">
-        <div class="paint-header" id="paintHeader">
-            <div class="paint-title">
-                <img src="./images/hope.png" alt="Paint">
+    <div class="main-window">
+        <div class="title-bar">
+            <div class="title-bar-text">
+                <img src="./images/hope.png" alt="Paint" class="title-icon">
                 untitled - Paint
             </div>
-            <div class="paint-buttons">
-                <div class="paint-btn">_</div>
-                <div class="paint-btn">□</div>
-                <div class="paint-btn">×</div>
+            <div class="title-bar-controls">
+                <button aria-label="Minimize">_</button>
+                <button aria-label="Maximize">□</button>
+                <button aria-label="Close">×</button>
             </div>
         </div>
         <div class="menu-bar">
@@ -249,16 +249,33 @@
             <div class="menu-item">Colors</div>
             <div class="menu-item">Help</div>
         </div>
-        <div class="toolbar-buttons">
-            <button id="undoBtn" title="Undo (Ctrl+Z)">
-                <img src="./images/undo.png" alt="Undo">
-            </button>
-            <button id="redoBtn" title="Redo (Ctrl+Y)">
-                <img src="./images/redo.png" alt="Redo">
-            </button>
-            <button id="eraserBtn" title="Eraser">
-                <img src="./images/eraser.png" alt="Eraser">
-            </button>
+        <div class="toolbar">
+            <div class="toolbar-buttons">
+                <button id="undoBtn" title="Undo (Ctrl+Z)">
+                    <img src="./images/undo.png" alt="Undo">
+                </button>
+                <button id="redoBtn" title="Redo (Ctrl+Y)">
+                    <img src="./images/redo.png" alt="Redo">
+                </button>
+                <button id="eraserBtn" title="Eraser">
+                    <img src="./images/eraser.png" alt="Eraser">
+                </button>
+            </div>
+        </div>
+    </div>
+    <canvas id="mainCanvas" class="main-canvas"></canvas>
+    
+    <div class="paint-window" id="paintWindow">
+        <div class="paint-header" id="paintHeader">
+            <div class="paint-title">
+                <img src="./images/hope.png" alt="Paint">
+                Untitled - Paint
+            </div>
+            <div class="paint-buttons">
+                <div class="paint-btn">_</div>
+                <div class="paint-btn">□</div>
+                <div class="paint-btn">×</div>
+            </div>
         </div>
         <div class="paint-content">
             <div class="paint-toolbar">
