@@ -68,7 +68,7 @@ body {
   }
 
   .icon-group {
-    flex: 0 0 auto;
+    flex: 0 0 calc(50% - 6px);
     display: flex;
     gap: 4px;
     flex-wrap: wrap;
@@ -839,7 +839,7 @@ h1 {
   }
 
   .icon-group {
-    flex: 0 0 auto;
+    flex: 0 0 calc(50% - 6px);
     display: flex;
     gap: 4px;
     flex-wrap: wrap;
@@ -897,7 +897,7 @@ h1 {
   }
 
   .icon-group {
-    flex: 0 0 auto;
+    flex: 0 0 calc(50% - 6px);
     display: flex;
     gap: 4px;
     flex-wrap: wrap;
