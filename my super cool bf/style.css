@@ -624,24 +624,31 @@ h1 {
   color: #4b0082;
   font-weight: bold;
   font-size: 0.8rem;
-  font-family: 'Tahoma', sans-serif;
-  background-color: #fff0f7;
-  border: 1px solid #d9b0c8;
-  border-radius: 3px;
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
-  transition: all 0.2s ease;
-  display: flex;
-  align-items: center;
-  gap: 4px;
+  border: none;
+  background: none;
+  position: relative;
   white-space: nowrap;
   flex-shrink: 0;
 }
 
 .toolbar-tabs .tab:hover {
-  background-color: #f9c9dd;
-  color: #4b0e29;
-  border-radius: 4px;
-  margin: 0;
+  background-color: #ffe2ee;
+  color: #b92c6d;
+}
+
+.toolbar-tabs .tab.active {
+  background-color: #ffe2ee;
+  color: #b92c6d;
+}
+
+.toolbar-tabs .tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: #b92c6d;
 }
 
 .toolbar-tabs .tab img {
