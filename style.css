@@ -192,49 +192,68 @@ img {
 .dropdown-wrapper {
   position: relative;
   display: inline-block;
-  pointer-events: auto;
   width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
 }
 
 .dropdown-toggle {
   width: 100%;
-  padding: 0.6rem 1rem;
-  font-family: 'Playfair Display', serif;
+  padding: 12px 20px;
+  background-color: #ffe2ee;
+  border: 2px solid #c26d9c;
+  border-radius: 8px;
+  color: #4b0082;
+  font-family: 'Tahoma', sans-serif;
+  font-weight: bold;
   font-size: 0.9rem;
-  background-color: #f5e8c7;
-  color: #821818;
-  border: none;
-  border-radius: 999px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   cursor: pointer;
-  text-align: center;
-  z-index: 2;
-  position: relative;
+  text-align: left;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+.dropdown-toggle:hover {
+  background-color: #f9c9dd;
+  color: #b92c6d;
 }
 
 .dropdown-menu {
   display: none;
   position: absolute;
-  top: 110%;
+  top: 100%;
   left: 0;
   width: 100%;
-  background-color: #f5e8c7;
-  border-radius: 12px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-  z-index: 1;
-  pointer-events: auto;
+  background-color: #fef1f7;
+  border: 1px solid #c26d9c;
+  border-radius: 4px;
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+  z-index: 99999;
+  margin-top: 4px;
 }
 
 .dropdown-menu div {
-  padding: 0.75rem 1rem;
-  font-family: 'Lora', serif;
-  font-size: 0.95rem;
+  padding: 8px 12px;
+  color: #6b1a3b;
+  font-family: 'Tahoma', sans-serif;
+  font-size: 0.8rem;
   cursor: pointer;
-  color: #821818;
+  border-bottom: 1px solid #e5b3cc;
+  transition: all 0.2s ease;
+}
+
+.dropdown-menu div:last-child {
+  border-bottom: none;
 }
 
 .dropdown-menu div:hover {
-  background-color: #dbc692;
+  background-color: #f9c9dd;
+  color: #4b0e29;
+}
+
+/* Show dropdown menu when active */
+.dropdown-menu.active {
+  display: block;
 }
 
 .footer-frame {
