@@ -338,8 +338,6 @@ body {
     z-index: 900;
     display: flex;
     flex-direction: column;
-    top: 100px;
-    left: 20px;
 }
 
 .paint-header {
@@ -357,7 +355,6 @@ body {
 
 .paint-window.dragging {
     opacity: 0.9;
-    cursor: move;
 }
 
 @media (max-width: 768px) {
