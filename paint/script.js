@@ -78,6 +78,46 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
     
+    if (currentTool === 'text') {
+      if (textInput) {
+        document.body.removeChild(textInput);
+      }
+      
+      textInput = document.createElement('input');
+      textInput.type = 'text';
+      textInput.style.position = 'fixed';
+      textInput.style.left = e.clientX + 'px';
+      textInput.style.top = e.clientY + 'px';
+      textInput.style.background = 'transparent';
+      textInput.style.border = '1px solid #000';
+      textInput.style.font = '16px Arial';
+      textInput.style.zIndex = '1000';
+      
+      document.body.appendChild(textInput);
+      textInput.focus();
+      
+      textInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+          const text = this.value;
+          const rect = mainCanvas.getBoundingClientRect();
+          const x = pos.x;
+          const y = pos.y;
+          
+          tempCtx.font = '16px Arial';
+          tempCtx.fillStyle = currentColor;
+          tempCtx.fillText(text, x, y);
+          
+          mainCtx.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
+          mainCtx.drawImage(tempCanvas, 0, 0);
+          
+          document.body.removeChild(this);
+          textInput = null;
+          saveState();
+        }
+      });
+      return;
+    }
+    
     // Copy main canvas to temp canvas when starting shape drawing
     if (['rectangle', 'ellipse', 'line'].includes(currentTool)) {
       tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
@@ -96,17 +136,31 @@ document.addEventListener('DOMContentLoaded', () => {
     switch(currentTool) {
       case 'pencil':
       case 'brush':
-      case 'eraser':
         tempCtx.beginPath();
         tempCtx.moveTo(lastX, lastY);
         tempCtx.lineTo(pos.x, pos.y);
-        tempCtx.strokeStyle = currentTool === 'eraser' ? '#FFFFFF' : currentColor;
+        tempCtx.strokeStyle = currentColor;
         tempCtx.lineWidth = brushSize;
         tempCtx.lineCap = 'round';
         tempCtx.lineJoin = 'round';
         tempCtx.stroke();
         
-        // Update main canvas
+        mainCtx.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
+        mainCtx.drawImage(tempCanvas, 0, 0);
+        
+        [lastX, lastY] = [pos.x, pos.y];
+        break;
+        
+      case 'eraser':
+        tempCtx.beginPath();
+        tempCtx.moveTo(lastX, lastY);
+        tempCtx.lineTo(pos.x, pos.y);
+        tempCtx.strokeStyle = '#FFFFFF';
+        tempCtx.lineWidth = brushSize;
+        tempCtx.lineCap = 'round';
+        tempCtx.lineJoin = 'round';
+        tempCtx.stroke();
+        
         mainCtx.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
         mainCtx.drawImage(tempCanvas, 0, 0);
         
@@ -118,47 +172,55 @@ document.addEventListener('DOMContentLoaded', () => {
         break;
         
       case 'rectangle':
-        // Clear temp canvas but keep the previous drawing
+        // Clear temp canvas and restore previous drawing
         tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
         tempCtx.drawImage(mainCanvas, 0, 0);
         
+        // Calculate dimensions
         const width = pos.x - startX;
         const height = pos.y - startY;
+        
+        // Draw new rectangle
+        tempCtx.beginPath();
         tempCtx.strokeStyle = currentColor;
         tempCtx.lineWidth = brushSize;
-        tempCtx.strokeRect(startX, startY, width, height);
+        tempCtx.rect(startX, startY, width, height);
+        tempCtx.stroke();
         
-        // Update main canvas
+        // Update display
         mainCtx.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
         mainCtx.drawImage(tempCanvas, 0, 0);
         break;
         
       case 'ellipse':
-        // Clear temp canvas but keep the previous drawing
+        // Clear temp canvas and restore previous drawing
         tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
         tempCtx.drawImage(mainCanvas, 0, 0);
         
+        // Calculate ellipse parameters
         const radiusX = Math.abs(pos.x - startX) / 2;
         const radiusY = Math.abs(pos.y - startY) / 2;
         const centerX = startX + (pos.x - startX) / 2;
         const centerY = startY + (pos.y - startY) / 2;
         
+        // Draw new ellipse
         tempCtx.beginPath();
         tempCtx.strokeStyle = currentColor;
         tempCtx.lineWidth = brushSize;
         tempCtx.ellipse(centerX, centerY, radiusX, radiusY, 0, 0, Math.PI * 2);
         tempCtx.stroke();
         
-        // Update main canvas
+        // Update display
         mainCtx.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
         mainCtx.drawImage(tempCanvas, 0, 0);
         break;
         
       case 'line':
-        // Clear temp canvas but keep the previous drawing
+        // Clear temp canvas and restore previous drawing
         tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
         tempCtx.drawImage(mainCanvas, 0, 0);
         
+        // Draw new line
         tempCtx.beginPath();
         tempCtx.strokeStyle = currentColor;
         tempCtx.lineWidth = brushSize;
@@ -166,7 +228,7 @@ document.addEventListener('DOMContentLoaded', () => {
         tempCtx.lineTo(pos.x, pos.y);
         tempCtx.stroke();
         
-        // Update main canvas
+        // Update display
         mainCtx.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
         mainCtx.drawImage(tempCanvas, 0, 0);
         break;
@@ -337,21 +399,9 @@ document.addEventListener('DOMContentLoaded', () => {
   
   if (eraserBtn) {
     eraserBtn.addEventListener('click', function() {
-      if (currentTool === 'eraser') {
-        // Switch back to pencil
-        currentTool = 'pencil';
-        mainCanvas.style.cursor = 'crosshair';
-        document.querySelectorAll('.paint-tool').forEach(t => t.classList.remove('active'));
-        document.querySelector('.paint-tool[title="Pencil"]').classList.add('active');
-        eraserBtn.classList.remove('active');
-      } else {
-        // Switch to eraser
-        currentTool = 'eraser';
-        mainCanvas.style.cursor = 'cell';
-        document.querySelectorAll('.paint-tool').forEach(t => t.classList.remove('active'));
-        document.querySelector('.paint-tool[title="Eraser"]').classList.add('active');
-        eraserBtn.classList.add('active');
-      }
+      setActiveTool('eraserBtn', 'eraser');
+      brushSize = 20;
+      this.classList.add('active');
     });
   }
   
@@ -639,6 +689,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (textBtn) {
     textBtn.addEventListener('click', () => {
       setActiveTool('textBtn', 'text');
+      brushSize = 16; // Font size
     });
   }
 
@@ -667,21 +718,6 @@ document.addEventListener('DOMContentLoaded', () => {
     lineBtn.addEventListener('click', () => {
       setActiveTool('lineBtn', 'line');
       brushSize = 2;
-    });
-  }
-
-  // Update eraser button click handler to use setActiveTool
-  if (eraserBtn) {
-    eraserBtn.addEventListener('click', function() {
-      if (currentTool === 'eraser') {
-        setActiveTool('pencilBtn', 'pencil');
-        brushSize = 2;
-        eraserBtn.classList.remove('active');
-      } else {
-        setActiveTool('eraserBtn', 'eraser');
-        brushSize = 20;
-        eraserBtn.classList.add('active');
-      }
     });
   }
 
