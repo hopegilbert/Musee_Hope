@@ -104,15 +104,14 @@ body {
   }
 
   .toolbar-tabs {
-    gap: 1rem;
+    gap: 0.25rem;
   }
 
   .toolbar-tabs .tab {
-    padding: 0 8px;
+    padding: 0 4px;
     height: 28px;
     line-height: 28px;
     font-size: 0.75rem;
-    min-width: 60px;
   }
 
   .toolbar-tabs .tab img {
@@ -211,15 +210,14 @@ body {
   }
 
   .toolbar-tabs {
-    gap: 0.75rem;
+    gap: 0.25rem;
   }
 
   .toolbar-tabs .tab {
-    padding: 0 6px;
+    padding: 0 2px;
     height: 26px;
     line-height: 26px;
     font-size: 0.7rem;
-    min-width: 50px;
   }
 
   .toolbar-tabs .tab img {
@@ -634,21 +632,18 @@ h1 {
 .toolbar-tabs {
   display: flex;
   background-color: #fae1ec;
-  gap: 1.5rem;
+  gap: 0.5rem;
   border-bottom: 1px solid #e5b3cc;
   padding: 0;
   margin: 0;
   font-family: 'Tahoma', sans-serif;
   white-space: nowrap;
-  overflow-x: auto;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
-  flex-wrap: nowrap;
   width: 100%;
+  justify-content: space-between;
 }
 
 .toolbar-tabs .tab {
-  padding: 0 12px;
+  padding: 0 8px;
   margin: 0;
   font-size: 0.8rem;
   font-weight: bold;
@@ -663,10 +658,10 @@ h1 {
   height: 32px;
   line-height: 32px;
   white-space: nowrap;
-  flex-shrink: 0;
-  min-width: fit-content;
+  flex: 1;
+  min-width: 0;
   box-sizing: border-box;
-  width: auto;
+  text-align: center;
 }
 
 .toolbar-tabs .tab:hover {
@@ -689,15 +684,14 @@ h1 {
 
 @media screen and (max-width: 768px) {
   .toolbar-tabs {
-    gap: 1rem;
+    gap: 0.25rem;
   }
 
   .toolbar-tabs .tab {
-    padding: 0 8px;
+    padding: 0 4px;
     height: 28px;
     line-height: 28px;
     font-size: 0.75rem;
-    min-width: 60px;
   }
   
   .toolbar-tabs .tab img {
@@ -708,15 +702,14 @@ h1 {
 
 @media screen and (max-width: 480px) {
   .toolbar-tabs {
-    gap: 0.75rem;
+    gap: 0.25rem;
   }
 
   .toolbar-tabs .tab {
-    padding: 0 6px;
+    padding: 0 2px;
     height: 26px;
     line-height: 26px;
     font-size: 0.7rem;
-    min-width: 50px;
   }
   
   .toolbar-tabs .tab img {
