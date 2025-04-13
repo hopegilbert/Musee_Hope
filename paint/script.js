@@ -9,14 +9,16 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Set canvas size
   function resizeCanvas() {
-    const container = document.querySelector('.canvas-container');
-    canvas.width = container.clientWidth;
-    canvas.height = container.clientHeight;
+    canvas.width = 400;  // Match the width we set in HTML
+    canvas.height = 600; // Match the height we set in HTML
+    
+    // Redraw white background
+    ctx.fillStyle = '#FFFFFF';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
   }
   
-  // Initialize canvas with white background
-  ctx.fillStyle = '#FFFFFF';
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  // Initialize canvas
+  resizeCanvas();
   saveState();
   
   // Drawing state
