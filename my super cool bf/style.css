@@ -75,6 +75,8 @@ body {
     justify-content: flex-start;
     padding: 0;
     margin: 0;
+    margin-right: 12px;
+    margin-bottom: 8px;
   }
 
   .icon-group img {
@@ -844,6 +846,8 @@ h1 {
     justify-content: flex-start;
     padding: 0;
     margin: 0;
+    margin-right: 12px;
+    margin-bottom: 8px;
   }
 
   .icon-group img {
@@ -900,6 +904,8 @@ h1 {
     justify-content: flex-start;
     padding: 0;
     margin: 0;
+    margin-right: 12px;
+    margin-bottom: 8px;
   }
 
   .icon-group img {
