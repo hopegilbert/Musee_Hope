@@ -30,8 +30,14 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Initialize canvas with white background
   function initCanvas() {
-    mainCanvas.width = window.innerWidth;
-    mainCanvas.height = window.innerHeight;
+    const isMobile = window.innerWidth <= 768;
+    if (isMobile) {
+        mainCanvas.width = window.innerWidth;
+        mainCanvas.height = window.innerHeight - 120;
+    } else {
+        mainCanvas.width = window.innerWidth;
+        mainCanvas.height = window.innerHeight;
+    }
     tempCanvas.width = mainCanvas.width;
     tempCanvas.height = mainCanvas.height;
     
@@ -44,9 +50,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // Drawing functions
   function getMousePos(e) {
     const rect = mainCanvas.getBoundingClientRect();
+    const clientX = e.clientX || e.touches[0].clientX;
+    const clientY = e.clientY || e.touches[0].clientY;
     return {
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top
+      x: clientX - rect.left,
+      y: clientY - rect.top
     };
   }
   
@@ -319,15 +327,107 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
   
-  function setTranslate(xPos, yPos, el) {
-    el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
-  }
-  
   function dragEnd(e) {
     initialX = currentX;
     initialY = currentY;
     isDragging = false;
   }
+  
+  // Touch event handling for drawing
+  function handleTouchStart(e) {
+    e.preventDefault();
+    const touch = e.touches[0];
+    const pos = getMousePos(touch);
+    isDrawing = true;
+    lastX = pos.x;
+    lastY = pos.y;
+  }
+
+  function handleTouchMove(e) {
+    e.preventDefault();
+    if (!isDrawing) return;
+    
+    const touch = e.touches[0];
+    const pos = getMousePos(touch);
+    
+    tempCtx.beginPath();
+    tempCtx.moveTo(lastX, lastY);
+    tempCtx.lineTo(pos.x, pos.y);
+    
+    if (currentTool === 'eraser') {
+        tempCtx.globalCompositeOperation = 'destination-out';
+        tempCtx.strokeStyle = 'rgba(0,0,0,1)';
+    } else {
+        tempCtx.globalCompositeOperation = 'source-over';
+        tempCtx.strokeStyle = currentColor;
+    }
+    
+    tempCtx.lineWidth = brushSize;
+    tempCtx.lineCap = 'round';
+    tempCtx.lineJoin = 'round';
+    tempCtx.stroke();
+    
+    mainCtx.fillStyle = '#FFFFFF';
+    mainCtx.fillRect(0, 0, mainCanvas.width, mainCanvas.height);
+    mainCtx.drawImage(tempCanvas, 0, 0);
+    
+    [lastX, lastY] = [pos.x, pos.y];
+  }
+
+  function handleTouchEnd(e) {
+    e.preventDefault();
+    if (isDrawing) {
+        isDrawing = false;
+        saveState();
+    }
+  }
+  
+  // Touch event handling for draggable window
+  function handleWindowTouchStart(e) {
+    if (e.target.closest('.paint-header')) {
+        const touch = e.touches[0];
+        initialX = touch.clientX - xOffset;
+        initialY = touch.clientY - yOffset;
+        isDragging = true;
+    }
+  }
+
+  function handleWindowTouchMove(e) {
+    if (isDragging) {
+        e.preventDefault();
+        const touch = e.touches[0];
+        currentX = touch.clientX - initialX;
+        currentY = touch.clientY - initialY;
+        xOffset = currentX;
+        yOffset = currentY;
+        setTranslate(currentX, currentY, paintWindow);
+    }
+  }
+
+  function handleWindowTouchEnd() {
+    initialX = currentX;
+    initialY = currentY;
+    isDragging = false;
+  }
+  
+  function setTranslate(xPos, yPos, el) {
+    el.style.transform = `translate(${xPos}px, ${yPos}px)`;
+  }
+  
+  // Add touch event listeners
+  mainCanvas.addEventListener('touchstart', handleTouchStart, { passive: false });
+  mainCanvas.addEventListener('touchmove', handleTouchMove, { passive: false });
+  mainCanvas.addEventListener('touchend', handleTouchEnd, { passive: false });
+
+  const paintWindow = document.querySelector('.paint-window');
+  paintWindow.addEventListener('touchstart', handleWindowTouchStart, { passive: false });
+  document.addEventListener('touchmove', handleWindowTouchMove, { passive: false });
+  document.addEventListener('touchend', handleWindowTouchEnd, { passive: false });
+  
+  // Handle window resize
+  window.addEventListener('resize', () => {
+    initCanvas();
+  });
   
   // Initialize canvas
   initCanvas();

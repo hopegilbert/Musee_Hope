@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    touch-action: none; /* Prevents default touch actions */
 }
 
 body {
@@ -11,6 +12,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 
 .paint-container {
@@ -187,4 +189,114 @@ body {
     background-color: white;
     display: block;
     cursor: crosshair;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+    .main-window {
+        font-size: 14px; /* Larger text for mobile */
+    }
+
+    .title-bar {
+        padding: 8px 4px;
+    }
+
+    .title-bar-controls button {
+        width: 30px;
+        height: 30px;
+        font-size: 16px;
+    }
+
+    .menu-bar {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        white-space: nowrap;
+        padding: 4px;
+    }
+
+    .menu-item {
+        padding: 8px 12px;
+    }
+
+    .toolbar {
+        height: auto;
+        padding: 6px;
+    }
+
+    .toolbar-buttons {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 4px;
+    }
+
+    .toolbar-buttons button {
+        width: 40px;
+        height: 40px;
+        padding: 6px;
+    }
+
+    .toolbar-buttons img {
+        width: 28px;
+        height: 28px;
+    }
+
+    .main-canvas {
+        margin-top: 120px;
+        width: 100%;
+        height: calc(100vh - 120px);
+    }
+}
+
+/* Paint window styles for mobile */
+.paint-window {
+    position: fixed;
+    width: 90%;
+    max-width: 500px;
+    height: auto;
+    max-height: 80vh;
+    background-color: #f0f0f0;
+    border: 2px solid #000;
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
+    font-family: 'Tahoma', sans-serif;
+    z-index: 900;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    touch-action: none;
+}
+
+@media (max-width: 768px) {
+    .paint-window {
+        width: 95%;
+        max-height: 90vh;
+        top: 120px;
+        transform: translate(-50%, 0);
+    }
+
+    .paint-canvas-container {
+        height: 60vh;
+    }
+
+    .paint-canvas {
+        width: 100%;
+        height: 100%;
+    }
+
+    .paint-tool {
+        width: 40px;
+        height: 40px;
+        padding: 8px;
+    }
+
+    .paint-tool img {
+        width: 24px;
+        height: 24px;
+    }
+
+    .color-box {
+        width: 30px;
+        height: 30px;
+    }
 }
