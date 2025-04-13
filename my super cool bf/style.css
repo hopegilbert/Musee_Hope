@@ -501,6 +501,7 @@ h1 {
   position: relative;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
   height: fit-content;
 }
