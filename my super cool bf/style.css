@@ -61,27 +61,27 @@ body {
 
 @media screen and (max-width: 768px) {
   .toolbar-buttons {
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     justify-content: flex-start;
-    gap: 6px;
-    padding: 6px;
+    overflow-x: auto;
+    gap: 8px;
+    padding: 6px 10px;
+    scroll-behavior: smooth;
   }
 
   .icon-group {
     flex: 0 0 auto;
     display: flex;
     gap: 4px;
-    flex-wrap: wrap;
-    justify-content: flex-start;
+    align-items: center;
     padding: 0;
     margin: 0;
-    margin-right: 12px;
-    margin-bottom: 8px;
   }
 
   .icon-group img {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
+    padding: 1px;
   }
 
   .page-title {
@@ -999,5 +999,40 @@ h1 {
   .icon-group img {
     image-rendering: -webkit-optimize-contrast;
     image-rendering: crisp-edges;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .toolbar-buttons {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    gap: 8px;
+    padding: 6px 10px;
+    scroll-behavior: smooth;
+  }
+
+  .icon-group {
+    flex: 0 0 auto;
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+  }
+
+  .icon-group img {
+    width: 18px;
+    height: 18px;
+    padding: 1px;
+    background-color: #ffffff;
+    border: 1px solid #d9b0c8;
+    border-radius: 3px;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+  }
+
+  .icon-group img:hover {
+    background-color: #ffe2ee;
+    box-shadow: 0 0 5px #f09dc9;
   }
 }
