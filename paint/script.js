@@ -94,26 +94,27 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Drawing functions
   function startDrawing(e) {
-    console.log('Start drawing at', e.offsetX, e.offsetY);
     isDrawing = true;
-    [lastX, lastY] = [e.offsetX, e.offsetY];
+    const rect = canvas.getBoundingClientRect();
+    lastX = e.clientX - rect.left;
+    lastY = e.clientY - rect.top;
     ctx.beginPath();
     ctx.moveTo(lastX, lastY);
   }
   
   function draw(e) {
     if (!isDrawing) return;
-    console.log('Drawing...', currentTool, currentColor);
-    
-    const x = e.offsetX;
-    const y = e.offsetY;
-    
+    const rect = canvas.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
     ctx.beginPath();
     ctx.moveTo(lastX, lastY);
     
     if (currentTool === 'eraser') {
       ctx.globalCompositeOperation = 'destination-out';
       ctx.lineWidth = 20;
+      ctx.strokeStyle = 'rgba(0,0,0,1)';  // Make sure eraser is fully opaque
     } else if (currentTool === 'brush') {
       ctx.globalCompositeOperation = 'source-over';
       ctx.strokeStyle = currentColor;
@@ -133,7 +134,8 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.lineJoin = 'round';
     ctx.stroke();
     
-    [lastX, lastY] = [x, y];
+    lastX = x;
+    lastY = y;
   }
   
   function drawSpray(x, y) {
