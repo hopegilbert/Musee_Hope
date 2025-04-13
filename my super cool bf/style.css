@@ -552,14 +552,14 @@ h1 {
   gap: 2rem;
   padding: 10px 16px;
   background-color: #fff0f7;
-  row-gap: 0.5rem;
+  row-gap: 0.25rem;
 }
 
 .icon-group {
   display: flex;
   gap: 8px;
   align-items: center;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.1rem;
 }
 
 .icon-group img {
@@ -721,10 +721,12 @@ h1 {
   .toolbar-buttons {
     gap: 1.5rem;
     padding: 8px 12px;
+    row-gap: 0.2rem;
   }
   
   .icon-group {
     gap: 6px;
+    margin-bottom: 0.05rem;
   }
 }
 
@@ -757,5 +759,6 @@ h1 {
   .toolbar-buttons {
     gap: 1rem;
     padding: 6px 10px;
+    row-gap: 0.15rem;
   }
 }
