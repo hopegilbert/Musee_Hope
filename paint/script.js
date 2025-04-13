@@ -81,12 +81,30 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   }
   
+  function getMousePos(e) {
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    return {
+      x: (e.clientX - rect.left) * scaleX,
+      y: (e.clientY - rect.top) * scaleY
+    };
+  }
+  
+  function startDrawing(e) {
+    isDrawing = true;
+    const pos = getMousePos(e);
+    lastX = pos.x;
+    lastY = pos.y;
+    ctx.beginPath();
+    ctx.moveTo(lastX, lastY);
+    console.log('Started drawing at:', lastX, lastY);
+  }
+  
   function draw(e) {
     if (!isDrawing) return;
     
-    const rect = canvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+    const pos = getMousePos(e);
     
     ctx.beginPath();
     ctx.moveTo(lastX, lastY);
@@ -101,12 +119,14 @@ document.addEventListener('DOMContentLoaded', () => {
       ctx.lineWidth = currentTool === 'brush' ? 5 : 2;
     }
     
-    ctx.lineTo(x, y);
+    ctx.lineTo(pos.x, pos.y);
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
     ctx.stroke();
     
-    [lastX, lastY] = [x, y];
+    lastX = pos.x;
+    lastY = pos.y;
+    console.log('Drawing to:', pos.x, pos.y);
   }
   
   function drawSpray(x, y) {
@@ -138,12 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   
   // Event listeners for canvas
-  canvas.addEventListener('mousedown', (e) => {
-    isDrawing = true;
-    const rect = canvas.getBoundingClientRect();
-    [lastX, lastY] = [e.clientX - rect.left, e.clientY - rect.top];
-  });
-  
+  canvas.addEventListener('mousedown', startDrawing);
   canvas.addEventListener('mousemove', draw);
   canvas.addEventListener('mouseup', stopDrawing);
   canvas.addEventListener('mouseout', stopDrawing);
