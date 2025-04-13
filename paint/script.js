@@ -148,4 +148,82 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Save initial state
   saveState();
+
+  // Window dragging functionality
+  const windowHeader = document.querySelector('.window-header');
+  const draggableWindow = document.querySelector('.draggable-window');
+  let isDragging = false;
+  let currentX;
+  let currentY;
+  let initialX;
+  let initialY;
+  let xOffset = 0;
+  let yOffset = 0;
+
+  windowHeader.addEventListener('mousedown', dragStart);
+  document.addEventListener('mousemove', drag);
+  document.addEventListener('mouseup', dragEnd);
+
+  function dragStart(e) {
+    initialX = e.clientX - xOffset;
+    initialY = e.clientY - yOffset;
+
+    if (e.target === windowHeader) {
+      isDragging = true;
+    }
+  }
+
+  function drag(e) {
+    if (isDragging) {
+      e.preventDefault();
+      currentX = e.clientX - initialX;
+      currentY = e.clientY - initialY;
+
+      xOffset = currentX;
+      yOffset = currentY;
+
+      setTranslate(currentX, currentY, draggableWindow);
+    }
+  }
+
+  function setTranslate(xPos, yPos, el) {
+    el.style.transform = `translate3d(${xPos}px, ${yPos}px, 0)`;
+  }
+
+  function dragEnd(e) {
+    initialX = currentX;
+    initialY = currentY;
+    isDragging = false;
+  }
+
+  // Window buttons functionality
+  const minimizeBtn = document.querySelector('.minimize-btn');
+  const maximizeBtn = document.querySelector('.maximize-btn');
+  const closeBtn = document.querySelector('.close-btn');
+
+  minimizeBtn.addEventListener('click', () => {
+    draggableWindow.style.display = 'none';
+    // You can add a taskbar item here
+  });
+
+  maximizeBtn.addEventListener('click', () => {
+    if (draggableWindow.style.width === '100%') {
+      draggableWindow.style.width = 'auto';
+      draggableWindow.style.height = 'auto';
+      draggableWindow.style.top = '50px';
+      draggableWindow.style.left = '50px';
+    } else {
+      draggableWindow.style.width = '100%';
+      draggableWindow.style.height = '100%';
+      draggableWindow.style.top = '0';
+      draggableWindow.style.left = '0';
+    }
+  });
+
+  closeBtn.addEventListener('click', () => {
+    if (confirm('Do you want to save changes to Untitled?')) {
+      // Add save functionality here
+    }
+    draggableWindow.style.display = 'none';
+  });
 }); 
