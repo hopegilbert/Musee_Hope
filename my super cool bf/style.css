@@ -782,7 +782,7 @@ h1 {
   .toolbar-buttons {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 1rem;
     padding: 10px 8px;
   }
