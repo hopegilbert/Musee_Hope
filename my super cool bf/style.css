@@ -714,7 +714,7 @@ h1 {
   }
 }
 
-/* Keep only one set of dropdown styles */
+/* Dropdown styles */
 .tab.dropdown {
   position: relative;
   display: inline-flex;
