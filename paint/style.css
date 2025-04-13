@@ -1,0 +1,55 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Tahoma', sans-serif;
+    background-color: #f0f0f0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.toolbar {
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #ccc;
+    padding: 4px;
+}
+
+.toolbar-inner {
+    display: flex;
+    align-items: center;
+}
+
+.toolbar-tabs {
+    display: flex;
+    gap: 8px;
+}
+
+.tab {
+    padding: 4px 8px;
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+
+.tab:hover {
+    background-color: #e0e0e0;
+    border: 1px solid #ccc;
+}
+
+.canvas-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    margin: 8px;
+    border: 1px solid #ccc;
+}
+
+#paintCanvas {
+    background-color: white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
