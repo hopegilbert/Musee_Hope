@@ -780,14 +780,15 @@ h1 {
   }
 
   .toolbar-buttons {
-    justify-content: flex-start;
-    gap: 1rem 2rem;
     flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 1rem 1.2rem; /* vertical then horizontal */
   }
 
   .icon-group {
-    flex: 1 1 45%;
-    justify-content: flex-start;
+    flex: 1 1 calc(50% - 1.2rem); /* two per row */
+    display: flex;
+    gap: 0.5rem;
   }
 
   .dropdown-content {
