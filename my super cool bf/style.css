@@ -913,6 +913,9 @@ h1 {
   width: auto;
   min-width: fit-content;
   flex-shrink: 0;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
 .tab.dropdown .dropdown-toggle {
@@ -931,14 +934,13 @@ h1 {
   justify-content: center;
   height: 100%;
   width: 100%;
+  transition: all 0.2s ease;
 }
 
 .tab.dropdown .dropdown-toggle:hover {
   background-color: rgba(185, 44, 109, 0.2);
   color: #b92c6d;
   border-radius: 4px;
-  padding: 6px 8px;
-  margin: 4px 2px;
 }
 
 .tab.dropdown.active .dropdown-toggle {
