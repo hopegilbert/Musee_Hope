@@ -158,25 +158,21 @@ body {
 }
 
 .menu-bar {
-    display: flex;
-    background-color: #f0f0f0;
-    border-bottom: 1px solid #ccc;
+    background: #c0c0c8;
     padding: 2px;
+    display: flex;
+    border-bottom: 1px solid #808080;
 }
 
 .menu-item {
-    position: relative;
-    padding: 4px 8px;
+    padding: 2px 8px;
     cursor: pointer;
-    user-select: none;
+    position: relative;
 }
 
 .menu-item:hover {
-    background-color: #e0e0e0;
-}
-
-.color-menu-container {
-    position: relative;
+    background-color: #1084d0;
+    color: white;
 }
 
 .menu-dropdown {
@@ -184,43 +180,37 @@ body {
     position: absolute;
     top: 100%;
     left: 0;
-    background: #fff;
-    border: 1px solid #999;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-    z-index: 1001;
+    background-color: #f0f0f0;
+    border: 1px solid #808080;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    padding: 4px;
 }
 
-.menu-dropdown.show {
+#colorsMenu:hover .menu-dropdown {
     display: block;
 }
 
-.colour-grid {
+.color-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(8, 20px);
     gap: 2px;
-    width: 120px;
+    padding: 4px;
 }
 
-.colour-box {
-    width: 24px;
-    height: 24px;
+.color-box {
+    width: 20px;
+    height: 20px;
     border: 1px solid #808080;
     cursor: pointer;
-    transition: transform 0.1s;
 }
 
-.colour-box:hover {
-    transform: scale(1.1);
+.color-box:hover {
+    border: 1px solid #000000;
+}
+
+.color-box.selected {
     border: 2px solid #000;
-}
-
-.colour-box.selected {
-    border: 2px solid #000;
-}
-
-/* Remove hover-based display */
-.color-menu-container:hover .menu-dropdown {
-    display: none;
 }
 
 .toolbar {
@@ -260,13 +250,28 @@ body {
 }
 
 .color-palette {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+    display: grid;
+    grid-template-columns: repeat(2, 20px);
+    gap: 2px;
     padding: 4px;
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 4px;
+}
+
+.color-box {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #808080;
+    cursor: pointer;
+}
+
+.color-box:hover {
+    border: 1px solid #000000;
+}
+
+.color-box.selected {
+    border: 2px solid #000;
 }
 
 .toolbar-buttons {
@@ -345,7 +350,7 @@ body {
 /* Touch-specific styles */
 .paint-tool, 
 .toolbar-buttons button,
-.colour-box {
+.color-box {
     touch-action: none;
     -webkit-tap-highlight-color: transparent;
 }
@@ -421,7 +426,7 @@ body {
         padding: 1px 2px;
     }
 
-    .colour-box {
+    .color-box {
         width: 14px;
         height: 14px;
     }
@@ -493,7 +498,7 @@ body {
     display: grid;
 }
 
-.color-menu .colour-box {
+.color-menu .color-box {
     width: 24px;
     height: 24px;
     border: 1px solid #808080;
@@ -501,11 +506,11 @@ body {
     transition: transform 0.1s;
 }
 
-.color-menu .colour-box:hover {
+.color-menu .color-box:hover {
     transform: scale(1.1);
     border: 2px solid #000;
 }
 
-.color-menu .colour-box.selected {
+.color-menu .color-box.selected {
     border: 2px solid #000;
 }
