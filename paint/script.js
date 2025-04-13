@@ -1,24 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
   console.log('Paint script loaded');
   
-  // Get canvas elements
-  const canvas = document.getElementById('paintCanvas');
-  if (!canvas) {
-    console.error('Canvas element not found!');
+  const mainCanvas = document.getElementById('mainCanvas');
+  const mainCtx = mainCanvas.getContext('2d');
+  
+  if (!mainCanvas || !mainCtx) {
+    console.error('Canvas or context not found!');
     return;
   }
   
-  const ctx = canvas.getContext('2d');
-  if (!ctx) {
-    console.error('Could not get canvas context!');
-    return;
-  }
-  
-  console.log('Canvas size:', canvas.width, 'x', canvas.height);
-  
-  // Initialize canvas with white background
-  ctx.fillStyle = '#FFFFFF';
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  console.log('Canvas size:', mainCanvas.width, 'x', mainCanvas.height);
   
   // Drawing state
   let isDrawing = false;
@@ -30,124 +21,34 @@ document.addEventListener('DOMContentLoaded', () => {
   let historyIndex = -1;
   const MAX_HISTORY = 20;
   
-  // Make window draggable
-  const paintWindow = document.getElementById('paintWindow');
-  const paintHeader = document.getElementById('paintHeader');
-  let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-  
-  paintHeader.onmousedown = dragMouseDown;
-  
-  function dragMouseDown(e) {
-    e = e || window.event;
-    e.preventDefault();
-    pos3 = e.clientX;
-    pos4 = e.clientY;
-    document.onmouseup = closeDragElement;
-    document.onmousemove = elementDrag;
-  }
-  
-  function elementDrag(e) {
-    e = e || window.event;
-    e.preventDefault();
-    pos1 = pos3 - e.clientX;
-    pos2 = pos4 - e.clientY;
-    pos3 = e.clientX;
-    pos4 = e.clientY;
-    
-    let newTop = paintWindow.offsetTop - pos2;
-    let newLeft = paintWindow.offsetLeft - pos1;
-    
-    // Prevent going above the toolbar (60px from top)
-    if (newTop < 60) {
-      newTop = 60;
-    }
-    
-    // Prevent going off-screen
-    const maxTop = window.innerHeight - paintWindow.offsetHeight;
-    const maxLeft = window.innerWidth - paintWindow.offsetWidth;
-    
-    if (newTop > maxTop) newTop = maxTop;
-    if (newLeft > maxLeft) newLeft = maxLeft;
-    if (newLeft < 0) newLeft = 0;
-    
-    paintWindow.style.top = newTop + "px";
-    paintWindow.style.left = newLeft + "px";
-  }
-  
-  function closeDragElement() {
-    document.onmouseup = null;
-    document.onmousemove = null;
-  }
-  
-  // Save current canvas state to history
-  function saveState() {
-    history = history.slice(0, historyIndex + 1);
-    history.push(canvas.toDataURL());
-    historyIndex++;
-    
-    if (history.length > MAX_HISTORY) {
-      history.shift();
-      historyIndex--;
-    }
-    
-    updateButtonStates();
-  }
-  
-  // Update undo/redo button states
-  function updateButtonStates() {
-    const undoBtn = document.getElementById('undoBtn');
-    const redoBtn = document.getElementById('redoBtn');
-    if (undoBtn) undoBtn.style.opacity = historyIndex <= 0 ? '0.5' : '1';
-    if (redoBtn) redoBtn.style.opacity = historyIndex >= history.length - 1 ? '0.5' : '1';
-  }
-  
-  // Undo/Redo functions
-  function undo() {
-    if (historyIndex > 0) {
-      historyIndex--;
-      loadState();
-    }
-  }
-  
-  function redo() {
-    if (historyIndex < history.length - 1) {
-      historyIndex++;
-      loadState();
-    }
-  }
-  
-  // Load state from history
-  function loadState() {
-    const img = new Image();
-    img.src = history[historyIndex];
-    img.onload = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.drawImage(img, 0, 0);
-      updateButtonStates();
-    };
+  // Initialize canvas with white background
+  function initCanvas() {
+    mainCanvas.width = window.innerWidth;
+    mainCanvas.height = window.innerHeight;
+    mainCtx.fillStyle = '#FFFFFF';
+    mainCtx.fillRect(0, 0, mainCanvas.width, mainCanvas.height);
+    saveState();
   }
   
   // Drawing functions
   function getMousePos(e) {
-    const rect = canvas.getBoundingClientRect();
-    const scaleX = canvas.width / rect.width;
-    const scaleY = canvas.height / rect.height;
+    const rect = mainCanvas.getBoundingClientRect();
     return {
-      x: (e.clientX - rect.left) * scaleX,
-      y: (e.clientY - rect.top) * scaleY
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top
     };
   }
   
   function startDrawing(e) {
     isDrawing = true;
     const pos = getMousePos(e);
-    [lastX, lastY] = [pos.x, pos.y];
+    lastX = pos.x;
+    lastY = pos.y;
     
-    // For eraser, set composite operation immediately
     if (currentTool === 'eraser') {
-      ctx.globalCompositeOperation = 'destination-out';
+      mainCtx.globalCompositeOperation = 'destination-out';
     } else {
-      ctx.globalCompositeOperation = 'source-over';
+      mainCtx.globalCompositeOperation = 'source-over';
     }
   }
   
@@ -156,10 +57,12 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const pos = getMousePos(e);
     
-    ctx.beginPath();
-    ctx.moveTo(lastX, lastY);
+    mainCtx.beginPath();
+    mainCtx.moveTo(lastX, lastY);
     
     if (currentTool === 'eraser') {
+      mainCtx.globalCompositeOperation = 'destination-out';
+      mainCtx.lineWidth = 20;
       ctx.globalCompositeOperation = 'destination-out';
       ctx.lineWidth = 20;
       ctx.strokeStyle = 'rgba(0,0,0,1)';
@@ -174,7 +77,8 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.lineJoin = 'round';
     ctx.stroke();
     
-    [lastX, lastY] = [pos.x, pos.y];
+    lastX = pos.x;
+    lastY = pos.y;
   }
   
   function drawSpray(x, y) {
@@ -204,6 +108,57 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
   
+  // Save current canvas state to history
+  function saveState() {
+    const state = canvas.toDataURL();
+    history = history.slice(0, historyIndex + 1);
+    history.push(state);
+    historyIndex++;
+    
+    if (history.length > MAX_HISTORY) {
+      history.shift();
+      historyIndex--;
+    }
+    
+    updateButtonStates();
+  }
+  
+  // Update undo/redo button states
+  function updateButtonStates() {
+    const undoBtn = document.getElementById('undoBtn');
+    const redoBtn = document.getElementById('redoBtn');
+    if (undoBtn) undoBtn.style.opacity = historyIndex <= 0 ? '0.5' : '1';
+    if (redoBtn) redoBtn.style.opacity = historyIndex >= history.length - 1 ? '0.5' : '1';
+  }
+  
+  // Load state from history
+  function loadState() {
+    if (historyIndex >= 0 && historyIndex < history.length) {
+      const img = new Image();
+      img.src = history[historyIndex];
+      img.onload = () => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(img, 0, 0);
+        updateButtonStates();
+      };
+    }
+  }
+  
+  // Undo/Redo functions
+  function undo() {
+    if (historyIndex > 0) {
+      historyIndex--;
+      loadState();
+    }
+  }
+  
+  function redo() {
+    if (historyIndex < history.length - 1) {
+      historyIndex++;
+      loadState();
+    }
+  }
+  
   // Event listeners for canvas
   canvas.addEventListener('mousedown', startDrawing);
   canvas.addEventListener('mousemove', draw);
@@ -215,6 +170,8 @@ document.addEventListener('DOMContentLoaded', () => {
   tools.forEach(tool => {
     tool.addEventListener('click', () => {
       const toolName = tool.getAttribute('title').toLowerCase();
+      if (toolName === 'undo' || toolName === 'redo') return;
+      
       currentTool = toolName;
       tools.forEach(t => t.classList.remove('active'));
       tool.classList.add('active');
@@ -251,8 +208,28 @@ document.addEventListener('DOMContentLoaded', () => {
   // Button event listeners
   const undoBtn = document.getElementById('undoBtn');
   const redoBtn = document.getElementById('redoBtn');
-  if (undoBtn) undoBtn.addEventListener('click', undo);
-  if (redoBtn) redoBtn.addEventListener('click', redo);
+  const eraserBtn = document.getElementById('eraserBtn');
+  
+  if (undoBtn) {
+    undoBtn.addEventListener('click', () => {
+      undo();
+    });
+  }
+  
+  if (redoBtn) {
+    redoBtn.addEventListener('click', () => {
+      redo();
+    });
+  }
+  
+  if (eraserBtn) {
+    eraserBtn.addEventListener('click', () => {
+      currentTool = 'eraser';
+      tools.forEach(t => t.classList.remove('active'));
+      eraserBtn.classList.add('active');
+      canvas.style.cursor = 'cell';
+    });
+  }
   
   // Keyboard shortcuts
   document.addEventListener('keydown', (e) => {
@@ -267,7 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
   
-  // Initialize history
-  saveState();
+  // Initialize canvas
+  initCanvas();
   console.log('Paint initialization complete');
 }); 
