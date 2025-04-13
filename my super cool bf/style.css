@@ -772,7 +772,7 @@ h1 {
   background-color: #fef1f7;
   min-width: 200px;
   box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
-  z-index: 1000;
+  z-index: 9999;
   border: 1px solid #c26d9c;
   border-radius: 4px;
 }
