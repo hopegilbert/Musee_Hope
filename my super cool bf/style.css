@@ -73,13 +73,9 @@ body {
   }
 
   .icon-group {
+    height: 32px;
     display: flex;
-    flex: 0 0 auto;
-    gap: 6px;
     align-items: center;
-    min-width: 0;
-    padding: 0;
-    margin: 0;
     justify-content: center;
   }
 
@@ -87,7 +83,7 @@ body {
     width: 18px;
     height: 18px;
     padding: 2px;
-    flex-shrink: 0;
+    margin: auto;
   }
 
   .page-title {
@@ -521,17 +517,16 @@ h1 {
   cursor: pointer;
   border-radius: 4px;
   position: relative;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   gap: 6px;
   height: 32px;
-  line-height: 1;
+  line-height: 32px;
   white-space: nowrap;
   flex-shrink: 0;
   min-width: fit-content;
   box-sizing: border-box;
-  vertical-align: middle;
 }
 
 .toolbar-tabs .tab:hover {
@@ -557,13 +552,11 @@ h1 {
     padding: 0 8px;
     margin: 0;
     height: 32px;
-    line-height: 1;
-    display: inline-flex;
+    line-height: 32px;
+    display: flex;
     align-items: center;
     justify-content: center;
     gap: 4px;
-    min-width: fit-content;
-    vertical-align: middle;
   }
   
   .toolbar-tabs .tab img {
@@ -582,13 +575,11 @@ h1 {
     padding: 0 8px;
     margin: 0;
     height: 32px;
-    line-height: 1;
-    display: inline-flex;
+    line-height: 32px;
+    display: flex;
     align-items: center;
     justify-content: center;
     gap: 4px;
-    min-width: fit-content;
-    vertical-align: middle;
   }
   
   .toolbar-tabs .tab img {
@@ -680,10 +671,12 @@ h1 {
   flex: 0 0 auto;
   gap: 6px;
   align-items: center;
+  justify-content: center;
   min-width: 0;
   padding: 0;
   margin: 0;
-  justify-content: center;
+  height: 32px;
+  box-sizing: border-box;
 }
 
 .icon-group img {
@@ -691,6 +684,8 @@ h1 {
   height: 20px;
   padding: 2px;
   flex-shrink: 0;
+  display: block;
+  margin: auto;
   background-color: #ffffff;
   border: 1px solid #d9b0c8;
   border-radius: 3px;
