@@ -819,6 +819,14 @@ h1 {
     font-size: 1.8rem;
   }
 
+  .toolbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+  }
+
   .toolbar-buttons {
     display: flex;
     flex-wrap: wrap;
@@ -830,6 +838,7 @@ h1 {
     width: 100%;
     text-align: left;
     margin-left: 0 !important;
+    background-color: #fff0f7;
   }
 
   .icon-group {
@@ -837,34 +846,59 @@ h1 {
     flex-wrap: wrap;
     gap: 4px;
     margin: 0;
-    flex: 0 0 auto;
+    flex: initial !important;
+    width: auto;
+    align-items: center;
   }
 
   .icon-group img {
     width: 20px;
     height: 20px;
     padding: 1px;
+    background-color: #ffffff;
+    border: 1px solid #d9b0c8;
+    border-radius: 3px;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+  }
+
+  .icon-group img:hover {
+    background-color: #ffe2ee;
+    box-shadow: 0 0 5px #f09dc9;
   }
 
   .draggable-window {
     width: 95vw;
     max-width: 300px;
     min-width: 180px;
+    left: 50% !important;
+    transform: translateX(-50%);
   }
 
   .window-header {
+    flex-direction: column;
+    align-items: flex-start;
     padding: 0.4rem 0.6rem;
   }
-  
+
   .window-title {
     font-size: 0.75rem;
+    margin-bottom: 4px;
   }
-  
+
   .win-btn {
     width: 16px;
     height: 16px;
     font-size: 0.7rem;
     line-height: 14px;
+  }
+
+  .window-buttons {
+    align-self: flex-end;
+  }
+
+  .window-body {
+    font-size: 0.75rem;
+    max-height: 60vh;
   }
 
   .gallery {
@@ -884,6 +918,10 @@ h1 {
   .footer {
     font-size: 0.5rem;
     margin-top: 1.5rem;
+  }
+
+  .dropdown-content {
+    min-width: 160px;
   }
 }
 
