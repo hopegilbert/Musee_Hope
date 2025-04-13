@@ -821,21 +821,20 @@ h1 {
 
   .toolbar-buttons {
     display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
-    flex-wrap: nowrap;
     justify-content: flex-start;
-    gap: 0.75rem;
-    padding: 8px;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 10px 16px;
   }
 
   .icon-group {
     display: flex;
-    flex-shrink: 0;
-    gap: 6px;
-    flex-wrap: nowrap;
-    margin: 0;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 0.5rem;
+    width: 100%; /* allows stacking across full width */
   }
 
   .icon-group img {
