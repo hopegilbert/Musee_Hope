@@ -568,6 +568,8 @@ h1 {
   padding: 10px 16px;
   background-color: #fff0f7;
   justify-content: space-between;
+  overflow-x: auto;
+  white-space: nowrap;
 }
 
 .icon-group {
@@ -779,21 +781,27 @@ h1 {
 
   .toolbar-buttons {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     justify-content: space-between;
-    gap: 0.5rem 1rem;
+    align-items: center;
+    gap: 0.5rem;
+    overflow-x: auto;
+    padding: 8px 10px;
   }
 
   .icon-group {
     display: flex;
-    gap: 6px;
+    flex-direction: row;
+    gap: 4px;
+    flex: 1 1 auto;
+    justify-content: center;
     flex-wrap: nowrap;
   }
 
   .icon-group img {
-    padding: 1px;
-    width: 22px;
-    height: 22px;
+    width: 20px;
+    height: 20px;
+    padding: 2px;
   }
 
   .dropdown-content {
