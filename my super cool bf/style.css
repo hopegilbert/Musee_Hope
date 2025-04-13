@@ -526,11 +526,12 @@ h1 {
   justify-content: center;
   gap: 6px;
   height: 32px;
-  line-height: 32px;
+  line-height: 1;
   white-space: nowrap;
   flex-shrink: 0;
   min-width: fit-content;
   box-sizing: border-box;
+  vertical-align: middle;
 }
 
 .toolbar-tabs .tab:hover {
@@ -545,6 +546,10 @@ h1 {
   height: 20px;
   margin: 0;
   flex-shrink: 0;
+  vertical-align: middle;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 @media screen and (max-width: 768px) {
@@ -552,18 +557,23 @@ h1 {
     padding: 0 8px;
     margin: 0;
     height: 32px;
-    line-height: 32px;
+    line-height: 1;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 4px;
     min-width: fit-content;
+    vertical-align: middle;
   }
   
   .toolbar-tabs .tab img {
     width: 18px;
     height: 18px;
     margin: 0;
+    vertical-align: middle;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
   }
 }
 
@@ -572,18 +582,23 @@ h1 {
     padding: 0 8px;
     margin: 0;
     height: 32px;
-    line-height: 32px;
+    line-height: 1;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 4px;
     min-width: fit-content;
+    vertical-align: middle;
   }
   
   .toolbar-tabs .tab img {
     width: 16px;
     height: 16px;
     margin: 0;
+    vertical-align: middle;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
   }
 }
 
