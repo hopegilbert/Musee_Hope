@@ -624,19 +624,16 @@ h1 {
 /* Tabs Bar (File, Insert, etc) */
 .toolbar-tabs {
   display: flex;
-  background-color: #fae1ec;
-  gap: 1.5rem;
-  border-bottom: 1px solid #e5b3cc;
-  padding: 8px 0;
-  margin: 0;
-  font-family: 'Tahoma', sans-serif;
-  white-space: nowrap;
+  flex-wrap: nowrap;
+  background: #fff0f5;
+  padding: 0.2rem 0.3rem;
+  border-bottom: 1px solid #ffd4e8;
   overflow-x: auto;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
   width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
+  position: relative;
+  z-index: 10000;
 }
 
 .toolbar-tabs .tab {
