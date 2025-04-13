@@ -963,12 +963,14 @@ h1 {
   position: absolute;
   top: 110%;
   left: 0;
-  width: 100%;
+  min-width: 200px;
   background-color: #f5e8c7;
   border-radius: 12px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
   z-index: 99999;
   pointer-events: auto;
+  border: 2px solid #b92c6d;
+  overflow: hidden;
 }
 
 .dropdown-content div {
@@ -978,6 +980,9 @@ h1 {
   cursor: pointer;
   color: #821818;
   border-bottom: 1px solid #e5b3cc;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 .dropdown-content div:last-child {
@@ -986,8 +991,35 @@ h1 {
 
 .dropdown-content div:hover {
   background-color: #dbc692;
+  color: #b92c6d;
+  transform: translateX(5px);
+}
+
+.dropdown-content div::before {
+  content: '→';
+  position: absolute;
+  left: -20px;
+  opacity: 0;
+  transition: all 0.2s ease;
+}
+
+.dropdown-content div:hover::before {
+  left: 10px;
+  opacity: 1;
 }
 
 .tab.dropdown:hover .dropdown-content {
   display: block;
+  animation: dropdownFadeIn 0.3s ease;
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
