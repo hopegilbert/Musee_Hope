@@ -1,6 +1,20 @@
 document.addEventListener('DOMContentLoaded', () => {
+  console.log('Paint script loaded');
+  
   const canvas = document.getElementById('paintCanvas');
+  if (!canvas) {
+    console.error('Canvas element not found!');
+    return;
+  }
+  
   const ctx = canvas.getContext('2d');
+  if (!ctx) {
+    console.error('Could not get canvas context!');
+    return;
+  }
+  
+  console.log('Canvas size:', canvas.width, 'x', canvas.height);
+  
   const tools = document.querySelectorAll('.paint-tool');
   const menuItems = document.querySelectorAll('.paint-toolbar li');
   const undoBtn = document.getElementById('undoBtn');
@@ -80,6 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Drawing functions
   function startDrawing(e) {
+    console.log('Start drawing at', e.offsetX, e.offsetY);
     isDrawing = true;
     [lastX, lastY] = [e.offsetX, e.offsetY];
     ctx.beginPath();
@@ -88,6 +103,10 @@ document.addEventListener('DOMContentLoaded', () => {
   
   function draw(e) {
     if (!isDrawing) return;
+    console.log('Drawing...', currentTool, currentColor);
+    
+    const x = e.offsetX;
+    const y = e.offsetY;
     
     ctx.beginPath();
     ctx.moveTo(lastX, lastY);
@@ -100,8 +119,8 @@ document.addEventListener('DOMContentLoaded', () => {
       ctx.strokeStyle = currentColor;
       ctx.lineWidth = 5;
     } else if (currentTool === 'spray-can') {
-      drawSpray(e.offsetX, e.offsetY);
-      [lastX, lastY] = [e.offsetX, e.offsetY];
+      drawSpray(x, y);
+      [lastX, lastY] = [x, y];
       return;
     } else {
       ctx.globalCompositeOperation = 'source-over';
@@ -109,12 +128,12 @@ document.addEventListener('DOMContentLoaded', () => {
       ctx.lineWidth = 2;
     }
     
-    ctx.lineTo(e.offsetX, e.offsetY);
+    ctx.lineTo(x, y);
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
     ctx.stroke();
     
-    [lastX, lastY] = [e.offsetX, e.offsetY];
+    [lastX, lastY] = [x, y];
   }
   
   function drawSpray(x, y) {
@@ -137,6 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   
   function stopDrawing() {
+    console.log('Stop drawing');
     if (isDrawing) {
       isDrawing = false;
       ctx.globalCompositeOperation = 'source-over';
@@ -154,18 +174,12 @@ document.addEventListener('DOMContentLoaded', () => {
   tools.forEach(tool => {
     tool.addEventListener('click', () => {
       const toolName = tool.getAttribute('title').toLowerCase();
+      console.log('Tool selected:', toolName);
       currentTool = toolName;
       tools.forEach(t => t.classList.remove('active'));
       tool.classList.add('active');
       
-      // Update cursor based on tool
-      if (toolName === 'eraser') {
-        canvas.style.cursor = 'cell';
-      } else if (toolName === 'text') {
-        canvas.style.cursor = 'text';
-      } else {
-        canvas.style.cursor = 'crosshair';
-      }
+      canvas.style.cursor = toolName === 'eraser' ? 'cell' : 'crosshair';
     });
   });
   
@@ -191,8 +205,16 @@ document.addEventListener('DOMContentLoaded', () => {
       colors.forEach(c => c.classList.remove('selected'));
       color.classList.add('selected');
       currentColor = color.style.backgroundColor;
+      console.log('Color selected:', currentColor);
     });
   });
+  
+  // Select black by default
+  const defaultColor = document.querySelector('.color-box');
+  if (defaultColor) {
+    defaultColor.classList.add('selected');
+    currentColor = defaultColor.style.backgroundColor;
+  }
   
   // Button event listeners
   undoBtn.addEventListener('click', undo);
@@ -210,4 +232,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   });
+  
+  console.log('Paint initialization complete');
 }); 

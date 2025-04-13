@@ -327,6 +327,7 @@
 
     <script src="script.js"></script>
     <script>
+        console.log('Window script loaded');
         // Make window draggable
         const paintWindow = document.getElementById('paintWindow');
         const paintHeader = document.getElementById('paintHeader');
@@ -335,6 +336,7 @@
         paintHeader.onmousedown = dragMouseDown;
 
         function dragMouseDown(e) {
+            console.log('Drag started');
             e = e || window.event;
             e.preventDefault();
             pos3 = e.clientX;
@@ -380,6 +382,7 @@
         const tools = document.querySelectorAll('.paint-tool');
         tools.forEach(tool => {
             tool.addEventListener('click', () => {
+                console.log('Tool clicked:', tool.getAttribute('title'));
                 tools.forEach(t => t.classList.remove('active'));
                 tool.classList.add('active');
             });
