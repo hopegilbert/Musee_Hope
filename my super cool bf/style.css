@@ -579,6 +579,11 @@ h1 {
   overflow: hidden;
 }
 
+.toolbar-inner {
+  position: relative;
+  z-index: 10000; /* ensure dropdowns have a base context */
+}
+
 /* Top Pink Title Bar */
 .toolbar-titlebar {
   background-color: #b92c6d;
@@ -916,10 +921,7 @@ h1 {
   background: none !important;
   border: none !important;
   box-shadow: none !important;
-  z-index: 2147483646;
-  transform: translateZ(0);
-  will-change: transform;
-  isolation: isolate;
+  z-index: 10001;
 }
 
 .tab.dropdown .dropdown-toggle {
@@ -964,20 +966,17 @@ h1 {
 
 .dropdown-content {
   display: none;
-  position: fixed;
-  top: 0;
+  position: absolute;
+  top: 100%;
   left: 0;
   min-width: 200px;
   background-color: #f5e8c7;
   border-radius: 12px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-  z-index: 2147483646;
+  z-index: 2147483647; /* bump up just above cursor */
   pointer-events: auto;
   border: 2px solid #b92c6d;
   overflow: visible;
-  transform: translateZ(0);
-  will-change: transform;
-  isolation: isolate;
 }
 
 .dropdown-content div {
