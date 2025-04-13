@@ -610,6 +610,30 @@ document.addEventListener('DOMContentLoaded', () => {
       // Set window dimensions
       paintWindow.style.width = windowSize + 'px';
       paintWindow.style.height = paintWindowHeight + 'px';
+
+      // Adjust button sizes
+      const buttons = paintWindow.querySelectorAll('.paint-toolbar button');
+      const buttonSize = Math.min(Math.max(windowSize * 0.08, 30), 45); // Between 30px and 45px
+      buttons.forEach(button => {
+        button.style.width = buttonSize + 'px';
+        button.style.height = buttonSize + 'px';
+        button.style.margin = (buttonSize * 0.1) + 'px';
+        // Scale icons inside buttons
+        const icon = button.querySelector('i');
+        if (icon) {
+          const iconSize = Math.max(buttonSize * 0.6, 16) + 'px';
+          icon.style.fontSize = iconSize;
+        }
+      });
+
+      // Adjust color buttons
+      const colorButtons = paintWindow.querySelectorAll('.color-option');
+      const colorButtonSize = Math.min(Math.max(windowSize * 0.06, 25), 40); // Between 25px and 40px
+      colorButtons.forEach(button => {
+        button.style.width = colorButtonSize + 'px';
+        button.style.height = colorButtonSize + 'px';
+        button.style.margin = (colorButtonSize * 0.1) + 'px';
+      });
       
       // Position window in the center of the screen
       const leftPosition = (windowWidth - windowSize) / 2;
