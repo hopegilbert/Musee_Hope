@@ -629,6 +629,9 @@ h1 {
   position: relative;
   white-space: nowrap;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .toolbar-tabs .tab:hover {
@@ -787,7 +790,7 @@ h1 {
   color: #4b0e29;
 }
 
-.dropdown:hover .dropdown-content {
+.tab:hover .dropdown-content {
   display: block;
 }
 
