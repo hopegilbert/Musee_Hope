@@ -401,25 +401,95 @@ document.addEventListener('DOMContentLoaded', () => {
     colorBoxes.forEach(b => b.classList.remove('selected'));
   }
   
+  // Initialize draggable window
+  if (paintWindow && paintHeader) {
+    // Calculate responsive size based on viewport
+    const updateWindowSize = () => {
+      const windowWidth = window.innerWidth;
+      const viewportHeight = window.innerHeight;
+      
+      // Calculate window size (30% of viewport width, max 600px)
+      const windowSize = Math.min(windowWidth * 0.3, 600);
+      const paintWindowHeight = windowSize * 1.2; // 20% taller than width
+      
+      // Set window dimensions
+      paintWindow.style.width = windowSize + 'px';
+      paintWindow.style.height = paintWindowHeight + 'px';
+
+      // Adjust button sizes
+      const buttons = paintWindow.querySelectorAll('.paint-toolbar button');
+      const buttonSize = Math.min(Math.max(windowSize * 0.08, 30), 45); // Between 30px and 45px
+      buttons.forEach(button => {
+        button.style.width = buttonSize + 'px';
+        button.style.height = buttonSize + 'px';
+        button.style.margin = (buttonSize * 0.1) + 'px';
+        // Scale icons inside buttons
+        const icon = button.querySelector('i');
+        if (icon) {
+          const iconSize = Math.max(buttonSize * 0.6, 16) + 'px';
+          icon.style.fontSize = iconSize;
+        }
+      });
+
+      // Adjust color buttons
+      const colorButtons = paintWindow.querySelectorAll('.color-option');
+      const colorButtonSize = Math.min(Math.max(windowSize * 0.06, 25), 40); // Between 25px and 40px
+      colorButtons.forEach(button => {
+        button.style.width = colorButtonSize + 'px';
+        button.style.height = colorButtonSize + 'px';
+        button.style.margin = (colorButtonSize * 0.1) + 'px';
+      });
+      
+      // Position window in the center of the screen
+      const leftPosition = (windowWidth - windowSize) / 2;
+      
+      // Set initial position
+      if (!paintWindow.style.left && !paintWindow.style.top) {
+        paintWindow.style.left = leftPosition + 'px';
+        paintWindow.style.top = '100px';
+      }
+
+      // Update header sizing
+      const headerHeight = Math.min(Math.max(windowSize * 0.05, 24), 36);
+      paintHeader.style.height = headerHeight + 'px';
+      
+      // Ensure main canvas stays full screen
+      setCanvasSize();
+    };
+    
+    // Initial size update
+    updateWindowSize();
+    
+    // Update on window resize
+    window.addEventListener('resize', () => {
+      updateWindowSize();
+    });
+    
+    makeDraggable(paintWindow, paintHeader);
+  }
+
   // Setup color dropdown positioning
   const colorDropdown = document.querySelector('.color-dropdown');
   const colorOptionsContainer = document.querySelector('.color-options');
   if (colorDropdown) {
-    // Ensure dropdown is always on top
     colorDropdown.style.position = 'fixed';
     colorDropdown.style.zIndex = '999999999';
-    
-    // Style for mobile
-    if (window.innerWidth <= 768) {
-      if (colorOptionsContainer) {
-        colorOptionsContainer.style.position = 'fixed';
-        colorOptionsContainer.style.zIndex = '999999999';
-        colorOptionsContainer.style.background = '#fff';
-        colorOptionsContainer.style.boxShadow = '0 2px 10px rgba(0,0,0,0.2)';
-      }
-    }
   }
   
+  // Toggle color dropdown
+  if (colorButton) {
+    colorButton.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (colorDropdown) {
+        const buttonRect = colorButton.getBoundingClientRect();
+        colorDropdown.style.display = colorDropdown.style.display === 'none' ? 'block' : 'none';
+        colorDropdown.style.top = (buttonRect.bottom + 5) + 'px';
+        colorDropdown.style.left = buttonRect.left + 'px';
+        colorDropdown.style.zIndex = '999999999';
+      }
+    });
+  }
+
   // Add touch event handling for all buttons
   function addTouchSupport(element, clickHandler) {
     element.addEventListener('touchstart', (e) => {
@@ -645,82 +715,6 @@ document.addEventListener('DOMContentLoaded', () => {
     handle.addEventListener('touchstart', dragStart, { passive: false });
     document.addEventListener('touchmove', drag, { passive: false });
     document.addEventListener('touchend', dragEnd);
-  }
-
-  // Initialize draggable window
-  if (paintWindow && paintHeader) {
-    // Calculate responsive size based on viewport
-    const updateWindowSize = () => {
-      const windowWidth = window.innerWidth;
-      const viewportHeight = window.innerHeight;
-      
-      // Calculate window size (30% of viewport width, max 600px)
-      const windowSize = Math.min(windowWidth * 0.3, 600);
-      const paintWindowHeight = windowSize * 1.2; // 20% taller than width
-      
-      // Set window dimensions
-      paintWindow.style.width = windowSize + 'px';
-      paintWindow.style.height = paintWindowHeight + 'px';
-
-      // Adjust button sizes
-      const buttons = paintWindow.querySelectorAll('.paint-toolbar button');
-      const buttonSize = Math.min(Math.max(windowSize * 0.08, 30), 45); // Between 30px and 45px
-      buttons.forEach(button => {
-        button.style.width = buttonSize + 'px';
-        button.style.height = buttonSize + 'px';
-        button.style.margin = (buttonSize * 0.1) + 'px';
-        // Scale icons inside buttons
-        const icon = button.querySelector('i');
-        if (icon) {
-          const iconSize = Math.max(buttonSize * 0.6, 16) + 'px';
-          icon.style.fontSize = iconSize;
-        }
-      });
-
-      // Adjust color buttons
-      const colorButtons = paintWindow.querySelectorAll('.color-option');
-      const colorButtonSize = Math.min(Math.max(windowSize * 0.06, 25), 40); // Between 25px and 40px
-      colorButtons.forEach(button => {
-        button.style.width = colorButtonSize + 'px';
-        button.style.height = colorButtonSize + 'px';
-        button.style.margin = (colorButtonSize * 0.1) + 'px';
-      });
-      
-      // Position window in the center of the screen
-      const leftPosition = (windowWidth - windowSize) / 2;
-      
-      // Get toolbar height and ensure it's positioned correctly
-      const toolbar = document.querySelector('.main-window');
-      if (toolbar) {
-        toolbar.style.position = 'fixed';
-        toolbar.style.top = '0';
-        toolbar.style.left = '0';
-        toolbar.style.width = '100%';
-      }
-      const toolbarRect = toolbar?.getBoundingClientRect();
-      const toolbarBottom = toolbarRect ? toolbarRect.bottom : 0;
-      
-      // Set position, ensuring it's below the toolbar
-      paintWindow.style.left = leftPosition + 'px';
-      paintWindow.style.top = (toolbarBottom + 20) + 'px';
-
-      // Update header sizing
-      const headerHeight = Math.min(Math.max(windowSize * 0.05, 24), 36);
-      paintHeader.style.height = headerHeight + 'px';
-      
-      // Ensure main canvas stays full screen
-      setCanvasSize();
-    };
-    
-    // Initial size update
-    updateWindowSize();
-    
-    // Update on window resize
-    window.addEventListener('resize', () => {
-      updateWindowSize();
-    });
-    
-    makeDraggable(paintWindow, paintHeader);
   }
 
   // Update canvas size based on window size
