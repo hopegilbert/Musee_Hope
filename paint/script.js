@@ -620,25 +620,23 @@ document.addEventListener('DOMContentLoaded', () => {
       // Position window in the center of the screen
       const leftPosition = (windowWidth - windowSize) / 2;
       const topPosition = (viewportHeight - paintWindowHeight) / 2;
-      paintWindow.style.left = leftPosition + 'px';
-      paintWindow.style.top = Math.max(toolbarBottom, topPosition) + 'px';
-
-      // Update header font size based on window size
-      const headerFontSize = Math.max(12, Math.min(16, windowSize * 0.04));
-      paintHeader.style.fontSize = headerFontSize + 'px';
       
-      // Update header padding
-      const headerPadding = Math.max(4, Math.min(8, windowSize * 0.02));
-      paintHeader.style.padding = headerPadding + 'px ' + (headerPadding * 2) + 'px';
+      // Get toolbar height
+      const toolbar = document.querySelector('.main-window');
+      const toolbarRect = toolbar?.getBoundingClientRect();
+      const toolbarBottom = toolbarRect ? toolbarRect.bottom : 0;
+      
+      // Set position, ensuring it's below the toolbar
+      paintWindow.style.left = leftPosition + 'px';
+      paintWindow.style.top = Math.max(toolbarBottom + 10, topPosition) + 'px';
 
+      // Update header sizing
+      const headerHeight = Math.min(Math.max(windowSize * 0.05, 24), 36); // Between 24px and 36px
+      paintHeader.style.height = headerHeight + 'px';
+      
       // Ensure main canvas stays full screen
       setCanvasSize();
     };
-    
-    // Get toolbar height
-    const toolbar = document.querySelector('.main-window');
-    const toolbarRect = toolbar?.getBoundingClientRect();
-    const toolbarBottom = toolbarRect ? toolbarRect.bottom : 0;
     
     // Initial size update
     updateWindowSize();
