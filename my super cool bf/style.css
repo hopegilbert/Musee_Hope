@@ -159,6 +159,7 @@ h1 {
     max-width: 90vw;
     width: 350px;
     transition: width 0.3s ease;
+    font-family: 'Tahoma', sans-serif;
   }
   
   .window-header {
@@ -171,12 +172,13 @@ h1 {
     cursor: move;
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
+    font-family: 'Tahoma', sans-serif;
   }
   
   .window-title {
     font-weight: bold;
     color: white;
-    font-family: 'Courier New', monospace;
+    font-family: 'Tahoma', sans-serif;
     font-size: 0.85rem;
   }
   
@@ -194,7 +196,7 @@ h1 {
     text-align: center;
     line-height: 18px;
     font-size: 0.8rem;
-    font-family: 'Courier New', monospace;
+    font-family: 'Tahoma', sans-serif;
     cursor: pointer;
     color: #a03d70;
     box-shadow: inset 0 1px #fff, inset 0 -1px #ccc;
@@ -214,6 +216,7 @@ h1 {
   border-top: 1px solid #fff;
   overflow: auto;
   max-height: 80vh;
+  font-family: 'Tahoma', sans-serif;
 }
 
 /* Custom Cursor Styles */
