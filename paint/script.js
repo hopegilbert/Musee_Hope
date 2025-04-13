@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   console.log('Paint script loaded');
   
+  // Get canvas elements
   const canvas = document.getElementById('paintCanvas');
   if (!canvas) {
     console.error('Canvas element not found!');
@@ -15,16 +16,11 @@ document.addEventListener('DOMContentLoaded', () => {
   
   console.log('Canvas size:', canvas.width, 'x', canvas.height);
   
-  const tools = document.querySelectorAll('.paint-tool');
-  const menuItems = document.querySelectorAll('.paint-toolbar li');
-  const undoBtn = document.getElementById('undoBtn');
-  const redoBtn = document.getElementById('redoBtn');
-  const eraserBtn = document.getElementById('eraserBtn');
-  
   // Initialize canvas with white background
   ctx.fillStyle = '#FFFFFF';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   
+  // Drawing state
   let isDrawing = false;
   let lastX = 0;
   let lastY = 0;
@@ -33,6 +29,55 @@ document.addEventListener('DOMContentLoaded', () => {
   let history = [];
   let historyIndex = -1;
   const MAX_HISTORY = 20;
+  
+  // Make window draggable
+  const paintWindow = document.getElementById('paintWindow');
+  const paintHeader = document.getElementById('paintHeader');
+  let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  
+  paintHeader.onmousedown = dragMouseDown;
+  
+  function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    document.onmousemove = elementDrag;
+  }
+  
+  function elementDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    
+    let newTop = paintWindow.offsetTop - pos2;
+    let newLeft = paintWindow.offsetLeft - pos1;
+    
+    // Prevent going above the toolbar (60px from top)
+    if (newTop < 60) {
+      newTop = 60;
+    }
+    
+    // Prevent going off-screen
+    const maxTop = window.innerHeight - paintWindow.offsetHeight;
+    const maxLeft = window.innerWidth - paintWindow.offsetWidth;
+    
+    if (newTop > maxTop) newTop = maxTop;
+    if (newLeft > maxLeft) newLeft = maxLeft;
+    if (newLeft < 0) newLeft = 0;
+    
+    paintWindow.style.top = newTop + "px";
+    paintWindow.style.left = newLeft + "px";
+  }
+  
+  function closeDragElement() {
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
   
   // Save current canvas state to history
   function saveState() {
@@ -50,11 +95,13 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Update undo/redo button states
   function updateButtonStates() {
+    const undoBtn = document.getElementById('undoBtn');
+    const redoBtn = document.getElementById('redoBtn');
     if (undoBtn) undoBtn.style.opacity = historyIndex <= 0 ? '0.5' : '1';
     if (redoBtn) redoBtn.style.opacity = historyIndex >= history.length - 1 ? '0.5' : '1';
   }
   
-  // Undo last action
+  // Undo/Redo functions
   function undo() {
     if (historyIndex > 0) {
       historyIndex--;
@@ -62,7 +109,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
   
-  // Redo last undone action
   function redo() {
     if (historyIndex < history.length - 1) {
       historyIndex++;
@@ -81,6 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   }
   
+  // Drawing functions
   function getMousePos(e) {
     const rect = canvas.getBoundingClientRect();
     return {
@@ -158,6 +205,7 @@ document.addEventListener('DOMContentLoaded', () => {
   canvas.addEventListener('mouseout', stopDrawing);
   
   // Tool selection
+  const tools = document.querySelectorAll('.paint-tool');
   tools.forEach(tool => {
     tool.addEventListener('click', () => {
       const toolName = tool.getAttribute('title').toLowerCase();
@@ -169,18 +217,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
   
-  // Menu items
-  menuItems.forEach(item => {
+  // Item selection
+  const items = document.querySelectorAll('.paint-item');
+  items.forEach(item => {
     item.addEventListener('click', () => {
-      const action = item.dataset.action;
-      if (action === 'new') {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-      } else if (action === 'save') {
-        const link = document.createElement('a');
-        link.download = 'drawing.png';
-        link.href = canvas.toDataURL();
-        link.click();
-      }
+      items.forEach(i => i.classList.remove('active'));
+      item.classList.add('active');
     });
   });
   
@@ -203,6 +245,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   
   // Button event listeners
+  const undoBtn = document.getElementById('undoBtn');
+  const redoBtn = document.getElementById('redoBtn');
   if (undoBtn) undoBtn.addEventListener('click', undo);
   if (redoBtn) redoBtn.addEventListener('click', redo);
   
@@ -219,5 +263,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
   
+  // Initialize history
+  saveState();
   console.log('Paint initialization complete');
 }); 
