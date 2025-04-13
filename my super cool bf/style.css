@@ -618,20 +618,19 @@ h1 {
 }
 
 .toolbar-tabs .tab {
-  padding: 6px 12px;
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 12px;
   margin: 0;
   cursor: pointer;
-  color: #4b0082;
-  font-weight: bold;
+  color: #6b1a3b;
   font-size: 0.8rem;
-  border: none;
-  background: none;
   position: relative;
+  transition: all 0.3s ease;
   white-space: nowrap;
   flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: auto;
+  min-width: fit-content;
 }
 
 .toolbar-tabs .tab:hover {
@@ -714,28 +713,26 @@ h1 {
 /* Dropdown menu styles */
 .tab.dropdown {
   position: relative;
-  display: inline-block;
-  padding: 0;
-  margin: 0;
-  flex-shrink: 0;
+  display: inline-flex;
+  width: auto;
+  min-width: fit-content;
 }
 
 .tab.dropdown .dropdown-toggle {
-  padding: 6px 12px;
-  margin: 0;
-  border: none;
-  background: none;
-  color: #4b0082;
-  font-weight: bold;
-  font-size: 0.8rem;
-  cursor: pointer;
-  font-family: 'Tahoma', sans-serif;
-  white-space: nowrap;
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  height: 100%;
-  width: 100%;
+  gap: 4px;
+  width: auto;
+  min-width: fit-content;
+  padding: 8px 12px;
+  margin: 0;
+  cursor: pointer;
+  color: #6b1a3b;
+  font-size: 0.8rem;
+  position: relative;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .tab.dropdown .dropdown-toggle:hover {
@@ -770,6 +767,7 @@ h1 {
   border-radius: 4px;
   padding: 8px 0;
   margin-top: 4px;
+  width: auto;
 }
 
 .dropdown-content div {
