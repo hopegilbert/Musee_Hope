@@ -17,19 +17,17 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Set canvas size
   function setCanvasSize() {
-    const width = window.innerWidth;
-    const height = window.innerHeight - 92; // Account for toolbar
-    
-    mainCanvas.width = width;
-    mainCanvas.height = height;
-    tempCanvas.width = width;
-    tempCanvas.height = height;
+    // Always set main canvas to fill the screen
+    mainCanvas.width = window.innerWidth;
+    mainCanvas.height = window.innerHeight;
+    tempCanvas.width = window.innerWidth;
+    tempCanvas.height = window.innerHeight;
     
     // Set white background
     mainCtx.fillStyle = '#FFFFFF';
-    mainCtx.fillRect(0, 0, width, height);
+    mainCtx.fillRect(0, 0, mainCanvas.width, mainCanvas.height);
     tempCtx.fillStyle = '#FFFFFF';
-    tempCtx.fillRect(0, 0, width, height);
+    tempCtx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
   }
   
   // Initialize canvas size
@@ -611,8 +609,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const windowWidth = window.innerWidth;
       const windowHeight = window.innerHeight;
       
-      // Calculate window size (40% of viewport width, max 800px)
-      const windowSize = Math.min(windowWidth * 0.4, 800);
+      // Calculate window size (30% of viewport width, max 600px)
+      const windowSize = Math.min(windowWidth * 0.3, 600);
       
       // Set window dimensions
       paintWindow.style.width = windowSize + 'px';
@@ -622,6 +620,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const rightPadding = Math.min(windowWidth * 0.02, 20); // 2% of viewport width or 20px
       paintWindow.style.left = (windowWidth - windowSize - rightPadding) + 'px';
       paintWindow.style.top = (windowHeight * 0.1) + 'px'; // 10% from top
+
+      // Ensure main canvas stays full screen
+      setCanvasSize();
     };
     
     // Initial size update
@@ -640,15 +641,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (paintWindow) {
       const contentArea = paintWindow.querySelector('.paint-content');
       if (contentArea) {
-        const width = contentArea.offsetWidth - 120; // Account for toolbars
-        const height = contentArea.offsetHeight - 20; // Account for padding
-        mainCanvas.width = width;
-        mainCanvas.height = height;
-        tempCanvas.width = width;
-        tempCanvas.height = height;
-        
-        // Redraw canvas content if needed
-        mainCtx.drawImage(tempCanvas, 0, 0);
+        // Keep the main canvas full screen
+        setCanvasSize();
       }
     }
   };
