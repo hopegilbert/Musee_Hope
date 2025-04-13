@@ -387,41 +387,50 @@ document.addEventListener('DOMContentLoaded', () => {
   const colorButton = document.querySelector('.color-button');
   const colorOptions = document.querySelectorAll('.color-option');
   const colorBoxes = document.querySelectorAll('.paint-colors .color-box');
+  const menuColorBoxes = document.querySelectorAll('.color-grid .color-box');
+  
+  function updateColorSelection(newColor) {
+    currentColor = newColor;
+    if (colorButton) {
+      colorButton.style.backgroundColor = currentColor;
+    }
+    if (mainCtx) {
+      mainCtx.strokeStyle = currentColor;
+      mainCtx.fillStyle = currentColor;
+    }
+    // Update selected states
+    menuColorBoxes.forEach(b => b.classList.remove('selected'));
+    colorBoxes.forEach(b => b.classList.remove('selected'));
+  }
+  
+  // Menu color boxes functionality
+  menuColorBoxes.forEach(box => {
+    box.addEventListener('click', function() {
+      updateColorSelection(this.style.backgroundColor);
+      this.classList.add('selected');
+    });
+  });
+  
+  // Color dropdown functionality
+  colorOptions.forEach(option => {
+    option.addEventListener('click', function() {
+      updateColorSelection(this.style.backgroundColor);
+    });
+  });
+  
+  // Paint window color boxes functionality
+  colorBoxes.forEach(box => {
+    box.addEventListener('click', function() {
+      updateColorSelection(this.style.backgroundColor);
+      this.classList.add('selected');
+    });
+  });
   
   // Initialize canvas context color
   if (mainCtx) {
     mainCtx.strokeStyle = currentColor;
     mainCtx.fillStyle = currentColor;
   }
-  
-  // Color dropdown functionality
-  colorOptions.forEach(option => {
-    option.addEventListener('click', function() {
-      currentColor = this.style.backgroundColor;
-      colorButton.style.backgroundColor = currentColor;
-      if (mainCtx) {
-        mainCtx.strokeStyle = currentColor;
-        mainCtx.fillStyle = currentColor;
-      }
-      // Remove selected class from all color boxes
-      colorBoxes.forEach(box => box.classList.remove('selected'));
-    });
-  });
-  
-  // Color boxes functionality
-  colorBoxes.forEach(box => {
-    box.addEventListener('click', function() {
-      currentColor = this.style.backgroundColor;
-      colorButton.style.backgroundColor = currentColor;
-      if (mainCtx) {
-        mainCtx.strokeStyle = currentColor;
-        mainCtx.fillStyle = currentColor;
-      }
-      // Update selected state
-      colorBoxes.forEach(b => b.classList.remove('selected'));
-      this.classList.add('selected');
-    });
-  });
   
   // Button event listeners
   const undoBtn = document.getElementById('undoBtn');
