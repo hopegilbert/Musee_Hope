@@ -208,23 +208,26 @@ h1 {
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
 .draggable-window {
-  position: relative;
+  position: absolute;
   z-index: 900;
   min-width: 250px;
   max-width: 90vw;
   width: 350px;
   transition: all 0.3s ease;
   font-family: 'Tahoma', sans-serif;
-  margin: 0 auto;
-  break-inside: avoid;
+  margin: 0;
+  cursor: move;
 }
 
 .draggable-window.masonry-item {
   position: relative;
   margin-bottom: 20px;
+  width: 100%;
 }
 
 .window-header {
