@@ -21,6 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
   let canvasHistory = [];
   let historyIndex = -1;
   const MAX_HISTORY = 20;
+  let startX, startY;
+  let isDrawingShape = false;
+  let textInput = null;
   
   // Create a temporary canvas for drawings
   const tempCanvas = document.createElement('canvas');
@@ -52,8 +55,53 @@ document.addEventListener('DOMContentLoaded', () => {
   function startDrawing(e) {
     isDrawing = true;
     const pos = getMousePos(e);
-    lastX = pos.x;
-    lastY = pos.y;
+    
+    if (['rectangle', 'ellipse', 'line'].includes(currentTool)) {
+        startX = pos.x;
+        startY = pos.y;
+        isDrawingShape = true;
+    } else if (currentTool === 'text') {
+        if (textInput) {
+            document.body.removeChild(textInput);
+        }
+        
+        textInput = document.createElement('input');
+        textInput.type = 'text';
+        textInput.style.position = 'fixed';
+        textInput.style.left = e.clientX + 'px';
+        textInput.style.top = e.clientY + 'px';
+        textInput.style.background = 'transparent';
+        textInput.style.border = '1px solid #000';
+        textInput.style.font = '16px Arial';
+        textInput.style.zIndex = '1000';
+        
+        document.body.appendChild(textInput);
+        textInput.focus();
+        
+        textInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                const text = this.value;
+                const rect = mainCanvas.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                tempCtx.font = '16px Arial';
+                tempCtx.fillStyle = currentColor;
+                tempCtx.fillText(text, x, y);
+                
+                mainCtx.fillStyle = '#FFFFFF';
+                mainCtx.fillRect(0, 0, mainCanvas.width, mainCanvas.height);
+                mainCtx.drawImage(tempCanvas, 0, 0);
+                
+                document.body.removeChild(this);
+                textInput = null;
+                saveState();
+            }
+        });
+    } else {
+        lastX = pos.x;
+        lastY = pos.y;
+    }
     
     if (currentTool === 'eraser') {
         tempCtx.globalCompositeOperation = 'destination-out';
@@ -70,6 +118,40 @@ document.addEventListener('DOMContentLoaded', () => {
     switch(currentTool) {
         case 'spray':
             drawSpray(pos.x, pos.y);
+            break;
+            
+        case 'rectangle':
+        case 'ellipse':
+        case 'line':
+            // Clear the temp canvas and redraw from the start point
+            tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
+            tempCtx.beginPath();
+            tempCtx.strokeStyle = currentColor;
+            tempCtx.lineWidth = brushSize;
+            
+            if (currentTool === 'rectangle') {
+                const width = pos.x - startX;
+                const height = pos.y - startY;
+                tempCtx.strokeRect(startX, startY, width, height);
+            } else if (currentTool === 'ellipse') {
+                const radiusX = Math.abs(pos.x - startX) / 2;
+                const radiusY = Math.abs(pos.y - startY) / 2;
+                const centerX = startX + (pos.x - startX) / 2;
+                const centerY = startY + (pos.y - startY) / 2;
+                
+                tempCtx.beginPath();
+                tempCtx.ellipse(centerX, centerY, radiusX, radiusY, 0, 0, Math.PI * 2);
+                tempCtx.stroke();
+            } else if (currentTool === 'line') {
+                tempCtx.beginPath();
+                tempCtx.moveTo(startX, startY);
+                tempCtx.lineTo(pos.x, pos.y);
+                tempCtx.stroke();
+            }
+            break;
+            
+        case 'text':
+            // Handle text input when mouse is released
             break;
             
         case 'brush':
@@ -103,7 +185,9 @@ document.addEventListener('DOMContentLoaded', () => {
     mainCtx.fillRect(0, 0, mainCanvas.width, mainCanvas.height);
     mainCtx.drawImage(tempCanvas, 0, 0);
     
-    [lastX, lastY] = [pos.x, pos.y];
+    if (['pencil', 'brush', 'eraser'].includes(currentTool)) {
+        [lastX, lastY] = [pos.x, pos.y];
+    }
   }
   
   function drawSpray(x, y) {
@@ -126,9 +210,13 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   
   function stopDrawing() {
-    if (isDrawing) {
-        isDrawing = false;
-        tempCtx.globalCompositeOperation = 'source-over';
+    if (!isDrawing) return;
+    
+    isDrawing = false;
+    isDrawingShape = false;
+    tempCtx.globalCompositeOperation = 'source-over';
+    
+    if (currentTool !== 'text') {
         saveState();
     }
   }
@@ -480,6 +568,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const fillBtn = document.getElementById('fillBtn');
   const textBtn = document.getElementById('textBtn');
   const sprayBtn = document.getElementById('sprayBtn');
+  const rectangleBtn = document.getElementById('rectangleBtn');
+  const ellipseBtn = document.getElementById('ellipseBtn');
+  const lineBtn = document.getElementById('lineBtn');
 
   function setActiveTool(toolId, toolName) {
     // Remove active class from all tools
@@ -521,6 +612,28 @@ document.addEventListener('DOMContentLoaded', () => {
   if (sprayBtn) {
     sprayBtn.addEventListener('click', () => {
       setActiveTool('sprayBtn', 'spray');
+      brushSize = 1;
+    });
+  }
+
+  if (rectangleBtn) {
+    rectangleBtn.addEventListener('click', () => {
+      setActiveTool('rectangleBtn', 'rectangle');
+      brushSize = 2;
+    });
+  }
+
+  if (ellipseBtn) {
+    ellipseBtn.addEventListener('click', () => {
+      setActiveTool('ellipseBtn', 'ellipse');
+      brushSize = 2;
+    });
+  }
+
+  if (lineBtn) {
+    lineBtn.addEventListener('click', () => {
+      setActiveTool('lineBtn', 'line');
+      brushSize = 2;
     });
   }
 
