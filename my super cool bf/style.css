@@ -826,7 +826,7 @@ h1 {
 
   .toolbar-buttons {
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
   }
 
   .icon-group {
