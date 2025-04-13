@@ -659,6 +659,9 @@ h1 {
 .toolbar-tabs .tab:hover {
   background-color: rgba(255, 194, 203, 0.3);
   color: #b92c6d;
+  border-radius: 4px;
+  padding: 6px 8px;
+  margin: 0 2px;
 }
 
 .toolbar-tabs .tab.active {
@@ -741,6 +744,9 @@ h1 {
 .tab.dropdown .dropdown-toggle:hover {
   background-color: rgba(255, 194, 203, 0.3);
   color: #b92c6d;
+  border-radius: 4px;
+  padding: 6px 8px;
+  margin: 0 2px;
 }
 
 .tab.dropdown.active .dropdown-toggle {
@@ -1015,6 +1021,9 @@ h1 {
 .tab.dropdown .dropdown-toggle:hover {
   background-color: rgba(255, 194, 203, 0.3);
   color: #b92c6d;
+  border-radius: 4px;
+  padding: 6px 8px;
+  margin: 0 2px;
 }
 
 .tab.dropdown.active .dropdown-toggle {
