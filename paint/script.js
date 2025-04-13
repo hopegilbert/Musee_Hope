@@ -1,30 +1,3 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const colorTool = document.querySelector('.paint-tool:nth-last-child(1)');
-    const colorDropdown = document.querySelector('.color-dropdown');
-    const colorOptions = document.querySelector('.color-options');
-
-    if (colorTool && colorDropdown) {
-        colorTool.addEventListener('mouseenter', function(e) {
-            const rect = colorTool.getBoundingClientRect();
-            colorDropdown.style.left = (rect.right + 5) + 'px';
-            colorDropdown.style.top = rect.top + 'px';
-        });
-
-        colorDropdown.addEventListener('mouseenter', function(e) {
-            const dropdownRect = colorDropdown.getBoundingClientRect();
-            colorOptions.style.left = (dropdownRect.right + 5) + 'px';
-            colorOptions.style.top = dropdownRect.top + 'px';
-            colorOptions.style.display = 'grid';
-            colorOptions.style.gridTemplateColumns = 'repeat(2, 1fr)';
-            colorOptions.style.gap = '2px';
-        });
-
-        colorDropdown.addEventListener('mouseleave', function(e) {
-            colorOptions.style.display = 'none';
-        });
-    }
-});
-
 document.addEventListener('DOMContentLoaded', () => {
   console.log('Paint script loaded');
   
@@ -86,19 +59,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const scaleX = mainCanvas.width / rect.width;
     const scaleY = mainCanvas.height / rect.height;
     
+    // Handle both touch and mouse events
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+    
     return {
-      x: ((e.clientX - rect.left) * scaleX),
-      y: ((e.clientY - rect.top) * scaleY)
+      x: ((clientX - rect.left) * scaleX),
+      y: ((clientY - rect.top) * scaleY)
     };
   }
   
   function startDrawing(e) {
+    e.preventDefault();
     const pos = getMousePos(e);
     
     if (currentTool === 'fill') {
-        floodFill(Math.round(pos.x), Math.round(pos.y), currentColor);
-        saveState();
-        return;
+      floodFill(Math.round(pos.x), Math.round(pos.y), currentColor);
+      saveState();
+      return;
     }
     
     if (currentTool === 'text') {
@@ -112,8 +90,8 @@ document.addEventListener('DOMContentLoaded', () => {
         textInput = document.createElement('input');
         textInput.type = 'text';
         textInput.style.position = 'fixed';
-        textInput.style.left = e.clientX + 'px';
-        textInput.style.top = e.clientY + 'px';
+        textInput.style.left = pos.x + 'px';
+        textInput.style.top = pos.y + 'px';
         textInput.style.font = brushSize + 'px Arial';
         textInput.style.color = currentColor;
         textInput.style.border = '1px solid #000';
@@ -161,18 +139,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     isDrawing = true;
-    // For shapes, store the initial canvas state
-    if (['rectangle', 'ellipse', 'line'].includes(currentTool)) {
-        // Store initial state
-        tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
-        tempCtx.drawImage(mainCanvas, 0, 0);
-    }
-    
     [lastX, lastY] = [pos.x, pos.y];
     [startX, startY] = [pos.x, pos.y];
+    
+    // For shapes, store the initial canvas state
+    if (['rectangle', 'ellipse', 'line'].includes(currentTool)) {
+      tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
+      tempCtx.drawImage(mainCanvas, 0, 0);
+    }
+    
+    // For spray tool, start spraying immediately
+    if (currentTool === 'spray') {
+      drawSpray(pos.x, pos.y);
+    }
   }
   
   function draw(e) {
+    e.preventDefault();
     if (!isDrawing) return;
     
     const pos = getMousePos(e);
@@ -180,35 +163,19 @@ document.addEventListener('DOMContentLoaded', () => {
     switch(currentTool) {
       case 'pencil':
       case 'brush':
-        tempCtx.beginPath();
-        tempCtx.moveTo(lastX, lastY);
-        tempCtx.lineTo(pos.x, pos.y);
-        tempCtx.strokeStyle = currentColor;
-        tempCtx.lineWidth = brushSize;
-        tempCtx.lineCap = 'round';
-        tempCtx.lineJoin = 'round';
-        tempCtx.stroke();
-        
-        // Update main canvas
-        mainCtx.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
-        mainCtx.drawImage(tempCanvas, 0, 0);
-        
-        [lastX, lastY] = [pos.x, pos.y];
-        break;
-        
       case 'eraser':
-        tempCtx.beginPath();
-        tempCtx.moveTo(lastX, lastY);
-        tempCtx.lineTo(pos.x, pos.y);
-        tempCtx.strokeStyle = '#FFFFFF';
-        tempCtx.lineWidth = brushSize;
-        tempCtx.lineCap = 'round';
-        tempCtx.lineJoin = 'round';
-        tempCtx.stroke();
+        mainCtx.beginPath();
+        mainCtx.moveTo(lastX, lastY);
+        mainCtx.lineTo(pos.x, pos.y);
+        mainCtx.strokeStyle = currentTool === 'eraser' ? '#FFFFFF' : currentColor;
+        mainCtx.lineWidth = brushSize;
+        mainCtx.lineCap = 'round';
+        mainCtx.lineJoin = 'round';
+        mainCtx.stroke();
         
-        // Update main canvas
-        mainCtx.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
-        mainCtx.drawImage(tempCanvas, 0, 0);
+        // Update temp canvas
+        tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
+        tempCtx.drawImage(mainCanvas, 0, 0);
         
         [lastX, lastY] = [pos.x, pos.y];
         break;
@@ -787,14 +754,41 @@ document.addEventListener('DOMContentLoaded', () => {
   // Add touch event listeners
   mainCanvas.addEventListener('touchstart', (e) => {
     e.preventDefault();
-    startDrawing(e.touches[0]);
-  });
+    const touch = e.touches[0];
+    const rect = mainCanvas.getBoundingClientRect();
+    const scaleX = mainCanvas.width / rect.width;
+    const scaleY = mainCanvas.height / rect.height;
+    
+    const touchEvent = {
+      clientX: touch.clientX,
+      clientY: touch.clientY,
+      target: mainCanvas
+    };
+    
+    startDrawing(touchEvent);
+  }, { passive: false });
+
   mainCanvas.addEventListener('touchmove', (e) => {
     e.preventDefault();
-    draw(e.touches[0]);
-  });
+    if (!isDrawing) return;
+    
+    const touch = e.touches[0];
+    const touchEvent = {
+      clientX: touch.clientX,
+      clientY: touch.clientY,
+      target: mainCanvas
+    };
+    
+    draw(touchEvent);
+  }, { passive: false });
+
   mainCanvas.addEventListener('touchend', (e) => {
     e.preventDefault();
     stopDrawing();
-  });
+  }, { passive: false });
+
+  mainCanvas.addEventListener('touchcancel', (e) => {
+    e.preventDefault();
+    stopDrawing();
+  }, { passive: false });
 }); 
