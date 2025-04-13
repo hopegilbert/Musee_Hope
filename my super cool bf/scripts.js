@@ -1,114 +1,184 @@
+window.addEventListener("load", () => {
+  window.scrollTo(0, 0);
+});
+
 function toggleDropdown() {
-    const menu = document.getElementById('dropdownMenu');
-    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+  const menu = document.getElementById("dropdownMenu");
+  menu.style.display = menu.style.display === "block" ? "none" : "block";
+}
+
+// Navigation function
+function navigateTo(url) {
+  window.location.href = url;
+}
+
+// Draggable window logic
+function makeDraggable(element) {
+  let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  const header = element.querySelector('.window-header');
+  
+  if (header) {
+    header.onmousedown = dragMouseDown;
   }
-  
-  function navigateTo(page) {
-    if (page) {
-      window.location.href = page;
-    }
+
+  function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // get the mouse cursor position at startup
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    // call a function whenever the cursor moves
+    document.onmousemove = elementDrag;
   }
-  
-  // Draggable window logic
-  function makeDraggable(windowElement, handleElement) {
-    let isDragging = false;
-    let offsetX = 0;
-    let offsetY = 0;
-  
-    handleElement.addEventListener('mousedown', (e) => {
-      isDragging = true;
-      offsetX = e.clientX - windowElement.offsetLeft;
-      offsetY = e.clientY - windowElement.offsetTop;
-      windowElement.style.zIndex = 1000; // bring to front
-    });
-  
-    document.addEventListener('mousemove', (e) => {
-      if (isDragging) {
-        windowElement.style.left = `${e.clientX - offsetX}px`;
-        windowElement.style.top = `${e.clientY - offsetY}px`;
-      }
-    });
-  
-    document.addEventListener('mouseup', () => {
-      isDragging = false;
-    });
-  }
-  
-  // Custom cursor and trail effect
-  document.addEventListener('DOMContentLoaded', () => {
-    const cursor = document.getElementById('cursor');
-    let isCursorVisible = false;
-    let hideTimeout;
+
+  function elementDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // calculate the new cursor position
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
     
-    const SCALE = 4.5;
-    const CURSOR_SIZE = 15; // pixels
-    const BOTTOM_LEFT_POINT = {
-      x: 9,  // x position of bottom point in original pixel art
-      y: 13  // y position of bottom point in original pixel art
-    };
+    // calculate the new position
+    let newTop = element.offsetTop - pos2;
+    let newLeft = element.offsetLeft - pos1;
+    
+    // Prevent going above the toolbar (60px from top)
+    if (newTop < 60) {
+      newTop = 60;
+    }
+    
+    // Prevent going off-screen
+    const maxTop = window.innerHeight - element.offsetHeight;
+    const maxLeft = window.innerWidth - element.offsetWidth;
+    
+    if (newTop > maxTop) newTop = maxTop;
+    if (newLeft > maxLeft) newLeft = maxLeft;
+    if (newLeft < 0) newLeft = 0;
+    
+    // set the element's new position
+    element.style.top = newTop + "px";
+    element.style.left = newLeft + "px";
+  }
 
-    // Utility to check if mouse is inside the window bounds
-    function isInViewport(e) {
-      return e.clientX > 0 && e.clientY > 0 &&
-             e.clientX < window.innerWidth &&
-             e.clientY < window.innerHeight;
+  function closeDragElement() {
+    // stop moving when mouse button is released
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}
+
+// Custom cursor and trail effect
+document.addEventListener('DOMContentLoaded', () => {
+    // Initialize dropdown
+    const dropdownTab = document.querySelector('.dropdown-tab');
+    const dropdownContent = document.querySelector('.dropdown-content');
+    
+    if (dropdownTab) {
+        dropdownTab.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleDropdown();
+        });
     }
 
-    document.addEventListener('mousemove', (e) => {
-      cursor.style.left = e.pageX + 'px';
-      cursor.style.top = e.pageY + 'px';
-
-      // If mouse is in bounds, show cursor
-      if (isInViewport(e)) {
-        if (!isCursorVisible) {
-          cursor.style.opacity = '1';
-          isCursorVisible = true;
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!dropdownTab.contains(e.target) && !dropdownContent.contains(e.target)) {
+            dropdownContent.style.display = 'none';
         }
+    });
 
-        clearTimeout(hideTimeout);
-        hideTimeout = setTimeout(() => {
-          cursor.style.opacity = '0';
-          isCursorVisible = false;
-        }, 200);
-      } else {
-        // Cursor has moved to edge/out of bounds
-        cursor.style.opacity = '0';
-        isCursorVisible = false;
+    // Create cursor element if it doesn't exist
+    let cursor = document.getElementById('cursor');
+    if (!cursor) {
+        cursor = document.createElement('div');
+        cursor.id = 'cursor';
+        document.body.appendChild(cursor);
+    }
+    
+    // Initialize cursor
+    cursor.style.display = 'block';
+    cursor.style.opacity = '1';
+    cursor.style.position = 'fixed';
+    cursor.style.pointerEvents = 'none';
+    cursor.style.zIndex = '2147483647'; // Maximum z-index value
+    cursor.style.willChange = 'transform';
+    cursor.style.transform = 'translate(-50%, -50%)';
+
+    // Update cursor position with transform for smooth movement
+    document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.pageX + 'px';
+        cursor.style.top = e.pageY + 'px';
+    });
+
+    // Check if cursor is within viewport bounds
+    document.addEventListener('mousemove', (e) => {
+      const cursor = document.getElementById('cursor');
+      const { clientX, clientY } = e;
+      const withinX = clientX >= 0 && clientX < window.innerWidth;
+      const withinY = clientY >= 0 && clientY < window.innerHeight;
+      const isInToolbar = clientY < 50; // Toolbar area
+
+      if (cursor) {
+        if (!withinX || (!withinY && !isInToolbar)) {
+          cursor.classList.add('cursor-hidden');
+        } else {
+          cursor.classList.remove('cursor-hidden');
+        }
       }
+    });
+
+    // Show/hide cursor based on mouse position
+    document.addEventListener('mouseenter', () => {
+        cursor.style.opacity = '1';
+        cursor.classList.remove('hidden');
     });
 
     document.addEventListener('mouseleave', () => {
-      cursor.style.opacity = '0';
-      isCursorVisible = false;
+        cursor.style.opacity = '0';
+        cursor.classList.add('hidden');
     });
 
     // Handle trail effect
     function createTrail(e) {
-      if (!isCursorVisible || !isInViewport(e)) return;
+        if (!cursor.classList.contains('hidden')) {
+            const trail = document.createElement('div');
+            trail.className = 'trail';
+            
+            trail.style.left = e.clientX + 'px';
+            trail.style.top = e.clientY + 'px';
+            document.body.appendChild(trail);
 
-      const trail = document.createElement('div');
-      trail.className = 'trail';
-      
-      // Calculate trail position
-      const centerToBottom = ((CURSOR_SIZE / 2) - BOTTOM_LEFT_POINT.y) * SCALE;
-      const horizontalOffset = (BOTTOM_LEFT_POINT.x - (CURSOR_SIZE / 2)) * SCALE;
-      
-      trail.style.left = (e.pageX + horizontalOffset) + 'px';
-      trail.style.top = (e.pageY - centerToBottom) + 'px';
-      document.body.appendChild(trail);
-
-      // Remove trail element after animation
-      setTimeout(() => {
-        trail.remove();
-      }, 800); // Match animation duration
+            // Remove trail element after animation
+            setTimeout(() => {
+                trail.remove();
+            }, 1000);
+        }
     }
 
+    // Add trail effect on mousemove
     document.addEventListener('mousemove', createTrail);
 
     // Initialize draggable windows
     const windows = document.querySelectorAll('.draggable-window');
     windows.forEach(win => {
-      const handle = win.querySelector('.window-header');
-      if (handle) makeDraggable(win, handle);
+        makeDraggable(win);
     });
-  });
+});
+
+// Hide cursor when leaving viewport
+document.addEventListener('mouseleave', () => {
+  const cursor = document.getElementById('cursor');
+  if (cursor) {
+    cursor.classList.add('cursor-hidden');
+  }
+});
+
+document.addEventListener('mouseenter', () => {
+  const cursor = document.getElementById('cursor');
+  if (cursor) {
+    cursor.classList.remove('cursor-hidden');
+  }
+});

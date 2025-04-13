@@ -375,32 +375,7 @@ footer p {
 
 /* Custom Cursor Styles */
 * {
-  cursor: none !important;
-}
-
-#cursor {
-  width: 20px;
-  height: 20px;
-  background: pink;
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  z-index: 9999;
-  mix-blend-mode: difference;
-  border: 2px solid white;
-  box-shadow: 0 0 8px rgba(255, 192, 203, 0.8);
-  transition: transform 0.2s ease;
-  transform: translate(-50%, -50%);
-}
-
-.sparkle {
-  pointer-events: none;
-  position: fixed;
-  width: 10px;
-  height: 10px;
-  background: white;
-  border-radius: 50%;
-  mix-blend-mode: screen;
-  transform: translate(-50%, -50%);
-  z-index: 9998;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }

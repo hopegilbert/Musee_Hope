@@ -22,25 +22,37 @@
   </style>
 </head>
 <body>
+  <img id="cursor" src="images/pink-cursor.png" alt="cursor" />
+  <div class="background-image" decoding="async"></div>
   <div class="toolbar">
-    <div class="toolbar-top">
-      <div class="toolbar-title">Document1 - Microsoft Word</div>
+    <div class="toolbar-titlebar">
+      hotty doc - Microsoft Word
       <div class="window-buttons">
-        <span class="minimize">_</span>
-        <span class="maximize">▢</span>
-        <span class="close">X</span>
+        <span>_</span>
+        <span>□</span>
+        <span>×</span>
       </div>
     </div>
 
     <div class="toolbar-tabs">
       <div class="tab">File</div>
-      <div class="tab">Home</div>
+      <div class="tab"><a href="../index.html" style="text-decoration: none; color: inherit;">Home</a></div>
       <div class="tab">Insert</div>
       <div class="tab">Page Layout</div>
       <div class="tab">References</div>
       <div class="tab">Mailings</div>
       <div class="tab">Review</div>
-      <div class="tab">View</div>
+      <div class="tab dropdown">
+        <button class="dropdown-toggle" onclick="toggleDropdown()">View</button>
+        <div id="dropdownMenu" class="dropdown-content">
+          <div onclick="navigateTo('../my super cool bf/my-super-cool-bf.html')">My Super Cool BF</div>
+          <div onclick="navigateTo('works-in-progress.html')">Works in Progress</div>
+          <div onclick="navigateTo('unfinished-business.html')">Unfinished Business</div>
+          <div onclick="navigateTo('stuff-i-cant-stop.html')">Stuff I Can't Stop Thinking About</div>
+          <div onclick="navigateTo('stuff-not-ready.html')">Stuff I'm Not Ready to Talk About</div>
+          <div onclick="navigateTo('maybe-genius.html')">Stuff That Might Be Genius (Eventually)</div>
+        </div>
+      </div>
     </div>
 
     <div class="toolbar-buttons">
@@ -73,12 +85,11 @@
       </div>
     </div>
   </div>
-  <div id="cursor"></div>
   <div class="gitter-container" id="gitterContainer"></div>
   
   <h1 class="page-title">My Super Cool BF</h1>
 
-  <div class="draggable-window" style="top: 180px; left: 60px; width: 350px;">
+  <div class="draggable-window" style="top: 200px; left: 50px; width: 350px;">
     <div class="window-header">
       <div class="window-title">My Super Cool BF</div>
       <div class="window-buttons">
@@ -92,7 +103,7 @@
     </div>
   </div>
   
-  <div class="draggable-window" style="top: 380px; left: 220px; width: 350px;">
+  <div class="draggable-window" style="top: 400px; left: 400px; width: 350px;">
     <div class="window-header">
       <div class="window-title">📸 Photoshoot</div>
       <div class="window-buttons">
@@ -106,7 +117,7 @@
     </div>
   </div>
   
-  <div class="draggable-window" style="top: 580px; left: 140px; width: 350px;">
+  <div class="draggable-window" style="top: 600px; left: 750px; width: 350px;">
     <div class="window-header">
       <div class="window-title">🎶 Our Song</div>
       <div class="window-buttons">
@@ -120,7 +131,7 @@
     </div>
   </div>
 
-  <div class="draggable-window" style="top: 140px; left: 20px; width: 400px;">
+  <div class="draggable-window" style="top: 300px; left: 800px; width: 400px;">
     <div class="window-header">
       <div class="window-title" style="display: flex; align-items: center;">
         <img src="images/camera.png" alt="camera" style="height: 1em; width: auto; margin-right: 5px;"> cool guy
@@ -141,28 +152,17 @@
 
   <!-- Scripts -->
   <script src="scripts.js"></script>
+  <script src="cursor.js"></script>
   <script>
-    // Initialize cursor
-    const cursor = document.getElementById('cursor');
-    cursor.style.display = 'block';
-    cursor.style.opacity = '1';
+    // Navigation function
+    function navigateTo(url) {
+      window.location.href = url;
+    }
 
-    // Update cursor position
-    document.addEventListener('mousemove', (e) => {
-      cursor.style.left = e.clientX + 'px';
-      cursor.style.top = e.clientY + 'px';
-    });
-
-    // Show/hide cursor based on mouse position
-    document.addEventListener('mouseenter', () => {
-      cursor.style.opacity = '1';
-      cursor.classList.remove('hidden');
-    });
-
-    document.addEventListener('mouseleave', () => {
-      cursor.style.opacity = '0';
-      cursor.classList.add('hidden');
-    });
+    function toggleDropdown() {
+      const menu = document.getElementById("dropdownMenu");
+      menu.style.display = menu.style.display === "block" ? "none" : "block";
+    }
 
     function checkOverlap(newGif, existingGifs) {
       const newRect = newGif.getBoundingClientRect();
