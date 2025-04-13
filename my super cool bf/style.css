@@ -617,29 +617,33 @@ h1 {
 /* Icon button groups */
 .toolbar-buttons {
   display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin: 0;
-  padding: 0;
-  background-color: #fff0f7;
+  flex-wrap: nowrap;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: center;
+  overflow-x: auto;
+  gap: 8px;
+  padding: 6px 10px;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  background-color: #fff0f7;
   width: 100%;
 }
 
 .icon-group {
   display: flex;
-  gap: 8px;
+  flex: 0 0 auto;
+  gap: 4px;
   align-items: center;
-  margin: 8px 0;
-  padding: 4px 8px;
-  justify-content: flex-start;
+  min-width: 0;
+  padding: 0;
+  margin: 0;
 }
 
 .icon-group img {
-  padding: 4px;
-  width: 22px;
-  height: 22px;
+  width: 16px;
+  height: 16px;
+  padding: 1px;
+  flex-shrink: 0;
   background-color: #ffffff;
   border: 1px solid #d9b0c8;
   border-radius: 3px;
