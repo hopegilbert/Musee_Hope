@@ -48,21 +48,8 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Update undo/redo button states
   function updateButtonStates() {
-    if (historyIndex <= 0) {
-      undoBtn.style.opacity = '0.5';
-      undoBtn.style.pointerEvents = 'none';
-    } else {
-      undoBtn.style.opacity = '1';
-      undoBtn.style.pointerEvents = 'auto';
-    }
-    
-    if (historyIndex >= history.length - 1) {
-      redoBtn.style.opacity = '0.5';
-      redoBtn.style.pointerEvents = 'none';
-    } else {
-      redoBtn.style.opacity = '1';
-      redoBtn.style.pointerEvents = 'auto';
-    }
+    undoBtn.style.opacity = historyIndex <= 0 ? '0.5' : '1';
+    redoBtn.style.opacity = historyIndex >= history.length - 1 ? '0.5' : '1';
   }
   
   // Undo last action
@@ -138,7 +125,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // Button event listeners with immediate response
   undoBtn.addEventListener('click', (e) => {
     e.preventDefault();
-    undo();
+    if (historyIndex > 0) {
+      undo();
+    }
   });
   
   redoBtn.addEventListener('click', (e) => {
