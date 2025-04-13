@@ -83,21 +83,16 @@ document.addEventListener('DOMContentLoaded', () => {
   
   function getMousePos(e) {
     const rect = canvas.getBoundingClientRect();
-    const scaleX = canvas.width / rect.width;
-    const scaleY = canvas.height / rect.height;
     return {
-      x: (e.clientX - rect.left) * scaleX,
-      y: (e.clientY - rect.top) * scaleY
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top
     };
   }
   
   function startDrawing(e) {
     isDrawing = true;
     const pos = getMousePos(e);
-    lastX = pos.x;
-    lastY = pos.y;
-    ctx.beginPath();
-    ctx.moveTo(lastX, lastY);
+    [lastX, lastY] = [pos.x, pos.y];
     console.log('Started drawing at:', lastX, lastY);
   }
   
@@ -124,8 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.lineJoin = 'round';
     ctx.stroke();
     
-    lastX = pos.x;
-    lastY = pos.y;
+    [lastX, lastY] = [pos.x, pos.y];
     console.log('Drawing to:', pos.x, pos.y);
   }
   
