@@ -48,8 +48,21 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Update undo/redo button states
   function updateButtonStates() {
-    undoBtn.disabled = historyIndex <= 0;
-    redoBtn.disabled = historyIndex >= history.length - 1;
+    if (historyIndex <= 0) {
+      undoBtn.style.opacity = '0.5';
+      undoBtn.style.pointerEvents = 'none';
+    } else {
+      undoBtn.style.opacity = '1';
+      undoBtn.style.pointerEvents = 'auto';
+    }
+    
+    if (historyIndex >= history.length - 1) {
+      redoBtn.style.opacity = '0.5';
+      redoBtn.style.pointerEvents = 'none';
+    } else {
+      redoBtn.style.opacity = '1';
+      redoBtn.style.pointerEvents = 'auto';
+    }
   }
   
   // Undo last action
@@ -122,13 +135,21 @@ document.addEventListener('DOMContentLoaded', () => {
     saveState();
   });
   
-  // Button event listeners
-  undoBtn.addEventListener('click', undo);
-  redoBtn.addEventListener('click', redo);
+  // Button event listeners with immediate response
+  undoBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    undo();
+  });
   
-  eraserBtn.addEventListener('click', () => {
+  redoBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    redo();
+  });
+  
+  eraserBtn.addEventListener('click', (e) => {
+    e.preventDefault();
     currentTool = currentTool === 'eraser' ? 'pencil' : 'eraser';
-    eraserBtn.classList.toggle('active');
+    eraserBtn.style.opacity = currentTool === 'eraser' ? '0.7' : '1';
     canvas.style.cursor = currentTool === 'eraser' ? 'cell' : 'crosshair';
   });
   
