@@ -57,12 +57,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (historyIndex > 0) {
       historyIndex--;
       const img = new Image();
-      img.onload = () => {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.drawImage(img, 0, 0);
-        updateButtonStates();
-      };
       img.src = history[historyIndex];
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(img, 0, 0);
+      updateButtonStates();
     }
   }
   
@@ -71,12 +69,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (historyIndex < history.length - 1) {
       historyIndex++;
       const img = new Image();
-      img.onload = () => {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.drawImage(img, 0, 0);
-        updateButtonStates();
-      };
       img.src = history[historyIndex];
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(img, 0, 0);
+      updateButtonStates();
     }
   }
   
@@ -123,20 +119,17 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   
   // Button event listeners with immediate response
-  undoBtn.addEventListener('click', (e) => {
-    e.preventDefault();
+  undoBtn.addEventListener('click', () => {
     if (historyIndex > 0) {
       undo();
     }
   });
   
-  redoBtn.addEventListener('click', (e) => {
-    e.preventDefault();
+  redoBtn.addEventListener('click', () => {
     redo();
   });
   
-  eraserBtn.addEventListener('click', (e) => {
-    e.preventDefault();
+  eraserBtn.addEventListener('click', () => {
     currentTool = currentTool === 'eraser' ? 'pencil' : 'eraser';
     eraserBtn.style.opacity = currentTool === 'eraser' ? '0.7' : '1';
     canvas.style.cursor = currentTool === 'eraser' ? 'cell' : 'crosshair';
