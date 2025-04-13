@@ -21,7 +21,7 @@ body {
   padding: 0;
   font-family: 'Courier New', monospace;
   min-height: 100vh;
-  width: 100vw;
+  width: 100%;
   position: relative;
   z-index: 1;
   overflow-x: hidden;
@@ -41,34 +41,51 @@ body {
 }
 
 .page-title {
-    font-family: 'Press Start 2P', monospace;
-    font-size: 3rem;
-    color: #4b0082;
-    background: none;
-    text-align: center;
-    padding: 8rem 1rem 1rem;
-    text-shadow: 2px 2px 0 #fff;
-    letter-spacing: 4px;
-    margin-top: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    border-right: 2px solid #ff4eb1;
-    width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
-    animation: typing 3s steps(30, end), blink 0.75s step-end infinite;
-    position: relative;
-    z-index: 1;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 2.5rem;
+  color: #4b0082;
+  background: none;
+  text-align: center;
+  padding: 10rem 1rem 1rem;
+  text-shadow: 2px 2px 0 #fff;
+  letter-spacing: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 2px solid #ff4eb1;
+  width: fit-content;
+  margin: 0 auto;
+  animation: typing 3s steps(30, end), blink 0.75s step-end infinite;
+  z-index: 1;
+  position: relative;
+}
+
+@media screen and (max-width: 768px) {
+  .toolbar-buttons {
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 1.5rem;
   }
-  
-  @keyframes typing {
-    from { width: 0 }
-    to { width: 20ch }
+  .toolbar-buttons .icon-group {
+    width: 48%;
+    flex-wrap: wrap;
+    justify-content: center;
   }
-  
-  @keyframes blink {
-    50% { border-color: transparent }
+
+  .page-title {
+    padding-top: 14rem;
+    font-size: 2rem;
   }
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 20ch }
+}
+
+@keyframes blink {
+  50% { border-color: transparent }
+}
 
 h1 {
   text-align: center;
