@@ -84,45 +84,59 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.removeChild(textInput);
       }
       
+      // Create text input at the exact canvas position
+      const canvasRect = mainCanvas.getBoundingClientRect();
       textInput = document.createElement('input');
       textInput.type = 'text';
       textInput.style.position = 'fixed';
-      textInput.style.left = e.clientX + 'px';
-      textInput.style.top = e.clientY + 'px';
+      textInput.style.left = (canvasRect.left + pos.x) + 'px';
+      textInput.style.top = (canvasRect.top + pos.y) + 'px';
       textInput.style.background = 'transparent';
       textInput.style.border = '1px solid #000';
       textInput.style.font = brushSize + 'px Arial';
       textInput.style.zIndex = '1000';
       textInput.style.color = currentColor;
+      textInput.style.padding = '0';
+      textInput.style.margin = '0';
+      textInput.style.outline = 'none';
+      textInput.style.minWidth = '100px';
+      textInput.style.height = brushSize + 'px';
       
       document.body.appendChild(textInput);
       textInput.focus();
       
+      // Store the click position for later use
+      const clickPos = { x: pos.x, y: pos.y };
+      
       textInput.addEventListener('keydown', function(e) {
         if (e.key === 'Enter') {
           const text = this.value;
-          const pos = getMousePos(e);
-          
-          mainCtx.font = brushSize + 'px Arial';
-          mainCtx.fillStyle = currentColor;
-          mainCtx.fillText(text, pos.x, pos.y);
-          
-          tempCtx.drawImage(mainCanvas, 0, 0);
-          
+          if (text) {
+            mainCtx.font = brushSize + 'px Arial';
+            mainCtx.fillStyle = currentColor;
+            mainCtx.fillText(text, clickPos.x, clickPos.y);
+            tempCtx.drawImage(mainCanvas, 0, 0);
+            saveState();
+          }
           document.body.removeChild(this);
           textInput = null;
-          saveState();
         } else if (e.key === 'Escape') {
           document.body.removeChild(this);
           textInput = null;
         }
       });
-
+      
       textInput.addEventListener('blur', function() {
-        if (textInput) {
-          document.body.removeChild(textInput);
-          textInput = null;
+        const text = this.value;
+        if (text) {
+          mainCtx.font = brushSize + 'px Arial';
+          mainCtx.fillStyle = currentColor;
+          mainCtx.fillText(text, clickPos.x, clickPos.y);
+          tempCtx.drawImage(mainCanvas, 0, 0);
+          saveState();
         }
+        document.body.removeChild(this);
+        textInput = null;
       });
       return;
     }
