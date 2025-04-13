@@ -825,21 +825,19 @@ h1 {
     flex-direction: row;
     justify-content: flex-start;
     align-items: flex-start;
-    gap: 0;
+    gap: 4px;
     padding: 4px 8px;
-    margin-left: 0;
-    margin-right: 0;
+    width: 100%;
+    text-align: left;
+    margin-left: 0 !important;
   }
 
   .icon-group {
     display: flex;
     flex-wrap: wrap;
     gap: 4px;
-    margin-left: 0;
-    margin-right: 0;
-    margin-bottom: 0;
-    width: auto;
-    justify-content: flex-start;
+    margin: 0;
+    flex: 0 0 auto;
   }
 
   .icon-group img {
