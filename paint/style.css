@@ -410,3 +410,69 @@ body {
 .paint-header:active {
     cursor: grabbing;
 }
+
+.color-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.color-dropdown button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 8px;
+    background: #f0f0f0;
+    border: 1px solid #999;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 12px;
+    height: 32px;
+}
+
+.color-dropdown button:hover {
+    background: #e0e0e0;
+}
+
+.current-color {
+    width: 16px;
+    height: 16px;
+    border: 1px solid #808080;
+    background-color: #000000;
+}
+
+.color-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #fff;
+    border: 1px solid #999;
+    border-radius: 3px;
+    padding: 4px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    width: 120px;
+}
+
+.color-dropdown:hover .color-menu {
+    display: grid;
+}
+
+.color-menu .color-box {
+    width: 24px;
+    height: 24px;
+    border: 1px solid #808080;
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+.color-menu .color-box:hover {
+    transform: scale(1.1);
+    border: 2px solid #000;
+}
+
+.color-menu .color-box.selected {
+    border: 2px solid #000;
+}

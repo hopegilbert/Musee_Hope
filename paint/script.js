@@ -373,20 +373,26 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   
   // Color selection
-  const colors = document.querySelectorAll('.color-box');
+  const colors = document.querySelectorAll('.color-menu .color-box');
+  const currentColorDisplay = document.querySelector('.current-color');
+  
   colors.forEach(color => {
     color.addEventListener('click', () => {
       colors.forEach(c => c.classList.remove('selected'));
       color.classList.add('selected');
       currentColor = color.style.backgroundColor;
+      currentColorDisplay.style.backgroundColor = currentColor;
     });
   });
   
   // Set initial color to black
-  const blackColor = document.querySelector('.color-box[style*="background-color: #000000"]');
+  const blackColor = document.querySelector('.color-menu .color-box[style*="background-color: #000000"]');
   if (blackColor) {
     blackColor.classList.add('selected');
     currentColor = blackColor.style.backgroundColor;
+    if (currentColorDisplay) {
+      currentColorDisplay.style.backgroundColor = currentColor;
+    }
   }
   
   // Button event listeners
