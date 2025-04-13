@@ -85,11 +85,12 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       
       // Create text input at the exact click position
+      const canvasRect = mainCanvas.getBoundingClientRect();
       textInput = document.createElement('input');
       textInput.type = 'text';
       textInput.style.position = 'fixed';
-      textInput.style.left = e.clientX + 'px';
-      textInput.style.top = e.clientY + 'px';
+      textInput.style.left = (canvasRect.left + pos.x) + 'px';
+      textInput.style.top = (canvasRect.top + pos.y) + 'px';
       textInput.style.background = 'transparent';
       textInput.style.border = '1px solid #000';
       textInput.style.font = brushSize + 'px Arial';
@@ -495,6 +496,17 @@ document.addEventListener('DOMContentLoaded', () => {
             brushSize = settings.size;
         });
     }
+  });
+  
+  // Add direct click handlers for fill and text tools
+  document.getElementById('fillBtn')?.addEventListener('click', () => {
+    currentTool = 'fill';
+    mainCanvas.style.cursor = 'crosshair';
+  });
+
+  document.getElementById('textBtn')?.addEventListener('click', () => {
+    currentTool = 'text';
+    mainCanvas.style.cursor = 'text';
   });
   
   // Undo/Redo button listeners
