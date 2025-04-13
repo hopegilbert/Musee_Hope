@@ -222,6 +222,7 @@
             position: relative;
             display: inline-block;
             margin-top: 8px;
+            z-index: 2000;
         }
 
         .color-button {
@@ -242,7 +243,7 @@
             background: #c0c0c8;
             border: 1px solid #808080;
             padding: 4px;
-            z-index: 1000;
+            z-index: 2001;
         }
 
         .color-option {
@@ -255,7 +256,8 @@
             cursor: pointer;
         }
 
-        .color-dropdown:hover .color-options {
+        .color-dropdown:hover .color-options,
+        .color-dropdown.active .color-options {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 2px;
@@ -300,6 +302,32 @@
             .paint-colors {
                 grid-template-columns: repeat(7, 16px);
                 grid-template-rows: repeat(4, 16px);
+            }
+
+            .color-dropdown {
+                position: relative;
+                z-index: 2000;
+            }
+            
+            .color-options {
+                left: auto;
+                right: 100%;
+                top: 0;
+                z-index: 2001;
+            }
+            
+            .paint-tool, 
+            .toolbar-buttons button {
+                min-width: 44px;
+                min-height: 44px;
+                padding: 8px;
+                touch-action: manipulation;
+            }
+            
+            .paint-tool img, 
+            .toolbar-buttons button img {
+                width: 24px;
+                height: 24px;
             }
         }
 

@@ -377,14 +377,20 @@ document.addEventListener('DOMContentLoaded', () => {
   mainCanvas.addEventListener('mouseup', stopDrawing);
   mainCanvas.addEventListener('mouseout', stopDrawing);
   
-  // Tool selection
+  // Tool selection with touch support
   const tools = document.querySelectorAll('.paint-tool');
   tools.forEach(tool => {
-    tool.addEventListener('click', function() {
-      const toolName = this.querySelector('img').alt.toLowerCase();
-      const toolId = toolName + 'Btn';
-      setActiveTool(toolId, toolName);
-      brushSize = toolButtons[toolId]?.size || 2;
+    const handleToolClick = function() {
+        const toolName = this.querySelector('img').alt.toLowerCase();
+        const toolId = toolName + 'Btn';
+        setActiveTool(toolId, toolName);
+        brushSize = toolButtons[toolId]?.size || 2;
+    };
+    
+    tool.addEventListener('click', handleToolClick);
+    tool.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        handleToolClick.call(tool);
     });
   });
   
@@ -397,11 +403,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
   
-  // Color selection
+  // Color selection with touch support
+  const colorDropdown = document.querySelector('.color-dropdown');
   const colorButton = document.querySelector('.color-button');
   const colorOptions = document.querySelectorAll('.color-option');
-  const colorBoxes = document.querySelectorAll('.paint-colors .color-box');
-  const menuColorBoxes = document.querySelectorAll('.color-grid .color-box');
   
   function updateColorSelection(newColor) {
     currentColor = newColor;
@@ -425,18 +430,48 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
   
-  // Color dropdown functionality
+  // Color dropdown functionality with touch support
+  if (colorDropdown) {
+    // Toggle dropdown on touch
+    colorButton.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        colorDropdown.classList.toggle('active');
+    });
+    
+    // Close dropdown when touching outside
+    document.addEventListener('touchend', (e) => {
+        if (!colorDropdown.contains(e.target)) {
+            colorDropdown.classList.remove('active');
+        }
+    });
+  }
+  
+  // Color selection with touch support
   colorOptions.forEach(option => {
-    option.addEventListener('click', function() {
-      updateColorSelection(this.style.backgroundColor);
+    const handleColorSelect = function() {
+        updateColorSelection(this.style.backgroundColor);
+        colorDropdown.classList.remove('active');
+    };
+    
+    option.addEventListener('click', handleColorSelect);
+    option.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        handleColorSelect.call(option);
     });
   });
   
-  // Paint window color boxes functionality
+  // Paint window color boxes with touch support
+  const colorBoxes = document.querySelectorAll('.paint-colors .color-box');
   colorBoxes.forEach(box => {
-    box.addEventListener('click', function() {
-      updateColorSelection(this.style.backgroundColor);
-      this.classList.add('selected');
+    const handleColorBoxSelect = function() {
+        updateColorSelection(this.style.backgroundColor);
+        this.classList.add('selected');
+    };
+    
+    box.addEventListener('click', handleColorBoxSelect);
+    box.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        handleColorBoxSelect.call(box);
     });
   });
   
@@ -479,37 +514,59 @@ document.addEventListener('DOMContentLoaded', () => {
     'lineBtn': { tool: 'line', size: 2 }
   };
   
+  // Tool buttons with touch support
   Object.entries(toolButtons).forEach(([btnId, settings]) => {
     const button = document.getElementById(btnId);
     if (button) {
-        button.addEventListener('click', () => {
+        const handleToolButtonClick = () => {
             setActiveTool(btnId, settings.tool);
             brushSize = settings.size;
+        };
+        
+        button.addEventListener('click', handleToolButtonClick);
+        button.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            handleToolButtonClick();
         });
     }
   });
   
-  // Add direct click handlers for fill and text tools
-  document.getElementById('fillBtn')?.addEventListener('click', () => {
-    currentTool = 'fill';
-    mainCanvas.style.cursor = 'crosshair';
-  });
+  // Add touch support for fill and text tools
+  const fillBtn = document.getElementById('fillBtn');
+  const textBtn = document.getElementById('textBtn');
 
-  document.getElementById('textBtn')?.addEventListener('click', () => {
-    currentTool = 'text';
-    mainCanvas.style.cursor = 'text';
-  });
+  if (fillBtn) {
+    fillBtn.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        currentTool = 'fill';
+        mainCanvas.style.cursor = 'crosshair';
+    });
+  }
+
+  if (textBtn) {
+    textBtn.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        currentTool = 'text';
+        mainCanvas.style.cursor = 'text';
+    });
+  }
   
-  // Undo/Redo button listeners
+  // Undo/Redo buttons with touch support
   const undoBtn = document.getElementById('undoBtn');
   const redoBtn = document.getElementById('redoBtn');
   
   if (undoBtn) {
-    undoBtn.addEventListener('click', undo);
+    undoBtn.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        undo();
+    });
   }
   
   if (redoBtn) {
-    redoBtn.addEventListener('click', redo);
+    redoBtn.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        redo();
+    });
   }
   
   // Keyboard shortcuts
