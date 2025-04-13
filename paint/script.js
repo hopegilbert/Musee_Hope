@@ -333,7 +333,19 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   
   function setTranslate(xPos, yPos, el) {
+    // Get toolbar height based on screen size
+    const toolbarHeight = window.innerWidth <= 768 ? 120 : 92;
+    
+    // Get window boundaries
+    const maxX = window.innerWidth - el.offsetWidth;
+    const maxY = window.innerHeight - el.offsetHeight;
+    
+    // Constrain position
+    xPos = Math.max(0, Math.min(xPos, maxX));
+    yPos = Math.max(toolbarHeight, Math.min(yPos, maxY));
+    
     el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
+    el.classList.toggle('dragging', isDragging);
   }
   
   function dragEnd(e) {
