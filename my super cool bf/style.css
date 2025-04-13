@@ -825,12 +825,24 @@ h1 {
   }
 
   .toolbar-buttons {
+    display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
+    gap: 0.5rem;
+    padding: 8px;
   }
 
   .icon-group {
-    flex-wrap: wrap;
+    display: flex;
+    gap: 4px;
+    flex-wrap: nowrap;
+    margin: 0;
+  }
+
+  .icon-group img {
+    width: 20px;
+    height: 20px;
+    padding: 1px;
   }
 
   .draggable-window {
@@ -838,7 +850,7 @@ h1 {
     max-width: 300px;
     min-width: 180px;
   }
-  
+
   .window-header {
     padding: 0.4rem 0.6rem;
   }
