@@ -62,14 +62,24 @@ body {
 @media screen and (max-width: 768px) {
   .toolbar-buttons {
     flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 1.5rem;
+    justify-content: flex-start;
+    gap: 6px;
+    padding: 6px;
   }
-  .toolbar-buttons .icon-group {
-    width: 48%;
+
+  .icon-group {
+    flex: 0 0 auto;
+    display: flex;
+    gap: 4px;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
+    padding: 0;
+    margin: 0;
+  }
+
+  .icon-group img {
+    width: 20px;
+    height: 20px;
   }
 
   .page-title {
