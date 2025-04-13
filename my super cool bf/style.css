@@ -526,6 +526,19 @@ h1 {
   margin-right: 2px;
 }
 
+@media screen and (max-width: 768px) {
+  .toolbar-tabs .tab {
+    font-size: 0.7rem;
+    padding: 6px 8px 6px 8px;
+    gap: 2px;
+  }
+  
+  .toolbar-tabs .tab img {
+    width: 14px;
+    height: 14px;
+  }
+}
+
 /* Dropdown menu styles */
 .dropdown {
   position: relative;
