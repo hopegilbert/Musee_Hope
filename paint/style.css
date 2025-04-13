@@ -13,43 +13,73 @@ body {
 }
 
 .toolbar {
-    background-color: #f0f0f0;
-    border-bottom: 1px solid #ccc;
+    background-color: #c0c0c0;
+    border-bottom: 1px solid #000000;
     padding: 4px;
 }
 
 .toolbar-inner {
     display: flex;
     align-items: center;
+    gap: 8px;
 }
 
 .toolbar-tabs {
     display: flex;
-    gap: 8px;
+    gap: 4px;
 }
 
 .tab {
     padding: 4px 8px;
     cursor: pointer;
-    border: 1px solid transparent;
+    font-size: 12px;
 }
 
-.tab:hover {
-    background-color: #e0e0e0;
-    border: 1px solid #ccc;
+.toolbar-buttons {
+    display: flex;
+    gap: 4px;
+    margin-left: 8px;
+}
+
+.tool-button {
+    width: 24px;
+    height: 24px;
+    background-color: #c0c0c0;
+    border: 1px solid #808080;
+    border-right-color: #ffffff;
+    border-bottom-color: #ffffff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.tool-button:hover {
+    background-color: #d4d0c8;
+}
+
+.tool-button:active {
+    border: 1px solid #ffffff;
+    border-right-color: #808080;
+    border-bottom-color: #808080;
+}
+
+.tool-button img {
+    width: 16px;
+    height: 16px;
 }
 
 .canvas-container {
     flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-    margin: 8px;
-    border: 1px solid #ccc;
+    position: relative;
+    overflow: hidden;
 }
 
 #paintCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
     background-color: white;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    cursor: crosshair;
 }
