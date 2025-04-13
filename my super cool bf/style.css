@@ -521,7 +521,7 @@ h1 {
   cursor: pointer;
   border-radius: 4px;
   position: relative;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 6px;
@@ -529,6 +529,7 @@ h1 {
   line-height: 1;
   white-space: nowrap;
   flex-shrink: 0;
+  min-width: fit-content;
 }
 
 .toolbar-tabs .tab:hover {
@@ -541,7 +542,7 @@ h1 {
 .toolbar-tabs .tab img {
   width: 20px;
   height: 20px;
-  margin-right: 4px;
+  margin: 0;
   flex-shrink: 0;
 }
 
@@ -550,11 +551,17 @@ h1 {
     padding: 6px 8px;
     margin: 0;
     height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    min-width: fit-content;
   }
   
   .toolbar-tabs .tab img {
-    width: 14px;
-    height: 14px;
+    width: 18px;
+    height: 18px;
+    margin: 0;
   }
 }
 
@@ -563,6 +570,17 @@ h1 {
     padding: 6px 8px;
     margin: 0;
     height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    min-width: fit-content;
+  }
+  
+  .toolbar-tabs .tab img {
+    width: 16px;
+    height: 16px;
+    margin: 0;
   }
 }
 
