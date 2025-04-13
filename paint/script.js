@@ -84,13 +84,12 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.removeChild(textInput);
       }
       
-      // Create text input at the exact canvas position
-      const canvasRect = mainCanvas.getBoundingClientRect();
+      // Create text input at the exact click position
       textInput = document.createElement('input');
       textInput.type = 'text';
       textInput.style.position = 'fixed';
-      textInput.style.left = (canvasRect.left + pos.x) + 'px';
-      textInput.style.top = (canvasRect.top + pos.y) + 'px';
+      textInput.style.left = e.clientX + 'px';
+      textInput.style.top = e.clientY + 'px';
       textInput.style.background = 'transparent';
       textInput.style.border = '1px solid #000';
       textInput.style.font = brushSize + 'px Arial';
@@ -494,18 +493,6 @@ document.addEventListener('DOMContentLoaded', () => {
         button.addEventListener('click', () => {
             setActiveTool(btnId, settings.tool);
             brushSize = settings.size;
-            // If it's a single-click tool, trigger the action immediately
-            if (settings.tool === 'fill' || settings.tool === 'text') {
-                isDrawing = true;
-                const event = new MouseEvent('mousedown', {
-                    view: window,
-                    bubbles: true,
-                    cancelable: true,
-                    clientX: mainCanvas.getBoundingClientRect().left + 50,
-                    clientY: mainCanvas.getBoundingClientRect().top + 50
-                });
-                mainCanvas.dispatchEvent(event);
-            }
         });
     }
   });
