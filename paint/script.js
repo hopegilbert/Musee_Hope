@@ -73,11 +73,11 @@ document.addEventListener('DOMContentLoaded', () => {
     tempCtx.lineTo(pos.x, pos.y);
     
     if (currentTool === 'eraser') {
-      tempCtx.globalCompositeOperation = 'destination-out';
-      tempCtx.strokeStyle = 'rgba(0,0,0,1)';
+        tempCtx.globalCompositeOperation = 'source-over';
+        tempCtx.strokeStyle = '#FFFFFF';
     } else {
-      tempCtx.globalCompositeOperation = 'source-over';
-      tempCtx.strokeStyle = currentColor;
+        tempCtx.globalCompositeOperation = 'source-over';
+        tempCtx.strokeStyle = currentColor;
     }
     
     tempCtx.lineWidth = brushSize;
