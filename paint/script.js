@@ -56,28 +56,28 @@ document.addEventListener('DOMContentLoaded', () => {
   function draw(e) {
     if (!isDrawing) return;
     
-    const pos = getMousePos(e);
+    const rect = mainCanvas.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
     
     mainCtx.beginPath();
     mainCtx.moveTo(lastX, lastY);
+    mainCtx.lineTo(x, y);
     
     if (currentTool === 'eraser') {
       mainCtx.globalCompositeOperation = 'destination-out';
-      mainCtx.lineWidth = 20;
       mainCtx.strokeStyle = 'rgba(0,0,0,1)';
     } else {
       mainCtx.globalCompositeOperation = 'source-over';
       mainCtx.strokeStyle = currentColor;
-      mainCtx.lineWidth = brushSize;
     }
     
-    mainCtx.lineTo(pos.x, pos.y);
+    mainCtx.lineWidth = brushSize;
     mainCtx.lineCap = 'round';
     mainCtx.lineJoin = 'round';
     mainCtx.stroke();
     
-    lastX = pos.x;
-    lastY = pos.y;
+    [lastX, lastY] = [x, y];
   }
   
   function drawSpray(x, y) {
@@ -168,14 +168,15 @@ document.addEventListener('DOMContentLoaded', () => {
   // Tool selection
   const tools = document.querySelectorAll('.paint-tool');
   tools.forEach(tool => {
-    tool.addEventListener('click', () => {
-      const toolName = tool.getAttribute('title').toLowerCase();
-      if (toolName === 'undo' || toolName === 'redo') return;
-      
-      currentTool = toolName;
-      tools.forEach(t => t.classList.remove('active'));
-      tool.classList.add('active');
-      mainCanvas.style.cursor = toolName === 'eraser' ? 'cell' : 'crosshair';
+    tool.addEventListener('click', function() {
+      document.querySelectorAll('.paint-tool').forEach(t => t.classList.remove('active'));
+      this.classList.add('active');
+      currentTool = this.querySelector('img').alt.toLowerCase();
+      if (currentTool === 'eraser') {
+        mainCanvas.style.cursor = 'cell';
+      } else {
+        mainCanvas.style.cursor = 'crosshair';
+      }
     });
   });
   
@@ -223,11 +224,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   
   if (eraserBtn) {
-    eraserBtn.addEventListener('click', () => {
+    eraserBtn.addEventListener('click', function() {
       currentTool = 'eraser';
-      tools.forEach(t => t.classList.remove('active'));
-      eraserBtn.classList.add('active');
       mainCanvas.style.cursor = 'cell';
+      document.querySelectorAll('.paint-tool').forEach(t => t.classList.remove('active'));
+      document.querySelector('.paint-tool[title="Eraser"]').classList.add('active');
     });
   }
   
