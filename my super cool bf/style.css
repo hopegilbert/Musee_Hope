@@ -467,10 +467,11 @@ h1 {
   color: white;
   font-weight: bold;
   padding: 6px 12px;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-family: 'Tahoma', sans-serif;
 }
 
 .toolbar-titlebar .window-buttons {
