@@ -75,17 +75,18 @@ body {
   .icon-group {
     display: flex;
     flex: 0 0 auto;
-    gap: 4px;
+    gap: 6px;
     align-items: center;
     min-width: 0;
     padding: 0;
     margin: 0;
+    justify-content: center;
   }
 
   .icon-group img {
-    width: 16px;
-    height: 16px;
-    padding: 1px;
+    width: 18px;
+    height: 18px;
+    padding: 2px;
     flex-shrink: 0;
   }
 
@@ -915,17 +916,18 @@ h1 {
   .icon-group {
     display: flex;
     flex: 0 0 auto;
-    gap: 3px;
+    gap: 4px;
     align-items: center;
     min-width: 0;
     padding: 0;
     margin: 0;
+    justify-content: center;
   }
 
   .icon-group img {
-    width: 14px;
-    height: 14px;
-    padding: 1px;
+    width: 16px;
+    height: 16px;
+    padding: 2px;
     flex-shrink: 0;
   }
 
@@ -1024,17 +1026,18 @@ h1 {
   .icon-group {
     display: flex;
     flex: 0 0 auto;
-    gap: 3px;
+    gap: 4px;
     align-items: center;
     min-width: 0;
     padding: 0;
     margin: 0;
+    justify-content: center;
   }
 
   .icon-group img {
-    width: 14px;
-    height: 14px;
-    padding: 1px;
+    width: 16px;
+    height: 16px;
+    padding: 2px;
     flex-shrink: 0;
   }
 }
