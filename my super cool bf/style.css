@@ -104,19 +104,9 @@ body {
   }
 
   .toolbar-tabs {
-    gap: 0.25rem;
-  }
-
-  .toolbar-tabs .tab {
-    padding: 0 4px;
-    height: 28px;
-    line-height: 28px;
+    flex-wrap: wrap;
+    gap: 0.75rem;
     font-size: 0.75rem;
-  }
-
-  .toolbar-tabs .tab img {
-    width: 16px;
-    height: 16px;
   }
 
   .dropdown-content {
@@ -207,22 +197,6 @@ body {
 
   .dropdown-content {
     min-width: 160px;
-  }
-
-  .toolbar-tabs {
-    gap: 0.25rem;
-  }
-
-  .toolbar-tabs .tab {
-    padding: 0 2px;
-    height: 26px;
-    line-height: 26px;
-    font-size: 0.7rem;
-  }
-
-  .toolbar-tabs .tab img {
-    width: 14px;
-    height: 14px;
   }
 }
 
@@ -632,23 +606,26 @@ h1 {
 .toolbar-tabs {
   display: flex;
   background-color: #fae1ec;
-  gap: 0;
+  gap: 1.5rem;
   border-bottom: 1px solid #e5b3cc;
   padding: 0;
   margin: 0;
   font-family: 'Tahoma', sans-serif;
   white-space: nowrap;
-  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  flex-wrap: nowrap;
 }
 
 .toolbar-tabs .tab {
-  padding: 0 4px;
+  padding: 0 12px;
   margin: 0;
   font-size: 0.8rem;
   font-weight: bold;
   color: #6b1a3b;
   cursor: pointer;
-  border-radius: 0;
+  border-radius: 4px;
   position: relative;
   display: flex;
   align-items: center;
@@ -657,15 +634,9 @@ h1 {
   height: 32px;
   line-height: 32px;
   white-space: nowrap;
-  flex: 1;
-  min-width: 0;
+  flex-shrink: 0;
+  min-width: fit-content;
   box-sizing: border-box;
-  text-align: center;
-  border-right: 1px solid #e5b3cc;
-}
-
-.toolbar-tabs .tab:last-child {
-  border-right: none;
 }
 
 .toolbar-tabs .tab:hover {
@@ -688,29 +659,47 @@ h1 {
 
 @media screen and (max-width: 768px) {
   .toolbar-tabs .tab {
-    padding: 0 2px;
-    height: 28px;
-    line-height: 28px;
-    font-size: 0.75rem;
+    padding: 0 8px;
+    margin: 0;
+    height: 32px;
+    line-height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
   }
   
   .toolbar-tabs .tab img {
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    vertical-align: middle;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
   }
 }
 
 @media screen and (max-width: 480px) {
   .toolbar-tabs .tab {
-    padding: 0 1px;
-    height: 26px;
-    line-height: 26px;
-    font-size: 0.7rem;
+    padding: 0 8px;
+    margin: 0;
+    height: 32px;
+    line-height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
   }
   
   .toolbar-tabs .tab img {
-    width: 14px;
-    height: 14px;
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    vertical-align: middle;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
   }
 }
 
