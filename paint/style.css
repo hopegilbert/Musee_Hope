@@ -158,20 +158,66 @@ body {
 }
 
 .menu-bar {
-    background: #c0c0c8;
-    padding: 2px;
     display: flex;
-    border-bottom: 1px solid #808080;
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #ccc;
+    padding: 2px;
 }
 
 .menu-item {
+    position: relative;
     padding: 4px 8px;
-    cursor: default;
+    cursor: pointer;
+    user-select: none;
 }
 
 .menu-item:hover {
-    background: #000080;
-    color: white;
+    background-color: #e0e0e0;
+}
+
+.color-menu-container {
+    position: relative;
+}
+
+.menu-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #fff;
+    border: 1px solid #999;
+    border-radius: 3px;
+    padding: 4px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 1000;
+}
+
+.color-menu-container:hover .menu-dropdown {
+    display: block;
+}
+
+.color-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    width: 120px;
+}
+
+.color-box {
+    width: 24px;
+    height: 24px;
+    border: 1px solid #808080;
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+.color-box:hover {
+    transform: scale(1.1);
+    border: 2px solid #000;
+}
+
+.color-box.selected {
+    border: 2px solid #000;
 }
 
 .toolbar {
@@ -218,22 +264,6 @@ body {
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 4px;
-}
-
-.color-box {
-    width: 20px;
-    height: 20px;
-    border: 1px solid #808080;
-    cursor: pointer;
-    transition: transform 0.1s;
-}
-
-.color-box:hover {
-    transform: scale(1.1);
-}
-
-.color-box.selected {
-    border: 2px solid #000;
 }
 
 .toolbar-buttons {
