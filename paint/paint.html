@@ -24,6 +24,7 @@
             overflow: hidden;
             transform: translate3d(0, 0, 0);
             transition: none;
+            z-index: 8000;
         }
 
         .paint-header {
@@ -130,7 +131,8 @@
             min-width: 40px;
             max-width: 60px;
             overflow-y: auto;
-            overflow-x: hidden;
+            overflow-x: visible;
+            position: relative;
         }
 
         .paint-tool {
@@ -279,11 +281,24 @@
         }
 
         .color-dropdown {
-            position: relative;
-            display: inline-block;
-            margin-top: 4px;
-            width: 32px;
-            min-width: 32px;
+            position: fixed;
+            background: #c0c0c8;
+            border: 1px solid #808080;
+            padding: 4px;
+            z-index: 99999;
+            display: none;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .menu-item:hover .color-dropdown {
+            display: block;
+        }
+
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(8, 16px);
+            grid-template-rows: repeat(2, 16px);
+            gap: 2px;
         }
 
         .color-button {
@@ -297,14 +312,13 @@
         }
 
         .color-options {
-            display: none;
-            position: absolute;
-            left: 100%;
-            top: 0;
+            position: fixed;
             background: #c0c0c8;
             border: 1px solid #808080;
             padding: 4px;
-            z-index: 1000;
+            z-index: 99999;
+            display: none;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
         }
 
         .color-option {
@@ -317,10 +331,8 @@
             cursor: pointer;
         }
 
-        .color-dropdown:hover .color-options {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2px;
+        .paint-tool:hover .color-dropdown {
+            display: block;
         }
 
         @media (max-width: 768px) {
@@ -425,6 +437,11 @@
                 width: calc(1.1em + 0.5vw);
                 height: calc(1.1em + 0.5vw);
             }
+        }
+
+        .main-window {
+            position: relative;
+            z-index: 9000;
         }
     </style>
 </head>

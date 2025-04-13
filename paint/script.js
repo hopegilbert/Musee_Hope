@@ -1,3 +1,30 @@
+document.addEventListener('DOMContentLoaded', function() {
+    const colorTool = document.querySelector('.paint-tool:nth-last-child(1)');
+    const colorDropdown = document.querySelector('.color-dropdown');
+    const colorOptions = document.querySelector('.color-options');
+
+    if (colorTool && colorDropdown) {
+        colorTool.addEventListener('mouseenter', function(e) {
+            const rect = colorTool.getBoundingClientRect();
+            colorDropdown.style.left = (rect.right + 5) + 'px';
+            colorDropdown.style.top = rect.top + 'px';
+        });
+
+        colorDropdown.addEventListener('mouseenter', function(e) {
+            const dropdownRect = colorDropdown.getBoundingClientRect();
+            colorOptions.style.left = (dropdownRect.right + 5) + 'px';
+            colorOptions.style.top = dropdownRect.top + 'px';
+            colorOptions.style.display = 'grid';
+            colorOptions.style.gridTemplateColumns = 'repeat(2, 1fr)';
+            colorOptions.style.gap = '2px';
+        });
+
+        colorDropdown.addEventListener('mouseleave', function(e) {
+            colorOptions.style.display = 'none';
+        });
+    }
+});
+
 document.addEventListener('DOMContentLoaded', () => {
   console.log('Paint script loaded');
   
