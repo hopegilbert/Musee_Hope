@@ -643,7 +643,7 @@ h1 {
   padding: 6px 12px;
   margin: 0;
   cursor: pointer;
-  color: #4b0082;
+  color: #b92c6d;
   font-weight: bold;
   font-size: 0.8rem;
   border: none;
@@ -657,7 +657,7 @@ h1 {
 }
 
 .toolbar-tabs .tab:hover {
-  background-color: #ffe2ee;
+  background-color: #b92c6d;
   color: #b92c6d;
 }
 
