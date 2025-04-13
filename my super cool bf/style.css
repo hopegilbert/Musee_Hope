@@ -714,7 +714,7 @@ h1 {
   }
 }
 
-/* Dropdown menu styles */
+/* Keep only the integrated dropdown styles */
 .tab.dropdown {
   position: relative;
   display: inline-flex;
@@ -772,7 +772,7 @@ h1 {
   background-color: #fef1f7;
   min-width: 200px;
   box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
-  z-index: 9999;
+  z-index: 99999;
   border: 1px solid #c26d9c;
   border-radius: 4px;
 }
@@ -794,12 +794,6 @@ h1 {
 .dropdown-content div:hover {
   background-color: #f9c9dd;
   color: #4b0e29;
-}
-
-.tab:hover {
-  background-color: #ffc0cb;
-  color: #fff;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
 .tab.dropdown:hover .dropdown-content {
@@ -999,44 +993,4 @@ h1 {
     image-rendering: -webkit-optimize-contrast;
     image-rendering: crisp-edges;
   }
-}
-
-.tab.dropdown .dropdown-toggle {
-  padding: 6px 12px;
-  margin: 0;
-  border: none;
-  background: none;
-  color: #4b0082;
-  font-weight: bold;
-  font-size: 0.8rem;
-  cursor: pointer;
-  font-family: 'Tahoma', sans-serif;
-  white-space: nowrap;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-}
-
-.tab.dropdown .dropdown-toggle:hover {
-  background-color: rgba(185, 44, 109, 0.2);
-  color: #b92c6d;
-  border-radius: 4px;
-  padding: 6px 8px;
-  margin: 4px 2px;
-}
-
-.tab.dropdown.active .dropdown-toggle {
-  background-color: #ffe2ee;
-  color: #b92c6d;
-}
-
-.tab.dropdown.active .dropdown-toggle::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background-color: #b92c6d;
 }
