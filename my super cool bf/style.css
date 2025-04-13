@@ -66,25 +66,27 @@ body {
     justify-content: flex-start;
     align-items: center;
     overflow-x: auto;
-    gap: 12px;
+    gap: 8px;
     padding: 6px 10px;
     white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
   }
 
   .icon-group {
     display: flex;
-    flex-shrink: 1;
-    flex-grow: 0;
-    flex-basis: auto;
+    flex: 0 0 auto;
     gap: 4px;
     align-items: center;
-    min-width: 0; /* important to allow shrinking */
+    min-width: 0;
+    padding: 0;
+    margin: 0;
   }
 
   .icon-group img {
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
     padding: 1px;
+    flex-shrink: 0;
   }
 
   .page-title {
@@ -898,25 +900,27 @@ h1 {
     justify-content: flex-start;
     align-items: center;
     overflow-x: auto;
-    gap: 12px;
-    padding: 6px 10px;
+    gap: 6px;
+    padding: 6px 8px;
     white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
   }
 
   .icon-group {
     display: flex;
-    flex-shrink: 1;
-    flex-grow: 0;
-    flex-basis: auto;
-    gap: 4px;
+    flex: 0 0 auto;
+    gap: 3px;
     align-items: center;
-    min-width: 0; /* important to allow shrinking */
+    min-width: 0;
+    padding: 0;
+    margin: 0;
   }
 
   .icon-group img {
-    width: 18px;
-    height: 18px;
+    width: 14px;
+    height: 14px;
     padding: 1px;
+    flex-shrink: 0;
   }
 
   .draggable-window {
@@ -1005,24 +1009,26 @@ h1 {
     justify-content: flex-start;
     align-items: center;
     overflow-x: auto;
-    gap: 12px;
-    padding: 6px 10px;
+    gap: 6px;
+    padding: 6px 8px;
     white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
   }
 
   .icon-group {
     display: flex;
-    flex-shrink: 1;
-    flex-grow: 0;
-    flex-basis: auto;
-    gap: 4px;
+    flex: 0 0 auto;
+    gap: 3px;
     align-items: center;
-    min-width: 0; /* important to allow shrinking */
+    min-width: 0;
+    padding: 0;
+    margin: 0;
   }
 
   .icon-group img {
-    width: 18px;
-    height: 18px;
+    width: 14px;
+    height: 14px;
     padding: 1px;
+    flex-shrink: 0;
   }
 }
