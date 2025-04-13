@@ -104,8 +104,12 @@ body {
   }
 
   .toolbar-tabs {
-    flex-wrap: wrap;
-    gap: 0.75rem;
+    gap: 1rem;
+    padding: 0 8px;
+  }
+
+  .toolbar-tabs .tab {
+    padding: 6px 10px;
     font-size: 0.75rem;
   }
 
@@ -197,6 +201,16 @@ body {
 
   .dropdown-content {
     min-width: 160px;
+  }
+
+  .toolbar-tabs {
+    gap: 0.75rem;
+    padding: 0 6px;
+  }
+
+  .toolbar-tabs .tab {
+    padding: 6px 8px;
+    font-size: 0.7rem;
   }
 }
 
@@ -563,6 +577,9 @@ h1 {
 .toolbar {
   position: relative;
   z-index: 9999;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 /* Top Pink Title Bar */
@@ -615,6 +632,9 @@ h1 {
   overflow-x: auto;
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .toolbar-tabs .tab {
@@ -631,6 +651,7 @@ h1 {
   flex-shrink: 0;
   width: auto;
   min-width: fit-content;
+  box-sizing: border-box;
 }
 
 .toolbar-tabs .tab:hover {
@@ -665,48 +686,26 @@ h1 {
 }
 
 @media screen and (max-width: 768px) {
-  .toolbar-tabs .tab {
+  .toolbar-tabs {
+    gap: 1rem;
     padding: 0 8px;
-    margin: 0;
-    height: 32px;
-    line-height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 4px;
   }
-  
-  .toolbar-tabs .tab img {
-    width: 18px;
-    height: 18px;
-    margin: 0;
-    vertical-align: middle;
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
+
+  .toolbar-tabs .tab {
+    padding: 6px 10px;
+    font-size: 0.75rem;
   }
 }
 
 @media screen and (max-width: 480px) {
-  .toolbar-tabs .tab {
-    padding: 0 8px;
-    margin: 0;
-    height: 32px;
-    line-height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 4px;
+  .toolbar-tabs {
+    gap: 0.75rem;
+    padding: 0 6px;
   }
-  
-  .toolbar-tabs .tab img {
-    width: 16px;
-    height: 16px;
-    margin: 0;
-    vertical-align: middle;
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
+
+  .toolbar-tabs .tab {
+    padding: 6px 8px;
+    font-size: 0.7rem;
   }
 }
 
@@ -716,6 +715,7 @@ h1 {
   display: inline-flex;
   width: auto;
   min-width: fit-content;
+  flex-shrink: 0;
 }
 
 .tab.dropdown .dropdown-toggle {
@@ -733,6 +733,7 @@ h1 {
   transition: all 0.3s ease;
   white-space: nowrap;
   flex-shrink: 0;
+  box-sizing: border-box;
 }
 
 .tab.dropdown .dropdown-toggle:hover {
