@@ -21,7 +21,7 @@ body {
   padding: 0;
   font-family: 'Courier New', monospace;
   min-height: 100vh;
-  width: 100%;
+  width: 100vw;
   position: relative;
   z-index: 1;
   overflow-x: hidden;
@@ -728,25 +728,58 @@ h1 {
     padding: 4rem 1rem 1rem;
   }
 
-  .toolbar-buttons {
-    gap: 1.5rem;
-    padding: 8px 12px;
-    row-gap: 0.2rem;
-  }
-  
-  .icon-group {
-    gap: 6px;
-    margin-bottom: 0.05rem;
+  .draggable-window {
+    left: 50% !important;
+    transform: translateX(-50%);
+    width: 90vw;
+    max-width: 320px;
   }
 
-  .draggable-window {
-    width: 90vw;
-    max-width: 350px;
-    min-width: 200px;
-  }
-  
   .window-body {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
+    max-height: 60vh;
+  }
+
+  .window-header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0.4rem 0.6rem;
+  }
+
+  .window-title {
+    font-size: 0.75rem;
+    margin-bottom: 4px;
+  }
+
+  .window-buttons {
+    align-self: flex-end;
+  }
+
+  .toolbar-tabs {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    font-size: 0.75rem;
+  }
+
+  .toolbar-buttons {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 10px;
+  }
+
+  .icon-group {
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .icon-group img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .dropdown-content {
+    min-width: 160px;
   }
 
   .gallery {
