@@ -229,7 +229,26 @@
     </style>
 </head>
 <body>
-    <div class="top-toolbar">
+    <div class="paint-window" id="paintWindow">
+        <div class="paint-header" id="paintHeader">
+            <div class="paint-title">
+                <img src="./images/hope.png" alt="Paint">
+                untitled - Paint
+            </div>
+            <div class="paint-buttons">
+                <div class="paint-btn">_</div>
+                <div class="paint-btn">□</div>
+                <div class="paint-btn">×</div>
+            </div>
+        </div>
+        <div class="menu-bar">
+            <div class="menu-item">File</div>
+            <div class="menu-item">Edit</div>
+            <div class="menu-item">View</div>
+            <div class="menu-item">Image</div>
+            <div class="menu-item">Colors</div>
+            <div class="menu-item">Help</div>
+        </div>
         <div class="toolbar-buttons">
             <button id="undoBtn" title="Undo (Ctrl+Z)">
                 <img src="./images/undo.png" alt="Undo">
@@ -240,21 +259,6 @@
             <button id="eraserBtn" title="Eraser">
                 <img src="./images/eraser.png" alt="Eraser">
             </button>
-        </div>
-    </div>
-    <canvas id="mainCanvas" class="main-canvas"></canvas>
-    
-    <div class="paint-window" id="paintWindow">
-        <div class="paint-header" id="paintHeader">
-            <div class="paint-title">
-                <img src="./images/hope.png" alt="Paint">
-                Untitled - Paint
-            </div>
-            <div class="paint-buttons">
-                <div class="paint-btn">_</div>
-                <div class="paint-btn">□</div>
-                <div class="paint-btn">×</div>
-            </div>
         </div>
         <div class="paint-content">
             <div class="paint-toolbar">
