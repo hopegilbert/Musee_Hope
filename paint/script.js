@@ -79,6 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     if (currentTool === 'text') {
+      isDrawing = false;
       if (textInput) {
         document.body.removeChild(textInput);
       }
@@ -113,6 +114,16 @@ document.addEventListener('DOMContentLoaded', () => {
           document.body.removeChild(this);
           textInput = null;
           saveState();
+        } else if (e.key === 'Escape') {
+          document.body.removeChild(this);
+          textInput = null;
+        }
+      });
+
+      textInput.addEventListener('blur', function() {
+        if (textInput) {
+          document.body.removeChild(textInput);
+          textInput = null;
         }
       });
       return;
@@ -718,6 +729,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const lineBtn = document.getElementById('lineBtn');
 
   function setActiveTool(toolId, toolName) {
+    // If there's an active text input, remove it
+    if (textInput) {
+      document.body.removeChild(textInput);
+      textInput = null;
+    }
+    
     // Remove active class from all tools
     document.querySelectorAll('.toolbar-buttons button').forEach(btn => btn.classList.remove('active'));
     // Add active class to selected tool
