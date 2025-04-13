@@ -67,22 +67,36 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const pos = getMousePos(e);
     
-    tempCtx.beginPath();
-    tempCtx.moveTo(lastX, lastY);
-    tempCtx.lineTo(pos.x, pos.y);
-    
-    if (currentTool === 'eraser') {
-        tempCtx.globalCompositeOperation = 'destination-out';
-        tempCtx.strokeStyle = 'rgba(0,0,0,1)';
-    } else {
-        tempCtx.globalCompositeOperation = 'source-over';
-        tempCtx.strokeStyle = currentColor;
+    switch(currentTool) {
+        case 'spray':
+            drawSpray(pos.x, pos.y);
+            break;
+            
+        case 'brush':
+            tempCtx.lineWidth = 5;
+            // Fall through to default drawing
+            
+        case 'pencil':
+        case 'eraser':
+            tempCtx.beginPath();
+            tempCtx.moveTo(lastX, lastY);
+            tempCtx.lineTo(pos.x, pos.y);
+            
+            if (currentTool === 'eraser') {
+                tempCtx.globalCompositeOperation = 'destination-out';
+                tempCtx.strokeStyle = 'rgba(0,0,0,1)';
+                tempCtx.lineWidth = 20;
+            } else {
+                tempCtx.globalCompositeOperation = 'source-over';
+                tempCtx.strokeStyle = currentColor;
+                tempCtx.lineWidth = currentTool === 'brush' ? 5 : 2;
+            }
+            
+            tempCtx.lineCap = 'round';
+            tempCtx.lineJoin = 'round';
+            tempCtx.stroke();
+            break;
     }
-    
-    tempCtx.lineWidth = brushSize;
-    tempCtx.lineCap = 'round';
-    tempCtx.lineJoin = 'round';
-    tempCtx.stroke();
     
     // Draw the white background and the temporary canvas
     mainCtx.fillStyle = '#FFFFFF';
@@ -447,4 +461,69 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize canvas
   initCanvas();
   console.log('Paint initialization complete');
+
+  // Tool button event listeners
+  const pencilBtn = document.getElementById('pencilBtn');
+  const brushBtn = document.getElementById('brushBtn');
+  const fillBtn = document.getElementById('fillBtn');
+  const textBtn = document.getElementById('textBtn');
+  const sprayBtn = document.getElementById('sprayBtn');
+
+  function setActiveTool(toolId, toolName) {
+    // Remove active class from all tools
+    document.querySelectorAll('.toolbar-buttons button').forEach(btn => btn.classList.remove('active'));
+    // Add active class to selected tool
+    document.getElementById(toolId).classList.add('active');
+    // Set current tool
+    currentTool = toolName;
+    // Update cursor
+    mainCanvas.style.cursor = toolName === 'eraser' ? 'cell' : 'crosshair';
+  }
+
+  if (pencilBtn) {
+    pencilBtn.addEventListener('click', () => {
+      setActiveTool('pencilBtn', 'pencil');
+      brushSize = 2;
+    });
+  }
+
+  if (brushBtn) {
+    brushBtn.addEventListener('click', () => {
+      setActiveTool('brushBtn', 'brush');
+      brushSize = 5;
+    });
+  }
+
+  if (fillBtn) {
+    fillBtn.addEventListener('click', () => {
+      setActiveTool('fillBtn', 'fill');
+    });
+  }
+
+  if (textBtn) {
+    textBtn.addEventListener('click', () => {
+      setActiveTool('textBtn', 'text');
+    });
+  }
+
+  if (sprayBtn) {
+    sprayBtn.addEventListener('click', () => {
+      setActiveTool('sprayBtn', 'spray');
+    });
+  }
+
+  // Update eraser button click handler to use setActiveTool
+  if (eraserBtn) {
+    eraserBtn.addEventListener('click', function() {
+      if (currentTool === 'eraser') {
+        setActiveTool('pencilBtn', 'pencil');
+        brushSize = 2;
+        eraserBtn.classList.remove('active');
+      } else {
+        setActiveTool('eraserBtn', 'eraser');
+        brushSize = 20;
+        eraserBtn.classList.add('active');
+      }
+    });
+  }
 }); 
