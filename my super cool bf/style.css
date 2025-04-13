@@ -104,9 +104,19 @@ body {
   }
 
   .toolbar-tabs {
-    flex-wrap: wrap;
-    gap: 0.75rem;
+    gap: 1rem;
     font-size: 0.75rem;
+  }
+
+  .toolbar-tabs .tab {
+    padding: 0 8px;
+    height: 28px;
+    line-height: 28px;
+  }
+
+  .toolbar-tabs .tab img {
+    width: 16px;
+    height: 16px;
   }
 
   .dropdown-content {
@@ -197,6 +207,22 @@ body {
 
   .dropdown-content {
     min-width: 160px;
+  }
+
+  .toolbar-tabs {
+    gap: 0.75rem;
+    font-size: 0.7rem;
+  }
+
+  .toolbar-tabs .tab {
+    padding: 0 6px;
+    height: 26px;
+    line-height: 26px;
+  }
+
+  .toolbar-tabs .tab img {
+    width: 14px;
+    height: 14px;
   }
 }
 
