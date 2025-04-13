@@ -240,7 +240,11 @@ h1 {
   top: -11px;
   z-index: 999999;
   pointer-events: none;
-  box-shadow: /* your cursor sparkle pixels */;
+  box-shadow: 
+    0 0 2px #fff,
+    0 0 4px #ffc0ff,
+    0 0 6px #ffb3ff,
+    0 0 8px #ffa6ff;
 }
 
 .cursor-hidden {
