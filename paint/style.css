@@ -249,31 +249,6 @@ body {
     height: 20px;
 }
 
-.color-palette {
-    display: grid;
-    grid-template-columns: repeat(2, 20px);
-    gap: 2px;
-    padding: 4px;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-.color-box {
-    width: 20px;
-    height: 20px;
-    border: 1px solid #808080;
-    cursor: pointer;
-}
-
-.color-box:hover {
-    border: 1px solid #000000;
-}
-
-.color-box.selected {
-    border: 2px solid #000;
-}
-
 .toolbar-buttons {
     display: flex;
     gap: 2px;
@@ -308,10 +283,6 @@ body {
 .toolbar-buttons img {
     width: 24px;
     height: 24px;
-}
-
-.main-canvas {
-    margin-top: 92px; /* Adjusted for new toolbar height */
 }
 
 .paint-tool {
