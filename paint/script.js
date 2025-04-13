@@ -613,19 +613,24 @@ document.addEventListener('DOMContentLoaded', () => {
       
       // Position window in the center of the screen
       const leftPosition = (windowWidth - windowSize) / 2;
-      const topPosition = (viewportHeight - paintWindowHeight) / 2;
       
-      // Get toolbar height
+      // Get toolbar height and ensure it's positioned correctly
       const toolbar = document.querySelector('.main-window');
+      if (toolbar) {
+        toolbar.style.position = 'fixed';
+        toolbar.style.top = '0';
+        toolbar.style.left = '0';
+        toolbar.style.width = '100%';
+      }
       const toolbarRect = toolbar?.getBoundingClientRect();
       const toolbarBottom = toolbarRect ? toolbarRect.bottom : 0;
       
       // Set position, ensuring it's below the toolbar
       paintWindow.style.left = leftPosition + 'px';
-      paintWindow.style.top = Math.max(toolbarBottom + 10, topPosition) + 'px';
+      paintWindow.style.top = (toolbarBottom + 20) + 'px';
 
       // Update header sizing
-      const headerHeight = Math.min(Math.max(windowSize * 0.05, 24), 36); // Between 24px and 36px
+      const headerHeight = Math.min(Math.max(windowSize * 0.05, 24), 36);
       paintHeader.style.height = headerHeight + 'px';
       
       // Ensure main canvas stays full screen
