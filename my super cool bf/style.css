@@ -843,8 +843,7 @@ h1 {
   }
 
   .page-title {
-    margin-top: 200px;
-    font-size: 2.2rem;
+    font-size: 2.5rem;
   }
 
   .toolbar {
@@ -856,8 +855,6 @@ h1 {
   }
 
   .draggable-window {
-    left: 50% !important;
-    transform: translateX(-50%);
     width: 90vw;
     max-width: 320px;
   }
@@ -910,8 +907,7 @@ h1 {
   }
 
   .page-title {
-    margin-top: 220px;
-    font-size: 1.8rem;
+    font-size: 2rem;
   }
 
   .toolbar {
@@ -926,8 +922,6 @@ h1 {
     width: 95vw;
     max-width: 300px;
     min-width: 180px;
-    left: 50% !important;
-    transform: translateX(-50%);
   }
 
   .window-header {
