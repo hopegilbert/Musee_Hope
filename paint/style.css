@@ -26,13 +26,13 @@ body {
     right: 0;
     z-index: 1000;
     font-family: 'Tahoma', sans-serif;
-    font-size: 11px;
+    font-size: 12px;
 }
 
 .title-bar {
     background: linear-gradient(to right, #000080, #1084d0);
     color: white;
-    padding: 3px 2px 3px 3px;
+    padding: 4px 3px 4px 4px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -41,23 +41,23 @@ body {
 .title-bar-text {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 6px;
     font-weight: bold;
 }
 
 .title-icon {
-    width: 16px;
-    height: 16px;
+    width: 20px;
+    height: 20px;
 }
 
 .title-bar-controls {
     display: flex;
-    gap: 2px;
+    gap: 3px;
 }
 
 .title-bar-controls button {
-    width: 16px;
-    height: 14px;
+    width: 22px;
+    height: 18px;
     background: #c0c0c0;
     border: 1px solid #ffffff;
     border-right-color: #000000;
@@ -67,7 +67,7 @@ body {
     align-items: center;
     justify-content: center;
     font-family: 'Tahoma', sans-serif;
-    font-size: 10px;
+    font-size: 12px;
     color: #000000;
     cursor: pointer;
 }
@@ -78,13 +78,13 @@ body {
 
 .menu-bar {
     background: #c0c0c8;
-    padding: 1px;
+    padding: 2px;
     display: flex;
     border-bottom: 1px solid #808080;
 }
 
 .menu-item {
-    padding: 2px 6px;
+    padding: 4px 8px;
     cursor: default;
 }
 
@@ -95,23 +95,24 @@ body {
 
 .toolbar {
     background: #c0c0c8;
-    padding: 2px;
+    padding: 4px;
     border-bottom: 1px solid #808080;
+    height: 42px;
 }
 
 .toolbar-buttons {
     display: flex;
-    gap: 1px;
+    gap: 2px;
 }
 
 .toolbar-buttons button {
-    width: 25px;
-    height: 25px;
+    width: 32px;
+    height: 32px;
     background: #c0c0c8;
     border: 1px solid #ffffff;
     border-right-color: #808080;
     border-bottom-color: #808080;
-    padding: 2px;
+    padding: 3px;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -131,12 +132,12 @@ body {
 }
 
 .toolbar-buttons img {
-    width: 16px;
-    height: 16px;
+    width: 24px;
+    height: 24px;
 }
 
 .main-canvas {
-    margin-top: 76px; /* Adjust based on toolbar height */
+    margin-top: 92px; /* Adjusted for new toolbar height */
 }
 
 .paint-tool {
