@@ -782,13 +782,15 @@ h1 {
   .toolbar-buttons {
     flex-wrap: wrap;
     justify-content: flex-start;
-    gap: 1rem 1.2rem; /* vertical then horizontal */
+    gap: 16px 32px; /* smaller vertical gap, bigger horizontal spacing */
   }
 
   .icon-group {
-    flex: 1 1 calc(50% - 1.2rem); /* two per row */
+    flex: 1 1 calc(50% - 32px); /* two icon groups per row */
     display: flex;
-    gap: 0.5rem;
+    gap: 8px;
+    justify-content: flex-start;
+    flex-wrap: wrap;
   }
 
   .dropdown-content {
