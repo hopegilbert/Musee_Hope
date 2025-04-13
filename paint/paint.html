@@ -73,6 +73,7 @@
             padding: 8px;
             gap: 8px;
             overflow: hidden;
+            min-height: 0;
         }
 
         .paint-toolbar {
@@ -83,11 +84,17 @@
             gap: 4px;
             border-right: 1px solid #808080;
             width: 40px;
+            min-width: 40px;
+            max-width: 60px;
+            overflow-y: auto;
+            overflow-x: hidden;
         }
 
         .paint-tool {
             width: 32px;
             height: 32px;
+            min-width: 32px;
+            min-height: 32px;
             background: #c0c0c8;
             border: 1px solid #fff;
             border-right-color: #808080;
@@ -96,6 +103,16 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
+            padding: 2px;
+            box-sizing: border-box;
+        }
+
+        .paint-tool img {
+            width: 16px;
+            height: 16px;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
         }
 
         .paint-tool:hover {
@@ -221,8 +238,9 @@
         .color-dropdown {
             position: relative;
             display: inline-block;
-            margin-top: 8px;
-            z-index: 2000;
+            margin-top: 4px;
+            width: 32px;
+            min-width: 32px;
         }
 
         .color-button {
@@ -243,7 +261,7 @@
             background: #c0c0c8;
             border: 1px solid #808080;
             padding: 4px;
-            z-index: 2001;
+            z-index: 1000;
         }
 
         .color-option {
@@ -256,8 +274,7 @@
             cursor: pointer;
         }
 
-        .color-dropdown:hover .color-options,
-        .color-dropdown.active .color-options {
+        .color-dropdown:hover .color-options {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 2px;
@@ -283,11 +300,20 @@
 
             .paint-toolbar {
                 width: 36px;
+                min-width: 36px;
+                padding: 2px;
             }
 
             .paint-tool {
                 width: 28px;
                 height: 28px;
+                min-width: 28px;
+                min-height: 28px;
+            }
+
+            .paint-tool img {
+                width: 14px;
+                height: 14px;
             }
 
             .paint-items {
@@ -303,63 +329,17 @@
                 grid-template-columns: repeat(7, 16px);
                 grid-template-rows: repeat(4, 16px);
             }
-
-            .color-dropdown {
-                position: relative;
-                z-index: 2000;
-            }
-            
-            .color-options {
-                left: auto;
-                right: 100%;
-                top: 0;
-                z-index: 2001;
-            }
-            
-            .paint-tool, 
-            .toolbar-buttons button {
-                min-width: 44px;
-                min-height: 44px;
-                padding: 8px;
-                touch-action: manipulation;
-            }
-            
-            .paint-tool img, 
-            .toolbar-buttons button img {
-                width: 24px;
-                height: 24px;
-            }
         }
 
-        .toolbar-buttons button {
-            width: 32px;
-            height: 32px;
-            border: 1px solid #fff;
-            border-right-color: #808080;
-            border-bottom-color: #808080;
-            background: #c0c0c8;
-            padding: 4px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-        }
+        @media (max-height: 600px) {
+            .paint-toolbar {
+                gap: 2px;
+            }
 
-        .toolbar-buttons button img {
-            width: 16px;
-            height: 16px;
-            object-fit: contain;
-        }
-
-        .toolbar-buttons button:hover {
-            background: #d4d0c8;
-        }
-
-        .toolbar-buttons button.active {
-            background: #d4d0c8;
-            border: 1px solid #808080;
-            border-right-color: #fff;
-            border-bottom-color: #fff;
+            .paint-tool {
+                height: 28px;
+                min-height: 28px;
+            }
         }
     </style>
 </head>
