@@ -61,21 +61,24 @@ body {
 
 @media screen and (max-width: 768px) {
   .toolbar-buttons {
+    display: flex;
     flex-wrap: nowrap;
     justify-content: flex-start;
+    align-items: center;
     overflow-x: auto;
-    gap: 8px;
+    gap: 12px;
     padding: 6px 10px;
-    scroll-behavior: smooth;
+    white-space: nowrap;
   }
 
   .icon-group {
-    flex: 0 0 auto;
     display: flex;
+    flex-shrink: 1;
+    flex-grow: 0;
+    flex-basis: auto;
     gap: 4px;
     align-items: center;
-    padding: 0;
-    margin: 0;
+    min-width: 0; /* important to allow shrinking */
   }
 
   .icon-group img {
@@ -890,37 +893,30 @@ h1 {
   }
 
   .toolbar-buttons {
-    flex-wrap: wrap;
+    display: flex;
+    flex-wrap: nowrap;
     justify-content: flex-start;
-    gap: 6px;
-    padding: 6px;
+    align-items: center;
+    overflow-x: auto;
+    gap: 12px;
+    padding: 6px 10px;
+    white-space: nowrap;
   }
 
   .icon-group {
-    flex: 0 0 auto;
     display: flex;
+    flex-shrink: 1;
+    flex-grow: 0;
+    flex-basis: auto;
     gap: 4px;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    padding: 0;
-    margin: 0;
-    margin-right: 12px;
-    margin-bottom: 8px;
+    align-items: center;
+    min-width: 0; /* important to allow shrinking */
   }
 
   .icon-group img {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     padding: 1px;
-    background-color: #ffffff;
-    border: 1px solid #d9b0c8;
-    border-radius: 3px;
-    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
-  }
-
-  .icon-group img:hover {
-    background-color: #ffe2ee;
-    box-shadow: 0 0 5px #f09dc9;
   }
 
   .draggable-window {
@@ -1004,35 +1000,29 @@ h1 {
 
 @media screen and (max-width: 480px) {
   .toolbar-buttons {
+    display: flex;
     flex-wrap: nowrap;
     justify-content: flex-start;
+    align-items: center;
     overflow-x: auto;
-    gap: 8px;
+    gap: 12px;
     padding: 6px 10px;
-    scroll-behavior: smooth;
+    white-space: nowrap;
   }
 
   .icon-group {
-    flex: 0 0 auto;
     display: flex;
+    flex-shrink: 1;
+    flex-grow: 0;
+    flex-basis: auto;
     gap: 4px;
     align-items: center;
-    padding: 0;
-    margin: 0;
+    min-width: 0; /* important to allow shrinking */
   }
 
   .icon-group img {
     width: 18px;
     height: 18px;
     padding: 1px;
-    background-color: #ffffff;
-    border: 1px solid #d9b0c8;
-    border-radius: 3px;
-    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
-  }
-
-  .icon-group img:hover {
-    background-color: #ffe2ee;
-    box-shadow: 0 0 5px #f09dc9;
   }
 }
