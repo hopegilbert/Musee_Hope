@@ -108,26 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Store the click position for later use
       const clickPos = { x: pos.x, y: pos.y };
       
-      textInput.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter') {
-          const text = this.value;
-          if (text) {
-            mainCtx.font = brushSize + 'px Arial';
-            mainCtx.fillStyle = currentColor;
-            mainCtx.fillText(text, clickPos.x, clickPos.y);
-            tempCtx.drawImage(mainCanvas, 0, 0);
-            saveState();
-          }
-          document.body.removeChild(this);
-          textInput = null;
-        } else if (e.key === 'Escape') {
-          document.body.removeChild(this);
-          textInput = null;
-        }
-      });
-      
-      textInput.addEventListener('blur', function() {
-        const text = this.value;
+      const handleTextInput = (text) => {
         if (text) {
           mainCtx.font = brushSize + 'px Arial';
           mainCtx.fillStyle = currentColor;
@@ -135,8 +116,21 @@ document.addEventListener('DOMContentLoaded', () => {
           tempCtx.drawImage(mainCanvas, 0, 0);
           saveState();
         }
-        document.body.removeChild(this);
+        document.body.removeChild(textInput);
         textInput = null;
+      };
+      
+      textInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+          handleTextInput(this.value);
+        } else if (e.key === 'Escape') {
+          document.body.removeChild(this);
+          textInput = null;
+        }
+      });
+      
+      textInput.addEventListener('blur', function() {
+        handleTextInput(this.value);
       });
       return;
     }
