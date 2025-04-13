@@ -606,8 +606,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize draggable window
   if (paintWindow && paintHeader) {
-    // Set initial position
-    paintWindow.style.left = "20px";
+    // Set initial position to right side
+    paintWindow.style.left = (window.innerWidth - paintWindow.offsetWidth - 20) + "px";
     paintWindow.style.top = "100px";
     makeDraggable(paintWindow, paintHeader);
   }
