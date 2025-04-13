@@ -77,31 +77,39 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     if (currentTool === 'text') {
+        // Remove any existing text input
+        if (textInput) {
+            document.body.removeChild(textInput);
+            textInput = null;
+        }
+        
         // Create text input
-        const input = document.createElement('input');
-        input.type = 'text';
-        input.style.position = 'absolute';
-        input.style.left = e.clientX + 'px';
-        input.style.top = e.clientY + 'px';
-        input.style.font = brushSize + 'px Arial';
-        input.style.color = currentColor;
-        input.style.border = '1px solid #000';
-        input.style.padding = '2px';
-        input.style.margin = '0';
-        input.style.outline = 'none';
-        input.style.background = 'transparent';
-        input.style.zIndex = '1000';
+        textInput = document.createElement('input');
+        textInput.type = 'text';
+        textInput.style.position = 'fixed';
+        textInput.style.left = e.clientX + 'px';
+        textInput.style.top = e.clientY + 'px';
+        textInput.style.font = brushSize + 'px Arial';
+        textInput.style.color = currentColor;
+        textInput.style.border = '1px solid #000';
+        textInput.style.padding = '2px';
+        textInput.style.margin = '0';
+        textInput.style.outline = 'none';
+        textInput.style.background = 'transparent';
+        textInput.style.zIndex = '1000';
+        textInput.style.minWidth = '100px';
+        textInput.style.height = brushSize + 'px';
         
         // Add to document
-        document.body.appendChild(input);
-        input.focus();
+        document.body.appendChild(textInput);
+        textInput.focus();
         
         // Store click position
         const clickPos = { x: pos.x, y: pos.y };
         
         // Handle text input
         const handleText = () => {
-            const text = input.value;
+            const text = textInput.value;
             if (text) {
                 mainCtx.font = brushSize + 'px Arial';
                 mainCtx.fillStyle = currentColor;
@@ -109,19 +117,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 tempCtx.drawImage(mainCanvas, 0, 0);
                 saveState();
             }
-            document.body.removeChild(input);
+            document.body.removeChild(textInput);
+            textInput = null;
         };
         
         // Add event listeners
-        input.addEventListener('keydown', (e) => {
+        textInput.addEventListener('keydown', (e) => {
             if (e.key === 'Enter') {
                 handleText();
             } else if (e.key === 'Escape') {
-                document.body.removeChild(input);
+                document.body.removeChild(textInput);
+                textInput = null;
             }
         });
         
-        input.addEventListener('blur', handleText);
+        textInput.addEventListener('blur', handleText);
         return;
     }
     
