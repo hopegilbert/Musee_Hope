@@ -35,6 +35,7 @@ body {
   border: none;
   box-shadow: none;
   z-index: 1;
+  position: relative;
 }
 
 .page-title {
@@ -54,6 +55,8 @@ body {
     margin-left: auto;
     margin-right: auto;
     animation: typing 3s steps(30, end), blink 0.75s step-end infinite;
+    position: relative;
+    z-index: 1;
   }
   
   @keyframes typing {
@@ -161,7 +164,9 @@ h1 {
     width: 350px;
     transition: width 0.3s ease;
     font-family: 'Tahoma', sans-serif;
-    top: 60px; /* Minimum distance from top to stay below toolbar */
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
   }
   
   .window-header {
@@ -736,6 +741,7 @@ h1 {
   .draggable-window {
     width: 90vw;
     max-width: 350px;
+    min-width: 200px;
   }
   
   .window-body {
@@ -774,6 +780,7 @@ h1 {
   .draggable-window {
     width: 95vw;
     max-width: 300px;
+    min-width: 180px;
   }
   
   .window-header {
@@ -816,10 +823,6 @@ h1 {
   .page-title {
     margin-top: 50px;
     padding: 2rem 1rem 1rem;
-  }
-
-  .toolbar-buttons {
-    padding: 4px 8px;
   }
 
   .draggable-window {
