@@ -105,6 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     ctx.beginPath();
     ctx.moveTo(lastX, lastY);
+    console.log('Started drawing at:', lastX, lastY);
   }
   
   function draw(e) {
@@ -138,6 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     lastX = x;
     lastY = y;
+    console.log('Drawing to:', x, y);
   }
   
   function drawSpray(x, y) {
@@ -160,10 +162,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   
   function stopDrawing() {
-    console.log('Stop drawing');
     if (isDrawing) {
       isDrawing = false;
       ctx.globalCompositeOperation = 'source-over';
+      console.log('Stopped drawing');
       saveState();
     }
   }
@@ -182,7 +184,6 @@ document.addEventListener('DOMContentLoaded', () => {
       currentTool = toolName;
       tools.forEach(t => t.classList.remove('active'));
       tool.classList.add('active');
-      
       canvas.style.cursor = toolName === 'eraser' ? 'cell' : 'crosshair';
     });
   });
@@ -214,7 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   
   // Select black by default
-  const defaultColor = document.querySelector('.color-box');
+  const defaultColor = document.querySelector('.color-box[style*="background-color: #000000"]');
   if (defaultColor) {
     defaultColor.classList.add('selected');
     currentColor = defaultColor.style.backgroundColor;
