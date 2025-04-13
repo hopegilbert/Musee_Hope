@@ -130,9 +130,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // Drawing functions
   function getMousePos(e) {
     const rect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
     return {
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top
+      x: (e.clientX - rect.left) * scaleX,
+      y: (e.clientY - rect.top) * scaleY
     };
   }
   
@@ -140,7 +142,13 @@ document.addEventListener('DOMContentLoaded', () => {
     isDrawing = true;
     const pos = getMousePos(e);
     [lastX, lastY] = [pos.x, pos.y];
-    console.log('Started drawing at:', lastX, lastY);
+    
+    // For eraser, set composite operation immediately
+    if (currentTool === 'eraser') {
+      ctx.globalCompositeOperation = 'destination-out';
+    } else {
+      ctx.globalCompositeOperation = 'source-over';
+    }
   }
   
   function draw(e) {
@@ -167,7 +175,6 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.stroke();
     
     [lastX, lastY] = [pos.x, pos.y];
-    console.log('Drawing to:', pos.x, pos.y);
   }
   
   function drawSpray(x, y) {
@@ -193,7 +200,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isDrawing) {
       isDrawing = false;
       ctx.globalCompositeOperation = 'source-over';
-      console.log('Stopped drawing');
       saveState();
     }
   }
@@ -209,7 +215,6 @@ document.addEventListener('DOMContentLoaded', () => {
   tools.forEach(tool => {
     tool.addEventListener('click', () => {
       const toolName = tool.getAttribute('title').toLowerCase();
-      console.log('Tool selected:', toolName);
       currentTool = toolName;
       tools.forEach(t => t.classList.remove('active'));
       tool.classList.add('active');
@@ -233,7 +238,6 @@ document.addEventListener('DOMContentLoaded', () => {
       colors.forEach(c => c.classList.remove('selected'));
       color.classList.add('selected');
       currentColor = color.style.backgroundColor;
-      console.log('Color selected:', currentColor);
     });
   });
   
