@@ -374,14 +374,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const tools = document.querySelectorAll('.paint-tool');
   tools.forEach(tool => {
     tool.addEventListener('click', function() {
-      document.querySelectorAll('.paint-tool').forEach(t => t.classList.remove('active'));
-      this.classList.add('active');
-      currentTool = this.querySelector('img').alt.toLowerCase();
-      if (currentTool === 'eraser') {
-        mainCanvas.style.cursor = 'cell';
-      } else {
-        mainCanvas.style.cursor = 'crosshair';
-      }
+      const toolName = this.querySelector('img').alt.toLowerCase();
+      const toolId = toolName + 'Btn';
+      setActiveTool(toolId, toolName);
+      brushSize = toolButtons[toolId]?.size || 2;
     });
   });
   
@@ -443,41 +439,76 @@ document.addEventListener('DOMContentLoaded', () => {
     mainCtx.fillStyle = currentColor;
   }
   
-  // Button event listeners
+  // Tool selection
+  function setActiveTool(toolId, toolName) {
+    // If there's an active text input, remove it
+    if (textInput) {
+        document.body.removeChild(textInput);
+        textInput = null;
+    }
+    
+    // Remove active class from all tools
+    document.querySelectorAll('.toolbar-buttons button').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.paint-tool').forEach(tool => tool.classList.remove('active'));
+    
+    // Add active class to selected tool
+    const toolButton = document.getElementById(toolId);
+    if (toolButton) {
+        toolButton.classList.add('active');
+    }
+    
+    // Set current tool
+    currentTool = toolName;
+    
+    // Update cursor
+    mainCanvas.style.cursor = toolName === 'eraser' ? 'cell' : 'crosshair';
+  }
+  
+  // Tool button event listeners
+  const toolButtons = {
+    'pencilBtn': { tool: 'pencil', size: 2 },
+    'brushBtn': { tool: 'brush', size: 5 },
+    'eraserBtn': { tool: 'eraser', size: 20 },
+    'fillBtn': { tool: 'fill', size: 1 },
+    'textBtn': { tool: 'text', size: 16 },
+    'sprayBtn': { tool: 'spray', size: 10 },
+    'rectangleBtn': { tool: 'rectangle', size: 2 },
+    'ellipseBtn': { tool: 'ellipse', size: 2 },
+    'lineBtn': { tool: 'line', size: 2 }
+  };
+  
+  Object.entries(toolButtons).forEach(([btnId, settings]) => {
+    const button = document.getElementById(btnId);
+    if (button) {
+        button.addEventListener('click', () => {
+            setActiveTool(btnId, settings.tool);
+            brushSize = settings.size;
+        });
+    }
+  });
+  
+  // Undo/Redo button listeners
   const undoBtn = document.getElementById('undoBtn');
   const redoBtn = document.getElementById('redoBtn');
-  const eraserBtn = document.getElementById('eraserBtn');
   
   if (undoBtn) {
-    undoBtn.addEventListener('click', () => {
-      undo();
-    });
+    undoBtn.addEventListener('click', undo);
   }
   
   if (redoBtn) {
-    redoBtn.addEventListener('click', () => {
-      redo();
-    });
-  }
-  
-  if (eraserBtn) {
-    eraserBtn.addEventListener('click', function() {
-      setActiveTool('eraserBtn', 'eraser');
-      brushSize = 20;
-      this.classList.add('active');
-    });
+    redoBtn.addEventListener('click', redo);
   }
   
   // Keyboard shortcuts
   document.addEventListener('keydown', (e) => {
     if (e.ctrlKey) {
-      if (e.key === 'z') {
-        e.preventDefault();
-        undo();
-      } else if (e.key === 'y') {
-        e.preventDefault();
-        redo();
-      }
+        if (e.key === 'z') {
+            e.preventDefault();
+            undo();
+        } else if (e.key === 'y') {
+            e.preventDefault();
+            redo();
+        }
     }
   });
   
@@ -717,235 +748,4 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize canvas
   setCanvasSize();
   console.log('Paint initialization complete');
-
-  // Tool button event listeners
-  const pencilBtn = document.getElementById('pencilBtn');
-  const brushBtn = document.getElementById('brushBtn');
-  const fillBtn = document.getElementById('fillBtn');
-  const textBtn = document.getElementById('textBtn');
-  const sprayBtn = document.getElementById('sprayBtn');
-  const rectangleBtn = document.getElementById('rectangleBtn');
-  const ellipseBtn = document.getElementById('ellipseBtn');
-  const lineBtn = document.getElementById('lineBtn');
-
-  function setActiveTool(toolId, toolName) {
-    // If there's an active text input, remove it
-    if (textInput) {
-      document.body.removeChild(textInput);
-      textInput = null;
-    }
-    
-    // Remove active class from all tools
-    document.querySelectorAll('.toolbar-buttons button').forEach(btn => btn.classList.remove('active'));
-    // Add active class to selected tool
-    document.getElementById(toolId).classList.add('active');
-    // Set current tool
-    currentTool = toolName;
-    // Update cursor
-    mainCanvas.style.cursor = toolName === 'eraser' ? 'cell' : 'crosshair';
-  }
-
-  if (pencilBtn) {
-    pencilBtn.addEventListener('click', () => {
-      setActiveTool('pencilBtn', 'pencil');
-      brushSize = 2;
-    });
-  }
-
-  if (brushBtn) {
-    brushBtn.addEventListener('click', () => {
-      setActiveTool('brushBtn', 'brush');
-      brushSize = 5;
-    });
-  }
-
-  if (fillBtn) {
-    fillBtn.addEventListener('click', () => {
-      setActiveTool('fillBtn', 'fill');
-    });
-  }
-
-  if (textBtn) {
-    textBtn.addEventListener('click', () => {
-      setActiveTool('textBtn', 'text');
-      brushSize = 16; // Font size
-    });
-  }
-
-  if (sprayBtn) {
-    sprayBtn.addEventListener('click', () => {
-      setActiveTool('sprayBtn', 'spray');
-      brushSize = 10;  // Larger default size for spray
-    });
-  }
-
-  if (rectangleBtn) {
-    rectangleBtn.addEventListener('click', () => {
-      setActiveTool('rectangleBtn', 'rectangle');
-      brushSize = 2;
-    });
-  }
-
-  if (ellipseBtn) {
-    ellipseBtn.addEventListener('click', () => {
-      setActiveTool('ellipseBtn', 'ellipse');
-      brushSize = 2;
-    });
-  }
-
-  if (lineBtn) {
-    lineBtn.addEventListener('click', () => {
-      setActiveTool('lineBtn', 'line');
-      brushSize = 2;
-    });
-  }
-
-  // Add fill tool function
-  function floodFill(startX, startY, fillColor) {
-    const imageData = tempCtx.getImageData(0, 0, tempCanvas.width, tempCanvas.height);
-    const pixels = imageData.data;
-    
-    // Get the color we're filling
-    const startPos = (startY * tempCanvas.width + startX) * 4;
-    const startR = pixels[startPos];
-    const startG = pixels[startPos + 1];
-    const startB = pixels[startPos + 2];
-    const startA = pixels[startPos + 3];
-    
-    // Convert fill color from string to RGBA
-    const fillStyle = tempCtx.fillStyle;
-    tempCtx.fillStyle = fillColor;
-    const dummyCanvas = document.createElement('canvas');
-    const dummyCtx = dummyCanvas.getContext('2d');
-    dummyCtx.fillStyle = fillColor;
-    dummyCtx.fillRect(0, 0, 1, 1);
-    const fillRGBA = dummyCtx.getImageData(0, 0, 1, 1).data;
-    tempCtx.fillStyle = fillStyle;
-    
-    // Check if we're trying to fill with the same color
-    if (startR === fillRGBA[0] && startG === fillRGBA[1] && 
-        startB === fillRGBA[2] && startA === fillRGBA[3]) {
-      return;
-    }
-    
-    // Queue for flood fill
-    const queue = [[startX, startY]];
-    
-    while (queue.length > 0) {
-      const [x, y] = queue.pop();
-      const pos = (y * tempCanvas.width + x) * 4;
-      
-      // Check if this pixel should be filled
-      if (x < 0 || x >= tempCanvas.width || y < 0 || y >= tempCanvas.height ||
-          pixels[pos] !== startR || pixels[pos + 1] !== startG ||
-          pixels[pos + 2] !== startB || pixels[pos + 3] !== startA) {
-        continue;
-      }
-      
-      // Fill the pixel
-      pixels[pos] = fillRGBA[0];
-      pixels[pos + 1] = fillRGBA[1];
-      pixels[pos + 2] = fillRGBA[2];
-      pixels[pos + 3] = fillRGBA[3];
-      
-      // Add adjacent pixels to queue
-      queue.push([x + 1, y], [x - 1, y], [x, y + 1], [x, y - 1]);
-    }
-    
-    // Update the canvas with filled area
-    tempCtx.putImageData(imageData, 0, 0);
-    mainCtx.fillStyle = '#FFFFFF';
-    mainCtx.fillRect(0, 0, mainCanvas.width, mainCanvas.height);
-    mainCtx.drawImage(tempCanvas, 0, 0);
-  }
-
-  function makeDraggable(element, handle) {
-    let isDragging = false;
-    let startX;
-    let startY;
-    let offsetX;
-    let offsetY;
-
-    const toolbar = document.querySelector('.toolbar');
-    const toolbarHeight = toolbar ? toolbar.getBoundingClientRect().height : 0;
-
-    function onMouseDown(e) {
-        if (e.target === handle || handle.contains(e.target)) {
-            isDragging = true;
-            startX = e.clientX;
-            startY = e.clientY;
-            
-            const rect = element.getBoundingClientRect();
-            offsetX = startX - rect.left;
-            offsetY = startY - rect.top;
-            
-            element.classList.add('dragging');
-        }
-    }
-
-    function onMouseMove(e) {
-        if (!isDragging) return;
-        
-        e.preventDefault();
-        
-        const x = e.clientX - offsetX;
-        const y = Math.max(toolbarHeight, e.clientY - offsetY);
-        
-        element.style.left = `${x}px`;
-        element.style.top = `${y}px`;
-    }
-
-    function onMouseUp() {
-        isDragging = false;
-        element.classList.remove('dragging');
-    }
-
-    function onTouchStart(e) {
-        if (e.target === handle || handle.contains(e.target)) {
-            const touch = e.touches[0];
-            isDragging = true;
-            startX = touch.clientX;
-            startY = touch.clientY;
-            
-            const rect = element.getBoundingClientRect();
-            offsetX = startX - rect.left;
-            offsetY = startY - rect.top;
-            
-            element.classList.add('dragging');
-        }
-    }
-
-    function onTouchMove(e) {
-        if (!isDragging) return;
-        
-        e.preventDefault();
-        
-        const touch = e.touches[0];
-        const x = touch.clientX - offsetX;
-        const y = Math.max(toolbarHeight, touch.clientY - offsetY);
-        
-        element.style.left = `${x}px`;
-        element.style.top = `${y}px`;
-    }
-
-    function onTouchEnd() {
-        isDragging = false;
-        element.classList.remove('dragging');
-    }
-
-    // Mouse events
-    handle.addEventListener('mousedown', onMouseDown);
-    document.addEventListener('mousemove', onMouseMove);
-    document.addEventListener('mouseup', onMouseUp);
-
-    // Touch events
-    handle.addEventListener('touchstart', onTouchStart, { passive: false });
-    document.addEventListener('touchmove', onTouchMove, { passive: false });
-    document.addEventListener('touchend', onTouchEnd);
-  }
-
-  // Initialize draggable window
-  if (paintWindow && paintHeader) {
-    makeDraggable(paintWindow, paintHeader);
-  }
 }); 
