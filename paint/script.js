@@ -68,73 +68,71 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   
   function startDrawing(e) {
-    isDrawing = true;
     const pos = getMousePos(e);
     
     if (currentTool === 'fill') {
-      floodFill(Math.round(pos.x), Math.round(pos.y), currentColor);
-      isDrawing = false;
-      saveState();
-      return;
+        floodFill(Math.round(pos.x), Math.round(pos.y), currentColor);
+        saveState();
+        return;
     }
     
     if (currentTool === 'text') {
-      isDrawing = false;
-      if (textInput) {
-        document.body.removeChild(textInput);
-      }
-      
-      // Create text input at the exact click position
-      const canvasRect = mainCanvas.getBoundingClientRect();
-      textInput = document.createElement('input');
-      textInput.type = 'text';
-      textInput.style.position = 'fixed';
-      textInput.style.left = (canvasRect.left + pos.x) + 'px';
-      textInput.style.top = (canvasRect.top + pos.y) + 'px';
-      textInput.style.background = 'transparent';
-      textInput.style.border = '1px solid #000';
-      textInput.style.font = brushSize + 'px Arial';
-      textInput.style.zIndex = '1000';
-      textInput.style.color = currentColor;
-      textInput.style.padding = '0';
-      textInput.style.margin = '0';
-      textInput.style.outline = 'none';
-      textInput.style.minWidth = '100px';
-      textInput.style.height = brushSize + 'px';
-      
-      document.body.appendChild(textInput);
-      textInput.focus();
-      
-      // Store the click position for later use
-      const clickPos = { x: pos.x, y: pos.y };
-      
-      const handleTextInput = (text) => {
-        if (text) {
-          mainCtx.font = brushSize + 'px Arial';
-          mainCtx.fillStyle = currentColor;
-          mainCtx.fillText(text, clickPos.x, clickPos.y);
-          tempCtx.drawImage(mainCanvas, 0, 0);
-          saveState();
+        if (textInput) {
+            document.body.removeChild(textInput);
         }
-        document.body.removeChild(textInput);
-        textInput = null;
-      };
-      
-      textInput.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter') {
-          handleTextInput(this.value);
-        } else if (e.key === 'Escape') {
-          document.body.removeChild(this);
-          textInput = null;
-        }
-      });
-      
-      textInput.addEventListener('blur', function() {
-        handleTextInput(this.value);
-      });
-      return;
+        
+        // Create text input at the exact click position
+        const canvasRect = mainCanvas.getBoundingClientRect();
+        textInput = document.createElement('input');
+        textInput.type = 'text';
+        textInput.style.position = 'fixed';
+        textInput.style.left = (canvasRect.left + pos.x) + 'px';
+        textInput.style.top = (canvasRect.top + pos.y) + 'px';
+        textInput.style.background = 'transparent';
+        textInput.style.border = '1px solid #000';
+        textInput.style.font = brushSize + 'px Arial';
+        textInput.style.zIndex = '1000';
+        textInput.style.color = currentColor;
+        textInput.style.padding = '0';
+        textInput.style.margin = '0';
+        textInput.style.outline = 'none';
+        textInput.style.minWidth = '100px';
+        textInput.style.height = brushSize + 'px';
+        
+        document.body.appendChild(textInput);
+        textInput.focus();
+        
+        // Store the click position for later use
+        const clickPos = { x: pos.x, y: pos.y };
+        
+        const handleTextInput = (text) => {
+            if (text) {
+                mainCtx.font = brushSize + 'px Arial';
+                mainCtx.fillStyle = currentColor;
+                mainCtx.fillText(text, clickPos.x, clickPos.y);
+                tempCtx.drawImage(mainCanvas, 0, 0);
+                saveState();
+            }
+            document.body.removeChild(textInput);
+            textInput = null;
+        };
+        
+        textInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                handleTextInput(this.value);
+            } else if (e.key === 'Escape') {
+                document.body.removeChild(this);
+                textInput = null;
+            }
+        });
+        
+        textInput.addEventListener('blur', function() {
+            handleTextInput(this.value);
+        });
+        return;
     }
     
+    isDrawing = true;
     // For shapes, store the initial canvas state
     if (['rectangle', 'ellipse', 'line'].includes(currentTool)) {
         // Store initial state
@@ -468,11 +466,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Update cursor
     mainCanvas.style.cursor = toolName === 'eraser' ? 'cell' : 'crosshair';
-    
-    // If it's a single-click tool (fill or text), don't set isDrawing
-    if (toolName === 'fill' || toolName === 'text') {
-        isDrawing = false;
-    }
   }
   
   // Tool button event listeners
