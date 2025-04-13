@@ -77,17 +77,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     if (currentTool === 'text') {
+        // Remove any existing text input
         if (textInput) {
             document.body.removeChild(textInput);
+            textInput = null;
         }
         
-        // Create text input at the exact click position
-        const canvasRect = mainCanvas.getBoundingClientRect();
+        // Create new text input
         textInput = document.createElement('input');
         textInput.type = 'text';
-        textInput.style.position = 'fixed';
-        textInput.style.left = (canvasRect.left + pos.x) + 'px';
-        textInput.style.top = (canvasRect.top + pos.y) + 'px';
+        textInput.style.position = 'absolute';
+        textInput.style.left = e.clientX + 'px';
+        textInput.style.top = e.clientY + 'px';
         textInput.style.background = 'transparent';
         textInput.style.border = '1px solid #000';
         textInput.style.font = brushSize + 'px Arial';
@@ -99,12 +100,14 @@ document.addEventListener('DOMContentLoaded', () => {
         textInput.style.minWidth = '100px';
         textInput.style.height = brushSize + 'px';
         
+        // Add to document
         document.body.appendChild(textInput);
         textInput.focus();
         
-        // Store the click position for later use
+        // Store click position
         const clickPos = { x: pos.x, y: pos.y };
         
+        // Handle text input
         const handleTextInput = (text) => {
             if (text) {
                 mainCtx.font = brushSize + 'px Arial';
@@ -113,10 +116,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 tempCtx.drawImage(mainCanvas, 0, 0);
                 saveState();
             }
-            document.body.removeChild(textInput);
-            textInput = null;
+            if (textInput) {
+                document.body.removeChild(textInput);
+                textInput = null;
+            }
         };
         
+        // Add event listeners
         textInput.addEventListener('keydown', function(e) {
             if (e.key === 'Enter') {
                 handleTextInput(this.value);
@@ -129,6 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
         textInput.addEventListener('blur', function() {
             handleTextInput(this.value);
         });
+        
         return;
     }
     
@@ -445,12 +452,6 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Tool selection
   function setActiveTool(toolId, toolName) {
-    // If there's an active text input, remove it
-    if (textInput) {
-        document.body.removeChild(textInput);
-        textInput = null;
-    }
-    
     // Remove active class from all tools
     document.querySelectorAll('.toolbar-buttons button').forEach(btn => btn.classList.remove('active'));
     document.querySelectorAll('.paint-tool').forEach(tool => tool.classList.remove('active'));
@@ -465,7 +466,8 @@ document.addEventListener('DOMContentLoaded', () => {
     currentTool = toolName;
     
     // Update cursor
-    mainCanvas.style.cursor = toolName === 'eraser' ? 'cell' : 'crosshair';
+    mainCanvas.style.cursor = toolName === 'eraser' ? 'cell' : 
+                             toolName === 'text' ? 'text' : 'crosshair';
   }
   
   // Tool button event listeners
