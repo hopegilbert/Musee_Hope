@@ -818,17 +818,21 @@ h1 {
   }
 
   .toolbar-buttons {
+    display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-    gap: 16px 32px; /* smaller vertical gap, bigger horizontal spacing */
+    gap: 8px;
+    padding: 8px;
   }
 
   .icon-group {
-    flex: 1 1 calc(50% - 32px); /* two icon groups per row */
     display: flex;
-    gap: 8px;
+    gap: 4px;
     justify-content: flex-start;
-    flex-wrap: wrap;
+    align-items: center;
+    flex: 0 0 calc(50% - 8px);
+    margin: 0;
+    padding: 0;
   }
 
   .dropdown-content {
@@ -868,25 +872,19 @@ h1 {
   .toolbar-buttons {
     display: flex;
     flex-wrap: wrap;
-    flex-direction: row;
     justify-content: flex-start;
-    align-items: flex-start;
     gap: 4px;
-    padding: 4px 8px;
-    width: 100%;
-    text-align: left;
-    margin-left: 0 !important;
-    background-color: #fff0f7;
+    padding: 4px;
   }
 
   .icon-group {
     display: flex;
-    flex-wrap: wrap;
     gap: 4px;
-    margin: 0;
-    flex: initial !important;
-    width: auto;
+    justify-content: flex-start;
     align-items: center;
+    flex: 0 0 calc(50% - 4px);
+    margin: 0;
+    padding: 0;
   }
 
   .icon-group img {
