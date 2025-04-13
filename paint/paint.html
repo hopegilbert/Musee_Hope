@@ -302,6 +302,37 @@
                 grid-template-rows: repeat(4, 16px);
             }
         }
+
+        .toolbar-buttons button {
+            width: 32px;
+            height: 32px;
+            border: 1px solid #fff;
+            border-right-color: #808080;
+            border-bottom-color: #808080;
+            background: #c0c0c8;
+            padding: 4px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .toolbar-buttons button img {
+            width: 16px;
+            height: 16px;
+            object-fit: contain;
+        }
+
+        .toolbar-buttons button:hover {
+            background: #d4d0c8;
+        }
+
+        .toolbar-buttons button.active {
+            background: #d4d0c8;
+            border: 1px solid #808080;
+            border-right-color: #fff;
+            border-bottom-color: #fff;
+        }
     </style>
 </head>
 <body>

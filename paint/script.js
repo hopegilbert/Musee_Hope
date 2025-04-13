@@ -615,9 +615,9 @@ document.addEventListener('DOMContentLoaded', () => {
     paintWindow.style.width = windowSize + 'px';
     paintWindow.style.height = windowSize + 'px';
     
-    // Calculate toolbar size
-    const toolbarSize = Math.max(windowSize * 0.08, 24); // 8% of window size or minimum 24px
-    document.querySelectorAll('.toolbar-buttons button').forEach(btn => {
+    // Calculate toolbar size for paint window only
+    const toolbarSize = Math.max(windowSize * 0.08, 24);
+    document.querySelectorAll('.paint-toolbar .paint-tool').forEach(btn => {
       btn.style.width = toolbarSize + 'px';
       btn.style.height = toolbarSize + 'px';
     });
@@ -625,10 +625,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Adjust color palette
     const colorPalette = document.querySelector('.color-palette');
     if (colorPalette) {
-      const paletteSize = windowSize * 0.8; // 80% of window width
+      const paletteSize = windowSize * 0.8;
       colorPalette.style.width = paletteSize + 'px';
       const colorButtons = colorPalette.querySelectorAll('button');
-      const buttonSize = Math.max(paletteSize / 8, 20); // Divide by number of colors per row, minimum 20px
+      const buttonSize = Math.max(paletteSize / 8, 20);
       colorButtons.forEach(btn => {
         btn.style.width = buttonSize + 'px';
         btn.style.height = buttonSize + 'px';
@@ -654,9 +654,9 @@ document.addEventListener('DOMContentLoaded', () => {
       paintWindow.style.width = windowSize + 'px';
       paintWindow.style.height = windowSize + 'px';
       
-      // Update toolbar size
+      // Update toolbar size for paint window only
       const toolbarSize = Math.max(windowSize * 0.08, 24);
-      document.querySelectorAll('.toolbar-buttons button').forEach(btn => {
+      document.querySelectorAll('.paint-toolbar .paint-tool').forEach(btn => {
         btn.style.width = toolbarSize + 'px';
         btn.style.height = toolbarSize + 'px';
       });
