@@ -411,9 +411,14 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Setup color dropdown positioning
   const colorDropdown = document.querySelector('.color-dropdown');
+  const colorOptionsContainer = document.querySelector('.color-options');
   if (colorDropdown) {
-    colorDropdown.style.position = 'absolute';
-    colorDropdown.style.zIndex = '10000';
+    colorDropdown.style.position = 'fixed';
+    colorDropdown.style.zIndex = '100000';
+    if (colorOptionsContainer) {
+      colorOptionsContainer.style.position = 'relative';
+      colorOptionsContainer.style.zIndex = '100001';
+    }
   }
   
   // Toggle color dropdown
@@ -422,9 +427,18 @@ document.addEventListener('DOMContentLoaded', () => {
       e.stopPropagation();
       if (colorDropdown) {
         const buttonRect = colorButton.getBoundingClientRect();
-        colorDropdown.style.top = (buttonRect.bottom + 5) + 'px';
-        colorDropdown.style.left = buttonRect.left + 'px';
+        const windowRect = paintWindow.getBoundingClientRect();
+        
+        // Position relative to the paint window
+        colorDropdown.style.top = buttonRect.bottom + 'px';
+        colorDropdown.style.left = Math.max(buttonRect.left, windowRect.left) + 'px';
         colorDropdown.style.display = colorDropdown.style.display === 'none' ? 'block' : 'none';
+        
+        // Ensure the dropdown doesn't go off-screen
+        const dropdownRect = colorDropdown.getBoundingClientRect();
+        if (dropdownRect.right > window.innerWidth) {
+          colorDropdown.style.left = (window.innerWidth - dropdownRect.width) + 'px';
+        }
       }
     });
   }
