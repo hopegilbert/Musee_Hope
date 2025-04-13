@@ -22,12 +22,22 @@ document.addEventListener('DOMContentLoaded', () => {
   let historyIndex = -1;
   const MAX_HISTORY = 20;
   
+  // Create a temporary canvas for drawings
+  const tempCanvas = document.createElement('canvas');
+  const tempCtx = tempCanvas.getContext('2d');
+  tempCanvas.width = mainCanvas.width;
+  tempCanvas.height = mainCanvas.height;
+  
   // Initialize canvas with white background
   function initCanvas() {
     mainCanvas.width = window.innerWidth;
     mainCanvas.height = window.innerHeight;
+    tempCanvas.width = mainCanvas.width;
+    tempCanvas.height = mainCanvas.height;
+    
     mainCtx.fillStyle = '#FFFFFF';
     mainCtx.fillRect(0, 0, mainCanvas.width, mainCanvas.height);
+    tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
     saveState();
   }
   
@@ -56,28 +66,31 @@ document.addEventListener('DOMContentLoaded', () => {
   function draw(e) {
     if (!isDrawing) return;
     
-    const rect = mainCanvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+    const pos = getMousePos(e);
     
-    mainCtx.beginPath();
-    mainCtx.moveTo(lastX, lastY);
-    mainCtx.lineTo(x, y);
+    tempCtx.beginPath();
+    tempCtx.moveTo(lastX, lastY);
+    tempCtx.lineTo(pos.x, pos.y);
     
     if (currentTool === 'eraser') {
-      mainCtx.globalCompositeOperation = 'destination-out';
-      mainCtx.strokeStyle = 'rgba(0,0,0,1)';
+      tempCtx.globalCompositeOperation = 'destination-out';
+      tempCtx.strokeStyle = 'rgba(0,0,0,1)';
     } else {
-      mainCtx.globalCompositeOperation = 'source-over';
-      mainCtx.strokeStyle = currentColor;
+      tempCtx.globalCompositeOperation = 'source-over';
+      tempCtx.strokeStyle = currentColor;
     }
     
-    mainCtx.lineWidth = brushSize;
-    mainCtx.lineCap = 'round';
-    mainCtx.lineJoin = 'round';
-    mainCtx.stroke();
+    tempCtx.lineWidth = brushSize;
+    tempCtx.lineCap = 'round';
+    tempCtx.lineJoin = 'round';
+    tempCtx.stroke();
     
-    [lastX, lastY] = [x, y];
+    // Draw the white background and the temporary canvas
+    mainCtx.fillStyle = '#FFFFFF';
+    mainCtx.fillRect(0, 0, mainCanvas.width, mainCanvas.height);
+    mainCtx.drawImage(tempCanvas, 0, 0);
+    
+    [lastX, lastY] = [pos.x, pos.y];
   }
   
   function drawSpray(x, y) {
@@ -113,7 +126,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (historyIndex < canvasHistory.length) {
       canvasHistory = canvasHistory.slice(0, historyIndex);
     }
-    canvasHistory.push(mainCanvas.toDataURL());
+    canvasHistory.push({
+      main: mainCanvas.toDataURL(),
+      temp: tempCanvas.toDataURL()
+    });
     
     if (canvasHistory.length > MAX_HISTORY) {
       canvasHistory.shift();
@@ -134,13 +150,23 @@ document.addEventListener('DOMContentLoaded', () => {
   // Load state from history
   function loadState(index) {
     if (index >= 0 && index < canvasHistory.length) {
-      const img = new Image();
-      img.src = canvasHistory[index];
-      img.onload = () => {
+      const state = canvasHistory[index];
+      const mainImg = new Image();
+      const tempImg = new Image();
+      
+      mainImg.onload = () => {
         mainCtx.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
-        mainCtx.drawImage(img, 0, 0);
-        updateButtonStates();
+        mainCtx.drawImage(mainImg, 0, 0);
       };
+      
+      tempImg.onload = () => {
+        tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
+        tempCtx.drawImage(tempImg, 0, 0);
+      };
+      
+      mainImg.src = state.main;
+      tempImg.src = state.temp;
+      updateButtonStates();
     }
   }
   
