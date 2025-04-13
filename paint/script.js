@@ -11,45 +11,60 @@ document.addEventListener('DOMContentLoaded', () => {
   
   console.log('Canvas size:', mainCanvas.width, 'x', mainCanvas.height);
   
+  // Initialize canvases
+  const tempCanvas = document.createElement('canvas');
+  const tempCtx = tempCanvas.getContext('2d');
+  
+  // Set canvas size
+  function setCanvasSize() {
+    const width = window.innerWidth;
+    const height = window.innerHeight - 92; // Account for toolbar
+    
+    mainCanvas.width = width;
+    mainCanvas.height = height;
+    tempCanvas.width = width;
+    tempCanvas.height = height;
+    
+    // Set white background
+    mainCtx.fillStyle = '#FFFFFF';
+    mainCtx.fillRect(0, 0, width, height);
+    tempCtx.fillStyle = '#FFFFFF';
+    tempCtx.fillRect(0, 0, width, height);
+  }
+  
+  // Initialize canvas size
+  setCanvasSize();
+  window.addEventListener('resize', setCanvasSize);
+  
   // Drawing state
   let isDrawing = false;
   let lastX = 0;
   let lastY = 0;
+  let startX = 0;
+  let startY = 0;
   let currentTool = 'pencil';
   let currentColor = '#000000';
-  let brushSize = 5;
+  let brushSize = 1;
+  let drawingStates = [];
+  let currentStateIndex = -1;
   let canvasHistory = [];
   let historyIndex = -1;
   const MAX_HISTORY = 20;
-  let startX, startY;
   let isDrawingShape = false;
   let textInput = null;
   
-  // Create a temporary canvas for drawings
-  const tempCanvas = document.createElement('canvas');
-  const tempCtx = tempCanvas.getContext('2d');
-  tempCanvas.width = mainCanvas.width;
-  tempCanvas.height = mainCanvas.height;
+  // Save initial state
+  saveState();
   
-  // Initialize canvas with white background
-  function initCanvas() {
-    mainCanvas.width = window.innerWidth;
-    mainCanvas.height = window.innerHeight;
-    tempCanvas.width = mainCanvas.width;
-    tempCanvas.height = mainCanvas.height;
-    
-    mainCtx.fillStyle = '#FFFFFF';
-    mainCtx.fillRect(0, 0, mainCanvas.width, mainCanvas.height);
-    tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
-    saveState();
-  }
-  
-  // Drawing functions
   function getMousePos(e) {
     const rect = mainCanvas.getBoundingClientRect();
-    const x = (e.clientX || e.pageX) - rect.left;
-    const y = (e.clientY || e.pageY) - rect.top;
-    return { x, y };
+    const scaleX = mainCanvas.width / rect.width;
+    const scaleY = mainCanvas.height / rect.height;
+    
+    return {
+      x: ((e.clientX - rect.left) * scaleX),
+      y: ((e.clientY - rect.top) * scaleY)
+    };
   }
   
   function startDrawing(e) {
@@ -57,69 +72,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const pos = getMousePos(e);
     
     if (currentTool === 'fill') {
-        floodFill(Math.round(pos.x), Math.round(pos.y), currentColor);
-        isDrawing = false;
-        saveState();
-        return;
+      floodFill(Math.round(pos.x), Math.round(pos.y), currentColor);
+      isDrawing = false;
+      saveState();
+      return;
     }
     
+    // Copy main canvas to temp canvas when starting shape drawing
     if (['rectangle', 'ellipse', 'line'].includes(currentTool)) {
-        // Copy the main canvas state to temp canvas before starting new shape
-        tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
-        tempCtx.drawImage(mainCanvas, 0, 0);
-        startX = pos.x;
-        startY = pos.y;
-        return;
+      tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
+      tempCtx.drawImage(mainCanvas, 0, 0);
     }
     
-    if (currentTool === 'text') {
-        if (textInput) {
-            document.body.removeChild(textInput);
-        }
-        
-        textInput = document.createElement('input');
-        textInput.type = 'text';
-        textInput.style.position = 'fixed';
-        textInput.style.left = e.clientX + 'px';
-        textInput.style.top = e.clientY + 'px';
-        textInput.style.background = 'transparent';
-        textInput.style.border = '1px solid #000';
-        textInput.style.font = '16px Arial';
-        textInput.style.zIndex = '1000';
-        
-        document.body.appendChild(textInput);
-        textInput.focus();
-        
-        textInput.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter') {
-                const text = this.value;
-                const rect = mainCanvas.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                tempCtx.font = '16px Arial';
-                tempCtx.fillStyle = currentColor;
-                tempCtx.fillText(text, x, y);
-                
-                mainCtx.fillStyle = '#FFFFFF';
-                mainCtx.fillRect(0, 0, mainCanvas.width, mainCanvas.height);
-                mainCtx.drawImage(tempCanvas, 0, 0);
-                
-                document.body.removeChild(this);
-                textInput = null;
-                saveState();
-            }
-        });
-    } else {
-        lastX = pos.x;
-        lastY = pos.y;
-    }
-    
-    if (currentTool === 'eraser') {
-        tempCtx.globalCompositeOperation = 'destination-out';
-    } else {
-        tempCtx.globalCompositeOperation = 'source-over';
-    }
+    [lastX, lastY] = [pos.x, pos.y];
+    [startX, startY] = [pos.x, pos.y];
   }
   
   function draw(e) {
@@ -128,119 +94,82 @@ document.addEventListener('DOMContentLoaded', () => {
     const pos = getMousePos(e);
     
     switch(currentTool) {
-        case 'fill':
-            floodFill(Math.round(pos.x), Math.round(pos.y), currentColor);
-            isDrawing = false;
-            saveState();
-            break;
-            
-        case 'spray':
-            drawSpray(pos.x, pos.y);
-            break;
-            
-        case 'rectangle':
-            // Clear temp canvas but keep the previous drawing
-            tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
-            tempCtx.drawImage(mainCanvas, 0, 0);
-            
-            // Draw new rectangle
-            const width = pos.x - startX;
-            const height = pos.y - startY;
-            tempCtx.strokeStyle = currentColor;
-            tempCtx.lineWidth = brushSize;
-            tempCtx.beginPath();
-            tempCtx.rect(startX, startY, width, height);
-            tempCtx.stroke();
-            
-            // Update main canvas
-            mainCtx.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
-            mainCtx.drawImage(tempCanvas, 0, 0);
-            break;
-            
-        case 'ellipse':
-            // Clear temp canvas but keep the previous drawing
-            tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
-            tempCtx.drawImage(mainCanvas, 0, 0);
-            
-            // Draw new ellipse
-            const radiusX = Math.abs(pos.x - startX) / 2;
-            const radiusY = Math.abs(pos.y - startY) / 2;
-            const centerX = startX + (pos.x - startX) / 2;
-            const centerY = startY + (pos.y - startY) / 2;
-            
-            tempCtx.strokeStyle = currentColor;
-            tempCtx.lineWidth = brushSize;
-            tempCtx.beginPath();
-            tempCtx.ellipse(centerX, centerY, radiusX, radiusY, 0, 0, Math.PI * 2);
-            tempCtx.stroke();
-            
-            // Update main canvas
-            mainCtx.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
-            mainCtx.drawImage(tempCanvas, 0, 0);
-            break;
-            
-        case 'line':
-            // Clear temp canvas but keep the previous drawing
-            tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
-            tempCtx.drawImage(mainCanvas, 0, 0);
-            
-            // Draw new line
-            tempCtx.strokeStyle = currentColor;
-            tempCtx.lineWidth = brushSize;
-            tempCtx.beginPath();
-            tempCtx.moveTo(startX, startY);
-            tempCtx.lineTo(pos.x, pos.y);
-            tempCtx.stroke();
-            
-            // Update main canvas
-            mainCtx.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
-            mainCtx.drawImage(tempCanvas, 0, 0);
-            break;
-            
-        case 'text':
-            // Handle text input when mouse is released
-            break;
-            
-        case 'brush':
-            tempCtx.lineWidth = 5;
-            // Fall through to default drawing
-            
-        case 'pencil':
-        case 'eraser':
-            tempCtx.beginPath();
-            tempCtx.moveTo(lastX, lastY);
-            tempCtx.lineTo(pos.x, pos.y);
-            
-            if (currentTool === 'eraser') {
-                tempCtx.globalCompositeOperation = 'destination-out';
-                tempCtx.strokeStyle = 'rgba(0,0,0,1)';
-                tempCtx.lineWidth = 20;
-            } else {
-                tempCtx.globalCompositeOperation = 'source-over';
-                tempCtx.strokeStyle = currentColor;
-                tempCtx.lineWidth = currentTool === 'brush' ? 5 : 2;
-            }
-            
-            tempCtx.lineCap = 'round';
-            tempCtx.lineJoin = 'round';
-            tempCtx.stroke();
-            break;
-            
-        default:
-            // Handle freehand drawing
-            tempCtx.strokeStyle = currentColor;
-            tempCtx.lineWidth = brushSize;
-            tempCtx.beginPath();
-            tempCtx.moveTo(lastX, lastY);
-            tempCtx.lineTo(pos.x, pos.y);
-            tempCtx.stroke();
-            
-            mainCtx.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
-            mainCtx.drawImage(tempCanvas, 0, 0);
-            
-            lastX = pos.x;
-            lastY = pos.y;
-            break;
+      case 'pencil':
+      case 'brush':
+      case 'eraser':
+        tempCtx.beginPath();
+        tempCtx.moveTo(lastX, lastY);
+        tempCtx.lineTo(pos.x, pos.y);
+        tempCtx.strokeStyle = currentTool === 'eraser' ? '#FFFFFF' : currentColor;
+        tempCtx.lineWidth = brushSize;
+        tempCtx.lineCap = 'round';
+        tempCtx.lineJoin = 'round';
+        tempCtx.stroke();
+        
+        // Update main canvas
+        mainCtx.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
+        mainCtx.drawImage(tempCanvas, 0, 0);
+        
+        [lastX, lastY] = [pos.x, pos.y];
+        break;
+        
+      case 'spray':
+        drawSpray(pos.x, pos.y);
+        break;
+        
+      case 'rectangle':
+        // Clear temp canvas but keep the previous drawing
+        tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
+        tempCtx.drawImage(mainCanvas, 0, 0);
+        
+        const width = pos.x - startX;
+        const height = pos.y - startY;
+        tempCtx.strokeStyle = currentColor;
+        tempCtx.lineWidth = brushSize;
+        tempCtx.strokeRect(startX, startY, width, height);
+        
+        // Update main canvas
+        mainCtx.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
+        mainCtx.drawImage(tempCanvas, 0, 0);
+        break;
+        
+      case 'ellipse':
+        // Clear temp canvas but keep the previous drawing
+        tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
+        tempCtx.drawImage(mainCanvas, 0, 0);
+        
+        const radiusX = Math.abs(pos.x - startX) / 2;
+        const radiusY = Math.abs(pos.y - startY) / 2;
+        const centerX = startX + (pos.x - startX) / 2;
+        const centerY = startY + (pos.y - startY) / 2;
+        
+        tempCtx.beginPath();
+        tempCtx.strokeStyle = currentColor;
+        tempCtx.lineWidth = brushSize;
+        tempCtx.ellipse(centerX, centerY, radiusX, radiusY, 0, 0, Math.PI * 2);
+        tempCtx.stroke();
+        
+        // Update main canvas
+        mainCtx.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
+        mainCtx.drawImage(tempCanvas, 0, 0);
+        break;
+        
+      case 'line':
+        // Clear temp canvas but keep the previous drawing
+        tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
+        tempCtx.drawImage(mainCanvas, 0, 0);
+        
+        tempCtx.beginPath();
+        tempCtx.strokeStyle = currentColor;
+        tempCtx.lineWidth = brushSize;
+        tempCtx.moveTo(startX, startY);
+        tempCtx.lineTo(pos.x, pos.y);
+        tempCtx.stroke();
+        
+        // Update main canvas
+        mainCtx.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
+        mainCtx.drawImage(tempCanvas, 0, 0);
+        break;
     }
   }
   
@@ -269,12 +198,11 @@ document.addEventListener('DOMContentLoaded', () => {
   
   function stopDrawing() {
     if (!isDrawing) return;
-    
     isDrawing = false;
     
-    if (['rectangle', 'ellipse', 'line'].includes(currentTool)) {
-        // Save the final state
-        saveState();
+    // Save state after drawing is complete
+    if (!['fill'].includes(currentTool)) {
+      saveState();
     }
   }
   
@@ -568,11 +496,11 @@ document.addEventListener('DOMContentLoaded', () => {
     tempCtx.lineTo(pos.x, pos.y);
     
     if (currentTool === 'eraser') {
-        tempCtx.globalCompositeOperation = 'destination-out';
-        tempCtx.strokeStyle = 'rgba(0,0,0,1)';
+      tempCtx.globalCompositeOperation = 'destination-out';
+      tempCtx.strokeStyle = 'rgba(0,0,0,1)';
     } else {
-        tempCtx.globalCompositeOperation = 'source-over';
-        tempCtx.strokeStyle = currentColor;
+      tempCtx.globalCompositeOperation = 'source-over';
+      tempCtx.strokeStyle = currentColor;
     }
     
     tempCtx.lineWidth = brushSize;
@@ -590,8 +518,8 @@ document.addEventListener('DOMContentLoaded', () => {
   function handleTouchEnd(e) {
     e.preventDefault();
     if (isDrawing) {
-        isDrawing = false;
-        saveState();
+      isDrawing = false;
+      saveState();
     }
   }
 
@@ -633,7 +561,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Prevent default touch behaviors
   document.addEventListener('touchmove', function(e) {
     if (e.target.closest('.paint-window') || e.target.closest('.main-canvas')) {
-        e.preventDefault();
+      e.preventDefault();
     }
   }, { passive: false });
 
@@ -643,11 +571,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const height = window.innerHeight;
     
     if (width <= 768) { // Mobile
-        mainCanvas.width = width * 0.95;
-        mainCanvas.height = height * 0.6;
+      mainCanvas.width = width * 0.95;
+      mainCanvas.height = height * 0.6;
     } else { // Desktop
-        mainCanvas.width = width;
-        mainCanvas.height = height - 92; // Adjust for toolbar height
+      mainCanvas.width = width;
+      mainCanvas.height = height - 92; // Adjust for toolbar height
     }
     
     tempCanvas.width = mainCanvas.width;
@@ -664,7 +592,7 @@ document.addEventListener('DOMContentLoaded', () => {
   handleResize(); // Initial call
   
   // Initialize canvas
-  initCanvas();
+  setCanvasSize();
   console.log('Paint initialization complete');
 
   // Tool button event listeners
