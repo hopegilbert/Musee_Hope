@@ -229,100 +229,52 @@
     </style>
 </head>
 <body>
-    <canvas id="mainCanvas" class="main-canvas"></canvas>
-    
-    <div class="paint-window" id="paintWindow">
-        <div class="paint-header" id="paintHeader">
+    <div id="paintWindow" class="paint-window">
+        <div id="paintHeader" class="paint-header">
             <div class="paint-title">
-                <img src="./images/hope.png" alt="Paint">
-                Untitled - Paint
+                <img src="./images/hope.png" alt="Paint Icon" class="paint-icon">
+                <span>Paint</span>
             </div>
-            <div class="paint-buttons">
-                <div class="paint-btn">_</div>
-                <div class="paint-btn">□</div>
-                <div class="paint-btn">×</div>
-            </div>
-        </div>
-        <div class="paint-content">
-            <div class="paint-toolbar">
-                <div class="paint-tool active" title="Pencil">
-                    <img src="./images/pencil.png" alt="Pencil" width="16" height="16">
-                </div>
-                <div class="paint-tool" title="Brush">
-                    <img src="./images/brush.png" alt="Brush" width="16" height="16">
-                </div>
-                <div class="paint-tool" title="Eraser">
-                    <img src="./images/eraser.png" alt="Eraser" width="16" height="16">
-                </div>
-                <div class="paint-tool" title="Spray Can">
-                    <img src="./images/spray-can.png" alt="Spray Can" width="16" height="16">
-                </div>
-                <div class="paint-tool" title="Fill">
-                    <img src="./images/fill.png" alt="Fill" width="16" height="16">
-                </div>
-                <div class="paint-tool" title="Text">
-                    <img src="./images/text.png" alt="Text" width="16" height="16">
-                </div>
-                <div class="paint-tool" title="Line">
-                    <img src="./images/line.png" alt="Line" width="16" height="16">
-                </div>
-                <div class="paint-tool" title="Rectangle">
-                    <img src="./images/rectangle.png" alt="Rectangle" width="16" height="16">
-                </div>
-                <div class="paint-tool" title="Ellipse">
-                    <img src="./images/ellipse.png" alt="Ellipse" width="16" height="16">
-                </div>
-            </div>
-            <div class="paint-canvas-container">
-                <img src="./images/hope.png" alt="Hope" class="background-image" style="opacity: 1;">
-            </div>
-            <div class="paint-items">
-                <div class="paint-item" title="Hair">
-                    <img src="./images/hope-hair.png" alt="Hair">
-                </div>
-                <div class="paint-item" title="Dress">
-                    <img src="./images/hope-dress.png" alt="Dress">
-                </div>
-                <div class="paint-item" title="Shoes">
-                    <img src="./images/hope-shoes.png" alt="Shoes">
-                </div>
+            <div class="paint-controls">
+                <button class="minimize">_</button>
+                <button class="maximize">□</button>
+                <button class="close">×</button>
             </div>
         </div>
-        <div class="paint-colors">
-            <!-- First row -->
-            <div class="color-box" style="background-color: #FFFFFF;" title="White"></div>
-            <div class="color-box" style="background-color: #000000;" title="Black"></div>
-            <div class="color-box" style="background-color: #808080;" title="Gray"></div>
-            <div class="color-box" style="background-color: #800000;" title="Dark Red"></div>
-            <div class="color-box" style="background-color: #808000;" title="Olive"></div>
-            <div class="color-box" style="background-color: #008000;" title="Dark Green"></div>
-            <div class="color-box" style="background-color: #008080;" title="Teal"></div>
-            <div class="color-box" style="background-color: #000080;" title="Navy"></div>
-            <div class="color-box" style="background-color: #800080;" title="Purple"></div>
-            <div class="color-box" style="background-color: #4C4C4C;" title="Dark Gray"></div>
-            <div class="color-box" style="background-color: #006400;" title="Forest Green"></div>
-            <div class="color-box" style="background-color: #0000FF;" title="Blue"></div>
-            <div class="color-box" style="background-color: #400080;" title="Dark Purple"></div>
-            <div class="color-box" style="background-color: #804000;" title="Brown"></div>
-            <!-- Second row -->
-            <div class="color-box" style="background-color: #C0C0C0;" title="Light Gray"></div>
-            <div class="color-box" style="background-color: #FF0000;" title="Red"></div>
-            <div class="color-box" style="background-color: #FFFF00;" title="Yellow"></div>
-            <div class="color-box" style="background-color: #00FF00;" title="Lime"></div>
-            <div class="color-box" style="background-color: #00FFFF;" title="Cyan"></div>
-            <div class="color-box" style="background-color: #0080FF;" title="Light Blue"></div>
-            <div class="color-box" style="background-color: #FF00FF;" title="Magenta"></div>
-            <div class="color-box" style="background-color: #808040;" title="Dark Olive"></div>
-            <div class="color-box" style="background-color: #004080;" title="Dark Blue"></div>
-            <div class="color-box" style="background-color: #8080FF;" title="Pale Blue"></div>
-            <div class="color-box" style="background-color: #400040;" title="Dark Purple"></div>
-            <div class="color-box" style="background-color: #FF80FF;" title="Pink"></div>
-            <div class="color-box" style="background-color: #804000;" title="Brown"></div>
-            <div class="color-box" style="background-color: #FF8040;" title="Orange"></div>
+        <div class="paint-toolbar">
+            <div class="toolbar-buttons">
+                <button id="undoBtn" class="paint-tool" title="Undo (Ctrl+Z)">
+                    <img src="./images/undo.png" alt="Undo">
+                </button>
+                <button id="redoBtn" class="paint-tool" title="Redo (Ctrl+Y)">
+                    <img src="./images/redo.png" alt="Redo">
+                </button>
+                <button class="paint-tool" title="Pencil">
+                    <img src="./images/pencil.png" alt="Pencil">
+                </button>
+                <button class="paint-tool" title="Brush">
+                    <img src="./images/brush.png" alt="Brush">
+                </button>
+                <button class="paint-tool" title="Eraser">
+                    <img src="./images/eraser.png" alt="Eraser">
+                </button>
+                <button class="paint-tool" title="Fill">
+                    <img src="./images/fill.png" alt="Fill">
+                </button>
+            </div>
+            <div class="color-picker">
+                <div class="color-box" style="background-color: #000000;"></div>
+                <div class="color-box" style="background-color: #FFFFFF;"></div>
+                <div class="color-box" style="background-color: #FF0000;"></div>
+                <div class="color-box" style="background-color: #00FF00;"></div>
+                <div class="color-box" style="background-color: #0000FF;"></div>
+                <div class="color-box" style="background-color: #FFFF00;"></div>
+                <div class="color-box" style="background-color: #FF00FF;"></div>
+                <div class="color-box" style="background-color: #00FFFF;"></div>
+            </div>
         </div>
-        <div class="paint-status">
-            <span>100%</span>
-            <span>400 x 600</span>
+        <div class="paint-canvas-container">
+            <canvas id="paintCanvas" width="800" height="600"></canvas>
         </div>
     </div>
     <script src="script.js"></script>

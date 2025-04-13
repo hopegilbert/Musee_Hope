@@ -5,24 +5,77 @@
 }
 
 body {
-    font-family: 'Tahoma', sans-serif;
-    background-color: #f0f0f0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    margin: 0;
+    padding: 0;
+    background-color: #008080;
+    font-family: 'MS Sans Serif', Arial, sans-serif;
+    overflow: hidden;
 }
 
-.paint-container {
-    background-color: white;
-    border: 1px solid #ccc;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.paint-window {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #c0c0c0;
+    border: 2px solid #000000;
+    box-shadow: 2px 2px 0 #000000;
+    min-width: 800px;
+    min-height: 600px;
 }
 
-.toolbar {
-    background-color: #f0f0f0;
-    border-bottom: 1px solid #ccc;
+.paint-header {
+    background-color: #000080;
+    color: white;
     padding: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: move;
+    user-select: none;
+}
+
+.paint-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.paint-icon {
+    width: 16px;
+    height: 16px;
+}
+
+.paint-controls {
+    display: flex;
+    gap: 4px;
+}
+
+.paint-controls button {
+    background: #c0c0c0;
+    border: 1px solid #ffffff;
+    border-right-color: #808080;
+    border-bottom-color: #808080;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-family: 'MS Sans Serif', Arial, sans-serif;
+    font-size: 16px;
+    color: #000000;
+}
+
+.paint-controls button:active {
+    border: 1px solid #808080;
+    border-right-color: #ffffff;
+    border-bottom-color: #ffffff;
+}
+
+.paint-toolbar {
+    padding: 4px;
+    border-bottom: 2px solid #808080;
     display: flex;
     flex-direction: column;
     gap: 4px;
@@ -30,27 +83,21 @@ body {
 
 .toolbar-buttons {
     display: flex;
-    gap: 4px;
+    gap: 2px;
 }
 
 .paint-tool {
-    background: none;
-    border: 1px solid transparent;
-    padding: 2px;
-    cursor: pointer;
+    background: #c0c0c0;
+    border: 1px solid #ffffff;
+    border-right-color: #808080;
+    border-bottom-color: #808080;
+    width: 24px;
+    height: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.paint-tool:hover {
-    background-color: #e0e0e0;
-    border: 1px solid #ccc;
-}
-
-.paint-tool.active {
-    background-color: #c0c0c0;
-    border: 1px solid #808080;
+    cursor: pointer;
+    padding: 2px;
 }
 
 .paint-tool img {
@@ -58,26 +105,54 @@ body {
     height: 16px;
 }
 
-.color-palette {
+.paint-tool:hover {
+    background: #d4d0c8;
+}
+
+.paint-tool:active {
+    border: 1px solid #808080;
+    border-right-color: #ffffff;
+    border-bottom-color: #ffffff;
+}
+
+.paint-tool.active {
+    background: #d4d0c8;
+    border: 1px solid #808080;
+    border-right-color: #ffffff;
+    border-bottom-color: #ffffff;
+}
+
+.color-picker {
     display: flex;
-    flex-wrap: wrap;
     gap: 2px;
     padding: 4px;
+    background: #c0c0c0;
+    border: 1px solid #808080;
+    border-right-color: #ffffff;
+    border-bottom-color: #ffffff;
 }
 
 .color-box {
-    width: 16px;
-    height: 16px;
+    width: 20px;
+    height: 20px;
     border: 1px solid #808080;
     cursor: pointer;
 }
 
 .color-box:hover {
-    border: 1px solid #000;
+    border: 1px solid #000000;
+}
+
+.paint-canvas-container {
+    padding: 4px;
+    background: #ffffff;
+    margin: 4px;
+    border: 1px solid #808080;
+    border-right-color: #ffffff;
+    border-bottom-color: #ffffff;
 }
 
 #paintCanvas {
-    background-color: white;
-    display: block;
+    background: #ffffff;
     cursor: crosshair;
 }
