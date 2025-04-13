@@ -823,6 +823,7 @@ h1 {
     justify-content: flex-start;
     gap: 8px;
     padding: 8px;
+    width: 100%;
   }
 
   .icon-group {
@@ -833,6 +834,7 @@ h1 {
     flex: 0 0 calc(50% - 8px);
     margin: 0;
     padding: 0;
+    width: auto;
   }
 
   .dropdown-content {
@@ -875,6 +877,7 @@ h1 {
     justify-content: flex-start;
     gap: 4px;
     padding: 4px;
+    width: 100%;
   }
 
   .icon-group {
@@ -885,6 +888,7 @@ h1 {
     flex: 0 0 calc(50% - 4px);
     margin: 0;
     padding: 0;
+    width: auto;
   }
 
   .icon-group img {
