@@ -384,27 +384,44 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   
   // Color selection
-  const colors = document.querySelectorAll('.color-menu .color-box');
-  const currentColorDisplay = document.querySelector('.current-color');
+  const colorButton = document.querySelector('.color-button');
+  const colorOptions = document.querySelectorAll('.color-option');
+  const colorBoxes = document.querySelectorAll('.paint-colors .color-box');
   
-  colors.forEach(color => {
-    color.addEventListener('click', () => {
-      colors.forEach(c => c.classList.remove('selected'));
-      color.classList.add('selected');
-      currentColor = color.style.backgroundColor;
-      currentColorDisplay.style.backgroundColor = currentColor;
+  // Initialize canvas context color
+  if (mainCtx) {
+    mainCtx.strokeStyle = currentColor;
+    mainCtx.fillStyle = currentColor;
+  }
+  
+  // Color dropdown functionality
+  colorOptions.forEach(option => {
+    option.addEventListener('click', function() {
+      currentColor = this.style.backgroundColor;
+      colorButton.style.backgroundColor = currentColor;
+      if (mainCtx) {
+        mainCtx.strokeStyle = currentColor;
+        mainCtx.fillStyle = currentColor;
+      }
+      // Remove selected class from all color boxes
+      colorBoxes.forEach(box => box.classList.remove('selected'));
     });
   });
   
-  // Set initial color to black
-  const blackColor = document.querySelector('.color-menu .color-box[style*="background-color: #000000"]');
-  if (blackColor) {
-    blackColor.classList.add('selected');
-    currentColor = blackColor.style.backgroundColor;
-    if (currentColorDisplay) {
-      currentColorDisplay.style.backgroundColor = currentColor;
-    }
-  }
+  // Color boxes functionality
+  colorBoxes.forEach(box => {
+    box.addEventListener('click', function() {
+      currentColor = this.style.backgroundColor;
+      colorButton.style.backgroundColor = currentColor;
+      if (mainCtx) {
+        mainCtx.strokeStyle = currentColor;
+        mainCtx.fillStyle = currentColor;
+      }
+      // Update selected state
+      colorBoxes.forEach(b => b.classList.remove('selected'));
+      this.classList.add('selected');
+    });
+  });
   
   // Button event listeners
   const undoBtn = document.getElementById('undoBtn');
@@ -805,27 +822,4 @@ document.addEventListener('DOMContentLoaded', () => {
     mainCtx.fillRect(0, 0, mainCanvas.width, mainCanvas.height);
     mainCtx.drawImage(tempCanvas, 0, 0);
   }
-
-  // Add color selection functionality
-  document.querySelectorAll('.color-box').forEach(colorBox => {
-    colorBox.addEventListener('click', function() {
-      const color = this.style.backgroundColor;
-      mainCtx.strokeStyle = color;
-      mainCtx.fillStyle = color;
-      
-      // Close the dropdown by removing hover state
-      document.getElementById('colorsMenu').blur();
-    });
-  });
-
-  const colorButton = document.querySelector('.color-button');
-  const colorOptions = document.querySelectorAll('.color-option');
-
-  colorOptions.forEach(option => {
-    option.addEventListener('click', function() {
-      currentColor = this.style.backgroundColor;
-      colorButton.style.backgroundColor = currentColor;
-      mainCtx.strokeStyle = currentColor;
-    });
-  });
 }); 
