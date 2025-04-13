@@ -115,22 +115,19 @@
             align-items: center;
             position: relative;
             min-width: 400px;
-            overflow: hidden;
         }
 
         .paint-canvas {
             background: white;
             border: 1px solid #000;
             box-shadow: inset 1px 1px 0 #808080;
-            position: absolute;
+            position: relative;
             display: block;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
         }
 
         #paintCanvas {
             cursor: crosshair;
+            z-index: 2;
         }
 
         .paint-status {

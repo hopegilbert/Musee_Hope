@@ -21,21 +21,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const redoBtn = document.getElementById('redoBtn');
   const eraserBtn = document.getElementById('eraserBtn');
   
-  // Set canvas size
-  function resizeCanvas() {
-    canvas.width = 400;  // Match the width we set in HTML
-    canvas.height = 600; // Match the height we set in HTML
-    
-    // Redraw white background
-    ctx.fillStyle = '#FFFFFF';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-  }
+  // Initialize canvas with white background
+  ctx.fillStyle = '#FFFFFF';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
   
-  // Initialize canvas
-  resizeCanvas();
-  saveState();
-  
-  // Drawing state
   let isDrawing = false;
   let lastX = 0;
   let lastY = 0;
@@ -92,32 +81,12 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   }
   
-  // Drawing functions
-  function startDrawing(e) {
-    isDrawing = true;
-    const rect = canvas.getBoundingClientRect();
-    lastX = e.clientX - rect.left;
-    lastY = e.clientY - rect.top;
-    
-    // Ensure coordinates are within canvas bounds
-    lastX = Math.max(0, Math.min(lastX, canvas.width));
-    lastY = Math.max(0, Math.min(lastY, canvas.height));
-    
-    ctx.beginPath();
-    ctx.moveTo(lastX, lastY);
-    console.log('Started drawing at:', lastX, lastY);
-  }
-  
   function draw(e) {
     if (!isDrawing) return;
     
     const rect = canvas.getBoundingClientRect();
-    let x = e.clientX - rect.left;
-    let y = e.clientY - rect.top;
-    
-    // Ensure coordinates are within canvas bounds
-    x = Math.max(0, Math.min(x, canvas.width));
-    y = Math.max(0, Math.min(y, canvas.height));
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
     
     ctx.beginPath();
     ctx.moveTo(lastX, lastY);
@@ -137,9 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.lineJoin = 'round';
     ctx.stroke();
     
-    lastX = x;
-    lastY = y;
-    console.log('Drawing to:', x, y);
+    [lastX, lastY] = [x, y];
   }
   
   function drawSpray(x, y) {
@@ -171,7 +138,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   
   // Event listeners for canvas
-  canvas.addEventListener('mousedown', startDrawing);
+  canvas.addEventListener('mousedown', (e) => {
+    isDrawing = true;
+    const rect = canvas.getBoundingClientRect();
+    [lastX, lastY] = [e.clientX - rect.left, e.clientY - rect.top];
+  });
+  
   canvas.addEventListener('mousemove', draw);
   canvas.addEventListener('mouseup', stopDrawing);
   canvas.addEventListener('mouseout', stopDrawing);
@@ -214,11 +186,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
   
-  // Select black by default
-  const defaultColor = document.querySelector('.color-box[style*="background-color: #000000"]');
-  if (defaultColor) {
-    defaultColor.classList.add('selected');
-    currentColor = defaultColor.style.backgroundColor;
+  // Set initial color to black
+  const blackColor = document.querySelector('.color-box[style*="background-color: #000000"]');
+  if (blackColor) {
+    blackColor.classList.add('selected');
+    currentColor = blackColor.style.backgroundColor;
   }
   
   // Button event listeners
