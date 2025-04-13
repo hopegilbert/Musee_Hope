@@ -409,6 +409,33 @@ document.addEventListener('DOMContentLoaded', () => {
     colorBoxes.forEach(b => b.classList.remove('selected'));
   }
   
+  // Setup color dropdown positioning
+  const colorDropdown = document.querySelector('.color-dropdown');
+  if (colorDropdown) {
+    colorDropdown.style.position = 'absolute';
+    colorDropdown.style.zIndex = '10000';
+  }
+  
+  // Toggle color dropdown
+  if (colorButton) {
+    colorButton.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (colorDropdown) {
+        const buttonRect = colorButton.getBoundingClientRect();
+        colorDropdown.style.top = (buttonRect.bottom + 5) + 'px';
+        colorDropdown.style.left = buttonRect.left + 'px';
+        colorDropdown.style.display = colorDropdown.style.display === 'none' ? 'block' : 'none';
+      }
+    });
+  }
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', (e) => {
+    if (colorDropdown && !colorDropdown.contains(e.target) && !colorButton.contains(e.target)) {
+      colorDropdown.style.display = 'none';
+    }
+  });
+  
   // Menu color boxes functionality
   menuColorBoxes.forEach(box => {
     box.addEventListener('click', function() {
