@@ -371,14 +371,6 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Tool selection
   const tools = document.querySelectorAll('.paint-tool');
-  tools.forEach(tool => {
-    tool.addEventListener('click', function() {
-      const toolName = this.querySelector('img').alt.toLowerCase();
-      const toolId = toolName + 'Btn';
-      setActiveTool(toolId, toolName);
-      brushSize = toolButtons[toolId]?.size || 2;
-    });
-  });
   
   // Item selection
   const items = document.querySelectorAll('.paint-item');
@@ -413,98 +405,116 @@ document.addEventListener('DOMContentLoaded', () => {
   const colorDropdown = document.querySelector('.color-dropdown');
   const colorOptionsContainer = document.querySelector('.color-options');
   if (colorDropdown) {
+    // Ensure dropdown is always on top
     colorDropdown.style.position = 'fixed';
-    colorDropdown.style.zIndex = '999999';
+    colorDropdown.style.zIndex = '999999999';
     
     // Style for mobile
     if (window.innerWidth <= 768) {
-      colorDropdown.style.position = 'fixed';
-      colorDropdown.style.zIndex = '999999';
       if (colorOptionsContainer) {
         colorOptionsContainer.style.position = 'fixed';
-        colorOptionsContainer.style.zIndex = '999999';
+        colorOptionsContainer.style.zIndex = '999999999';
+        colorOptionsContainer.style.background = '#fff';
+        colorOptionsContainer.style.boxShadow = '0 2px 10px rgba(0,0,0,0.2)';
       }
     }
   }
   
-  // Toggle color dropdown
+  // Add touch event handling for all buttons
+  function addTouchSupport(element, clickHandler) {
+    element.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      clickHandler.call(element, e);
+    }, { passive: false });
+  }
+
+  // Add touch support to all tool buttons
+  tools.forEach(tool => {
+    addTouchSupport(tool, function(e) {
+      const toolName = this.querySelector('img').alt.toLowerCase();
+      const toolId = toolName + 'Btn';
+      setActiveTool(toolId, toolName);
+      brushSize = toolButtons[toolId]?.size || 2;
+    });
+  });
+
+  // Add touch support to color options
+  colorOptions.forEach(option => {
+    addTouchSupport(option, function() {
+      updateColorSelection(this.style.backgroundColor);
+      if (colorDropdown) {
+        colorDropdown.style.display = 'none';
+      }
+    });
+  });
+
+  // Add touch support to color button
   if (colorButton) {
-    colorButton.addEventListener('click', (e) => {
+    addTouchSupport(colorButton, (e) => {
       e.stopPropagation();
       if (colorDropdown) {
         const buttonRect = colorButton.getBoundingClientRect();
-        const windowRect = paintWindow.getBoundingClientRect();
         
         // Position differently for mobile
         if (window.innerWidth <= 768) {
+          colorDropdown.style.display = colorDropdown.style.display === 'none' ? 'block' : 'none';
+          colorDropdown.style.position = 'fixed';
           colorDropdown.style.top = (buttonRect.bottom + 5) + 'px';
           colorDropdown.style.left = '50%';
           colorDropdown.style.transform = 'translateX(-50%)';
           colorDropdown.style.width = '90vw';
           colorDropdown.style.maxWidth = '300px';
+          colorDropdown.style.background = '#fff';
+          colorDropdown.style.boxShadow = '0 2px 10px rgba(0,0,0,0.2)';
+          colorDropdown.style.zIndex = '999999999';
         } else {
           // Desktop positioning
+          colorDropdown.style.display = colorDropdown.style.display === 'none' ? 'block' : 'none';
           colorDropdown.style.top = buttonRect.bottom + 'px';
-          colorDropdown.style.left = Math.max(buttonRect.left, windowRect.left) + 'px';
-          colorDropdown.style.transform = 'none';
-          colorDropdown.style.width = 'auto';
+          colorDropdown.style.left = buttonRect.left + 'px';
         }
-        
-        colorDropdown.style.display = colorDropdown.style.display === 'none' ? 'block' : 'none';
       }
     });
   }
 
-  // Update color dropdown position on window resize
-  window.addEventListener('resize', () => {
-    if (colorDropdown && colorDropdown.style.display !== 'none') {
-      const buttonRect = colorButton.getBoundingClientRect();
-      const windowRect = paintWindow.getBoundingClientRect();
-      
-      if (window.innerWidth <= 768) {
-        colorDropdown.style.top = (buttonRect.bottom + 5) + 'px';
-        colorDropdown.style.left = '50%';
-        colorDropdown.style.transform = 'translateX(-50%)';
-        colorDropdown.style.width = '90vw';
-        colorDropdown.style.maxWidth = '300px';
-      } else {
-        colorDropdown.style.top = buttonRect.bottom + 'px';
-        colorDropdown.style.left = Math.max(buttonRect.left, windowRect.left) + 'px';
-        colorDropdown.style.transform = 'none';
-        colorDropdown.style.width = 'auto';
-      }
+  // Add touch support to paint window color boxes
+  colorBoxes.forEach(box => {
+    addTouchSupport(box, function() {
+      updateColorSelection(this.style.backgroundColor);
+      this.classList.add('selected');
+    });
+  });
+
+  // Add touch support to menu color boxes
+  menuColorBoxes.forEach(box => {
+    addTouchSupport(box, function() {
+      updateColorSelection(this.style.backgroundColor);
+      this.classList.add('selected');
+    });
+  });
+
+  // Add touch support to tool buttons
+  Object.entries(toolButtons).forEach(([btnId, settings]) => {
+    const button = document.getElementById(btnId);
+    if (button) {
+      addTouchSupport(button, () => {
+        setActiveTool(btnId, settings.tool);
+        brushSize = settings.size;
+      });
     }
   });
 
-  // Close dropdown when clicking outside
-  document.addEventListener('click', (e) => {
+  // Add touch support to undo/redo buttons
+  if (undoBtn) addTouchSupport(undoBtn, undo);
+  if (redoBtn) addTouchSupport(redoBtn, redo);
+
+  // Close dropdown when touching outside
+  document.addEventListener('touchstart', (e) => {
     if (colorDropdown && !colorDropdown.contains(e.target) && !colorButton.contains(e.target)) {
       colorDropdown.style.display = 'none';
     }
-  });
-  
-  // Menu color boxes functionality
-  menuColorBoxes.forEach(box => {
-    box.addEventListener('click', function() {
-      updateColorSelection(this.style.backgroundColor);
-      this.classList.add('selected');
-    });
-  });
-  
-  // Color dropdown functionality
-  colorOptions.forEach(option => {
-    option.addEventListener('click', function() {
-      updateColorSelection(this.style.backgroundColor);
-    });
-  });
-  
-  // Paint window color boxes functionality
-  colorBoxes.forEach(box => {
-    box.addEventListener('click', function() {
-      updateColorSelection(this.style.backgroundColor);
-      this.classList.add('selected');
-    });
-  });
+  }, { passive: true });
   
   // Initialize canvas context color
   if (mainCtx) {
@@ -544,39 +554,6 @@ document.addEventListener('DOMContentLoaded', () => {
     'ellipseBtn': { tool: 'ellipse', size: 2 },
     'lineBtn': { tool: 'line', size: 2 }
   };
-  
-  Object.entries(toolButtons).forEach(([btnId, settings]) => {
-    const button = document.getElementById(btnId);
-    if (button) {
-        button.addEventListener('click', () => {
-            setActiveTool(btnId, settings.tool);
-            brushSize = settings.size;
-        });
-    }
-  });
-  
-  // Add direct click handlers for fill and text tools
-  document.getElementById('fillBtn')?.addEventListener('click', () => {
-    currentTool = 'fill';
-    mainCanvas.style.cursor = 'crosshair';
-  });
-
-  document.getElementById('textBtn')?.addEventListener('click', () => {
-    currentTool = 'text';
-    mainCanvas.style.cursor = 'text';
-  });
-  
-  // Undo/Redo button listeners
-  const undoBtn = document.getElementById('undoBtn');
-  const redoBtn = document.getElementById('redoBtn');
-  
-  if (undoBtn) {
-    undoBtn.addEventListener('click', undo);
-  }
-  
-  if (redoBtn) {
-    redoBtn.addEventListener('click', redo);
-  }
   
   // Keyboard shortcuts
   document.addEventListener('keydown', (e) => {
