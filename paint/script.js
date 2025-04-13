@@ -468,6 +468,11 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Update cursor
     mainCanvas.style.cursor = toolName === 'eraser' ? 'cell' : 'crosshair';
+    
+    // If it's a single-click tool (fill or text), don't set isDrawing
+    if (toolName === 'fill' || toolName === 'text') {
+        isDrawing = false;
+    }
   }
   
   // Tool button event listeners
