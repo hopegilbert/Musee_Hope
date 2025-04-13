@@ -6,6 +6,54 @@ document.addEventListener('DOMContentLoaded', () => {
   const undoBtn = document.getElementById('undoBtn');
   const redoBtn = document.getElementById('redoBtn');
   const eraserBtn = document.getElementById('eraserBtn');
+  const paintWindow = document.querySelector('.paint-window');
+  const titleBar = document.querySelector('.title-bar');
+  
+  // Make window draggable
+  let isDragging = false;
+  let currentX;
+  let currentY;
+  let initialX;
+  let initialY;
+  let xOffset = 0;
+  let yOffset = 0;
+  
+  titleBar.addEventListener('mousedown', dragStart);
+  document.addEventListener('mousemove', drag);
+  document.addEventListener('mouseup', dragEnd);
+  
+  function dragStart(e) {
+    initialX = e.clientX - xOffset;
+    initialY = e.clientY - yOffset;
+    
+    if (e.target === titleBar) {
+      isDragging = true;
+    }
+  }
+  
+  function drag(e) {
+    if (isDragging) {
+      e.preventDefault();
+      
+      currentX = e.clientX - initialX;
+      currentY = e.clientY - initialY;
+      
+      xOffset = currentX;
+      yOffset = currentY;
+      
+      setTranslate(currentX, currentY, paintWindow);
+    }
+  }
+  
+  function dragEnd() {
+    initialX = currentX;
+    initialY = currentY;
+    isDragging = false;
+  }
+  
+  function setTranslate(xPos, yPos, el) {
+    el.style.transform = `translate3d(${xPos}px, ${yPos}px, 0)`;
+  }
   
   // Set canvas size
   function resizeCanvas() {
