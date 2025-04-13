@@ -18,6 +18,20 @@ function makeDraggable(windowElement, handleElement) {
     let offsetX = 0;
     let offsetY = 0;
 
+    function updateWindowPosition(x, y) {
+        const windowWidth = windowElement.offsetWidth;
+        const windowHeight = windowElement.offsetHeight;
+        const maxX = window.innerWidth - windowWidth;
+        const maxY = window.innerHeight - windowHeight;
+
+        // Ensure window stays within viewport bounds
+        const boundedX = Math.max(0, Math.min(x, maxX));
+        const boundedY = Math.max(0, Math.min(y, maxY));
+
+        windowElement.style.left = `${boundedX}px`;
+        windowElement.style.top = `${boundedY}px`;
+    }
+
     handleElement.addEventListener('mousedown', (e) => {
         isDragging = true;
         offsetX = e.clientX - windowElement.offsetLeft;
@@ -27,13 +41,21 @@ function makeDraggable(windowElement, handleElement) {
 
     document.addEventListener('mousemove', (e) => {
         if (isDragging) {
-            windowElement.style.left = `${e.clientX - offsetX}px`;
-            windowElement.style.top = `${e.clientY - offsetY}px`;
+            const x = e.clientX - offsetX;
+            const y = e.clientY - offsetY;
+            updateWindowPosition(x, y);
         }
     });
 
     document.addEventListener('mouseup', () => {
         isDragging = false;
+    });
+
+    // Handle window resize
+    window.addEventListener('resize', () => {
+        const currentX = parseInt(windowElement.style.left) || 0;
+        const currentY = parseInt(windowElement.style.top) || 0;
+        updateWindowPosition(currentX, currentY);
     });
 }
 
