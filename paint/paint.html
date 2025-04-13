@@ -131,6 +131,31 @@
             display: flex;
             justify-content: space-between;
         }
+
+        .paint-colors {
+            background: #c0c0c8;
+            padding: 8px;
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 2px;
+            border-top: 1px solid #808080;
+        }
+
+        .color-box {
+            width: 20px;
+            height: 20px;
+            border: 1px solid #000;
+            cursor: pointer;
+        }
+
+        .color-box:hover {
+            border: 1px solid #fff;
+        }
+
+        .color-box.selected {
+            border: 2px solid #000;
+            margin: -1px;
+        }
     </style>
 </head>
 <body>
@@ -199,6 +224,24 @@
                 <img src="images/hope.png" alt="Hope" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); max-width: 80%; max-height: 80%;">
             </div>
         </div>
+        <div class="paint-colors">
+            <div class="color-box" style="background-color: #000000;" title="Black"></div>
+            <div class="color-box" style="background-color: #808080;" title="Gray"></div>
+            <div class="color-box" style="background-color: #800000;" title="Maroon"></div>
+            <div class="color-box" style="background-color: #FF0000;" title="Red"></div>
+            <div class="color-box" style="background-color: #800080;" title="Purple"></div>
+            <div class="color-box" style="background-color: #FF00FF;" title="Fuchsia"></div>
+            <div class="color-box" style="background-color: #008000;" title="Green"></div>
+            <div class="color-box" style="background-color: #00FF00;" title="Lime"></div>
+            <div class="color-box" style="background-color: #808000;" title="Olive"></div>
+            <div class="color-box" style="background-color: #FFFF00;" title="Yellow"></div>
+            <div class="color-box" style="background-color: #000080;" title="Navy"></div>
+            <div class="color-box" style="background-color: #0000FF;" title="Blue"></div>
+            <div class="color-box" style="background-color: #008080;" title="Teal"></div>
+            <div class="color-box" style="background-color: #00FFFF;" title="Aqua"></div>
+            <div class="color-box" style="background-color: #FFFFFF;" title="White"></div>
+            <div class="color-box" style="background-color: #C0C0C0;" title="Silver"></div>
+        </div>
         <div class="paint-status">
             <span>100%</span>
             <span>400 x 600</span>
@@ -264,6 +307,21 @@
                 tool.classList.add('active');
             });
         });
+
+        // Color selection
+        const colors = document.querySelectorAll('.color-box');
+        let selectedColor = '#000000';
+        
+        colors.forEach(color => {
+            color.addEventListener('click', () => {
+                colors.forEach(c => c.classList.remove('selected'));
+                color.classList.add('selected');
+                selectedColor = color.style.backgroundColor;
+            });
+        });
+
+        // Select black by default
+        colors[0].classList.add('selected');
     </script>
 </body>
 </html>
