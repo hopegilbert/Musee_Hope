@@ -328,7 +328,7 @@ body {
 
 /* Draggable window adjustments */
 .paint-window {
-    position: fixed;
+    position: absolute;
     width: 500px;
     height: 800px;
     background-color: #f0f0f0;
@@ -338,6 +338,8 @@ body {
     z-index: 900;
     display: flex;
     flex-direction: column;
+    left: 20px;
+    top: 100px;
 }
 
 @media (max-width: 768px) {
