@@ -12,51 +12,49 @@
             background: white;
             border: 1px solid #ccc;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
             overflow: hidden;
+            transition: all 0.3s ease;
         }
 
         .paint-header {
             background: #f0f0f0;
-            padding: 8px;
+            padding: 0.5em;
             cursor: move;
             display: flex;
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid #ccc;
-        }
-
-        .paint-title {
-            font-size: 1.2em;
-            font-weight: bold;
-        }
-
-        .paint-close {
-            cursor: pointer;
-            padding: 4px 8px;
+            font-size: 1em;
         }
 
         .paint-content {
             display: flex;
-            flex-direction: column;
             flex: 1;
             overflow: hidden;
         }
 
         .paint-toolbar {
+            width: 15%;
+            background: #f8f8f8;
+            border-right: 1px solid #ccc;
+            padding: 0.5em;
             display: flex;
-            flex-wrap: wrap;
-            gap: 4px;
-            padding: 8px;
-            border-bottom: 1px solid #ccc;
+            flex-direction: column;
+            gap: 0.5em;
         }
 
-        .paint-toolbar button {
-            width: calc(10% - 4px);
+        .toolbar-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5em;
+        }
+
+        .toolbar-buttons button {
+            width: 100%;
             aspect-ratio: 1;
-            padding: 0;
+            padding: 0.5em;
             border: 1px solid #ccc;
             background: white;
             cursor: pointer;
@@ -66,36 +64,10 @@
             transition: all 0.2s ease;
         }
 
-        .paint-toolbar button:hover {
-            background: #f0f0f0;
-        }
-
-        .paint-toolbar button.active {
-            background: #e0e0e0;
-        }
-
-        .paint-toolbar img {
+        .toolbar-buttons button img {
             width: 60%;
             height: 60%;
             object-fit: contain;
-        }
-
-        .paint-colors {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 4px;
-            padding: 8px;
-        }
-
-        .color-box {
-            width: calc(10% - 4px);
-            aspect-ratio: 1;
-            border: 1px solid #ccc;
-            cursor: pointer;
-        }
-
-        .color-box.selected {
-            border: 2px solid #000;
         }
 
         .paint-canvas-container {
@@ -104,7 +76,7 @@
             overflow: hidden;
         }
 
-        #mainCanvas {
+        .paint-canvas {
             position: absolute;
             top: 0;
             left: 0;
@@ -112,56 +84,67 @@
             height: 100%;
         }
 
-        /* Responsive font sizes */
-        .paint-title {
-            font-size: clamp(12px, 2vw, 16px);
+        .paint-colors {
+            width: 15%;
+            background: #f8f8f8;
+            border-left: 1px solid #ccc;
+            padding: 0.5em;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5em;
         }
 
-        .paint-toolbar button {
-            font-size: clamp(10px, 1.5vw, 14px);
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5em;
         }
 
-        /* Responsive padding and margins */
-        .paint-header {
-            padding: clamp(4px, 1.5vw, 8px);
+        .color-box {
+            aspect-ratio: 1;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            transition: all 0.2s ease;
         }
 
-        .paint-toolbar, .paint-colors {
-            padding: clamp(4px, 1.5vw, 8px);
-            gap: clamp(2px, 1vw, 4px);
+        .color-box.selected {
+            border: 2px solid #000;
+            transform: scale(1.1);
         }
 
-        /* Color dropdown styles */
         .color-dropdown {
             position: relative;
-            display: inline-block;
+            margin-top: 0.5em;
         }
 
         .color-button {
-            width: 24px;
-            height: 24px;
+            width: 100%;
+            aspect-ratio: 2;
             border: 1px solid #ccc;
+            background: black;
             cursor: pointer;
         }
 
         .color-options {
-            display: none;
             position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
             background: white;
             border: 1px solid #ccc;
-            padding: 4px;
+            display: none;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5em;
+            padding: 0.5em;
             z-index: 1000;
         }
 
         .color-dropdown:hover .color-options {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 4px;
         }
 
         .color-option {
-            width: 20px;
-            height: 20px;
+            aspect-ratio: 1;
             border: 1px solid #ccc;
             cursor: pointer;
         }
@@ -169,18 +152,27 @@
         /* Mobile styles */
         @media (max-width: 768px) {
             .paint-window {
-                width: 90vw !important;
-                height: 90vh !important;
-                left: 5vw !important;
-                top: 5vh !important;
+                width: 90vw;
+                height: 90vh;
+                max-width: 500px;
+                max-height: 500px;
             }
 
-            .paint-toolbar button {
-                width: calc(20% - 4px);
+            .paint-header {
+                font-size: 0.9em;
+                padding: 0.3em;
             }
 
-            .color-box {
-                width: calc(20% - 4px);
+            .toolbar-buttons button {
+                padding: 0.3em;
+            }
+
+            .color-grid {
+                gap: 0.3em;
+            }
+
+            .color-dropdown {
+                margin-top: 0.3em;
             }
         }
     </style>
