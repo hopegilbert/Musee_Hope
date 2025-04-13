@@ -487,6 +487,7 @@ h1 {
   border-bottom: 1px solid #e5b3cc;
   padding: 0;
   margin: 0;
+  font-family: 'Tahoma', sans-serif;
 }
 
 .toolbar-tabs .tab {
@@ -496,22 +497,24 @@ h1 {
   font-weight: bold;
   color: #6b1a3b;
   cursor: pointer;
-  border-radius: 0;
+  border-radius: 4px;
   position: relative;
   display: flex;
   align-items: center;
   gap: 6px;
+  height: fit-content;
+}
+
+.toolbar-tabs .tab:hover {
+  background-color: #f9c9dd;
+  color: #4b0e29;
+  border-radius: 4px;
 }
 
 .toolbar-tabs .tab img {
   width: 16px;
   height: 16px;
   margin-right: 4px;
-}
-
-.toolbar-tabs .tab:hover {
-  background-color: #f9c9dd;
-  color: #4b0e29;
 }
 
 /* Dropdown menu styles */
