@@ -699,4 +699,18 @@ document.addEventListener('DOMContentLoaded', () => {
         b: parseInt(result[3], 16)
     } : null;
   }
+
+  // Add touch event listeners
+  mainCanvas.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    startDrawing(e.touches[0]);
+  });
+  mainCanvas.addEventListener('touchmove', (e) => {
+    e.preventDefault();
+    draw(e.touches[0]);
+  });
+  mainCanvas.addEventListener('touchend', (e) => {
+    e.preventDefault();
+    stopDrawing();
+  });
 }); 
