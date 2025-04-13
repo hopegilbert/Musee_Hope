@@ -523,8 +523,8 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 4px;
-  height: 28px;
+  gap: 6px;
+  height: 32px;
   line-height: 1;
   white-space: nowrap;
   flex-shrink: 0;
@@ -538,9 +538,10 @@ h1 {
 }
 
 .toolbar-tabs .tab img {
-  width: 16px;
-  height: 16px;
-  margin-right: 2px;
+  width: 20px;
+  height: 20px;
+  margin-right: 4px;
+  flex-shrink: 0;
 }
 
 @media screen and (max-width: 768px) {
@@ -632,17 +633,18 @@ h1 {
 .icon-group {
   display: flex;
   flex: 0 0 auto;
-  gap: 4px;
+  gap: 6px;
   align-items: center;
   min-width: 0;
   padding: 0;
   margin: 0;
+  justify-content: center;
 }
 
 .icon-group img {
-  width: 16px;
-  height: 16px;
-  padding: 1px;
+  width: 20px;
+  height: 20px;
+  padding: 2px;
   flex-shrink: 0;
   background-color: #ffffff;
   border: 1px solid #d9b0c8;
