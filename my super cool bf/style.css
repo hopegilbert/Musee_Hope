@@ -778,19 +778,22 @@ h1 {
   }
 
   .toolbar-buttons {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.75rem 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem 1rem;
   }
 
   .icon-group {
+    display: flex;
     gap: 6px;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
   }
 
   .icon-group img {
-    width: 20px;
-    height: 20px;
+    padding: 1px;
+    width: 22px;
+    height: 22px;
   }
 
   .dropdown-content {
@@ -820,8 +823,12 @@ h1 {
   }
 
   .toolbar-buttons {
-    grid-template-columns: 1fr;
-    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .icon-group {
+    flex-wrap: wrap;
   }
 
   .draggable-window {
