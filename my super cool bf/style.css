@@ -607,6 +607,7 @@ h1 {
   background-color: #fff0f7;
   justify-content: flex-start;
   align-items: flex-start;
+  width: 100%;
 }
 
 .icon-group {
@@ -615,6 +616,7 @@ h1 {
   align-items: center;
   margin: 8px 0;
   padding: 4px 8px;
+  justify-content: flex-start;
 }
 
 .icon-group img {
