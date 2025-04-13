@@ -513,8 +513,8 @@ h1 {
 }
 
 .toolbar-tabs .tab {
-  padding: 6px 12px 6px 12px;
-  margin: 2px 0 2px 0;
+  padding: 6px 12px;
+  margin: 0;
   font-size: 0.8rem;
   font-weight: bold;
   color: #6b1a3b;
@@ -535,7 +535,7 @@ h1 {
   background-color: #f9c9dd;
   color: #4b0e29;
   border-radius: 4px;
-  margin: 2px 0 2px 0;
+  margin: 0;
 }
 
 .toolbar-tabs .tab img {
@@ -547,14 +547,22 @@ h1 {
 
 @media screen and (max-width: 768px) {
   .toolbar-tabs .tab {
-    font-size: 0.7rem;
-    padding: 6px 8px 6px 8px;
-    gap: 2px;
+    padding: 6px 8px;
+    margin: 0;
+    height: 32px;
   }
   
   .toolbar-tabs .tab img {
     width: 14px;
     height: 14px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .toolbar-tabs .tab {
+    padding: 6px 8px;
+    margin: 0;
+    height: 32px;
   }
 }
 
