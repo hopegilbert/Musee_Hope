@@ -961,8 +961,8 @@ h1 {
 
 .dropdown-content {
   display: none;
-  position: absolute;
-  top: 110%;
+  position: fixed;
+  top: 0;
   left: 0;
   min-width: 200px;
   background-color: #f5e8c7;
@@ -972,6 +972,8 @@ h1 {
   pointer-events: auto;
   border: 2px solid #b92c6d;
   overflow: hidden;
+  transform: translate(0, 0);
+  will-change: transform;
 }
 
 .dropdown-content div {
