@@ -482,7 +482,6 @@ h1 {
 .toolbar-tabs {
   display: flex;
   background-color: #fae1ec;
-  padding: 0 10px;
   gap: 1.5rem;
   border-bottom: 1px solid #e5b3cc;
 }
@@ -565,7 +564,6 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
-  padding: 0 10px;
   margin: 0;
   background-color: #fff0f7;
   justify-content: flex-start;
@@ -943,4 +941,10 @@ h1 {
     image-rendering: -webkit-optimize-contrast;
     image-rendering: crisp-edges;
   }
+}
+
+.toolbar-inner {
+  padding: 0 10px;
+  box-sizing: border-box;
+  width: 100%;
 }
