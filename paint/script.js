@@ -611,19 +611,39 @@ document.addEventListener('DOMContentLoaded', () => {
     const windowHeight = window.innerHeight;
     
     // Set window size relative to screen size
-    const windowSize = Math.min(windowWidth * 0.4, windowHeight * 0.6); // 40% of width or 60% of height, whichever is smaller
+    const windowSize = Math.min(windowWidth * 0.4, windowHeight * 0.6);
     paintWindow.style.width = windowSize + 'px';
     paintWindow.style.height = windowSize + 'px';
     
+    // Calculate toolbar size
+    const toolbarSize = Math.max(windowSize * 0.08, 24); // 8% of window size or minimum 24px
+    document.querySelectorAll('.toolbar-buttons button').forEach(btn => {
+      btn.style.width = toolbarSize + 'px';
+      btn.style.height = toolbarSize + 'px';
+    });
+    
+    // Adjust color palette
+    const colorPalette = document.querySelector('.color-palette');
+    if (colorPalette) {
+      const paletteSize = windowSize * 0.8; // 80% of window width
+      colorPalette.style.width = paletteSize + 'px';
+      const colorButtons = colorPalette.querySelectorAll('button');
+      const buttonSize = Math.max(paletteSize / 8, 20); // Divide by number of colors per row, minimum 20px
+      colorButtons.forEach(btn => {
+        btn.style.width = buttonSize + 'px';
+        btn.style.height = buttonSize + 'px';
+      });
+    }
+    
     // Set initial position to right side with padding
-    const rightPadding = windowWidth * 0.05; // 5% padding from right
+    const rightPadding = windowWidth * 0.05;
     paintWindow.style.left = (windowWidth - windowSize - rightPadding) + "px";
-    paintWindow.style.top = (windowHeight * 0.1) + "px"; // 10% from top
+    paintWindow.style.top = (windowHeight * 0.1) + "px";
     
     makeDraggable(paintWindow, paintHeader);
   }
 
-  // Add resize handler for window
+  // Update resize handler
   window.addEventListener('resize', () => {
     if (paintWindow) {
       const windowWidth = window.innerWidth;
@@ -634,12 +654,31 @@ document.addEventListener('DOMContentLoaded', () => {
       paintWindow.style.width = windowSize + 'px';
       paintWindow.style.height = windowSize + 'px';
       
+      // Update toolbar size
+      const toolbarSize = Math.max(windowSize * 0.08, 24);
+      document.querySelectorAll('.toolbar-buttons button').forEach(btn => {
+        btn.style.width = toolbarSize + 'px';
+        btn.style.height = toolbarSize + 'px';
+      });
+      
+      // Update color palette
+      const colorPalette = document.querySelector('.color-palette');
+      if (colorPalette) {
+        const paletteSize = windowSize * 0.8;
+        colorPalette.style.width = paletteSize + 'px';
+        const colorButtons = colorPalette.querySelectorAll('button');
+        const buttonSize = Math.max(paletteSize / 8, 20);
+        colorButtons.forEach(btn => {
+          btn.style.width = buttonSize + 'px';
+          btn.style.height = buttonSize + 'px';
+        });
+      }
+      
       // Update position if needed
       const rightPadding = windowWidth * 0.05;
       const currentLeft = parseInt(paintWindow.style.left);
       const maxLeft = windowWidth - windowSize - rightPadding;
       
-      // If window is off-screen or too far right, adjust position
       if (currentLeft > maxLeft) {
         paintWindow.style.left = maxLeft + "px";
       }
