@@ -338,15 +338,8 @@ body {
     z-index: 900;
     display: flex;
     flex-direction: column;
-    left: 20px;
     top: 100px;
-}
-
-@media (max-width: 768px) {
-    .paint-window {
-        width: 95vw;
-        height: 80vh;
-    }
+    left: 20px;
 }
 
 .paint-header {
@@ -362,6 +355,18 @@ body {
     user-select: none;
 }
 
+.paint-window.dragging {
+    opacity: 0.9;
+    cursor: move;
+}
+
+@media (max-width: 768px) {
+    .paint-window {
+        width: 95vw;
+        height: 80vh;
+    }
+}
+
 .paint-content {
     display: flex;
     flex: 1;
@@ -373,11 +378,6 @@ body {
     background: #808080;
     position: relative;
     overflow: hidden;
-}
-
-/* Remove any transform or transition properties */
-.paint-window.dragging {
-    cursor: move;
 }
 
 .color-dropdown {

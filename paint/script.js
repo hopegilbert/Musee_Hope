@@ -939,17 +939,13 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('mouseup', onMouseUp);
 
     // Touch events
-    handle.addEventListener('touchstart', onTouchStart);
+    handle.addEventListener('touchstart', onTouchStart, { passive: false });
     document.addEventListener('touchmove', onTouchMove, { passive: false });
     document.addEventListener('touchend', onTouchEnd);
   }
 
   // Initialize draggable window
-  document.addEventListener('DOMContentLoaded', function() {
-    const paintWindow = document.getElementById('paintWindow');
-    const paintHeader = document.getElementById('paintHeader');
-    if (paintWindow && paintHeader) {
-        makeDraggable(paintWindow, paintHeader);
-    }
-  });
+  if (paintWindow && paintHeader) {
+    makeDraggable(paintWindow, paintHeader);
+  }
 }); 
