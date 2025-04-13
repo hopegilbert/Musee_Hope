@@ -503,7 +503,8 @@ h1 {
   align-items: center;
   justify-content: center;
   gap: 6px;
-  height: fit-content;
+  height: 28px;
+  line-height: 1;
 }
 
 .toolbar-tabs .tab:hover {
