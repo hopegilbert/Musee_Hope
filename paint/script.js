@@ -64,10 +64,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     if (['rectangle', 'ellipse', 'line'].includes(currentTool)) {
+        // Copy the main canvas state to temp canvas before starting new shape
+        tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
+        tempCtx.drawImage(mainCanvas, 0, 0);
         startX = pos.x;
         startY = pos.y;
-        isDrawingShape = true;
-    } else if (currentTool === 'text') {
+        return;
+    }
+    
+    if (currentTool === 'text') {
         if (textInput) {
             document.body.removeChild(textInput);
         }
@@ -125,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
     switch(currentTool) {
         case 'fill':
             floodFill(Math.round(pos.x), Math.round(pos.y), currentColor);
-            isDrawing = false;  // Fill only needs one click
+            isDrawing = false;
             saveState();
             break;
             
@@ -134,33 +139,62 @@ document.addEventListener('DOMContentLoaded', () => {
             break;
             
         case 'rectangle':
-        case 'ellipse':
-        case 'line':
-            // Clear the temp canvas and redraw from the start point
+            // Clear temp canvas but keep the previous drawing
             tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
-            tempCtx.beginPath();
+            tempCtx.drawImage(mainCanvas, 0, 0);
+            
+            // Draw new rectangle
+            const width = pos.x - startX;
+            const height = pos.y - startY;
             tempCtx.strokeStyle = currentColor;
             tempCtx.lineWidth = brushSize;
+            tempCtx.beginPath();
+            tempCtx.rect(startX, startY, width, height);
+            tempCtx.stroke();
             
-            if (currentTool === 'rectangle') {
-                const width = pos.x - startX;
-                const height = pos.y - startY;
-                tempCtx.strokeRect(startX, startY, width, height);
-            } else if (currentTool === 'ellipse') {
-                const radiusX = Math.abs(pos.x - startX) / 2;
-                const radiusY = Math.abs(pos.y - startY) / 2;
-                const centerX = startX + (pos.x - startX) / 2;
-                const centerY = startY + (pos.y - startY) / 2;
-                
-                tempCtx.beginPath();
-                tempCtx.ellipse(centerX, centerY, radiusX, radiusY, 0, 0, Math.PI * 2);
-                tempCtx.stroke();
-            } else if (currentTool === 'line') {
-                tempCtx.beginPath();
-                tempCtx.moveTo(startX, startY);
-                tempCtx.lineTo(pos.x, pos.y);
-                tempCtx.stroke();
-            }
+            // Update main canvas
+            mainCtx.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
+            mainCtx.drawImage(tempCanvas, 0, 0);
+            break;
+            
+        case 'ellipse':
+            // Clear temp canvas but keep the previous drawing
+            tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
+            tempCtx.drawImage(mainCanvas, 0, 0);
+            
+            // Draw new ellipse
+            const radiusX = Math.abs(pos.x - startX) / 2;
+            const radiusY = Math.abs(pos.y - startY) / 2;
+            const centerX = startX + (pos.x - startX) / 2;
+            const centerY = startY + (pos.y - startY) / 2;
+            
+            tempCtx.strokeStyle = currentColor;
+            tempCtx.lineWidth = brushSize;
+            tempCtx.beginPath();
+            tempCtx.ellipse(centerX, centerY, radiusX, radiusY, 0, 0, Math.PI * 2);
+            tempCtx.stroke();
+            
+            // Update main canvas
+            mainCtx.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
+            mainCtx.drawImage(tempCanvas, 0, 0);
+            break;
+            
+        case 'line':
+            // Clear temp canvas but keep the previous drawing
+            tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
+            tempCtx.drawImage(mainCanvas, 0, 0);
+            
+            // Draw new line
+            tempCtx.strokeStyle = currentColor;
+            tempCtx.lineWidth = brushSize;
+            tempCtx.beginPath();
+            tempCtx.moveTo(startX, startY);
+            tempCtx.lineTo(pos.x, pos.y);
+            tempCtx.stroke();
+            
+            // Update main canvas
+            mainCtx.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
+            mainCtx.drawImage(tempCanvas, 0, 0);
             break;
             
         case 'text':
@@ -191,15 +225,22 @@ document.addEventListener('DOMContentLoaded', () => {
             tempCtx.lineJoin = 'round';
             tempCtx.stroke();
             break;
-    }
-    
-    // Draw the white background and the temporary canvas
-    mainCtx.fillStyle = '#FFFFFF';
-    mainCtx.fillRect(0, 0, mainCanvas.width, mainCanvas.height);
-    mainCtx.drawImage(tempCanvas, 0, 0);
-    
-    if (['pencil', 'brush', 'eraser'].includes(currentTool)) {
-        [lastX, lastY] = [pos.x, pos.y];
+            
+        default:
+            // Handle freehand drawing
+            tempCtx.strokeStyle = currentColor;
+            tempCtx.lineWidth = brushSize;
+            tempCtx.beginPath();
+            tempCtx.moveTo(lastX, lastY);
+            tempCtx.lineTo(pos.x, pos.y);
+            tempCtx.stroke();
+            
+            mainCtx.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
+            mainCtx.drawImage(tempCanvas, 0, 0);
+            
+            lastX = pos.x;
+            lastY = pos.y;
+            break;
     }
   }
   
@@ -230,10 +271,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!isDrawing) return;
     
     isDrawing = false;
-    isDrawingShape = false;
-    tempCtx.globalCompositeOperation = 'source-over';
     
-    if (currentTool !== 'text') {
+    if (['rectangle', 'ellipse', 'line'].includes(currentTool)) {
+        // Save the final state
         saveState();
     }
   }
