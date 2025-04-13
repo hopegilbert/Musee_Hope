@@ -494,6 +494,18 @@ document.addEventListener('DOMContentLoaded', () => {
         button.addEventListener('click', () => {
             setActiveTool(btnId, settings.tool);
             brushSize = settings.size;
+            // If it's a single-click tool, trigger the action immediately
+            if (settings.tool === 'fill' || settings.tool === 'text') {
+                isDrawing = true;
+                const event = new MouseEvent('mousedown', {
+                    view: window,
+                    bubbles: true,
+                    cancelable: true,
+                    clientX: mainCanvas.getBoundingClientRect().left + 50,
+                    clientY: mainCanvas.getBoundingClientRect().top + 50
+                });
+                mainCanvas.dispatchEvent(event);
+            }
         });
     }
   });
