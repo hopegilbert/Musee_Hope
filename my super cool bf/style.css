@@ -105,13 +105,14 @@ body {
 
   .toolbar-tabs {
     gap: 1rem;
-    font-size: 0.75rem;
   }
 
   .toolbar-tabs .tab {
     padding: 0 8px;
     height: 28px;
     line-height: 28px;
+    font-size: 0.75rem;
+    min-width: 60px;
   }
 
   .toolbar-tabs .tab img {
@@ -211,13 +212,14 @@ body {
 
   .toolbar-tabs {
     gap: 0.75rem;
-    font-size: 0.7rem;
   }
 
   .toolbar-tabs .tab {
     padding: 0 6px;
     height: 26px;
     line-height: 26px;
+    font-size: 0.7rem;
+    min-width: 50px;
   }
 
   .toolbar-tabs .tab img {
@@ -642,6 +644,7 @@ h1 {
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
   flex-wrap: nowrap;
+  width: 100%;
 }
 
 .toolbar-tabs .tab {
@@ -663,6 +666,7 @@ h1 {
   flex-shrink: 0;
   min-width: fit-content;
   box-sizing: border-box;
+  width: auto;
 }
 
 .toolbar-tabs .tab:hover {
@@ -684,48 +688,40 @@ h1 {
 }
 
 @media screen and (max-width: 768px) {
-  .toolbar-tabs .tab {
-    padding: 0 8px;
-    margin: 0;
-    height: 32px;
-    line-height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 4px;
+  .toolbar-tabs {
+    gap: 1rem;
   }
-  
-  .toolbar-tabs .tab img {
-    width: 18px;
-    height: 18px;
-    margin: 0;
-    vertical-align: middle;
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-}
 
-@media screen and (max-width: 480px) {
   .toolbar-tabs .tab {
     padding: 0 8px;
-    margin: 0;
-    height: 32px;
-    line-height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 4px;
+    height: 28px;
+    line-height: 28px;
+    font-size: 0.75rem;
+    min-width: 60px;
   }
   
   .toolbar-tabs .tab img {
     width: 16px;
     height: 16px;
-    margin: 0;
-    vertical-align: middle;
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .toolbar-tabs {
+    gap: 0.75rem;
+  }
+
+  .toolbar-tabs .tab {
+    padding: 0 6px;
+    height: 26px;
+    line-height: 26px;
+    font-size: 0.7rem;
+    min-width: 50px;
+  }
+  
+  .toolbar-tabs .tab img {
+    width: 14px;
+    height: 14px;
   }
 }
 
