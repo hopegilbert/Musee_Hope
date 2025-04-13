@@ -91,8 +91,9 @@ document.addEventListener('DOMContentLoaded', () => {
       textInput.style.top = e.clientY + 'px';
       textInput.style.background = 'transparent';
       textInput.style.border = '1px solid #000';
-      textInput.style.font = '16px Arial';
+      textInput.style.font = brushSize + 'px Arial';
       textInput.style.zIndex = '1000';
+      textInput.style.color = currentColor;
       
       document.body.appendChild(textInput);
       textInput.focus();
@@ -100,16 +101,13 @@ document.addEventListener('DOMContentLoaded', () => {
       textInput.addEventListener('keydown', function(e) {
         if (e.key === 'Enter') {
           const text = this.value;
-          const rect = mainCanvas.getBoundingClientRect();
-          const x = pos.x;
-          const y = pos.y;
+          const pos = getMousePos(e);
           
-          tempCtx.font = '16px Arial';
-          tempCtx.fillStyle = currentColor;
-          tempCtx.fillText(text, x, y);
+          mainCtx.font = brushSize + 'px Arial';
+          mainCtx.fillStyle = currentColor;
+          mainCtx.fillText(text, pos.x, pos.y);
           
-          mainCtx.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
-          mainCtx.drawImage(tempCanvas, 0, 0);
+          tempCtx.drawImage(mainCanvas, 0, 0);
           
           document.body.removeChild(this);
           textInput = null;
@@ -546,15 +544,35 @@ document.addEventListener('DOMContentLoaded', () => {
     function drag(e) {
         if (isDragging) {
             e.preventDefault();
-
+            
+            let newX, newY;
             if (e.type === "touchmove") {
-                currentX = e.touches[0].clientX - initialX;
-                currentY = e.touches[0].clientY - initialY;
+                newX = e.touches[0].clientX - initialX;
+                newY = e.touches[0].clientY - initialY;
             } else {
-                currentX = e.clientX - initialX;
-                currentY = e.clientY - initialY;
+                newX = e.clientX - initialX;
+                newY = e.clientY - initialY;
             }
-
+            
+            // Get toolbar height and position
+            const toolbar = document.querySelector('.main-window');
+            const toolbarRect = toolbar.getBoundingClientRect();
+            const toolbarBottom = toolbarRect.bottom;
+            
+            // Constrain Y position to not go above toolbar
+            if (newY < toolbarBottom) {
+                newY = toolbarBottom;
+                // Also adjust initialY to prevent jumping
+                if (e.type === "touchmove") {
+                    initialY = e.touches[0].clientY - newY;
+                } else {
+                    initialY = e.clientY - newY;
+                }
+            }
+            
+            // Update position
+            currentX = newX;
+            currentY = newY;
             element.style.left = currentX + "px";
             element.style.top = currentY + "px";
         }
@@ -613,4 +631,57 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize canvas
   setCanvasSize();
   console.log('Paint initialization complete');
+
+  function floodFill(startX, startY, fillColor) {
+    const imageData = mainCtx.getImageData(0, 0, mainCanvas.width, mainCanvas.height);
+    const pixels = imageData.data;
+    
+    const startPos = (startY * mainCanvas.width + startX) * 4;
+    const startR = pixels[startPos];
+    const startG = pixels[startPos + 1];
+    const startB = pixels[startPos + 2];
+    const startA = pixels[startPos + 3];
+    
+    if (startR === undefined) return; // Out of bounds
+    
+    const matchStartColor = (pos) => {
+        return pixels[pos] === startR &&
+               pixels[pos + 1] === startG &&
+               pixels[pos + 2] === startB &&
+               pixels[pos + 3] === startA;
+    };
+    
+    const colorToFill = hexToRgb(fillColor);
+    const stack = [[startX, startY]];
+    const visited = new Set();
+    
+    while (stack.length) {
+        const [x, y] = stack.pop();
+        const pos = (y * mainCanvas.width + x) * 4;
+        
+        if (x < 0 || x >= mainCanvas.width || y < 0 || y >= mainCanvas.height) continue;
+        if (visited.has(`${x},${y}`)) continue;
+        if (!matchStartColor(pos)) continue;
+        
+        visited.add(`${x},${y}`);
+        pixels[pos] = colorToFill.r;
+        pixels[pos + 1] = colorToFill.g;
+        pixels[pos + 2] = colorToFill.b;
+        pixels[pos + 3] = 255;
+        
+        stack.push([x + 1, y], [x - 1, y], [x, y + 1], [x, y - 1]);
+    }
+    
+    mainCtx.putImageData(imageData, 0, 0);
+    tempCtx.drawImage(mainCanvas, 0, 0);
+  }
+
+  function hexToRgb(hex) {
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+    } : null;
+  }
 }); 
