@@ -41,22 +41,21 @@ body {
 }
 
 .page-title {
+  margin-top: 180px;
+  padding: 1rem;
+  text-align: center;
   font-family: 'Press Start 2P', monospace;
   font-size: 3rem;
   color: #4b0082;
-  background: none;
-  text-align: center;
-  padding: 12rem 1rem 1rem;
   text-shadow: 2px 2px 0 #fff;
   letter-spacing: 4px;
-  white-space: nowrap;
+  animation: typing 3s steps(30, end), blink 0.75s step-end infinite;
   overflow: hidden;
+  white-space: nowrap;
   border-right: 2px solid #ff4eb1;
   width: fit-content;
-  margin: 0 auto;
-  animation: typing 3s steps(30, end), blink 0.75s step-end infinite;
-  z-index: 1;
-  position: relative;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 @media screen and (max-width: 768px) {
@@ -439,17 +438,8 @@ h1 {
 
 /* Toolbar Container */
 .toolbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-  background: linear-gradient(to bottom, #fce4f3, #f6b8d2);
-  border: 2px solid #fff;
-  border-radius: 8px;
-  margin-bottom: 1rem;
-  font-family: 'Tahoma', sans-serif;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 9999;
 }
 
 /* Top Pink Title Bar */
@@ -577,7 +567,7 @@ h1 {
   gap: 2rem;
   padding: 10px 16px;
   background-color: #fff0f7;
-  row-gap: 0.25rem;
+  justify-content: space-between;
 }
 
 .icon-group {
@@ -742,12 +732,8 @@ h1 {
   }
 
   .page-title {
-    margin-top: 5rem;
-    padding-top: 2rem;
-    display: block;
-    z-index: 1;
-    position: relative;
-    font-size: 2.5rem;
+    margin-top: 240px;
+    font-size: 2.2rem;
   }
 
   .toolbar {
@@ -792,10 +778,9 @@ h1 {
   }
 
   .toolbar-buttons {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
-    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
   }
 
   .icon-group {
@@ -830,15 +815,12 @@ h1 {
   }
 
   .page-title {
-    font-size: 2rem;
-    padding: 3rem 1rem 1rem;
-    letter-spacing: 2px;
+    margin-top: 260px;
+    font-size: 1.8rem;
   }
 
   .toolbar-buttons {
-    gap: 1rem;
-    padding: 6px 10px;
-    row-gap: 0.15rem;
+    grid-template-columns: 1fr;
   }
 
   .draggable-window {
