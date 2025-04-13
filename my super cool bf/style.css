@@ -78,14 +78,16 @@ body {
     gap: 4px;
     padding: 0;
     margin: 0;
+    height: auto;
   }
 
   .icon-group img {
     width: 18px;
     height: 18px;
     padding: 1px;
-    display: block;
     margin: 0;
+    display: block;
+    line-height: 1;
   }
 
   .page-title {
@@ -960,14 +962,16 @@ h1 {
     gap: 4px;
     padding: 0;
     margin: 0;
+    height: auto;
   }
 
   .icon-group img {
     width: 18px;
     height: 18px;
     padding: 1px;
-    display: block;
     margin: 0;
+    display: block;
+    line-height: 1;
   }
 
   .draggable-window {
@@ -1068,13 +1072,15 @@ h1 {
     gap: 4px;
     padding: 0;
     margin: 0;
+    height: auto;
   }
 
   .icon-group img {
     width: 18px;
     height: 18px;
     padding: 1px;
-    display: block;
     margin: 0;
+    display: block;
+    line-height: 1;
   }
 }
