@@ -781,26 +781,20 @@ h1 {
 
   .toolbar-buttons {
     display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    align-items: center;
-    gap: 0.5rem;
-    overflow-x: auto;
-    padding: 8px 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    padding: 10px 8px;
   }
 
   .icon-group {
     display: flex;
-    flex-direction: row;
-    gap: 4px;
-    flex: 1 1 auto;
-    justify-content: center;
-    flex-wrap: nowrap;
+    gap: 8px;
   }
 
   .icon-group img {
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
     padding: 2px;
   }
 
