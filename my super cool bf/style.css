@@ -960,3 +960,21 @@ h1 {
     image-rendering: crisp-edges;
   }
 }
+
+.tab.dropdown .dropdown-toggle {
+  padding: 6px 12px;
+  margin: 0;
+  border: none;
+  background: none;
+  color: inherit;
+  font-weight: bold;
+  font-size: 0.8rem;
+  cursor: pointer;
+  font-family: inherit;
+  white-space: nowrap;
+}
+
+.tab.dropdown .dropdown-toggle:hover {
+  background-color: #ffe2ee;
+  color: #b92c6d;
+}
