@@ -606,11 +606,45 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize draggable window
   if (paintWindow && paintHeader) {
-    // Set initial position to right side
-    paintWindow.style.left = (window.innerWidth - paintWindow.offsetWidth - 20) + "px";
-    paintWindow.style.top = "100px";
+    // Calculate responsive size and position
+    const windowWidth = window.innerWidth;
+    const windowHeight = window.innerHeight;
+    
+    // Set window size relative to screen size
+    const windowSize = Math.min(windowWidth * 0.4, windowHeight * 0.6); // 40% of width or 60% of height, whichever is smaller
+    paintWindow.style.width = windowSize + 'px';
+    paintWindow.style.height = windowSize + 'px';
+    
+    // Set initial position to right side with padding
+    const rightPadding = windowWidth * 0.05; // 5% padding from right
+    paintWindow.style.left = (windowWidth - windowSize - rightPadding) + "px";
+    paintWindow.style.top = (windowHeight * 0.1) + "px"; // 10% from top
+    
     makeDraggable(paintWindow, paintHeader);
   }
+
+  // Add resize handler for window
+  window.addEventListener('resize', () => {
+    if (paintWindow) {
+      const windowWidth = window.innerWidth;
+      const windowHeight = window.innerHeight;
+      
+      // Update window size
+      const windowSize = Math.min(windowWidth * 0.4, windowHeight * 0.6);
+      paintWindow.style.width = windowSize + 'px';
+      paintWindow.style.height = windowSize + 'px';
+      
+      // Update position if needed
+      const rightPadding = windowWidth * 0.05;
+      const currentLeft = parseInt(paintWindow.style.left);
+      const maxLeft = windowWidth - windowSize - rightPadding;
+      
+      // If window is off-screen or too far right, adjust position
+      if (currentLeft > maxLeft) {
+        paintWindow.style.left = maxLeft + "px";
+      }
+    }
+  });
 
   // Remove the old draggable window event listeners
   paintWindow.removeEventListener('touchstart', handleWindowTouchStart);
