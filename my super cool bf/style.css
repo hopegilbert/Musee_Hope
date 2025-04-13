@@ -625,7 +625,7 @@ h1 {
   background-color: #fae1ec;
   gap: 1.5rem;
   border-bottom: 1px solid #e5b3cc;
-  padding: 0;
+  padding: 8px 0;
   margin: 0;
   font-family: 'Tahoma', sans-serif;
   white-space: nowrap;
@@ -641,9 +641,9 @@ h1 {
   display: inline-flex;
   align-items: center;
   padding: 6px 12px;
-  margin: 0;
+  margin: 4px 0;
   cursor: pointer;
-  color: #b92c6d;
+  color: #4b0082;
   font-weight: bold;
   font-size: 0.8rem;
   border: none;
@@ -657,11 +657,11 @@ h1 {
 }
 
 .toolbar-tabs .tab:hover {
-  background-color: rgba(255, 194, 203, 0.3);
+  background-color: rgba(185, 44, 109, 0.2);
   color: #b92c6d;
   border-radius: 4px;
   padding: 6px 8px;
-  margin: 0 2px;
+  margin: 4px 2px;
 }
 
 .toolbar-tabs .tab.active {
@@ -742,11 +742,11 @@ h1 {
 }
 
 .tab.dropdown .dropdown-toggle:hover {
-  background-color: rgba(255, 194, 203, 0.3);
+  background-color: rgba(185, 44, 109, 0.2);
   color: #b92c6d;
   border-radius: 4px;
   padding: 6px 8px;
-  margin: 0 2px;
+  margin: 4px 2px;
 }
 
 .tab.dropdown.active .dropdown-toggle {
@@ -1019,11 +1019,11 @@ h1 {
 }
 
 .tab.dropdown .dropdown-toggle:hover {
-  background-color: rgba(255, 194, 203, 0.3);
+  background-color: rgba(185, 44, 109, 0.2);
   color: #b92c6d;
   border-radius: 4px;
   padding: 6px 8px;
-  margin: 0 2px;
+  margin: 4px 2px;
 }
 
 .tab.dropdown.active .dropdown-toggle {
