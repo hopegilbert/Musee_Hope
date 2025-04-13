@@ -118,10 +118,11 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
     
-    // Copy main canvas to temp canvas when starting shape drawing
+    // For shapes, store the initial canvas state
     if (['rectangle', 'ellipse', 'line'].includes(currentTool)) {
-      tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
-      tempCtx.drawImage(mainCanvas, 0, 0);
+        // Store initial state
+        tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
+        tempCtx.drawImage(mainCanvas, 0, 0);
     }
     
     [lastX, lastY] = [pos.x, pos.y];
@@ -174,64 +175,75 @@ document.addEventListener('DOMContentLoaded', () => {
         break;
         
       case 'rectangle':
-        // Start with a clean preview canvas
-        tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
-        tempCtx.drawImage(mainCanvas, 0, 0);
+        // Create a temporary canvas for shape preview
+        const rectPreview = document.createElement('canvas');
+        rectPreview.width = tempCanvas.width;
+        rectPreview.height = tempCanvas.height;
+        const rectCtx = rectPreview.getContext('2d');
         
-        // Calculate dimensions
+        // Copy the original state
+        rectCtx.drawImage(tempCanvas, 0, 0);
+        
+        // Draw the new rectangle
         const width = pos.x - startX;
         const height = pos.y - startY;
+        rectCtx.strokeStyle = currentColor;
+        rectCtx.lineWidth = brushSize;
+        rectCtx.strokeRect(startX, startY, width, height);
         
-        // Draw the preview rectangle
-        tempCtx.beginPath();
-        tempCtx.strokeStyle = currentColor;
-        tempCtx.lineWidth = brushSize;
-        tempCtx.strokeRect(startX, startY, width, height);
-        
-        // Show the preview
+        // Update display
         mainCtx.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
-        mainCtx.drawImage(tempCanvas, 0, 0);
+        mainCtx.drawImage(rectPreview, 0, 0);
         break;
         
       case 'ellipse':
-        // Start with a clean preview canvas
-        tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
-        tempCtx.drawImage(mainCanvas, 0, 0);
+        // Create a temporary canvas for shape preview
+        const ellipsePreview = document.createElement('canvas');
+        ellipsePreview.width = tempCanvas.width;
+        ellipsePreview.height = tempCanvas.height;
+        const ellipseCtx = ellipsePreview.getContext('2d');
         
-        // Calculate ellipse parameters
+        // Copy the original state
+        ellipseCtx.drawImage(tempCanvas, 0, 0);
+        
+        // Draw the new ellipse
         const radiusX = Math.abs(pos.x - startX) / 2;
         const radiusY = Math.abs(pos.y - startY) / 2;
         const centerX = startX + (pos.x - startX) / 2;
         const centerY = startY + (pos.y - startY) / 2;
         
-        // Draw the preview ellipse
-        tempCtx.beginPath();
-        tempCtx.strokeStyle = currentColor;
-        tempCtx.lineWidth = brushSize;
-        tempCtx.ellipse(centerX, centerY, radiusX, radiusY, 0, 0, Math.PI * 2);
-        tempCtx.stroke();
+        ellipseCtx.beginPath();
+        ellipseCtx.strokeStyle = currentColor;
+        ellipseCtx.lineWidth = brushSize;
+        ellipseCtx.ellipse(centerX, centerY, radiusX, radiusY, 0, 0, Math.PI * 2);
+        ellipseCtx.stroke();
         
-        // Show the preview
+        // Update display
         mainCtx.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
-        mainCtx.drawImage(tempCanvas, 0, 0);
+        mainCtx.drawImage(ellipsePreview, 0, 0);
         break;
         
       case 'line':
-        // Start with a clean preview canvas
-        tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
-        tempCtx.drawImage(mainCanvas, 0, 0);
+        // Create a temporary canvas for shape preview
+        const linePreview = document.createElement('canvas');
+        linePreview.width = tempCanvas.width;
+        linePreview.height = tempCanvas.height;
+        const lineCtx = linePreview.getContext('2d');
         
-        // Draw the preview line
-        tempCtx.beginPath();
-        tempCtx.strokeStyle = currentColor;
-        tempCtx.lineWidth = brushSize;
-        tempCtx.moveTo(startX, startY);
-        tempCtx.lineTo(pos.x, pos.y);
-        tempCtx.stroke();
+        // Copy the original state
+        lineCtx.drawImage(tempCanvas, 0, 0);
         
-        // Show the preview
+        // Draw the new line
+        lineCtx.beginPath();
+        lineCtx.strokeStyle = currentColor;
+        lineCtx.lineWidth = brushSize;
+        lineCtx.moveTo(startX, startY);
+        lineCtx.lineTo(pos.x, pos.y);
+        lineCtx.stroke();
+        
+        // Update display
         mainCtx.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
-        mainCtx.drawImage(tempCanvas, 0, 0);
+        mainCtx.drawImage(linePreview, 0, 0);
         break;
     }
   }
@@ -263,10 +275,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!isDrawing) return;
     isDrawing = false;
     
-    // For shapes, commit the final shape to the main canvas
+    // For shapes, commit the final shape
     if (['rectangle', 'ellipse', 'line'].includes(currentTool)) {
-        mainCtx.drawImage(tempCanvas, 0, 0);
-        // Copy the final result back to temp canvas
+        // Copy the current display to the temp canvas
         tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
         tempCtx.drawImage(mainCanvas, 0, 0);
     }
