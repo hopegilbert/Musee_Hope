@@ -1,4 +1,5 @@
 /* Y2K Style CSS for My Super Cool BF Page */
+/* Verified: .toolbar-buttons, .toolbar-tabs, and .toolbar-inner already include the required properties */
 
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
@@ -488,23 +489,14 @@ h1 {
   margin: 0;
 }
 
-.toolbar-inner {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  max-width: 100%;
-  padding-left: 12px; /* match "File" tab left start */
-  padding-right: 12px;
-  box-sizing: border-box;
-}
-
 .toolbar-tabs .tab {
-  padding: 4px 10px;
+  padding: 0;
+  margin: 0;
   font-size: 0.8rem;
   font-weight: bold;
   color: #6b1a3b;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 0;
   position: relative;
 }
 
