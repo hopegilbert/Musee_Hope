@@ -176,71 +176,56 @@ body {
 
 .toolbar {
     display: flex;
-    align-items: center;
     padding: 10px;
     background-color: #f0f0f0;
     border-bottom: 1px solid #ccc;
-    gap: 10px;
 }
 
-.toolbar-buttons {
+.toolbar-left {
     display: flex;
-    gap: 5px;
-    align-items: center;
+    align-items: flex-start;
+    margin-right: 20px;
 }
 
-.toolbar-buttons button {
-    width: 32px;
-    height: 32px;
-    padding: 4px;
-    border: 1px solid #ccc;
-    background: white;
-    border-radius: 4px;
-    cursor: pointer;
+.home-button {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.2s ease;
+    width: 32px;
+    height: 32px;
+    margin-right: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
 }
 
-.toolbar-buttons button:hover {
-    background: #e6e6e6;
-    border-color: #999;
+.home-button:hover {
+    background-color: #e0e0e0;
 }
 
-.toolbar-buttons button.active {
-    background: #ddd;
-    border-color: #999;
-}
-
-.toolbar-buttons button img {
+.home-button img {
     width: 20px;
     height: 20px;
-    object-fit: contain;
-}
-
-#homeBtn {
-    margin-right: 10px;
-    border-right: 2px solid #ccc;
-    padding-right: 15px;
 }
 
 .color-palette {
     display: flex;
+    flex-direction: column;
     gap: 4px;
-    padding: 5px;
-    background: white;
+    padding: 4px;
+    background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 4px;
-    margin-left: auto;
 }
 
 .color-box {
-    width: 24px;
-    height: 24px;
-    border: 1px solid #999;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #808080;
     cursor: pointer;
-    transition: transform 0.2s ease;
+    transition: transform 0.1s;
 }
 
 .color-box:hover {
@@ -249,7 +234,71 @@ body {
 
 .color-box.selected {
     border: 2px solid #000;
-    transform: scale(1.1);
+}
+
+.toolbar-buttons {
+    display: flex;
+    gap: 2px;
+}
+
+.toolbar-buttons button {
+    width: 32px;
+    height: 32px;
+    background: #c0c0c8;
+    border: 1px solid #ffffff;
+    border-right-color: #808080;
+    border-bottom-color: #808080;
+    padding: 3px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.toolbar-buttons button:hover {
+    background: #d4d0c8;
+}
+
+.toolbar-buttons button.active,
+.toolbar-buttons button:active {
+    background: #d4d0c8;
+    border: 1px solid #808080;
+    border-right-color: #ffffff;
+    border-bottom-color: #ffffff;
+}
+
+.toolbar-buttons img {
+    width: 24px;
+    height: 24px;
+}
+
+.main-canvas {
+    margin-top: 92px; /* Adjusted for new toolbar height */
+}
+
+.paint-tool {
+    background: none;
+    border: 1px solid transparent;
+    padding: 2px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.paint-tool:hover {
+    background-color: #e0e0e0;
+    border: 1px solid #ccc;
+}
+
+.paint-tool.active {
+    background-color: #c0c0c0;
+    border: 1px solid #808080;
+}
+
+.paint-tool img {
+    width: 16px;
+    height: 16px;
 }
 
 #paintCanvas {
