@@ -564,10 +564,10 @@ h1 {
 .toolbar-buttons {
   display: flex;
   flex-wrap: wrap;
-  gap: 2rem;
+  gap: 1rem;
   padding: 10px 16px;
   background-color: #fff0f7;
-  justify-content: space-between;
+  justify-content: flex-start;
   overflow-x: auto;
   white-space: nowrap;
 }
