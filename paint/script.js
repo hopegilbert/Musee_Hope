@@ -61,8 +61,8 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Update undo/redo button states
   function updateButtonStates() {
-    undoBtn.style.opacity = historyIndex <= 0 ? '0.5' : '1';
-    redoBtn.style.opacity = historyIndex >= history.length - 1 ? '0.5' : '1';
+    if (undoBtn) undoBtn.style.opacity = historyIndex <= 0 ? '0.5' : '1';
+    if (redoBtn) redoBtn.style.opacity = historyIndex >= history.length - 1 ? '0.5' : '1';
   }
   
   // Undo last action
@@ -98,35 +98,37 @@ document.addEventListener('DOMContentLoaded', () => {
     const rect = canvas.getBoundingClientRect();
     lastX = e.clientX - rect.left;
     lastY = e.clientY - rect.top;
+    
+    // Ensure coordinates are within canvas bounds
+    lastX = Math.max(0, Math.min(lastX, canvas.width));
+    lastY = Math.max(0, Math.min(lastY, canvas.height));
+    
     ctx.beginPath();
     ctx.moveTo(lastX, lastY);
   }
   
   function draw(e) {
     if (!isDrawing) return;
+    
     const rect = canvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
+    let x = e.clientX - rect.left;
+    let y = e.clientY - rect.top;
+    
+    // Ensure coordinates are within canvas bounds
+    x = Math.max(0, Math.min(x, canvas.width));
+    y = Math.max(0, Math.min(y, canvas.height));
+    
     ctx.beginPath();
     ctx.moveTo(lastX, lastY);
     
     if (currentTool === 'eraser') {
       ctx.globalCompositeOperation = 'destination-out';
       ctx.lineWidth = 20;
-      ctx.strokeStyle = 'rgba(0,0,0,1)';  // Make sure eraser is fully opaque
-    } else if (currentTool === 'brush') {
-      ctx.globalCompositeOperation = 'source-over';
-      ctx.strokeStyle = currentColor;
-      ctx.lineWidth = 5;
-    } else if (currentTool === 'spray-can') {
-      drawSpray(x, y);
-      [lastX, lastY] = [x, y];
-      return;
+      ctx.strokeStyle = 'rgba(0,0,0,1)';
     } else {
       ctx.globalCompositeOperation = 'source-over';
       ctx.strokeStyle = currentColor;
-      ctx.lineWidth = 2;
+      ctx.lineWidth = currentTool === 'brush' ? 5 : 2;
     }
     
     ctx.lineTo(x, y);
@@ -219,8 +221,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   
   // Button event listeners
-  undoBtn.addEventListener('click', undo);
-  redoBtn.addEventListener('click', redo);
+  if (undoBtn) undoBtn.addEventListener('click', undo);
+  if (redoBtn) redoBtn.addEventListener('click', redo);
   
   // Keyboard shortcuts
   document.addEventListener('keydown', (e) => {
