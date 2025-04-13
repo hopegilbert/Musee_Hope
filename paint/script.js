@@ -621,6 +621,14 @@ document.addEventListener('DOMContentLoaded', () => {
       paintWindow.style.left = (windowWidth - windowSize - rightPadding) + 'px';
       paintWindow.style.top = (windowHeight * 0.1) + 'px'; // 10% from top
 
+      // Update header font size based on window size
+      const headerFontSize = Math.max(12, Math.min(16, windowSize * 0.04)); // Between 12px and 16px
+      paintHeader.style.fontSize = headerFontSize + 'px';
+      
+      // Update header padding
+      const headerPadding = Math.max(4, Math.min(8, windowSize * 0.02)); // Between 4px and 8px
+      paintHeader.style.padding = headerPadding + 'px ' + (headerPadding * 2) + 'px';
+
       // Ensure main canvas stays full screen
       setCanvasSize();
     };
