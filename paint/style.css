@@ -9,64 +9,75 @@ body {
     background-color: #f0f0f0;
     height: 100vh;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.paint-container {
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .toolbar {
     background-color: #f0f0f0;
     border-bottom: 1px solid #ccc;
     padding: 4px;
-}
-
-.toolbar-inner {
     display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.toolbar-tabs {
-    display: flex;
-    gap: 8px;
-}
-
-.tab {
-    padding: 4px 8px;
-    cursor: pointer;
-    border: 1px solid transparent;
-}
-
-.tab:hover {
-    background-color: #e0e0e0;
-    border: 1px solid #ccc;
+    flex-direction: column;
+    gap: 4px;
 }
 
 .toolbar-buttons {
     display: flex;
-    gap: 8px;
-    margin-left: 8px;
+    gap: 4px;
 }
 
-.toolbar-buttons img {
-    width: 24px;
-    height: 24px;
+.paint-tool {
+    background: none;
+    border: 1px solid transparent;
+    padding: 2px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.paint-tool:hover {
+    background-color: #e0e0e0;
+    border: 1px solid #ccc;
+}
+
+.paint-tool.active {
+    background-color: #c0c0c0;
+    border: 1px solid #808080;
+}
+
+.paint-tool img {
+    width: 16px;
+    height: 16px;
+}
+
+.color-palette {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    padding: 4px;
+}
+
+.color-box {
+    width: 16px;
+    height: 16px;
+    border: 1px solid #808080;
     cursor: pointer;
 }
 
-.toolbar-buttons img:hover {
-    opacity: 0.8;
-}
-
-.canvas-container {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-    margin: 8px;
-    border: 1px solid #ccc;
+.color-box:hover {
+    border: 1px solid #000;
 }
 
 #paintCanvas {
     background-color: white;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    display: block;
+    cursor: crosshair;
 }

@@ -17,7 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
   let lastY = 0;
   let currentTool = 'pencil';
   let currentColor = '#000000';
-  let history = [];
+  let brushSize = 5;
+  let canvasHistory = [];
   let historyIndex = -1;
   const MAX_HISTORY = 20;
   
@@ -63,19 +64,17 @@ document.addEventListener('DOMContentLoaded', () => {
     if (currentTool === 'eraser') {
       mainCtx.globalCompositeOperation = 'destination-out';
       mainCtx.lineWidth = 20;
-      ctx.globalCompositeOperation = 'destination-out';
-      ctx.lineWidth = 20;
-      ctx.strokeStyle = 'rgba(0,0,0,1)';
+      mainCtx.strokeStyle = 'rgba(0,0,0,1)';
     } else {
-      ctx.globalCompositeOperation = 'source-over';
-      ctx.strokeStyle = currentColor;
-      ctx.lineWidth = currentTool === 'brush' ? 5 : 2;
+      mainCtx.globalCompositeOperation = 'source-over';
+      mainCtx.strokeStyle = currentColor;
+      mainCtx.lineWidth = brushSize;
     }
     
-    ctx.lineTo(pos.x, pos.y);
-    ctx.lineCap = 'round';
-    ctx.lineJoin = 'round';
-    ctx.stroke();
+    mainCtx.lineTo(pos.x, pos.y);
+    mainCtx.lineCap = 'round';
+    mainCtx.lineJoin = 'round';
+    mainCtx.stroke();
     
     lastX = pos.x;
     lastY = pos.y;
@@ -85,8 +84,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const density = 50;
     const radius = 10;
     
-    ctx.globalCompositeOperation = 'source-over';
-    ctx.fillStyle = currentColor;
+    mainCtx.globalCompositeOperation = 'source-over';
+    mainCtx.fillStyle = currentColor;
     
     for (let i = 0; i < density; i++) {
       const angle = Math.random() * Math.PI * 2;
@@ -94,29 +93,30 @@ document.addEventListener('DOMContentLoaded', () => {
       const dx = x + r * Math.cos(angle);
       const dy = y + r * Math.sin(angle);
       
-      ctx.beginPath();
-      ctx.arc(dx, dy, 0.5, 0, Math.PI * 2);
-      ctx.fill();
+      mainCtx.beginPath();
+      mainCtx.arc(dx, dy, 0.5, 0, Math.PI * 2);
+      mainCtx.fill();
     }
   }
   
   function stopDrawing() {
     if (isDrawing) {
       isDrawing = false;
-      ctx.globalCompositeOperation = 'source-over';
+      mainCtx.globalCompositeOperation = 'source-over';
       saveState();
     }
   }
   
   // Save current canvas state to history
   function saveState() {
-    const state = canvas.toDataURL();
-    history = history.slice(0, historyIndex + 1);
-    history.push(state);
     historyIndex++;
+    if (historyIndex < canvasHistory.length) {
+      canvasHistory = canvasHistory.slice(0, historyIndex);
+    }
+    canvasHistory.push(mainCanvas.toDataURL());
     
-    if (history.length > MAX_HISTORY) {
-      history.shift();
+    if (canvasHistory.length > MAX_HISTORY) {
+      canvasHistory.shift();
       historyIndex--;
     }
     
@@ -128,17 +128,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const undoBtn = document.getElementById('undoBtn');
     const redoBtn = document.getElementById('redoBtn');
     if (undoBtn) undoBtn.style.opacity = historyIndex <= 0 ? '0.5' : '1';
-    if (redoBtn) redoBtn.style.opacity = historyIndex >= history.length - 1 ? '0.5' : '1';
+    if (redoBtn) redoBtn.style.opacity = historyIndex >= canvasHistory.length - 1 ? '0.5' : '1';
   }
   
   // Load state from history
-  function loadState() {
-    if (historyIndex >= 0 && historyIndex < history.length) {
+  function loadState(index) {
+    if (index >= 0 && index < canvasHistory.length) {
       const img = new Image();
-      img.src = history[historyIndex];
+      img.src = canvasHistory[index];
       img.onload = () => {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.drawImage(img, 0, 0);
+        mainCtx.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
+        mainCtx.drawImage(img, 0, 0);
         updateButtonStates();
       };
     }
@@ -148,22 +148,22 @@ document.addEventListener('DOMContentLoaded', () => {
   function undo() {
     if (historyIndex > 0) {
       historyIndex--;
-      loadState();
+      loadState(historyIndex);
     }
   }
   
   function redo() {
-    if (historyIndex < history.length - 1) {
+    if (historyIndex < canvasHistory.length - 1) {
       historyIndex++;
-      loadState();
+      loadState(historyIndex);
     }
   }
   
   // Event listeners for canvas
-  canvas.addEventListener('mousedown', startDrawing);
-  canvas.addEventListener('mousemove', draw);
-  canvas.addEventListener('mouseup', stopDrawing);
-  canvas.addEventListener('mouseout', stopDrawing);
+  mainCanvas.addEventListener('mousedown', startDrawing);
+  mainCanvas.addEventListener('mousemove', draw);
+  mainCanvas.addEventListener('mouseup', stopDrawing);
+  mainCanvas.addEventListener('mouseout', stopDrawing);
   
   // Tool selection
   const tools = document.querySelectorAll('.paint-tool');
@@ -175,7 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
       currentTool = toolName;
       tools.forEach(t => t.classList.remove('active'));
       tool.classList.add('active');
-      canvas.style.cursor = toolName === 'eraser' ? 'cell' : 'crosshair';
+      mainCanvas.style.cursor = toolName === 'eraser' ? 'cell' : 'crosshair';
     });
   });
   
@@ -227,7 +227,7 @@ document.addEventListener('DOMContentLoaded', () => {
       currentTool = 'eraser';
       tools.forEach(t => t.classList.remove('active'));
       eraserBtn.classList.add('active');
-      canvas.style.cursor = 'cell';
+      mainCanvas.style.cursor = 'cell';
     });
   }
   
@@ -243,6 +243,53 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   });
+  
+  // Draggable window functionality
+  const paintWindow = document.getElementById('paintWindow');
+  const paintHeader = document.getElementById('paintHeader');
+  let isDragging = false;
+  let currentX;
+  let currentY;
+  let initialX;
+  let initialY;
+  let xOffset = 0;
+  let yOffset = 0;
+  
+  paintHeader.addEventListener("mousedown", dragStart);
+  document.addEventListener("mousemove", drag);
+  document.addEventListener("mouseup", dragEnd);
+  
+  function dragStart(e) {
+    initialX = e.clientX - xOffset;
+    initialY = e.clientY - yOffset;
+
+    if (e.target === paintHeader) {
+      isDragging = true;
+    }
+  }
+  
+  function drag(e) {
+    if (isDragging) {
+      e.preventDefault();
+      currentX = e.clientX - initialX;
+      currentY = e.clientY - initialY;
+
+      xOffset = currentX;
+      yOffset = currentY;
+
+      setTranslate(currentX, currentY, paintWindow);
+    }
+  }
+  
+  function setTranslate(xPos, yPos, el) {
+    el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
+  }
+  
+  function dragEnd(e) {
+    initialX = currentX;
+    initialY = currentY;
+    isDragging = false;
+  }
   
   // Initialize canvas
   initCanvas();
