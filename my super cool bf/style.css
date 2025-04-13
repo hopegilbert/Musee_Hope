@@ -45,7 +45,7 @@ body {
     padding: 8rem 1rem 1rem;
     text-shadow: 2px 2px 0 #fff;
     letter-spacing: 4px;
-    margin-top: 180px;
+    margin-top: 150px;
     white-space: nowrap;
     overflow: hidden;
     border-right: 2px solid #ff4eb1;
@@ -708,7 +708,7 @@ h1 {
   }
 
   .page-title {
-    margin-top: 150px;
+    margin-top: 120px;
     padding: 4rem 1rem 1rem;
   }
 }
@@ -735,7 +735,7 @@ h1 {
   }
 
   .page-title {
-    margin-top: 120px;
+    margin-top: 100px;
     padding: 3rem 1rem 1rem;
   }
 }
