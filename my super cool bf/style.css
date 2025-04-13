@@ -657,7 +657,7 @@ h1 {
 }
 
 .toolbar-tabs .tab:hover {
-  background-color: transparent;
+  background-color: rgba(255, 194, 203, 0.3);
   color: #b92c6d;
 }
 
@@ -739,7 +739,7 @@ h1 {
 }
 
 .tab.dropdown .dropdown-toggle:hover {
-  background-color: transparent;
+  background-color: rgba(255, 194, 203, 0.3);
   color: #b92c6d;
 }
 
@@ -1013,7 +1013,7 @@ h1 {
 }
 
 .tab.dropdown .dropdown-toggle:hover {
-  background-color: transparent;
+  background-color: rgba(255, 194, 203, 0.3);
   color: #b92c6d;
 }
 
