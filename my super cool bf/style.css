@@ -660,12 +660,11 @@ h1 {
   display: flex;
   flex-wrap: nowrap;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
   overflow-x: auto;
-  gap: 16px;
+  gap: 12px;
   padding: 6px 10px;
   white-space: nowrap;
-  -webkit-overflow-scrolling: touch;
   background-color: #fff0f7;
   width: 100%;
 }
@@ -673,23 +672,20 @@ h1 {
 .icon-group {
   display: flex;
   flex: 0 0 auto;
-  gap: 6px;
-  align-items: center;
-  justify-content: center;
-  min-width: 0;
+  align-items: flex-start;
+  gap: 4px;
   padding: 0;
   margin: 0;
-  height: 32px;
-  box-sizing: border-box;
+  height: auto;
 }
 
 .icon-group img {
-  width: 20px;
-  height: 20px;
-  padding: 2px;
-  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  padding: 1px;
+  margin: 0;
   display: block;
-  margin: auto;
+  line-height: 1;
   background-color: #ffffff;
   border: 1px solid #d9b0c8;
   border-radius: 3px;
@@ -886,30 +882,6 @@ h1 {
     font-size: 0.75rem;
   }
 
-  .toolbar-buttons {
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    gap: 12px;
-    padding: 6px;
-  }
-
-  .icon-group {
-    flex: 0 0 auto;
-    display: flex;
-    gap: 4px;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    padding: 0;
-    margin: 0;
-    margin-right: 12px;
-    margin-bottom: 8px;
-  }
-
-  .icon-group img {
-    width: 20px;
-    height: 20px;
-  }
-
   .dropdown-content {
     min-width: 160px;
   }
@@ -942,36 +914,6 @@ h1 {
     left: 0;
     width: 100%;
     z-index: 9999;
-  }
-
-  .toolbar-buttons {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    align-items: flex-start;
-    overflow-x: auto;
-    gap: 12px;
-    padding: 6px 10px;
-    white-space: nowrap;
-  }
-
-  .icon-group {
-    display: flex;
-    flex: 0 0 auto;
-    align-items: flex-start;
-    gap: 4px;
-    padding: 0;
-    margin: 0;
-    height: auto;
-  }
-
-  .icon-group img {
-    width: 18px;
-    height: 18px;
-    padding: 1px;
-    margin: 0;
-    display: block;
-    line-height: 1;
   }
 
   .draggable-window {
@@ -1050,37 +992,5 @@ h1 {
   .icon-group img {
     image-rendering: -webkit-optimize-contrast;
     image-rendering: crisp-edges;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .toolbar-buttons {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    align-items: flex-start;
-    overflow-x: auto;
-    gap: 12px;
-    padding: 6px 10px;
-    white-space: nowrap;
-  }
-
-  .icon-group {
-    display: flex;
-    flex: 0 0 auto;
-    align-items: flex-start;
-    gap: 4px;
-    padding: 0;
-    margin: 0;
-    height: auto;
-  }
-
-  .icon-group img {
-    width: 18px;
-    height: 18px;
-    padding: 1px;
-    margin: 0;
-    display: block;
-    line-height: 1;
   }
 }
