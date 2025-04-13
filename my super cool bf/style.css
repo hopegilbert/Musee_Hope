@@ -965,6 +965,7 @@ h1 {
 }
 
 .dropdown-content {
+  display: none;
   position: absolute;
   top: 100%;
   left: 0;
@@ -1010,11 +1011,6 @@ h1 {
 .dropdown-content div:hover::before {
   left: 10px;
   opacity: 1;
-}
-
-.tab.dropdown:hover .dropdown-content {
-  display: block;
-  animation: dropdownFadeIn 0.3s ease;
 }
 
 @keyframes dropdownFadeIn {
