@@ -488,6 +488,16 @@ h1 {
   margin: 0;
 }
 
+.toolbar-inner {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  padding-left: 12px; /* match "File" tab left start */
+  padding-right: 12px;
+  box-sizing: border-box;
+}
+
 .toolbar-tabs .tab {
   padding: 4px 10px;
   font-size: 0.8rem;
@@ -944,14 +954,4 @@ h1 {
     image-rendering: -webkit-optimize-contrast;
     image-rendering: crisp-edges;
   }
-}
-
-.toolbar-inner {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  max-width: 100%;
-  padding-left: 12px;
-  padding-right: 12px;
-  box-sizing: border-box;
 }
