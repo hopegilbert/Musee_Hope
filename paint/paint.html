@@ -17,7 +17,13 @@
             flex-direction: column;
             min-width: 300px;
             min-height: 400px;
+            max-width: 95vw;
+            max-height: 90vh;
+            width: 60vw;
+            height: 80vh;
             overflow: hidden;
+            transform: translate3d(0, 0, 0);
+            transition: none;
         }
 
         .paint-header {
@@ -284,9 +290,10 @@
             .paint-window {
                 width: 95vw;
                 height: 80vh;
-                top: 120px;
-                right: 2.5vw;
-                transform: none !important;
+                min-width: 280px;
+                min-height: 350px;
+                max-width: 95vw;
+                max-height: 90vh;
             }
 
             .paint-canvas-container {
@@ -332,6 +339,11 @@
         }
 
         @media (max-height: 600px) {
+            .paint-window {
+                height: 90vh;
+                min-height: 300px;
+            }
+
             .paint-toolbar {
                 gap: 2px;
             }
@@ -339,6 +351,13 @@
             .paint-tool {
                 height: 28px;
                 min-height: 28px;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .paint-window {
+                width: 50vw;
+                height: 70vh;
             }
         }
     </style>
