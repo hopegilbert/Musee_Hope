@@ -640,13 +640,15 @@ h1 {
 .toolbar-tabs .tab {
   display: inline-flex;
   align-items: center;
-  padding: 8px 12px;
+  padding: 6px 12px;
   margin: 0;
   cursor: pointer;
-  color: #6b1a3b;
+  color: #4b0082;
+  font-weight: bold;
   font-size: 0.8rem;
+  border: none;
+  background: none;
   position: relative;
-  transition: all 0.3s ease;
   white-space: nowrap;
   flex-shrink: 0;
   width: auto;
@@ -719,21 +721,21 @@ h1 {
 }
 
 .tab.dropdown .dropdown-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  width: auto;
-  min-width: fit-content;
-  padding: 8px 12px;
+  padding: 6px 12px;
   margin: 0;
-  cursor: pointer;
-  color: #6b1a3b;
+  border: none;
+  background: none;
+  color: #4b0082;
+  font-weight: bold;
   font-size: 0.8rem;
-  position: relative;
-  transition: all 0.3s ease;
+  cursor: pointer;
+  font-family: 'Tahoma', sans-serif;
   white-space: nowrap;
-  flex-shrink: 0;
-  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
 }
 
 .tab.dropdown .dropdown-toggle:hover {
@@ -761,27 +763,31 @@ h1 {
   position: absolute;
   top: 100%;
   left: 0;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-  z-index: 1;
+  background-color: #fef1f7;
+  min-width: 200px;
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+  z-index: 1000;
+  border: 1px solid #c26d9c;
   border-radius: 4px;
-  padding: 8px 0;
-  margin-top: 4px;
-  width: auto;
 }
 
 .dropdown-content div {
-  padding: 8px 16px;
+  color: #6b1a3b;
+  padding: 8px 12px;
   text-decoration: none;
   display: block;
-  color: #333;
+  font-size: 0.8rem;
   cursor: pointer;
-  transition: background-color 0.3s;
+  border-bottom: 1px solid #e5b3cc;
+}
+
+.dropdown-content div:last-child {
+  border-bottom: none;
 }
 
 .dropdown-content div:hover {
-  background-color: #f1f1f1;
+  background-color: #f9c9dd;
+  color: #4b0e29;
 }
 
 .tab:hover .dropdown-content {
