@@ -57,9 +57,9 @@ document.addEventListener('DOMContentLoaded', () => {
     lastY = pos.y;
     
     if (currentTool === 'eraser') {
-      mainCtx.globalCompositeOperation = 'destination-out';
+        tempCtx.globalCompositeOperation = 'destination-out';
     } else {
-      mainCtx.globalCompositeOperation = 'source-over';
+        tempCtx.globalCompositeOperation = 'source-over';
     }
   }
   
@@ -73,8 +73,8 @@ document.addEventListener('DOMContentLoaded', () => {
     tempCtx.lineTo(pos.x, pos.y);
     
     if (currentTool === 'eraser') {
-        tempCtx.globalCompositeOperation = 'source-over';
-        tempCtx.strokeStyle = '#FFFFFF';
+        tempCtx.globalCompositeOperation = 'destination-out';
+        tempCtx.strokeStyle = 'rgba(0,0,0,1)';
     } else {
         tempCtx.globalCompositeOperation = 'source-over';
         tempCtx.strokeStyle = currentColor;
@@ -114,9 +114,9 @@ document.addEventListener('DOMContentLoaded', () => {
   
   function stopDrawing() {
     if (isDrawing) {
-      isDrawing = false;
-      mainCtx.globalCompositeOperation = 'source-over';
-      saveState();
+        isDrawing = false;
+        tempCtx.globalCompositeOperation = 'source-over';
+        saveState();
     }
   }
   
