@@ -377,20 +377,14 @@ document.addEventListener('DOMContentLoaded', () => {
   mainCanvas.addEventListener('mouseup', stopDrawing);
   mainCanvas.addEventListener('mouseout', stopDrawing);
   
-  // Tool selection with touch support
+  // Tool selection
   const tools = document.querySelectorAll('.paint-tool');
   tools.forEach(tool => {
-    const handleToolClick = function() {
-        const toolName = this.querySelector('img').alt.toLowerCase();
-        const toolId = toolName + 'Btn';
-        setActiveTool(toolId, toolName);
-        brushSize = toolButtons[toolId]?.size || 2;
-    };
-    
-    tool.addEventListener('click', handleToolClick);
-    tool.addEventListener('touchend', (e) => {
-        e.preventDefault();
-        handleToolClick.call(tool);
+    tool.addEventListener('click', function() {
+      const toolName = this.querySelector('img').alt.toLowerCase();
+      const toolId = toolName + 'Btn';
+      setActiveTool(toolId, toolName);
+      brushSize = toolButtons[toolId]?.size || 2;
     });
   });
   
@@ -403,10 +397,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
   
-  // Color selection with touch support
-  const colorDropdown = document.querySelector('.color-dropdown');
+  // Color selection
   const colorButton = document.querySelector('.color-button');
   const colorOptions = document.querySelectorAll('.color-option');
+  const colorBoxes = document.querySelectorAll('.paint-colors .color-box');
+  const menuColorBoxes = document.querySelectorAll('.color-grid .color-box');
   
   function updateColorSelection(newColor) {
     currentColor = newColor;
@@ -430,48 +425,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
   
-  // Color dropdown functionality with touch support
-  if (colorDropdown) {
-    // Toggle dropdown on touch
-    colorButton.addEventListener('touchend', (e) => {
-        e.preventDefault();
-        colorDropdown.classList.toggle('active');
-    });
-    
-    // Close dropdown when touching outside
-    document.addEventListener('touchend', (e) => {
-        if (!colorDropdown.contains(e.target)) {
-            colorDropdown.classList.remove('active');
-        }
-    });
-  }
-  
-  // Color selection with touch support
+  // Color dropdown functionality
   colorOptions.forEach(option => {
-    const handleColorSelect = function() {
-        updateColorSelection(this.style.backgroundColor);
-        colorDropdown.classList.remove('active');
-    };
-    
-    option.addEventListener('click', handleColorSelect);
-    option.addEventListener('touchend', (e) => {
-        e.preventDefault();
-        handleColorSelect.call(option);
+    option.addEventListener('click', function() {
+      updateColorSelection(this.style.backgroundColor);
     });
   });
   
-  // Paint window color boxes with touch support
-  const colorBoxes = document.querySelectorAll('.paint-colors .color-box');
+  // Paint window color boxes functionality
   colorBoxes.forEach(box => {
-    const handleColorBoxSelect = function() {
-        updateColorSelection(this.style.backgroundColor);
-        this.classList.add('selected');
-    };
-    
-    box.addEventListener('click', handleColorBoxSelect);
-    box.addEventListener('touchend', (e) => {
-        e.preventDefault();
-        handleColorBoxSelect.call(box);
+    box.addEventListener('click', function() {
+      updateColorSelection(this.style.backgroundColor);
+      this.classList.add('selected');
     });
   });
   
@@ -514,59 +479,37 @@ document.addEventListener('DOMContentLoaded', () => {
     'lineBtn': { tool: 'line', size: 2 }
   };
   
-  // Tool buttons with touch support
   Object.entries(toolButtons).forEach(([btnId, settings]) => {
     const button = document.getElementById(btnId);
     if (button) {
-        const handleToolButtonClick = () => {
+        button.addEventListener('click', () => {
             setActiveTool(btnId, settings.tool);
             brushSize = settings.size;
-        };
-        
-        button.addEventListener('click', handleToolButtonClick);
-        button.addEventListener('touchend', (e) => {
-            e.preventDefault();
-            handleToolButtonClick();
         });
     }
   });
   
-  // Add touch support for fill and text tools
-  const fillBtn = document.getElementById('fillBtn');
-  const textBtn = document.getElementById('textBtn');
+  // Add direct click handlers for fill and text tools
+  document.getElementById('fillBtn')?.addEventListener('click', () => {
+    currentTool = 'fill';
+    mainCanvas.style.cursor = 'crosshair';
+  });
 
-  if (fillBtn) {
-    fillBtn.addEventListener('touchend', (e) => {
-        e.preventDefault();
-        currentTool = 'fill';
-        mainCanvas.style.cursor = 'crosshair';
-    });
-  }
-
-  if (textBtn) {
-    textBtn.addEventListener('touchend', (e) => {
-        e.preventDefault();
-        currentTool = 'text';
-        mainCanvas.style.cursor = 'text';
-    });
-  }
+  document.getElementById('textBtn')?.addEventListener('click', () => {
+    currentTool = 'text';
+    mainCanvas.style.cursor = 'text';
+  });
   
-  // Undo/Redo buttons with touch support
+  // Undo/Redo button listeners
   const undoBtn = document.getElementById('undoBtn');
   const redoBtn = document.getElementById('redoBtn');
   
   if (undoBtn) {
-    undoBtn.addEventListener('touchend', (e) => {
-        e.preventDefault();
-        undo();
-    });
+    undoBtn.addEventListener('click', undo);
   }
   
   if (redoBtn) {
-    redoBtn.addEventListener('touchend', (e) => {
-        e.preventDefault();
-        redo();
-    });
+    redoBtn.addEventListener('click', redo);
   }
   
   // Keyboard shortcuts
@@ -663,84 +606,61 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize draggable window
   if (paintWindow && paintHeader) {
-    // Calculate responsive size and position
-    const windowWidth = window.innerWidth;
-    const windowHeight = window.innerHeight;
+    // Calculate responsive size based on viewport
+    const updateWindowSize = () => {
+      const windowWidth = window.innerWidth;
+      const windowHeight = window.innerHeight;
+      
+      // Calculate window size (40% of viewport width, max 800px)
+      const windowSize = Math.min(windowWidth * 0.4, 800);
+      
+      // Set window dimensions
+      paintWindow.style.width = windowSize + 'px';
+      paintWindow.style.height = (windowSize * 1.2) + 'px'; // 20% taller than width
+      
+      // Position window on the right side with padding
+      const rightPadding = Math.min(windowWidth * 0.02, 20); // 2% of viewport width or 20px
+      paintWindow.style.left = (windowWidth - windowSize - rightPadding) + 'px';
+      paintWindow.style.top = (windowHeight * 0.1) + 'px'; // 10% from top
+    };
     
-    // Set window size relative to screen size
-    const windowSize = Math.min(windowWidth * 0.4, windowHeight * 0.6);
-    paintWindow.style.width = windowSize + 'px';
-    paintWindow.style.height = windowSize + 'px';
+    // Initial size update
+    updateWindowSize();
     
-    // Calculate toolbar size for paint window only
-    const toolbarSize = Math.max(windowSize * 0.08, 24);
-    document.querySelectorAll('.paint-toolbar .paint-tool').forEach(btn => {
-      btn.style.width = toolbarSize + 'px';
-      btn.style.height = toolbarSize + 'px';
+    // Update on window resize
+    window.addEventListener('resize', () => {
+      updateWindowSize();
     });
-    
-    // Adjust color palette
-    const colorPalette = document.querySelector('.color-palette');
-    if (colorPalette) {
-      const paletteSize = windowSize * 0.8;
-      colorPalette.style.width = paletteSize + 'px';
-      const colorButtons = colorPalette.querySelectorAll('button');
-      const buttonSize = Math.max(paletteSize / 8, 20);
-      colorButtons.forEach(btn => {
-        btn.style.width = buttonSize + 'px';
-        btn.style.height = buttonSize + 'px';
-      });
-    }
-    
-    // Set initial position to right side with padding
-    const rightPadding = windowWidth * 0.05;
-    paintWindow.style.left = (windowWidth - windowSize - rightPadding) + "px";
-    paintWindow.style.top = (windowHeight * 0.1) + "px";
     
     makeDraggable(paintWindow, paintHeader);
   }
 
-  // Update resize handler
-  window.addEventListener('resize', () => {
+  // Update canvas size based on window size
+  const updateCanvasSize = () => {
     if (paintWindow) {
-      const windowWidth = window.innerWidth;
-      const windowHeight = window.innerHeight;
-      
-      // Update window size
-      const windowSize = Math.min(windowWidth * 0.4, windowHeight * 0.6);
-      paintWindow.style.width = windowSize + 'px';
-      paintWindow.style.height = windowSize + 'px';
-      
-      // Update toolbar size for paint window only
-      const toolbarSize = Math.max(windowSize * 0.08, 24);
-      document.querySelectorAll('.paint-toolbar .paint-tool').forEach(btn => {
-        btn.style.width = toolbarSize + 'px';
-        btn.style.height = toolbarSize + 'px';
-      });
-      
-      // Update color palette
-      const colorPalette = document.querySelector('.color-palette');
-      if (colorPalette) {
-        const paletteSize = windowSize * 0.8;
-        colorPalette.style.width = paletteSize + 'px';
-        const colorButtons = colorPalette.querySelectorAll('button');
-        const buttonSize = Math.max(paletteSize / 8, 20);
-        colorButtons.forEach(btn => {
-          btn.style.width = buttonSize + 'px';
-          btn.style.height = buttonSize + 'px';
-        });
-      }
-      
-      // Update position if needed
-      const rightPadding = windowWidth * 0.05;
-      const currentLeft = parseInt(paintWindow.style.left);
-      const maxLeft = windowWidth - windowSize - rightPadding;
-      
-      if (currentLeft > maxLeft) {
-        paintWindow.style.left = maxLeft + "px";
+      const contentArea = paintWindow.querySelector('.paint-content');
+      if (contentArea) {
+        const width = contentArea.offsetWidth - 120; // Account for toolbars
+        const height = contentArea.offsetHeight - 20; // Account for padding
+        mainCanvas.width = width;
+        mainCanvas.height = height;
+        tempCanvas.width = width;
+        tempCanvas.height = height;
+        
+        // Redraw canvas content if needed
+        mainCtx.drawImage(tempCanvas, 0, 0);
       }
     }
+  };
+
+  // Add resize observer for paint window
+  const resizeObserver = new ResizeObserver(() => {
+    updateCanvasSize();
   });
+  
+  if (paintWindow) {
+    resizeObserver.observe(paintWindow);
+  }
 
   // Remove the old draggable window event listeners
   paintWindow.removeEventListener('touchstart', handleWindowTouchStart);
