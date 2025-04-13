@@ -414,10 +414,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const colorOptionsContainer = document.querySelector('.color-options');
   if (colorDropdown) {
     colorDropdown.style.position = 'fixed';
-    colorDropdown.style.zIndex = '100000';
-    if (colorOptionsContainer) {
-      colorOptionsContainer.style.position = 'relative';
-      colorOptionsContainer.style.zIndex = '100001';
+    colorDropdown.style.zIndex = '999999';
+    
+    // Style for mobile
+    if (window.innerWidth <= 768) {
+      colorDropdown.style.position = 'fixed';
+      colorDropdown.style.zIndex = '999999';
+      if (colorOptionsContainer) {
+        colorOptionsContainer.style.position = 'fixed';
+        colorOptionsContainer.style.zIndex = '999999';
+      }
     }
   }
   
@@ -429,19 +435,46 @@ document.addEventListener('DOMContentLoaded', () => {
         const buttonRect = colorButton.getBoundingClientRect();
         const windowRect = paintWindow.getBoundingClientRect();
         
-        // Position relative to the paint window
-        colorDropdown.style.top = buttonRect.bottom + 'px';
-        colorDropdown.style.left = Math.max(buttonRect.left, windowRect.left) + 'px';
-        colorDropdown.style.display = colorDropdown.style.display === 'none' ? 'block' : 'none';
-        
-        // Ensure the dropdown doesn't go off-screen
-        const dropdownRect = colorDropdown.getBoundingClientRect();
-        if (dropdownRect.right > window.innerWidth) {
-          colorDropdown.style.left = (window.innerWidth - dropdownRect.width) + 'px';
+        // Position differently for mobile
+        if (window.innerWidth <= 768) {
+          colorDropdown.style.top = (buttonRect.bottom + 5) + 'px';
+          colorDropdown.style.left = '50%';
+          colorDropdown.style.transform = 'translateX(-50%)';
+          colorDropdown.style.width = '90vw';
+          colorDropdown.style.maxWidth = '300px';
+        } else {
+          // Desktop positioning
+          colorDropdown.style.top = buttonRect.bottom + 'px';
+          colorDropdown.style.left = Math.max(buttonRect.left, windowRect.left) + 'px';
+          colorDropdown.style.transform = 'none';
+          colorDropdown.style.width = 'auto';
         }
+        
+        colorDropdown.style.display = colorDropdown.style.display === 'none' ? 'block' : 'none';
       }
     });
   }
+
+  // Update color dropdown position on window resize
+  window.addEventListener('resize', () => {
+    if (colorDropdown && colorDropdown.style.display !== 'none') {
+      const buttonRect = colorButton.getBoundingClientRect();
+      const windowRect = paintWindow.getBoundingClientRect();
+      
+      if (window.innerWidth <= 768) {
+        colorDropdown.style.top = (buttonRect.bottom + 5) + 'px';
+        colorDropdown.style.left = '50%';
+        colorDropdown.style.transform = 'translateX(-50%)';
+        colorDropdown.style.width = '90vw';
+        colorDropdown.style.maxWidth = '300px';
+      } else {
+        colorDropdown.style.top = buttonRect.bottom + 'px';
+        colorDropdown.style.left = Math.max(buttonRect.left, windowRect.left) + 'px';
+        colorDropdown.style.transform = 'none';
+        colorDropdown.style.width = 'auto';
+      }
+    }
+  });
 
   // Close dropdown when clicking outside
   document.addEventListener('click', (e) => {
