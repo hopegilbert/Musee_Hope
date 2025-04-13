@@ -518,17 +518,23 @@ document.addEventListener('DOMContentLoaded', () => {
       initialY = e.clientY - yOffset;
     }
 
-    const clickedElement = e.target;
-    if (clickedElement.closest('.paint-header')) {
+    if (e.target === handle || handle.contains(e.target)) {
       isDragging = true;
-      document.querySelector('.paint-window').classList.add('dragging');
+      element.classList.add('dragging');
     }
+  }
+
+  function dragEnd(e) {
+    initialX = currentX;
+    initialY = currentY;
+    isDragging = false;
+    element.classList.remove('dragging');
   }
 
   function drag(e) {
     if (isDragging) {
       e.preventDefault();
-      
+
       if (e.type === "touchmove") {
         currentX = e.touches[0].clientX - initialX;
         currentY = e.touches[0].clientY - initialY;
@@ -540,23 +546,27 @@ document.addEventListener('DOMContentLoaded', () => {
       xOffset = currentX;
       yOffset = currentY;
 
-      setTranslate(document.querySelector('.paint-window'), { x: currentX, y: currentY });
+      // Ensure the window stays within viewport and below toolbar
+      const rect = element.getBoundingClientRect();
+      const maxX = window.innerWidth - rect.width;
+      const maxY = window.innerHeight - rect.height;
+      
+      currentX = Math.min(Math.max(0, currentX), maxX);
+      currentY = Math.min(Math.max(toolbarHeight, currentY), maxY);
+
+      element.style.transform = `translate(${currentX}px, ${currentY}px)`;
     }
   }
 
-  function dragEnd() {
-    isDragging = false;
-    document.querySelector('.paint-window').classList.remove('dragging');
-  }
+  // Mouse event listeners
+  handle.addEventListener('mousedown', dragStart, false);
+  document.addEventListener('mousemove', drag, false);
+  document.addEventListener('mouseup', dragEnd, false);
 
-  // Add event listeners for both mouse and touch events
-  document.addEventListener('touchstart', dragStart, { passive: false });
-  document.addEventListener('touchend', dragEnd, { passive: false });
+  // Touch event listeners
+  handle.addEventListener('touchstart', dragStart, false);
   document.addEventListener('touchmove', drag, { passive: false });
-
-  document.addEventListener('mousedown', dragStart);
-  document.addEventListener('mouseup', dragEnd);
-  document.addEventListener('mousemove', drag);
+  document.addEventListener('touchend', dragEnd, false);
 
   // Handle window resize
   window.addEventListener('resize', () => {
@@ -833,123 +843,75 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function makeDraggable(element, handle) {
-    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
     let isDragging = false;
+    let currentX;
+    let currentY;
+    let initialX;
+    let initialY;
+    let xOffset = 0;
+    let yOffset = 0;
+
     const toolbar = document.querySelector('.toolbar');
-    const toolbarRect = toolbar ? toolbar.getBoundingClientRect() : null;
+    const toolbarHeight = toolbar ? toolbar.getBoundingClientRect().height : 0;
 
-    handle.addEventListener('mousedown', dragMouseDown);
-    handle.addEventListener('touchstart', dragTouchStart, { passive: false });
+    function dragStart(e) {
+        if (e.type === "touchstart") {
+            initialX = e.touches[0].clientX - xOffset;
+            initialY = e.touches[0].clientY - yOffset;
+        } else {
+            initialX = e.clientX - xOffset;
+            initialY = e.clientY - yOffset;
+        }
 
-    function dragMouseDown(e) {
-        e.preventDefault();
-        pos3 = e.clientX;
-        pos4 = e.clientY;
-        isDragging = true;
-        document.addEventListener('mousemove', elementDrag);
-        document.addEventListener('mouseup', closeDragElement);
+        if (e.target === handle || handle.contains(e.target)) {
+            isDragging = true;
+            element.classList.add('dragging');
+        }
     }
 
-    function dragTouchStart(e) {
-        e.preventDefault();
-        const touch = e.touches[0];
-        pos3 = touch.clientX;
-        pos4 = touch.clientY;
-        isDragging = true;
-        document.addEventListener('touchmove', elementTouchDrag, { passive: false });
-        document.addEventListener('touchend', closeTouchDragElement);
-    }
-
-    function elementDrag(e) {
-        if (!isDragging) return;
-        e.preventDefault();
-
-        pos1 = pos3 - e.clientX;
-        pos2 = pos4 - e.clientY;
-        pos3 = e.clientX;
-        pos4 = e.clientY;
-
-        // Get window boundaries
-        const windowWidth = window.innerWidth;
-        const windowHeight = window.innerHeight;
-        const rect = element.getBoundingClientRect();
-
-        // Calculate new position
-        let newTop = element.offsetTop - pos2;
-        let newLeft = element.offsetLeft - pos1;
-
-        // Check toolbar boundary
-        if (toolbarRect) {
-            if (newTop < toolbarRect.bottom) {
-                newTop = toolbarRect.bottom;
-            }
-        }
-
-        // Keep window within viewport bounds
-        if (newLeft < 0) newLeft = 0;
-        if (newTop < 0) newTop = 0;
-        if (newLeft + rect.width > windowWidth) {
-            newLeft = windowWidth - rect.width;
-        }
-        if (newTop + rect.height > windowHeight) {
-            newTop = windowHeight - rect.height;
-        }
-
-        element.style.top = newTop + "px";
-        element.style.left = newLeft + "px";
-    }
-
-    function elementTouchDrag(e) {
-        if (!isDragging) return;
-        e.preventDefault();
-
-        const touch = e.touches[0];
-        pos1 = pos3 - touch.clientX;
-        pos2 = pos4 - touch.clientY;
-        pos3 = touch.clientX;
-        pos4 = touch.clientY;
-
-        // Get window boundaries
-        const windowWidth = window.innerWidth;
-        const windowHeight = window.innerHeight;
-        const rect = element.getBoundingClientRect();
-
-        // Calculate new position
-        let newTop = element.offsetTop - pos2;
-        let newLeft = element.offsetLeft - pos1;
-
-        // Check toolbar boundary
-        if (toolbarRect) {
-            if (newTop < toolbarRect.bottom) {
-                newTop = toolbarRect.bottom;
-            }
-        }
-
-        // Keep window within viewport bounds
-        if (newLeft < 0) newLeft = 0;
-        if (newTop < 0) newTop = 0;
-        if (newLeft + rect.width > windowWidth) {
-            newLeft = windowWidth - rect.width;
-        }
-        if (newTop + rect.height > windowHeight) {
-            newTop = windowHeight - rect.height;
-        }
-
-        element.style.top = newTop + "px";
-        element.style.left = newLeft + "px";
-    }
-
-    function closeDragElement() {
+    function dragEnd(e) {
+        initialX = currentX;
+        initialY = currentY;
         isDragging = false;
-        document.removeEventListener('mousemove', elementDrag);
-        document.removeEventListener('mouseup', closeDragElement);
+        element.classList.remove('dragging');
     }
 
-    function closeTouchDragElement() {
-        isDragging = false;
-        document.removeEventListener('touchmove', elementTouchDrag);
-        document.removeEventListener('touchend', closeTouchDragElement);
+    function drag(e) {
+        if (isDragging) {
+            e.preventDefault();
+
+            if (e.type === "touchmove") {
+                currentX = e.touches[0].clientX - initialX;
+                currentY = e.touches[0].clientY - initialY;
+            } else {
+                currentX = e.clientX - initialX;
+                currentY = e.clientY - initialY;
+            }
+
+            xOffset = currentX;
+            yOffset = currentY;
+
+            // Ensure the window stays within viewport and below toolbar
+            const rect = element.getBoundingClientRect();
+            const maxX = window.innerWidth - rect.width;
+            const maxY = window.innerHeight - rect.height;
+            
+            currentX = Math.min(Math.max(0, currentX), maxX);
+            currentY = Math.min(Math.max(toolbarHeight, currentY), maxY);
+
+            element.style.transform = `translate(${currentX}px, ${currentY}px)`;
+        }
     }
+
+    // Mouse event listeners
+    handle.addEventListener('mousedown', dragStart, false);
+    document.addEventListener('mousemove', drag, false);
+    document.addEventListener('mouseup', dragEnd, false);
+
+    // Touch event listeners
+    handle.addEventListener('touchstart', dragStart, false);
+    document.addEventListener('touchmove', drag, { passive: false });
+    document.addEventListener('touchend', dragEnd, false);
   }
 
   // Initialize draggable window
@@ -957,6 +919,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const paintWindow = document.getElementById('paintWindow');
     const paintHeader = document.getElementById('paintHeader');
     if (paintWindow && paintHeader) {
+        // Set initial position
+        paintWindow.style.transform = 'translate(20px, 100px)';
         makeDraggable(paintWindow, paintHeader);
     }
   });
