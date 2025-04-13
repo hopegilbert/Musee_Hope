@@ -7,11 +7,9 @@
 body {
     margin: 0;
     padding: 0;
-    background: #c0c0c0;
+    background-color: #f0f0f0;
     font-family: 'Tahoma', sans-serif;
-    display: flex;
     height: 100vh;
-    overflow: hidden;
 }
 
 .paint-window {
@@ -76,99 +74,56 @@ body {
 }
 
 .toolbar {
-    width: 70px;
-    background: #d4d0c8;
-    padding: 6px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    border-right: 1px solid #999;
-}
-
-.tool {
-    width: 32px;
-    height: 32px;
-    background: #fff;
-    border: 1px solid #333;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-}
-
-.canvas-area {
-    flex: 1;
-    background: #fff;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-}
-
-.character {
-    max-height: 100%;
-    max-width: 100%;
-    object-fit: contain;
-}
-
-/* Existing styles */
-.toolbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background: #d4d0c8;
-    z-index: 100;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #ccc;
+    padding: 4px;
 }
 
 .toolbar-inner {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 4px 8px;
+    gap: 8px;
 }
 
 .toolbar-tabs {
     display: flex;
-    gap: 20px;
+    gap: 8px;
 }
 
 .tab {
     padding: 4px 8px;
     cursor: pointer;
-    font-size: 14px;
+    border: 1px solid transparent;
+}
+
+.tab:hover {
+    background-color: #e0e0e0;
+    border: 1px solid #ccc;
 }
 
 .toolbar-buttons {
     display: flex;
     gap: 8px;
+    margin-left: 8px;
 }
 
 .toolbar-buttons img {
     width: 24px;
     height: 24px;
     cursor: pointer;
-    opacity: 1;
-    transition: opacity 0.2s;
-}
-
-.toolbar-buttons img:hover {
-    opacity: 0.8;
 }
 
 .canvas-container {
-    margin-top: 40px;
     flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #fff;
-    overflow: hidden;
+    background-color: white;
+    margin: 8px;
+    border: 1px solid #ccc;
 }
 
 #paintCanvas {
-    background: #fff;
-    cursor: crosshair;
+    background-color: white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }

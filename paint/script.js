@@ -1,59 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
   const canvas = document.getElementById('paintCanvas');
   const ctx = canvas.getContext('2d');
-  const tools = document.querySelectorAll('.tool');
-  const menuItems = document.querySelectorAll('.paint-toolbar li');
   const undoBtn = document.getElementById('undoBtn');
   const redoBtn = document.getElementById('redoBtn');
   const eraserBtn = document.getElementById('eraserBtn');
-  const paintWindow = document.querySelector('.paint-window');
-  const titleBar = document.querySelector('.title-bar');
-  
-  // Make window draggable
-  let isDragging = false;
-  let currentX;
-  let currentY;
-  let initialX;
-  let initialY;
-  let xOffset = 0;
-  let yOffset = 0;
-  
-  titleBar.addEventListener('mousedown', dragStart);
-  document.addEventListener('mousemove', drag);
-  document.addEventListener('mouseup', dragEnd);
-  
-  function dragStart(e) {
-    initialX = e.clientX - xOffset;
-    initialY = e.clientY - yOffset;
-    
-    if (e.target === titleBar) {
-      isDragging = true;
-    }
-  }
-  
-  function drag(e) {
-    if (isDragging) {
-      e.preventDefault();
-      
-      currentX = e.clientX - initialX;
-      currentY = e.clientY - initialY;
-      
-      xOffset = currentX;
-      yOffset = currentY;
-      
-      setTranslate(currentX, currentY, paintWindow);
-    }
-  }
-  
-  function dragEnd() {
-    initialX = currentX;
-    initialY = currentY;
-    isDragging = false;
-  }
-  
-  function setTranslate(xPos, yPos, el) {
-    el.style.transform = `translate3d(${xPos}px, ${yPos}px, 0)`;
-  }
   
   // Set canvas size
   function resizeCanvas() {
@@ -194,56 +144,6 @@ document.addEventListener('DOMContentLoaded', () => {
         redo();
       }
     }
-  });
-  
-  // Tool functions
-  const toolFunctions = {
-    pencil: (e) => {
-      if (!isDrawing) return;
-      ctx.lineTo(e.offsetX, e.offsetY);
-      ctx.stroke();
-    },
-    brush: (e) => {
-      if (!isDrawing) return;
-      ctx.lineWidth = 5;
-      ctx.lineTo(e.offsetX, e.offsetY);
-      ctx.stroke();
-    },
-    eraser: (e) => {
-      if (!isDrawing) return;
-      ctx.globalCompositeOperation = 'destination-out';
-      ctx.lineWidth = 10;
-      ctx.lineTo(e.offsetX, e.offsetY);
-      ctx.stroke();
-      ctx.globalCompositeOperation = 'source-over';
-    },
-    fill: (e) => {
-      ctx.fillStyle = '#000000';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-    }
-  };
-  
-  // Tool selection
-  tools.forEach(tool => {
-    tool.addEventListener('click', () => {
-      tools.forEach(t => t.classList.remove('active'));
-      tool.classList.add('active');
-    });
-  });
-  
-  // Menu items
-  menuItems.forEach(item => {
-    item.addEventListener('click', () => {
-      const action = item.dataset.action;
-      if (action === 'new') {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-      } else if (action === 'save') {
-        const link = document.createElement('a');
-        link.download = 'drawing.png';
-        link.href = canvas.toDataURL();
-        link.click();
-      }
-    });
   });
   
   // Save initial state
