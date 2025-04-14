@@ -49,6 +49,37 @@ document.querySelectorAll('.fashion-tool').forEach(tool => {
     });
 });
 
+// Category button click handler
+categoryButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        categoryButtons.forEach(btn => btn.classList.remove('active'));
+        categoryItems.forEach(item => item.classList.remove('active'));
+        
+        button.classList.add('active');
+        const category = button.dataset.category;
+        document.querySelector(`.category-items[data-category="${category}"]`).classList.add('active');
+    });
+});
+
+// Clothing item click handler
+document.querySelectorAll('.clothing-item').forEach(item => {
+    item.addEventListener('click', () => {
+        const overlay = item.dataset.overlay;
+        const category = item.closest('.category-items').dataset.category;
+        
+        // Find all existing overlays for this category
+        const existingOverlays = overlayContainer.querySelectorAll(`img[data-category="${category}"]`);
+        existingOverlays.forEach(existing => existing.remove());
+        
+        // Add new overlay
+        const overlayImage = document.createElement('img');
+        overlayImage.src = overlay;
+        overlayImage.dataset.category = category;
+        overlayImage.classList.add('overlay-image', 'active');
+        overlayContainer.appendChild(overlayImage);
+    });
+});
+
 // Drawing functions
 function startDrawing(e) {
     isDrawing = true;
@@ -203,38 +234,4 @@ function hexToRgba(hex) {
         b: parseInt(result[3], 16),
         a: 255
     } : null;
-}
-
-// Handle category switching
-categoryButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        categoryButtons.forEach(btn => btn.classList.remove('active'));
-        categoryItems.forEach(item => item.classList.remove('active'));
-        
-        button.classList.add('active');
-        const category = button.dataset.category;
-        document.querySelector(`.category-items[data-category="${category}"]`).classList.add('active');
-    });
-});
-
-// Handle clothing item clicks
-document.querySelectorAll('.clothing-item').forEach(item => {
-    item.addEventListener('click', () => {
-        const overlay = item.dataset.overlay;
-        const category = item.closest('.category-items').dataset.category;
-        
-        // Remove previous overlay for this category if it exists
-        if (activeOverlays.has(category)) {
-            const previousOverlay = activeOverlays.get(category);
-            previousOverlay.remove();
-            activeOverlays.delete(category);
-        }
-        
-        // Add new overlay
-        const overlayImage = document.createElement('img');
-        overlayImage.src = overlay;
-        overlayImage.classList.add('overlay-image', 'active');
-        overlayContainer.appendChild(overlayImage);
-        activeOverlays.set(category, overlayImage);
-    });
-}); 
+} 
