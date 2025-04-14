@@ -1045,45 +1045,48 @@ document.addEventListener('DOMContentLoaded', () => {
   const hopeContainer = document.querySelector('.paint-canvas-container');
 
   if (hopeContainer) {
-    hopeContainer.style.position = 'relative';
-    hopeContainer.style.width = 'fit-content';
-    hopeContainer.style.height = 'fit-content';
-    
-    // Create a container for clothing items
-    const clothingContainer = document.createElement('div');
-    clothingContainer.style.position = 'absolute';
-    clothingContainer.style.top = '0';
-    clothingContainer.style.left = '0';
-    clothingContainer.style.width = '100%';
-    clothingContainer.style.height = '100%';
-    clothingContainer.style.zIndex = '1';
-    hopeContainer.appendChild(clothingContainer);
+    // Create a container for clothing items if it doesn't exist
+    let clothingContainer = hopeContainer.querySelector('.clothing-container');
+    if (!clothingContainer) {
+        clothingContainer = document.createElement('div');
+        clothingContainer.className = 'clothing-container';
+        clothingContainer.style.position = 'absolute';
+        clothingContainer.style.top = '0';
+        clothingContainer.style.left = '0';
+        clothingContainer.style.width = '100%';
+        clothingContainer.style.height = '100%';
+        clothingContainer.style.zIndex = '2';
+        hopeContainer.appendChild(clothingContainer);
+    }
   }
   
   paintItems.forEach(item => {
     if (item.querySelector('img').src.includes('hope.png')) return; // Skip the Hope image itself
     
     item.addEventListener('click', () => {
-      const imgSrc = item.querySelector('img').src;
-      
-      // Create a new image element for the clothing item
-      const clothingItem = document.createElement('img');
-      clothingItem.src = imgSrc;
-      clothingItem.style.position = 'absolute';
-      clothingItem.style.top = '0';
-      clothingItem.style.left = '0';
-      clothingItem.style.width = '100%';
-      clothingItem.style.height = '100%';
-      clothingItem.style.objectFit = 'contain';
-      clothingItem.style.pointerEvents = 'none';
-      
-      // Remove any existing clothing item of the same type
-      const existingItem = clothingContainer.querySelector(`img[src="${imgSrc}"]`);
-      if (existingItem) {
-          existingItem.remove();
-      }
-      
-      clothingContainer.appendChild(clothingItem);
+        const imgSrc = item.querySelector('img').src;
+        const clothingContainer = document.querySelector('.clothing-container');
+        
+        if (clothingContainer) {
+            // Create a new image element for the clothing item
+            const clothingItem = document.createElement('img');
+            clothingItem.src = imgSrc;
+            clothingItem.style.position = 'absolute';
+            clothingItem.style.top = '0';
+            clothingItem.style.left = '0';
+            clothingItem.style.width = '100%';
+            clothingItem.style.height = '100%';
+            clothingItem.style.objectFit = 'contain';
+            clothingItem.style.pointerEvents = 'none';
+            
+            // Remove any existing clothing item of the same type
+            const existingItem = clothingContainer.querySelector(`img[src="${imgSrc}"]`);
+            if (existingItem) {
+                existingItem.remove();
+            }
+            
+            clothingContainer.appendChild(clothingItem);
+        }
     });
   });
 }); 
