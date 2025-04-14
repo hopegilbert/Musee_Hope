@@ -1082,6 +1082,12 @@ document.addEventListener('DOMContentLoaded', () => {
     paintCanvas.appendChild(overlayContainer);
   }
 
+  // Remove any existing click handlers and replace with fresh elements
+  paintItems.forEach(item => {
+    const clone = item.cloneNode(true);
+    item.parentNode.replaceChild(clone, item);
+  });
+
   function handleClothingClick(e) {
     const item = e.currentTarget;
     const overlayPath = item.dataset.overlay;
@@ -1132,7 +1138,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   }
 
-  // Add click handlers to clothing items
+  // Add click handlers to all clothing items
   document.querySelectorAll('.paint-item').forEach(item => {
     item.addEventListener('click', handleClothingClick);
   });
