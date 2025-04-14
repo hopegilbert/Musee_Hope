@@ -425,6 +425,15 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.classList.add('active');
       }
     });
+
+    // Show/hide size control for appropriate tools
+    const sizeControl = document.querySelector('.size-control');
+    if (['pencil', 'brush', 'eraser', 'spray', 'line', 'rectangle', 'ellipse'].includes(tool)) {
+      sizeControl.classList.add('visible');
+      updateSizePreview();
+    } else {
+      sizeControl.classList.remove('visible');
+    }
   }
   
   // Tool button event listeners
@@ -928,4 +937,62 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  // Size control functionality
+  const sizeSlider = document.querySelector('.size-slider');
+  const sizeValue = document.querySelector('.size-value');
+  const sizePreviewDot = document.querySelector('.size-preview-dot');
+
+  function updateSizePreview() {
+    const size = parseInt(sizeSlider.value);
+    sizeValue.textContent = size + 'px';
+    
+    // Update preview dot
+    sizePreviewDot.style.width = size + 'px';
+    sizePreviewDot.style.height = size + 'px';
+    
+    // Update brush size
+    brushSize = size;
+    
+    // Update preview color based on tool
+    if (currentTool === 'eraser') {
+      sizePreviewDot.style.backgroundColor = '#FFFFFF';
+      sizePreviewDot.style.border = '1px solid #000000';
+    } else {
+      sizePreviewDot.style.backgroundColor = currentColor;
+      sizePreviewDot.style.border = 'none';
+    }
+  }
+
+  if (sizeSlider) {
+    sizeSlider.addEventListener('input', updateSizePreview);
+    
+    // Initialize size preview
+    updateSizePreview();
+  }
+
+  // Update size preview when color changes
+  function updateCurrentColor(color) {
+    currentColor = color;
+    if (colorButton) {
+      colorButton.style.backgroundColor = currentColor;
+    }
+    if (mainCtx) {
+      mainCtx.strokeStyle = currentColor;
+      mainCtx.fillStyle = currentColor;
+    }
+    // Update size preview dot color
+    if (sizePreviewDot && currentTool !== 'eraser') {
+      sizePreviewDot.style.backgroundColor = currentColor;
+    }
+  }
+
+  // Tool button event listeners
+  document.querySelectorAll('.paint-tool').forEach(tool => {
+    tool.addEventListener('click', () => {
+      document.querySelectorAll('.paint-tool').forEach(t => t.classList.remove('active'));
+      tool.classList.add('active');
+      setActiveTool(tool.dataset.tool);
+    });
+  });
 }); 
