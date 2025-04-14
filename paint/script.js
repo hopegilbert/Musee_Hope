@@ -1073,61 +1073,61 @@ document.addEventListener('DOMContentLoaded', () => {
     paintCanvas.appendChild(overlayContainer);
   }
 
-  function handleClothingClick(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    
-    const item = e.currentTarget;
-    const overlayPath = item.dataset.overlay;
-    const type = item.getAttribute('title').toLowerCase();
-    const overlayContainer = document.querySelector('.overlay-container');
-
-    // Find existing overlay of this type
-    let existingOverlay = document.querySelector(`.${type}-overlay`);
-    
-    // If overlay exists, remove it
-    if (existingOverlay) {
-        existingOverlay.remove();
-        item.classList.remove('active');
-        return;
-    }
-    
-    // Create new overlay
-    const overlay = new Image();
-    overlay.src = overlayPath;
-    overlay.className = `${type}-overlay`;
-    overlay.style.position = 'absolute';
-    overlay.style.top = '50%';
-    overlay.style.left = '50%';
-    overlay.style.transform = 'translate(-50%, -50%)';
-    overlay.style.width = '80%';
-    overlay.style.height = '80%';
-    overlay.style.objectFit = 'contain';
-    overlay.style.pointerEvents = 'none';
-    
-    // Set z-index based on type
-    if (type.includes('jewel') || type.includes('necklace')) {
-        overlay.style.zIndex = '1004';
-    } else if (type.includes('hair') || type.includes('plait')) {
-        overlay.style.zIndex = '1002';
-    } else if (type.includes('dress') || type.includes('top') || type.includes('skirt')) {
-        overlay.style.zIndex = '1001';
-    } else {
-        overlay.style.zIndex = '1003';
-    }
-    
-    // Add to overlay container
-    overlayContainer.appendChild(overlay);
-    item.classList.add('active');
-  }
-
-  // Remove all existing click handlers and add new ones
+  // Remove all existing event listeners
   paintItems.forEach(item => {
     const clone = item.cloneNode(true);
     item.parentNode.replaceChild(clone, item);
   });
 
+  // Simple click handler for clothing items
   document.querySelectorAll('.paint-item').forEach(item => {
-    item.addEventListener('click', handleClothingClick);
+    item.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      const overlayPath = this.dataset.overlay;
+      const type = this.getAttribute('title').toLowerCase();
+      
+      // Find existing overlay
+      const existingOverlay = document.querySelector(`.${type}-overlay`);
+      
+      // If overlay exists, remove it
+      if (existingOverlay) {
+        existingOverlay.remove();
+        this.classList.remove('active');
+        return;
+      }
+      
+      // Create new overlay
+      const overlay = new Image();
+      overlay.src = overlayPath;
+      overlay.className = `${type}-overlay`;
+      overlay.style.position = 'absolute';
+      overlay.style.top = '50%';
+      overlay.style.left = '50%';
+      overlay.style.transform = 'translate(-50%, -50%)';
+      overlay.style.width = '80%';
+      overlay.style.height = '80%';
+      overlay.style.objectFit = 'contain';
+      overlay.style.pointerEvents = 'none';
+      
+      // Set z-index based on type
+      if (type.includes('jewel') || type.includes('necklace')) {
+        overlay.style.zIndex = '1004';
+      } else if (type.includes('hair') || type.includes('plait')) {
+        overlay.style.zIndex = '1002';
+      } else if (type.includes('dress') || type.includes('top') || type.includes('skirt')) {
+        overlay.style.zIndex = '1001';
+      } else {
+        overlay.style.zIndex = '1003';
+      }
+      
+      // Add overlay and activate button
+      overlayContainer.appendChild(overlay);
+      this.classList.add('active');
+    });
   });
+
+  // Remove any duplicate handlers that might be added later
+  const handleClothingClick = () => {};
 }); 
