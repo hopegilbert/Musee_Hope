@@ -247,20 +247,18 @@
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 2;
+            z-index: 99999;
             pointer-events: none;
         }
 
         .overlay-container img {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80%;
-            height: 80%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             object-fit: contain;
-            pointer-events: none;
-            z-index: 2;
+            z-index: 99999;
         }
 
         .paint-status {
@@ -641,7 +639,8 @@
                 </div>
             </div>
             <div class="paint-canvas-container">
-                <img src="./images/hope.png" alt="Hope" class="background-image">
+                <img src="./paint/images/hope.png" alt="Hope" class="paint-background">
+                <div class="overlay-container"></div>
             </div>
             <div class="paint-items">
                 <div class="paint-item" title="Hair">
