@@ -123,6 +123,7 @@ body {
 
 .canvas-area {
     margin-left: 50px;
+    margin-right: 200px; /* Add margin for the sidebar */
     position: relative;
     height: 520px;
     width: 500px;
@@ -156,6 +157,10 @@ body {
     display: flex;
     flex-direction: column;
     flex: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
 }
 
 .category-buttons {
