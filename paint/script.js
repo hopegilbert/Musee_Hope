@@ -162,12 +162,10 @@ document.addEventListener('DOMContentLoaded', () => {
         break;
     }
 
-    // Show temp canvas content for shape tools
-    if (['line', 'rectangle', 'ellipse'].includes(currentTool)) {
-      mainCtx.save();
-      mainCtx.globalCompositeOperation = 'source-over';
+    // Only copy temp canvas to main for continuous tools
+    if (['pencil', 'brush'].includes(currentTool)) {
       mainCtx.drawImage(tempCanvas, 0, 0);
-      mainCtx.restore();
+      tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
     }
   }
   
