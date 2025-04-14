@@ -266,6 +266,7 @@
             z-index: 1002;
             pointer-events: none;
             opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .paint-status {
@@ -473,6 +474,15 @@
             .size-preview {
                 height: 30px;
             }
+
+            .items-container {
+                height: calc(100% - 35px); /* Adjusted for mobile */
+            }
+
+            .category-items {
+                max-height: none;
+                height: 100%;
+            }
         }
 
         @media (max-height: 600px) {
@@ -597,6 +607,8 @@
             padding: 5px;
             overflow-y: auto;
             overflow-x: hidden;
+            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+            height: calc(100% - 40px); /* Account for category buttons height */
         }
 
         .category-items {
@@ -606,6 +618,7 @@
             padding: 5px;
             max-height: 100%;
             overflow-y: auto;
+            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
         }
 
         .category-btn {

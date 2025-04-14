@@ -1246,7 +1246,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const overlayContainer = document.querySelector('.overlay-container');
     
     // Check if there's an existing overlay
-    const existingOverlay = overlayContainer.querySelector('img');
+    const existingOverlay = overlayContainer.querySelector(`img[src="${overlayPath}"]`);
     if (existingOverlay) {
       // If the same overlay is clicked again, remove it
       if (existingOverlay.src.includes(overlayPath)) {
