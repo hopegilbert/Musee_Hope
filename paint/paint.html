@@ -242,14 +242,15 @@
             padding: 4px;
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: 8px;
             border-left: 1px solid #808080;
-            width: 60px;
+            width: 80px;
+            overflow-y: auto;
         }
 
         .paint-item {
-            width: 52px;
-            height: 52px;
+            width: 72px;
+            height: 72px;
             background: #ffffff;
             border: 1px solid #808080;
             border-right-color: #ffffff;
@@ -258,17 +259,13 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            padding: 2px;
-        }
-
-        .paint-item img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
+            padding: 4px;
+            transition: transform 0.2s ease;
         }
 
         .paint-item:hover {
             background: #d4d0c8;
+            transform: scale(1.05);
         }
 
         .paint-item.active {
@@ -276,6 +273,12 @@
             border: 1px solid #ffffff;
             border-right-color: #808080;
             border-bottom-color: #808080;
+        }
+
+        .paint-item img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
         }
 
         .color-dropdown {
@@ -361,12 +364,15 @@
             }
 
             .paint-items {
-                width: 50px;
+                width: 60px;
+                padding: 3px;
+                gap: 6px;
             }
 
             .paint-item {
-                width: 42px;
-                height: 42px;
+                width: 54px;
+                height: 54px;
+                padding: 3px;
             }
 
             .paint-colors {
@@ -407,6 +413,15 @@
                 height: 28px;
                 min-height: 28px;
             }
+
+            .paint-items {
+                gap: 4px;
+            }
+
+            .paint-item {
+                height: 50px;
+                width: 50px;
+            }
         }
 
         @media (min-width: 1200px) {
@@ -424,6 +439,17 @@
             .window-controls button {
                 width: calc(1.1em + 0.5vw);
                 height: calc(1.1em + 0.5vw);
+            }
+
+            .paint-items {
+                width: 90px;
+                gap: 10px;
+            }
+
+            .paint-item {
+                width: 82px;
+                height: 82px;
+                padding: 5px;
             }
         }
     </style>
