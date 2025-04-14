@@ -1151,13 +1151,25 @@ document.addEventListener('DOMContentLoaded', () => {
   function handleClothingClick(e) {
     const item = e.currentTarget;
     const overlayPath = item.dataset.overlay;
-    
-    // Find any existing overlay of the same type and remove it
     const type = item.getAttribute('title').toLowerCase();
-    const existingOverlays = document.querySelectorAll(`.${type}-overlay`);
-    existingOverlays.forEach(overlay => overlay.remove());
     
-    // Create and add the new overlay
+    // Find existing overlay of the same type
+    const existingOverlay = document.querySelector(`.${type}-overlay`);
+    
+    if (existingOverlay) {
+        // If overlay exists and is visible, fade it out
+        if (existingOverlay.style.opacity === '1') {
+            existingOverlay.style.opacity = '0';
+            item.classList.remove('active');
+            return;
+        }
+        // If overlay exists but is hidden, show it
+        existingOverlay.style.opacity = '1';
+        item.classList.add('active');
+        return;
+    }
+    
+    // If no overlay exists, create a new one
     const overlay = new Image();
     overlay.src = overlayPath;
     overlay.className = `${type}-overlay`;
@@ -1169,6 +1181,8 @@ document.addEventListener('DOMContentLoaded', () => {
     overlay.style.height = '80%';
     overlay.style.objectFit = 'contain';
     overlay.style.pointerEvents = 'none';
+    overlay.style.opacity = '0';
+    overlay.style.transition = 'opacity 0.3s ease';
     
     // Set z-index based on type
     if (type.includes('jewel') || type.includes('necklace')) {
@@ -1181,10 +1195,15 @@ document.addEventListener('DOMContentLoaded', () => {
         overlay.style.zIndex = '1003'; // Everything else (shoes) second
     }
     
-    // Add to overlay container
+    // Add to overlay container and fade in
     const overlayContainer = document.querySelector('.overlay-container');
     overlay.onload = () => {
         overlayContainer.appendChild(overlay);
+        // Use requestAnimationFrame to ensure the transition works
+        requestAnimationFrame(() => {
+            overlay.style.opacity = '1';
+        });
+        item.classList.add('active');
     };
     
     overlay.onerror = () => {
