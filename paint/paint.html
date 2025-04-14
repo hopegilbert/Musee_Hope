@@ -215,45 +215,27 @@
         }
 
         .paint-canvas-container {
-            position: relative;
-            width: 100%;
-            height: 100%;
+            flex: 1;
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             overflow: hidden;
+            position: relative;
         }
 
-        .paint-canvas-container img {
+        #mainCanvas {
+            background: #fff;
+            image-rendering: pixelated;
+        }
+
+        .background-image {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-        }
-
-        .paint-items {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 2;
-            pointer-events: auto;
-        }
-
-        .paint-item {
-            position: absolute;
-            display: none;
-            width: 100%;
-            height: 100%;
-        }
-
-        .paint-item.active {
-            display: block;
-        }
-
-        .paint-item img {
-            width: 100%;
-            height: 100%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 80%;
             object-fit: contain;
         }
 
@@ -328,13 +310,6 @@
         .paint-item:hover {
             background: #d4d0c8;
             transform: scale(1.05);
-        }
-
-        .paint-item.active {
-            background: #d4d0c8;
-            border: 1px solid #ffffff;
-            border-right-color: #808080;
-            border-bottom-color: #808080;
         }
 
         .paint-item img {
@@ -634,94 +609,30 @@
                 <div class="paint-tool" title="Eraser" data-tool="eraser">
                     <img src="./images/eraser.png" alt="Eraser" width="16" height="16">
                 </div>
-                <div class="paint-tool" title="Spray Can" data-tool="spray">
-                    <img src="./images/spray-can.png" alt="Spray" width="16" height="16">
-                </div>
                 <div class="paint-tool" title="Fill" data-tool="fill">
                     <img src="./images/fill.png" alt="Fill" width="16" height="16">
                 </div>
                 <div class="paint-tool" title="Text" data-tool="text">
                     <img src="./images/text.png" alt="Text" width="16" height="16">
                 </div>
-                <div class="paint-tool" title="Line" data-tool="line">
-                    <img src="./images/line.png" alt="Line" width="16" height="16">
-                </div>
-                <div class="paint-tool" title="Rectangle" data-tool="rectangle">
-                    <img src="./images/rectangle.png" alt="Rectangle" width="16" height="16">
-                </div>
-                <div class="paint-tool" title="Ellipse" data-tool="ellipse">
-                    <img src="./images/ellipse.png" alt="Ellipse" width="16" height="16">
-                </div>
-                <div class="size-control">
-                    <div class="size-preview">
-                        <div class="size-preview-dot"></div>
-                    </div>
-                    <input type="range" class="size-slider" min="1" max="50" value="2">
-                    <div class="size-value">2px</div>
-                </div>
-                <div class="color-dropdown">
-                    <div class="color-button"></div>
-                    <div class="color-options">
-                        <div class="color-option" style="background-color: #000000;"></div>
-                        <div class="color-option" style="background-color: #FF0000;"></div>
-                        <div class="color-option" style="background-color: #00FF00;"></div>
-                        <div class="color-option" style="background-color: #0000FF;"></div>
-                        <div class="color-option" style="background-color: #FFFF00;"></div>
-                        <div class="color-option" style="background-color: #FF00FF;"></div>
-                        <div class="color-option" style="background-color: #00FFFF;"></div>
-                        <div class="color-option" style="background-color: #FFFFFF;"></div>
-                    </div>
-                </div>
             </div>
             <div class="paint-canvas-container">
-                <img src="./images/hope.png" alt="Hope" class="background-image" style="opacity: 1;">
-                <div class="paint-items">
-                    <div class="paint-item" title="Hair">
-                        <img src="./images/hope-hair.png" alt="Hair">
-                    </div>
-                    <div class="paint-item" title="Dress">
-                        <img src="./images/hope-dress.png" alt="Dress">
-                    </div>
-                    <div class="paint-item" title="Shoes">
-                        <img src="./images/hope-shoes.png" alt="Shoes">
-                    </div>
-                    <div class="paint-item" title="Jewelry">
-                        <img src="./images/hope-jewellry.png" alt="Jewelry">
-                    </div>
+                <img src="./images/hope.png" alt="Hope" class="background-image">
+            </div>
+            <div class="paint-items">
+                <div class="paint-item" title="Hair">
+                    <img src="./images/hope-hair.png" alt="Hair">
+                </div>
+                <div class="paint-item" title="Dress">
+                    <img src="./images/hope-dress.png" alt="Dress">
+                </div>
+                <div class="paint-item" title="Shoes">
+                    <img src="./images/hope-shoes.png" alt="Shoes">
+                </div>
+                <div class="paint-item" title="Jewelry">
+                    <img src="./images/hope-jewellry.png" alt="Jewelry">
                 </div>
             </div>
-        </div>
-        <div class="paint-colors">
-            <!-- First row -->
-            <div class="color-box" style="background-color: #FFFFFF;" title="White"></div>
-            <div class="color-box" style="background-color: #000000;" title="Black"></div>
-            <div class="color-box" style="background-color: #808080;" title="Gray"></div>
-            <div class="color-box" style="background-color: #800000;" title="Dark Red"></div>
-            <div class="color-box" style="background-color: #808000;" title="Olive"></div>
-            <div class="color-box" style="background-color: #008000;" title="Dark Green"></div>
-            <div class="color-box" style="background-color: #008080;" title="Teal"></div>
-            <div class="color-box" style="background-color: #000080;" title="Navy"></div>
-            <div class="color-box" style="background-color: #800080;" title="Purple"></div>
-            <div class="color-box" style="background-color: #4C4C4C;" title="Dark Gray"></div>
-            <div class="color-box" style="background-color: #006400;" title="Forest Green"></div>
-            <div class="color-box" style="background-color: #0000FF;" title="Blue"></div>
-            <div class="color-box" style="background-color: #400080;" title="Dark Purple"></div>
-            <div class="color-box" style="background-color: #804000;" title="Brown"></div>
-            <!-- Second row -->
-            <div class="color-box" style="background-color: #C0C0C0;" title="Light Gray"></div>
-            <div class="color-box" style="background-color: #FF0000;" title="Red"></div>
-            <div class="color-box" style="background-color: #FFFF00;" title="Yellow"></div>
-            <div class="color-box" style="background-color: #00FF00;" title="Lime"></div>
-            <div class="color-box" style="background-color: #00FFFF;" title="Cyan"></div>
-            <div class="color-box" style="background-color: #0080FF;" title="Light Blue"></div>
-            <div class="color-box" style="background-color: #FF00FF;" title="Magenta"></div>
-            <div class="color-box" style="background-color: #808040;" title="Dark Olive"></div>
-            <div class="color-box" style="background-color: #004080;" title="Dark Blue"></div>
-            <div class="color-box" style="background-color: #8080FF;" title="Pale Blue"></div>
-            <div class="color-box" style="background-color: #400040;" title="Dark Purple"></div>
-            <div class="color-box" style="background-color: #FF80FF;" title="Pink"></div>
-            <div class="color-box" style="background-color: #804000;" title="Brown"></div>
-            <div class="color-box" style="background-color: #FF8040;" title="Orange"></div>
         </div>
         <div class="paint-status">
             <span>100%</span>
