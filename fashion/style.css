@@ -87,9 +87,14 @@ html, body {
 .main-content {
     flex: 1;
     display: flex;
-    flex-direction: column;
     background-color: #c0c0c0;
     position: relative;
+}
+
+.left-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .toolbar {
@@ -139,15 +144,11 @@ html, body {
 }
 
 .items-sidebar {
-    position: absolute;
-    right: 0;
-    top: 41px;
     width: 200px;
     background-color: #c0c0c0;
     border-left: 1px solid #808080;
     display: flex;
     flex-direction: column;
-    height: calc(100% - 41px);
 }
 
 .category-buttons {
@@ -283,8 +284,8 @@ html, body {
     height: 32px;
     width: 196px;  /* 14px × 14 colors */
     display: grid;
-    grid-template-rows: repeat(2, 16px);  /* Two rows of 16px each */
-    grid-template-columns: repeat(14, 14px);  /* 14 columns of 14px each */
+    grid-template-rows: repeat(2, 16px);
+    grid-template-columns: repeat(14, 14px);
     padding: 0;
     gap: 0;
     background-color: #c0c0c0;
