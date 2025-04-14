@@ -635,35 +635,46 @@
         }
 
         .clothing-item {
-            display: block;
-            width: 100%;
-            padding: 4px 8px;
-            margin: 2px 0;
-            border: 1px solid #fff;
-            border-right-color: #808080;
-            border-bottom-color: #808080;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 60px;
+            padding: 5px;
+            margin: 2px;
+            border: 1px solid #808080;
+            border-right-color: #ffffff;
+            border-bottom-color: #ffffff;
             background-color: #c0c0c8;
             cursor: pointer;
-            transition: all 0.2s;
-            font-size: 12px;
-            text-align: left;
+            transition: all 0.1s ease;
+            font-size: 10px;
+            text-align: center;
+            position: relative;
         }
 
         .clothing-item:hover {
             background-color: #d4d0c8;
         }
 
-        .clothing-item.active {
-            background-color: #d4d0c8;
+        .clothing-item:active {
             border: 1px solid #808080;
-            border-right-color: #fff;
-            border-bottom-color: #fff;
+            border-left-color: #ffffff;
+            border-top-color: #ffffff;
+            background-color: #c0c0c8;
         }
 
         .clothing-item img {
-            width: 100%;
-            height: auto;
-            display: block;
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            margin-bottom: 2px;
+        }
+
+        .clothing-item.active {
+            border: 1px solid #808080;
+            border-left-color: #ffffff;
+            border-top-color: #ffffff;
+            background-color: #c0c0c8;
         }
     </style>
 </head>
@@ -671,7 +682,7 @@
     <div class="main-window">
         <div class="title-bar">
             <div class="title-bar-text">
-                <img src="./images/hope.png" alt="Paint" class="title-icon">
+                <img src="./paint/images/hope.png" alt="Paint" class="title-icon">
                 Untitled - Paint
             </div>
             <div class="title-bar-controls">
@@ -715,37 +726,37 @@
             </div>
             <div class="toolbar-buttons">
                 <button id="pencilBtn" title="Pencil" class="active">
-                    <img src="./images/pencil.png" alt="Pencil">
+                    <img src="./paint/images/pencil.png" alt="Pencil">
                 </button>
                 <button id="brushBtn" title="Brush">
-                    <img src="./images/brush.png" alt="Brush">
+                    <img src="./paint/images/brush.png" alt="Brush">
                 </button>
                 <button id="eraserBtn" title="Eraser">
-                    <img src="./images/eraser.png" alt="Eraser">
+                    <img src="./paint/images/eraser.png" alt="Eraser">
                 </button>
                 <button id="fillBtn" title="Fill">
-                    <img src="./images/fill.png" alt="Fill">
+                    <img src="./paint/images/fill.png" alt="Fill">
                 </button>
                 <button id="rectangleBtn" title="Rectangle">
-                    <img src="./images/rectangle.png" alt="Rectangle">
+                    <img src="./paint/images/rectangle.png" alt="Rectangle">
                 </button>
                 <button id="ellipseBtn" title="Ellipse">
-                    <img src="./images/ellipse.png" alt="Ellipse">
+                    <img src="./paint/images/ellipse.png" alt="Ellipse">
                 </button>
                 <button id="lineBtn" title="Line">
-                    <img src="./images/line.png" alt="Line">
+                    <img src="./paint/images/line.png" alt="Line">
                 </button>
                 <button id="textBtn" title="Text">
-                    <img src="./images/text.png" alt="Text">
+                    <img src="./paint/images/text.png" alt="Text">
                 </button>
                 <button id="sprayBtn" title="Spray">
-                    <img src="./images/spray-can.png" alt="Spray">
+                    <img src="./paint/images/spray-can.png" alt="Spray">
                 </button>
                 <button id="undoBtn" title="Undo (Ctrl+Z)">
-                    <img src="./images/undo.png" alt="Undo">
+                    <img src="./paint/images/undo.png" alt="Undo">
                 </button>
                 <button id="redoBtn" title="Redo (Ctrl+Y)">
-                    <img src="./images/redo.png" alt="Redo">
+                    <img src="./paint/images/redo.png" alt="Redo">
                 </button>
             </div>
         </div>
@@ -755,7 +766,7 @@
     <div class="paint-window" id="paintWindow">
         <div class="paint-header" id="paintHeader">
             <div class="paint-title">
-                <img src="./images/hope.png" alt="Hope" class="title-icon">
+                <img src="./paint/images/hope.png" alt="Hope" class="title-icon">
                 Untitled - Paint
             </div>
             <div class="paint-buttons">
@@ -767,41 +778,41 @@
         <div class="paint-content">
             <div class="paint-toolbar">
                 <div class="paint-tool active" title="Pencil" data-tool="pencil">
-                    <img src="./images/pencil.png" alt="Pencil" width="16" height="16">
+                    <img src="./paint/images/pencil.png" alt="Pencil" width="16" height="16">
                 </div>
                 <div class="paint-tool" title="Brush" data-tool="brush">
-                    <img src="./images/brush.png" alt="Brush" width="16" height="16">
+                    <img src="./paint/images/brush.png" alt="Brush" width="16" height="16">
                 </div>
                 <div class="paint-tool" title="Eraser" data-tool="eraser">
-                    <img src="./images/eraser.png" alt="Eraser" width="16" height="16">
+                    <img src="./paint/images/eraser.png" alt="Eraser" width="16" height="16">
                 </div>
                 <div class="paint-tool" title="Fill" data-tool="fill">
-                    <img src="./images/fill.png" alt="Fill" width="16" height="16">
+                    <img src="./paint/images/fill.png" alt="Fill" width="16" height="16">
                 </div>
                 <div class="paint-tool" title="Rectangle" data-tool="rectangle">
-                    <img src="./images/rectangle.png" alt="Rectangle" width="16" height="16">
+                    <img src="./paint/images/rectangle.png" alt="Rectangle" width="16" height="16">
                 </div>
                 <div class="paint-tool" title="Ellipse" data-tool="ellipse">
-                    <img src="./images/ellipse.png" alt="Ellipse" width="16" height="16">
+                    <img src="./paint/images/ellipse.png" alt="Ellipse" width="16" height="16">
                 </div>
                 <div class="paint-tool" title="Line" data-tool="line">
-                    <img src="./images/line.png" alt="Line" width="16" height="16">
+                    <img src="./paint/images/line.png" alt="Line" width="16" height="16">
                 </div>
                 <div class="paint-tool" title="Text" data-tool="text">
-                    <img src="./images/text.png" alt="Text" width="16" height="16">
+                    <img src="./paint/images/text.png" alt="Text" width="16" height="16">
                 </div>
                 <div class="paint-tool" title="Spray" data-tool="spray">
-                    <img src="./images/spray-can.png" alt="Spray" width="16" height="16">
+                    <img src="./paint/images/spray-can.png" alt="Spray" width="16" height="16">
                 </div>
                 <div class="paint-tool" title="Undo" id="undoBtn">
-                    <img src="./images/undo.png" alt="Undo" width="16" height="16">
+                    <img src="./paint/images/undo.png" alt="Undo" width="16" height="16">
                 </div>
                 <div class="paint-tool" title="Redo" id="redoBtn">
-                    <img src="./images/redo.png" alt="Redo" width="16" height="16">
+                    <img src="./paint/images/redo.png" alt="Redo" width="16" height="16">
                 </div>
             </div>
             <div class="paint-canvas-container">
-                <img src="images/hope.png" alt="Hope" class="paint-background">
+                <img src="paint/images/hope.png" alt="Hope" class="paint-background">
                 <div class="overlay-container">
                     <!-- Overlays will be added here -->
                 </div>
@@ -815,62 +826,62 @@
                 </div>
                 <div class="items-container">
                     <div class="category-items" data-category="dresses">
-                        <div class="clothing-item" data-overlay="images/hope-dress2.png">
-                            <img src="images/hope-dress.png" alt="Original Dress">
+                        <div class="clothing-item" data-overlay="paint/images/hope-dress2.png">
+                            <img src="paint/images/hope-dress.png" alt="Original Dress">
                         </div>
-                        <div class="clothing-item" data-overlay="images/hope-red-dress2.png">
-                            <img src="images/hope-red-dress.png" alt="Red Dress">
+                        <div class="clothing-item" data-overlay="paint/images/hope-red-dress2.png">
+                            <img src="paint/images/hope-red-dress.png" alt="Red Dress">
                         </div>
-                        <div class="clothing-item" data-overlay="images/hope-blue-dress2.png">
-                            <img src="images/hope-blue-dress.png" alt="Blue Dress">
+                        <div class="clothing-item" data-overlay="paint/images/hope-blue-dress2.png">
+                            <img src="paint/images/hope-blue-dress.png" alt="Blue Dress">
                         </div>
-                        <div class="clothing-item" data-overlay="images/hope-white-dress2.png">
-                            <img src="images/hope-white-dress.png" alt="White Dress">
+                        <div class="clothing-item" data-overlay="paint/images/hope-white-dress2.png">
+                            <img src="paint/images/hope-white-dress.png" alt="White Dress">
                         </div>
-                        <div class="clothing-item" data-overlay="images/hope-skirt2.png">
-                            <img src="images/hope-skirt.png" alt="Skirt">
+                        <div class="clothing-item" data-overlay="paint/images/hope-skirt2.png">
+                            <img src="paint/images/hope-skirt.png" alt="Skirt">
                         </div>
-                        <div class="clothing-item" data-overlay="images/hope-navy-dress2.png">
-                            <img src="images/hope-navy-dress.png" alt="Navy Dress">
+                        <div class="clothing-item" data-overlay="paint/images/hope-navy-dress2.png">
+                            <img src="paint/images/hope-navy-dress.png" alt="Navy Dress">
                         </div>
-                        <div class="clothing-item" data-overlay="images/hope-green-outfit2.png">
-                            <img src="images/hope-green-outfit.png" alt="Green Outfit">
+                        <div class="clothing-item" data-overlay="paint/images/hope-green-outfit2.png">
+                            <img src="paint/images/hope-green-outfit.png" alt="Green Outfit">
                         </div>
-                        <div class="clothing-item" data-overlay="images/hope-cardigan2.png">
-                            <img src="images/hope-cardigan.png" alt="Cardigan">
+                        <div class="clothing-item" data-overlay="paint/images/hope-cardigan2.png">
+                            <img src="paint/images/hope-cardigan.png" alt="Cardigan">
                         </div>
                     </div>
                     <div class="category-items" data-category="shoes" style="display: none;">
-                        <div class="clothing-item" data-overlay="images/hope-shoes2.png">
-                            <img src="images/hope-shoes.png" alt="Original Shoes">
+                        <div class="clothing-item" data-overlay="paint/images/hope-shoes2.png">
+                            <img src="paint/images/hope-shoes.png" alt="Original Shoes">
                         </div>
-                        <div class="clothing-item" data-overlay="images/hope-brown-loafers2.png">
-                            <img src="images/hope-brown-loafers.png" alt="Brown Loafers">
+                        <div class="clothing-item" data-overlay="paint/images/hope-brown-loafers2.png">
+                            <img src="paint/images/hope-brown-loafers.png" alt="Brown Loafers">
                         </div>
-                        <div class="clothing-item" data-overlay="images/hope-white-heels2.png">
-                            <img src="images/hope-white-heels.png" alt="White Heels">
+                        <div class="clothing-item" data-overlay="paint/images/hope-white-heels2.png">
+                            <img src="paint/images/hope-white-heels.png" alt="White Heels">
                         </div>
-                        <div class="clothing-item" data-overlay="images/hope-brown-heels2.png">
-                            <img src="images/hope-brown-heels.png" alt="Brown Heels">
+                        <div class="clothing-item" data-overlay="paint/images/hope-brown-heels2.png">
+                            <img src="paint/images/hope-brown-heels.png" alt="Brown Heels">
                         </div>
                     </div>
                     <div class="category-items" data-category="accessories" style="display: none;">
-                        <div class="clothing-item" data-overlay="images/hope-brown-bag2.png">
-                            <img src="images/hope-brown-bag.png" alt="Brown Bag">
+                        <div class="clothing-item" data-overlay="paint/images/hope-brown-bag2.png">
+                            <img src="paint/images/hope-brown-bag.png" alt="Brown Bag">
                         </div>
-                        <div class="clothing-item" data-overlay="images/hope-jewellery2.png">
-                            <img src="images/hope-jewellery.png" alt="Original Jewelry">
+                        <div class="clothing-item" data-overlay="paint/images/hope-jewellery2.png">
+                            <img src="paint/images/hope-jewellery.png" alt="Original Jewelry">
                         </div>
-                        <div class="clothing-item" data-overlay="images/hope-pearls2.png">
-                            <img src="images/hope-pearls.png" alt="Pearls">
+                        <div class="clothing-item" data-overlay="paint/images/hope-pearls2.png">
+                            <img src="paint/images/hope-pearls.png" alt="Pearls">
                         </div>
                     </div>
                     <div class="category-items" data-category="hair" style="display: none;">
-                        <div class="clothing-item" data-overlay="images/hope-hair2.png">
-                            <img src="images/hope-hair.png" alt="Original Hair">
+                        <div class="clothing-item" data-overlay="paint/images/hope-hair2.png">
+                            <img src="paint/images/hope-hair.png" alt="Original Hair">
                         </div>
-                        <div class="clothing-item" data-overlay="images/hope-brown-hair2.png">
-                            <img src="images/hope-brown-hair.png" alt="Brown Hair">
+                        <div class="clothing-item" data-overlay="paint/images/hope-brown-hair2.png">
+                            <img src="paint/images/hope-brown-hair.png" alt="Brown Hair">
                         </div>
                     </div>
                 </div>
