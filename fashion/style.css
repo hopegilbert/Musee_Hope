@@ -284,11 +284,11 @@ html, body {
 }
 
 .color-palette {
-    height: 48px;
-    width: 288px;  /* 24px × 12 colors */
+    height: 32px;
+    width: 192px;  /* 16px × 12 colors */
     display: grid;
-    grid-template-rows: repeat(2, 24px);  /* Two rows of 24px each */
-    grid-template-columns: repeat(12, 24px);  /* 12 columns of 24px each */
+    grid-template-rows: repeat(2, 16px);  /* Two rows of 16px each */
+    grid-template-columns: repeat(12, 16px);  /* 12 columns of 16px each */
     padding: 0;
     gap: 0;
     background-color: #c0c0c0;
@@ -299,8 +299,8 @@ html, body {
 }
 
 .color {
-    width: 24px;
-    height: 24px;
+    width: 16px;
+    height: 16px;
     border: 1px outset #ffffff;
     cursor: pointer;
 }
