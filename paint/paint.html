@@ -7,23 +7,16 @@
     <link rel="stylesheet" href="style.css">
     <style>
         .paint-window {
-            position: absolute;
-            background: #c0c0c0;
-            border: 2px solid #fff;
-            border-right-color: #000;
-            border-bottom-color: #000;
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            position: fixed;
+            background: #c0c0c8;
+            border: 2px solid #808080;
+            border-right-color: #fff;
+            border-bottom-color: #fff;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+            z-index: 1000;
             display: flex;
             flex-direction: column;
-            min-width: 300px;
-            min-height: 400px;
-            max-width: 95vw;
-            max-height: 90vh;
-            width: 60vw;
-            height: 80vh;
             overflow: hidden;
-            transform: translate3d(0, 0, 0);
-            transition: none;
         }
 
         .paint-header {
@@ -226,7 +219,8 @@
             border-right-color: #fff;
             border-bottom-color: #fff;
             margin: 8px;
-            overflow: hidden;
+            overflow: visible;
+            z-index: 1001;
         }
 
         #mainCanvas {
@@ -254,7 +248,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 2;
+            z-index: 1002;
             pointer-events: none;
             display: flex;
             justify-content: center;
@@ -269,7 +263,7 @@
             width: 80%;
             height: 80%;
             object-fit: contain;
-            z-index: 2;
+            z-index: 1002;
             pointer-events: none;
         }
 
