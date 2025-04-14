@@ -1162,4 +1162,67 @@ document.addEventListener('DOMContentLoaded', () => {
       document.querySelector(`.category-items[data-category="${category}"]`).style.display = 'flex';
     });
   });
+
+  // Handle clothing item clicks
+  document.querySelectorAll('.clothing-item').forEach(item => {
+    item.addEventListener('click', function() {
+      const overlayPath = this.getAttribute('data-overlay');
+      handleClothingClick(overlayPath);
+    });
+  });
+
+  // Handle category button clicks
+  document.querySelectorAll('.category-btn').forEach(button => {
+    button.addEventListener('click', function() {
+      // Remove active class from all buttons
+      document.querySelectorAll('.category-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      // Add active class to clicked button
+      this.classList.add('active');
+      
+      // Hide all category items
+      document.querySelectorAll('.category-items').forEach(items => {
+        items.style.display = 'none';
+      });
+      
+      // Show selected category items
+      const category = this.getAttribute('data-category');
+      document.querySelector(`.category-items[data-category="${category}"]`).style.display = 'flex';
+    });
+  });
+
+  function handleClothingClick(overlayPath) {
+    const overlayContainer = document.querySelector('.overlay-container');
+    
+    // Check if there's an existing overlay
+    const existingOverlay = overlayContainer.querySelector('img');
+    if (existingOverlay) {
+      // If the same overlay is clicked again, remove it
+      if (existingOverlay.src.includes(overlayPath)) {
+        existingOverlay.style.opacity = '0';
+        setTimeout(() => {
+          existingOverlay.remove();
+        }, 300); // Match the transition duration
+        return;
+      }
+      // Otherwise, fade out the existing overlay
+      existingOverlay.style.opacity = '0';
+      setTimeout(() => {
+        existingOverlay.remove();
+      }, 300);
+    }
+    
+    // Create and add new overlay
+    const overlay = document.createElement('img');
+    overlay.src = overlayPath;
+    overlay.style.opacity = '0';
+    overlayContainer.appendChild(overlay);
+    
+    // Trigger reflow
+    overlay.offsetHeight;
+    
+    // Fade in the new overlay
+    overlay.style.opacity = '1';
+  }
 }); 
