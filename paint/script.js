@@ -1157,20 +1157,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const existingOverlay = document.querySelector(`.${type}-overlay`);
     
     if (existingOverlay) {
-        // If overlay exists and is visible, fade it out and remove after transition
+        // If overlay exists, toggle its visibility
         if (existingOverlay.style.opacity === '1') {
+            // Hide overlay
             existingOverlay.style.opacity = '0';
             item.classList.remove('active');
-            existingOverlay.addEventListener('transitionend', () => {
-                if (existingOverlay.parentNode) {
-                    existingOverlay.parentNode.removeChild(existingOverlay);
-                }
-            }, { once: true });
-            return;
+            setTimeout(() => {
+                existingOverlay.remove();
+            }, 300);
+        } else {
+            // Show overlay
+            existingOverlay.style.opacity = '1';
+            item.classList.add('active');
         }
+        return;
     }
     
-    // Create new overlay
+    // Create new overlay if none exists
     const overlay = new Image();
     overlay.src = overlayPath;
     overlay.className = `${type}-overlay`;
@@ -1200,7 +1203,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const overlayContainer = document.querySelector('.overlay-container');
     overlay.onload = () => {
         overlayContainer.appendChild(overlay);
-        // Use requestAnimationFrame to ensure the transition works
         requestAnimationFrame(() => {
             overlay.style.opacity = '1';
             item.classList.add('active');
