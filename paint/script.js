@@ -1169,11 +1169,61 @@ document.addEventListener('DOMContentLoaded', () => {
       const overlayPath = this.getAttribute('data-overlay');
       handleClothingClick(overlayPath);
     });
+
+    // Add touch event handling for mobile
+    let touchStartY = 0;
+    let touchStartX = 0;
+    let isScrolling = false;
+
+    item.addEventListener('touchstart', function(e) {
+      touchStartY = e.touches[0].clientY;
+      touchStartX = e.touches[0].clientX;
+      isScrolling = false;
+    });
+
+    item.addEventListener('touchmove', function(e) {
+      const touchY = e.touches[0].clientY;
+      const touchX = e.touches[0].clientX;
+      const deltaY = Math.abs(touchY - touchStartY);
+      const deltaX = Math.abs(touchX - touchStartX);
+
+      // If vertical movement is greater than horizontal, it's a scroll
+      if (deltaY > deltaX && deltaY > 10) {
+        isScrolling = true;
+        e.preventDefault(); // Prevent click if scrolling
+      }
+    });
+
+    item.addEventListener('touchend', function(e) {
+      if (!isScrolling) {
+        const overlayPath = this.getAttribute('data-overlay');
+        handleClothingClick(overlayPath);
+      }
+    });
   });
 
   // Handle category button clicks
   document.querySelectorAll('.category-btn').forEach(button => {
     button.addEventListener('click', function() {
+      // Remove active class from all buttons
+      document.querySelectorAll('.category-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      // Add active class to clicked button
+      this.classList.add('active');
+      
+      // Hide all category items
+      document.querySelectorAll('.category-items').forEach(items => {
+        items.style.display = 'none';
+      });
+      
+      // Show selected category items
+      const category = this.getAttribute('data-category');
+      document.querySelector(`.category-items[data-category="${category}"]`).style.display = 'flex';
+    });
+
+    // Add touch event handling for mobile
+    button.addEventListener('touchend', function(e) {
       // Remove active class from all buttons
       document.querySelectorAll('.category-btn').forEach(btn => {
         btn.classList.remove('active');
