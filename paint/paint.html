@@ -527,6 +527,49 @@
                 padding: 5px;
             }
         }
+
+        .clothing-category {
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .clothing-category h3 {
+            margin: 0 0 10px 0;
+            color: #333;
+            font-size: 14px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+
+        .clothing-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 10px;
+            max-height: 100%;
+            overflow-y: auto;
+        }
+
+        .clothing-btn {
+            display: block;
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: white;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 12px;
+        }
+
+        .clothing-btn:hover {
+            background-color: #f0f0f0;
+            border-color: #999;
+        }
     </style>
 </head>
 <body>
@@ -680,6 +723,37 @@
                 </div>
                 <div class="paint-item" title="Jewelry" data-overlay="hope-jewellery2.png">
                     <img src="./images/hope-jewellery.png" alt="Jewelry">
+                </div>
+            </div>
+            <div class="clothing-buttons">
+                <div class="clothing-category">
+                    <h3>Hair</h3>
+                    <button class="clothing-btn" data-overlay="./paint/images/hope-hair2.png">Original Hair</button>
+                    <button class="clothing-btn" data-overlay="./paint/images/hope-brown-plait2.png">Brown Plait</button>
+                </div>
+                
+                <div class="clothing-category">
+                    <h3>Tops & Dresses</h3>
+                    <button class="clothing-btn" data-overlay="./paint/images/hope-dress2.png">Original Dress</button>
+                    <button class="clothing-btn" data-overlay="./paint/images/hope-yellow-dress2.png">Yellow Dress</button>
+                    <button class="clothing-btn" data-overlay="./paint/images/hope-blue-dress2.png">Blue Dress</button>
+                    <button class="clothing-btn" data-overlay="./paint/images/hope-yellow-top2.png">Yellow Top</button>
+                    <button class="clothing-btn" data-overlay="./paint/images/hope-skirt2.png">Skirt</button>
+                </div>
+
+                <div class="clothing-category">
+                    <h3>Shoes</h3>
+                    <button class="clothing-btn" data-overlay="./paint/images/hope-shoes2.png">Original Shoes</button>
+                    <button class="clothing-btn" data-overlay="./paint/images/hope-boots2.png">Boots</button>
+                    <button class="clothing-btn" data-overlay="./paint/images/hope-covnverse2.png">Converse</button>
+                    <button class="clothing-btn" data-overlay="./paint/images/hope-trainers2.png">Trainers</button>
+                </div>
+
+                <div class="clothing-category">
+                    <h3>Accessories</h3>
+                    <button class="clothing-btn" data-overlay="./paint/images/hope-jewellery2.png">Original Jewelry</button>
+                    <button class="clothing-btn" data-overlay="./paint/images/hope-sunflower2.png">Sunflower</button>
+                    <button class="clothing-btn" data-overlay="./paint/images/hope-silver-necklace2.png">Silver Necklace</button>
                 </div>
             </div>
         </div>
