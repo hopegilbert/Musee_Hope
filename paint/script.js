@@ -1086,9 +1086,9 @@ document.addEventListener('DOMContentLoaded', () => {
       e.stopPropagation();
       
       const overlayPath = this.dataset.overlay;
-      const type = this.getAttribute('title').toLowerCase();
+      const type = this.getAttribute('title');  // Use exact title without toLowerCase()
       
-      // Find existing overlay
+      // Find existing overlay using exact class name
       const existingOverlay = document.querySelector(`.${type}-overlay`);
       
       // If overlay exists, remove it
@@ -1101,7 +1101,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Create new overlay
       const overlay = new Image();
       overlay.src = overlayPath;
-      overlay.className = `${type}-overlay`;
+      overlay.className = `${type}-overlay`;  // Use exact class name
       overlay.style.position = 'absolute';
       overlay.style.top = '50%';
       overlay.style.left = '50%';
@@ -1112,14 +1112,14 @@ document.addEventListener('DOMContentLoaded', () => {
       overlay.style.pointerEvents = 'none';
       
       // Set z-index based on type
-      if (type.includes('jewel') || type.includes('necklace')) {
+      if (type.includes('jewellery') || type.includes('necklace') || type.includes('sunflower')) {
         overlay.style.zIndex = '1004';
       } else if (type.includes('hair') || type.includes('plait')) {
         overlay.style.zIndex = '1002';
       } else if (type.includes('dress') || type.includes('top') || type.includes('skirt')) {
         overlay.style.zIndex = '1001';
       } else {
-        overlay.style.zIndex = '1003';
+        overlay.style.zIndex = '1003';  // shoes, boots, trainers, converse
       }
       
       // Add overlay and activate button
