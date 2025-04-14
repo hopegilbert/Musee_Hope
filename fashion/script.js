@@ -223,21 +223,20 @@ document.querySelectorAll('.clothing-item').forEach(item => {
         }
     });
 
-    item.addEventListener('touchend', (e) => {
+    item.addEventListener('touchend', () => {
         if (!isScrolling) {
-            handleClothingClick(e);
+            handleClothingClick(item);
         }
     });
 
-    item.addEventListener('click', (e) => {
+    item.addEventListener('click', () => {
         if (!isScrolling) {
-            handleClothingClick(e);
+            handleClothingClick(item);
         }
     });
 });
 
-function handleClothingClick(event) {
-    const item = event.currentTarget;
+function handleClothingClick(item) {
     const overlayPath = item.getAttribute('data-overlay');
     const category = item.closest('.category-items').getAttribute('data-category');
     
