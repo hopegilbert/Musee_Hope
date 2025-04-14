@@ -1065,30 +1065,25 @@ document.addEventListener('DOMContentLoaded', () => {
     
     item.addEventListener('click', () => {
       const imgSrc = item.querySelector('img').src;
-      const img = new Image();
       
-      img.onload = () => {
-        // Create a new image element for the clothing item
-        const clothingItem = document.createElement('img');
-        clothingItem.src = imgSrc;
-        clothingItem.style.position = 'absolute';
-        clothingItem.style.top = '0';
-        clothingItem.style.left = '0';
-        clothingItem.style.width = '100%';
-        clothingItem.style.height = '100%';
-        clothingItem.style.objectFit = 'contain';
-        clothingItem.style.pointerEvents = 'none';
-        
-        // Remove any existing clothing item of the same type
-        const existingItem = clothingContainer.querySelector(`img[src="${imgSrc}"]`);
-        if (existingItem) {
+      // Create a new image element for the clothing item
+      const clothingItem = document.createElement('img');
+      clothingItem.src = imgSrc;
+      clothingItem.style.position = 'absolute';
+      clothingItem.style.top = '0';
+      clothingItem.style.left = '0';
+      clothingItem.style.width = '100%';
+      clothingItem.style.height = '100%';
+      clothingItem.style.objectFit = 'contain';
+      clothingItem.style.pointerEvents = 'none';
+      
+      // Remove any existing clothing item of the same type
+      const existingItem = clothingContainer.querySelector(`img[src="${imgSrc}"]`);
+      if (existingItem) {
           existingItem.remove();
-        }
-        
-        clothingContainer.appendChild(clothingItem);
-      };
+      }
       
-      img.src = imgSrc;
+      clothingContainer.appendChild(clothingItem);
     });
   });
 }); 
