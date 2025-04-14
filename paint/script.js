@@ -428,10 +428,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const sizeControl = document.querySelector('.size-control');
             if (['pencil', 'brush', 'eraser', 'spray', 'line', 'rectangle', 'ellipse'].includes(tool)) {
                 const btnRect = btn.getBoundingClientRect();
-                sizeControl.style.position = 'fixed';
-                sizeControl.style.left = btnRect.left + 'px';
-                sizeControl.style.top = (btnRect.bottom + 5) + 'px';
-                sizeControl.style.display = 'block';
+                const toolbarRect = document.querySelector('.paint-toolbar').getBoundingClientRect();
+                
+                // Position the size control relative to the toolbar
+                sizeControl.style.position = 'absolute';
+                sizeControl.style.left = (btnRect.left - toolbarRect.left) + 'px';
+                sizeControl.style.top = (btnRect.bottom - toolbarRect.top) + 'px';
+                sizeControl.style.display = 'flex';
                 sizeControl.style.zIndex = '1000';
                 updateSizePreview();
             } else {
@@ -1004,13 +1007,14 @@ document.addEventListener('DOMContentLoaded', () => {
   // Update size control styling
   const sizeControl = document.querySelector('.size-control');
   if (sizeControl) {
-    sizeControl.style.position = 'fixed';
+    sizeControl.style.position = 'absolute';
     sizeControl.style.display = 'none';
     sizeControl.style.padding = '10px';
-    sizeControl.style.background = '#fff';
-    sizeControl.style.border = '1px solid #ccc';
-    sizeControl.style.borderRadius = '5px';
-    sizeControl.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
+    sizeControl.style.background = '#c0c0c8';
+    sizeControl.style.border = '1px solid #808080';
+    sizeControl.style.borderRadius = '0';
+    sizeControl.style.boxShadow = '2px 2px 5px rgba(0,0,0,0.2)';
+    sizeControl.style.width = '150px';
   }
 
   // Close size control when clicking outside
