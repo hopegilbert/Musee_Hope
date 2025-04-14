@@ -209,6 +209,7 @@ function hexToRgba(hex) {
 categoryButtons.forEach((button) => {
     button.addEventListener('click', () => {
         const targetCategory = button.getAttribute('data-category');
+        console.log('Clicked category:', targetCategory);
         
         // Remove active class from all buttons and items
         categoryButtons.forEach(btn => btn.classList.remove('active'));
@@ -216,7 +217,13 @@ categoryButtons.forEach((button) => {
         
         // Add active class to clicked button and corresponding items
         button.classList.add('active');
-        document.querySelector(`.category-items[data-category="${targetCategory}"]`).classList.add('active');
+        const targetItems = document.querySelector(`.category-items[data-category="${targetCategory}"]`);
+        if (targetItems) {
+            targetItems.classList.add('active');
+            console.log('Found and activated items for category:', targetCategory);
+        } else {
+            console.log('Could not find items for category:', targetCategory);
+        }
     });
 });
 
