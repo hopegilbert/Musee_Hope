@@ -252,7 +252,7 @@ function handleClothingClick(event) {
             if (overlayPath.includes('cardigan')) {
                 zIndex = 4;
             } else {
-                zIndex = 1;
+                zIndex = 0; // Push all other dresses to the back
             }
             break;
         case 'hair':
