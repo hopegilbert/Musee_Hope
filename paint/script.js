@@ -108,15 +108,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     switch (currentTool) {
       case 'pencil':
-        drawFreehand(points);
-        break;
       case 'brush':
-        drawBrush(points);
+        if (currentTool === 'pencil') {
+          drawFreehand(points);
+        } else {
+          drawBrush(points);
+        }
+        // Copy to main canvas for continuous effect
+        mainCtx.drawImage(tempCanvas, 0, 0);
         break;
       case 'spray':
         drawSpray(x, y);
-        mainCtx.drawImage(tempCanvas, 0, 0);
-        tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
         break;
       case 'eraser':
         drawEraser(points);
@@ -773,10 +775,29 @@ document.addEventListener('DOMContentLoaded', () => {
     tempCtx.lineCap = 'round';
     tempCtx.lineJoin = 'round';
     
-    // Draw only the newest segment
+    // Draw the entire path for smoother lines
     tempCtx.beginPath();
-    tempCtx.moveTo(points[points.length - 2].x, points[points.length - 2].y);
-    tempCtx.lineTo(points[points.length - 1].x, points[points.length - 1].y);
+    tempCtx.moveTo(points[0].x, points[0].y);
+    
+    // Use quadratic curves for smoother lines
+    for (let i = 1; i < points.length - 2; i++) {
+      const xc = (points[i].x + points[i + 1].x) / 2;
+      const yc = (points[i].y + points[i + 1].y) / 2;
+      tempCtx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+    }
+    
+    // For the last two points
+    if (points.length > 2) {
+      tempCtx.quadraticCurveTo(
+        points[points.length - 2].x,
+        points[points.length - 2].y,
+        points[points.length - 1].x,
+        points[points.length - 1].y
+      );
+    } else {
+      tempCtx.lineTo(points[points.length - 1].x, points[points.length - 1].y);
+    }
+    
     tempCtx.stroke();
   }
 
@@ -788,10 +809,40 @@ document.addEventListener('DOMContentLoaded', () => {
     tempCtx.lineCap = 'round';
     tempCtx.lineJoin = 'round';
     
-    // Draw only the newest segment
+    // Draw the entire path for smoother lines
     tempCtx.beginPath();
-    tempCtx.moveTo(points[points.length - 2].x, points[points.length - 2].y);
-    tempCtx.lineTo(points[points.length - 1].x, points[points.length - 1].y);
+    tempCtx.moveTo(points[0].x, points[0].y);
+    
+    // Use bezier curves for smoother, more painterly strokes
+    for (let i = 1; i < points.length - 2; i++) {
+      const xc = (points[i].x + points[i + 1].x) / 2;
+      const yc = (points[i].y + points[i + 1].y) / 2;
+      const x1 = points[i].x;
+      const y1 = points[i].y;
+      const x2 = xc;
+      const y2 = yc;
+      
+      tempCtx.bezierCurveTo(
+        x1, y1,
+        x1, y1,
+        x2, y2
+      );
+    }
+    
+    // For the last two points
+    if (points.length > 2) {
+      tempCtx.bezierCurveTo(
+        points[points.length - 2].x,
+        points[points.length - 2].y,
+        points[points.length - 2].x,
+        points[points.length - 2].y,
+        points[points.length - 1].x,
+        points[points.length - 1].y
+      );
+    } else {
+      tempCtx.lineTo(points[points.length - 1].x, points[points.length - 1].y);
+    }
+    
     tempCtx.stroke();
   }
 
