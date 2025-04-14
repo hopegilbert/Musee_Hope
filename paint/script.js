@@ -1064,6 +1064,10 @@ document.addEventListener('DOMContentLoaded', () => {
         item.addEventListener('click', () => {
             const type = item.getAttribute('title').toLowerCase(); // Get item type (hair, dress, etc)
             
+            // Create the overlay image path by adding "2" before the extension
+            const originalSrc = img.src;
+            const overlayPath = originalSrc.replace(/\.png$/, '2.png');
+            
             // Remove existing item of same type if it exists
             const existingItem = clothingContainer.querySelector(`[data-type="${type}"]`);
             if (existingItem) {
@@ -1072,7 +1076,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Create and add new clothing item
             const clothingItem = document.createElement('img');
-            clothingItem.src = img.src;
+            clothingItem.src = overlayPath;
             clothingItem.setAttribute('data-type', type);
             clothingItem.style.position = 'absolute';
             clothingItem.style.top = '0';
