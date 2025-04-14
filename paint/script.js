@@ -50,211 +50,72 @@ document.addEventListener('DOMContentLoaded', () => {
   const MAX_HISTORY = 20;
   let isDrawingShape = false;
   let textInput = null;
+  let points = [];
   
   // Save initial state
   saveState();
   
-  function getMousePos(e) {
+  function getEventCoords(e) {
     const rect = mainCanvas.getBoundingClientRect();
     const scaleX = mainCanvas.width / rect.width;
     const scaleY = mainCanvas.height / rect.height;
     
-    // Handle both touch and mouse events
-    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-    
+    if (e.touches && e.touches[0]) {
+      return {
+        x: (e.touches[0].clientX - rect.left) * scaleX,
+        y: (e.touches[0].clientY - rect.top) * scaleY
+      };
+    }
     return {
-      x: ((clientX - rect.left) * scaleX),
-      y: ((clientY - rect.top) * scaleY)
+      x: (e.clientX - rect.left) * scaleX,
+      y: (e.clientY - rect.top) * scaleY
     };
   }
   
   function startDrawing(e) {
     e.preventDefault();
-    const pos = getMousePos(e);
-    
-    if (currentTool === 'fill') {
-      floodFill(Math.round(pos.x), Math.round(pos.y), currentColor);
-      saveState();
-      return;
-    }
-    
-    if (currentTool === 'text') {
-        // Remove any existing text input
-        if (textInput) {
-            document.body.removeChild(textInput);
-            textInput = null;
-        }
-        
-        // Create text input
-        textInput = document.createElement('input');
-        textInput.type = 'text';
-        textInput.style.position = 'fixed';
-        textInput.style.left = pos.x + 'px';
-        textInput.style.top = pos.y + 'px';
-        textInput.style.font = brushSize + 'px Arial';
-        textInput.style.color = currentColor;
-        textInput.style.border = '1px solid #000';
-        textInput.style.padding = '2px';
-        textInput.style.margin = '0';
-        textInput.style.outline = 'none';
-        textInput.style.background = 'transparent';
-        textInput.style.zIndex = '1000';
-        textInput.style.minWidth = '100px';
-        textInput.style.height = brushSize + 'px';
-        
-        // Add to document
-        document.body.appendChild(textInput);
-        textInput.focus();
-        
-        // Store click position
-        const clickPos = { x: pos.x, y: pos.y };
-        
-        // Handle text input
-        const handleText = () => {
-            const text = textInput.value;
-            if (text) {
-                mainCtx.font = brushSize + 'px Arial';
-                mainCtx.fillStyle = currentColor;
-                mainCtx.fillText(text, clickPos.x, clickPos.y);
-                tempCtx.drawImage(mainCanvas, 0, 0);
-                saveState();
-            }
-            document.body.removeChild(textInput);
-            textInput = null;
-        };
-        
-        // Add event listeners
-        textInput.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') {
-                handleText();
-            } else if (e.key === 'Escape') {
-                document.body.removeChild(textInput);
-                textInput = null;
-            }
-        });
-        
-        textInput.addEventListener('blur', handleText);
-        return;
-    }
-    
     isDrawing = true;
-    [lastX, lastY] = [pos.x, pos.y];
-    [startX, startY] = [pos.x, pos.y];
-    
-    // For shapes, store the initial canvas state
-    if (['rectangle', 'ellipse', 'line'].includes(currentTool)) {
-      tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
-      tempCtx.drawImage(mainCanvas, 0, 0);
-    }
-    
-    // For spray tool, start spraying immediately
-    if (currentTool === 'spray') {
-      drawSpray(pos.x, pos.y);
+    const coords = getEventCoords(e);
+    lastX = coords.x;
+    lastY = coords.y;
+    points = [{ x: lastX, y: lastY }];
+
+    if (currentTool === 'fill') {
+      floodFill(Math.floor(lastX), Math.floor(lastY));
+      isDrawing = false;
+    } else if (currentTool === 'text') {
+      showTextInput(e);
+      isDrawing = false;
+    } else {
+      tempCtx.beginPath();
+      draw(e);
     }
   }
   
   function draw(e) {
-    e.preventDefault();
     if (!isDrawing) return;
+    e.preventDefault();
     
-    const pos = getMousePos(e);
-    
-    switch(currentTool) {
-      case 'pencil':
-      case 'brush':
-      case 'eraser':
-        mainCtx.beginPath();
-        mainCtx.moveTo(lastX, lastY);
-        mainCtx.lineTo(pos.x, pos.y);
-        mainCtx.strokeStyle = currentTool === 'eraser' ? '#FFFFFF' : currentColor;
-        mainCtx.lineWidth = brushSize;
-        mainCtx.lineCap = 'round';
-        mainCtx.lineJoin = 'round';
-        mainCtx.stroke();
-        
-        // Update temp canvas
-        tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
-        tempCtx.drawImage(mainCanvas, 0, 0);
-        
-        [lastX, lastY] = [pos.x, pos.y];
-        break;
-        
-      case 'spray':
-        drawSpray(pos.x, pos.y);
-        break;
-        
-      case 'rectangle':
-        // Create a temporary canvas for shape preview
-        const rectPreview = document.createElement('canvas');
-        rectPreview.width = tempCanvas.width;
-        rectPreview.height = tempCanvas.height;
-        const rectCtx = rectPreview.getContext('2d');
-        
-        // Copy the original state
-        rectCtx.drawImage(tempCanvas, 0, 0);
-        
-        // Draw the new rectangle
-        const width = pos.x - startX;
-        const height = pos.y - startY;
-        rectCtx.strokeStyle = currentColor;
-        rectCtx.lineWidth = brushSize;
-        rectCtx.strokeRect(startX, startY, width, height);
-        
-        // Update display
-        mainCtx.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
-        mainCtx.drawImage(rectPreview, 0, 0);
-        break;
-        
-      case 'ellipse':
-        // Create a temporary canvas for shape preview
-        const ellipsePreview = document.createElement('canvas');
-        ellipsePreview.width = tempCanvas.width;
-        ellipsePreview.height = tempCanvas.height;
-        const ellipseCtx = ellipsePreview.getContext('2d');
-        
-        // Copy the original state
-        ellipseCtx.drawImage(tempCanvas, 0, 0);
-        
-        // Draw the new ellipse
-        const radiusX = Math.abs(pos.x - startX) / 2;
-        const radiusY = Math.abs(pos.y - startY) / 2;
-        const centerX = startX + (pos.x - startX) / 2;
-        const centerY = startY + (pos.y - startY) / 2;
-        
-        ellipseCtx.beginPath();
-        ellipseCtx.strokeStyle = currentColor;
-        ellipseCtx.lineWidth = brushSize;
-        ellipseCtx.ellipse(centerX, centerY, radiusX, radiusY, 0, 0, Math.PI * 2);
-        ellipseCtx.stroke();
-        
-        // Update display
-        mainCtx.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
-        mainCtx.drawImage(ellipsePreview, 0, 0);
-        break;
-        
-      case 'line':
-        // Create a temporary canvas for shape preview
-        const linePreview = document.createElement('canvas');
-        linePreview.width = tempCanvas.width;
-        linePreview.height = tempCanvas.height;
-        const lineCtx = linePreview.getContext('2d');
-        
-        // Copy the original state
-        lineCtx.drawImage(tempCanvas, 0, 0);
-        
-        // Draw the new line
-        lineCtx.beginPath();
-        lineCtx.strokeStyle = currentColor;
-        lineCtx.lineWidth = brushSize;
-        lineCtx.moveTo(startX, startY);
-        lineCtx.lineTo(pos.x, pos.y);
-        lineCtx.stroke();
-        
-        // Update display
-        mainCtx.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
-        mainCtx.drawImage(linePreview, 0, 0);
-        break;
+    const coords = getEventCoords(e);
+    const x = coords.x;
+    const y = coords.y;
+    points.push({ x, y });
+
+    tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
+    tempCtx.beginPath();
+
+    if (currentTool === 'pencil') {
+      drawFreehand(points);
+    } else if (currentTool === 'brush') {
+      drawBrush(points);
+    } else if (currentTool === 'spray') {
+      drawSpray(x, y);
+    } else if (currentTool === 'line') {
+      drawLine(lastX, lastY, x, y);
+    } else if (currentTool === 'rectangle') {
+      drawRectangle(lastX, lastY, x - lastX, y - lastY);
+    } else if (currentTool === 'circle') {
+      drawCircle(lastX, lastY, x, y);
     }
   }
   
@@ -281,21 +142,14 @@ document.addEventListener('DOMContentLoaded', () => {
     mainCtx.drawImage(tempCanvas, 0, 0);
   }
   
-  function stopDrawing() {
+  function stopDrawing(e) {
     if (!isDrawing) return;
     isDrawing = false;
     
-    // For shapes, commit the final shape
-    if (['rectangle', 'ellipse', 'line'].includes(currentTool)) {
-        // Copy the current display to the temp canvas
-        tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
-        tempCtx.drawImage(mainCanvas, 0, 0);
-    }
-    
-    // Save state after drawing is complete
-    if (!['fill'].includes(currentTool)) {
-        saveState();
-    }
+    // Commit the temporary canvas to the main canvas
+    mainCtx.drawImage(tempCanvas, 0, 0);
+    tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
+    saveState();
   }
   
   // Save current canvas state to history
@@ -367,7 +221,21 @@ document.addEventListener('DOMContentLoaded', () => {
   mainCanvas.addEventListener('mousedown', startDrawing);
   mainCanvas.addEventListener('mousemove', draw);
   mainCanvas.addEventListener('mouseup', stopDrawing);
-  mainCanvas.addEventListener('mouseout', stopDrawing);
+  mainCanvas.addEventListener('mouseleave', stopDrawing);
+  
+  mainCanvas.addEventListener('touchstart', startDrawing);
+  mainCanvas.addEventListener('touchmove', draw);
+  mainCanvas.addEventListener('touchend', stopDrawing);
+  mainCanvas.addEventListener('touchcancel', stopDrawing);
+  
+  // Prevent scrolling when touching the canvas
+  mainCanvas.addEventListener('touchstart', function(e) {
+    e.preventDefault();
+  }, { passive: false });
+  
+  mainCanvas.addEventListener('touchmove', function(e) {
+    e.preventDefault();
+  }, { passive: false });
   
   // Tool selection
   const tools = document.querySelectorAll('.paint-tool');
@@ -375,7 +243,7 @@ document.addEventListener('DOMContentLoaded', () => {
     tool.addEventListener('click', function() {
       const toolName = this.querySelector('img').alt.toLowerCase();
       const toolId = toolName + 'Btn';
-      setActiveTool(toolId, toolName);
+      setActiveTool(toolName);
       brushSize = toolButtons[toolId]?.size || 2;
     });
   });
@@ -513,23 +381,21 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   
   // Tool selection
-  function setActiveTool(toolId, toolName) {
-    // Remove active class from all tools
-    document.querySelectorAll('.toolbar-buttons button').forEach(btn => btn.classList.remove('active'));
-    document.querySelectorAll('.paint-tool').forEach(tool => tool.classList.remove('active'));
+  function setActiveTool(tool) {
+    currentTool = tool;
+    updateCursor();
     
-    // Add active class to selected tool
-    const toolButton = document.getElementById(toolId);
-    if (toolButton) {
-        toolButton.classList.add('active');
-    }
+    // Reset drawing state
+    isDrawing = false;
+    tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
     
-    // Set current tool
-    currentTool = toolName;
-    
-    // Update cursor
-    mainCanvas.style.cursor = toolName === 'eraser' ? 'cell' : 
-                             toolName === 'text' ? 'text' : 'crosshair';
+    // Update UI
+    document.querySelectorAll('.tool-button').forEach(btn => {
+      btn.classList.remove('active');
+      if (btn.dataset.tool === tool) {
+        btn.classList.add('active');
+      }
+    });
   }
   
   // Tool button event listeners
@@ -549,7 +415,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const button = document.getElementById(btnId);
     if (button) {
         button.addEventListener('click', () => {
-            setActiveTool(btnId, settings.tool);
+            setActiveTool(settings.tool);
             brushSize = settings.size;
         });
     }
@@ -854,44 +720,14 @@ document.addEventListener('DOMContentLoaded', () => {
     } : null;
   }
 
-  // Add touch event listeners
-  mainCanvas.addEventListener('touchstart', (e) => {
-    e.preventDefault();
-    const touch = e.touches[0];
-    const rect = mainCanvas.getBoundingClientRect();
-    const scaleX = mainCanvas.width / rect.width;
-    const scaleY = mainCanvas.height / rect.height;
-    
-    const touchEvent = {
-      clientX: touch.clientX,
-      clientY: touch.clientY,
-      target: mainCanvas
-    };
-    
-    startDrawing(touchEvent);
-  }, { passive: false });
-
-  mainCanvas.addEventListener('touchmove', (e) => {
-    e.preventDefault();
-    if (!isDrawing) return;
-    
-    const touch = e.touches[0];
-    const touchEvent = {
-      clientX: touch.clientX,
-      clientY: touch.clientY,
-      target: mainCanvas
-    };
-    
-    draw(touchEvent);
-  }, { passive: false });
-
-  mainCanvas.addEventListener('touchend', (e) => {
-    e.preventDefault();
-    stopDrawing();
-  }, { passive: false });
-
-  mainCanvas.addEventListener('touchcancel', (e) => {
-    e.preventDefault();
-    stopDrawing();
-  }, { passive: false });
+  // Update cursor style based on current tool
+  function updateCursor() {
+    if (currentTool === 'fill') {
+      mainCanvas.style.cursor = 'crosshair';
+    } else if (currentTool === 'text') {
+      mainCanvas.style.cursor = 'text';
+    } else {
+      mainCanvas.style.cursor = 'crosshair';
+    }
+  }
 }); 
