@@ -236,26 +236,65 @@ document.querySelectorAll('.clothing-item').forEach(item => {
     });
 });
 
-function handleClothingClick(item) {
-    const overlayPath = item.dataset.overlay;
-    const existingOverlay = Array.from(overlayContainer.children).find(
-        img => img.src.endsWith(overlayPath)
-    );
+function handleClothingClick(event) {
+    const item = event.currentTarget;
+    const overlayPath = item.getAttribute('data-overlay');
+    const category = item.closest('.category-items').getAttribute('data-category');
+    
+    // Set z-index based on category
+    let zIndex = 1; // Default z-index
+    switch(category) {
+        case 'jewelry':
+            zIndex = 5; // Highest z-index
+            break;
+        case 'accessories':
+            zIndex = 4;
+            break;
+        case 'hair':
+            zIndex = 3;
+            break;
+        case 'dress':
+            // Check if it's the cardigan
+            if (overlayPath.includes('cardigan')) {
+                zIndex = 2;
+            } else {
+                zIndex = 1;
+            }
+            break;
+        default:
+            zIndex = 1;
+    }
+
+    // Find existing overlay with the same source
+    const existingOverlay = Array.from(overlayContainer.querySelectorAll('.overlay-image'))
+        .find(img => img.src.includes(overlayPath));
 
     if (existingOverlay) {
-        existingOverlay.style.opacity = '0';
-        setTimeout(() => {
-            existingOverlay.remove();
-        }, 300);
+        // If overlay exists and is visible, remove it
+        if (existingOverlay.style.opacity === '1') {
+            existingOverlay.style.opacity = '0';
+            setTimeout(() => {
+                existingOverlay.remove();
+            }, 300); // Match transition duration
+        } else {
+            // If overlay exists but is not visible, make it visible
+            existingOverlay.style.zIndex = zIndex;
+            existingOverlay.style.opacity = '1';
+        }
     } else {
+        // Create new overlay
         const overlay = document.createElement('img');
         overlay.src = overlayPath;
         overlay.className = 'overlay-image';
+        overlay.style.zIndex = zIndex;
         overlay.style.opacity = '0';
+        
         overlayContainer.appendChild(overlay);
         
-        overlay.onload = () => {
-            overlay.style.opacity = '1';
-        };
+        // Force reflow
+        overlay.offsetHeight;
+        
+        // Fade in
+        overlay.style.opacity = '1';
     }
 } 
