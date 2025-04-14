@@ -24,7 +24,6 @@
             overflow: hidden;
             transform: translate3d(0, 0, 0);
             transition: none;
-            z-index: 8000;
         }
 
         .paint-header {
@@ -280,25 +279,11 @@
         }
 
         .color-dropdown {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: #c0c0c8;
-            border: 1px solid #808080;
-            padding: 4px;
-            z-index: 10000;
-            display: none;
-        }
-
-        .menu-item:hover .color-dropdown {
-            display: block;
-        }
-
-        .color-grid {
-            display: grid;
-            grid-template-columns: repeat(8, 16px);
-            grid-template-rows: repeat(2, 16px);
-            gap: 2px;
+            position: relative;
+            display: inline-block;
+            margin-top: 4px;
+            width: 32px;
+            min-width: 32px;
         }
 
         .color-button {
@@ -319,7 +304,7 @@
             background: #c0c0c8;
             border: 1px solid #808080;
             padding: 4px;
-            z-index: 10000;
+            z-index: 1000;
         }
 
         .color-option {
@@ -440,11 +425,6 @@
                 width: calc(1.1em + 0.5vw);
                 height: calc(1.1em + 0.5vw);
             }
-        }
-
-        .main-window {
-            position: relative;
-            z-index: 9000;
         }
     </style>
 </head>
@@ -600,6 +580,9 @@
                 </div>
                 <div class="paint-item" title="Shoes">
                     <img src="./images/hope-shoes.png" alt="Shoes">
+                </div>
+                <div class="paint-item" title="Jewelry">
+                    <img src="./images/jewellrey.png" alt="Jewelry">
                 </div>
             </div>
         </div>
