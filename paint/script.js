@@ -1040,22 +1040,23 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Initialize clothing items
-  const paintItems = document.querySelectorAll('.paint-item');
-  const paintCanvas = document.querySelector('.paint-canvas-container');
+  const paintItems = document.querySelectorAll('.paint-items .paint-item');
+  const paintWindowElement = document.querySelector('.paint-window');
+  const paintCanvas = paintWindowElement.querySelector('.paint-canvas-container');
+  const backgroundImage = paintCanvas.querySelector('.background-image');
   
   // Set up the canvas container
   paintCanvas.style.position = 'relative';
+  paintCanvas.style.overflow = 'hidden';
   
   // Create overlay container
-  let overlayContainer = document.querySelector('.overlay-container');
+  let overlayContainer = paintCanvas.querySelector('.overlay-container');
   if (!overlayContainer) {
     overlayContainer = document.createElement('div');
     overlayContainer.className = 'overlay-container';
     overlayContainer.style.position = 'absolute';
     overlayContainer.style.top = '0';
     overlayContainer.style.left = '0';
-    overlayContainer.style.right = '0';
-    overlayContainer.style.bottom = '0';
     overlayContainer.style.width = '100%';
     overlayContainer.style.height = '100%';
     overlayContainer.style.zIndex = '99999';
@@ -1086,8 +1087,6 @@ document.addEventListener('DOMContentLoaded', () => {
       overlay.style.position = 'absolute';
       overlay.style.top = '0';
       overlay.style.left = '0';
-      overlay.style.right = '0';
-      overlay.style.bottom = '0';
       overlay.style.width = '100%';
       overlay.style.height = '100%';
       overlay.style.objectFit = 'contain';
