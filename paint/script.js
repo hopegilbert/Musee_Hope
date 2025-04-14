@@ -420,20 +420,25 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Update UI
     document.querySelectorAll('.paint-tool').forEach(btn => {
-      btn.classList.remove('active');
-      if (btn.dataset.tool === tool) {
-        btn.classList.add('active');
-      }
+        btn.classList.remove('active');
+        if (btn.dataset.tool === tool) {
+            btn.classList.add('active');
+            
+            // Position size control under the active tool
+            const sizeControl = document.querySelector('.size-control');
+            if (['pencil', 'brush', 'eraser', 'spray', 'line', 'rectangle', 'ellipse'].includes(tool)) {
+                const btnRect = btn.getBoundingClientRect();
+                sizeControl.style.position = 'fixed';
+                sizeControl.style.left = btnRect.left + 'px';
+                sizeControl.style.top = (btnRect.bottom + 5) + 'px';
+                sizeControl.style.display = 'block';
+                sizeControl.style.zIndex = '1000';
+                updateSizePreview();
+            } else {
+                sizeControl.style.display = 'none';
+            }
+        }
     });
-
-    // Show/hide size control for appropriate tools
-    const sizeControl = document.querySelector('.size-control');
-    if (['pencil', 'brush', 'eraser', 'spray', 'line', 'rectangle', 'ellipse'].includes(tool)) {
-      sizeControl.classList.add('visible');
-      updateSizePreview();
-    } else {
-      sizeControl.classList.remove('visible');
-    }
   }
   
   // Tool button event listeners
@@ -994,5 +999,28 @@ document.addEventListener('DOMContentLoaded', () => {
       tool.classList.add('active');
       setActiveTool(tool.dataset.tool);
     });
+  });
+
+  // Update size control styling
+  const sizeControl = document.querySelector('.size-control');
+  if (sizeControl) {
+    sizeControl.style.position = 'fixed';
+    sizeControl.style.display = 'none';
+    sizeControl.style.padding = '10px';
+    sizeControl.style.background = '#fff';
+    sizeControl.style.border = '1px solid #ccc';
+    sizeControl.style.borderRadius = '5px';
+    sizeControl.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
+  }
+
+  // Close size control when clicking outside
+  document.addEventListener('click', (e) => {
+    const sizeControl = document.querySelector('.size-control');
+    const activeTool = document.querySelector('.paint-tool.active');
+    if (sizeControl && activeTool && 
+        !sizeControl.contains(e.target) && 
+        !activeTool.contains(e.target)) {
+        sizeControl.style.display = 'none';
+    }
   });
 }); 
