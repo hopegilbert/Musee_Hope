@@ -1053,6 +1053,39 @@ document.addEventListener('DOMContentLoaded', () => {
     overlayContainer.className = 'overlay-container';
     paintCanvas.appendChild(overlayContainer);
   }
+
+  // Preload all overlays
+  paintItems.forEach(item => {
+    const type = item.getAttribute('title').toLowerCase();
+    const overlayFile = item.getAttribute('data-overlay');
+    const overlayPath = `./paint/images/${overlayFile}`;
+    
+    // Create overlay image
+    const overlay = document.createElement('img');
+    overlay.src = overlayPath;
+    overlay.className = `${type}-overlay`;
+    overlay.style.position = 'absolute';
+    overlay.style.top = '50%';
+    overlay.style.left = '50%';
+    overlay.style.transform = 'translate(-50%, -50%)';
+    overlay.style.width = '80%';
+    overlay.style.height = '80%';
+    overlay.style.objectFit = 'contain';
+    overlay.style.zIndex = '999999';
+    overlay.style.pointerEvents = 'none';
+    overlay.style.opacity = '0'; // Start hidden
+    overlay.style.transition = 'opacity 0.3s ease'; // Smooth transition
+    
+    // Debug logging
+    overlay.onerror = () => {
+      console.error('Failed to load overlay:', overlayPath);
+    };
+    
+    overlay.onload = () => {
+      console.log('Successfully loaded overlay:', overlayPath);
+      overlayContainer.appendChild(overlay);
+    };
+  });
   
   // Add click handlers for clothing items
   paintItems.forEach(item => {
@@ -1061,45 +1094,21 @@ document.addEventListener('DOMContentLoaded', () => {
       e.stopPropagation();
       
       const type = item.getAttribute('title').toLowerCase();
-      const overlayFile = item.getAttribute('data-overlay');
-      console.log('Clicked:', type, 'Overlay file:', overlayFile);
       
-      // Create the overlay image path with correct directory
-      const overlayPath = `./paint/images/${overlayFile}`;
-      console.log('Creating overlay:', overlayPath);
+      // Toggle active state for the button
+      paintItems.forEach(i => i.classList.remove('active'));
+      item.classList.add('active');
       
-      // Remove existing overlay of same type
-      const existingOverlay = overlayContainer.querySelector(`.${type}-overlay`);
-      if (existingOverlay) {
-        existingOverlay.remove();
+      // Toggle visibility of the overlay
+      const overlay = overlayContainer.querySelector(`.${type}-overlay`);
+      if (overlay) {
+        // Hide all overlays first
+        overlayContainer.querySelectorAll('img').forEach(img => {
+          img.style.opacity = '0';
+        });
+        // Show the selected overlay
+        overlay.style.opacity = '1';
       }
-      
-      // Create and add new overlay
-      const overlay = document.createElement('img');
-      overlay.src = overlayPath;
-      overlay.className = `${type}-overlay`;
-      overlay.style.position = 'absolute';
-      overlay.style.top = '50%';
-      overlay.style.left = '50%';
-      overlay.style.transform = 'translate(-50%, -50%)';
-      overlay.style.width = '80%';
-      overlay.style.height = '80%';
-      overlay.style.objectFit = 'contain';
-      overlay.style.zIndex = '999999';
-      overlay.style.pointerEvents = 'none';
-      
-      // Debug logging
-      overlay.onerror = () => {
-        console.error('Failed to load overlay:', overlayPath);
-      };
-      
-      overlay.onload = () => {
-        console.log('Successfully loaded overlay:', overlayPath);
-        overlayContainer.appendChild(overlay);
-        console.log('Overlay added to container:', overlayContainer);
-        console.log('Overlay dimensions:', overlay.width, overlay.height);
-        console.log('Overlay position:', overlay.style.top, overlay.style.left);
-      };
     });
   });
 }); 
