@@ -1153,36 +1153,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const overlayPath = item.dataset.overlay;
     const type = item.getAttribute('title').toLowerCase();
     const overlayContainer = document.querySelector('.overlay-container');
-    
-    // Toggle active state of the button
-    const isActive = item.classList.contains('active');
-    
+
     // Find existing overlay of this type
     const existingOverlay = document.querySelector(`.${type}-overlay`);
     
-    // If we're deactivating
-    if (isActive) {
+    if (existingOverlay) {
+        // If overlay exists, remove it and deactivate button
+        overlayContainer.removeChild(existingOverlay);
         item.classList.remove('active');
-        if (existingOverlay) {
-            existingOverlay.style.opacity = '0';
-            setTimeout(() => {
-                if (existingOverlay.parentNode) {
-                    existingOverlay.parentNode.removeChild(existingOverlay);
-                }
-            }, 300);
-        }
         return;
     }
     
-    // If we're activating
-    item.classList.add('active');
-    
-    // Remove any existing overlay of this type first
-    if (existingOverlay) {
-        existingOverlay.parentNode.removeChild(existingOverlay);
-    }
-    
-    // Create and add new overlay
+    // Create new overlay
     const overlay = new Image();
     overlay.src = overlayPath;
     overlay.className = `${type}-overlay`;
@@ -1194,11 +1176,9 @@ document.addEventListener('DOMContentLoaded', () => {
     overlay.style.height = '80%';
     overlay.style.objectFit = 'contain';
     overlay.style.pointerEvents = 'none';
-    overlay.style.opacity = '0';
-    overlay.style.transition = 'opacity 0.3s ease';
     
     // Set z-index based on type
-    if (type.includes('jewel') || type.includes('necklace')) {
+    if (type.includes('jewel')) {
         overlay.style.zIndex = '1004';
     } else if (type.includes('hair')) {
         overlay.style.zIndex = '1002';
@@ -1210,20 +1190,16 @@ document.addEventListener('DOMContentLoaded', () => {
     
     overlay.onload = () => {
         overlayContainer.appendChild(overlay);
-        requestAnimationFrame(() => {
-            overlay.style.opacity = '1';
-        });
+        item.classList.add('active');
     };
     
     overlay.onerror = () => {
         console.error('Failed to load overlay:', overlayPath);
-        item.classList.remove('active');
     };
   }
 
   // Add click handlers to clothing items
   document.querySelectorAll('.paint-item').forEach(item => {
     item.addEventListener('click', handleClothingClick);
-    item.addEventListener('touchstart', handleClothingClick, { passive: false });
   });
 }); 
