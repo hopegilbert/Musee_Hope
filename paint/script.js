@@ -1069,8 +1069,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const type = item.getAttribute('title').toLowerCase();
       console.log('Clicked:', type);
       
-      // Create the overlay image path
-      const overlayPath = `./images/hope-${type}2.png`;
+      // Create the overlay image path with correct directory
+      const overlayPath = `./paint/images/hope-${type}2.png`;
       console.log('Creating overlay:', overlayPath);
       
       // Remove existing overlay of same type
