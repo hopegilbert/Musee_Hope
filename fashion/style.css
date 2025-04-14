@@ -406,7 +406,7 @@ body {
     border: 2px solid #808080;
     border-right-color: #ffffff;
     border-bottom-color: #ffffff;
-    margin-right: 200px; /* Add margin for clothing sidebar */
+    width: calc(100% - 200px); /* Set width to leave space for sidebar */
 }
 
 .fashion-canvas-container {
@@ -449,9 +449,7 @@ body {
     flex-direction: column;
     background-color: #c0c0c8;
     border-left: 1px solid #808080;
-    position: absolute;
-    right: 0;
-    top: 0;
+    flex-shrink: 0; /* Prevent shrinking */
 }
 
 @media (max-width: 768px) {
