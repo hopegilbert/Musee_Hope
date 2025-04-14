@@ -1049,22 +1049,23 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Update background image styles
   backgroundImage.style.position = 'absolute';
-  backgroundImage.style.top = '0';
-  backgroundImage.style.left = '0';
-  backgroundImage.style.width = '100%';
-  backgroundImage.style.height = '100%';
-  backgroundImage.style.transform = 'none';
+  backgroundImage.style.top = '50%';
+  backgroundImage.style.left = '50%';
+  backgroundImage.style.transform = 'translate(-50%, -50%)';
+  backgroundImage.style.width = '80%';
+  backgroundImage.style.height = '80%';
   backgroundImage.style.zIndex = '1';
   
   // Create overlay container
   const overlayContainer = document.createElement('div');
   overlayContainer.className = 'overlay-container';
   overlayContainer.style.position = 'absolute';
-  overlayContainer.style.top = '0';
-  overlayContainer.style.left = '0';
-  overlayContainer.style.width = '100%';
-  overlayContainer.style.height = '100%';
-  overlayContainer.style.zIndex = '10';
+  overlayContainer.style.top = '50%';
+  overlayContainer.style.left = '50%';
+  overlayContainer.style.transform = 'translate(-50%, -50%)';
+  overlayContainer.style.width = '80%';
+  overlayContainer.style.height = '80%';
+  overlayContainer.style.zIndex = '100';
   overlayContainer.style.pointerEvents = 'none';
   paintCanvas.appendChild(overlayContainer);
   
@@ -1093,10 +1094,9 @@ document.addEventListener('DOMContentLoaded', () => {
       overlay.style.left = '0';
       overlay.style.width = '100%';
       overlay.style.height = '100%';
-      overlay.style.transform = 'none';
-      overlay.style.pointerEvents = 'none';
       overlay.style.objectFit = 'contain';
-      overlay.style.zIndex = '20';
+      overlay.style.pointerEvents = 'none';
+      overlay.style.zIndex = '200';
       
       // Debug logging
       overlay.onerror = () => {
