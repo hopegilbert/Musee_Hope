@@ -270,6 +270,13 @@ function handleClothingClick(event) {
     const existingOverlay = Array.from(overlayContainer.querySelectorAll('.overlay-image'))
         .find(img => img.src.includes(overlayPath));
 
+    // Find any existing overlay from the same category
+    const sameCategoryOverlays = Array.from(overlayContainer.querySelectorAll('.overlay-image'))
+        .filter(img => {
+            const imgCategory = img.getAttribute('data-category');
+            return imgCategory === category;
+        });
+
     if (existingOverlay) {
         // If overlay exists and is visible, remove it
         if (existingOverlay.style.opacity === '1') {
@@ -283,10 +290,19 @@ function handleClothingClick(event) {
             existingOverlay.style.opacity = '1';
         }
     } else {
+        // Remove any existing overlays from the same category
+        sameCategoryOverlays.forEach(overlay => {
+            overlay.style.opacity = '0';
+            setTimeout(() => {
+                overlay.remove();
+            }, 300);
+        });
+
         // Create new overlay
         const overlay = document.createElement('img');
         overlay.src = overlayPath;
         overlay.className = 'overlay-image';
+        overlay.setAttribute('data-category', category); // Store category info
         overlay.style.zIndex = zIndex;
         overlay.style.opacity = '0';
         
