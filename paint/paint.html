@@ -572,7 +572,7 @@
                     <img src="./images/rectangle.png" alt="Rectangle">
                 </button>
                 <button id="ellipseBtn" title="Ellipse">
-                    <img src="./images/ellipse.png" alt="Ellipse" width="16" height="16">
+                    <img src="./images/ellipse.png" alt="Ellipse">
                 </button>
                 <button id="lineBtn" title="Line">
                     <img src="./images/line.png" alt="Line">
@@ -635,6 +635,26 @@
                 <div class="paint-tool" title="Ellipse" data-tool="ellipse">
                     <img src="./images/ellipse.png" alt="Ellipse" width="16" height="16">
                 </div>
+                <div class="size-control">
+                    <div class="size-preview">
+                        <div class="size-preview-dot"></div>
+                    </div>
+                    <input type="range" class="size-slider" min="1" max="50" value="2">
+                    <div class="size-value">2px</div>
+                </div>
+                <div class="color-dropdown">
+                    <div class="color-button"></div>
+                    <div class="color-options">
+                        <div class="color-option" style="background-color: #000000;"></div>
+                        <div class="color-option" style="background-color: #FF0000;"></div>
+                        <div class="color-option" style="background-color: #00FF00;"></div>
+                        <div class="color-option" style="background-color: #0000FF;"></div>
+                        <div class="color-option" style="background-color: #FFFF00;"></div>
+                        <div class="color-option" style="background-color: #FF00FF;"></div>
+                        <div class="color-option" style="background-color: #00FFFF;"></div>
+                        <div class="color-option" style="background-color: #FFFFFF;"></div>
+                    </div>
+                </div>
             </div>
             <div class="paint-canvas-container">
                 <img src="./images/hope.png" alt="Hope" class="background-image" style="opacity: 1;">
@@ -690,13 +710,6 @@
             <span>100%</span>
             <span>400 x 600</span>
         </div>
-    </div>
-    <div class="size-control">
-        <div class="size-preview">
-            <div class="size-preview-dot"></div>
-        </div>
-        <input type="range" class="size-slider" min="1" max="50" value="2">
-        <div class="size-value">2px</div>
     </div>
     <script src="script.js"></script>
 </body>
