@@ -119,11 +119,11 @@ body {
 }
 
 .canvas-area {
+    display: flex;
     margin-left: 0;
     position: relative;
     height: 520px;
-    width: 500px;
-    flex: none;
+    flex: 1;
 }
 
 .canvas-container {
