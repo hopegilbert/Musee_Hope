@@ -251,7 +251,7 @@ function handleClothingClick(event) {
             zIndex = 3;
             break;
         case 'bottoms':
-            zIndex = 2;
+            zIndex = 1; // Push bottoms to the back with dresses
             break;
         case 'hair':
             zIndex = 4;
