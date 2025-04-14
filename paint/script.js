@@ -1092,9 +1092,9 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   });
   
-  // Add click handlers for clothing items
+  // Add click and touch handlers for clothing items
   paintItems.forEach(item => {
-    item.addEventListener('click', (e) => {
+    const handleInteraction = (e) => {
       e.preventDefault();
       e.stopPropagation();
       
@@ -1109,6 +1109,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // Toggle this overlay's visibility
         overlay.style.opacity = overlay.style.opacity === '0' ? '1' : '0';
       }
-    });
+    };
+
+    // Add both click and touch handlers
+    item.addEventListener('click', handleInteraction);
+    item.addEventListener('touchstart', handleInteraction, { passive: false });
   });
 }); 
