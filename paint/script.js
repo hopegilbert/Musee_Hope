@@ -1038,4 +1038,41 @@ document.addEventListener('DOMContentLoaded', () => {
         sizeControl.style.display = 'none';
     }
   });
+
+  // Initialize drag and drop functionality
+  const paintItems = document.querySelectorAll('.paint-item');
+  
+  paintItems.forEach(item => {
+    item.setAttribute('draggable', 'true');
+    
+    item.addEventListener('dragstart', (e) => {
+      e.dataTransfer.setData('text/plain', item.querySelector('img').src);
+      e.dataTransfer.effectAllowed = 'copy';
+    });
+  });
+  
+  mainCanvas.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'copy';
+  });
+  
+  mainCanvas.addEventListener('drop', (e) => {
+    e.preventDefault();
+    const imgSrc = e.dataTransfer.getData('text/plain');
+    const img = new Image();
+    
+    img.onload = () => {
+      const rect = mainCanvas.getBoundingClientRect();
+      const scaleX = mainCanvas.width / rect.width;
+      const scaleY = mainCanvas.height / rect.height;
+      
+      const x = (e.clientX - rect.left) * scaleX - img.width / 2;
+      const y = (e.clientY - rect.top) * scaleY - img.height / 2;
+      
+      mainCtx.drawImage(img, x, y);
+      saveState();
+    };
+    
+    img.src = imgSrc;
+  });
 }); 
