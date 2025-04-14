@@ -236,11 +236,15 @@ body {
 }
 
 .overlay-image {
+    position: absolute;
     height: 500px;
     width: auto;
     object-fit: contain;
     opacity: 0;
     transition: opacity 0.3s ease;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .overlay-image.active {
