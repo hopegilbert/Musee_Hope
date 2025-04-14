@@ -133,6 +133,51 @@
             overflow-x: hidden;
         }
 
+        .size-control {
+            position: absolute;
+            background: #c0c0c8;
+            border: 1px solid #808080;
+            padding: 8px;
+            display: none;
+            flex-direction: column;
+            gap: 8px;
+            z-index: 1000;
+            left: 50px;
+            top: 0;
+            width: 150px;
+        }
+
+        .size-control.visible {
+            display: flex;
+        }
+
+        .size-slider {
+            width: 100%;
+            margin: 0;
+        }
+
+        .size-preview {
+            width: 100%;
+            height: 40px;
+            background: #ffffff;
+            border: 1px solid #808080;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .size-preview-dot {
+            background: #000000;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+        }
+
+        .size-value {
+            text-align: center;
+            font-size: 12px;
+            color: #000000;
+        }
+
         .paint-tool {
             width: 32px;
             height: 32px;
@@ -397,6 +442,16 @@
                 min-width: 14px;
                 min-height: 14px;
             }
+
+            .size-control {
+                left: 40px;
+                width: 120px;
+                padding: 6px;
+            }
+
+            .size-preview {
+                height: 30px;
+            }
         }
 
         @media (max-height: 600px) {
@@ -517,7 +572,7 @@
                     <img src="./images/rectangle.png" alt="Rectangle">
                 </button>
                 <button id="ellipseBtn" title="Ellipse">
-                    <img src="./images/ellipse.png" alt="Ellipse">
+                    <img src="./images/ellipse.png" alt="Ellipse" width="16" height="16">
                 </button>
                 <button id="lineBtn" title="Line">
                     <img src="./images/line.png" alt="Line">
@@ -553,45 +608,32 @@
         </div>
         <div class="paint-content">
             <div class="paint-toolbar">
-                <div class="paint-tool active" title="Pencil">
+                <div class="paint-tool active" title="Pencil" data-tool="pencil">
                     <img src="./images/pencil.png" alt="Pencil" width="16" height="16">
                 </div>
-                <div class="paint-tool" title="Brush">
+                <div class="paint-tool" title="Brush" data-tool="brush">
                     <img src="./images/brush.png" alt="Brush" width="16" height="16">
                 </div>
-                <div class="paint-tool" title="Eraser">
+                <div class="paint-tool" title="Eraser" data-tool="eraser">
                     <img src="./images/eraser.png" alt="Eraser" width="16" height="16">
                 </div>
-                <div class="paint-tool" title="Spray Can">
+                <div class="paint-tool" title="Spray Can" data-tool="spray">
                     <img src="./images/spray-can.png" alt="Spray" width="16" height="16">
                 </div>
-                <div class="paint-tool" title="Fill">
+                <div class="paint-tool" title="Fill" data-tool="fill">
                     <img src="./images/fill.png" alt="Fill" width="16" height="16">
                 </div>
-                <div class="paint-tool" title="Text">
+                <div class="paint-tool" title="Text" data-tool="text">
                     <img src="./images/text.png" alt="Text" width="16" height="16">
                 </div>
-                <div class="paint-tool" title="Line">
+                <div class="paint-tool" title="Line" data-tool="line">
                     <img src="./images/line.png" alt="Line" width="16" height="16">
                 </div>
-                <div class="paint-tool" title="Rectangle">
+                <div class="paint-tool" title="Rectangle" data-tool="rectangle">
                     <img src="./images/rectangle.png" alt="Rectangle" width="16" height="16">
                 </div>
-                <div class="paint-tool" title="Ellipse">
+                <div class="paint-tool" title="Ellipse" data-tool="ellipse">
                     <img src="./images/ellipse.png" alt="Ellipse" width="16" height="16">
-                </div>
-                <div class="color-dropdown">
-                    <div class="color-button"></div>
-                    <div class="color-options">
-                        <div class="color-option" style="background-color: #000000;"></div>
-                        <div class="color-option" style="background-color: #FF0000;"></div>
-                        <div class="color-option" style="background-color: #00FF00;"></div>
-                        <div class="color-option" style="background-color: #0000FF;"></div>
-                        <div class="color-option" style="background-color: #FFFF00;"></div>
-                        <div class="color-option" style="background-color: #FF00FF;"></div>
-                        <div class="color-option" style="background-color: #00FFFF;"></div>
-                        <div class="color-option" style="background-color: #FFFFFF;"></div>
-                    </div>
                 </div>
             </div>
             <div class="paint-canvas-container">
@@ -648,6 +690,13 @@
             <span>100%</span>
             <span>400 x 600</span>
         </div>
+    </div>
+    <div class="size-control">
+        <div class="size-preview">
+            <div class="size-preview-dot"></div>
+        </div>
+        <input type="range" class="size-slider" min="1" max="50" value="2">
+        <div class="size-value">2px</div>
     </div>
     <script src="script.js"></script>
 </body>
