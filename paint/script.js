@@ -1056,7 +1056,10 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Add click handlers for clothing items
   paintItems.forEach(item => {
-    item.addEventListener('click', () => {
+    item.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      
       const type = item.getAttribute('title').toLowerCase();
       const overlayFile = item.getAttribute('data-overlay');
       console.log('Clicked:', type, 'Overlay file:', overlayFile);
@@ -1094,6 +1097,8 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('Successfully loaded overlay:', overlayPath);
         overlayContainer.appendChild(overlay);
         console.log('Overlay added to container:', overlayContainer);
+        console.log('Overlay dimensions:', overlay.width, overlay.height);
+        console.log('Overlay position:', overlay.style.top, overlay.style.left);
       };
     });
   });
