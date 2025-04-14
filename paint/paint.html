@@ -214,29 +214,47 @@
             border-bottom-color: #fff;
         }
 
-        .canvas-container {
-            flex: 1;
-            background: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        .paint-canvas-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
             overflow: hidden;
+            background: #ffffff;
         }
 
-        #mainCanvas {
-            background: #fff;
-            image-rendering: pixelated;
-        }
-
-        .background-image {
+        .paint-canvas-container img {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80%;
-            height: 80%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             z-index: 1;
-            pointer-events: none;
+        }
+
+        .paint-items {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            pointer-events: auto;
+        }
+
+        .paint-item {
+            position: absolute;
+            display: none;
+            width: 100%;
+            height: 100%;
+        }
+
+        .paint-item.active {
+            display: block;
+        }
+
+        .paint-item img {
+            width: 100%;
+            height: 100%;
             object-fit: contain;
         }
 
@@ -658,19 +676,19 @@
             </div>
             <div class="paint-canvas-container">
                 <img src="./images/hope.png" alt="Hope" class="background-image" style="opacity: 1;">
-            </div>
-            <div class="paint-items">
-                <div class="paint-item" title="Hair">
-                    <img src="./images/hope-hair.png" alt="Hair">
-                </div>
-                <div class="paint-item" title="Dress">
-                    <img src="./images/hope-dress.png" alt="Dress">
-                </div>
-                <div class="paint-item" title="Shoes">
-                    <img src="./images/hope-shoes.png" alt="Shoes">
-                </div>
-                <div class="paint-item" title="Jewelry">
-                    <img src="./images/hope-jewellry.png" alt="Jewelry">
+                <div class="paint-items">
+                    <div class="paint-item" title="Hair">
+                        <img src="./images/hope-hair.png" alt="Hair">
+                    </div>
+                    <div class="paint-item" title="Dress">
+                        <img src="./images/hope-dress.png" alt="Dress">
+                    </div>
+                    <div class="paint-item" title="Shoes">
+                        <img src="./images/hope-shoes.png" alt="Shoes">
+                    </div>
+                    <div class="paint-item" title="Jewelry">
+                        <img src="./images/hope-jewellry.png" alt="Jewelry">
+                    </div>
                 </div>
             </div>
         </div>

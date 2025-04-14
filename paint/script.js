@@ -1093,7 +1093,7 @@ document.addEventListener('DOMContentLoaded', () => {
       console.log('Clicked:', type);
       
       // Create the overlay image path - remove the "2" from filename
-      const overlayPath = `./images/hope-${type}.png`;
+      const overlayPath = `./images/hope-${type}2.png`;
       console.log('Creating overlay:', overlayPath);
       
       // Remove existing overlay of same type
