@@ -1074,17 +1074,20 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function handleClothingClick(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    
     const item = e.currentTarget;
     const overlayPath = item.dataset.overlay;
     const type = item.getAttribute('title').toLowerCase();
     const overlayContainer = document.querySelector('.overlay-container');
 
     // Find existing overlay of this type
-    const existingOverlay = document.querySelector(`.${type}-overlay`);
+    let existingOverlay = document.querySelector(`.${type}-overlay`);
     
+    // If overlay exists, remove it
     if (existingOverlay) {
-        // If overlay exists, remove it and deactivate button
-        overlayContainer.removeChild(existingOverlay);
+        existingOverlay.remove();
         item.classList.remove('active');
         return;
     }
@@ -1103,9 +1106,9 @@ document.addEventListener('DOMContentLoaded', () => {
     overlay.style.pointerEvents = 'none';
     
     // Set z-index based on type
-    if (type.includes('jewel')) {
+    if (type.includes('jewel') || type.includes('necklace')) {
         overlay.style.zIndex = '1004';
-    } else if (type.includes('hair')) {
+    } else if (type.includes('hair') || type.includes('plait')) {
         overlay.style.zIndex = '1002';
     } else if (type.includes('dress') || type.includes('top') || type.includes('skirt')) {
         overlay.style.zIndex = '1001';
@@ -1113,20 +1116,18 @@ document.addEventListener('DOMContentLoaded', () => {
         overlay.style.zIndex = '1003';
     }
     
-    overlay.onload = () => {
-        overlayContainer.appendChild(overlay);
-        item.classList.add('active');
-    };
-    
-    overlay.onerror = () => {
-        console.error('Failed to load overlay:', overlayPath);
-    };
+    // Add to overlay container
+    overlayContainer.appendChild(overlay);
+    item.classList.add('active');
   }
 
-  // Remove any existing click handlers and add the new one
+  // Remove all existing click handlers and add new ones
   paintItems.forEach(item => {
     const clone = item.cloneNode(true);
     item.parentNode.replaceChild(clone, item);
-    clone.addEventListener('click', handleClothingClick);
+  });
+
+  document.querySelectorAll('.paint-item').forEach(item => {
+    item.addEventListener('click', handleClothingClick);
   });
 }); 
