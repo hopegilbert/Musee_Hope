@@ -458,15 +458,28 @@ document.addEventListener('DOMContentLoaded', () => {
             const sizeControl = document.querySelector('.size-control');
             if (['pencil', 'brush', 'eraser', 'spray', 'line', 'rectangle', 'ellipse'].includes(tool)) {
                 const btnRect = btn.getBoundingClientRect();
-                const toolbarRect = document.querySelector('.paint-toolbar').getBoundingClientRect();
                 const windowRect = document.querySelector('.paint-window').getBoundingClientRect();
                 
-                // Position the size control relative to the main page
+                // Position the size control relative to the viewport
                 sizeControl.style.position = 'fixed';
-                sizeControl.style.left = (btnRect.left - windowRect.left + toolbarRect.left) + 'px';
-                sizeControl.style.top = (btnRect.bottom - windowRect.top + toolbarRect.top) + 'px';
-                sizeControl.style.display = 'flex';
                 sizeControl.style.zIndex = '999999';
+                
+                // Mobile positioning
+                if (window.innerWidth <= 768) {
+                    sizeControl.style.top = (btnRect.bottom + 5) + 'px';
+                    sizeControl.style.left = '50%';
+                    sizeControl.style.transform = 'translateX(-50%)';
+                    sizeControl.style.width = '90vw';
+                    sizeControl.style.maxWidth = '300px';
+                } else {
+                    // Desktop positioning
+                    sizeControl.style.top = btnRect.bottom + 'px';
+                    sizeControl.style.left = Math.max(btnRect.left, windowRect.left) + 'px';
+                    sizeControl.style.transform = 'none';
+                    sizeControl.style.width = 'auto';
+                }
+                
+                sizeControl.style.display = 'flex';
                 updateSizePreview();
             } else {
                 sizeControl.style.display = 'none';
