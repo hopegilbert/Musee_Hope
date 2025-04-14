@@ -1086,11 +1086,10 @@ document.addEventListener('DOMContentLoaded', () => {
   paintItems.forEach(item => {
     const type = item.getAttribute('title').toLowerCase();
     const overlayFile = item.getAttribute('data-overlay');
-    const overlayPath = `./images/${overlayFile}`;
     
     // Create overlay image
     const overlay = document.createElement('img');
-    overlay.src = overlayPath;
+    overlay.src = overlayFile; // Use the data-overlay path directly
     overlay.className = `${type}-overlay`;
     overlay.style.position = 'absolute';
     overlay.style.top = '50%';
@@ -1104,23 +1103,23 @@ document.addEventListener('DOMContentLoaded', () => {
     overlay.style.transition = 'opacity 0.3s ease'; // Smooth transition
 
     // Set z-index based on type
-    if (type === 'jewellery') {
+    if (type.includes('jewel')) {
       overlay.style.zIndex = '1004'; // Jewelry always on top
-    } else if (type === 'hair') {
+    } else if (type.includes('hair')) {
       overlay.style.zIndex = '1002'; // Hair third
-    } else if (type === 'dress') {
-      overlay.style.zIndex = '1001'; // Dress bottom
+    } else if (type.includes('dress') || type.includes('top') || type.includes('skirt')) {
+      overlay.style.zIndex = '1001'; // Clothing bottom
     } else {
       overlay.style.zIndex = '1003'; // Everything else (shoes) second
     }
     
     // Debug logging
     overlay.onerror = () => {
-      console.error('Failed to load overlay:', overlayPath);
+      console.error('Failed to load overlay:', overlayFile);
     };
     
     overlay.onload = () => {
-      console.log('Successfully loaded overlay:', overlayPath);
+      console.log('Successfully loaded overlay:', overlayFile);
       overlayContainer.appendChild(overlay);
     };
   });
