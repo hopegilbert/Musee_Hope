@@ -3,9 +3,18 @@ const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 const overlayContainer = document.querySelector('.overlay-container');
 
-// Set initial canvas size
-canvas.width = 800;
-canvas.height = 600;
+// Load background image
+const backgroundImage = new Image();
+backgroundImage.src = 'images/hope.png';
+backgroundImage.onload = function() {
+    // Set canvas size based on image dimensions
+    canvas.width = backgroundImage.width;
+    canvas.height = backgroundImage.height;
+    
+    // Draw background image
+    ctx.drawImage(backgroundImage, 0, 0);
+    saveState();
+};
 
 // Drawing state
 let isDrawing = false;
@@ -161,7 +170,7 @@ function drawSpray(x, y) {
 function drawRectangle(x, y) {
     const width = x - lastX;
     const height = y - lastY;
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    redrawFromState();
     ctx.fillStyle = currentColor;
     ctx.fillRect(lastX, lastY, width, height);
 }
@@ -169,7 +178,7 @@ function drawRectangle(x, y) {
 function drawEllipse(x, y) {
     const width = x - lastX;
     const height = y - lastY;
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    redrawFromState();
     ctx.beginPath();
     ctx.ellipse(lastX + width/2, lastY + height/2, Math.abs(width/2), Math.abs(height/2), 0, 0, Math.PI * 2);
     ctx.fillStyle = currentColor;
@@ -177,13 +186,25 @@ function drawEllipse(x, y) {
 }
 
 function drawLine(x, y) {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    redrawFromState();
     ctx.beginPath();
     ctx.moveTo(lastX, lastY);
     ctx.lineTo(x, y);
     ctx.strokeStyle = currentColor;
     ctx.lineWidth = currentSize;
     ctx.stroke();
+}
+
+function redrawFromState() {
+    if (historyIndex >= 0 && history[historyIndex]) {
+        const img = new Image();
+        img.src = history[historyIndex];
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(img, 0, 0);
+    } else {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(backgroundImage, 0, 0);
+    }
 }
 
 // Fill tool
@@ -281,12 +302,11 @@ function saveState() {
 function undo() {
     if (historyIndex > 0) {
         historyIndex--;
-        const img = new Image();
-        img.onload = () => {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.drawImage(img, 0, 0);
-        };
-        img.src = history[historyIndex];
+        redrawFromState();
+    } else if (historyIndex === 0) {
+        historyIndex--;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(backgroundImage, 0, 0);
     }
 }
 
@@ -294,11 +314,11 @@ function redo() {
     if (historyIndex < history.length - 1) {
         historyIndex++;
         const img = new Image();
-        img.onload = () => {
+        img.src = history[historyIndex];
+        img.onload = function() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.drawImage(img, 0, 0);
         };
-        img.src = history[historyIndex];
     }
 }
 
