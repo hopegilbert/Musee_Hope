@@ -1058,10 +1058,11 @@ document.addEventListener('DOMContentLoaded', () => {
   paintItems.forEach(item => {
     item.addEventListener('click', () => {
       const type = item.getAttribute('title').toLowerCase();
-      console.log('Clicked:', type);
+      const overlayFile = item.getAttribute('data-overlay');
+      console.log('Clicked:', type, 'Overlay file:', overlayFile);
       
       // Create the overlay image path with correct directory
-      const overlayPath = `./images/hope-${type}2.png`;
+      const overlayPath = `./images/${overlayFile}`;
       console.log('Creating overlay:', overlayPath);
       
       // Remove existing overlay of same type
