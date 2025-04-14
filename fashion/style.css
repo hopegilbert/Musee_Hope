@@ -126,10 +126,11 @@ body {
     display: flex;
     margin-left: 50px;
     position: relative;
+    height: 520px;
 }
 
 .canvas-container {
-    flex: 1;
+    width: 500px;
     background-color: #ffffff;
     border: 1px solid #808080;
     margin: 2px;
@@ -137,6 +138,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 
 .background-image {
@@ -184,7 +186,7 @@ body {
 }
 
 .items-container {
-    flex: 1;
+    height: 400px;
     overflow-y: scroll;
     background-color: #ffffff;
     border: 1px solid #808080;
