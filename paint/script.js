@@ -13,6 +13,16 @@ backgroundImage.onload = function() {
     
     // Draw background image
     ctx.drawImage(backgroundImage, 0, 0);
+    
+    // Set canvas container size to match image
+    const container = document.querySelector('.fashion-canvas-container');
+    container.style.width = `${backgroundImage.width}px`;
+    container.style.height = `${backgroundImage.height}px`;
+};
+
+// Add error handling for image load
+backgroundImage.onerror = function() {
+    console.error('Failed to load background image:', backgroundImage.src);
 };
 
 // Category buttons
