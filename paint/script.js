@@ -1065,7 +1065,7 @@ document.addEventListener('DOMContentLoaded', () => {
       console.log('Clicked:', type, 'Overlay file:', overlayFile);
       
       // Create the overlay image path with correct directory
-      const overlayPath = `./images/${overlayFile}`;
+      const overlayPath = `./paint/images/${overlayFile}`;
       console.log('Creating overlay:', overlayPath);
       
       // Remove existing overlay of same type
