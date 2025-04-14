@@ -459,11 +459,12 @@ document.addEventListener('DOMContentLoaded', () => {
             if (['pencil', 'brush', 'eraser', 'spray', 'line', 'rectangle', 'ellipse'].includes(tool)) {
                 const btnRect = btn.getBoundingClientRect();
                 const toolbarRect = document.querySelector('.paint-toolbar').getBoundingClientRect();
+                const windowRect = document.querySelector('.paint-window').getBoundingClientRect();
                 
-                // Position the size control relative to the toolbar
-                sizeControl.style.position = 'absolute';
-                sizeControl.style.left = (btnRect.left - toolbarRect.left) + 'px';
-                sizeControl.style.top = (btnRect.bottom - toolbarRect.top) + 'px';
+                // Position the size control relative to the main page
+                sizeControl.style.position = 'fixed';
+                sizeControl.style.left = (btnRect.left - windowRect.left + toolbarRect.left) + 'px';
+                sizeControl.style.top = (btnRect.bottom - windowRect.top + toolbarRect.top) + 'px';
                 sizeControl.style.display = 'flex';
                 sizeControl.style.zIndex = '1000';
                 updateSizePreview();
@@ -1003,7 +1004,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Update size control styling
   if (sizeControl) {
-    sizeControl.style.position = 'absolute';
+    sizeControl.style.position = 'fixed';
     sizeControl.style.display = 'none';
     sizeControl.style.padding = '10px';
     sizeControl.style.background = '#c0c0c8';
