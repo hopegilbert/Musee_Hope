@@ -9,62 +9,37 @@
 <body>
     <div class="fashion-container">
         <div class="fashion-header">
-            <span>Fashion Studio</span>
-        </div>
-        <div class="fashion-content">
-            <div class="fashion-toolbar">
-                <button class="fashion-tool" data-tool="pencil">
-                    <img src="images/pencil.png" alt="Pencil">
-                </button>
-                <button class="fashion-tool" data-tool="brush">
-                    <img src="images/brush.png" alt="Brush">
-                </button>
-                <button class="fashion-tool" data-tool="eraser">
-                    <img src="images/eraser.png" alt="Eraser">
-                </button>
-                <button class="fashion-tool" data-tool="fill">
-                    <img src="images/fill.png" alt="Fill">
-                </button>
-                <button class="fashion-tool" data-tool="rectangle">
-                    <img src="images/rectangle.png" alt="Rectangle">
-                </button>
-                <button class="fashion-tool" data-tool="ellipse">
-                    <img src="images/ellipse.png" alt="Ellipse">
-                </button>
-                <button class="fashion-tool" data-tool="line">
-                    <img src="images/line.png" alt="Line">
-                </button>
-                <button class="fashion-tool" data-tool="text">
-                    <img src="images/text.png" alt="Text">
-                </button>
-                <button class="fashion-tool" data-tool="spray">
-                    <img src="images/spray-can.png" alt="Spray">
-                </button>
-                <button class="fashion-tool" data-tool="undo">
-                    <img src="images/undo.png" alt="Undo">
-                </button>
-                <button class="fashion-tool" data-tool="redo">
-                    <img src="images/redo.png" alt="Redo">
-                </button>
-            </div>
-            <div class="fashion-main">
-                <div class="fashion-canvas-container">
-                    <canvas id="mainCanvas" class="fashion-canvas"></canvas>
-                    <img src="images/hope.png" alt="Hope" class="fashion-background">
-                    <div class="overlay-container"></div>
+            <div class="title-bar">
+                <div class="title-bar-text">
+                    <img src="images/fashion-icon.png" alt="Fashion Studio" class="title-icon">
+                    <span>Fashion Studio</span>
                 </div>
+                <div class="title-bar-controls">
+                    <button id="minimize-button">-</button>
+                    <button id="maximize-button">□</button>
+                    <button id="close-button">×</button>
+                </div>
+            </div>
+        </div>
+        <div class="fashion-main">
+            <div class="fashion-canvas-container">
+                <img src="images/hope.png" alt="Base Model" id="baseImage">
+                <div id="overlayContainer"></div>
             </div>
             <div class="fashion-clothing">
                 <div class="category-buttons">
                     <button class="category-button active" data-category="hair">Hair</button>
-                    <button class="category-button" data-category="dress">Dresses</button>
+                    <button class="category-button" data-category="dresses">Dresses</button>
                     <button class="category-button" data-category="tops">Tops</button>
                     <button class="category-button" data-category="bottoms">Bottoms</button>
                     <button class="category-button" data-category="shoes">Shoes</button>
+                    <button class="category-button" data-category="hats">Hats</button>
+                    <button class="category-button" data-category="sunglasses">Sunglasses</button>
+                    <button class="category-button" data-category="bags">Bags</button>
                     <button class="category-button" data-category="jewelry">Jewelry</button>
-                    <button class="category-button" data-category="accessories">Accessories</button>
                 </div>
                 <div class="items-container">
+                    <!-- Hair -->
                     <div class="category-items" data-category="hair">
                         <div class="clothing-item" data-overlay="images/hope-hair2.png">
                             <img src="images/hope-hair2.png" alt="Hair">
@@ -72,68 +47,175 @@
                         <div class="clothing-item" data-overlay="images/hope-brown-hair2.png">
                             <img src="images/hope-brown-hair2.png" alt="Brown Hair">
                         </div>
-                        <div class="clothing-item" data-overlay="images/hope-brown-plait2.png">
-                            <img src="images/hope-brown-plait2.png" alt="Brown Plait">
+                        <div class="clothing-item" data-overlay="images/hope-blonde-hair2.png">
+                            <img src="images/hope-blonde-hair2.png" alt="Blonde Hair">
+                        </div>
+                        <div class="clothing-item" data-overlay="images/hope-bow-hair2.png">
+                            <img src="images/hope-bow-hair2.png" alt="Bow Hair">
+                        </div>
+                        <div class="clothing-item" data-overlay="images/hope-brown-bun2.png">
+                            <img src="images/hope-brown-bun2.png" alt="Brown Bun">
+                        </div>
+                        <div class="clothing-item" data-overlay="images/hope-ponytail2.png">
+                            <img src="images/hope-ponytail2.png" alt="Ponytail">
                         </div>
                     </div>
-                    <div class="category-items" data-category="dress" style="display: none;">
+
+                    <!-- Dresses -->
+                    <div class="category-items" data-category="dresses">
                         <div class="clothing-item" data-overlay="images/hope-dress2.png">
                             <img src="images/hope-dress2.png" alt="Dress">
-                        </div>
-                        <div class="clothing-item" data-overlay="images/hope-blue-dress2.png">
-                            <img src="images/hope-blue-dress2.png" alt="Blue Dress">
-                        </div>
-                        <div class="clothing-item" data-overlay="images/hope-navy-dress2.png">
-                            <img src="images/hope-navy-dress2.png" alt="Navy Dress">
-                        </div>
-                        <div class="clothing-item" data-overlay="images/hope-white-dress2.png">
-                            <img src="images/hope-white-dress2.png" alt="White Dress">
-                        </div>
-                        <div class="clothing-item" data-overlay="images/hope-green-outfit2.png">
-                            <img src="images/hope-green-outfit2.png" alt="Green Outfit">
                         </div>
                         <div class="clothing-item" data-overlay="images/hope-red-dress2.png">
                             <img src="images/hope-red-dress2.png" alt="Red Dress">
                         </div>
+                        <div class="clothing-item" data-overlay="images/hope-black-dress2.png">
+                            <img src="images/hope-black-dress2.png" alt="Black Dress">
+                        </div>
+                        <div class="clothing-item" data-overlay="images/hope-white-dress2.png">
+                            <img src="images/hope-white-dress2.png" alt="White Dress">
+                        </div>
+                        <div class="clothing-item" data-overlay="images/hope-navy-dress2.png">
+                            <img src="images/hope-navy-dress2.png" alt="Navy Dress">
+                        </div>
+                        <div class="clothing-item" data-overlay="images/hope-green-dress2.png">
+                            <img src="images/hope-green-dress2.png" alt="Green Dress">
+                        </div>
+                        <div class="clothing-item" data-overlay="images/hope-yellow-dress2.png">
+                            <img src="images/hope-yellow-dress2.png" alt="Yellow Dress">
+                        </div>
+                        <div class="clothing-item" data-overlay="images/hope-pink-dress2.png">
+                            <img src="images/hope-pink-dress2.png" alt="Pink Dress">
+                        </div>
+                        <div class="clothing-item" data-overlay="images/hope-cream-dress2.png">
+                            <img src="images/hope-cream-dress2.png" alt="Cream Dress">
+                        </div>
+                        <div class="clothing-item" data-overlay="images/hope-beige-dress2.png">
+                            <img src="images/hope-beige-dress2.png" alt="Beige Dress">
+                        </div>
+                        <div class="clothing-item" data-overlay="images/hope-long-red-dress2.png">
+                            <img src="images/hope-long-red-dress2.png" alt="Long Red Dress">
+                        </div>
                     </div>
-                    <div class="category-items" data-category="tops" style="display: none;">
+
+                    <!-- Tops -->
+                    <div class="category-items" data-category="tops">
+                        <div class="clothing-item" data-overlay="images/hope-turtleneck2.png">
+                            <img src="images/hope-turtleneck2.png" alt="Turtleneck">
+                        </div>
+                        <div class="clothing-item" data-overlay="images/hope-blazer2.png">
+                            <img src="images/hope-blazer2.png" alt="Blazer">
+                        </div>
+                        <div class="clothing-item" data-overlay="images/hope-pinstripe2.png">
+                            <img src="images/hope-pinstripe2.png" alt="Pinstripe">
+                        </div>
                         <div class="clothing-item" data-overlay="images/hope-cardigan2.png">
                             <img src="images/hope-cardigan2.png" alt="Cardigan">
                         </div>
+                        <div class="clothing-item" data-overlay="images/hope-shawl-outfit2.png">
+                            <img src="images/hope-shawl-outfit2.png" alt="Shawl Outfit">
+                        </div>
                     </div>
-                    <div class="category-items" data-category="bottoms" style="display: none;">
+
+                    <!-- Bottoms -->
+                    <div class="category-items" data-category="bottoms">
                         <div class="clothing-item" data-overlay="images/hope-skirt2.png">
                             <img src="images/hope-skirt2.png" alt="Skirt">
                         </div>
+                        <div class="clothing-item" data-overlay="images/hope-blackskirt2.png">
+                            <img src="images/hope-blackskirt2.png" alt="Black Skirt">
+                        </div>
                     </div>
-                    <div class="category-items" data-category="shoes" style="display: none;">
+
+                    <!-- Shoes -->
+                    <div class="category-items" data-category="shoes">
                         <div class="clothing-item" data-overlay="images/hope-shoes2.png">
                             <img src="images/hope-shoes2.png" alt="Shoes">
-                        </div>
-                        <div class="clothing-item" data-overlay="images/hope-brown-heels2.png">
-                            <img src="images/hope-brown-heels2.png" alt="Brown Heels">
                         </div>
                         <div class="clothing-item" data-overlay="images/hope-white-heels2.png">
                             <img src="images/hope-white-heels2.png" alt="White Heels">
                         </div>
-                        <div class="clothing-item" data-overlay="images/hope-brown-loafers2.png">
-                            <img src="images/hope-brown-loafers2.png" alt="Brown Loafers">
+                        <div class="clothing-item" data-overlay="images/hope-red-heels2.png">
+                            <img src="images/hope-red-heels2.png" alt="Red Heels">
                         </div>
-                        <div class="clothing-item" data-overlay="images/hope-converse2.png">
-                            <img src="images/hope-converse2.png" alt="Converse">
+                        <div class="clothing-item" data-overlay="images/hope-boots2.png">
+                            <img src="images/hope-boots2.png" alt="Boots">
+                        </div>
+                        <div class="clothing-item" data-overlay="images/hope-bow-pumps2.png">
+                            <img src="images/hope-bow-pumps2.png" alt="Bow Pumps">
+                        </div>
+                        <div class="clothing-item" data-overlay="images/hope-slingbacks2.png">
+                            <img src="images/hope-slingbacks2.png" alt="Slingbacks">
+                        </div>
+                        <div class="clothing-item" data-overlay="images/hope-tennis-shoes2.png">
+                            <img src="images/hope-tennis-shoes2.png" alt="Tennis Shoes">
                         </div>
                     </div>
-                    <div class="category-items" data-category="jewelry" style="display: none;">
+
+                    <!-- Hats -->
+                    <div class="category-items" data-category="hats">
+                        <div class="clothing-item" data-overlay="images/hope-hat2.png">
+                            <img src="images/hope-hat2.png" alt="Hat">
+                        </div>
+                        <div class="clothing-item" data-overlay="images/hope-cap2.png">
+                            <img src="images/hope-cap2.png" alt="Cap">
+                        </div>
+                    </div>
+
+                    <!-- Sunglasses -->
+                    <div class="category-items" data-category="sunglasses">
+                        <div class="clothing-item" data-overlay="images/hope-sunglasses2.png">
+                            <img src="images/hope-sunglasses2.png" alt="Sunglasses">
+                        </div>
+                        <div class="clothing-item" data-overlay="images/hope-thin-sunglasses2.png">
+                            <img src="images/hope-thin-sunglasses2.png" alt="Thin Sunglasses">
+                        </div>
+                    </div>
+
+                    <!-- Bags -->
+                    <div class="category-items" data-category="bags">
+                        <div class="clothing-item" data-overlay="images/hope-black-bag2.png">
+                            <img src="images/hope-black-bag2.png" alt="Black Bag">
+                        </div>
+                        <div class="clothing-item" data-overlay="images/hope-black-handbag2.png">
+                            <img src="images/hope-black-handbag2.png" alt="Black Handbag">
+                        </div>
+                        <div class="clothing-item" data-overlay="images/hope-blue-bag2.png">
+                            <img src="images/hope-blue-bag2.png" alt="Blue Bag">
+                        </div>
+                        <div class="clothing-item" data-overlay="images/hope-green-bag2.png">
+                            <img src="images/hope-green-bag2.png" alt="Green Bag">
+                        </div>
+                        <div class="clothing-item" data-overlay="images/hope-straw-bag2.png">
+                            <img src="images/hope-straw-bag2.png" alt="Straw Bag">
+                        </div>
+                        <div class="clothing-item" data-overlay="images/hope-clutch2.png">
+                            <img src="images/hope-clutch2.png" alt="Clutch">
+                        </div>
+                        <div class="clothing-item" data-overlay="images/hope-tote2.png">
+                            <img src="images/hope-tote2.png" alt="Tote">
+                        </div>
+                    </div>
+
+                    <!-- Jewelry -->
+                    <div class="category-items" data-category="jewelry">
                         <div class="clothing-item" data-overlay="images/hope-jewellery2.png">
                             <img src="images/hope-jewellery2.png" alt="Jewelry">
                         </div>
                         <div class="clothing-item" data-overlay="images/hope-pearls2.png">
                             <img src="images/hope-pearls2.png" alt="Pearls">
                         </div>
-                    </div>
-                    <div class="category-items" data-category="accessories" style="display: none;">
-                        <div class="clothing-item" data-overlay="images/hope-brown-bag2.png">
-                            <img src="images/hope-brown-bag2.png" alt="Brown Bag">
+                        <div class="clothing-item" data-overlay="images/hope-gold-jewellery2.png">
+                            <img src="images/hope-gold-jewellery2.png" alt="Gold Jewelry">
+                        </div>
+                        <div class="clothing-item" data-overlay="images/hope-gold-necklace2.png">
+                            <img src="images/hope-gold-necklace2.png" alt="Gold Necklace">
+                        </div>
+                        <div class="clothing-item" data-overlay="images/hope-gold-chain2.png">
+                            <img src="images/hope-gold-chain2.png" alt="Gold Chain">
+                        </div>
+                        <div class="clothing-item" data-overlay="images/hope-white-jewellery2.png">
+                            <img src="images/hope-white-jewellery2.png" alt="White Jewelry">
                         </div>
                     </div>
                 </div>
