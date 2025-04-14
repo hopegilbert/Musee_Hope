@@ -1041,54 +1041,48 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize clothing items
   const paintItems = document.querySelectorAll('.paint-item');
-  const hopeContainer = document.querySelector('.paint-canvas-container');
-
-  if (hopeContainer) {
-    hopeContainer.style.position = 'relative';
-    hopeContainer.style.zIndex = '1'; // Set base z-index for container
+  const paintCanvas = document.querySelector('.paint-canvas-container');
+  
+  // Make sure the canvas container can handle overlays
+  if (paintCanvas) {
+    paintCanvas.style.position = 'relative';
     
-    // Create a container for clothing items
-    const clothingContainer = document.createElement('div');
-    clothingContainer.style.position = 'absolute';
-    clothingContainer.style.top = '0';
-    clothingContainer.style.left = '0';
-    clothingContainer.style.width = '100%';
-    clothingContainer.style.height = '100%';
-    clothingContainer.style.zIndex = '9999999'; // Very high z-index to ensure visibility
-    hopeContainer.appendChild(clothingContainer);
-    
-    // Add click handlers for clothing items
     paintItems.forEach(item => {
-        const img = item.querySelector('img');
-        if (img.src.includes('hope.png')) return; // Skip the Hope image itself
+      item.addEventListener('click', () => {
+        const type = item.getAttribute('title').toLowerCase();
+        console.log('Clicked item:', type); // Debug log
         
-        item.addEventListener('click', () => {
-            const type = item.getAttribute('title').toLowerCase(); // Get item type (hair, dress, etc)
-            
-            // Create the overlay image path by adding "2" before the extension
-            const originalSrc = img.src;
-            const overlayPath = originalSrc.replace(/\.png$/, '2.png');
-            
-            // Remove existing item of same type if it exists
-            const existingItem = clothingContainer.querySelector(`[data-type="${type}"]`);
-            if (existingItem) {
-                existingItem.remove();
-            }
-            
-            // Create and add new clothing item
-            const clothingItem = document.createElement('img');
-            clothingItem.src = overlayPath;
-            clothingItem.setAttribute('data-type', type);
-            clothingItem.style.position = 'absolute';
-            clothingItem.style.top = '0';
-            clothingItem.style.left = '0';
-            clothingItem.style.width = '100%';
-            clothingItem.style.height = '100%';
-            clothingItem.style.pointerEvents = 'none';
-            clothingItem.style.zIndex = '9999999'; // Same high z-index as container
-            
-            clothingContainer.appendChild(clothingItem);
-        });
+        // Remove existing overlay of this type if it exists
+        const existingOverlay = document.querySelector(`.overlay-${type}`);
+        if (existingOverlay) {
+          existingOverlay.remove();
+        }
+        
+        // Create new overlay
+        const overlay = document.createElement('img');
+        overlay.className = `overlay-${type}`;
+        overlay.src = `./images/hope-${type}2.png`;
+        overlay.style.position = 'absolute';
+        overlay.style.top = '0';
+        overlay.style.left = '0';
+        overlay.style.width = '100%';
+        overlay.style.height = '100%';
+        overlay.style.zIndex = '9999';
+        
+        // Debug log
+        console.log('Creating overlay with src:', overlay.src);
+        
+        // Add error handling
+        overlay.onerror = () => {
+          console.error('Failed to load image:', overlay.src);
+        };
+        
+        overlay.onload = () => {
+          console.log('Image loaded successfully:', overlay.src);
+        };
+        
+        paintCanvas.appendChild(overlay);
+      });
     });
   }
 }); 
