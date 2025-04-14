@@ -1157,19 +1157,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const existingOverlay = document.querySelector(`.${type}-overlay`);
     
     if (existingOverlay) {
-        // If overlay exists and is visible, fade it out
+        // If overlay exists and is visible, fade it out and remove after transition
         if (existingOverlay.style.opacity === '1') {
             existingOverlay.style.opacity = '0';
             item.classList.remove('active');
+            existingOverlay.addEventListener('transitionend', () => {
+                if (existingOverlay.parentNode) {
+                    existingOverlay.parentNode.removeChild(existingOverlay);
+                }
+            }, { once: true });
             return;
         }
-        // If overlay exists but is hidden, show it
-        existingOverlay.style.opacity = '1';
-        item.classList.add('active');
-        return;
     }
     
-    // If no overlay exists, create a new one
+    // Create new overlay
     const overlay = new Image();
     overlay.src = overlayPath;
     overlay.className = `${type}-overlay`;
@@ -1187,7 +1188,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Set z-index based on type
     if (type.includes('jewel') || type.includes('necklace')) {
         overlay.style.zIndex = '1004'; // Jewelry always on top
-    } else if (type.includes('hair') || type.includes('plait')) {
+    } else if (type.includes('hair')) {
         overlay.style.zIndex = '1002'; // Hair third
     } else if (type.includes('dress') || type.includes('top') || type.includes('skirt')) {
         overlay.style.zIndex = '1001'; // Clothing bottom
@@ -1202,8 +1203,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Use requestAnimationFrame to ensure the transition works
         requestAnimationFrame(() => {
             overlay.style.opacity = '1';
+            item.classList.add('active');
         });
-        item.classList.add('active');
     };
     
     overlay.onerror = () => {
