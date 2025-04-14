@@ -11,12 +11,13 @@ body {
     align-items: center;
     height: 100vh;
     font-family: 'MS Sans Serif', Arial, sans-serif;
-    padding: 20px;
+    margin: 0;
+    padding: 0;
 }
 
 .window {
-    width: min(95vw, 1200px);
-    height: min(95vh, 800px);
+    width: 100vw;
+    height: 100vh;
     background-color: #c0c0c0;
     border: 2px solid;
     border-color: #ffffff #808080 #808080 #ffffff;
@@ -122,13 +123,13 @@ body {
 .canvas-area {
     display: flex;
     position: relative;
-    height: calc(100% - 73px); /* Subtract status bar and color palette */
+    height: 100%;
     flex: 1;
 }
 
 .canvas-container {
     flex: 1;
-    height: 100%;
+    height: calc(100% - 75px); /* Account for color palette and status bar */
     background-color: #ffffff;
     border: 1px solid #808080;
     margin: 2px;
@@ -149,13 +150,13 @@ body {
 }
 
 .items-sidebar {
-    width: min(25vw, 300px);
-    min-width: 200px;
+    width: 200px;
     background-color: #c0c0c0;
     border-left: 1px solid #808080;
     display: flex;
     flex-direction: column;
     flex: none;
+    height: 100%;
 }
 
 .category-buttons {
@@ -188,12 +189,11 @@ body {
 }
 
 .items-container {
-    height: 400px;
+    flex: 1;
     overflow-y: auto;
     background-color: #ffffff;
     border: 1px solid #808080;
     margin: 2px;
-    flex: none;
 }
 
 .category-items {
@@ -300,9 +300,9 @@ body {
     background-color: #c0c0c0;
     border-top: 1px solid #808080;
     position: absolute;
-    bottom: 23px; /* Account for status bar */
+    bottom: 23px;
     left: 50px;
-    right: 0;
+    right: 200px; /* Account for items sidebar */
 }
 
 .color {
