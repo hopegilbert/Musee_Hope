@@ -131,10 +131,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const y = coords.y;
     points.push({ x, y });
 
-    // Clear temp canvas only for tools that need it
-    if (currentTool !== 'eraser' && currentTool !== 'spray') {
-      tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
-    }
+    // Clear temp canvas
+    tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
 
     switch (currentTool) {
       case 'pencil':
@@ -162,6 +160,14 @@ document.addEventListener('DOMContentLoaded', () => {
       case 'ellipse':
         drawCircle(lastX, lastY, x, y);
         break;
+    }
+
+    // Show temp canvas content for shape tools
+    if (['line', 'rectangle', 'ellipse'].includes(currentTool)) {
+      mainCtx.save();
+      mainCtx.globalCompositeOperation = 'source-over';
+      mainCtx.drawImage(tempCanvas, 0, 0);
+      mainCtx.restore();
     }
   }
   
