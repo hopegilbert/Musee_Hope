@@ -1041,8 +1041,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize drag and drop functionality
   const paintItems = document.querySelectorAll('.paint-item');
+  const hopeImage = document.querySelector('.paint-item img[src="./images/hope.png"]');
+  const hopeContainer = hopeImage?.parentElement;
+  
+  if (hopeContainer) {
+    hopeContainer.style.position = 'relative';
+    hopeContainer.style.width = 'fit-content';
+    hopeContainer.style.height = 'fit-content';
+  }
   
   paintItems.forEach(item => {
+    if (item.querySelector('img').src.includes('hope.png')) return; // Skip the Hope image itself
+    
     item.setAttribute('draggable', 'true');
     
     item.addEventListener('dragstart', (e) => {
@@ -1051,28 +1061,35 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
   
-  mainCanvas.addEventListener('dragover', (e) => {
-    e.preventDefault();
-    e.dataTransfer.dropEffect = 'copy';
-  });
-  
-  mainCanvas.addEventListener('drop', (e) => {
-    e.preventDefault();
-    const imgSrc = e.dataTransfer.getData('text/plain');
-    const img = new Image();
+  if (hopeContainer) {
+    hopeContainer.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'copy';
+    });
     
-    img.onload = () => {
-      const rect = mainCanvas.getBoundingClientRect();
-      const scaleX = mainCanvas.width / rect.width;
-      const scaleY = mainCanvas.height / rect.height;
+    hopeContainer.addEventListener('drop', (e) => {
+      e.preventDefault();
+      const imgSrc = e.dataTransfer.getData('text/plain');
+      const img = new Image();
       
-      const x = (e.clientX - rect.left) * scaleX - img.width / 2;
-      const y = (e.clientY - rect.top) * scaleY - img.height / 2;
+      img.onload = () => {
+        const rect = hopeContainer.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        // Create a new image element for the dropped item
+        const droppedItem = document.createElement('img');
+        droppedItem.src = imgSrc;
+        droppedItem.style.position = 'absolute';
+        droppedItem.style.left = x - img.width/2 + 'px';
+        droppedItem.style.top = y - img.height/2 + 'px';
+        droppedItem.style.zIndex = '1';
+        droppedItem.style.pointerEvents = 'none';
+        
+        hopeContainer.appendChild(droppedItem);
+      };
       
-      mainCtx.drawImage(img, x, y);
-      saveState();
-    };
-    
-    img.src = imgSrc;
-  });
+      img.src = imgSrc;
+    });
+  }
 }); 
