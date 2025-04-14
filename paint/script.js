@@ -17,13 +17,15 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Initialize size control
   const sizeControl = document.querySelector('.size-control');
-  const sizeSlider = document.getElementById('sizeSlider');
-  const sizePreview = document.querySelector('.size-preview');
+  const sizeSlider = document.querySelector('.size-slider');
+  const sizePreview = document.querySelector('.size-preview-dot');
+  const sizeValue = document.querySelector('.size-value');
   
   function updateSizePreview() {
-    if (sizePreview) {
+    if (sizePreview && sizeValue) {
       sizePreview.style.width = brushSize + 'px';
       sizePreview.style.height = brushSize + 'px';
+      sizeValue.textContent = brushSize + 'px';
       
       // Update preview color based on tool
       if (currentTool === 'eraser') {
