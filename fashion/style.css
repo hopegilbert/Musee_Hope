@@ -221,6 +221,12 @@ html, body {
     object-fit: contain;
 }
 
+.clothing-item.selected {
+    border: 2px solid #007bff;
+    transform: scale(1.05);
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
 .overlay-container {
     position: absolute;
     top: 0;

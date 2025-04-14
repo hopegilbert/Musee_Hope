@@ -15,6 +15,7 @@ let historyIndex = -1;
 const categoryButtons = document.querySelectorAll('.category-button');
 const categoryItems = document.querySelectorAll('.category-items');
 const activeOverlays = new Map(); // Store active overlays by category
+let selectedItems = new Map(); // Track selected items by category
 
 // Initialize with first category active
 if (categoryButtons.length > 0 && categoryItems.length > 0) {
@@ -67,6 +68,21 @@ document.querySelectorAll('.clothing-item').forEach(item => {
         const overlay = item.dataset.overlay;
         const category = item.closest('.category-items').dataset.category;
         
+        // If clicking the same item, remove it
+        if (selectedItems.get(category) === item) {
+            const existingOverlays = overlayContainer.querySelectorAll(`img[data-category="${category}"]`);
+            existingOverlays.forEach(existing => existing.remove());
+            selectedItems.delete(category);
+            item.classList.remove('selected');
+            return;
+        }
+        
+        // Remove selected class from previously selected item in this category
+        const previousItem = selectedItems.get(category);
+        if (previousItem) {
+            previousItem.classList.remove('selected');
+        }
+        
         // Find all existing overlays for this category
         const existingOverlays = overlayContainer.querySelectorAll(`img[data-category="${category}"]`);
         existingOverlays.forEach(existing => existing.remove());
@@ -77,6 +93,10 @@ document.querySelectorAll('.clothing-item').forEach(item => {
         overlayImage.dataset.category = category;
         overlayImage.classList.add('overlay-image', 'active');
         overlayContainer.appendChild(overlayImage);
+        
+        // Update selected item
+        selectedItems.set(category, item);
+        item.classList.add('selected');
     });
 });
 
