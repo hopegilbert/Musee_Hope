@@ -1148,4 +1148,24 @@ document.addEventListener('DOMContentLoaded', () => {
     item.addEventListener('click', handleInteraction);
     item.addEventListener('touchstart', handleInteraction, { passive: false });
   });
+
+  function handleClothingClick(e) {
+    const overlay = e.currentTarget.dataset.overlay;
+    if (overlay) {
+        loadAndDisplayOverlay(overlay);
+    }
+  }
+
+  function loadAndDisplayOverlay(overlayPath) {
+    const img = new Image();
+    img.onload = function() {
+        const overlayContainer = document.querySelector('.overlay-container');
+        overlayContainer.innerHTML = '';
+        overlayContainer.appendChild(img);
+    };
+    img.onerror = function() {
+        console.error('Failed to load overlay:', overlayPath);
+    };
+    img.src = overlayPath; // Use the path directly from the data-overlay attribute
+  }
 }); 
