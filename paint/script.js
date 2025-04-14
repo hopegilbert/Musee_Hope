@@ -466,7 +466,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 sizeControl.style.left = (btnRect.left - windowRect.left + toolbarRect.left) + 'px';
                 sizeControl.style.top = (btnRect.bottom - windowRect.top + toolbarRect.top) + 'px';
                 sizeControl.style.display = 'flex';
-                sizeControl.style.zIndex = '1000';
+                sizeControl.style.zIndex = '999999';
                 updateSizePreview();
             } else {
                 sizeControl.style.display = 'none';
@@ -1012,6 +1012,7 @@ document.addEventListener('DOMContentLoaded', () => {
     sizeControl.style.borderRadius = '0';
     sizeControl.style.boxShadow = '2px 2px 5px rgba(0,0,0,0.2)';
     sizeControl.style.width = '150px';
+    sizeControl.style.zIndex = '999999';
   }
 
   // Close size control when clicking outside
