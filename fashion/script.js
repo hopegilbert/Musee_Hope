@@ -247,19 +247,20 @@ function handleClothingClick(event) {
         case 'jewelry':
             zIndex = 10; // Highest z-index, above everything
             break;
-        case 'dress':
-            // Check if it's the cardigan
-            if (overlayPath.includes('cardigan')) {
-                zIndex = 3;
-            } else {
-                zIndex = 1; // All other dresses at the back
-            }
+        case 'tops':
+            zIndex = 3;
             break;
-        case 'hair':
+        case 'bottoms':
             zIndex = 2;
             break;
-        case 'accessories':
+        case 'hair':
             zIndex = 4;
+            break;
+        case 'accessories':
+            zIndex = 5;
+            break;
+        case 'dress':
+            zIndex = 1; // All dresses at the back
             break;
         default:
             zIndex = 1;
