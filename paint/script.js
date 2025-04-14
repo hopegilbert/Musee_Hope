@@ -1042,60 +1042,60 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize clothing items
   const paintItems = document.querySelectorAll('.paint-item');
   const paintCanvas = document.querySelector('.paint-canvas-container');
+  const backgroundImage = paintCanvas.querySelector('.background-image');
   
-  if (paintCanvas) {
-    // Set up the canvas container for proper positioning
-    paintCanvas.style.position = 'relative';
-    paintCanvas.style.overflow = 'hidden';
-    
-    // Create overlay container
-    const overlayContainer = document.createElement('div');
-    overlayContainer.className = 'overlay-container';
-    overlayContainer.style.position = 'absolute';
-    overlayContainer.style.top = '0';
-    overlayContainer.style.left = '0';
-    overlayContainer.style.width = '100%';
-    overlayContainer.style.height = '100%';
-    overlayContainer.style.zIndex = '999999';
-    overlayContainer.style.pointerEvents = 'none';
-    paintCanvas.appendChild(overlayContainer);
-    
-    // Add click handlers for clothing items
-    paintItems.forEach(item => {
-      item.addEventListener('click', () => {
-        const type = item.getAttribute('title').toLowerCase();
-        console.log('Clicked:', type);
-        
-        // Create the overlay image path
-        const overlayPath = `./images/hope-${type}2.png`;
-        console.log('Creating overlay:', overlayPath);
-        
-        // Remove existing overlay of same type
-        const existingOverlay = overlayContainer.querySelector(`.${type}-overlay`);
-        if (existingOverlay) {
-          existingOverlay.remove();
-        }
-        
-        // Create and add new overlay
-        const overlay = document.createElement('img');
-        overlay.src = overlayPath;
-        overlay.className = `${type}-overlay`;
-        overlay.style.position = 'absolute';
-        overlay.style.top = '0';
-        overlay.style.left = '0';
-        overlay.style.width = '100%';
-        overlay.style.height = '100%';
-        overlay.style.pointerEvents = 'none';
-        
-        // Debug logging
-        overlay.onerror = () => {
-          console.error('Failed to load overlay:', overlayPath);
-        };
-        overlay.onload = () => {
-          console.log('Successfully loaded overlay:', overlayPath);
-          overlayContainer.appendChild(overlay);
-        };
-      });
+  // Set up the canvas container for proper positioning
+  paintCanvas.style.position = 'relative';
+  
+  // Create overlay container
+  const overlayContainer = document.createElement('div');
+  overlayContainer.className = 'overlay-container';
+  overlayContainer.style.position = 'absolute';
+  overlayContainer.style.top = '0';
+  overlayContainer.style.left = '0';
+  overlayContainer.style.width = '100%';
+  overlayContainer.style.height = '100%';
+  overlayContainer.style.zIndex = '2';
+  overlayContainer.style.pointerEvents = 'none';
+  paintCanvas.insertBefore(overlayContainer, backgroundImage.nextSibling);
+  
+  // Add click handlers for clothing items
+  paintItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const type = item.getAttribute('title').toLowerCase();
+      console.log('Clicked:', type);
+      
+      // Create the overlay image path
+      const overlayPath = `./images/hope-${type}2.png`;
+      console.log('Creating overlay:', overlayPath);
+      
+      // Remove existing overlay of same type
+      const existingOverlay = overlayContainer.querySelector(`.${type}-overlay`);
+      if (existingOverlay) {
+        existingOverlay.remove();
+      }
+      
+      // Create and add new overlay
+      const overlay = document.createElement('img');
+      overlay.src = overlayPath;
+      overlay.className = `${type}-overlay`;
+      overlay.style.position = 'absolute';
+      overlay.style.top = '0';
+      overlay.style.left = '0';
+      overlay.style.width = '100%';
+      overlay.style.height = '100%';
+      overlay.style.pointerEvents = 'none';
+      overlay.style.objectFit = 'contain';
+      
+      // Debug logging
+      overlay.onerror = () => {
+        console.error('Failed to load overlay:', overlayPath);
+      };
+      
+      overlay.onload = () => {
+        console.log('Successfully loaded overlay:', overlayPath);
+        overlayContainer.appendChild(overlay);
+      };
     });
-  }
+  });
 }); 
