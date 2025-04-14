@@ -1085,75 +1085,56 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       e.stopPropagation();
       
-      const overlayPath = this.dataset.overlay;
-      const type = this.getAttribute('title');  // Use exact title without toLowerCase()
+      const overlayPath = this.getAttribute('data-overlay');
+      const type = this.getAttribute('title');
       
-      // Find existing overlay using exact class name
-      const existingOverlay = document.querySelector(`.${type}-overlay`);
+      // Find existing overlay
+      const existingOverlay = overlayContainer.querySelector(`img[src="${overlayPath}"]`);
       
-      // If overlay exists, remove it
       if (existingOverlay) {
-        existingOverlay.remove();
-        this.classList.remove('active');
-        return;
-      }
-      
-      // Create new overlay
-      const overlay = new Image();
-      overlay.src = overlayPath;
-      overlay.className = `${type}-overlay`;  // Use exact class name
-      overlay.style.position = 'absolute';
-      overlay.style.top = '50%';
-      overlay.style.left = '50%';
-      overlay.style.transform = 'translate(-50%, -50%)';
-      overlay.style.width = '80%';
-      overlay.style.height = '80%';
-      overlay.style.objectFit = 'contain';
-      overlay.style.pointerEvents = 'none';
-      
-      // Set z-index based on type
-      if (type.includes('jewellery') || type.includes('necklace') || type.includes('sunflower')) {
-        overlay.style.zIndex = '1004';
-      } else if (type.includes('hair') || type.includes('plait')) {
-        overlay.style.zIndex = '1002';
-      } else if (type.includes('dress') || type.includes('top') || type.includes('skirt')) {
-        overlay.style.zIndex = '1001';
-      } else {
-        overlay.style.zIndex = '1003';  // shoes, boots, trainers, converse
-      }
-      
-      // Add overlay and activate button
-      overlayContainer.appendChild(overlay);
-      this.classList.add('active');
-    });
-  });
-
-  // Remove any duplicate handlers that might be added later
-  function handleClothingClick(event) {
-    const item = event.currentTarget;
-    const overlayPath = item.getAttribute('data-overlay');
-    
-    // Find existing overlay for this item
-    const existingOverlay = overlayContainer.querySelector(`img[src="${overlayPath}"]`);
-    
-    if (existingOverlay) {
         // If overlay exists, fade it out and remove it
-        existingOverlay.classList.remove('visible');
+        existingOverlay.style.opacity = '0';
         setTimeout(() => {
-            existingOverlay.remove();
-        }, 300); // Match transition duration
-    } else {
+          existingOverlay.remove();
+        }, 300);
+        this.classList.remove('active');
+      } else {
         // Create new overlay
         const overlay = document.createElement('img');
         overlay.src = overlayPath;
         overlay.alt = 'Overlay';
+        overlay.style.position = 'absolute';
+        overlay.style.top = '50%';
+        overlay.style.left = '50%';
+        overlay.style.transform = 'translate(-50%, -50%)';
+        overlay.style.width = '80%';
+        overlay.style.height = '80%';
+        overlay.style.objectFit = 'contain';
+        overlay.style.pointerEvents = 'none';
+        overlay.style.opacity = '0';
+        overlay.style.transition = 'opacity 0.3s ease-in-out';
+        
+        // Set z-index based on type
+        if (type.includes('jewellery') || type.includes('necklace') || type.includes('sunflower')) {
+          overlay.style.zIndex = '1004';
+        } else if (type.includes('hair') || type.includes('plait')) {
+          overlay.style.zIndex = '1002';
+        } else if (type.includes('dress') || type.includes('top') || type.includes('skirt')) {
+          overlay.style.zIndex = '1001';
+        } else {
+          overlay.style.zIndex = '1003';  // shoes, boots, trainers, converse
+        }
+        
+        // Add overlay and activate button
         overlayContainer.appendChild(overlay);
+        this.classList.add('active');
         
         // Force reflow to ensure transition works
         overlay.offsetHeight;
         
         // Fade in the new overlay
-        overlay.classList.add('visible');
-    }
-  }
+        overlay.style.opacity = '1';
+      }
+    });
+  });
 }); 
