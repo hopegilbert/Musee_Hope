@@ -667,7 +667,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setCanvasSize();
   console.log('Paint initialization complete');
 
-  function floodFill(startX, startY, fillColor) {
+  function floodFill(startX, startY) {
     const imageData = mainCtx.getImageData(0, 0, mainCanvas.width, mainCanvas.height);
     const pixels = imageData.data;
     
@@ -680,35 +680,35 @@ document.addEventListener('DOMContentLoaded', () => {
     if (startR === undefined) return; // Out of bounds
     
     const matchStartColor = (pos) => {
-        return pixels[pos] === startR &&
-               pixels[pos + 1] === startG &&
-               pixels[pos + 2] === startB &&
-               pixels[pos + 3] === startA;
+      return pixels[pos] === startR &&
+             pixels[pos + 1] === startG &&
+             pixels[pos + 2] === startB &&
+             pixels[pos + 3] === startA;
     };
     
-    const colorToFill = hexToRgb(fillColor);
+    const fillColor = hexToRgb(currentColor);
     const stack = [[startX, startY]];
     const visited = new Set();
     
     while (stack.length) {
-        const [x, y] = stack.pop();
-        const pos = (y * mainCanvas.width + x) * 4;
-        
-        if (x < 0 || x >= mainCanvas.width || y < 0 || y >= mainCanvas.height) continue;
-        if (visited.has(`${x},${y}`)) continue;
-        if (!matchStartColor(pos)) continue;
-        
-        visited.add(`${x},${y}`);
-        pixels[pos] = colorToFill.r;
-        pixels[pos + 1] = colorToFill.g;
-        pixels[pos + 2] = colorToFill.b;
-        pixels[pos + 3] = 255;
-        
-        stack.push([x + 1, y], [x - 1, y], [x, y + 1], [x, y - 1]);
+      const [x, y] = stack.pop();
+      const pos = (y * mainCanvas.width + x) * 4;
+      
+      if (x < 0 || x >= mainCanvas.width || y < 0 || y >= mainCanvas.height) continue;
+      if (visited.has(`${x},${y}`)) continue;
+      if (!matchStartColor(pos)) continue;
+      
+      visited.add(`${x},${y}`);
+      pixels[pos] = fillColor.r;
+      pixels[pos + 1] = fillColor.g;
+      pixels[pos + 2] = fillColor.b;
+      pixels[pos + 3] = 255;
+      
+      stack.push([x + 1, y], [x - 1, y], [x, y + 1], [x, y - 1]);
     }
     
     mainCtx.putImageData(imageData, 0, 0);
-    tempCtx.drawImage(mainCanvas, 0, 0);
+    saveState();
   }
 
   function hexToRgb(hex) {
@@ -729,5 +729,123 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       mainCanvas.style.cursor = 'crosshair';
     }
+  }
+
+  // Drawing functions
+  function drawFreehand(points) {
+    if (points.length < 2) return;
+    
+    tempCtx.strokeStyle = currentColor;
+    tempCtx.lineWidth = brushSize;
+    tempCtx.lineCap = 'round';
+    tempCtx.lineJoin = 'round';
+    
+    tempCtx.beginPath();
+    tempCtx.moveTo(points[0].x, points[0].y);
+    
+    for (let i = 1; i < points.length; i++) {
+      tempCtx.lineTo(points[i].x, points[i].y);
+    }
+    tempCtx.stroke();
+  }
+
+  function drawBrush(points) {
+    if (points.length < 2) return;
+    
+    tempCtx.strokeStyle = currentColor;
+    tempCtx.lineWidth = brushSize * 2;
+    tempCtx.lineCap = 'round';
+    tempCtx.lineJoin = 'round';
+    
+    tempCtx.beginPath();
+    tempCtx.moveTo(points[0].x, points[0].y);
+    
+    for (let i = 1; i < points.length; i++) {
+      tempCtx.lineTo(points[i].x, points[i].y);
+    }
+    tempCtx.stroke();
+  }
+
+  function drawLine(startX, startY, endX, endY) {
+    tempCtx.strokeStyle = currentColor;
+    tempCtx.lineWidth = brushSize;
+    tempCtx.lineCap = 'round';
+    
+    tempCtx.beginPath();
+    tempCtx.moveTo(startX, startY);
+    tempCtx.lineTo(endX, endY);
+    tempCtx.stroke();
+  }
+
+  function drawRectangle(x, y, width, height) {
+    tempCtx.strokeStyle = currentColor;
+    tempCtx.lineWidth = brushSize;
+    tempCtx.strokeRect(x, y, width, height);
+  }
+
+  function drawCircle(startX, startY, endX, endY) {
+    const radiusX = Math.abs(endX - startX) / 2;
+    const radiusY = Math.abs(endY - startY) / 2;
+    const centerX = startX + (endX - startX) / 2;
+    const centerY = startY + (endY - startY) / 2;
+    
+    tempCtx.strokeStyle = currentColor;
+    tempCtx.lineWidth = brushSize;
+    
+    tempCtx.beginPath();
+    tempCtx.ellipse(centerX, centerY, radiusX, radiusY, 0, 0, Math.PI * 2);
+    tempCtx.stroke();
+  }
+
+  function showTextInput(e) {
+    const coords = getEventCoords(e);
+    
+    // Remove any existing text input
+    if (textInput) {
+      document.body.removeChild(textInput);
+    }
+    
+    // Create new text input
+    textInput = document.createElement('input');
+    textInput.type = 'text';
+    textInput.style.position = 'fixed';
+    textInput.style.left = e.clientX + 'px';
+    textInput.style.top = e.clientY + 'px';
+    textInput.style.font = brushSize + 'px Arial';
+    textInput.style.color = currentColor;
+    textInput.style.background = 'transparent';
+    textInput.style.border = '1px solid ' + currentColor;
+    textInput.style.outline = 'none';
+    textInput.style.minWidth = '50px';
+    textInput.style.zIndex = '1000000';
+    
+    document.body.appendChild(textInput);
+    textInput.focus();
+    
+    // Store click position for text placement
+    const textX = coords.x;
+    const textY = coords.y;
+    
+    function handleTextInput() {
+      const text = textInput.value.trim();
+      if (text) {
+        mainCtx.font = brushSize + 'px Arial';
+        mainCtx.fillStyle = currentColor;
+        mainCtx.fillText(text, textX, textY + brushSize);
+        saveState();
+      }
+      document.body.removeChild(textInput);
+      textInput = null;
+    }
+    
+    textInput.addEventListener('blur', handleTextInput);
+    textInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        handleTextInput();
+      } else if (e.key === 'Escape') {
+        document.body.removeChild(textInput);
+        textInput = null;
+      }
+    });
   }
 }); 
