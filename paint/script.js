@@ -17,23 +17,21 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Initialize size control
   const sizeControl = document.querySelector('.size-control');
-  const sizeSlider = document.querySelector('.size-slider');
-  const sizePreviewDot = document.querySelector('.size-preview-dot');
-  const sizeValue = document.querySelector('.size-value');
+  const sizeSlider = document.getElementById('sizeSlider');
+  const sizePreview = document.querySelector('.size-preview');
   
   function updateSizePreview() {
-    if (sizePreviewDot && sizeValue) {
-      sizePreviewDot.style.width = brushSize + 'px';
-      sizePreviewDot.style.height = brushSize + 'px';
-      sizeValue.textContent = brushSize + 'px';
+    if (sizePreview) {
+      sizePreview.style.width = brushSize + 'px';
+      sizePreview.style.height = brushSize + 'px';
       
       // Update preview color based on tool
       if (currentTool === 'eraser') {
-        sizePreviewDot.style.backgroundColor = '#FFFFFF';
-        sizePreviewDot.style.border = '1px solid #000000';
+        sizePreview.style.backgroundColor = '#FFFFFF';
+        sizePreview.style.border = '1px solid #000000';
       } else {
-        sizePreviewDot.style.backgroundColor = currentColor;
-        sizePreviewDot.style.border = 'none';
+        sizePreview.style.backgroundColor = currentColor;
+        sizePreview.style.border = 'none';
       }
     }
   }
@@ -1001,8 +999,8 @@ document.addEventListener('DOMContentLoaded', () => {
       mainCtx.fillStyle = currentColor;
     }
     // Update size preview dot color
-    if (sizePreviewDot && currentTool !== 'eraser') {
-      sizePreviewDot.style.backgroundColor = currentColor;
+    if (sizePreview && currentTool !== 'eraser') {
+      sizePreview.style.backgroundColor = currentColor;
     }
   }
 
