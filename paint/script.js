@@ -1045,6 +1045,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (hopeContainer) {
     hopeContainer.style.position = 'relative';
+    hopeContainer.style.zIndex = '1'; // Set base z-index for container
     
     // Create a container for clothing items
     const clothingContainer = document.createElement('div');
@@ -1053,7 +1054,7 @@ document.addEventListener('DOMContentLoaded', () => {
     clothingContainer.style.left = '0';
     clothingContainer.style.width = '100%';
     clothingContainer.style.height = '100%';
-    clothingContainer.style.zIndex = '1';
+    clothingContainer.style.zIndex = '9999999'; // Very high z-index to ensure visibility
     hopeContainer.appendChild(clothingContainer);
     
     // Add click handlers for clothing items
@@ -1084,6 +1085,7 @@ document.addEventListener('DOMContentLoaded', () => {
             clothingItem.style.width = '100%';
             clothingItem.style.height = '100%';
             clothingItem.style.pointerEvents = 'none';
+            clothingItem.style.zIndex = '9999999'; // Same high z-index as container
             
             clothingContainer.appendChild(clothingItem);
         });
