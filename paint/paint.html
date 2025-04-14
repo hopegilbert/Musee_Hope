@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fashion</title>
+    <title>Paint</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="fashion-container">
-        <div class="fashion-header">
+    <div class="paint-container">
+        <div class="paint-header">
             <div class="title-bar">
                 <div class="title-bar-text">
-                    <img src="images/fashion-icon.png" alt="Fashion" class="title-icon">
-                    <span>Fashion</span>
+                    <img src="images/paint-icon.png" alt="Paint" class="title-icon">
+                    <span>Paint</span>
                 </div>
                 <div class="title-bar-controls">
                     <button id="minimize-button">-</button>
@@ -20,28 +20,108 @@
                     <button id="close-button">×</button>
                 </div>
             </div>
+            <div class="menu-bar">
+                <div class="menu-item" id="fileMenu">
+                    File
+                    <div class="menu-dropdown">
+                        <button>New</button>
+                        <button>Open</button>
+                        <button>Save</button>
+                        <button>Print</button>
+                        <button>Exit</button>
+                    </div>
+                </div>
+                <div class="menu-item" id="editMenu">
+                    Edit
+                    <div class="menu-dropdown">
+                        <button>Undo</button>
+                        <button>Redo</button>
+                        <button>Cut</button>
+                        <button>Copy</button>
+                        <button>Paste</button>
+                    </div>
+                </div>
+                <div class="menu-item" id="viewMenu">
+                    View
+                    <div class="menu-dropdown">
+                        <button>Zoom In</button>
+                        <button>Zoom Out</button>
+                        <button>Full Screen</button>
+                    </div>
+                </div>
+                <div class="menu-item" id="colorsMenu">
+                    Colors
+                    <div class="menu-dropdown">
+                        <div class="color-grid">
+                            <div class="color-box" style="background-color: #000000;"></div>
+                            <div class="color-box" style="background-color: #808080;"></div>
+                            <div class="color-box" style="background-color: #800000;"></div>
+                            <div class="color-box" style="background-color: #808000;"></div>
+                            <div class="color-box" style="background-color: #008000;"></div>
+                            <div class="color-box" style="background-color: #008080;"></div>
+                            <div class="color-box" style="background-color: #000080;"></div>
+                            <div class="color-box" style="background-color: #800080;"></div>
+                            <div class="color-box" style="background-color: #FFFFFF;"></div>
+                            <div class="color-box" style="background-color: #C0C0C0;"></div>
+                            <div class="color-box" style="background-color: #FF0000;"></div>
+                            <div class="color-box" style="background-color: #FFFF00;"></div>
+                            <div class="color-box" style="background-color: #00FF00;"></div>
+                            <div class="color-box" style="background-color: #00FFFF;"></div>
+                            <div class="color-box" style="background-color: #0000FF;"></div>
+                            <div class="color-box" style="background-color: #FF00FF;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="paint-toolbar">
+                <button class="tool-button" data-tool="pencil">
+                    <img src="images/pencil.png" alt="Pencil">
+                </button>
+                <button class="tool-button" data-tool="brush">
+                    <img src="images/brush.png" alt="Brush">
+                </button>
+                <button class="tool-button" data-tool="eraser">
+                    <img src="images/eraser.png" alt="Eraser">
+                </button>
+                <button class="tool-button" data-tool="fill">
+                    <img src="images/fill.png" alt="Fill">
+                </button>
+                <button class="tool-button" data-tool="rectangle">
+                    <img src="images/rectangle.png" alt="Rectangle">
+                </button>
+                <button class="tool-button" data-tool="ellipse">
+                    <img src="images/ellipse.png" alt="Ellipse">
+                </button>
+                <button class="tool-button" data-tool="line">
+                    <img src="images/line.png" alt="Line">
+                </button>
+                <button class="tool-button" data-tool="text">
+                    <img src="images/text.png" alt="Text">
+                </button>
+                <button class="tool-button" data-tool="spray">
+                    <img src="images/spray-can.png" alt="Spray">
+                </button>
+                <button class="tool-button" data-tool="undo">
+                    <img src="images/undo.png" alt="Undo">
+                </button>
+                <button class="tool-button" data-tool="redo">
+                    <img src="images/redo.png" alt="Redo">
+                </button>
+            </div>
+            <div class="paint-controls">
+                <div class="size-control">
+                    <label for="size">Size:</label>
+                    <input type="range" id="size" min="1" max="50" value="5">
+                    <span id="size-value">5</span>
+                </div>
+                <div class="color-control">
+                    <label for="color">Color:</label>
+                    <input type="color" id="color" value="#000000">
+                </div>
+            </div>
         </div>
-        <div class="fashion-content">
-            <div class="fashion-canvas-container">
-                <canvas id="canvas"></canvas>
-                <div class="overlay-container"></div>
-            </div>
-            <div class="fashion-sidebar">
-                <div class="category-buttons">
-                    <button class="category-button active" data-category="hair">Hair</button>
-                    <button class="category-button" data-category="dresses">Dresses</button>
-                    <button class="category-button" data-category="tops">Tops</button>
-                    <button class="category-button" data-category="bottoms">Bottoms</button>
-                    <button class="category-button" data-category="shoes">Shoes</button>
-                    <button class="category-button" data-category="hats">Hats</button>
-                    <button class="category-button" data-category="sunglasses">Sunglasses</button>
-                    <button class="category-button" data-category="bags">Bags</button>
-                    <button class="category-button" data-category="jewelry">Jewelry</button>
-                </div>
-                <div class="category-items-container">
-                    <!-- Category items will be loaded here -->
-                </div>
-            </div>
+        <div class="paint-canvas-container">
+            <canvas id="canvas"></canvas>
         </div>
     </div>
     <script src="script.js"></script>
