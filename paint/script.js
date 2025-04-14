@@ -1129,5 +1129,31 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Remove any duplicate handlers that might be added later
-  const handleClothingClick = () => {};
+  function handleClothingClick(event) {
+    const item = event.currentTarget;
+    const overlayPath = item.getAttribute('data-overlay');
+    
+    // Find existing overlay for this item
+    const existingOverlay = overlayContainer.querySelector(`img[src="${overlayPath}"]`);
+    
+    if (existingOverlay) {
+        // If overlay exists, fade it out and remove it
+        existingOverlay.classList.remove('visible');
+        setTimeout(() => {
+            existingOverlay.remove();
+        }, 300); // Match transition duration
+    } else {
+        // Create new overlay
+        const overlay = document.createElement('img');
+        overlay.src = overlayPath;
+        overlay.alt = 'Overlay';
+        overlayContainer.appendChild(overlay);
+        
+        // Force reflow to ensure transition works
+        overlay.offsetHeight;
+        
+        // Fade in the new overlay
+        overlay.classList.add('visible');
+    }
+  }
 }); 
