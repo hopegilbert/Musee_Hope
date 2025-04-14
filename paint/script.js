@@ -1074,11 +1074,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (type === 'jewellery') {
       overlay.style.zIndex = '1004'; // Jewelry always on top
     } else if (type === 'hair') {
-      overlay.style.zIndex = '1003'; // Hair second
+      overlay.style.zIndex = '1002'; // Hair third
     } else if (type === 'dress') {
-      overlay.style.zIndex = '1002'; // Dress third
+      overlay.style.zIndex = '1001'; // Dress bottom
     } else {
-      overlay.style.zIndex = '1001'; // Everything else
+      overlay.style.zIndex = '1003'; // Everything else (shoes) second
     }
     
     // Debug logging
