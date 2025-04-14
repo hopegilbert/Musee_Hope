@@ -12,16 +12,17 @@ html, body {
 }
 
 .window {
-    width: 100%;
-    height: 100%;
+    width: 800px;
+    height: 600px;
     background-color: #c0c0c0;
     border: 2px solid;
     border-color: #ffffff #808080 #808080 #ffffff;
     display: flex;
     flex-direction: column;
-    position: fixed;
-    top: 0;
-    left: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .title-bar {
@@ -88,7 +89,7 @@ html, body {
     display: flex;
     background-color: #c0c0c0;
     position: relative;
-    height: calc(100% - 38px); /* Subtract title bar and menu bar height */
+    height: calc(100% - 38px);
 }
 
 .toolbar {
@@ -99,7 +100,6 @@ html, body {
     display: flex;
     flex-direction: column;
     gap: 2px;
-    flex-shrink: 0;
 }
 
 .tool {
@@ -120,14 +120,13 @@ html, body {
 }
 
 .canvas-area {
-    flex: 1;
     position: relative;
+    width: 550px;
     height: 100%;
-    display: flex;
 }
 
 .canvas-container {
-    flex: 1;
+    width: 100%;
     height: calc(100% - 73px);
     background-color: #ffffff;
     border: 1px solid #808080;
@@ -141,10 +140,8 @@ html, body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    max-height: 90%;
-    max-width: 90%;
+    height: 100%;
     width: auto;
-    height: auto;
     object-fit: contain;
 }
 
@@ -155,7 +152,6 @@ html, body {
     display: flex;
     flex-direction: column;
     height: calc(100% - 73px);
-    flex-shrink: 0;
 }
 
 .category-buttons {
@@ -232,7 +228,6 @@ html, body {
     width: 100%;
     height: 100%;
     pointer-events: none;
-    z-index: 1;
 }
 
 .overlay-image {
@@ -240,14 +235,11 @@ html, body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    max-height: 90%;
-    max-width: 90%;
+    height: 100%;
     width: auto;
-    height: auto;
     object-fit: contain;
     opacity: 0;
     transition: opacity 0.3s ease;
-    pointer-events: none;
 }
 
 .overlay-image.active {
@@ -303,7 +295,7 @@ html, body {
     position: absolute;
     bottom: 23px;
     left: 50px;
-    right: 0;
+    width: 550px;
 }
 
 .color {
@@ -328,7 +320,7 @@ html, body {
     position: absolute;
     bottom: 0;
     left: 50px;
-    right: 0;
+    width: 550px;
 }
 
 .fashion-container {
