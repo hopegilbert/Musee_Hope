@@ -1149,22 +1149,52 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   function handleClothingClick(e) {
-    const overlay = e.currentTarget.dataset.overlay;
-    if (overlay) {
-        loadAndDisplayOverlay(overlay);
+    const item = e.currentTarget;
+    const overlayPath = item.dataset.overlay;
+    
+    // Find any existing overlay of the same type and remove it
+    const type = item.getAttribute('title').toLowerCase();
+    const existingOverlays = document.querySelectorAll(`.${type}-overlay`);
+    existingOverlays.forEach(overlay => overlay.remove());
+    
+    // Create and add the new overlay
+    const overlay = new Image();
+    overlay.src = overlayPath;
+    overlay.className = `${type}-overlay`;
+    overlay.style.position = 'absolute';
+    overlay.style.top = '50%';
+    overlay.style.left = '50%';
+    overlay.style.transform = 'translate(-50%, -50%)';
+    overlay.style.width = '80%';
+    overlay.style.height = '80%';
+    overlay.style.objectFit = 'contain';
+    overlay.style.pointerEvents = 'none';
+    
+    // Set z-index based on type
+    if (type.includes('jewel') || type.includes('necklace')) {
+        overlay.style.zIndex = '1004'; // Jewelry always on top
+    } else if (type.includes('hair') || type.includes('plait')) {
+        overlay.style.zIndex = '1002'; // Hair third
+    } else if (type.includes('dress') || type.includes('top') || type.includes('skirt')) {
+        overlay.style.zIndex = '1001'; // Clothing bottom
+    } else {
+        overlay.style.zIndex = '1003'; // Everything else (shoes) second
     }
-  }
-
-  function loadAndDisplayOverlay(overlayPath) {
-    const img = new Image();
-    img.onload = function() {
-        const overlayContainer = document.querySelector('.overlay-container');
-        overlayContainer.innerHTML = '';
-        overlayContainer.appendChild(img);
+    
+    // Add to overlay container
+    const overlayContainer = document.querySelector('.overlay-container');
+    overlay.onload = () => {
+        overlayContainer.appendChild(overlay);
     };
-    img.onerror = function() {
+    
+    overlay.onerror = () => {
         console.error('Failed to load overlay:', overlayPath);
     };
-    img.src = overlayPath; // Use the path directly from the data-overlay attribute
   }
+
+  // Add click handlers to clothing items
+  document.querySelectorAll('.paint-item').forEach(item => {
+    item.addEventListener('click', handleClothingClick);
+    item.addEventListener('touchstart', handleClothingClick, { passive: false });
+  });
 }); 
