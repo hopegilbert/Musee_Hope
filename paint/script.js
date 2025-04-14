@@ -1048,6 +1048,16 @@ document.addEventListener('DOMContentLoaded', () => {
     hopeContainer.style.position = 'relative';
     hopeContainer.style.width = 'fit-content';
     hopeContainer.style.height = 'fit-content';
+    
+    // Create a container for clothing items
+    const clothingContainer = document.createElement('div');
+    clothingContainer.style.position = 'absolute';
+    clothingContainer.style.top = '0';
+    clothingContainer.style.left = '0';
+    clothingContainer.style.width = '100%';
+    clothingContainer.style.height = '100%';
+    clothingContainer.style.zIndex = '1';
+    hopeContainer.appendChild(clothingContainer);
   }
   
   paintItems.forEach(item => {
@@ -1062,20 +1072,20 @@ document.addEventListener('DOMContentLoaded', () => {
         const clothingItem = document.createElement('img');
         clothingItem.src = imgSrc;
         clothingItem.style.position = 'absolute';
-        clothingItem.style.left = '0';
         clothingItem.style.top = '0';
+        clothingItem.style.left = '0';
         clothingItem.style.width = '100%';
         clothingItem.style.height = '100%';
-        clothingItem.style.zIndex = '1';
+        clothingItem.style.objectFit = 'contain';
         clothingItem.style.pointerEvents = 'none';
         
         // Remove any existing clothing item of the same type
-        const existingItem = hopeContainer.querySelector(`img[src="${imgSrc}"]`);
+        const existingItem = clothingContainer.querySelector(`img[src="${imgSrc}"]`);
         if (existingItem) {
           existingItem.remove();
         }
         
-        hopeContainer.appendChild(clothingItem);
+        clothingContainer.appendChild(clothingItem);
       };
       
       img.src = imgSrc;
