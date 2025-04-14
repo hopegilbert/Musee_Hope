@@ -1076,11 +1076,14 @@ document.addEventListener('DOMContentLoaded', () => {
       overlay.src = overlayPath;
       overlay.className = `${type}-overlay`;
       overlay.style.position = 'absolute';
-      overlay.style.maxWidth = '80%';
-      overlay.style.maxHeight = '80%';
+      overlay.style.top = '50%';
+      overlay.style.left = '50%';
+      overlay.style.transform = 'translate(-50%, -50%)';
+      overlay.style.width = '80%';
+      overlay.style.height = '80%';
       overlay.style.objectFit = 'contain';
       overlay.style.zIndex = '999999';
-      overlay.style.opacity = '1';
+      overlay.style.pointerEvents = 'none';
       
       // Debug logging
       overlay.onerror = () => {
@@ -1090,7 +1093,7 @@ document.addEventListener('DOMContentLoaded', () => {
       overlay.onload = () => {
         console.log('Successfully loaded overlay:', overlayPath);
         overlayContainer.appendChild(overlay);
-        console.log('Overlay z-index:', overlay.style.zIndex);
+        console.log('Overlay added to container:', overlayContainer);
       };
     });
   });
