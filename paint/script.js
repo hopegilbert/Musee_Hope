@@ -1041,47 +1041,51 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize clothing items
   const paintItems = document.querySelectorAll('.paint-item');
-  const paintCanvas = document.querySelector('.paint-canvas-container');
+  const hopeImage = document.querySelector('.paint-canvas-container .background-image');
   
-  // Make sure the canvas container can handle overlays
-  if (paintCanvas) {
-    paintCanvas.style.position = 'relative';
+  if (hopeImage) {
+    // Create overlay container
+    const overlayContainer = document.createElement('div');
+    overlayContainer.style.position = 'absolute';
+    overlayContainer.style.top = '0';
+    overlayContainer.style.left = '0';
+    overlayContainer.style.width = '100%';
+    overlayContainer.style.height = '100%';
+    overlayContainer.style.zIndex = '999999';
+    hopeImage.parentElement.appendChild(overlayContainer);
     
+    // Add click handlers for clothing items
     paintItems.forEach(item => {
       item.addEventListener('click', () => {
         const type = item.getAttribute('title').toLowerCase();
-        console.log('Clicked item:', type); // Debug log
+        console.log('Clicked:', type);
         
-        // Remove existing overlay of this type if it exists
-        const existingOverlay = document.querySelector(`.overlay-${type}`);
+        // Create the overlay image path
+        const overlayPath = `./images/hope-${type}2.png`;
+        console.log('Overlay path:', overlayPath);
+        
+        // Remove existing overlay of same type
+        const existingOverlay = overlayContainer.querySelector(`.${type}-overlay`);
         if (existingOverlay) {
           existingOverlay.remove();
         }
         
-        // Create new overlay
+        // Create and add new overlay
         const overlay = document.createElement('img');
-        overlay.className = `overlay-${type}`;
-        overlay.src = `./images/hope-${type}2.png`;
+        overlay.src = overlayPath;
+        overlay.className = `${type}-overlay`;
         overlay.style.position = 'absolute';
         overlay.style.top = '0';
         overlay.style.left = '0';
         overlay.style.width = '100%';
         overlay.style.height = '100%';
-        overlay.style.zIndex = '9999';
+        overlay.style.pointerEvents = 'none';
         
-        // Debug log
-        console.log('Creating overlay with src:', overlay.src);
+        // Debug logging
+        overlay.onerror = () => console.error('Failed to load:', overlayPath);
+        overlay.onload = () => console.log('Loaded:', overlayPath);
         
-        // Add error handling
-        overlay.onerror = () => {
-          console.error('Failed to load image:', overlay.src);
-        };
-        
-        overlay.onload = () => {
-          console.log('Image loaded successfully:', overlay.src);
-        };
-        
-        paintCanvas.appendChild(overlay);
+        overlayContainer.appendChild(overlay);
       });
     });
   }
