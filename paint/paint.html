@@ -215,18 +215,12 @@
         }
 
         .paint-canvas-container {
-            flex: 1;
-            background: #fff;
+            position: relative;
+            width: 100%;
+            height: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
-            position: relative;
-            z-index: 1;
-            border: 2px solid #808080;
-            border-right-color: #fff;
-            border-bottom-color: #fff;
-            margin: 8px;
         }
 
         #mainCanvas {
@@ -237,14 +231,9 @@
         }
 
         .paint-background {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80%;
-            height: 80%;
+            max-width: 80%;
+            max-height: 80%;
             object-fit: contain;
-            z-index: 1;
         }
 
         .overlay-container {
@@ -255,14 +244,15 @@
             height: 100%;
             z-index: 99999;
             pointer-events: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .overlay-container img {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            max-width: 80%;
+            max-height: 80%;
             object-fit: contain;
             z-index: 99999;
         }
@@ -646,7 +636,9 @@
             </div>
             <div class="paint-canvas-container">
                 <img src="./images/hope.png" alt="Hope" class="paint-background">
-                <div class="overlay-container"></div>
+                <div class="overlay-container">
+                    <!-- Overlays will be added here -->
+                </div>
             </div>
             <div class="paint-items">
                 <div class="paint-item" title="Hair" data-overlay="hope-hair2.png">
