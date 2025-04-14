@@ -205,10 +205,10 @@ document.querySelectorAll('.category-button').forEach(button => {
     });
 });
 
-let touchStartY = 0;
-let isScrolling = false;
-
 document.querySelectorAll('.clothing-item').forEach(item => {
+    let touchStartY = 0;
+    let isScrolling = false;
+
     item.addEventListener('touchstart', (e) => {
         touchStartY = e.touches[0].clientY;
         isScrolling = false;
@@ -229,7 +229,7 @@ document.querySelectorAll('.clothing-item').forEach(item => {
         }
     });
 
-    item.addEventListener('click', () => {
+    item.addEventListener('click', (e) => {
         if (!isScrolling) {
             handleClothingClick(e);
         }
