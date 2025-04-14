@@ -15,6 +15,36 @@ document.addEventListener('DOMContentLoaded', () => {
   const tempCanvas = document.createElement('canvas');
   const tempCtx = tempCanvas.getContext('2d');
   
+  // Initialize size control
+  const sizeControl = document.querySelector('.size-control');
+  const sizeSlider = document.querySelector('.size-slider');
+  const sizePreviewDot = document.querySelector('.size-preview-dot');
+  const sizeValue = document.querySelector('.size-value');
+  
+  function updateSizePreview() {
+    if (sizePreviewDot && sizeValue) {
+      sizePreviewDot.style.width = brushSize + 'px';
+      sizePreviewDot.style.height = brushSize + 'px';
+      sizeValue.textContent = brushSize + 'px';
+      
+      // Update preview color based on tool
+      if (currentTool === 'eraser') {
+        sizePreviewDot.style.backgroundColor = '#FFFFFF';
+        sizePreviewDot.style.border = '1px solid #000000';
+      } else {
+        sizePreviewDot.style.backgroundColor = currentColor;
+        sizePreviewDot.style.border = 'none';
+      }
+    }
+  }
+  
+  if (sizeSlider) {
+    sizeSlider.addEventListener('input', (e) => {
+      brushSize = parseInt(e.target.value);
+      updateSizePreview();
+    });
+  }
+  
   // Set canvas size
   function setCanvasSize() {
     // Always set main canvas to fill the screen
@@ -946,39 +976,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Size control functionality
-  const sizeSlider = document.querySelector('.size-slider');
-  const sizeValue = document.querySelector('.size-value');
-  const sizePreviewDot = document.querySelector('.size-preview-dot');
-
-  function updateSizePreview() {
-    const size = parseInt(sizeSlider.value);
-    sizeValue.textContent = size + 'px';
-    
-    // Update preview dot
-    sizePreviewDot.style.width = size + 'px';
-    sizePreviewDot.style.height = size + 'px';
-    
-    // Update brush size
-    brushSize = size;
-    
-    // Update preview color based on tool
-    if (currentTool === 'eraser') {
-      sizePreviewDot.style.backgroundColor = '#FFFFFF';
-      sizePreviewDot.style.border = '1px solid #000000';
-    } else {
-      sizePreviewDot.style.backgroundColor = currentColor;
-      sizePreviewDot.style.border = 'none';
-    }
-  }
-
-  if (sizeSlider) {
-    sizeSlider.addEventListener('input', updateSizePreview);
-    
-    // Initialize size preview
-    updateSizePreview();
-  }
-
   // Update size preview when color changes
   function updateCurrentColor(color) {
     currentColor = color;
@@ -1005,7 +1002,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Update size control styling
-  const sizeControl = document.querySelector('.size-control');
   if (sizeControl) {
     sizeControl.style.position = 'absolute';
     sizeControl.style.display = 'none';
