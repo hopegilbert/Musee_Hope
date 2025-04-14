@@ -11,6 +11,15 @@ let currentSize = 5;
 let drawingHistory = [];
 let historyIndex = -1;
 
+// Category and overlay management
+const categoryButtons = document.querySelectorAll('.category-button');
+const categoryItems = document.querySelectorAll('.category-items');
+const overlays = new Map(); // Store active overlays
+
+// Initialize with first category active
+categoryButtons[0].classList.add('active');
+categoryItems[0].classList.add('active');
+
 // Set canvas size
 function resizeCanvas() {
     const container = canvas.parentElement;
@@ -129,7 +138,7 @@ function floodFill(startX, startY) {
     const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
     const data = imageData.data;
     const targetColor = getColorAt(startX, startY);
-    const fillColor = hexToRgb(currentColor);
+    const fillColor = hexToRgba(currentColor);
     
     if (!fillColor) return;
     
@@ -184,7 +193,7 @@ function getColorAt(x, y) {
     };
 }
 
-function hexToRgb(hex) {
+function hexToRgba(hex) {
     const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
     return result ? {
         r: parseInt(result[1], 16),
@@ -194,139 +203,42 @@ function hexToRgb(hex) {
     } : null;
 }
 
-// Category and item handling
-document.querySelectorAll('.category-button').forEach(button => {
+// Handle category switching
+categoryButtons.forEach((button, index) => {
     button.addEventListener('click', () => {
-        const category = button.dataset.category;
-        document.querySelectorAll('.category-items').forEach(items => {
-            items.style.display = 'none';
-        });
-        document.querySelector(`.category-items[data-category="${category}"]`).style.display = 'flex';
+        // Remove active class from all buttons and items
+        categoryButtons.forEach(btn => btn.classList.remove('active'));
+        categoryItems.forEach(items => items.classList.remove('active'));
+        
+        // Add active class to clicked button and corresponding items
+        button.classList.add('active');
+        categoryItems[index].classList.add('active');
     });
 });
 
+// Handle clothing item clicks
 document.querySelectorAll('.clothing-item').forEach(item => {
-    let touchStartY = 0;
-    let isScrolling = false;
-
-    item.addEventListener('touchstart', (e) => {
-        touchStartY = e.touches[0].clientY;
-        isScrolling = false;
-    });
-
-    item.addEventListener('touchmove', (e) => {
-        const touchY = e.touches[0].clientY;
-        const deltaY = Math.abs(touchY - touchStartY);
-        
-        if (deltaY > 10) {
-            isScrolling = true;
-        }
-    });
-
-    item.addEventListener('touchend', () => {
-        if (!isScrolling) {
-            handleClothingClick(item);
-        }
-    });
-
     item.addEventListener('click', () => {
-        if (!isScrolling) {
-            handleClothingClick(item);
+        const overlayPath = item.dataset.overlay;
+        if (!overlayPath) return;
+
+        // Check if this overlay already exists
+        let overlay = overlays.get(overlayPath);
+        
+        if (!overlay) {
+            // Create new overlay if it doesn't exist
+            overlay = document.createElement('img');
+            overlay.src = overlayPath;
+            overlay.classList.add('overlay-image');
+            overlayContainer.appendChild(overlay);
+            overlays.set(overlayPath, overlay);
+        }
+
+        // Toggle overlay visibility
+        if (overlay.classList.contains('active')) {
+            overlay.classList.remove('active');
+        } else {
+            overlay.classList.add('active');
         }
     });
-});
-
-function handleClothingClick(item) {
-    const overlayPath = item.getAttribute('data-overlay');
-    const category = item.closest('.category-items').getAttribute('data-category');
-    
-    // Set z-index based on category
-    let zIndex = 1; // Default z-index
-    switch(category) {
-        case 'jewelry':
-            zIndex = 10; // Highest z-index, above everything
-            break;
-        case 'tops':
-            zIndex = 3;
-            break;
-        case 'bottoms':
-            zIndex = 1; // Push bottoms to the back with dresses
-            break;
-        case 'hair':
-            zIndex = 4;
-            break;
-        case 'accessories':
-            zIndex = 5;
-            break;
-        case 'dress':
-            zIndex = 1; // All dresses at the back
-            break;
-        default:
-            zIndex = 1;
-    }
-
-    // Find existing overlay with the same source
-    const existingOverlay = Array.from(overlayContainer.querySelectorAll('.overlay-image'))
-        .find(img => img.src.includes(overlayPath));
-
-    // Find any existing overlay from the same category
-    const sameCategoryOverlays = Array.from(overlayContainer.querySelectorAll('.overlay-image'))
-        .filter(img => {
-            const imgCategory = img.getAttribute('data-category');
-            return imgCategory === category;
-        });
-
-    if (existingOverlay) {
-        // If overlay exists and is visible, remove it
-        if (existingOverlay.style.opacity === '1') {
-            existingOverlay.style.opacity = '0';
-            setTimeout(() => {
-                existingOverlay.remove();
-            }, 300); // Match transition duration
-        } else {
-            // If overlay exists but is not visible, make it visible
-            existingOverlay.style.zIndex = zIndex;
-            existingOverlay.style.opacity = '1';
-        }
-    } else {
-        // Remove any existing overlays from the same category
-        sameCategoryOverlays.forEach(overlay => {
-            overlay.style.opacity = '0';
-            setTimeout(() => {
-                overlay.remove();
-            }, 300);
-        });
-
-        // Create new overlay
-        const overlay = document.createElement('img');
-        overlay.src = overlayPath;
-        overlay.className = 'overlay-image';
-        overlay.setAttribute('data-category', category); // Store category info
-        overlay.style.zIndex = zIndex;
-        overlay.style.opacity = '0';
-        
-        // Insert the overlay at the correct position based on z-index
-        const overlays = Array.from(overlayContainer.querySelectorAll('.overlay-image'));
-        let insertBefore = null;
-        
-        for (let i = 0; i < overlays.length; i++) {
-            const currentZIndex = parseInt(overlays[i].style.zIndex);
-            if (zIndex > currentZIndex) {
-                insertBefore = overlays[i];
-                break;
-            }
-        }
-        
-        if (insertBefore) {
-            overlayContainer.insertBefore(overlay, insertBefore);
-        } else {
-            overlayContainer.appendChild(overlay);
-        }
-        
-        // Force reflow
-        overlay.offsetHeight;
-        
-        // Fade in
-        overlay.style.opacity = '1';
-    }
-} 
+}); 
