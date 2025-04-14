@@ -463,10 +463,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 const btnRect = btn.getBoundingClientRect();
                 const toolbarRect = document.querySelector('.paint-toolbar').getBoundingClientRect();
                 
-                // Position the size control relative to the toolbar
-                sizeControl.style.position = 'fixed';
-                sizeControl.style.left = (btnRect.left + 32) + 'px';
-                sizeControl.style.top = (btnRect.bottom + 5) + 'px';
+                // Position the size control directly under the button
+                sizeControl.style.position = 'absolute';
+                sizeControl.style.left = (btnRect.left - toolbarRect.left) + 'px';
+                sizeControl.style.top = (btnRect.bottom - toolbarRect.top) + 'px';
                 sizeControl.style.display = 'flex';
                 sizeControl.style.zIndex = '1000';
                 updateSizePreview();
@@ -1006,7 +1006,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Update size control styling
   if (sizeControl) {
-    sizeControl.style.position = 'fixed';
+    sizeControl.style.position = 'absolute';
     sizeControl.style.display = 'none';
     sizeControl.style.padding = '10px';
     sizeControl.style.background = '#c0c0c8';
