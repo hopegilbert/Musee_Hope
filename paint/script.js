@@ -101,49 +101,46 @@ document.addEventListener('DOMContentLoaded', () => {
     const y = coords.y;
     points.push({ x, y });
 
-    tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
-    tempCtx.beginPath();
+    // Clear temp canvas only for tools that need it
+    if (currentTool !== 'eraser' && currentTool !== 'spray') {
+      tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
+    }
 
-    if (currentTool === 'pencil') {
-      drawFreehand(points);
-    } else if (currentTool === 'brush') {
-      drawBrush(points);
-    } else if (currentTool === 'spray') {
-      drawSpray(x, y);
-      // Update main canvas for spray tool
-      mainCtx.drawImage(tempCanvas, 0, 0);
-    } else if (currentTool === 'eraser') {
-      drawEraser(points);
-    } else if (currentTool === 'line') {
-      drawLine(lastX, lastY, x, y);
-    } else if (currentTool === 'rectangle') {
-      drawRectangle(lastX, lastY, x - lastX, y - lastY);
-    } else if (currentTool === 'ellipse') {
-      drawCircle(lastX, lastY, x, y);
+    switch (currentTool) {
+      case 'pencil':
+        drawFreehand(points);
+        break;
+      case 'brush':
+        drawBrush(points);
+        break;
+      case 'spray':
+        drawSpray(x, y);
+        mainCtx.drawImage(tempCanvas, 0, 0);
+        tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
+        break;
+      case 'eraser':
+        drawEraser(points);
+        break;
+      case 'line':
+        drawLine(lastX, lastY, x, y);
+        break;
+      case 'rectangle':
+        drawRectangle(lastX, lastY, x - lastX, y - lastY);
+        break;
+      case 'ellipse':
+        drawCircle(lastX, lastY, x, y);
+        break;
     }
   }
   
   function drawEraser(points) {
     if (points.length < 2) return;
     
-    tempCtx.strokeStyle = '#FFFFFF'; // White for eraser
-    tempCtx.lineWidth = brushSize * 2; // Make eraser slightly bigger
-    tempCtx.lineCap = 'round';
-    tempCtx.lineJoin = 'round';
-    
-    tempCtx.beginPath();
-    tempCtx.moveTo(points[0].x, points[0].y);
-    
-    for (let i = 1; i < points.length; i++) {
-      tempCtx.lineTo(points[i].x, points[i].y);
-    }
-    tempCtx.stroke();
-    
-    // Immediately apply eraser to main canvas
     mainCtx.strokeStyle = '#FFFFFF';
     mainCtx.lineWidth = brushSize * 2;
     mainCtx.lineCap = 'round';
     mainCtx.lineJoin = 'round';
+    
     mainCtx.beginPath();
     mainCtx.moveTo(points[points.length - 2].x, points[points.length - 2].y);
     mainCtx.lineTo(points[points.length - 1].x, points[points.length - 1].y);
@@ -151,10 +148,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   
   function drawSpray(x, y) {
-    const density = 50;  // Number of particles
-    const radius = brushSize * 2;  // Spray radius
+    const density = 30;  // Reduced for better performance
+    const radius = brushSize * 2;
     
-    tempCtx.fillStyle = currentColor;
+    mainCtx.fillStyle = currentColor;
     
     for (let i = 0; i < density; i++) {
       const angle = Math.random() * Math.PI * 2;
@@ -162,9 +159,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const dx = x + r * Math.cos(angle);
       const dy = y + r * Math.sin(angle);
       
-      tempCtx.beginPath();
-      tempCtx.arc(dx, dy, 0.5, 0, Math.PI * 2);
-      tempCtx.fill();
+      mainCtx.beginPath();
+      mainCtx.arc(dx, dy, 0.5, 0, Math.PI * 2);
+      mainCtx.fill();
     }
   }
   
@@ -172,10 +169,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!isDrawing) return;
     isDrawing = false;
     
-    // Commit the temporary canvas to the main canvas
-    mainCtx.drawImage(tempCanvas, 0, 0);
-    tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
+    // Only commit temp canvas if we're using it
+    if (currentTool !== 'eraser' && currentTool !== 'spray') {
+      mainCtx.drawImage(tempCanvas, 0, 0);
+      tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
+    }
+    
     saveState();
+    points = []; // Clear points array
   }
   
   // Save current canvas state to history
@@ -772,12 +773,10 @@ document.addEventListener('DOMContentLoaded', () => {
     tempCtx.lineCap = 'round';
     tempCtx.lineJoin = 'round';
     
+    // Draw only the newest segment
     tempCtx.beginPath();
-    tempCtx.moveTo(points[0].x, points[0].y);
-    
-    for (let i = 1; i < points.length; i++) {
-      tempCtx.lineTo(points[i].x, points[i].y);
-    }
+    tempCtx.moveTo(points[points.length - 2].x, points[points.length - 2].y);
+    tempCtx.lineTo(points[points.length - 1].x, points[points.length - 1].y);
     tempCtx.stroke();
   }
 
@@ -789,12 +788,10 @@ document.addEventListener('DOMContentLoaded', () => {
     tempCtx.lineCap = 'round';
     tempCtx.lineJoin = 'round';
     
+    // Draw only the newest segment
     tempCtx.beginPath();
-    tempCtx.moveTo(points[0].x, points[0].y);
-    
-    for (let i = 1; i < points.length; i++) {
-      tempCtx.lineTo(points[i].x, points[i].y);
-    }
+    tempCtx.moveTo(points[points.length - 2].x, points[points.length - 2].y);
+    tempCtx.lineTo(points[points.length - 1].x, points[points.length - 1].y);
     tempCtx.stroke();
   }
 
