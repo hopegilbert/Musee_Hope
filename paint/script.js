@@ -722,11 +722,6 @@ document.addEventListener('DOMContentLoaded', () => {
     resizeObserver.observe(paintWindow);
   }
 
-  // Remove the old draggable window event listeners
-  paintWindow.removeEventListener('touchstart', handleWindowTouchStart);
-  document.removeEventListener('touchmove', handleWindowTouchMove);
-  document.removeEventListener('touchend', handleWindowTouchEnd);
-
   // Resize handler
   function handleResize() {
     const width = window.innerWidth;
