@@ -311,15 +311,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
   
-  // Item selection
-  const items = document.querySelectorAll('.paint-item');
-  items.forEach(item => {
-    item.addEventListener('click', () => {
-      items.forEach(i => i.classList.remove('active'));
-      item.classList.add('active');
-    });
-  });
-  
   // Color selection
   const colorButton = document.querySelector('.color-button');
   const colorOptions = document.querySelectorAll('.color-option');
@@ -1082,12 +1073,6 @@ document.addEventListener('DOMContentLoaded', () => {
     paintCanvas.appendChild(overlayContainer);
   }
 
-  // Remove any existing click handlers and replace with fresh elements
-  paintItems.forEach(item => {
-    const clone = item.cloneNode(true);
-    item.parentNode.replaceChild(clone, item);
-  });
-
   function handleClothingClick(e) {
     const item = e.currentTarget;
     const overlayPath = item.dataset.overlay;
@@ -1138,8 +1123,10 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   }
 
-  // Add click handlers to all clothing items
-  document.querySelectorAll('.paint-item').forEach(item => {
-    item.addEventListener('click', handleClothingClick);
+  // Remove any existing click handlers and add the new one
+  paintItems.forEach(item => {
+    const clone = item.cloneNode(true);
+    item.parentNode.replaceChild(clone, item);
+    clone.addEventListener('click', handleClothingClick);
   });
 }); 
