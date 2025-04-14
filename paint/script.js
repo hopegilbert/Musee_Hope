@@ -1076,11 +1076,10 @@ document.addEventListener('DOMContentLoaded', () => {
       overlay.src = overlayPath;
       overlay.className = `${type}-overlay`;
       overlay.style.position = 'absolute';
-      overlay.style.top = '50%';
-      overlay.style.left = '50%';
-      overlay.style.transform = 'translate(-50%, -50%)';
-      overlay.style.width = '80%';
-      overlay.style.height = '80%';
+      overlay.style.top = '0';
+      overlay.style.left = '0';
+      overlay.style.width = '100%';
+      overlay.style.height = '100%';
       overlay.style.objectFit = 'contain';
       overlay.style.zIndex = '99999';
       
