@@ -285,10 +285,10 @@ html, body {
 
 .color-palette {
     height: 32px;
-    width: 168px;  /* 14px × 12 colors */
+    width: 196px;  /* 14px × 14 colors */
     display: grid;
     grid-template-rows: repeat(2, 16px);  /* Two rows of 16px each */
-    grid-template-columns: repeat(12, 14px);  /* 12 columns of 14px each */
+    grid-template-columns: repeat(14, 14px);  /* 14 columns of 14px each */
     padding: 0;
     gap: 0;
     background-color: #c0c0c0;
@@ -312,32 +312,36 @@ html, body {
 }
 
 /* First row colors */
-.color:nth-child(1) { background-color: #ffffff; }
-.color:nth-child(2) { background-color: #c0c0c0; }
-.color:nth-child(3) { background-color: #808080; }
-.color:nth-child(4) { background-color: #000000; }
-.color:nth-child(5) { background-color: #000080; }
+.color:nth-child(1) { background-color: #000000; }
+.color:nth-child(2) { background-color: #808080; }
+.color:nth-child(3) { background-color: #800000; }
+.color:nth-child(4) { background-color: #808000; }
+.color:nth-child(5) { background-color: #008000; }
 .color:nth-child(6) { background-color: #008080; }
-.color:nth-child(7) { background-color: #008000; }
+.color:nth-child(7) { background-color: #000080; }
 .color:nth-child(8) { background-color: #800080; }
-.color:nth-child(9) { background-color: #800000; }
-.color:nth-child(10) { background-color: #808000; }
-.color:nth-child(11) { background-color: #0000ff; }
-.color:nth-child(12) { background-color: #00ff00; }
+.color:nth-child(9) { background-color: #808040; }
+.color:nth-child(10) { background-color: #004040; }
+.color:nth-child(11) { background-color: #0080ff; }
+.color:nth-child(12) { background-color: #004080; }
+.color:nth-child(13) { background-color: #8000ff; }
+.color:nth-child(14) { background-color: #804000; }
 
 /* Second row colors */
-.color:nth-child(13) { background-color: #00ffff; }
-.color:nth-child(14) { background-color: #ff0000; }
-.color:nth-child(15) { background-color: #ff00ff; }
-.color:nth-child(16) { background-color: #ffff00; }
-.color:nth-child(17) { background-color: #0080ff; }
-.color:nth-child(18) { background-color: #40ff00; }
-.color:nth-child(19) { background-color: #ff8000; }
-.color:nth-child(20) { background-color: #ff0080; }
-.color:nth-child(21) { background-color: #00ff80; }
-.color:nth-child(22) { background-color: #ffc0cb; }
-.color:nth-child(23) { background-color: #ffa500; }
-.color:nth-child(24) { background-color: #ffffe0; }
+.color:nth-child(15) { background-color: #ffffff; }
+.color:nth-child(16) { background-color: #c0c0c0; }
+.color:nth-child(17) { background-color: #ff0000; }
+.color:nth-child(18) { background-color: #ffff00; }
+.color:nth-child(19) { background-color: #00ff00; }
+.color:nth-child(20) { background-color: #00ffff; }
+.color:nth-child(21) { background-color: #0000ff; }
+.color:nth-child(22) { background-color: #ff00ff; }
+.color:nth-child(23) { background-color: #ffff80; }
+.color:nth-child(24) { background-color: #00ff80; }
+.color:nth-child(25) { background-color: #80ffff; }
+.color:nth-child(26) { background-color: #8080ff; }
+.color:nth-child(27) { background-color: #ff80ff; }
+.color:nth-child(28) { background-color: #ff8040; }
 
 .status-bar {
     height: 23px;
