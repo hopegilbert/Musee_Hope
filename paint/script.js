@@ -753,8 +753,17 @@ document.addEventListener('DOMContentLoaded', () => {
   console.log('Paint initialization complete');
 
   function floodFill(startX, startY) {
+    // Round coordinates to integers
+    startX = Math.floor(startX);
+    startY = Math.floor(startY);
+    
     const imageData = mainCtx.getImageData(0, 0, mainCanvas.width, mainCanvas.height);
     const pixels = imageData.data;
+    
+    // Bounds check
+    if (startX < 0 || startX >= mainCanvas.width || startY < 0 || startY >= mainCanvas.height) {
+      return;
+    }
     
     const startPos = (startY * mainCanvas.width + startX) * 4;
     const startR = pixels[startPos];
@@ -762,16 +771,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const startB = pixels[startPos + 2];
     const startA = pixels[startPos + 3];
     
-    if (startR === undefined) return; // Out of bounds
+    const fillColor = hexToRgb(currentColor);
+    if (!fillColor) return; // Invalid fill color
+    
+    // Don't fill if clicking on the same color
+    if (startR === fillColor.r && 
+        startG === fillColor.g && 
+        startB === fillColor.b && 
+        startA === 255) {
+      return;
+    }
     
     const matchStartColor = (pos) => {
-      return pixels[pos] === startR &&
-             pixels[pos + 1] === startG &&
-             pixels[pos + 2] === startB &&
-             pixels[pos + 3] === startA;
+      // Color matching with tolerance
+      const tolerance = 1;
+      return Math.abs(pixels[pos] - startR) <= tolerance &&
+             Math.abs(pixels[pos + 1] - startG) <= tolerance &&
+             Math.abs(pixels[pos + 2] - startB) <= tolerance &&
+             Math.abs(pixels[pos + 3] - startA) <= tolerance;
     };
     
-    const fillColor = hexToRgb(currentColor);
     const stack = [[startX, startY]];
     const visited = new Set();
     
@@ -789,7 +808,17 @@ document.addEventListener('DOMContentLoaded', () => {
       pixels[pos + 2] = fillColor.b;
       pixels[pos + 3] = 255;
       
-      stack.push([x + 1, y], [x - 1, y], [x, y + 1], [x, y - 1]);
+      // Add neighbors in all 8 directions for better fill
+      stack.push(
+        [x + 1, y],     // right
+        [x - 1, y],     // left
+        [x, y + 1],     // down
+        [x, y - 1],     // up
+        [x + 1, y + 1], // bottom-right
+        [x - 1, y - 1], // top-left
+        [x + 1, y - 1], // top-right
+        [x - 1, y + 1]  // bottom-left
+      );
     }
     
     mainCtx.putImageData(imageData, 0, 0);
