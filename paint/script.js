@@ -43,6 +43,9 @@ document.addEventListener('DOMContentLoaded', () => {
       brushSize = parseInt(e.target.value);
       updateSizePreview();
     });
+    
+    // Initialize size preview
+    updateSizePreview();
   }
   
   // Set canvas size
@@ -462,8 +465,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 // Position the size control relative to the toolbar
                 sizeControl.style.position = 'absolute';
-                sizeControl.style.left = (btnRect.left - toolbarRect.left) + 'px';
-                sizeControl.style.top = (btnRect.bottom - toolbarRect.top) + 'px';
+                sizeControl.style.left = (btnRect.left - toolbarRect.left + 32) + 'px';
+                sizeControl.style.top = (btnRect.top - toolbarRect.top) + 'px';
                 sizeControl.style.display = 'flex';
                 sizeControl.style.zIndex = '1000';
                 updateSizePreview();
