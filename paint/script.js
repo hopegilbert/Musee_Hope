@@ -1079,7 +1079,8 @@ document.addEventListener('DOMContentLoaded', () => {
       overlay.style.maxWidth = '80%';
       overlay.style.maxHeight = '80%';
       overlay.style.objectFit = 'contain';
-      overlay.style.zIndex = '99999';
+      overlay.style.zIndex = '999999';
+      overlay.style.opacity = '1';
       
       // Debug logging
       overlay.onerror = () => {
@@ -1089,6 +1090,7 @@ document.addEventListener('DOMContentLoaded', () => {
       overlay.onload = () => {
         console.log('Successfully loaded overlay:', overlayPath);
         overlayContainer.appendChild(overlay);
+        console.log('Overlay z-index:', overlay.style.zIndex);
       };
     });
   });
