@@ -110,18 +110,49 @@ document.addEventListener('DOMContentLoaded', () => {
       drawBrush(points);
     } else if (currentTool === 'spray') {
       drawSpray(x, y);
+      // Update main canvas for spray tool
+      mainCtx.drawImage(tempCanvas, 0, 0);
+    } else if (currentTool === 'eraser') {
+      drawEraser(points);
     } else if (currentTool === 'line') {
       drawLine(lastX, lastY, x, y);
     } else if (currentTool === 'rectangle') {
       drawRectangle(lastX, lastY, x - lastX, y - lastY);
-    } else if (currentTool === 'circle') {
+    } else if (currentTool === 'ellipse') {
       drawCircle(lastX, lastY, x, y);
     }
   }
   
+  function drawEraser(points) {
+    if (points.length < 2) return;
+    
+    tempCtx.strokeStyle = '#FFFFFF'; // White for eraser
+    tempCtx.lineWidth = brushSize * 2; // Make eraser slightly bigger
+    tempCtx.lineCap = 'round';
+    tempCtx.lineJoin = 'round';
+    
+    tempCtx.beginPath();
+    tempCtx.moveTo(points[0].x, points[0].y);
+    
+    for (let i = 1; i < points.length; i++) {
+      tempCtx.lineTo(points[i].x, points[i].y);
+    }
+    tempCtx.stroke();
+    
+    // Immediately apply eraser to main canvas
+    mainCtx.strokeStyle = '#FFFFFF';
+    mainCtx.lineWidth = brushSize * 2;
+    mainCtx.lineCap = 'round';
+    mainCtx.lineJoin = 'round';
+    mainCtx.beginPath();
+    mainCtx.moveTo(points[points.length - 2].x, points[points.length - 2].y);
+    mainCtx.lineTo(points[points.length - 1].x, points[points.length - 1].y);
+    mainCtx.stroke();
+  }
+  
   function drawSpray(x, y) {
     const density = 50;  // Number of particles
-    const radius = brushSize * 2;  // Spray radius based on brush size
+    const radius = brushSize * 2;  // Spray radius
     
     tempCtx.fillStyle = currentColor;
     
@@ -135,11 +166,6 @@ document.addEventListener('DOMContentLoaded', () => {
       tempCtx.arc(dx, dy, 0.5, 0, Math.PI * 2);
       tempCtx.fill();
     }
-    
-    // Update main canvas
-    mainCtx.fillStyle = '#FFFFFF';
-    mainCtx.fillRect(0, 0, mainCanvas.width, mainCanvas.height);
-    mainCtx.drawImage(tempCanvas, 0, 0);
   }
   
   function stopDrawing(e) {
@@ -722,12 +748,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Update cursor style based on current tool
   function updateCursor() {
-    if (currentTool === 'fill') {
-      mainCanvas.style.cursor = 'crosshair';
-    } else if (currentTool === 'text') {
-      mainCanvas.style.cursor = 'text';
-    } else {
-      mainCanvas.style.cursor = 'crosshair';
+    switch (currentTool) {
+      case 'fill':
+        mainCanvas.style.cursor = 'crosshair';
+        break;
+      case 'text':
+        mainCanvas.style.cursor = 'text';
+        break;
+      case 'eraser':
+        mainCanvas.style.cursor = 'cell';
+        break;
+      default:
+        mainCanvas.style.cursor = 'crosshair';
     }
   }
 
