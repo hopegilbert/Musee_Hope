@@ -1066,10 +1066,20 @@ document.addEventListener('DOMContentLoaded', () => {
     overlay.style.width = '80%';
     overlay.style.height = '80%';
     overlay.style.objectFit = 'contain';
-    overlay.style.zIndex = '999999';
     overlay.style.pointerEvents = 'none';
     overlay.style.opacity = '0'; // Start hidden
     overlay.style.transition = 'opacity 0.3s ease'; // Smooth transition
+
+    // Set z-index based on type
+    if (type === 'jewellery') {
+      overlay.style.zIndex = '1004'; // Jewelry always on top
+    } else if (type === 'hair') {
+      overlay.style.zIndex = '1003'; // Hair second
+    } else if (type === 'dress') {
+      overlay.style.zIndex = '1002'; // Dress third
+    } else {
+      overlay.style.zIndex = '1001'; // Everything else
+    }
     
     // Debug logging
     overlay.onerror = () => {
@@ -1091,18 +1101,13 @@ document.addEventListener('DOMContentLoaded', () => {
       const type = item.getAttribute('title').toLowerCase();
       
       // Toggle active state for the button
-      paintItems.forEach(i => i.classList.remove('active'));
-      item.classList.add('active');
+      item.classList.toggle('active');
       
       // Toggle visibility of the overlay
       const overlay = overlayContainer.querySelector(`.${type}-overlay`);
       if (overlay) {
-        // Hide all overlays first
-        overlayContainer.querySelectorAll('img').forEach(img => {
-          img.style.opacity = '0';
-        });
-        // Show the selected overlay
-        overlay.style.opacity = '1';
+        // Toggle this overlay's visibility
+        overlay.style.opacity = overlay.style.opacity === '0' ? '1' : '0';
       }
     });
   });
