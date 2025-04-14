@@ -1139,4 +1139,27 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  // Category navigation
+  const categoryButtons = document.querySelectorAll('.category-btn');
+  const categoryItems = document.querySelectorAll('.category-items');
+  
+  categoryButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      // Remove active class from all buttons
+      categoryButtons.forEach(btn => btn.classList.remove('active'));
+      // Add active class to clicked button
+      this.classList.add('active');
+      
+      const category = this.getAttribute('data-category');
+      
+      // Hide all category items
+      categoryItems.forEach(items => {
+        items.style.display = 'none';
+      });
+      
+      // Show selected category items
+      document.querySelector(`.category-items[data-category="${category}"]`).style.display = 'flex';
+    });
+  });
 }); 
