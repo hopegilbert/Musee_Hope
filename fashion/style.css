@@ -176,8 +176,10 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    height: 400px;
+    max-height: 90%;
+    max-width: 90%;
     width: auto;
+    height: auto;
     object-fit: contain;
     pointer-events: none;
     z-index: 1;
@@ -359,5 +361,10 @@ body {
     .category-items {
         max-height: none;
         height: 100%;
+    }
+
+    .fashion-background {
+        max-height: 80%;
+        max-width: 80%;
     }
 } 
