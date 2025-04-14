@@ -1053,7 +1053,7 @@ document.addEventListener('DOMContentLoaded', () => {
   paintItems.forEach(item => {
     const type = item.getAttribute('title').toLowerCase();
     const overlayFile = item.getAttribute('data-overlay');
-    const overlayPath = `./paint/images/${overlayFile}`;
+    const overlayPath = `./images/${overlayFile}`;
     
     // Create overlay image
     const overlay = document.createElement('img');
