@@ -184,28 +184,31 @@ body {
 
 .items-container {
     flex: 1;
-    overflow-y: scroll;
+    overflow-y: auto;
     background-color: #ffffff;
     border: 1px solid #808080;
     margin: 2px;
+    padding-right: 2px;
+    height: calc(100% - 150px); /* Adjust height to account for category buttons */
+    display: block;
 }
 
 .category-items {
     display: none;
-    flex-direction: column;
-    padding: 2px;
+    padding: 4px;
+    min-height: min-content;
 }
 
 .category-items.active {
-    display: flex;
+    display: block;
 }
 
 .clothing-item {
-    width: 100%;
+    width: calc(100% - 4px);
     height: 80px;
     background-color: #ffffff;
     border: 1px solid #808080;
-    margin-bottom: 2px;
+    margin: 2px;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -256,6 +259,7 @@ body {
     background: #c0c0c0;
     border: 1px solid;
     border-color: #808080 #ffffff #ffffff #808080;
+    min-height: 32px;
 }
 
 .items-container::-webkit-scrollbar-track {
