@@ -344,7 +344,6 @@ body {
     display: flex;
     flex: 1;
     overflow: hidden;
-    position: relative;
 }
 
 .fashion-toolbar {
@@ -357,6 +356,7 @@ body {
     align-items: center;
     padding: 5px;
     gap: 5px;
+    flex-shrink: 0;
 }
 
 .fashion-tool {
@@ -398,7 +398,6 @@ body {
     border: 2px solid #808080;
     border-right-color: #ffffff;
     border-bottom-color: #ffffff;
-    width: calc(100% - 200px); /* Set width to leave space for sidebar */
 }
 
 .fashion-canvas-container {
@@ -441,7 +440,7 @@ body {
     flex-direction: column;
     background-color: #c0c0c8;
     border-left: 1px solid #808080;
-    flex-shrink: 0; /* Prevent shrinking */
+    flex-shrink: 0;
 }
 
 @media (max-width: 768px) {
