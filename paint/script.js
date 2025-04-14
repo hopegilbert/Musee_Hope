@@ -1152,28 +1152,37 @@ document.addEventListener('DOMContentLoaded', () => {
     const item = e.currentTarget;
     const overlayPath = item.dataset.overlay;
     const type = item.getAttribute('title').toLowerCase();
+    const overlayContainer = document.querySelector('.overlay-container');
     
-    // Find existing overlay of the same type
+    // Toggle active state of the button
+    const isActive = item.classList.contains('active');
+    
+    // Find existing overlay of this type
     const existingOverlay = document.querySelector(`.${type}-overlay`);
     
-    if (existingOverlay) {
-        // If overlay exists, toggle its visibility
-        if (existingOverlay.style.opacity === '1') {
-            // Hide overlay
+    // If we're deactivating
+    if (isActive) {
+        item.classList.remove('active');
+        if (existingOverlay) {
             existingOverlay.style.opacity = '0';
-            item.classList.remove('active');
             setTimeout(() => {
-                existingOverlay.remove();
+                if (existingOverlay.parentNode) {
+                    existingOverlay.parentNode.removeChild(existingOverlay);
+                }
             }, 300);
-        } else {
-            // Show overlay
-            existingOverlay.style.opacity = '1';
-            item.classList.add('active');
         }
         return;
     }
     
-    // Create new overlay if none exists
+    // If we're activating
+    item.classList.add('active');
+    
+    // Remove any existing overlay of this type first
+    if (existingOverlay) {
+        existingOverlay.parentNode.removeChild(existingOverlay);
+    }
+    
+    // Create and add new overlay
     const overlay = new Image();
     overlay.src = overlayPath;
     overlay.className = `${type}-overlay`;
@@ -1190,27 +1199,25 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Set z-index based on type
     if (type.includes('jewel') || type.includes('necklace')) {
-        overlay.style.zIndex = '1004'; // Jewelry always on top
+        overlay.style.zIndex = '1004';
     } else if (type.includes('hair')) {
-        overlay.style.zIndex = '1002'; // Hair third
+        overlay.style.zIndex = '1002';
     } else if (type.includes('dress') || type.includes('top') || type.includes('skirt')) {
-        overlay.style.zIndex = '1001'; // Clothing bottom
+        overlay.style.zIndex = '1001';
     } else {
-        overlay.style.zIndex = '1003'; // Everything else (shoes) second
+        overlay.style.zIndex = '1003';
     }
     
-    // Add to overlay container and fade in
-    const overlayContainer = document.querySelector('.overlay-container');
     overlay.onload = () => {
         overlayContainer.appendChild(overlay);
         requestAnimationFrame(() => {
             overlay.style.opacity = '1';
-            item.classList.add('active');
         });
     };
     
     overlay.onerror = () => {
         console.error('Failed to load overlay:', overlayPath);
+        item.classList.remove('active');
     };
   }
 
