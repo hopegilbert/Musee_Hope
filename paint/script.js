@@ -1047,6 +1047,15 @@ document.addEventListener('DOMContentLoaded', () => {
   // Set up the canvas container for proper positioning
   paintCanvas.style.position = 'relative';
   
+  // Update background image styles
+  backgroundImage.style.position = 'absolute';
+  backgroundImage.style.top = '0';
+  backgroundImage.style.left = '0';
+  backgroundImage.style.width = '100%';
+  backgroundImage.style.height = '100%';
+  backgroundImage.style.transform = 'none';
+  backgroundImage.style.zIndex = '1';
+  
   // Create overlay container
   const overlayContainer = document.createElement('div');
   overlayContainer.className = 'overlay-container';
@@ -1055,9 +1064,9 @@ document.addEventListener('DOMContentLoaded', () => {
   overlayContainer.style.left = '0';
   overlayContainer.style.width = '100%';
   overlayContainer.style.height = '100%';
-  overlayContainer.style.zIndex = '2';
+  overlayContainer.style.zIndex = '10';
   overlayContainer.style.pointerEvents = 'none';
-  paintCanvas.insertBefore(overlayContainer, backgroundImage.nextSibling);
+  paintCanvas.appendChild(overlayContainer);
   
   // Add click handlers for clothing items
   paintItems.forEach(item => {
@@ -1084,8 +1093,10 @@ document.addEventListener('DOMContentLoaded', () => {
       overlay.style.left = '0';
       overlay.style.width = '100%';
       overlay.style.height = '100%';
+      overlay.style.transform = 'none';
       overlay.style.pointerEvents = 'none';
       overlay.style.objectFit = 'contain';
+      overlay.style.zIndex = '20';
       
       // Debug logging
       overlay.onerror = () => {
