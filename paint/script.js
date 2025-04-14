@@ -1039,7 +1039,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Initialize drag and drop functionality
+  // Initialize clothing items
   const paintItems = document.querySelectorAll('.paint-item');
   const hopeImage = document.querySelector('.paint-item img[src="./images/hope.png"]');
   const hopeContainer = hopeImage?.parentElement;
@@ -1053,43 +1053,32 @@ document.addEventListener('DOMContentLoaded', () => {
   paintItems.forEach(item => {
     if (item.querySelector('img').src.includes('hope.png')) return; // Skip the Hope image itself
     
-    item.setAttribute('draggable', 'true');
-    
-    item.addEventListener('dragstart', (e) => {
-      e.dataTransfer.setData('text/plain', item.querySelector('img').src);
-      e.dataTransfer.effectAllowed = 'copy';
-    });
-  });
-  
-  if (hopeContainer) {
-    hopeContainer.addEventListener('dragover', (e) => {
-      e.preventDefault();
-      e.dataTransfer.dropEffect = 'copy';
-    });
-    
-    hopeContainer.addEventListener('drop', (e) => {
-      e.preventDefault();
-      const imgSrc = e.dataTransfer.getData('text/plain');
+    item.addEventListener('click', () => {
+      const imgSrc = item.querySelector('img').src;
       const img = new Image();
       
       img.onload = () => {
-        const rect = hopeContainer.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
+        // Create a new image element for the clothing item
+        const clothingItem = document.createElement('img');
+        clothingItem.src = imgSrc;
+        clothingItem.style.position = 'absolute';
+        clothingItem.style.left = '0';
+        clothingItem.style.top = '0';
+        clothingItem.style.width = '100%';
+        clothingItem.style.height = '100%';
+        clothingItem.style.zIndex = '1';
+        clothingItem.style.pointerEvents = 'none';
         
-        // Create a new image element for the dropped item
-        const droppedItem = document.createElement('img');
-        droppedItem.src = imgSrc;
-        droppedItem.style.position = 'absolute';
-        droppedItem.style.left = x - img.width/2 + 'px';
-        droppedItem.style.top = y - img.height/2 + 'px';
-        droppedItem.style.zIndex = '1';
-        droppedItem.style.pointerEvents = 'none';
+        // Remove any existing clothing item of the same type
+        const existingItem = hopeContainer.querySelector(`img[src="${imgSrc}"]`);
+        if (existingItem) {
+          existingItem.remove();
+        }
         
-        hopeContainer.appendChild(droppedItem);
+        hopeContainer.appendChild(clothingItem);
       };
       
       img.src = imgSrc;
     });
-  }
+  });
 }); 
