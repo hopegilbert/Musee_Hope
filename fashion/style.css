@@ -144,13 +144,12 @@ body {
 
 .fashion-clothing {
     width: 200px;
-    background-color: #c0c0c0;
-    border-left: 2px solid #808080;
-    border-bottom: 2px solid #808080;
-    display: flex;
-    flex-direction: column;
     height: 100%;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background-color: #c0c0c8;
+    border-left: 1px solid #808080;
 }
 
 .category-buttons {
@@ -163,30 +162,24 @@ body {
 }
 
 .category-button {
-    padding: 5px;
-    background-color: #c0c0c0;
-    border: 2px solid #ffffff;
-    border-right-color: #808080;
-    border-bottom-color: #808080;
+    padding: 8px;
+    background-color: #c0c0c8;
+    border: 1px solid #808080;
     cursor: pointer;
-    font-size: 0.9em;
+    font-size: 14px;
     text-align: left;
+    transition: background-color 0.2s;
 }
 
 .category-button:hover {
-    background-color: #d4d0c8;
+    background-color: #d0d0d8;
 }
 
 .items-container {
     flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
     padding: 5px;
     overflow-y: auto;
     overflow-x: hidden;
-    -webkit-overflow-scrolling: touch;
-    height: calc(100% - 40px);
 }
 
 .category-items {
@@ -194,33 +187,47 @@ body {
     flex-direction: column;
     gap: 5px;
     padding: 5px;
-    max-height: 100%;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
 }
 
 .clothing-item {
     width: 100%;
     aspect-ratio: 1;
-    background-color: #ffffff;
-    border: 2px solid #808080;
-    border-right-color: #ffffff;
-    border-bottom-color: #ffffff;
     cursor: pointer;
-    overflow: hidden;
+    border: 1px solid #808080;
+    background-color: #ffffff;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
 }
 
 .clothing-item img {
-    max-width: 90%;
-    max-height: 90%;
+    width: 100%;
+    height: 100%;
     object-fit: contain;
+    padding: 5px;
 }
 
 .clothing-item:hover {
-    background-color: #d4d0c8;
+    background-color: #f0f0f0;
+}
+
+/* Custom scrollbar for items container */
+.items-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.items-container::-webkit-scrollbar-track {
+    background: #c0c0c8;
+}
+
+.items-container::-webkit-scrollbar-thumb {
+    background: #808080;
+    border-radius: 4px;
+}
+
+.items-container::-webkit-scrollbar-thumb:hover {
+    background: #707070;
 }
 
 .size-control {
