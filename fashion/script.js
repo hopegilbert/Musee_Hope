@@ -225,13 +225,13 @@ document.querySelectorAll('.clothing-item').forEach(item => {
 
     item.addEventListener('touchend', (e) => {
         if (!isScrolling) {
-            handleClothingClick(item);
+            handleClothingClick(e);
         }
     });
 
     item.addEventListener('click', () => {
         if (!isScrolling) {
-            handleClothingClick(item);
+            handleClothingClick(e);
         }
     });
 });
@@ -306,7 +306,23 @@ function handleClothingClick(event) {
         overlay.style.zIndex = zIndex;
         overlay.style.opacity = '0';
         
-        overlayContainer.appendChild(overlay);
+        // Insert the overlay at the correct position based on z-index
+        const overlays = Array.from(overlayContainer.querySelectorAll('.overlay-image'));
+        let insertBefore = null;
+        
+        for (let i = 0; i < overlays.length; i++) {
+            const currentZIndex = parseInt(overlays[i].style.zIndex);
+            if (zIndex > currentZIndex) {
+                insertBefore = overlays[i];
+                break;
+            }
+        }
+        
+        if (insertBefore) {
+            overlayContainer.insertBefore(overlay, insertBefore);
+        } else {
+            overlayContainer.appendChild(overlay);
+        }
         
         // Force reflow
         overlay.offsetHeight;
