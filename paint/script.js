@@ -1039,11 +1039,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Initialize clothing items
+  // Initialize drag and drop
   const paintItems = document.querySelectorAll('.paint-item');
-  const hopeImage = document.querySelector('.paint-item img[src="./images/hope.png"]');
-  const hopeContainer = hopeImage?.parentElement;
-  
+  const hopeImage = document.querySelector('.paint-canvas-container .background-image');
+  const hopeContainer = document.querySelector('.paint-canvas-container');
+
   if (hopeContainer) {
     hopeContainer.style.position = 'relative';
     hopeContainer.style.width = 'fit-content';
