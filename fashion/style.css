@@ -187,10 +187,12 @@ html, body {
     background-color: #ffffff;
     border: 1px solid #808080;
     margin: 2px;
+    height: calc(100% - 200px); /* Fixed height for scrolling */
 }
 
 .category-items {
     display: none;
+    height: auto; /* Allow content to determine height */
 }
 
 .category-items.active {
