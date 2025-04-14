@@ -17,8 +17,10 @@ const categoryItems = document.querySelectorAll('.category-items');
 const overlays = new Map(); // Store active overlays
 
 // Initialize with first category active
-categoryButtons[0].classList.add('active');
-categoryItems[0].classList.add('active');
+if (categoryButtons.length > 0 && categoryItems.length > 0) {
+    categoryButtons[0].classList.add('active');
+    categoryItems[0].classList.add('active');
+}
 
 // Set canvas size
 function resizeCanvas() {
@@ -204,15 +206,17 @@ function hexToRgba(hex) {
 }
 
 // Handle category switching
-categoryButtons.forEach((button, index) => {
+categoryButtons.forEach((button) => {
     button.addEventListener('click', () => {
+        const targetCategory = button.getAttribute('data-category');
+        
         // Remove active class from all buttons and items
         categoryButtons.forEach(btn => btn.classList.remove('active'));
         categoryItems.forEach(items => items.classList.remove('active'));
         
         // Add active class to clicked button and corresponding items
         button.classList.add('active');
-        categoryItems[index].classList.add('active');
+        document.querySelector(`.category-items[data-category="${targetCategory}"]`).classList.add('active');
     });
 });
 
