@@ -313,28 +313,6 @@ document.addEventListener('DOMContentLoaded', () => {
     item.addEventListener('click', () => {
       items.forEach(i => i.classList.remove('active'));
       item.classList.add('active');
-      
-      // Get the hope image container dimensions
-      const hopeContainer = document.querySelector('.paint-canvas-container');
-      const hopeImage = hopeContainer.querySelector('img[src*="hope.png"]');
-      
-      if (hopeImage) {
-        const rect = hopeImage.getBoundingClientRect();
-        
-        // Position the clothing item absolutely within the container
-        item.style.position = 'absolute';
-        item.style.top = '0';
-        item.style.left = '0';
-        item.style.width = '100%';
-        item.style.height = '100%';
-        item.style.objectFit = 'contain';
-        item.style.pointerEvents = 'auto';
-        item.style.zIndex = '2'; // Ensure it's above the hope image
-        
-        // Make sure the container is relative for absolute positioning
-        hopeContainer.style.position = 'relative';
-        hopeImage.style.zIndex = '1';
-      }
     });
   });
   
@@ -1062,26 +1040,25 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Initialize clothing items
-  const paintItems = document.querySelectorAll('.paint-items .paint-item');
-  const paintWindowElement = document.querySelector('.paint-window');
-  const paintCanvas = paintWindowElement.querySelector('.paint-canvas-container');
-  const backgroundImage = paintCanvas.querySelector('.background-image');
+  const paintItems = document.querySelectorAll('.paint-item');
+  const paintCanvas = document.querySelector('.paint-canvas-container');
   
   // Set up the canvas container
   paintCanvas.style.position = 'relative';
-  paintCanvas.style.overflow = 'hidden';
   
   // Create overlay container
-  let overlayContainer = paintCanvas.querySelector('.overlay-container');
+  let overlayContainer = document.querySelector('.overlay-container');
   if (!overlayContainer) {
     overlayContainer = document.createElement('div');
     overlayContainer.className = 'overlay-container';
     overlayContainer.style.position = 'absolute';
     overlayContainer.style.top = '0';
     overlayContainer.style.left = '0';
+    overlayContainer.style.right = '0';
+    overlayContainer.style.bottom = '0';
     overlayContainer.style.width = '100%';
     overlayContainer.style.height = '100%';
-    overlayContainer.style.zIndex = '2';  // Set to 2 since background-image has z-index: 1
+    overlayContainer.style.zIndex = '99999';
     overlayContainer.style.pointerEvents = 'none';
     paintCanvas.appendChild(overlayContainer);
   }
@@ -1092,14 +1069,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const type = item.getAttribute('title').toLowerCase();
       console.log('Clicked:', type);
       
-      // Create the overlay image path - remove the "2" from filename
-      const overlayPath = `./images/hope-${type}.png`;
+      // Create the overlay image path
+      const overlayPath = `./images/hope-${type}2.png`;
       console.log('Creating overlay:', overlayPath);
       
       // Remove existing overlay of same type
       const existingOverlay = overlayContainer.querySelector(`.${type}-overlay`);
       if (existingOverlay) {
-        overlayContainer.removeChild(existingOverlay);
+        existingOverlay.remove();
       }
       
       // Create and add new overlay
@@ -1109,11 +1086,13 @@ document.addEventListener('DOMContentLoaded', () => {
       overlay.style.position = 'absolute';
       overlay.style.top = '0';
       overlay.style.left = '0';
+      overlay.style.right = '0';
+      overlay.style.bottom = '0';
       overlay.style.width = '100%';
       overlay.style.height = '100%';
       overlay.style.objectFit = 'contain';
       overlay.style.pointerEvents = 'none';
-      overlay.style.zIndex = '2';
+      overlay.style.zIndex = '99999';
       
       // Debug logging
       overlay.onerror = () => {
@@ -1125,29 +1104,5 @@ document.addEventListener('DOMContentLoaded', () => {
         overlayContainer.appendChild(overlay);
       };
     });
-  });
-
-  function initializeClothingItems() {
-    const paintItems = document.querySelectorAll('.paint-item');
-    
-    paintItems.forEach(item => {
-        item.addEventListener('click', function(e) {
-            e.stopPropagation(); // Prevent event from bubbling to canvas
-            const wasActive = this.classList.contains('active');
-            
-            // Remove active class from all items
-            paintItems.forEach(i => i.classList.remove('active'));
-            
-            // Toggle active state on clicked item
-            if (!wasActive) {
-                this.classList.add('active');
-            }
-        });
-    });
-  }
-
-  // Initialize clothing items when page loads
-  document.addEventListener('DOMContentLoaded', function() {
-    initializeClothingItems();
   });
 }); 
