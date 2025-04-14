@@ -74,22 +74,22 @@ document.addEventListener('DOMContentLoaded', () => {
   
   function startDrawing(e) {
     e.preventDefault();
-    isDrawing = true;
     const coords = getEventCoords(e);
     lastX = coords.x;
     lastY = coords.y;
     points = [{ x: lastX, y: lastY }];
 
     if (currentTool === 'fill') {
-      floodFill(Math.floor(lastX), Math.floor(lastY));
-      isDrawing = false;
+        floodFill(Math.floor(lastX), Math.floor(lastY));
+        return;
     } else if (currentTool === 'text') {
-      showTextInput(e);
-      isDrawing = false;
-    } else {
-      tempCtx.beginPath();
-      draw(e);
+        showTextInput(e);
+        return;
     }
+
+    isDrawing = true;
+    tempCtx.beginPath();
+    draw(e);
   }
   
   function draw(e) {
@@ -419,7 +419,7 @@ document.addEventListener('DOMContentLoaded', () => {
     tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
     
     // Update UI
-    document.querySelectorAll('.tool-button').forEach(btn => {
+    document.querySelectorAll('.paint-tool').forEach(btn => {
       btn.classList.remove('active');
       if (btn.dataset.tool === tool) {
         btn.classList.add('active');
@@ -891,15 +891,15 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Remove any existing text input
     if (textInput) {
-      document.body.removeChild(textInput);
+        document.body.removeChild(textInput);
     }
     
     // Create new text input
     textInput = document.createElement('input');
     textInput.type = 'text';
     textInput.style.position = 'fixed';
-    textInput.style.left = e.clientX + 'px';
-    textInput.style.top = e.clientY + 'px';
+    textInput.style.left = coords.x + 'px';
+    textInput.style.top = coords.y + 'px';
     textInput.style.font = brushSize + 'px Arial';
     textInput.style.color = currentColor;
     textInput.style.background = 'transparent';
@@ -916,25 +916,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const textY = coords.y;
     
     function handleTextInput() {
-      const text = textInput.value.trim();
-      if (text) {
-        mainCtx.font = brushSize + 'px Arial';
-        mainCtx.fillStyle = currentColor;
-        mainCtx.fillText(text, textX, textY + brushSize);
-        saveState();
-      }
-      document.body.removeChild(textInput);
-      textInput = null;
+        const text = textInput.value.trim();
+        if (text) {
+            mainCtx.font = brushSize + 'px Arial';
+            mainCtx.fillStyle = currentColor;
+            mainCtx.fillText(text, textX, textY + brushSize);
+            saveState();
+        }
+        document.body.removeChild(textInput);
+        textInput = null;
     }
     
     textInput.addEventListener('blur', handleTextInput);
     textInput.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') {
-        handleTextInput();
-      } else if (e.key === 'Escape') {
-        document.body.removeChild(textInput);
-        textInput = null;
-      }
+        if (e.key === 'Enter') {
+            handleTextInput();
+        } else if (e.key === 'Escape') {
+            document.body.removeChild(textInput);
+            textInput = null;
+        }
     });
   }
 
