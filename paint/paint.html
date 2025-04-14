@@ -9,6 +9,70 @@
 <body>
     <div class="paint-container">
         <div class="paint-header">
+            <div class="title-bar">
+                <div class="title-bar-text">
+                    <img src="images/paint-icon.png" alt="Paint" class="title-icon">
+                    <span>Paint</span>
+                </div>
+                <div class="title-bar-controls">
+                    <button id="minimize-button">-</button>
+                    <button id="maximize-button">□</button>
+                    <button id="close-button">×</button>
+                </div>
+            </div>
+            <div class="menu-bar">
+                <div class="menu-item" id="fileMenu">
+                    File
+                    <div class="menu-dropdown">
+                        <button>New</button>
+                        <button>Open</button>
+                        <button>Save</button>
+                        <button>Print</button>
+                        <button>Exit</button>
+                    </div>
+                </div>
+                <div class="menu-item" id="editMenu">
+                    Edit
+                    <div class="menu-dropdown">
+                        <button>Undo</button>
+                        <button>Redo</button>
+                        <button>Cut</button>
+                        <button>Copy</button>
+                        <button>Paste</button>
+                    </div>
+                </div>
+                <div class="menu-item" id="viewMenu">
+                    View
+                    <div class="menu-dropdown">
+                        <button>Zoom In</button>
+                        <button>Zoom Out</button>
+                        <button>Full Screen</button>
+                    </div>
+                </div>
+                <div class="menu-item" id="colorsMenu">
+                    Colors
+                    <div class="menu-dropdown">
+                        <div class="color-grid">
+                            <div class="color-box" style="background-color: #000000;"></div>
+                            <div class="color-box" style="background-color: #808080;"></div>
+                            <div class="color-box" style="background-color: #800000;"></div>
+                            <div class="color-box" style="background-color: #808000;"></div>
+                            <div class="color-box" style="background-color: #008000;"></div>
+                            <div class="color-box" style="background-color: #008080;"></div>
+                            <div class="color-box" style="background-color: #000080;"></div>
+                            <div class="color-box" style="background-color: #800080;"></div>
+                            <div class="color-box" style="background-color: #FFFFFF;"></div>
+                            <div class="color-box" style="background-color: #C0C0C0;"></div>
+                            <div class="color-box" style="background-color: #FF0000;"></div>
+                            <div class="color-box" style="background-color: #FFFF00;"></div>
+                            <div class="color-box" style="background-color: #00FF00;"></div>
+                            <div class="color-box" style="background-color: #00FFFF;"></div>
+                            <div class="color-box" style="background-color: #0000FF;"></div>
+                            <div class="color-box" style="background-color: #FF00FF;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="paint-toolbar">
                 <button class="tool-button" data-tool="pencil">
                     <img src="images/pencil.png" alt="Pencil">
@@ -35,7 +99,7 @@
                     <img src="images/text.png" alt="Text">
                 </button>
                 <button class="tool-button" data-tool="spray">
-                    <img src="images/spray.png" alt="Spray">
+                    <img src="images/spray-can.png" alt="Spray">
                 </button>
                 <button class="tool-button" data-tool="undo">
                     <img src="images/undo.png" alt="Undo">

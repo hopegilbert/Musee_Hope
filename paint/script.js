@@ -1,1108 +1,451 @@
-document.addEventListener('DOMContentLoaded', () => {
-  console.log('Paint script loaded');
-  
-  const mainCanvas = document.getElementById('mainCanvas');
-  const mainCtx = mainCanvas.getContext('2d');
-  
-  if (!mainCanvas || !mainCtx) {
-    console.error('Canvas or context not found!');
-    return;
-  }
-  
-  console.log('Canvas size:', mainCanvas.width, 'x', mainCanvas.height);
-  
-  // Initialize canvases
-  const tempCanvas = document.createElement('canvas');
-  const tempCtx = tempCanvas.getContext('2d');
-  
-  // Initialize size control
-  const sizeControl = document.querySelector('.size-control');
-  const sizeSlider = document.querySelector('.size-slider');
-  const sizePreview = document.querySelector('.size-preview-dot');
-  const sizeValue = document.querySelector('.size-value');
-  
-  function updateSizePreview() {
-    if (sizePreview && sizeValue) {
-      sizePreview.style.width = brushSize + 'px';
-      sizePreview.style.height = brushSize + 'px';
-      sizeValue.textContent = brushSize + 'px';
-      
-      // Update preview color based on tool
-      if (currentTool === 'eraser') {
-        sizePreview.style.backgroundColor = '#FFFFFF';
-        sizePreview.style.border = '1px solid #000000';
-      } else {
-        sizePreview.style.backgroundColor = currentColor;
-        sizePreview.style.border = 'none';
-      }
-    }
-  }
-  
-  if (sizeSlider) {
-    sizeSlider.addEventListener('input', (e) => {
-      brushSize = parseInt(e.target.value);
-      updateSizePreview();
-    });
-  }
-  
-  // Set canvas size
-  function setCanvasSize() {
-    // Always set main canvas to fill the screen
-    mainCanvas.width = window.innerWidth;
-    mainCanvas.height = window.innerHeight;
-    tempCanvas.width = window.innerWidth;
-    tempCanvas.height = window.innerHeight;
-    
-    // Set white background
-    mainCtx.fillStyle = '#FFFFFF';
-    mainCtx.fillRect(0, 0, mainCanvas.width, mainCanvas.height);
-    tempCtx.fillStyle = '#FFFFFF';
-    tempCtx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
-  }
-  
-  // Initialize canvas size
-  setCanvasSize();
-  window.addEventListener('resize', setCanvasSize);
-  
-  // Drawing state
-  let isDrawing = false;
-  let lastX = 0;
-  let lastY = 0;
-  let startX = 0;
-  let startY = 0;
-  let currentTool = 'pencil';
-  let currentColor = '#000000';
-  let brushSize = 1;
-  let drawingStates = [];
-  let currentStateIndex = -1;
-  let canvasHistory = [];
-  let historyIndex = -1;
-  const MAX_HISTORY = 20;
-  let isDrawingShape = false;
-  let textInput = null;
-  let points = [];
-  
-  // Save initial state
-  saveState();
-  
-  function getEventCoords(e) {
-    const rect = mainCanvas.getBoundingClientRect();
-    const scaleX = mainCanvas.width / rect.width;
-    const scaleY = mainCanvas.height / rect.height;
-    
-    if (e.touches && e.touches[0]) {
-      return {
-        x: (e.touches[0].clientX - rect.left) * scaleX,
-        y: (e.touches[0].clientY - rect.top) * scaleY
-      };
-    }
-    return {
-      x: (e.clientX - rect.left) * scaleX,
-      y: (e.clientY - rect.top) * scaleY
-    };
-  }
-  
-  function startDrawing(e) {
-    e.preventDefault();
-    const coords = getEventCoords(e);
-    lastX = coords.x;
-    lastY = coords.y;
-    points = [{ x: lastX, y: lastY }];
+// Initialize canvas
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+const overlayContainer = document.querySelector('.overlay-container');
 
-    if (currentTool === 'fill') {
-        floodFill(Math.floor(lastX), Math.floor(lastY));
-        return;
-    } else if (currentTool === 'text') {
-        showTextInput(e);
-        return;
-    }
+// Set initial canvas size
+canvas.width = 800;
+canvas.height = 600;
 
-    isDrawing = true;
-    tempCtx.beginPath();
-    draw(e);
-  }
-  
-  function draw(e) {
-    if (!isDrawing) return;
-    e.preventDefault();
-    
-    const coords = getEventCoords(e);
-    const x = coords.x;
-    const y = coords.y;
-    points.push({ x, y });
+// Drawing state
+let isDrawing = false;
+let lastX = 0;
+let lastY = 0;
+let currentTool = 'pencil';
+let currentColor = '#000000';
+let currentSize = 5;
+let history = [];
+let historyIndex = -1;
 
-    // Clear temp canvas
-    tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
+// Initialize canvas with white background
+ctx.fillStyle = '#FFFFFF';
+ctx.fillRect(0, 0, canvas.width, canvas.height);
+saveState();
 
-    switch (currentTool) {
-      case 'pencil':
-      case 'brush':
-        if (currentTool === 'pencil') {
-          drawFreehand(points);
-        } else {
-          drawBrush(points);
-        }
-        // Copy to main canvas for continuous effect
-        mainCtx.drawImage(tempCanvas, 0, 0);
-        break;
-      case 'spray':
-        drawSpray(x, y);
-        break;
-      case 'eraser':
-        drawEraser(points);
-        break;
-      case 'line':
-        drawLine(lastX, lastY, x, y);
-        break;
-      case 'rectangle':
-        drawRectangle(lastX, lastY, x - lastX, y - lastY);
-        break;
-      case 'ellipse':
-        drawCircle(lastX, lastY, x, y);
-        break;
-    }
+// Tool buttons
+const toolButtons = document.querySelectorAll('.tool-button');
+toolButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        toolButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        currentTool = button.getAttribute('data-tool');
+        updateCursor();
+    });
+});
 
-    // Only copy temp canvas to main for continuous tools
-    if (['pencil', 'brush'].includes(currentTool)) {
-      mainCtx.drawImage(tempCanvas, 0, 0);
-      tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
-    }
-  }
-  
-  function drawEraser(points) {
-    if (points.length < 2) return;
-    
-    mainCtx.strokeStyle = '#FFFFFF';
-    mainCtx.lineWidth = brushSize * 2;
-    mainCtx.lineCap = 'round';
-    mainCtx.lineJoin = 'round';
-    
-    mainCtx.beginPath();
-    mainCtx.moveTo(points[points.length - 2].x, points[points.length - 2].y);
-    mainCtx.lineTo(points[points.length - 1].x, points[points.length - 1].y);
-    mainCtx.stroke();
-  }
-  
-  function drawSpray(x, y) {
-    const density = 30;  // Reduced for better performance
-    const radius = brushSize * 2;
-    
-    mainCtx.fillStyle = currentColor;
-    
-    for (let i = 0; i < density; i++) {
-      const angle = Math.random() * Math.PI * 2;
-      const r = Math.random() * radius;
-      const dx = x + r * Math.cos(angle);
-      const dy = y + r * Math.sin(angle);
-      
-      mainCtx.beginPath();
-      mainCtx.arc(dx, dy, 0.5, 0, Math.PI * 2);
-      mainCtx.fill();
-    }
-  }
-  
-  function stopDrawing(e) {
-    if (!isDrawing) return;
-    isDrawing = false;
-    
-    // Only commit temp canvas if we're using it
-    if (currentTool !== 'eraser' && currentTool !== 'spray') {
-      mainCtx.drawImage(tempCanvas, 0, 0);
-      tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
-    }
-    
-    saveState();
-    points = []; // Clear points array
-  }
-  
-  // Save current canvas state to history
-  function saveState() {
-    historyIndex++;
-    if (historyIndex < canvasHistory.length) {
-      canvasHistory = canvasHistory.slice(0, historyIndex);
-    }
-    canvasHistory.push({
-      main: mainCanvas.toDataURL(),
-      temp: tempCanvas.toDataURL()
-    });
-    
-    if (canvasHistory.length > MAX_HISTORY) {
-      canvasHistory.shift();
-      historyIndex--;
-    }
-    
-    updateButtonStates();
-  }
-  
-  // Update undo/redo button states
-  function updateButtonStates() {
-    const undoBtn = document.getElementById('undoBtn');
-    const redoBtn = document.getElementById('redoBtn');
-    if (undoBtn) undoBtn.style.opacity = historyIndex <= 0 ? '0.5' : '1';
-    if (redoBtn) redoBtn.style.opacity = historyIndex >= canvasHistory.length - 1 ? '0.5' : '1';
-  }
-  
-  // Load state from history
-  function loadState(index) {
-    if (index >= 0 && index < canvasHistory.length) {
-      const state = canvasHistory[index];
-      const mainImg = new Image();
-      const tempImg = new Image();
-      
-      mainImg.onload = () => {
-        mainCtx.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
-        mainCtx.drawImage(mainImg, 0, 0);
-      };
-      
-      tempImg.onload = () => {
-        tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
-        tempCtx.drawImage(tempImg, 0, 0);
-      };
-      
-      mainImg.src = state.main;
-      tempImg.src = state.temp;
-      updateButtonStates();
-    }
-  }
-  
-  // Undo/Redo functions
-  function undo() {
-    if (historyIndex > 0) {
-      historyIndex--;
-      loadState(historyIndex);
-    }
-  }
-  
-  function redo() {
-    if (historyIndex < canvasHistory.length - 1) {
-      historyIndex++;
-      loadState(historyIndex);
-    }
-  }
-  
-  // Event listeners for canvas
-  mainCanvas.addEventListener('mousedown', startDrawing);
-  mainCanvas.addEventListener('mousemove', draw);
-  mainCanvas.addEventListener('mouseup', stopDrawing);
-  mainCanvas.addEventListener('mouseleave', stopDrawing);
-  
-  mainCanvas.addEventListener('touchstart', startDrawing);
-  mainCanvas.addEventListener('touchmove', draw);
-  mainCanvas.addEventListener('touchend', stopDrawing);
-  mainCanvas.addEventListener('touchcancel', stopDrawing);
-  
-  // Prevent scrolling when touching the canvas
-  mainCanvas.addEventListener('touchstart', function(e) {
-    e.preventDefault();
-  }, { passive: false });
-  
-  mainCanvas.addEventListener('touchmove', function(e) {
-    e.preventDefault();
-  }, { passive: false });
-  
-  // Tool selection
-  const tools = document.querySelectorAll('.paint-tool');
-  tools.forEach(tool => {
-    tool.addEventListener('click', function() {
-      const toolName = this.querySelector('img').alt.toLowerCase();
-      const toolId = toolName + 'Btn';
-      setActiveTool(toolName);
-      brushSize = toolButtons[toolId]?.size || 2;
-    });
-  });
-  
-  // Color selection
-  const colorButton = document.querySelector('.color-button');
-  const colorOptions = document.querySelectorAll('.color-option');
-  const colorBoxes = document.querySelectorAll('.paint-colors .color-box');
-  const menuColorBoxes = document.querySelectorAll('.color-grid .color-box');
-  
-  function updateColorSelection(newColor) {
-    currentColor = newColor;
-    if (colorButton) {
-      colorButton.style.backgroundColor = currentColor;
-    }
-    if (mainCtx) {
-      mainCtx.strokeStyle = currentColor;
-      mainCtx.fillStyle = currentColor;
-    }
-    // Update selected states
-    menuColorBoxes.forEach(b => b.classList.remove('selected'));
-    colorBoxes.forEach(b => b.classList.remove('selected'));
-  }
-  
-  // Setup color dropdown positioning
-  const colorDropdown = document.querySelector('.color-dropdown');
-  const colorOptionsContainer = document.querySelector('.color-options');
-  if (colorDropdown) {
-    colorDropdown.style.position = 'fixed';
-    colorDropdown.style.zIndex = '999999';
-    
-    // Style for mobile
-    if (window.innerWidth <= 768) {
-      colorDropdown.style.position = 'fixed';
-      colorDropdown.style.zIndex = '999999';
-      if (colorOptionsContainer) {
-        colorOptionsContainer.style.position = 'fixed';
-        colorOptionsContainer.style.zIndex = '999999';
-      }
-    }
-  }
-  
-  // Toggle color dropdown
-  if (colorButton) {
-    colorButton.addEventListener('click', (e) => {
-      e.stopPropagation();
-      if (colorDropdown) {
-        const buttonRect = colorButton.getBoundingClientRect();
-        const windowRect = paintWindow.getBoundingClientRect();
-        
-        // Position differently for mobile
-        if (window.innerWidth <= 768) {
-          colorDropdown.style.top = (buttonRect.bottom + 5) + 'px';
-          colorDropdown.style.left = '50%';
-          colorDropdown.style.transform = 'translateX(-50%)';
-          colorDropdown.style.width = '90vw';
-          colorDropdown.style.maxWidth = '300px';
-        } else {
-          // Desktop positioning
-          colorDropdown.style.top = buttonRect.bottom + 'px';
-          colorDropdown.style.left = Math.max(buttonRect.left, windowRect.left) + 'px';
-          colorDropdown.style.transform = 'none';
-          colorDropdown.style.width = 'auto';
-        }
-        
-        colorDropdown.style.display = colorDropdown.style.display === 'none' ? 'block' : 'none';
-      }
-    });
-  }
-
-  // Update color dropdown position on window resize
-  window.addEventListener('resize', () => {
-    if (colorDropdown && colorDropdown.style.display !== 'none') {
-      const buttonRect = colorButton.getBoundingClientRect();
-      const windowRect = paintWindow.getBoundingClientRect();
-      
-      if (window.innerWidth <= 768) {
-        colorDropdown.style.top = (buttonRect.bottom + 5) + 'px';
-        colorDropdown.style.left = '50%';
-        colorDropdown.style.transform = 'translateX(-50%)';
-        colorDropdown.style.width = '90vw';
-        colorDropdown.style.maxWidth = '300px';
-      } else {
-        colorDropdown.style.top = buttonRect.bottom + 'px';
-        colorDropdown.style.left = Math.max(buttonRect.left, windowRect.left) + 'px';
-        colorDropdown.style.transform = 'none';
-        colorDropdown.style.width = 'auto';
-      }
-    }
-  });
-
-  // Close dropdown when clicking outside
-  document.addEventListener('click', (e) => {
-    if (colorDropdown && !colorDropdown.contains(e.target) && !colorButton.contains(e.target)) {
-      colorDropdown.style.display = 'none';
-    }
-  });
-  
-  // Menu color boxes functionality
-  menuColorBoxes.forEach(box => {
-    box.addEventListener('click', function() {
-      updateColorSelection(this.style.backgroundColor);
-      this.classList.add('selected');
-    });
-  });
-  
-  // Color dropdown functionality
-  colorOptions.forEach(option => {
-    option.addEventListener('click', function() {
-      updateColorSelection(this.style.backgroundColor);
-    });
-  });
-  
-  // Paint window color boxes functionality
-  colorBoxes.forEach(box => {
-    box.addEventListener('click', function() {
-      updateColorSelection(this.style.backgroundColor);
-      this.classList.add('selected');
-    });
-  });
-  
-  // Initialize canvas context color
-  if (mainCtx) {
-    mainCtx.strokeStyle = currentColor;
-    mainCtx.fillStyle = currentColor;
-  }
-  
-  // Tool selection
-  function setActiveTool(tool) {
-    currentTool = tool;
+// Size control
+const sizeInput = document.getElementById('size');
+const sizeValue = document.getElementById('size-value');
+sizeInput.addEventListener('input', () => {
+    currentSize = parseInt(sizeInput.value);
+    sizeValue.textContent = currentSize;
     updateCursor();
-    
-    // Reset drawing state
-    isDrawing = false;
-    tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
-    
-    // Update UI
-    document.querySelectorAll('.paint-tool').forEach(btn => {
-        btn.classList.remove('active');
-        if (btn.dataset.tool === tool) {
-            btn.classList.add('active');
-            
-            // Position size control under the active tool
-            const sizeControl = document.querySelector('.size-control');
-            if (['pencil', 'brush', 'eraser', 'spray', 'line', 'rectangle', 'ellipse'].includes(tool)) {
-                const btnRect = btn.getBoundingClientRect();
-                const windowRect = document.querySelector('.paint-window').getBoundingClientRect();
-                
-                // Position the size control relative to the viewport
-                sizeControl.style.position = 'fixed';
-                sizeControl.style.zIndex = '999999';
-                
-                // Mobile positioning
-                if (window.innerWidth <= 768) {
-                    sizeControl.style.top = (btnRect.bottom + 5) + 'px';
-                    sizeControl.style.left = '50%';
-                    sizeControl.style.transform = 'translateX(-50%)';
-                    sizeControl.style.width = '90vw';
-                    sizeControl.style.maxWidth = '300px';
-                } else {
-                    // Desktop positioning
-                    sizeControl.style.top = btnRect.bottom + 'px';
-                    sizeControl.style.left = Math.max(btnRect.left, windowRect.left) + 'px';
-                    sizeControl.style.transform = 'none';
-                    sizeControl.style.width = 'auto';
-                }
-                
-                sizeControl.style.display = 'flex';
-                updateSizePreview();
-            } else {
-                sizeControl.style.display = 'none';
-            }
-        }
-    });
-  }
-  
-  // Tool button event listeners
-  const toolButtons = {
-    'pencilBtn': { tool: 'pencil', size: 2 },
-    'brushBtn': { tool: 'brush', size: 5 },
-    'eraserBtn': { tool: 'eraser', size: 20 },
-    'fillBtn': { tool: 'fill', size: 1 },
-    'textBtn': { tool: 'text', size: 16 },
-    'sprayBtn': { tool: 'spray', size: 10 },
-    'rectangleBtn': { tool: 'rectangle', size: 2 },
-    'ellipseBtn': { tool: 'ellipse', size: 2 },
-    'lineBtn': { tool: 'line', size: 2 }
-  };
-  
-  Object.entries(toolButtons).forEach(([btnId, settings]) => {
-    const button = document.getElementById(btnId);
-    if (button) {
-        button.addEventListener('click', () => {
-            setActiveTool(settings.tool);
-            brushSize = settings.size;
-        });
-    }
-  });
-  
-  // Add direct click handlers for fill and text tools
-  document.getElementById('fillBtn')?.addEventListener('click', () => {
-    currentTool = 'fill';
-    mainCanvas.style.cursor = 'crosshair';
-  });
+});
 
-  document.getElementById('textBtn')?.addEventListener('click', () => {
-    currentTool = 'text';
-    mainCanvas.style.cursor = 'text';
-  });
-  
-  // Undo/Redo button listeners
-  const undoBtn = document.getElementById('undoBtn');
-  const redoBtn = document.getElementById('redoBtn');
-  
-  if (undoBtn) {
-    undoBtn.addEventListener('click', undo);
-  }
-  
-  if (redoBtn) {
-    redoBtn.addEventListener('click', redo);
-  }
-  
-  // Keyboard shortcuts
-  document.addEventListener('keydown', (e) => {
-    if (e.ctrlKey) {
-        if (e.key === 'z') {
-            e.preventDefault();
-            undo();
-        } else if (e.key === 'y') {
-            e.preventDefault();
-            redo();
+// Color control
+const colorInput = document.getElementById('color');
+colorInput.addEventListener('input', () => {
+    currentColor = colorInput.value;
+});
+
+// Canvas size control
+const widthInput = document.getElementById('canvas-width');
+const heightInput = document.getElementById('canvas-height');
+const resizeButton = document.getElementById('resize-canvas');
+resizeButton.addEventListener('click', () => {
+    const newWidth = parseInt(widthInput.value);
+    const newHeight = parseInt(heightInput.value);
+    if (newWidth >= 100 && newWidth <= 2000 && newHeight >= 100 && newHeight <= 2000) {
+        setCanvasSize(newWidth, newHeight);
+    }
+});
+
+// Drawing functions
+function startDrawing(e) {
+    isDrawing = true;
+    [lastX, lastY] = getMousePos(e);
+    if (currentTool === 'text') {
+        const text = prompt('Enter text:');
+        if (text) {
+            ctx.font = `${currentSize}px Arial`;
+            ctx.fillStyle = currentColor;
+            ctx.fillText(text, lastX, lastY);
+            saveState();
         }
     }
-  });
-  
-  // Draggable window functionality
-  const paintWindow = document.getElementById('paintWindow');
-  const paintHeader = document.getElementById('paintHeader');
+}
 
-  function makeDraggable(element, handle) {
-    let isDragging = false;
-    let currentX = 0;
-    let currentY = 0;
-    let initialX = 0;
-    let initialY = 0;
-
-    function dragStart(e) {
-        if (e.type === "touchstart") {
-            initialX = e.touches[0].clientX - currentX;
-            initialY = e.touches[0].clientY - currentY;
-        } else {
-            initialX = e.clientX - currentX;
-            initialY = e.clientY - currentY;
-        }
-
-        if (e.target === handle || handle.contains(e.target)) {
-            isDragging = true;
-            element.classList.add('dragging');
-        }
-    }
-
-    function dragEnd() {
-        isDragging = false;
-        element.classList.remove('dragging');
-    }
-
-    function drag(e) {
-        if (isDragging) {
-            e.preventDefault();
-            
-            let newX, newY;
-            if (e.type === "touchmove") {
-                newX = e.touches[0].clientX - initialX;
-                newY = e.touches[0].clientY - initialY;
-            } else {
-                newX = e.clientX - initialX;
-                newY = e.clientY - initialY;
-            }
-            
-            // Get toolbar height and position
-            const toolbar = document.querySelector('.main-window');
-            const toolbarRect = toolbar.getBoundingClientRect();
-            const toolbarBottom = toolbarRect.bottom;
-            
-            // Constrain Y position to not go above toolbar
-            if (newY < toolbarBottom) {
-                newY = toolbarBottom;
-                // Also adjust initialY to prevent jumping
-                if (e.type === "touchmove") {
-                    initialY = e.touches[0].clientY - newY;
-                } else {
-                    initialY = e.clientY - newY;
-                }
-            }
-            
-            // Update position
-            currentX = newX;
-            currentY = newY;
-            element.style.left = currentX + "px";
-            element.style.top = currentY + "px";
-        }
-    }
-
-    // Mouse events
-    handle.addEventListener('mousedown', dragStart);
-    document.addEventListener('mousemove', drag);
-    document.addEventListener('mouseup', dragEnd);
-
-    // Touch events
-    handle.addEventListener('touchstart', dragStart, { passive: false });
-    document.addEventListener('touchmove', drag, { passive: false });
-    document.addEventListener('touchend', dragEnd);
-  }
-
-  // Initialize draggable window
-  if (paintWindow && paintHeader) {
-    // Calculate responsive size based on viewport
-    const updateWindowSize = () => {
-      const windowWidth = window.innerWidth;
-      const viewportHeight = window.innerHeight;
-      
-      // Calculate window size (30% of viewport width, max 600px)
-      const windowSize = Math.min(windowWidth * 0.3, 600);
-      const paintWindowHeight = windowSize * 1.2; // 20% taller than width
-      
-      // Set window dimensions
-      paintWindow.style.width = windowSize + 'px';
-      paintWindow.style.height = paintWindowHeight + 'px';
-
-      // Adjust button sizes
-      const buttons = paintWindow.querySelectorAll('.paint-toolbar button');
-      const buttonSize = Math.min(Math.max(windowSize * 0.08, 30), 45); // Between 30px and 45px
-      buttons.forEach(button => {
-        button.style.width = buttonSize + 'px';
-        button.style.height = buttonSize + 'px';
-        button.style.margin = (buttonSize * 0.1) + 'px';
-        // Scale icons inside buttons
-        const icon = button.querySelector('i');
-        if (icon) {
-          const iconSize = Math.max(buttonSize * 0.6, 16) + 'px';
-          icon.style.fontSize = iconSize;
-        }
-      });
-
-      // Adjust color buttons
-      const colorButtons = paintWindow.querySelectorAll('.color-option');
-      const colorButtonSize = Math.min(Math.max(windowSize * 0.06, 25), 40); // Between 25px and 40px
-      colorButtons.forEach(button => {
-        button.style.width = colorButtonSize + 'px';
-        button.style.height = colorButtonSize + 'px';
-        button.style.margin = (colorButtonSize * 0.1) + 'px';
-      });
-      
-      // Position window in the center of the screen
-      const leftPosition = (windowWidth - windowSize) / 2;
-      
-      // Get toolbar height and ensure it's positioned correctly
-      const toolbar = document.querySelector('.main-window');
-      if (toolbar) {
-        toolbar.style.position = 'fixed';
-        toolbar.style.top = '0';
-        toolbar.style.left = '0';
-        toolbar.style.width = '100%';
-      }
-      const toolbarRect = toolbar?.getBoundingClientRect();
-      const toolbarBottom = toolbarRect ? toolbarRect.bottom : 0;
-      
-      // Set position, ensuring it's below the toolbar
-      paintWindow.style.left = leftPosition + 'px';
-      paintWindow.style.top = (toolbarBottom + 20) + 'px';
-
-      // Update header sizing
-      const headerHeight = Math.min(Math.max(windowSize * 0.05, 24), 36);
-      paintHeader.style.height = headerHeight + 'px';
-      
-      // Ensure main canvas stays full screen
-      setCanvasSize();
-    };
+function draw(e) {
+    if (!isDrawing) return;
     
-    // Initial size update
-    updateWindowSize();
+    const [x, y] = getMousePos(e);
     
-    // Update on window resize
-    window.addEventListener('resize', () => {
-      updateWindowSize();
-    });
-    
-    makeDraggable(paintWindow, paintHeader);
-  }
-
-  // Update canvas size based on window size
-  const updateCanvasSize = () => {
-    if (paintWindow) {
-      const contentArea = paintWindow.querySelector('.paint-content');
-      if (contentArea) {
-        // Keep the main canvas full screen
-        setCanvasSize();
-      }
-    }
-  };
-
-  // Add resize observer for paint window
-  const resizeObserver = new ResizeObserver(() => {
-    updateCanvasSize();
-  });
-  
-  if (paintWindow) {
-    resizeObserver.observe(paintWindow);
-  }
-
-  // Resize handler
-  function handleResize() {
-    const width = window.innerWidth;
-    const height = window.innerHeight;
-    
-    if (width <= 768) { // Mobile
-      mainCanvas.width = width * 0.95;
-      mainCanvas.height = height * 0.6;
-    } else { // Desktop
-      mainCanvas.width = width;
-      mainCanvas.height = height - 92; // Adjust for toolbar height
+    switch (currentTool) {
+        case 'pencil':
+            drawPencil(x, y);
+            break;
+        case 'brush':
+            drawBrush(x, y);
+            break;
+        case 'eraser':
+            drawEraser(x, y);
+            break;
+        case 'spray':
+            drawSpray(x, y);
+            break;
+        case 'rectangle':
+            drawRectangle(x, y);
+            break;
+        case 'ellipse':
+            drawEllipse(x, y);
+            break;
+        case 'line':
+            drawLine(x, y);
+            break;
     }
     
-    tempCanvas.width = mainCanvas.width;
-    tempCanvas.height = mainCanvas.height;
-    
-    // Redraw canvas with white background
-    mainCtx.fillStyle = '#FFFFFF';
-    mainCtx.fillRect(0, 0, mainCanvas.width, mainCanvas.height);
-    mainCtx.drawImage(tempCanvas, 0, 0);
-  }
+    [lastX, lastY] = [x, y];
+}
 
-  // Add resize listener
-  window.addEventListener('resize', handleResize);
-  handleResize(); // Initial call
-  
-  // Initialize canvas
-  setCanvasSize();
-  console.log('Paint initialization complete');
-
-  function floodFill(startX, startY) {
-    // Round coordinates to integers
-    startX = Math.floor(startX);
-    startY = Math.floor(startY);
-    
-    const imageData = mainCtx.getImageData(0, 0, mainCanvas.width, mainCanvas.height);
-    const pixels = imageData.data;
-    
-    // Bounds check
-    if (startX < 0 || startX >= mainCanvas.width || startY < 0 || startY >= mainCanvas.height) {
-      return;
+function stopDrawing() {
+    if (isDrawing) {
+        isDrawing = false;
+        saveState();
     }
-    
-    const startPos = (startY * mainCanvas.width + startX) * 4;
-    const startR = pixels[startPos];
-    const startG = pixels[startPos + 1];
-    const startB = pixels[startPos + 2];
-    const startA = pixels[startPos + 3];
-    
+}
+
+// Drawing tools
+function drawPencil(x, y) {
+    ctx.beginPath();
+    ctx.moveTo(lastX, lastY);
+    ctx.lineTo(x, y);
+    ctx.strokeStyle = currentColor;
+    ctx.lineWidth = currentSize;
+    ctx.lineCap = 'round';
+    ctx.stroke();
+}
+
+function drawBrush(x, y) {
+    ctx.beginPath();
+    ctx.moveTo(lastX, lastY);
+    ctx.lineTo(x, y);
+    ctx.strokeStyle = currentColor;
+    ctx.lineWidth = currentSize * 2;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.stroke();
+}
+
+function drawEraser(x, y) {
+    ctx.beginPath();
+    ctx.moveTo(lastX, lastY);
+    ctx.lineTo(x, y);
+    ctx.strokeStyle = '#FFFFFF';
+    ctx.lineWidth = currentSize * 2;
+    ctx.lineCap = 'round';
+    ctx.stroke();
+}
+
+function drawSpray(x, y) {
+    const density = currentSize * 2;
+    for (let i = 0; i < density; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const radius = Math.random() * currentSize;
+        const sprayX = x + Math.cos(angle) * radius;
+        const sprayY = y + Math.sin(angle) * radius;
+        ctx.fillStyle = currentColor;
+        ctx.fillRect(sprayX, sprayY, 1, 1);
+    }
+}
+
+function drawRectangle(x, y) {
+    const width = x - lastX;
+    const height = y - lastY;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = currentColor;
+    ctx.fillRect(lastX, lastY, width, height);
+}
+
+function drawEllipse(x, y) {
+    const width = x - lastX;
+    const height = y - lastY;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.beginPath();
+    ctx.ellipse(lastX + width/2, lastY + height/2, Math.abs(width/2), Math.abs(height/2), 0, 0, Math.PI * 2);
+    ctx.fillStyle = currentColor;
+    ctx.fill();
+}
+
+function drawLine(x, y) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.beginPath();
+    ctx.moveTo(lastX, lastY);
+    ctx.lineTo(x, y);
+    ctx.strokeStyle = currentColor;
+    ctx.lineWidth = currentSize;
+    ctx.stroke();
+}
+
+// Fill tool
+function floodFill(x, y) {
+    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    const data = imageData.data;
+    const targetColor = getColorAt(x, y);
     const fillColor = hexToRgb(currentColor);
-    if (!fillColor) return; // Invalid fill color
     
-    // Don't fill if clicking on the same color
-    if (startR === fillColor.r && 
-        startG === fillColor.g && 
-        startB === fillColor.b && 
-        startA === 255) {
-      return;
+    if (!targetColor || !fillColor) return;
+    
+    // Don't fill if clicking the same color
+    if (targetColor.r === fillColor.r && targetColor.g === fillColor.g && targetColor.b === fillColor.b) {
+        return;
     }
     
-    const matchStartColor = (pos) => {
-      // Color matching with tolerance
-      const tolerance = 1;
-      return Math.abs(pixels[pos] - startR) <= tolerance &&
-             Math.abs(pixels[pos + 1] - startG) <= tolerance &&
-             Math.abs(pixels[pos + 2] - startB) <= tolerance &&
-             Math.abs(pixels[pos + 3] - startA) <= tolerance;
-    };
-    
-    const stack = [[startX, startY]];
+    const stack = [[Math.round(x), Math.round(y)]];
     const visited = new Set();
+    const width = canvas.width;
+    const height = canvas.height;
     
-    while (stack.length) {
-      const [x, y] = stack.pop();
-      const pos = (y * mainCanvas.width + x) * 4;
-      
-      if (x < 0 || x >= mainCanvas.width || y < 0 || y >= mainCanvas.height) continue;
-      if (visited.has(`${x},${y}`)) continue;
-      if (!matchStartColor(pos)) continue;
-      
-      visited.add(`${x},${y}`);
-      pixels[pos] = fillColor.r;
-      pixels[pos + 1] = fillColor.g;
-      pixels[pos + 2] = fillColor.b;
-      pixels[pos + 3] = 255;
-      
-      // Add neighbors in all 8 directions for better fill
-      stack.push(
-        [x + 1, y],     // right
-        [x - 1, y],     // left
-        [x, y + 1],     // down
-        [x, y - 1],     // up
-        [x + 1, y + 1], // bottom-right
-        [x - 1, y - 1], // top-left
-        [x + 1, y - 1], // top-right
-        [x - 1, y + 1]  // bottom-left
-      );
+    while (stack.length > 0) {
+        const [currentX, currentY] = stack.pop();
+        const index = (currentY * width + currentX) * 4;
+        
+        if (currentX < 0 || currentX >= width || currentY < 0 || currentY >= height) continue;
+        if (visited.has(`${currentX},${currentY}`)) continue;
+        
+        visited.add(`${currentX},${currentY}`);
+        
+        // Check if current pixel matches target color (with tolerance)
+        if (colorsMatch(data[index], data[index + 1], data[index + 2], targetColor)) {
+            // Fill the pixel
+            data[index] = fillColor.r;
+            data[index + 1] = fillColor.g;
+            data[index + 2] = fillColor.b;
+            data[index + 3] = 255;
+            
+            // Add neighboring pixels to stack
+            stack.push([currentX + 1, currentY]);
+            stack.push([currentX - 1, currentY]);
+            stack.push([currentX, currentY + 1]);
+            stack.push([currentX, currentY - 1]);
+            // Add diagonal pixels for better fill
+            stack.push([currentX + 1, currentY + 1]);
+            stack.push([currentX - 1, currentY - 1]);
+            stack.push([currentX + 1, currentY - 1]);
+            stack.push([currentX - 1, currentY + 1]);
+        }
     }
     
-    mainCtx.putImageData(imageData, 0, 0);
+    ctx.putImageData(imageData, 0, 0);
     saveState();
-  }
+}
 
-  function hexToRgb(hex) {
+function getColorAt(x, y) {
+    const imageData = ctx.getImageData(x, y, 1, 1);
+    const data = imageData.data;
+    return {
+        r: data[0],
+        g: data[1],
+        b: data[2]
+    };
+}
+
+function colorsMatch(r1, g1, b1, targetColor, tolerance = 32) {
+    return Math.abs(r1 - targetColor.r) <= tolerance &&
+           Math.abs(g1 - targetColor.g) <= tolerance &&
+           Math.abs(b1 - targetColor.b) <= tolerance;
+}
+
+function hexToRgb(hex) {
     const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
     return result ? {
         r: parseInt(result[1], 16),
         g: parseInt(result[2], 16),
         b: parseInt(result[3], 16)
     } : null;
-  }
+}
 
-  // Update cursor style based on current tool
-  function updateCursor() {
+// History management
+function saveState() {
+    // Remove any states after current index
+    history = history.slice(0, historyIndex + 1);
+    // Add new state
+    history.push(canvas.toDataURL());
+    historyIndex = history.length - 1;
+    // Limit history size
+    if (history.length > 50) {
+        history.shift();
+        historyIndex--;
+    }
+}
+
+function undo() {
+    if (historyIndex > 0) {
+        historyIndex--;
+        const img = new Image();
+        img.onload = () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(img, 0, 0);
+        };
+        img.src = history[historyIndex];
+    }
+}
+
+function redo() {
+    if (historyIndex < history.length - 1) {
+        historyIndex++;
+        const img = new Image();
+        img.onload = () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(img, 0, 0);
+        };
+        img.src = history[historyIndex];
+    }
+}
+
+// Canvas size management
+function setCanvasSize(width, height) {
+    const tempCanvas = document.createElement('canvas');
+    const tempCtx = tempCanvas.getContext('2d');
+    tempCanvas.width = width;
+    tempCanvas.height = height;
+    
+    // Fill new canvas with white
+    tempCtx.fillStyle = '#FFFFFF';
+    tempCtx.fillRect(0, 0, width, height);
+    
+    // Copy existing content
+    tempCtx.drawImage(canvas, 0, 0);
+    
+    // Update canvas
+    canvas.width = width;
+    canvas.height = height;
+    ctx.drawImage(tempCanvas, 0, 0);
+    
+    saveState();
+}
+
+// Cursor update
+function updateCursor() {
     switch (currentTool) {
-      case 'fill':
-        mainCanvas.style.cursor = 'crosshair';
-        break;
-      case 'text':
-        mainCanvas.style.cursor = 'text';
-        break;
-      case 'eraser':
-        mainCanvas.style.cursor = 'cell';
-        break;
-      default:
-        mainCanvas.style.cursor = 'crosshair';
+        case 'pencil':
+        case 'brush':
+        case 'eraser':
+        case 'spray':
+            canvas.style.cursor = 'crosshair';
+            break;
+        case 'fill':
+            canvas.style.cursor = 'pointer';
+            break;
+        case 'rectangle':
+        case 'ellipse':
+        case 'line':
+            canvas.style.cursor = 'crosshair';
+            break;
+        case 'text':
+            canvas.style.cursor = 'text';
+            break;
+        default:
+            canvas.style.cursor = 'default';
     }
-  }
+}
 
-  // Drawing functions
-  function drawFreehand(points) {
-    if (points.length < 2) return;
-    
-    tempCtx.strokeStyle = currentColor;
-    tempCtx.lineWidth = brushSize;
-    tempCtx.lineCap = 'round';
-    tempCtx.lineJoin = 'round';
-    
-    // Draw the entire path for smoother lines
-    tempCtx.beginPath();
-    tempCtx.moveTo(points[0].x, points[0].y);
-    
-    // Use quadratic curves for smoother lines
-    for (let i = 1; i < points.length - 2; i++) {
-      const xc = (points[i].x + points[i + 1].x) / 2;
-      const yc = (points[i].y + points[i + 1].y) / 2;
-      tempCtx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
-    }
-    
-    // For the last two points
-    if (points.length > 2) {
-      tempCtx.quadraticCurveTo(
-        points[points.length - 2].x,
-        points[points.length - 2].y,
-        points[points.length - 1].x,
-        points[points.length - 1].y
-      );
-    } else {
-      tempCtx.lineTo(points[points.length - 1].x, points[points.length - 1].y);
-    }
-    
-    tempCtx.stroke();
-  }
+// Mouse position helper
+function getMousePos(e) {
+    const rect = canvas.getBoundingClientRect();
+    return [
+        e.clientX - rect.left,
+        e.clientY - rect.top
+    ];
+}
 
-  function drawBrush(points) {
-    if (points.length < 2) return;
-    
-    tempCtx.strokeStyle = currentColor;
-    tempCtx.lineWidth = brushSize * 2;
-    tempCtx.lineCap = 'round';
-    tempCtx.lineJoin = 'round';
-    
-    // Draw the entire path for smoother lines
-    tempCtx.beginPath();
-    tempCtx.moveTo(points[0].x, points[0].y);
-    
-    // Use bezier curves for smoother, more painterly strokes
-    for (let i = 1; i < points.length - 2; i++) {
-      const xc = (points[i].x + points[i + 1].x) / 2;
-      const yc = (points[i].y + points[i + 1].y) / 2;
-      const x1 = points[i].x;
-      const y1 = points[i].y;
-      const x2 = xc;
-      const y2 = yc;
-      
-      tempCtx.bezierCurveTo(
-        x1, y1,
-        x1, y1,
-        x2, y2
-      );
-    }
-    
-    // For the last two points
-    if (points.length > 2) {
-      tempCtx.bezierCurveTo(
-        points[points.length - 2].x,
-        points[points.length - 2].y,
-        points[points.length - 2].x,
-        points[points.length - 2].y,
-        points[points.length - 1].x,
-        points[points.length - 1].y
-      );
-    } else {
-      tempCtx.lineTo(points[points.length - 1].x, points[points.length - 1].y);
-    }
-    
-    tempCtx.stroke();
-  }
+// Event listeners
+canvas.addEventListener('mousedown', startDrawing);
+canvas.addEventListener('mousemove', draw);
+canvas.addEventListener('mouseup', stopDrawing);
+canvas.addEventListener('mouseout', stopDrawing);
 
-  function drawLine(startX, startY, endX, endY) {
-    tempCtx.strokeStyle = currentColor;
-    tempCtx.lineWidth = brushSize;
-    tempCtx.lineCap = 'round';
-    
-    tempCtx.beginPath();
-    tempCtx.moveTo(startX, startY);
-    tempCtx.lineTo(endX, endY);
-    tempCtx.stroke();
-  }
-
-  function drawRectangle(x, y, width, height) {
-    tempCtx.strokeStyle = currentColor;
-    tempCtx.lineWidth = brushSize;
-    tempCtx.strokeRect(x, y, width, height);
-  }
-
-  function drawCircle(startX, startY, endX, endY) {
-    const radiusX = Math.abs(endX - startX) / 2;
-    const radiusY = Math.abs(endY - startY) / 2;
-    const centerX = startX + (endX - startX) / 2;
-    const centerY = startY + (endY - startY) / 2;
-    
-    tempCtx.strokeStyle = currentColor;
-    tempCtx.lineWidth = brushSize;
-    
-    tempCtx.beginPath();
-    tempCtx.ellipse(centerX, centerY, radiusX, radiusY, 0, 0, Math.PI * 2);
-    tempCtx.stroke();
-  }
-
-  function showTextInput(e) {
-    const coords = getEventCoords(e);
-    
-    // Remove any existing text input
-    if (textInput) {
-        document.body.removeChild(textInput);
-    }
-    
-    // Create new text input
-    textInput = document.createElement('input');
-    textInput.type = 'text';
-    textInput.style.position = 'fixed';
-    textInput.style.left = coords.x + 'px';
-    textInput.style.top = coords.y + 'px';
-    textInput.style.font = brushSize + 'px Arial';
-    textInput.style.color = currentColor;
-    textInput.style.background = 'transparent';
-    textInput.style.border = '1px solid ' + currentColor;
-    textInput.style.outline = 'none';
-    textInput.style.minWidth = '50px';
-    textInput.style.zIndex = '1000000';
-    
-    document.body.appendChild(textInput);
-    textInput.focus();
-    
-    // Store click position for text placement
-    const textX = coords.x;
-    const textY = coords.y;
-    
-    function handleTextInput() {
-        const text = textInput.value.trim();
-        if (text) {
-            mainCtx.font = brushSize + 'px Arial';
-            mainCtx.fillStyle = currentColor;
-            mainCtx.fillText(text, textX, textY + brushSize);
-            saveState();
-        }
-        document.body.removeChild(textInput);
-        textInput = null;
-    }
-    
-    textInput.addEventListener('blur', handleTextInput);
-    textInput.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') {
-            handleTextInput();
-        } else if (e.key === 'Escape') {
-            document.body.removeChild(textInput);
-            textInput = null;
-        }
+canvas.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    const touch = e.touches[0];
+    const mouseEvent = new MouseEvent('mousedown', {
+        clientX: touch.clientX,
+        clientY: touch.clientY
     });
-  }
+    canvas.dispatchEvent(mouseEvent);
+});
 
-  // Update size preview when color changes
-  function updateCurrentColor(color) {
-    currentColor = color;
-    if (colorButton) {
-      colorButton.style.backgroundColor = currentColor;
-    }
-    if (mainCtx) {
-      mainCtx.strokeStyle = currentColor;
-      mainCtx.fillStyle = currentColor;
-    }
-    // Update size preview dot color
-    if (sizePreview && currentTool !== 'eraser') {
-      sizePreview.style.backgroundColor = currentColor;
-    }
-  }
-
-  // Tool button event listeners
-  document.querySelectorAll('.paint-tool').forEach(tool => {
-    tool.addEventListener('click', () => {
-      document.querySelectorAll('.paint-tool').forEach(t => t.classList.remove('active'));
-      tool.classList.add('active');
-      setActiveTool(tool.dataset.tool);
+canvas.addEventListener('touchmove', (e) => {
+    e.preventDefault();
+    const touch = e.touches[0];
+    const mouseEvent = new MouseEvent('mousemove', {
+        clientX: touch.clientX,
+        clientY: touch.clientY
     });
-  });
+    canvas.dispatchEvent(mouseEvent);
+});
 
-  // Update size control styling
-  if (sizeControl) {
-    sizeControl.style.position = 'fixed';
-    sizeControl.style.display = 'none';
-    sizeControl.style.padding = '10px';
-    sizeControl.style.background = '#c0c0c8';
-    sizeControl.style.border = '1px solid #808080';
-    sizeControl.style.borderRadius = '0';
-    sizeControl.style.boxShadow = '2px 2px 5px rgba(0,0,0,0.2)';
-    sizeControl.style.width = '150px';
-    sizeControl.style.zIndex = '999999';
-  }
+canvas.addEventListener('touchend', (e) => {
+    e.preventDefault();
+    const mouseEvent = new MouseEvent('mouseup', {});
+    canvas.dispatchEvent(mouseEvent);
+});
 
-  // Close size control when clicking outside
-  document.addEventListener('click', (e) => {
-    const sizeControl = document.querySelector('.size-control');
-    const activeTool = document.querySelector('.paint-tool.active');
-    if (sizeControl && activeTool && 
-        !sizeControl.contains(e.target) && 
-        !activeTool.contains(e.target)) {
-        sizeControl.style.display = 'none';
-    }
-  });
+// Category buttons
+const categoryButtons = document.querySelectorAll('.category-button');
+const categoryItems = document.querySelectorAll('.category-items');
 
-  // Initialize clothing items
-  const paintItems = document.querySelectorAll('.paint-item');
-  const paintCanvas = document.querySelector('.paint-canvas-container');
-  
-  // Set up the canvas container
-  paintCanvas.style.position = 'relative';
-  
-  // Create overlay container
-  let overlayContainer = document.querySelector('.overlay-container');
-  if (!overlayContainer) {
-    overlayContainer = document.createElement('div');
-    overlayContainer.className = 'overlay-container';
-    paintCanvas.appendChild(overlayContainer);
-  }
+categoryButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const category = button.getAttribute('data-category');
+        
+        // Update active button
+        categoryButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        
+        // Show selected category items
+        categoryItems.forEach(items => {
+            if (items.getAttribute('data-category') === category) {
+                items.style.display = 'flex';
+            } else {
+                items.style.display = 'none';
+            }
+        });
+    });
+});
 
-  // Remove all existing event listeners
-  paintItems.forEach(item => {
-    const clone = item.cloneNode(true);
-    item.parentNode.replaceChild(clone, item);
-  });
+// Clothing items
+const clothingItems = document.querySelectorAll('.clothing-item');
+let activeOverlay = null;
 
-  // Simple click handler for clothing items
-  document.querySelectorAll('.paint-item').forEach(item => {
-    item.addEventListener('click', function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      
-      const overlayPath = this.getAttribute('data-overlay');
-      const type = this.getAttribute('title');
-      
-      // Find existing overlay
-      const existingOverlay = overlayContainer.querySelector(`img[src="${overlayPath}"]`);
-      
-      if (existingOverlay) {
-        // If overlay exists, fade it out and remove it
-        existingOverlay.style.opacity = '0';
-        setTimeout(() => {
-          existingOverlay.remove();
-        }, 300);
-        this.classList.remove('active');
-      } else {
-        // Create new overlay
+clothingItems.forEach(item => {
+    item.addEventListener('click', () => {
+        const overlayPath = item.getAttribute('data-overlay');
+        
+        // Remove existing overlay if clicking the same item
+        if (activeOverlay && activeOverlay.src.endsWith(overlayPath)) {
+            activeOverlay.style.opacity = '0';
+            setTimeout(() => {
+                if (activeOverlay && activeOverlay.parentNode) {
+                    activeOverlay.parentNode.removeChild(activeOverlay);
+                }
+                activeOverlay = null;
+            }, 300);
+            return;
+        }
+        
+        // Remove previous overlay
+        if (activeOverlay) {
+            activeOverlay.style.opacity = '0';
+            setTimeout(() => {
+                if (activeOverlay && activeOverlay.parentNode) {
+                    activeOverlay.parentNode.removeChild(activeOverlay);
+                }
+            }, 300);
+        }
+        
+        // Create and add new overlay
         const overlay = document.createElement('img');
         overlay.src = overlayPath;
-        overlay.alt = 'Overlay';
         overlay.style.position = 'absolute';
         overlay.style.top = '50%';
         overlay.style.left = '50%';
@@ -1110,169 +453,30 @@ document.addEventListener('DOMContentLoaded', () => {
         overlay.style.width = '80%';
         overlay.style.height = '80%';
         overlay.style.objectFit = 'contain';
+        overlay.style.zIndex = '1002';
         overlay.style.pointerEvents = 'none';
         overlay.style.opacity = '0';
-        overlay.style.transition = 'opacity 0.3s ease-in-out';
+        overlay.style.transition = 'opacity 0.3s ease';
         
-        // Set z-index based on type
-        if (type.includes('jewellery') || type.includes('necklace') || type.includes('pearls')) {
-            overlay.style.zIndex = '1004';
-        } else if (type.includes('cardigan')) {
-            overlay.style.zIndex = '1003';
-        } else if (type.includes('hair') || type.includes('plait')) {
-            overlay.style.zIndex = '1002';
-        } else if (type.includes('dress') || type.includes('top') || type.includes('skirt') || type.includes('outfit')) {
-            overlay.style.zIndex = '1001';
-        } else {
-            overlay.style.zIndex = '1000';  // shoes, boots, trainers, heels, loafers, bag
-        }
+        overlay.onload = () => {
+            overlay.style.opacity = '1';
+        };
         
-        // Add overlay and activate button
         overlayContainer.appendChild(overlay);
-        this.classList.add('active');
-        
-        // Force reflow to ensure transition works
-        overlay.offsetHeight;
-        
-        // Fade in the new overlay
-        overlay.style.opacity = '1';
-      }
+        activeOverlay = overlay;
     });
-  });
+});
 
-  // Category navigation
-  const categoryButtons = document.querySelectorAll('.category-btn');
-  const categoryItems = document.querySelectorAll('.category-items');
-  
-  categoryButtons.forEach(button => {
-    button.addEventListener('click', function() {
-      // Remove active class from all buttons
-      categoryButtons.forEach(btn => btn.classList.remove('active'));
-      // Add active class to clicked button
-      this.classList.add('active');
-      
-      const category = this.getAttribute('data-category');
-      
-      // Hide all category items
-      categoryItems.forEach(items => {
-        items.style.display = 'none';
-      });
-      
-      // Show selected category items
-      document.querySelector(`.category-items[data-category="${category}"]`).style.display = 'flex';
-    });
-  });
-
-  // Handle clothing item clicks
-  document.querySelectorAll('.clothing-item').forEach(item => {
-    item.addEventListener('click', function() {
-      const overlayPath = this.getAttribute('data-overlay');
-      handleClothingClick(overlayPath);
-    });
-
-    // Add touch event handling for mobile
-    let touchStartY = 0;
-    let touchStartX = 0;
-    let isScrolling = false;
-
-    item.addEventListener('touchstart', function(e) {
-      touchStartY = e.touches[0].clientY;
-      touchStartX = e.touches[0].clientX;
-      isScrolling = false;
-    });
-
-    item.addEventListener('touchmove', function(e) {
-      const touchY = e.touches[0].clientY;
-      const touchX = e.touches[0].clientX;
-      const deltaY = Math.abs(touchY - touchStartY);
-      const deltaX = Math.abs(touchX - touchStartX);
-
-      // If vertical movement is greater than horizontal, it's a scroll
-      if (deltaY > deltaX && deltaY > 10) {
-        isScrolling = true;
-        e.preventDefault(); // Prevent click if scrolling
-      }
-    });
-
-    item.addEventListener('touchend', function(e) {
-      if (!isScrolling) {
-        const overlayPath = this.getAttribute('data-overlay');
-        handleClothingClick(overlayPath);
-      }
-    });
-  });
-
-  // Handle category button clicks
-  document.querySelectorAll('.category-btn').forEach(button => {
-    button.addEventListener('click', function() {
-      // Remove active class from all buttons
-      document.querySelectorAll('.category-btn').forEach(btn => {
-        btn.classList.remove('active');
-      });
-      // Add active class to clicked button
-      this.classList.add('active');
-      
-      // Hide all category items
-      document.querySelectorAll('.category-items').forEach(items => {
-        items.style.display = 'none';
-      });
-      
-      // Show selected category items
-      const category = this.getAttribute('data-category');
-      document.querySelector(`.category-items[data-category="${category}"]`).style.display = 'flex';
-    });
-
-    // Add touch event handling for mobile
-    button.addEventListener('touchend', function(e) {
-      // Remove active class from all buttons
-      document.querySelectorAll('.category-btn').forEach(btn => {
-        btn.classList.remove('active');
-      });
-      // Add active class to clicked button
-      this.classList.add('active');
-      
-      // Hide all category items
-      document.querySelectorAll('.category-items').forEach(items => {
-        items.style.display = 'none';
-      });
-      
-      // Show selected category items
-      const category = this.getAttribute('data-category');
-      document.querySelector(`.category-items[data-category="${category}"]`).style.display = 'flex';
-    });
-  });
-
-  function handleClothingClick(overlayPath) {
-    const overlayContainer = document.querySelector('.overlay-container');
-    
-    // Check if there's an existing overlay
-    const existingOverlay = overlayContainer.querySelector(`img[src="${overlayPath}"]`);
-    if (existingOverlay) {
-      // If the same overlay is clicked again, remove it
-      if (existingOverlay.src.includes(overlayPath)) {
-        existingOverlay.style.opacity = '0';
-        setTimeout(() => {
-          existingOverlay.remove();
-        }, 300); // Match the transition duration
-        return;
-      }
-      // Otherwise, fade out the existing overlay
-      existingOverlay.style.opacity = '0';
-      setTimeout(() => {
-        existingOverlay.remove();
-      }, 300);
+// Keyboard shortcuts
+document.addEventListener('keydown', (e) => {
+    if (e.ctrlKey || e.metaKey) {
+        switch (e.key) {
+            case 'z':
+                undo();
+                break;
+            case 'y':
+                redo();
+                break;
+        }
     }
-    
-    // Create and add new overlay
-    const overlay = document.createElement('img');
-    overlay.src = overlayPath;
-    overlay.style.opacity = '0';
-    overlayContainer.appendChild(overlay);
-    
-    // Trigger reflow
-    overlay.offsetHeight;
-    
-    // Fade in the new overlay
-    overlay.style.opacity = '1';
-  }
 }); 

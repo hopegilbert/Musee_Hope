@@ -27,6 +27,125 @@ body {
     flex-direction: column;
 }
 
+.title-bar {
+    background: linear-gradient(to right, #000080, #1084d0);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 3px 4px 4px;
+    user-select: none;
+}
+
+.title-bar-text {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: bold;
+}
+
+.title-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.title-bar-controls {
+    display: flex;
+    gap: 3px;
+}
+
+.title-bar-controls button {
+    width: 22px;
+    height: 18px;
+    background: #c0c0c0;
+    border: 1px solid #ffffff;
+    border-right-color: #000000;
+    border-bottom-color: #000000;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Tahoma', sans-serif;
+    font-size: 12px;
+    color: #000000;
+    cursor: pointer;
+}
+
+.title-bar-controls button:hover {
+    background: #d4d0c8;
+}
+
+.menu-bar {
+    background: #c0c0c8;
+    padding: 2px;
+    display: flex;
+    border-bottom: 1px solid #808080;
+}
+
+.menu-item {
+    padding: 2px 8px;
+    cursor: pointer;
+    position: relative;
+}
+
+.menu-item:hover {
+    background-color: #1084d0;
+    color: white;
+}
+
+.menu-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #f0f0f0;
+    border: 1px solid #808080;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    padding: 4px;
+}
+
+.menu-item:hover .menu-dropdown {
+    display: block;
+}
+
+.menu-dropdown button {
+    display: block;
+    width: 100%;
+    padding: 4px 8px;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.menu-dropdown button:hover {
+    background-color: #1084d0;
+    color: white;
+}
+
+.color-grid {
+    display: grid;
+    grid-template-columns: repeat(8, 20px);
+    gap: 2px;
+    padding: 4px;
+}
+
+.color-box {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #808080;
+    cursor: pointer;
+}
+
+.color-box:hover {
+    border: 1px solid #000000;
+}
+
+.color-box.selected {
+    border: 2px solid #000;
+}
+
 .paint-header {
     padding: 10px;
     background-color: #f0f0f0;
@@ -203,6 +322,15 @@ body {
     .clothing-item {
         width: 60px;
         height: 60px;
+    }
+
+    .menu-bar {
+        overflow-x: auto;
+    }
+
+    .title-bar-controls button {
+        width: 30px;
+        height: 24px;
     }
 }
 
