@@ -1115,14 +1115,16 @@ document.addEventListener('DOMContentLoaded', () => {
         overlay.style.transition = 'opacity 0.3s ease-in-out';
         
         // Set z-index based on type
-        if (type.includes('jewellery') || type.includes('necklace') || type.includes('sunflower')) {
-          overlay.style.zIndex = '1004';
+        if (type.includes('jewellery') || type.includes('necklace') || type.includes('pearls')) {
+            overlay.style.zIndex = '1004';
+        } else if (type.includes('cardigan')) {
+            overlay.style.zIndex = '1003';
         } else if (type.includes('hair') || type.includes('plait')) {
-          overlay.style.zIndex = '1002';
-        } else if (type.includes('dress') || type.includes('top') || type.includes('skirt')) {
-          overlay.style.zIndex = '1001';
+            overlay.style.zIndex = '1002';
+        } else if (type.includes('dress') || type.includes('top') || type.includes('skirt') || type.includes('outfit')) {
+            overlay.style.zIndex = '1001';
         } else {
-          overlay.style.zIndex = '1003';  // shoes, boots, trainers, converse
+            overlay.style.zIndex = '1000';  // shoes, boots, trainers, heels, loafers, bag
         }
         
         // Add overlay and activate button
