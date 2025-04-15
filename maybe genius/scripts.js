@@ -1,3 +1,5 @@
+console.log("Script loaded!");
+
 // Single event listener for dropdown functionality
 document.addEventListener('DOMContentLoaded', function() {
     const dropdownBtn = document.getElementById('researchDropdown');
