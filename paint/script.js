@@ -28,8 +28,8 @@ function resizeCanvas() {
 window.addEventListener('load', () => {
     resizeCanvas();
     document.querySelector('.tool[data-tool="pencil"]').classList.add('active');
-    saveState();
     createTextBox();
+    saveState();
 });
 
 window.addEventListener('resize', resizeCanvas);
@@ -79,8 +79,8 @@ function startDrawing(e) {
     if (currentTool === 'text') {
         const rect = canvas.getBoundingClientRect();
         textBox.style.display = 'block';
-        textBox.style.left = (e.clientX - rect.left) + 'px';
-        textBox.style.top = (e.clientY - rect.top) + 'px';
+        textBox.style.left = e.clientX + 'px';
+        textBox.style.top = e.clientY + 'px';
         textBox.style.fontSize = (currentSize * 12) + 'px';
         textBox.style.color = currentColor;
         textBox.focus();
@@ -100,14 +100,14 @@ function draw(e) {
     
     const [x, y] = getMousePos(e);
     
-    ctx.strokeStyle = currentColor;
-    ctx.fillStyle = currentColor;
-    ctx.lineCap = 'round';
-    ctx.lineJoin = 'round';
-    
     if (['rectangle', 'ellipse', 'line'].includes(currentTool)) {
         ctx.putImageData(drawingSurface, 0, 0);
     }
+    
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.strokeStyle = currentColor;
+    ctx.fillStyle = currentColor;
     
     switch (currentTool) {
         case 'pencil':
@@ -120,28 +120,23 @@ function draw(e) {
             break;
             
         case 'brush':
-            ctx.lineWidth = currentSize * 3;
+            // Main stroke
+            ctx.lineWidth = currentSize * 5;
+            ctx.globalAlpha = 1;
             ctx.beginPath();
             ctx.moveTo(lastX, lastY);
             ctx.lineTo(x, y);
             ctx.stroke();
             
-            // Add additional strokes for brush effect
-            ctx.globalAlpha = 0.5;
-            ctx.lineWidth = currentSize * 2;
+            // Softer, wider stroke
+            ctx.lineWidth = currentSize * 8;
+            ctx.globalAlpha = 0.2;
             ctx.beginPath();
             ctx.moveTo(lastX, lastY);
             ctx.lineTo(x, y);
             ctx.stroke();
             
-            ctx.globalAlpha = 0.3;
-            ctx.lineWidth = currentSize * 4;
-            ctx.beginPath();
-            ctx.moveTo(lastX, lastY);
-            ctx.lineTo(x, y);
-            ctx.stroke();
-            
-            ctx.globalAlpha = 1.0;
+            ctx.globalAlpha = 1;
             [lastX, lastY] = [x, y];
             break;
             
@@ -542,7 +537,7 @@ function createTextBox() {
         }
     });
     
-    canvas.parentElement.appendChild(textBox);
+    document.body.appendChild(textBox);
 }
 
 function finalizeText() {
