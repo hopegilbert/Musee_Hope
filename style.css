@@ -378,3 +378,54 @@ footer p {
   grid-row: span 3;
   grid-column: span 2;
 }
+
+.fashionistaframe .hover-button,
+.samframe .hover-button,
+.paintingframe .hover-button {
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #f5e8c7;
+    color: #821818;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 25px;
+    font-family: 'Lora', serif;
+    font-size: 1rem;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    z-index: 3;
+    cursor: pointer;
+}
+
+.fashionistaframe .image-wrapper:hover .hover-button,
+.samframe .image-wrapper:hover .hover-button,
+.paintingframe .image-wrapper:hover .hover-button {
+    opacity: 1;
+    transform: translate(-50%, -52%);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.fashionistaframe .hover-button:hover,
+.samframe .hover-button:hover,
+.paintingframe .hover-button:hover {
+    background-color: #dbc692;
+}
+
+.fashionistaframe .image-wrapper:hover img,
+.samframe .image-wrapper:hover img,
+.paintingframe .image-wrapper:hover img {
+    filter: brightness(50%);
+}
+
+@media (max-width: 768px) {
+    .fashionistaframe .hover-button,
+    .samframe .hover-button,
+    .paintingframe .hover-button {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+    }
+}
