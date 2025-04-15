@@ -142,6 +142,7 @@ html, body {
     max-width: 90%;
     object-fit: contain;
     cursor: default;
+    pointer-events: none;
 }
 
 .overlay-container {
@@ -251,6 +252,7 @@ html, body {
     background: #c0c0c0;
     border: 1px solid;
     border-color: #808080 #ffffff #ffffff #808080;
+    justify-content: start;
 }
 
 .color {
@@ -265,9 +267,10 @@ html, body {
     border-color: #808080 #ffffff #ffffff #808080;
 }
 
-/* Remove scale control styles */
-.scale-control {
-    display: none;
+/* Remove all scaling/dragging related styles */
+.scale-control,
+.draggable-control {
+    display: none !important;
 }
 
 .status-bar {
