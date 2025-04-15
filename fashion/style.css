@@ -244,19 +244,18 @@ html, body {
     position: absolute;
     left: 34px;
     bottom: 23px;
-    width: 196px;
-    height: 64px;
+    width: 112px;  /* 7 columns * 16px */
+    height: 64px;  /* 4 rows * 16px */
     display: grid;
-    grid-template-columns: repeat(7, 28px);
+    grid-template-columns: repeat(7, 16px);
     grid-template-rows: repeat(4, 16px);
     background: #c0c0c0;
     border: 1px solid;
     border-color: #808080 #ffffff #ffffff #808080;
-    justify-content: start;
 }
 
 .color {
-    width: 28px;
+    width: 16px;
     height: 16px;
     border: 1px solid;
     border-color: #ffffff #808080 #808080 #ffffff;
