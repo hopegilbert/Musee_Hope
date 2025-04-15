@@ -375,6 +375,7 @@ footer {
 
 .dropdown-content.show {
     display: block;
+    max-height: 500px;
 }
 
 .dropdown-content a {
@@ -389,14 +390,6 @@ footer {
 .dropdown-content a:hover {
     background: rgba(245, 232, 199, 0.1);
     transform: translateX(5px);
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-.dropdown:hover .dropdown-btn {
-    color: white;
 }
 
 .dropdown-btn.selected {
