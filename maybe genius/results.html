@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Results - Dissertation</title>
+    <title>Results - Maybe Genius</title>
     <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Inter:wght@400;500;600;700;800&family=Lora:wght@400;500;600;700&family=Schoolbell&family=Special+Elite&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        .section-content {
+        .dissertation-content {
             background: rgba(0, 0, 0, 0.6);
             padding: 40px;
             margin: 40px auto;
@@ -16,7 +16,7 @@
             position: relative;
         }
 
-        .section-content::before {
+        .dissertation-content::before {
             content: '';
             position: absolute;
             top: 0;
@@ -33,7 +33,7 @@
             z-index: 1;
         }
 
-        .section-content::after {
+        .dissertation-content::after {
             content: '';
             position: absolute;
             top: -4px;
@@ -50,7 +50,7 @@
             z-index: 1;
         }
 
-        .section-text {
+        .dissertation-text {
             position: relative;
             z-index: 2;
             color: #f5f2e7;
@@ -58,27 +58,44 @@
             line-height: 1.6;
         }
 
-        .section-text h1 {
+        .dissertation-text h1, .dissertation-text h2 {
             font-family: 'Fredericka the Great', cursive;
             text-align: center;
             margin-bottom: 30px;
             color: #f5f2e7;
         }
 
-        .section-text h2 {
-            font-family: 'Fredericka the Great', cursive;
+        .dissertation-text h2 {
+            text-align: left;
+            font-size: 1.5em;
             margin: 30px 0 15px;
-            color: #f5f2e7;
         }
 
-        .section-text p {
+        .dissertation-text p {
             margin-bottom: 15px;
         }
 
+        .graph-placeholder {
+            width: 100%;
+            height: 400px;
+            margin: 30px 0;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+        }
+
+        .graph-placeholder::after {
+            content: 'Graph will be added here';
+            color: rgba(255, 255, 255, 0.6);
+            font-family: 'Fredericka the Great', cursive;
+        }
+
         .nav-links {
+            margin-top: 30px;
             display: flex;
             justify-content: space-between;
-            margin-top: 40px;
         }
 
         .nav-links a {
@@ -87,6 +104,7 @@
             font-family: 'Fredericka the Great', cursive;
             padding: 10px 20px;
             position: relative;
+            display: inline-block;
         }
 
         .nav-links a::before {
@@ -130,28 +148,29 @@
             <a href="dissertation.html">BACK TO DISSERTATION</a>
         </nav>
 
-        <div class="section-content">
-            <div class="section-text">
+        <div class="dissertation-content">
+            <div class="dissertation-text">
                 <h1>Results</h1>
-                
-                <h2>Response Time Analysis</h2>
-                <p>The analysis of response times revealed significant differences between conditions (F(2, 238) = 15.67, p < .001). Participants were faster to make judgments about object shape (M = 450ms, SD = 120ms) compared to material properties (M = 520ms, SD = 140ms).</p>
 
-                <h2>Eye-Tracking Data</h2>
-                <p>Eye-tracking analysis showed distinct patterns of visual attention for different object properties. Participants spent more time fixating on edges and contours when judging shape (M = 65% of viewing time) compared to material properties (M = 45% of viewing time).</p>
+                <p>The points on the graph represent the proportion of trials where the participant identified the displayed ellipse on the screen as rounder than their experience of shape of the rim of the mug. The cumulative Gaussian curve fitted to these data allows us to estimate their subjective experience (the shape corresponding to the mean of the Gaussian) and the uncertainty in their decisions (the variance of the Gaussian), highlighting a gradual transition rather than a sharp change, which would indicate an absolute threshold.</p>
 
-                <h2>Individual Differences</h2>
-                <p>Significant individual differences were observed in both response times and eye movement patterns. These differences were correlated with participants' prior experience with 3D visualization tasks (r = .42, p < .01).</p>
+                <div class="graph-placeholder" id="graph1"></div>
 
-                <h2>Neural Correlates</h2>
-                <p>Analysis of the neural data revealed distinct activation patterns in the ventral visual stream for shape perception and material property estimation. These patterns were consistent across participants and showed temporal differences in their onset.</p>
+                <p>The point where the fitted curve intersects the 50% mark represents the point of subjective equality (PSE), where participants would make an equal number of 'rounder' and 'not rounder' judgments. This point indicates where the shape on the screen matches the participants' experience of roundness. An PSE value of 5 in the 9 step set of stimuli we used would be expected if participants had perfect judgment, as this value represents the true point where the ellipse on the screen matches the actual shape.</p>
+
+                <h2>Participant 1</h2>
+                <p>The analysis of the 20-degree trials for Participant 1 reveals that the point of subjective equality (PSE) indicates an experience of equality when the ellipse is actually rounder, aligning with Thouless's findings. The true value of the point of objective equality falls significantly outside the 95% confidence interval (CI) of the PSE. This lack of overlap indicates a statistically significant deviation from objective equality, underscoring a systematic bias in perception.</p>
+
+                <div class="graph-placeholder" id="graph2"></div>
 
                 <div class="nav-links">
-                    <a href="methodology.html">Previous: Methodology</a>
-                    <a href="discussion.html">Next: Discussion</a>
+                    <a href="methodology.html">← Methodology</a>
+                    <a href="discussion.html">Discussion →</a>
                 </div>
             </div>
         </div>
     </div>
+
+    <script src="scripts.js"></script>
 </body>
 </html> 
