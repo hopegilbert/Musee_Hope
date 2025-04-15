@@ -147,7 +147,7 @@ html, body {
     top: 0;
     left: 0;
     right: 200px;
-    bottom: calc(5vh + 32px);
+    bottom: 55px;
     background-color: #ffffff;
     border: 1px solid #808080;
     overflow: hidden;
@@ -274,12 +274,10 @@ html, body {
     background-color: #d4d0c8;
     border: 1px solid #808080;
     width: 280px;
-    height: calc(4vh + 24px);
-    min-height: 32px;
-    max-height: 40px;
+    height: 35px;
     position: absolute;
-    bottom: 5px;
-    left: 35px;
+    bottom: 20px;
+    left: 2px;
 }
 
 .color {
@@ -304,7 +302,17 @@ html, body {
 }
 
 .status-bar {
-    display: none;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 200px;
+    height: 20px;
+    background: #d4d0c8;
+    border-top: 1px solid #808080;
+    display: flex;
+    justify-content: space-between;
+    padding: 2px 8px;
+    font-size: 11px;
 }
 
 /* Custom scrollbar styling */
@@ -559,17 +567,23 @@ html, body {
 
     .canvas-container {
         right: 120px;
-        bottom: calc(4vh + 28px);
+        bottom: 55px;
     }
 
     .color-palette {
         width: 200px;
-        height: calc(3vh + 22px);
-        min-height: 28px;
-        max-height: 36px;
-        left: 34px;
-        bottom: 4px;
+        height: 35px;
+        left: 2px;
+        bottom: 20px;
         grid-template-columns: repeat(10, 1fr);
+    }
+
+    .status-bar {
+        right: 120px;
+    }
+
+    .items-sidebar {
+        width: 120px;
     }
 
     .window {
@@ -584,13 +598,11 @@ html, body {
 
 @media (max-height: 600px) {
     .canvas-container {
-        bottom: calc(3vh + 24px);
+        bottom: 45px;
     }
 
     .color-palette {
-        height: calc(2vh + 20px);
-        min-height: 24px;
-        max-height: 32px;
-        bottom: 3px;
+        height: 25px;
+        bottom: 20px;
     }
 } 
