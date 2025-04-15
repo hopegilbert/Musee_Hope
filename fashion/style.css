@@ -238,10 +238,10 @@ html, body {
     position: absolute;
     left: 34px;
     bottom: 23px;
-    width: 196px;
+    width: calc(100% - 236px);  /* Subtracting toolbar width (32px + 2px margin) and sidebar width (200px + 2px margin) */
     height: 32px;
     display: grid;
-    grid-template-columns: repeat(14, 14px);
+    grid-template-columns: repeat(28, 1fr);
     grid-template-rows: repeat(2, 16px);
     background: #c0c0c0;
     border: 1px solid;
@@ -249,7 +249,7 @@ html, body {
 }
 
 .color {
-    width: 14px;
+    width: 100%;
     height: 16px;
     border: 1px solid;
     border-color: #808080 #ffffff #ffffff #808080;
