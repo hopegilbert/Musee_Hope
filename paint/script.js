@@ -25,11 +25,14 @@ let currentSize = 1;
 let drawingSurface = null;
 let history = [];
 let historyIndex = -1;
+let textBox = null;
 
 // Initialize
 window.addEventListener('load', () => {
     resizeCanvas();
     document.querySelector('.tool[data-tool="pencil"]').classList.add('active');
+    saveState();
+    createTextBox();
 });
 
 window.addEventListener('resize', resizeCanvas);
@@ -78,69 +81,131 @@ function startDrawing(e) {
     isDrawing = true;
     [lastX, lastY] = getMousePos(e);
     
-    // Save the current canvas state for shape tools
-    if (['rectangle', 'ellipse', 'line'].includes(currentTool)) {
+    if (currentTool === 'text') {
+        const rect = canvas.getBoundingClientRect();
+        textBox.style.display = 'block';
+        textBox.style.left = (e.clientX - rect.left) + 'px';
+        textBox.style.top = (e.clientY - rect.top) + 'px';
+        textBox.style.fontSize = (currentSize * 12) + 'px';
+        textBox.style.color = currentColor;
+        textBox.focus();
+        return;
+    }
+    
+    // Save initial state for shape tools and brush
+    if (['rectangle', 'ellipse', 'line', 'brush'].includes(currentTool)) {
         drawingSurface = ctx.getImageData(0, 0, canvas.width, canvas.height);
     }
     
-    if (currentTool === 'text') {
-        const text = prompt('Enter text:');
-        if (text) {
-            ctx.font = `${currentSize * 12}px Arial`;
-            ctx.fillStyle = currentColor;
-            ctx.fillText(text, lastX, lastY);
-            saveState();
-        }
-    } else if (currentTool === 'fill') {
-        floodFill(lastX, lastY);
+    if (currentTool === 'fill') {
+        floodFill(Math.floor(lastX), Math.floor(lastY));
         saveState();
     } else if (currentTool === 'colorpicker') {
-        const pixel = ctx.getImageData(lastX, lastY, 1, 1).data;
+        const pixel = ctx.getImageData(Math.floor(lastX), Math.floor(lastY), 1, 1).data;
         currentColor = `rgb(${pixel[0]}, ${pixel[1]}, ${pixel[2]})`;
         document.querySelector('.tool[data-tool="pencil"]').click();
     }
 }
 
 function draw(e) {
-    if (!isDrawing) return;
+    if (!isDrawing || currentTool === 'text') return;
     
     const [x, y] = getMousePos(e);
     
-    if (['rectangle', 'ellipse', 'line'].includes(currentTool)) {
-        // Restore the saved state before drawing the new shape
+    // Restore canvas for preview of shapes and brush
+    if (['rectangle', 'ellipse', 'line', 'brush'].includes(currentTool)) {
         ctx.putImageData(drawingSurface, 0, 0);
     }
     
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.strokeStyle = currentColor;
+    ctx.fillStyle = currentColor;
+    
     switch (currentTool) {
         case 'pencil':
-            drawPencil(x, y);
+            ctx.lineWidth = currentSize;
+            ctx.beginPath();
+            ctx.moveTo(lastX, lastY);
+            ctx.lineTo(x, y);
+            ctx.stroke();
+            [lastX, lastY] = [x, y];
             break;
-        case 'eraser':
-            drawEraser(x, y);
+            
+        case 'brush':
+            ctx.lineWidth = currentSize * 5;
+            ctx.beginPath();
+            ctx.moveTo(lastX, lastY);
+            ctx.lineTo(x, y);
+            ctx.stroke();
+            [lastX, lastY] = [x, y];
             break;
-        case 'spray':
-            drawSpray(x, y);
-            break;
+            
         case 'rectangle':
-            drawRectangle(x, y);
+            ctx.lineWidth = currentSize;
+            const width = x - lastX;
+            const height = y - lastY;
+            if (e.shiftKey) {
+                // Draw square
+                const size = Math.max(Math.abs(width), Math.abs(height));
+                const signX = width >= 0 ? 1 : -1;
+                const signY = height >= 0 ? 1 : -1;
+                ctx.strokeRect(lastX, lastY, size * signX, size * signY);
+            } else {
+                ctx.strokeRect(lastX, lastY, width, height);
+            }
             break;
+            
         case 'ellipse':
-            drawEllipse(x, y);
+            ctx.lineWidth = currentSize;
+            if (e.shiftKey) {
+                // Draw circle
+                const radius = Math.max(Math.abs(x - lastX), Math.abs(y - lastY)) / 2;
+                const centerX = lastX + (x - lastX) / 2;
+                const centerY = lastY + (y - lastY) / 2;
+                ctx.beginPath();
+                ctx.ellipse(centerX, centerY, radius, radius, 0, 0, Math.PI * 2);
+            } else {
+                const radiusX = Math.abs(x - lastX) / 2;
+                const radiusY = Math.abs(y - lastY) / 2;
+                const centerX = lastX + (x - lastX) / 2;
+                const centerY = lastY + (y - lastY) / 2;
+                ctx.beginPath();
+                ctx.ellipse(centerX, centerY, radiusX, radiusY, 0, 0, Math.PI * 2);
+            }
+            ctx.stroke();
             break;
+            
         case 'line':
-            drawLine(x, y);
+            ctx.lineWidth = currentSize;
+            ctx.beginPath();
+            if (e.shiftKey) {
+                // Draw straight line (horizontal, vertical, or 45 degrees)
+                const dx = x - lastX;
+                const dy = y - lastY;
+                if (Math.abs(dx) > Math.abs(dy)) {
+                    ctx.moveTo(lastX, lastY);
+                    ctx.lineTo(x, lastY);
+                } else {
+                    ctx.moveTo(lastX, lastY);
+                    ctx.lineTo(lastX, y);
+                }
+            } else {
+                ctx.moveTo(lastX, lastY);
+                ctx.lineTo(x, y);
+            }
+            ctx.stroke();
             break;
     }
-    
-    [lastX, lastY] = [x, y];
 }
 
 function stopDrawing() {
-    if (isDrawing) {
-        isDrawing = false;
-        if (['rectangle', 'ellipse', 'line', 'pencil', 'eraser', 'spray'].includes(currentTool)) {
-            saveState();
-        }
+    if (!isDrawing) return;
+    isDrawing = false;
+    
+    // Save state after drawing is complete
+    if (['rectangle', 'ellipse', 'line', 'pencil', 'brush', 'eraser', 'spray'].includes(currentTool)) {
+        saveState();
     }
 }
 
@@ -254,9 +319,16 @@ function hexToRgba(hex) {
 // History management
 function saveState() {
     const state = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    // Remove any redo states
     history = history.slice(0, historyIndex + 1);
     history.push(state);
     historyIndex++;
+    
+    // Limit history size to prevent memory issues
+    if (history.length > 50) {
+        history.shift();
+        historyIndex--;
+    }
 }
 
 function undo() {
@@ -277,19 +349,22 @@ function redo() {
 function updateCursor() {
     switch (currentTool) {
         case 'pencil':
-            canvas.style.cursor = 'crosshair';
+            canvas.style.cursor = 'url("images/pencil-cursor.png") 0 16, crosshair';
             break;
         case 'eraser':
-            canvas.style.cursor = 'cell';
+            canvas.style.cursor = 'url("images/eraser-cursor.png") 8 8, cell';
             break;
         case 'fill':
-            canvas.style.cursor = 'crosshair';
+            canvas.style.cursor = 'url("images/fill-cursor.png") 8 8, crosshair';
+            break;
+        case 'colorpicker':
+            canvas.style.cursor = 'url("images/colorpicker-cursor.png") 0 16, crosshair';
             break;
         case 'text':
             canvas.style.cursor = 'text';
             break;
-        case 'colorpicker':
-            canvas.style.cursor = 'crosshair';
+        case 'spray':
+            canvas.style.cursor = 'url("images/spray-cursor.png") 0 16, crosshair';
             break;
         default:
             canvas.style.cursor = 'crosshair';
@@ -425,4 +500,40 @@ document.addEventListener('keydown', (e) => {
                 break;
         }
     }
-}); 
+});
+
+function createTextBox() {
+    textBox = document.createElement('div');
+    textBox.contentEditable = true;
+    textBox.style.position = 'absolute';
+    textBox.style.display = 'none';
+    textBox.style.minWidth = '100px';
+    textBox.style.minHeight = '20px';
+    textBox.style.padding = '2px';
+    textBox.style.border = '1px solid #000';
+    textBox.style.background = 'white';
+    textBox.style.zIndex = '1000';
+    textBox.style.cursor = 'text';
+    textBox.style.fontFamily = 'Arial';
+    
+    textBox.addEventListener('blur', finalizeText);
+    canvas.parentElement.appendChild(textBox);
+}
+
+function finalizeText() {
+    if (textBox.style.display === 'none') return;
+    
+    const text = textBox.innerText;
+    if (text.trim()) {
+        const rect = textBox.getBoundingClientRect();
+        const canvasRect = canvas.getBoundingClientRect();
+        
+        ctx.font = `${currentSize * 12}px Arial`;
+        ctx.fillStyle = currentColor;
+        ctx.fillText(text, rect.left - canvasRect.left, rect.top - canvasRect.top + parseInt(getComputedStyle(textBox).fontSize));
+    }
+    
+    textBox.style.display = 'none';
+    textBox.innerText = '';
+    saveState();
+} 
