@@ -368,6 +368,13 @@ footer {
         3% 0%, 97% 3%, 100% 97%, 3% 100%,
         0% 97%, 97% 97%, 97% 3%, 0% 3%
     );
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.dropdown-content.show {
+    display: block;
 }
 
 .dropdown-content a {
@@ -390,4 +397,14 @@ footer {
 
 .dropdown:hover .dropdown-btn {
     color: white;
+}
+
+.dropdown-btn.selected {
+    animation: pulse 0.5s ease-in-out;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
 }
