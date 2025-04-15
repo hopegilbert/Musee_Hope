@@ -7,77 +7,88 @@
     <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Inter:wght@400;500;600;700;800&family=Lora:wght@400;500;600;700&family=Schoolbell&family=Special+Elite&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style.css">
     <style>
-        .essay-content {
+        .dissertation-content {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 40px;
+            margin: 40px auto;
             max-width: 800px;
-            margin: 2rem auto;
-            padding: 2rem;
-            font-family: 'Lora', serif;
-            line-height: 1.6;
-            background-color: rgba(0, 0, 0, 0.9);
-            color: #fff;
+            backdrop-filter: blur(2px);
             position: relative;
-            border: 2px solid #fff;
-            box-shadow: 
-                0 0 0 2px #000,
-                0 0 0 3px #fff,
-                0 0 0 5px #000,
-                0 0 0 6px #fff,
-                0 0 20px rgba(0, 0, 0, 0.5);
         }
-        .essay-content::before {
+
+        .dissertation-content::before {
             content: '';
             position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            pointer-events: none;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 3px solid rgba(255, 255, 255, 0.9);
+            clip-path: polygon(
+                0% 5%, 3% 0%, 97% 2%, 100% 7%,  /* top */
+                95% 0%, 100% 5%, 98% 95%, 100% 100%,  /* right */
+                95% 98%, 98% 100%, 2% 98%, 0% 95%,  /* bottom */
+                2% 100%, 0% 95%, 2% 5%, 0% 2%  /* left */
+            );
+            z-index: 1;
         }
-        .essay-content h1 {
-            font-family: 'Fredericka the Great', cursive;
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            text-align: center;
-            color: #fff;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-        .essay-content h2 {
-            font-family: 'Inter', sans-serif;
-            font-size: 1.8rem;
-            margin: 2rem 0 1rem;
-            color: #fff;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            padding-bottom: 0.5rem;
-        }
-        .essay-content p {
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-            color: #fff;
-        }
-        .essay-content ul {
-            margin: 1.5rem 0;
-            padding-left: 2rem;
-            list-style-type: none;
-        }
-        .essay-content li {
-            margin-bottom: 1rem;
-            color: #fff;
-            position: relative;
-            padding-left: 1rem;
-        }
-        .essay-content li::before {
-            content: '•';
+
+        .dissertation-content::after {
+            content: '';
             position: absolute;
-            left: -1rem;
-            color: rgba(255, 255, 255, 0.6);
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            clip-path: polygon(
+                2% 3%, 5% 0%, 95% 4%, 98% 2%,  /* top */
+                98% 2%, 100% 7%, 96% 93%, 98% 98%,  /* right */
+                98% 98%, 95% 100%, 5% 96%, 2% 98%,  /* bottom */
+                2% 98%, 0% 93%, 4% 7%, 2% 2%  /* left */
+            );
+            z-index: 1;
         }
+
+        .dissertation-text {
+            position: relative;
+            z-index: 2;
+            color: #f5f2e7;
+            font-family: 'Lora', serif;
+            line-height: 1.6;
+        }
+
+        .dissertation-text h1 {
+            font-family: 'Fredericka the Great', cursive;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #f5f2e7;
+        }
+
+        .dissertation-text h2 {
+            font-family: 'Fredericka the Great', cursive;
+            margin: 30px 0 15px;
+            color: #f5f2e7;
+        }
+
+        .dissertation-text p {
+            margin-bottom: 15px;
+        }
+
+        .dissertation-text ul {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+
+        .dissertation-text li {
+            margin-bottom: 10px;
+        }
+
         .reference {
             font-style: italic;
-            margin-top: 2rem;
-            padding-top: 1rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-            color: rgba(255, 255, 255, 0.8);
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(245, 232, 199, 0.3);
         }
     </style>
 </head>
@@ -93,51 +104,53 @@
             <a href="../maybe-genius.html">BACK TO RESEARCH TOPICS</a>
         </nav>
 
-        <div class="essay-content">
-            <h1>Close Relationships</h1>
-            
-            <p>In popular culture, people frequently discuss their "Love Language." According to author Gary Chapman, people are thought to have different preferences and needs for feeling loved and appreciated, with everyone possessing one of the five dominant love languages listed below:</p>
-            
-            <ul>
-                <li>Words of affirmation: People with this love language are said to feel loved when they receive spoken words, praise, or appreciation.</li>
-                <li>Quality time: People with this love language are said to feel loved when they receive undivided attention and focus from their partner (e.g., meaningful conversations, shared activities, or just quiet moments with their partner).</li>
-                <li>Physical touch: People with this love language are to feel loved when they receive affection through physical contact, such as holding hands, hugging, kissing, or cuddling.</li>
-                <li>Acts of service: People with this love language are said to feel loved when their partner does helpful or thoughtful things for them, such as running errands, doing chores, or fixing something.</li>
-                <li>Receiving gifts: People with this love language are said to feel loved when their partner gives tangible symbols of love that they like or appreciate, such as flowers, jewellery, or cards.</li>
-            </ul>
+        <div class="dissertation-content">
+            <div class="dissertation-text">
+                <h1>Close Relationships</h1>
+                
+                <p>In popular culture, people frequently discuss their "Love Language." According to author Gary Chapman, people are thought to have different preferences and needs for feeling loved and appreciated, with everyone possessing one of the five dominant love languages listed below:</p>
+                
+                <ul>
+                    <li>Words of affirmation: People with this love language are said to feel loved when they receive spoken words, praise, or appreciation.</li>
+                    <li>Quality time: People with this love language are said to feel loved when they receive undivided attention and focus from their partner (e.g., meaningful conversations, shared activities, or just quiet moments with their partner).</li>
+                    <li>Physical touch: People with this love language are to feel loved when they receive affection through physical contact, such as holding hands, hugging, kissing, or cuddling.</li>
+                    <li>Acts of service: People with this love language are said to feel loved when their partner does helpful or thoughtful things for them, such as running errands, doing chores, or fixing something.</li>
+                    <li>Receiving gifts: People with this love language are said to feel loved when their partner gives tangible symbols of love that they like or appreciate, such as flowers, jewellery, or cards.</li>
+                </ul>
 
-            <p>However, there is little scientific validity or empirical evidence to support these five love languages (see Impett et al., 2024, reference below, for a review). Based on what I have learned, I suggest a better set of "Love Languages". That is, a list of things that help individuals to feel loved and appreciated by their romantic partners. Providing empirical evidence and drawing clear connections to this evidence to support each suggestion.</p>
+                <p>However, there is little scientific validity or empirical evidence to support these five love languages (see Impett et al., 2024, reference below, for a review). Based on what I have learned, I suggest a better set of "Love Languages". That is, a list of things that help individuals to feel loved and appreciated by their romantic partners. Providing empirical evidence and drawing clear connections to this evidence to support each suggestion.</p>
 
-            <p>Today in popular culture the concept of 'love languages' has become a common framework for understanding how individuals express and perceive love in romantic relationships. Gary Chapman's book 'The Five Love Languages' (1992) suggested that everyone has a dominant way of feeling loved and appreciated, categorised into five types: words of affirmation, quality time, physical touch, acts of service, and receiving gifts. Despite its widespread acceptance and application in both personal and therapeutic contexts, recent research by Impett, Park and Muse (2024) points out that the scientific foundation for supporting these love languages is limited. This prompts critical reevaluation and development of a more scientifically robust framework for understanding how love and appreciation are experienced in romantic relationships.</p>
+                <p>Today in popular culture the concept of 'love languages' has become a common framework for understanding how individuals express and perceive love in romantic relationships. Gary Chapman's book 'The Five Love Languages' (1992) suggested that everyone has a dominant way of feeling loved and appreciated, categorised into five types: words of affirmation, quality time, physical touch, acts of service, and receiving gifts. Despite its widespread acceptance and application in both personal and therapeutic contexts, recent research by Impett, Park and Muse (2024) points out that the scientific foundation for supporting these love languages is limited. This prompts critical reevaluation and development of a more scientifically robust framework for understanding how love and appreciation are experienced in romantic relationships.</p>
 
-            <p>To address this gap, it is essential to explore alternative love languages based on empirical research. In this essay I will present a revised set of love languages based on scientific evidence, highlighting emotional responsiveness, shared activities, effective communication, mutual respect, and support for individual goals as key factors that help individuals feel loved and appreciated.</p>
+                <p>To address this gap, it is essential to explore alternative love languages based on empirical research. In this essay I will present a revised set of love languages based on scientific evidence, highlighting emotional responsiveness, shared activities, effective communication, mutual respect, and support for individual goals as key factors that help individuals feel loved and appreciated.</p>
 
-            <p>The following discussion will investigate each of these revised love languages, providing empirical evidence and explaining how they contribute a deeper more scientifically sound understanding of love in romantic relationships. By examining emotional responsiveness, shared activities and experiences, effective communication, mutual respect and admiration, and support for individual goals and aspirations, this essay will offer a comprehensive perspective on the dynamics of love and appreciation.</p>
+                <p>The following discussion will investigate each of these revised love languages, providing empirical evidence and explaining how they contribute a deeper more scientifically sound understanding of love in romantic relationships. By examining emotional responsiveness, shared activities and experiences, effective communication, mutual respect and admiration, and support for individual goals and aspirations, this essay will offer a comprehensive perspective on the dynamics of love and appreciation.</p>
 
-            <h2>Emotional Responsiveness</h2>
-            <p>Firstly, emotional responsiveness is crucial for individuals to feel loved and appreciated in romantic relationships. Research shows that secure attachment, characterised by partners responding empathetically to each other's emotional needs, leads to higher relationship satisfaction (Mikulincer and Shaver, 2016). Additionally, providing emotional support, especially during stressful times, strengthens emotional bonds (Collins and Feeney, 2000). When partners are attuned to each other's emotions and respond supportively, it fosters a sense of being valued and understood. This creates a safe space for vulnerability, enhancing intimacy and trust, which are essential for feeling loved. Prioritising emotional responsiveness therefore builds a strong foundation of trust and connection in relationships.</p>
+                <h2>Emotional Responsiveness</h2>
+                <p>Firstly, emotional responsiveness is crucial for individuals to feel loved and appreciated in romantic relationships. Research shows that secure attachment, characterised by partners responding empathetically to each other's emotional needs, leads to higher relationship satisfaction (Mikulincer and Shaver, 2016). Additionally, providing emotional support, especially during stressful times, strengthens emotional bonds (Collins and Feeney, 2000). When partners are attuned to each other's emotions and respond supportively, it fosters a sense of being valued and understood. This creates a safe space for vulnerability, enhancing intimacy and trust, which are essential for feeling loved. Prioritising emotional responsiveness therefore builds a strong foundation of trust and connection in relationships.</p>
 
-            <h2>Shared Activities and Experiences</h2>
-            <p>Secondly, engaging in shared activities and experiences is vital for fostering unity and love in romantic relationships. The Self-Expansion Model by Aron et al., (1998) shows that couples who engage in new and exciting activities experience increased relationship satisfaction, as these activities help them to grow together. Reis et al., (2000) found that spending quality time together in novel and challenging activities leads to higher relationship satisfaction. Shared experiences create memorable moments and deepen connection, whether through new hobbies, travelling or having meaningful conversations. Prioritising these activities ensures both partners feel connected and valued, enhancing their bond and long-term satisfaction.</p>
+                <h2>Shared Activities and Experiences</h2>
+                <p>Secondly, engaging in shared activities and experiences is vital for fostering unity and love in romantic relationships. The Self-Expansion Model by Aron et al., (1998) shows that couples who engage in new and exciting activities experience increased relationship satisfaction, as these activities help them to grow together. Reis et al., (2000) found that spending quality time together in novel and challenging activities leads to higher relationship satisfaction. Shared experiences create memorable moments and deepen connection, whether through new hobbies, travelling or having meaningful conversations. Prioritising these activities ensures both partners feel connected and valued, enhancing their bond and long-term satisfaction.</p>
 
-            <h2>Effective Communication</h2>
-            <p>Thirdly, effective communication is fundamental for feeling loved and appreciated in romantic relationships. Positive communication patterns such as active listening and constructive conflict resolution are linked to higher relationship satisfaction (Markman, Stanley and Blumberg, 2010). Expressive communication, including verbal expressions of affection and gratitude, enhances relationship quality and individual well-being (Gordon et al., 2012). Clear communication helps to resolve misunderstandings and reinforces trust and respect. When partners actively listen and express appreciation, they foster a deeper emotional connection. Prioritising effective communication ensures both partners feel heard, respected, and valued, strengthening the relationship overall.</p>
+                <h2>Effective Communication</h2>
+                <p>Thirdly, effective communication is fundamental for feeling loved and appreciated in romantic relationships. Positive communication patterns such as active listening and constructive conflict resolution are linked to higher relationship satisfaction (Markman, Stanley and Blumberg, 2010). Expressive communication, including verbal expressions of affection and gratitude, enhances relationship quality and individual well-being (Gordon et al., 2012). Clear communication helps to resolve misunderstandings and reinforces trust and respect. When partners actively listen and express appreciation, they foster a deeper emotional connection. Prioritising effective communication ensures both partners feel heard, respected, and valued, strengthening the relationship overall.</p>
 
-            <h2>Mutual Respect and Admiration</h2>
-            <p>Fourthly, Mutual respect and admiration are crucial for individuals to feel loved and valued in romantic relationships. Research by Frei and Shaver (2002) shows that respect is closely linked to love, commitment, and relationship satisfaction. When partners respect and admire each other, acknowledging each other's worth and expressing appreciation, it boosts self-esteem and reinforces feelings of being valued (Algoe, Gable and Maisel, 2010). This positive dynamic creates a supportive and affirming relationship environment. Prioritising mutual respect and admiration ensures that both partners feel cherished, enhancing the relationship's overall health and longevity.</p>
+                <h2>Mutual Respect and Admiration</h2>
+                <p>Fourthly, Mutual respect and admiration are crucial for individuals to feel loved and valued in romantic relationships. Research by Frei and Shaver (2002) shows that respect is closely linked to love, commitment, and relationship satisfaction. When partners respect and admire each other, acknowledging each other's worth and expressing appreciation, it boosts self-esteem and reinforces feelings of being valued (Algoe, Gable and Maisel, 2010). This positive dynamic creates a supportive and affirming relationship environment. Prioritising mutual respect and admiration ensures that both partners feel cherished, enhancing the relationship's overall health and longevity.</p>
 
-            <h2>Support for Individual Goals</h2>
-            <p>And finally, supporting each other's individual goals and aspirations is crucial for feeling loved in a romantic relationship. The Michelangelo Phenomenon shows that partners who help each other grow personally experience higher relationship satisfaction (Drigotas et al., 1999). When partners support each other's goals, aligning efforts toward mutual and individual aspirations it enhances relationship quality (Rusbult et al., 2009). This support demonstrates commitment and investment in each other's happiness. Prioritising this support ensures that both partners feel encouraged and valued, this fosters a sense of partnership and leads to a more fulfilling relationship.</p>
+                <h2>Support for Individual Goals</h2>
+                <p>And finally, supporting each other's individual goals and aspirations is crucial for feeling loved in a romantic relationship. The Michelangelo Phenomenon shows that partners who help each other grow personally experience higher relationship satisfaction (Drigotas et al., 1999). When partners support each other's goals, aligning efforts toward mutual and individual aspirations it enhances relationship quality (Rusbult et al., 2009). This support demonstrates commitment and investment in each other's happiness. Prioritising this support ensures that both partners feel encouraged and valued, this fosters a sense of partnership and leads to a more fulfilling relationship.</p>
 
-            <h2>Conclusion</h2>
-            <p>In summary, while Gary Chapman's 'Five Love Languages' has provided a popular framework for understanding how individuals feel loved and appreciated, recent research highlights the need for a more scientifically grounded approach. By exploring alternative love languages based on empirical evidence, we can gain a deeper and more accurate understanding of the dynamics that contribute to relationship satisfaction. Emotional responsiveness, shared activities and experiences, effective communication, mutual respect and admiration, and support for individual goals and aspirations have all been shown to play crucial roles in fostering love and appreciation within romantic relationships.</p>
+                <h2>Conclusion</h2>
+                <p>In summary, while Gary Chapman's 'Five Love Languages' has provided a popular framework for understanding how individuals feel loved and appreciated, recent research highlights the need for a more scientifically grounded approach. By exploring alternative love languages based on empirical evidence, we can gain a deeper and more accurate understanding of the dynamics that contribute to relationship satisfaction. Emotional responsiveness, shared activities and experiences, effective communication, mutual respect and admiration, and support for individual goals and aspirations have all been shown to play crucial roles in fostering love and appreciation within romantic relationships.</p>
 
-            <p>Emotional responsiveness ensures that partners feel understood and valued by responding empathetically to each other's needs. Shared activities and experiences create a sense of unity and mutual growth. Effective communication fosters understanding and trust, while mutual respect and admiration reinforce each partner's worth and commitment. Supporting each other's individual goals and aspirations demonstrates dedication to each other's personal growth and happiness.</p>
+                <p>Emotional responsiveness ensures that partners feel understood and valued by responding empathetically to each other's needs. Shared activities and experiences create a sense of unity and mutual growth. Effective communication fosters understanding and trust, while mutual respect and admiration reinforce each partner's worth and commitment. Supporting each other's individual goals and aspirations demonstrates dedication to each other's personal growth and happiness.</p>
 
-            <p>By prioritising these scientifically supported aspects of relationships, couples can build stronger, more fulfilling connections. This approach not only enhances individual well-being but also contributes to the overall health and longevity of the relationship. Therefore, it is essential to move beyond the traditional love languages and embrace a framework grounded in empirical research to truly understand and nurture romantic relationships.</p>
+                <p>By prioritising these scientifically supported aspects of relationships, couples can build stronger, more fulfilling connections. This approach not only enhances individual well-being but also contributes to the overall health and longevity of the relationship. Therefore, it is essential to move beyond the traditional love languages and embrace a framework grounded in empirical research to truly understand and nurture romantic relationships.</p>
 
-            <div class="reference">
-                <p>Impett, E., Park, H. G., & Muise, A. (2024). Popular Psychology through a Scientific Lens: Evaluating Love Languages from a Relationship Science Perspective. Current Directions in Psychological Science.</p>
+                <div class="reference">
+                    <p>Impett, E., Park, H. G., & Muise, A. (2024). Popular Psychology through a Scientific Lens: Evaluating Love Languages from a Relationship Science Perspective. Current Directions in Psychological Science.</p>
+                </div>
             </div>
         </div>
     </div>
