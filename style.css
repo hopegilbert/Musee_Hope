@@ -110,6 +110,7 @@ img {
   position: relative;
   display: inline-block;
   width: 100%;
+  cursor: pointer;
 }
 
 .image-wrapper img {
@@ -127,16 +128,16 @@ img {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: #821818;
-  color: #f5e8c7;
-  padding: 12px 24px;
-  border: 2px solid #f5e8c7;
-  border-radius: 4px;
-  font-family: 'Playfair Display', serif;
-  font-size: 1.2rem;
+  background: #d4d0c8;
+  color: #821818;
+  padding: 8px 16px;
+  border: 1px solid;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.8rem;
   text-decoration: none;
   transition: all 0.3s ease;
-  z-index: 2;
+  z-index: 10;
   cursor: pointer;
 }
 
@@ -144,11 +145,18 @@ img {
   opacity: 1;
 }
 
+.image-wrapper:hover img {
+  filter: brightness(90%);
+}
+
 .hover-button:hover {
-  background: #f5e8c7;
-  color: #821818;
-  border-color: #821818;
-  transform: translate(-50%, -50%) scale(1.05);
+  background: #efefef;
+  border-color: #ffffff #808080 #808080 #ffffff;
+}
+
+.hover-button:active {
+  border-color: #808080 #ffffff #ffffff #808080;
+  padding: 9px 15px 7px 17px;
 }
 
 /* Remove old hover text styles */
@@ -353,8 +361,12 @@ footer p {
   }
 
   .hover-button {
-    padding: 8px 16px;
-    font-size: 0.9rem;
+    padding: 6px 12px;
+    font-size: 0.6rem;
+  }
+  
+  .hover-button:active {
+    padding: 7px 11px 5px 13px;
   }
 }
 
