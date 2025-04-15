@@ -151,7 +151,7 @@ html, body {
     position: absolute;
     top: 0;
     left: 32px;
-    right: 201px;
+    right: 200px;
     bottom: 55px;
     background-color: #ffffff;
     border: 1px solid #808080;
@@ -275,7 +275,7 @@ html, body {
     position: absolute;
     bottom: 0;
     left: 0;
-    right: 201px;
+    right: 200px;
     height: 20px;
     background: #d4d0c8;
     border-top: 1px solid #808080;
@@ -593,7 +593,7 @@ html, body {
     }
 
     .canvas-container {
-        right: 121px;
+        right: 120px;
     }
 
     .color-palette {
@@ -602,7 +602,7 @@ html, body {
     }
 
     .status-bar {
-        right: 121px;
+        right: 120px;
     }
 
     .items-sidebar {
