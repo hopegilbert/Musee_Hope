@@ -147,7 +147,7 @@ html, body {
     top: 0;
     left: 0;
     right: 200px;
-    bottom: 42px;
+    bottom: calc(5vh + 32px);
     background-color: #ffffff;
     border: 1px solid #808080;
     overflow: hidden;
@@ -274,9 +274,11 @@ html, body {
     background-color: #d4d0c8;
     border: 1px solid #808080;
     width: 280px;
-    height: 40px;
+    height: calc(4vh + 24px);
+    min-height: 32px;
+    max-height: 40px;
     position: absolute;
-    bottom: 2px;
+    bottom: 5px;
     left: 35px;
 }
 
@@ -557,12 +559,16 @@ html, body {
 
     .canvas-container {
         right: 120px;
-        bottom: 42px;
+        bottom: calc(4vh + 28px);
     }
 
     .color-palette {
-        left: 34px;
         width: 200px;
+        height: calc(3vh + 22px);
+        min-height: 28px;
+        max-height: 36px;
+        left: 34px;
+        bottom: 4px;
         grid-template-columns: repeat(10, 1fr);
     }
 
@@ -573,5 +579,18 @@ html, body {
 
     .main-content {
         height: calc(100% - 40px);
+    }
+}
+
+@media (max-height: 600px) {
+    .canvas-container {
+        bottom: calc(3vh + 24px);
+    }
+
+    .color-palette {
+        height: calc(2vh + 20px);
+        min-height: 24px;
+        max-height: 32px;
+        bottom: 3px;
     }
 } 
