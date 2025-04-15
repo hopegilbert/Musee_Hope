@@ -1,10 +1,10 @@
 :root {
   --terracotta: #c26d5c;
   --cream: #f9f6f0;
-  --dark: #e0dbd3;
+  --beige: #e0dbd3;
   --gray: #6b6b6b;
   --primary: #FF7B00;
-  --text: #2D2D2D;
+  --text: #000000;
   --background: #000000;
   --card-bg: #1a1a1a;
   --button-bg: rgba(255, 255, 255, 0.1);
@@ -17,7 +17,7 @@
 }
 
 body {
-  background-color: black;
+  background-color: #000000;
   color: var(--cream);
   font-family: 'Inter', sans-serif;
   line-height: 1.6;
@@ -92,10 +92,11 @@ body {
 }
 
 .content-card {
-  background-color: #e0dbd3;
+  background-color: var(--beige);
   padding: 2rem;
   border-radius: 8px;
   transition: transform 0.3s ease;
+  color: var(--text);
 }
 
 .content-card:hover {
@@ -124,11 +125,12 @@ body {
 
 /* Quote Section */
 .quote-section {
-  background-color: #e0dbd3;
+  background-color: var(--beige);
   padding: 3rem;
   border-radius: 8px;
   margin: 4rem 0;
   text-align: center;
+  color: var(--text);
 }
 
 .quote-text {
@@ -141,13 +143,14 @@ body {
 
 /* Featured Section */
 .featured-section {
-  background-color: #e0dbd3;
+  background-color: var(--beige);
   padding: 2rem;
   border-radius: 8px;
   margin: 4rem 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
+  color: var(--text);
 }
 
 .featured-image {
@@ -178,10 +181,11 @@ body {
 }
 
 .collection-card {
-  background-color: #e0dbd3;
+  background-color: var(--beige);
   padding: 2rem;
   border-radius: 8px;
   transition: transform 0.3s ease;
+  color: var(--text);
 }
 
 .collection-card:hover {
@@ -204,7 +208,7 @@ footer {
 
 /* Navigation */
 .nav-menu {
-  background-color: #e0dbd3;
+  background-color: var(--beige);
   padding: 1rem 2rem;
   border-radius: 8px;
   margin-bottom: 2rem;
@@ -214,7 +218,7 @@ footer {
 }
 
 .nav-menu a {
-  color: var(--gray);
+  color: var(--text);
   text-decoration: none;
   font-weight: 500;
   transition: color 0.3s ease;
