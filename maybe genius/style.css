@@ -368,14 +368,10 @@ footer {
         3% 0%, 97% 3%, 100% 97%, 3% 100%,
         0% 97%, 97% 97%, 97% 3%, 0% 3%
     );
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease-out;
 }
 
 .dropdown-content.show {
     display: block;
-    max-height: 500px;
 }
 
 .dropdown-content a {
