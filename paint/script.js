@@ -372,9 +372,6 @@ function updateCursor() {
         case 'fill':
             canvas.style.cursor = 'url("images/fill-cursor.png") 8 8, crosshair';
             break;
-        case 'colorpicker':
-            canvas.style.cursor = 'url("images/colorpicker-cursor.png") 0 16, crosshair';
-            break;
         case 'text':
             canvas.style.cursor = 'text';
             break;
