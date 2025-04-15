@@ -2,7 +2,7 @@
 const categoryButtons = document.querySelectorAll('.category-button');
 const categoryItems = document.querySelectorAll('.category-items');
 const overlayContainer = document.querySelector('.overlay-container');
-let selectedItems = new Map(); // Track selected items by category
+const selectedItems = new Map(); // Track selected items by category
 
 // Initialize with first category active
 if (categoryButtons.length > 0 && categoryItems.length > 0) {
@@ -36,25 +36,21 @@ document.querySelectorAll('.clothing-item').forEach(item => {
         const overlayPath = item.dataset.overlay;
         const category = item.closest('.category-items').dataset.category;
         
-        // If clicking the same item, remove it
-        if (selectedItems.get(category) === item) {
-            const existingOverlay = document.querySelector(`[src="${overlayPath}"]`);
-            if (existingOverlay) {
-                existingOverlay.remove();
-            }
+        // Remove all existing overlays for this category
+        const existingOverlays = overlayContainer.querySelectorAll(`img[data-category="${category}"]`);
+        existingOverlays.forEach(overlay => overlay.remove());
+        
+        // If clicking the same item, just remove it
+        const currentlySelected = selectedItems.get(category);
+        if (currentlySelected === item) {
             selectedItems.delete(category);
             item.classList.remove('selected');
             return;
         }
         
-        // Remove selected class from previously selected item in this category
-        const previousItem = selectedItems.get(category);
-        if (previousItem) {
-            previousItem.classList.remove('selected');
-            const previousOverlay = document.querySelector(`[src="${previousItem.dataset.overlay}"]`);
-            if (previousOverlay) {
-                previousOverlay.remove();
-            }
+        // Remove selected class from previously selected item
+        if (currentlySelected) {
+            currentlySelected.classList.remove('selected');
         }
         
         // Add new overlay
