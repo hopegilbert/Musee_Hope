@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dissertation - Maybe Genius</title>
+    <title>Introduction - Dissertation</title>
     <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Inter:wght@400;500;600;700;800&family=Lora:wght@400;500;600;700&family=Schoolbell&family=Special+Elite&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        .dissertation-content {
+        .section-content {
             background: rgba(0, 0, 0, 0.6);
             padding: 40px;
             margin: 40px auto;
@@ -16,7 +16,7 @@
             position: relative;
         }
 
-        .dissertation-content::before {
+        .section-content::before {
             content: '';
             position: absolute;
             top: 0;
@@ -33,7 +33,7 @@
             z-index: 1;
         }
 
-        .dissertation-content::after {
+        .section-content::after {
             content: '';
             position: absolute;
             top: -4px;
@@ -50,7 +50,7 @@
             z-index: 1;
         }
 
-        .dissertation-text {
+        .section-text {
             position: relative;
             z-index: 2;
             color: #f5f2e7;
@@ -58,42 +58,39 @@
             line-height: 1.6;
         }
 
-        .dissertation-text h1 {
+        .section-text h1 {
             font-family: 'Fredericka the Great', cursive;
             text-align: center;
             margin-bottom: 30px;
             color: #f5f2e7;
         }
 
-        .dissertation-text h2 {
+        .section-text h2 {
             font-family: 'Fredericka the Great', cursive;
             margin: 30px 0 15px;
             color: #f5f2e7;
         }
 
-        .dissertation-text p {
+        .section-text p {
             margin-bottom: 15px;
         }
 
-        .section-links {
-            list-style-type: none;
-            padding-left: 0;
+        .navigation-links {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px auto;
+            max-width: 800px;
         }
 
-        .section-links li {
-            margin-bottom: 15px;
-        }
-
-        .section-links a {
+        .navigation-links a {
             color: #f5f2e7;
             text-decoration: none;
             font-family: 'Fredericka the Great', cursive;
             padding: 10px 20px;
             position: relative;
-            display: inline-block;
         }
 
-        .section-links a::before {
+        .navigation-links a::before {
             content: '';
             position: absolute;
             top: 0;
@@ -107,7 +104,7 @@
             );
         }
 
-        .section-links a::after {
+        .navigation-links a::after {
             content: '';
             position: absolute;
             top: -2px;
@@ -131,23 +128,34 @@
     
     <div class="page-wrapper">
         <nav class="nav-menu">
-            <a href="maybe-genius.html">BACK TO MAYBE GENIUS</a>
+            <a href="dissertation.html">BACK TO DISSERTATION</a>
         </nav>
 
-        <div class="dissertation-content">
-            <div class="dissertation-text">
-                <h1>Dissertation</h1>
-                <h2>Does Cognitive Estimation Precede Visual Experience in the Perception of Object Shape and Material, or Do They Occur Independently and Concurrently?</h2>
+        <div class="section-content">
+            <div class="section-text">
+                <h1>Introduction</h1>
+                <p>The perception of object shape and material properties is a fundamental aspect of human cognition and visual experience. Understanding how we perceive and interpret the physical world around us has been a central question in psychology, neuroscience, and philosophy for centuries.</p>
                 
-                <ul class="section-links">
-                    <li><a href="introduction.html">Introduction</a></li>
-                    <li><a href="methodology.html">Methodology</a></li>
-                    <li><a href="results.html">Results</a></li>
-                    <li><a href="discussion.html">Discussion</a></li>
-                    <li><a href="conclusion.html">Conclusion</a></li>
-                    <li><a href="references.html">References</a></li>
+                <h2>Background</h2>
+                <p>Traditional models of perception have often assumed a sequential process, where cognitive estimation precedes visual experience. However, recent research has challenged this view, suggesting that these processes may occur concurrently or even in reverse order.</p>
+                
+                <h2>Research Questions</h2>
+                <p>This study addresses several key questions:</p>
+                <ul>
+                    <li>Does cognitive estimation precede visual experience in object perception?</li>
+                    <li>How do these processes interact in real-time?</li>
+                    <li>What factors influence the relationship between cognitive and visual processing?</li>
+                    <li>How do individual differences affect these perceptual processes?</li>
                 </ul>
+                
+                <h2>Significance</h2>
+                <p>The findings of this research have important implications for our understanding of human perception, with potential applications in fields ranging from artificial intelligence to clinical psychology. By elucidating the relationship between cognitive estimation and visual experience, we can better understand how humans process and interpret their environment.</p>
             </div>
+        </div>
+
+        <div class="navigation-links">
+            <a href="abstract.html" class="prev-section">Previous: Abstract</a>
+            <a href="methodology.html" class="next-section">Next: Methodology</a>
         </div>
     </div>
 </body>

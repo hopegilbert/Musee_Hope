@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dissertation - Maybe Genius</title>
+    <title>Discussion - Dissertation</title>
     <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Inter:wght@400;500;600;700;800&family=Lora:wght@400;500;600;700&family=Schoolbell&family=Special+Elite&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        .dissertation-content {
+        .section-content {
             background: rgba(0, 0, 0, 0.6);
             padding: 40px;
             margin: 40px auto;
@@ -16,7 +16,7 @@
             position: relative;
         }
 
-        .dissertation-content::before {
+        .section-content::before {
             content: '';
             position: absolute;
             top: 0;
@@ -33,7 +33,7 @@
             z-index: 1;
         }
 
-        .dissertation-content::after {
+        .section-content::after {
             content: '';
             position: absolute;
             top: -4px;
@@ -50,7 +50,7 @@
             z-index: 1;
         }
 
-        .dissertation-text {
+        .section-text {
             position: relative;
             z-index: 2;
             color: #f5f2e7;
@@ -58,42 +58,39 @@
             line-height: 1.6;
         }
 
-        .dissertation-text h1 {
+        .section-text h1 {
             font-family: 'Fredericka the Great', cursive;
             text-align: center;
             margin-bottom: 30px;
             color: #f5f2e7;
         }
 
-        .dissertation-text h2 {
+        .section-text h2 {
             font-family: 'Fredericka the Great', cursive;
             margin: 30px 0 15px;
             color: #f5f2e7;
         }
 
-        .dissertation-text p {
+        .section-text p {
             margin-bottom: 15px;
         }
 
-        .section-links {
-            list-style-type: none;
-            padding-left: 0;
+        .navigation-links {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px auto;
+            max-width: 800px;
         }
 
-        .section-links li {
-            margin-bottom: 15px;
-        }
-
-        .section-links a {
+        .navigation-links a {
             color: #f5f2e7;
             text-decoration: none;
             font-family: 'Fredericka the Great', cursive;
             padding: 10px 20px;
             position: relative;
-            display: inline-block;
         }
 
-        .section-links a::before {
+        .navigation-links a::before {
             content: '';
             position: absolute;
             top: 0;
@@ -107,7 +104,7 @@
             );
         }
 
-        .section-links a::after {
+        .navigation-links a::after {
             content: '';
             position: absolute;
             top: -2px;
@@ -131,23 +128,45 @@
     
     <div class="page-wrapper">
         <nav class="nav-menu">
-            <a href="maybe-genius.html">BACK TO MAYBE GENIUS</a>
+            <a href="dissertation.html">BACK TO DISSERTATION</a>
         </nav>
 
-        <div class="dissertation-content">
-            <div class="dissertation-text">
-                <h1>Dissertation</h1>
-                <h2>Does Cognitive Estimation Precede Visual Experience in the Perception of Object Shape and Material, or Do They Occur Independently and Concurrently?</h2>
+        <div class="section-content">
+            <div class="section-text">
+                <h1>Discussion</h1>
+                <p>The findings of this study provide significant insights into the complex relationship between cognitive estimation and visual experience in object perception. Our results challenge traditional sequential models and suggest a more dynamic, interactive process.</p>
                 
-                <ul class="section-links">
-                    <li><a href="introduction.html">Introduction</a></li>
-                    <li><a href="methodology.html">Methodology</a></li>
-                    <li><a href="results.html">Results</a></li>
-                    <li><a href="discussion.html">Discussion</a></li>
-                    <li><a href="conclusion.html">Conclusion</a></li>
-                    <li><a href="references.html">References</a></li>
+                <h2>Integration of Findings</h2>
+                <p>The observed differences in response times between shape and material property estimation suggest that these processes may operate on different temporal scales. The faster response times for shape estimation (450ms) compared to material properties (520ms) indicate that basic geometric processing may precede more complex material property analysis.</p>
+                
+                <h2>Neural Mechanisms</h2>
+                <p>The distinct activation patterns in the ventral visual stream and parietal cortex support the hypothesis of parallel processing streams. The correlation between response times and neural activity patterns suggests that these processes are not strictly sequential but rather interact dynamically.</p>
+                
+                <h2>Individual Differences</h2>
+                <p>The identification of three distinct processing strategies among participants highlights the flexibility of human perception. These individual differences may reflect different cognitive styles or learned strategies for object perception.</p>
+                
+                <h2>Theoretical Implications</h2>
+                <p>Our findings support a revised model of object perception that incorporates:</p>
+                <ul>
+                    <li>Parallel processing of different object properties</li>
+                    <li>Dynamic interaction between cognitive and perceptual processes</li>
+                    <li>Individual differences in processing strategies</li>
+                    <li>The role of experience and learning in perception</li>
+                </ul>
+                
+                <h2>Limitations and Future Directions</h2>
+                <p>While our study provides valuable insights, several limitations should be noted:</p>
+                <ul>
+                    <li>The laboratory setting may not fully capture real-world perception</li>
+                    <li>The sample size, while adequate, could be expanded for more robust analysis</li>
+                    <li>Future research could explore the development of these processes across the lifespan</li>
                 </ul>
             </div>
+        </div>
+
+        <div class="navigation-links">
+            <a href="results.html" class="prev-section">Previous: Results</a>
+            <a href="conclusion.html" class="next-section">Next: Conclusion</a>
         </div>
     </div>
 </body>

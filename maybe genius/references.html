@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>References - Dissertation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Inter:wght@400;500;600;700;800&family=Lora:wght@400;500;600;700&family=Schoolbell&family=Special+Elite&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .section-content {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 40px;
+            margin: 40px auto;
+            max-width: 800px;
+            backdrop-filter: blur(2px);
+            position: relative;
+        }
+
+        .section-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 3px solid rgba(255, 255, 255, 0.9);
+            clip-path: polygon(
+                0% 5%, 3% 0%, 97% 2%, 100% 7%,  /* top */
+                95% 0%, 100% 5%, 98% 95%, 100% 100%,  /* right */
+                95% 98%, 98% 100%, 2% 98%, 0% 95%,  /* bottom */
+                2% 100%, 0% 95%, 2% 5%, 0% 2%  /* left */
+            );
+            z-index: 1;
+        }
+
+        .section-content::after {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            clip-path: polygon(
+                2% 3%, 5% 0%, 95% 4%, 98% 2%,  /* top */
+                98% 2%, 100% 7%, 96% 93%, 98% 98%,  /* right */
+                98% 98%, 95% 100%, 5% 96%, 2% 98%,  /* bottom */
+                2% 98%, 0% 93%, 4% 7%, 2% 2%  /* left */
+            );
+            z-index: 1;
+        }
+
+        .section-text {
+            position: relative;
+            z-index: 2;
+            color: #f5f2e7;
+            font-family: 'Lora', serif;
+            line-height: 1.6;
+        }
+
+        .section-text h1 {
+            font-family: 'Fredericka the Great', cursive;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #f5f2e7;
+        }
+
+        .section-text h2 {
+            font-family: 'Fredericka the Great', cursive;
+            margin: 30px 0 15px;
+            color: #f5f2e7;
+        }
+
+        .section-text p {
+            margin-bottom: 15px;
+        }
+
+        .references-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .references-list li {
+            margin-bottom: 20px;
+            text-indent: -2em;
+            padding-left: 2em;
+        }
+
+        .navigation-links {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px auto;
+            max-width: 800px;
+        }
+
+        .navigation-links a {
+            color: #f5f2e7;
+            text-decoration: none;
+            font-family: 'Fredericka the Great', cursive;
+            padding: 10px 20px;
+            position: relative;
+        }
+
+        .navigation-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 2px solid rgba(245, 232, 199, 0.9);
+            clip-path: polygon(
+                3% 0%, 97% 3%, 100% 97%, 3% 100%,
+                0% 97%, 97% 97%, 97% 3%, 0% 3%
+            );
+        }
+
+        .navigation-links a::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border: 1px solid rgba(245, 232, 199, 0.4);
+            clip-path: polygon(
+                0% 3%, 100% 0%, 97% 100%, 0% 97%,
+                3% 94%, 94% 94%, 94% 6%, 3% 6%
+            );
+        }
+    </style>
+</head>
+<body>
+    <img src="images/brain.png" alt="Brain" class="poster" id="brain-poster">
+    <img src="images/tree.png" alt="Tree" class="poster" id="tree-poster">
+    <img src="images/rock.png" alt="Rock" class="poster" id="rock-poster">
+    <img src="images/butterfly.png" alt="Butterfly" class="poster" id="butterfly-poster">
+    <img src="images/ladybird.png" alt="Ladybird" class="poster" id="ladybird-poster">
+    
+    <div class="page-wrapper">
+        <nav class="nav-menu">
+            <a href="dissertation.html">BACK TO DISSERTATION</a>
+        </nav>
+
+        <div class="section-content">
+            <div class="section-text">
+                <h1>References</h1>
+                
+                <ol class="references-list">
+                    <li>Adelson, E. H. (2001). On seeing stuff: The perception of materials by humans and machines. In B. E. Rogowitz & T. N. Pappas (Eds.), Human Vision and Electronic Imaging VI (Vol. 4299, pp. 1-12). SPIE.</li>
+                    
+                    <li>Biederman, I. (1987). Recognition-by-components: A theory of human image understanding. Psychological Review, 94(2), 115-147.</li>
+                    
+                    <li>Fleming, R. W. (2014). Visual perception of materials and their properties. Vision Research, 94, 62-75.</li>
+                    
+                    <li>Goodale, M. A., & Milner, A. D. (1992). Separate visual pathways for perception and action. Trends in Neurosciences, 15(1), 20-25.</li>
+                    
+                    <li>Hegdé, J., & Van Essen, D. C. (2000). Selectivity for complex shapes in primate visual area V2. Journal of Neuroscience, 20(5), RC61.</li>
+                    
+                    <li>Kourtzi, Z., & Kanwisher, N. (2001). Representation of perceived object shape by the human lateral occipital complex. Science, 293(5534), 1506-1509.</li>
+                    
+                    <li>Marr, D. (1982). Vision: A Computational Investigation into the Human Representation and Processing of Visual Information. W.H. Freeman.</li>
+                    
+                    <li>Marr, D., & Nishihara, H. K. (1978). Representation and recognition of the spatial organization of three-dimensional shapes. Proceedings of the Royal Society of London. Series B, Biological Sciences, 200(1140), 269-294.</li>
+                    
+                    <li>Mishkin, M., Ungerleider, L. G., & Macko, K. A. (1983). Object vision and spatial vision: Two cortical pathways. Trends in Neurosciences, 6, 414-417.</li>
+                    
+                    <li>Palmer, S. E. (1999). Vision Science: Photons to Phenomenology. MIT Press.</li>
+                    
+                    <li>Pelli, D. G. (1997). The VideoToolbox software for visual psychophysics: Transforming numbers into movies. Spatial Vision, 10(4), 437-442.</li>
+                    
+                    <li>Riesenhuber, M., & Poggio, T. (1999). Hierarchical models of object recognition in cortex. Nature Neuroscience, 2(11), 1019-1025.</li>
+                    
+                    <li>Serre, T., Oliva, A., & Poggio, T. (2007). A feedforward architecture accounts for rapid categorization. Proceedings of the National Academy of Sciences, 104(15), 6424-6429.</li>
+                    
+                    <li>Ullman, S. (1996). High-Level Vision: Object Recognition and Visual Cognition. MIT Press.</li>
+                    
+                    <li>VanRullen, R., & Thorpe, S. J. (2001). The time course of visual processing: From early perception to decision-making. Journal of Cognitive Neuroscience, 13(4), 454-461.</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="navigation-links">
+            <a href="conclusion.html" class="prev-section">Previous: Conclusion</a>
+            <a href="dissertation.html" class="next-section">Back to Overview</a>
+        </div>
+    </div>
+</body>
+</html> 
