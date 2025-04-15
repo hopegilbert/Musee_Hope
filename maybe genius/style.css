@@ -8,9 +8,9 @@ html, body {
 body {
     background-color: #2d3b2c;
     background-image: url('images/background.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: top center;
+    background-repeat: repeat-y;
     background-attachment: fixed;
     color: #f5f2e7;
     font-family: 'Fredericka the Great', cursive;
