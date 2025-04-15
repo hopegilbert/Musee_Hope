@@ -130,11 +130,14 @@ function reorderOverlays() {
     overlays.sort((a, b) => {
         const aZIndex = categoryZIndex[a.dataset.category] || 0;
         const bZIndex = categoryZIndex[b.dataset.category] || 0;
-        return aZIndex - bZIndex;
+        return bZIndex - aZIndex;
     });
     
     // Reappend in correct order
-    overlays.forEach(overlay => overlayContainer.appendChild(overlay));
+    overlays.forEach(overlay => {
+        overlay.style.zIndex = categoryZIndex[overlay.dataset.category];
+        overlayContainer.appendChild(overlay);
+    });
 }
 
 // Handle clothing item clicks
@@ -143,16 +146,15 @@ document.querySelectorAll('.clothing-item').forEach(item => {
         const overlayPath = item.dataset.overlay;
         const category = item.closest('.category-items').dataset.category;
         
-        // Remove all existing overlays for this category
-        const existingOverlays = overlayContainer.querySelectorAll(`img[data-category="${category}"]`);
-        existingOverlays.forEach(overlay => overlay.remove());
-        
         // If clicking the same item, just remove it
         const currentlySelected = selectedItems.get(category);
         if (currentlySelected === item) {
             selectedItems.delete(category);
             item.classList.remove('selected');
-            reorderOverlays(); // Reorder remaining overlays
+            const existingOverlay = overlayContainer.querySelector(`img[data-category="${category}"]`);
+            if (existingOverlay) {
+                existingOverlay.remove();
+            }
             return;
         }
         
@@ -161,20 +163,28 @@ document.querySelectorAll('.clothing-item').forEach(item => {
             currentlySelected.classList.remove('selected');
         }
         
+        // Remove existing overlay for this category if it exists
+        const existingOverlay = overlayContainer.querySelector(`img[data-category="${category}"]`);
+        if (existingOverlay) {
+            existingOverlay.remove();
+        }
+        
         // Add new overlay
         const overlay = document.createElement('img');
         overlay.src = overlayPath;
         overlay.classList.add('overlay-image');
         overlay.dataset.category = category;
-        overlay.style.zIndex = categoryZIndex[category] || 1;
+        overlay.style.zIndex = categoryZIndex[category];
         overlayContainer.appendChild(overlay);
         
         // Update selected item
         selectedItems.set(category, item);
         item.classList.add('selected');
         
-        // Reorder all overlays to ensure correct stacking
-        reorderOverlays();
+        // Ensure all overlays have correct z-index
+        overlayContainer.querySelectorAll('.overlay-image').forEach(overlay => {
+            overlay.style.zIndex = categoryZIndex[overlay.dataset.category];
+        });
     });
 });
 
