@@ -76,19 +76,22 @@ function startDrawing(e) {
     isDrawing = true;
     [lastX, lastY] = getMousePos(e);
     
+    if (currentTool === 'text') {
+        const rect = canvas.getBoundingClientRect();
+        textBox.style.display = 'block';
+        textBox.style.left = (e.clientX - rect.left) + 'px';
+        textBox.style.top = (e.clientY - rect.top) + 'px';
+        textBox.style.fontSize = (currentSize * 12) + 'px';
+        textBox.style.color = currentColor;
+        textBox.focus();
+        return;
+    }
+    
     if (['rectangle', 'ellipse', 'line'].includes(currentTool)) {
         drawingSurface = ctx.getImageData(0, 0, canvas.width, canvas.height);
     } else if (currentTool === 'fill') {
         floodFill(lastX, lastY);
         saveState();
-    } else if (currentTool === 'text') {
-        const text = prompt('Enter text:', '');
-        if (text) {
-            ctx.font = `${currentSize * 12}px Arial`;
-            ctx.fillStyle = currentColor;
-            ctx.fillText(text, lastX, lastY);
-            saveState();
-        }
     }
 }
 
@@ -99,17 +102,16 @@ function draw(e) {
     
     ctx.strokeStyle = currentColor;
     ctx.fillStyle = currentColor;
-    ctx.lineWidth = currentSize;
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
     
     if (['rectangle', 'ellipse', 'line'].includes(currentTool)) {
-        // Restore the canvas to draw the preview
         ctx.putImageData(drawingSurface, 0, 0);
     }
     
     switch (currentTool) {
         case 'pencil':
+            ctx.lineWidth = currentSize;
             ctx.beginPath();
             ctx.moveTo(lastX, lastY);
             ctx.lineTo(x, y);
@@ -118,15 +120,28 @@ function draw(e) {
             break;
             
         case 'brush':
-            for (let i = 0; i < 3; i++) {
-                ctx.beginPath();
-                ctx.moveTo(lastX, lastY);
-                ctx.lineTo(x, y);
-                ctx.lineWidth = currentSize * (5 - i);
-                ctx.globalAlpha = (3 - i) / 3;
-                ctx.stroke();
-            }
-            ctx.globalAlpha = 1;
+            ctx.lineWidth = currentSize * 3;
+            ctx.beginPath();
+            ctx.moveTo(lastX, lastY);
+            ctx.lineTo(x, y);
+            ctx.stroke();
+            
+            // Add additional strokes for brush effect
+            ctx.globalAlpha = 0.5;
+            ctx.lineWidth = currentSize * 2;
+            ctx.beginPath();
+            ctx.moveTo(lastX, lastY);
+            ctx.lineTo(x, y);
+            ctx.stroke();
+            
+            ctx.globalAlpha = 0.3;
+            ctx.lineWidth = currentSize * 4;
+            ctx.beginPath();
+            ctx.moveTo(lastX, lastY);
+            ctx.lineTo(x, y);
+            ctx.stroke();
+            
+            ctx.globalAlpha = 1.0;
             [lastX, lastY] = [x, y];
             break;
             
@@ -508,7 +523,7 @@ function createTextBox() {
     textBox.contentEditable = true;
     textBox.style.position = 'absolute';
     textBox.style.display = 'none';
-    textBox.style.minWidth = '100px';
+    textBox.style.minWidth = '50px';
     textBox.style.minHeight = '20px';
     textBox.style.padding = '2px';
     textBox.style.border = '1px solid #000';
@@ -516,25 +531,34 @@ function createTextBox() {
     textBox.style.zIndex = '1000';
     textBox.style.cursor = 'text';
     textBox.style.fontFamily = 'Arial';
+    textBox.style.whiteSpace = 'nowrap';
+    textBox.style.outline = 'none';
     
     textBox.addEventListener('blur', finalizeText);
+    textBox.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            textBox.blur();
+        }
+    });
+    
     canvas.parentElement.appendChild(textBox);
 }
 
 function finalizeText() {
     if (textBox.style.display === 'none') return;
     
-    const text = textBox.innerText;
-    if (text.trim()) {
+    const text = textBox.innerText.trim();
+    if (text) {
         const rect = textBox.getBoundingClientRect();
         const canvasRect = canvas.getBoundingClientRect();
         
         ctx.font = `${currentSize * 12}px Arial`;
         ctx.fillStyle = currentColor;
         ctx.fillText(text, rect.left - canvasRect.left, rect.top - canvasRect.top + parseInt(getComputedStyle(textBox).fontSize));
+        saveState();
     }
     
     textBox.style.display = 'none';
     textBox.innerText = '';
-    saveState();
 } 
