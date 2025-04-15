@@ -5,7 +5,7 @@
 }
 
 html, body {
-    height: 100vh;
+    height: 100%;
     margin: 0;
     padding: 0;
     font-family: "MS Sans Serif", "Microsoft Sans Serif", Tahoma, sans-serif;
@@ -16,11 +16,16 @@ html, body {
 
 .window {
     width: 100%;
-    height: 100vh;
+    height: 100%;
     background: #d4d0c8;
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
 
 .title-bar {
@@ -481,9 +486,36 @@ html, body {
 
 @media (max-width: 768px) {
     body {
-        position: fixed;
+        position: relative;
         width: 100%;
         height: 100%;
+        overflow: hidden;
+    }
+
+    .window {
+        position: fixed;
+        height: 100%;
+        /* Fallback for browsers that don't support dvh */
+        height: 100dvh;
+        min-height: -webkit-fill-available;
+    }
+
+    .main-content {
+        height: calc(100% - 40px);
+        /* Fallback for browsers that don't support dvh */
+        height: calc(100dvh - 40px);
+    }
+
+    .canvas-container {
+        bottom: 60px; /* Increased bottom spacing for mobile */
+    }
+
+    .color-palette {
+        bottom: 45px; /* Adjusted for mobile */
+    }
+
+    .status-bar {
+        height: 25px; /* Slightly taller for better touch targets */
     }
 
     .main-container {
