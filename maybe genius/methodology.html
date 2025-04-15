@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Methodology - Dissertation</title>
+    <title>Methodology - Maybe Genius</title>
     <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Inter:wght@400;500;600;700;800&family=Lora:wght@400;500;600;700&family=Schoolbell&family=Special+Elite&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        .section-content {
+        .dissertation-content {
             background: rgba(0, 0, 0, 0.6);
             padding: 40px;
             margin: 40px auto;
@@ -16,7 +16,7 @@
             position: relative;
         }
 
-        .section-content::before {
+        .dissertation-content::before {
             content: '';
             position: absolute;
             top: 0;
@@ -33,7 +33,7 @@
             z-index: 1;
         }
 
-        .section-content::after {
+        .dissertation-content::after {
             content: '';
             position: absolute;
             top: -4px;
@@ -50,7 +50,7 @@
             z-index: 1;
         }
 
-        .section-text {
+        .dissertation-text {
             position: relative;
             z-index: 2;
             color: #f5f2e7;
@@ -58,27 +58,27 @@
             line-height: 1.6;
         }
 
-        .section-text h1 {
+        .dissertation-text h1, .dissertation-text h2 {
             font-family: 'Fredericka the Great', cursive;
             text-align: center;
             margin-bottom: 30px;
             color: #f5f2e7;
         }
 
-        .section-text h2 {
-            font-family: 'Fredericka the Great', cursive;
+        .dissertation-text h2 {
+            text-align: left;
+            font-size: 1.5em;
             margin: 30px 0 15px;
-            color: #f5f2e7;
         }
 
-        .section-text p {
+        .dissertation-text p {
             margin-bottom: 15px;
         }
 
         .nav-links {
+            margin-top: 30px;
             display: flex;
             justify-content: space-between;
-            margin-top: 40px;
         }
 
         .nav-links a {
@@ -87,6 +87,7 @@
             font-family: 'Fredericka the Great', cursive;
             padding: 10px 20px;
             position: relative;
+            display: inline-block;
         }
 
         .nav-links a::before {
@@ -130,28 +131,24 @@
             <a href="dissertation.html">BACK TO DISSERTATION</a>
         </nav>
 
-        <div class="section-content">
-            <div class="section-text">
+        <div class="dissertation-content">
+            <div class="dissertation-text">
                 <h1>Methodology</h1>
-                
+
+                <h2>Design</h2>
+                <p>The study employed a repeated measures design, which allowed each participant to experience both levels of the independent variable: the viewing angles of the mug at 20 degrees and 40 degrees. This design was chosen to control for individual differences in perception and ensure that any observed effects were due to the manipulation of the viewing angle rather than variability between participants. The dependent variable was the number of times participants selected the 'rounder' option when comparing the CGI discs to the real mug's rim.</p>
+
                 <h2>Participants</h2>
-                <p>A total of 120 participants (60 male, 60 female) between the ages of 18 and 45 were recruited for this study. All participants had normal or corrected-to-normal vision and no history of neurological disorders.</p>
-
-                <h2>Materials</h2>
-                <p>The study utilized a custom-built virtual reality environment to present 3D objects with varying shapes and material properties. Objects were rendered using physically-based rendering techniques to ensure realistic appearance. Eye-tracking data was collected using a high-precision eye tracker (1000Hz sampling rate).</p>
-
-                <h2>Procedure</h2>
-                <p>Participants were presented with a series of objects and asked to make judgments about their shape and material properties. Each trial consisted of three phases: initial viewing, cognitive estimation, and final judgment. Response times and eye movements were recorded throughout the experiment.</p>
-
-                <h2>Data Analysis</h2>
-                <p>Data was analyzed using a combination of traditional statistical methods and machine learning techniques. Response times were analyzed using mixed-effects models, while eye-tracking data was processed using custom algorithms to identify patterns of visual attention.</p>
+                <p>Three participants (2 males and 1 female) from Durham University participated in the study. Their ages ranged from 22 to 26 years. All participants reported having normal eyesight. The small sample size was strategically chosen to address the research question efficiently, following Aristotle's principle of careful and thorough investigation with a focused group. Taking a psychophysical approach in which a small number of participants make a large number of decisions over a carefully chose range of stimuli allows statistical analyses to be conducted at the level of individual observers is likely to produce clearer results than a groups study in which smaller numbers of trials lead to inaccurate estimates of each observers experience.</p>
 
                 <div class="nav-links">
-                    <a href="introduction.html">Previous: Introduction</a>
-                    <a href="results.html">Next: Results</a>
+                    <a href="introduction.html">← Introduction</a>
+                    <a href="results.html">Results →</a>
                 </div>
             </div>
         </div>
     </div>
+
+    <script src="scripts.js"></script>
 </body>
 </html> 
