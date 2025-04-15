@@ -11,6 +11,87 @@ const categoryZIndex = {
     'shoes': 200
 };
 
+// Background image adjustment
+const backgroundImage = document.querySelector('.background-image');
+let isDragging = false;
+let currentX;
+let currentY;
+let initialX;
+let initialY;
+let xOffset = 0;
+let yOffset = 0;
+let scale = 1;
+
+// Add scale control to the UI
+const scaleControl = document.createElement('div');
+scaleControl.className = 'scale-control';
+scaleControl.innerHTML = `
+    <label for="scale-slider">Size:</label>
+    <input type="range" id="scale-slider" min="50" max="150" value="100">
+    <span id="scale-value">100%</span>
+`;
+document.querySelector('.canvas-area').appendChild(scaleControl);
+
+// Handle scale changes
+const scaleSlider = document.getElementById('scale-slider');
+const scaleValue = document.getElementById('scale-value');
+scaleSlider.addEventListener('input', (e) => {
+    scale = e.target.value / 100;
+    scaleValue.textContent = `${e.target.value}%`;
+    updateImageTransform();
+});
+
+// Mouse event handlers for dragging
+backgroundImage.addEventListener('mousedown', dragStart);
+document.addEventListener('mousemove', drag);
+document.addEventListener('mouseup', dragEnd);
+
+// Touch event handlers for mobile
+backgroundImage.addEventListener('touchstart', dragStart);
+document.addEventListener('touchmove', drag);
+document.addEventListener('touchend', dragEnd);
+
+function dragStart(e) {
+    if (e.type === 'mousedown') {
+        initialX = e.clientX - xOffset;
+        initialY = e.clientY - yOffset;
+    } else {
+        initialX = e.touches[0].clientX - xOffset;
+        initialY = e.touches[0].clientY - yOffset;
+    }
+
+    if (e.target === backgroundImage) {
+        isDragging = true;
+    }
+}
+
+function drag(e) {
+    if (isDragging) {
+        e.preventDefault();
+
+        if (e.type === 'mousemove') {
+            currentX = e.clientX - initialX;
+            currentY = e.clientY - initialY;
+        } else {
+            currentX = e.touches[0].clientX - initialX;
+            currentY = e.touches[0].clientY - initialY;
+        }
+
+        xOffset = currentX;
+        yOffset = currentY;
+
+        updateImageTransform();
+    }
+}
+
+function dragEnd() {
+    isDragging = false;
+}
+
+function updateImageTransform() {
+    backgroundImage.style.transform = `translate(${xOffset}px, ${yOffset}px) scale(${scale})`;
+}
+
 // Category and overlay management
 const categoryButtons = document.querySelectorAll('.category-button');
 const categoryItems = document.querySelectorAll('.category-items');
@@ -83,4 +164,38 @@ document.querySelectorAll('.clothing-item').forEach(item => {
 // Activate first category by default
 if (categoryButtons.length > 0) {
     categoryButtons[0].click();
-} 
+}
+
+// Add CSS for the scale control
+const style = document.createElement('style');
+style.textContent = `
+    .scale-control {
+        position: absolute;
+        left: 34px;
+        bottom: 55px;
+        background: #c0c0c0;
+        padding: 4px 8px;
+        border: 1px solid;
+        border-color: #ffffff #808080 #808080 #ffffff;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        z-index: 1100;
+    }
+    .scale-control label {
+        font-size: 11px;
+    }
+    .scale-control input {
+        width: 100px;
+    }
+    .scale-control span {
+        font-size: 11px;
+        min-width: 40px;
+    }
+    .background-image {
+        cursor: move;
+        transform-origin: center;
+        transition: transform 0.05s ease-out;
+    }
+`;
+document.head.appendChild(style); 
