@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const dropdownBtn = document.getElementById('researchDropdown');
     const dropdownContent = document.getElementById('researchDropdownContent');
 
+    if (!dropdownBtn || !dropdownContent) return;
+
     // Toggle dropdown on button click
     dropdownBtn.addEventListener('click', function(e) {
         e.stopPropagation();
