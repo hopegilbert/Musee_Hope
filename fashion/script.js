@@ -124,6 +124,19 @@ categoryButtons.forEach((button) => {
     });
 });
 
+// Function to reorder overlays based on z-index
+function reorderOverlays() {
+    const overlays = Array.from(overlayContainer.children);
+    overlays.sort((a, b) => {
+        const aZIndex = categoryZIndex[a.dataset.category] || 0;
+        const bZIndex = categoryZIndex[b.dataset.category] || 0;
+        return aZIndex - bZIndex;
+    });
+    
+    // Reappend in correct order
+    overlays.forEach(overlay => overlayContainer.appendChild(overlay));
+}
+
 // Handle clothing item clicks
 document.querySelectorAll('.clothing-item').forEach(item => {
     item.addEventListener('click', () => {
@@ -139,6 +152,7 @@ document.querySelectorAll('.clothing-item').forEach(item => {
         if (currentlySelected === item) {
             selectedItems.delete(category);
             item.classList.remove('selected');
+            reorderOverlays(); // Reorder remaining overlays
             return;
         }
         
@@ -152,12 +166,15 @@ document.querySelectorAll('.clothing-item').forEach(item => {
         overlay.src = overlayPath;
         overlay.classList.add('overlay-image');
         overlay.dataset.category = category;
-        overlay.style.zIndex = categoryZIndex[category] || 1; // Use category-specific z-index
+        overlay.style.zIndex = categoryZIndex[category] || 1;
         overlayContainer.appendChild(overlay);
         
         // Update selected item
         selectedItems.set(category, item);
         item.classList.add('selected');
+        
+        // Reorder all overlays to ensure correct stacking
+        reorderOverlays();
     });
 });
 
