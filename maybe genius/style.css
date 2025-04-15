@@ -249,48 +249,44 @@ footer {
 /* Background Posters */
 .poster {
     position: fixed;
-    opacity: 0.15;
+    opacity: 1;
     z-index: 1;
     transition: opacity 0.3s ease;
 }
 
 .poster:hover {
-    opacity: 0.4;
+    opacity: 1;
 }
 
 #brain-poster {
-    top: 5%;
-    left: 8%;
-    width: 25%;
-    transform: rotate(-8deg);
+    top: 2%;
+    left: 2%;
+    width: 20%;
 }
 
 #tree-poster {
-    top: 15%;
-    right: 12%;
-    width: 22%;
-    transform: rotate(5deg);
+    top: 2%;
+    right: 2%;
+    width: 20%;
 }
 
 #rock-poster {
-    bottom: 18%;
-    left: 15%;
+    bottom: 2%;
+    left: 2%;
     width: 20%;
-    transform: rotate(-3deg);
 }
 
 #butterfly-poster {
-    top: 45%;
-    right: 18%;
-    width: 18%;
-    transform: rotate(8deg);
+    top: 50%;
+    right: 2%;
+    transform: translateY(-50%);
+    width: 20%;
 }
 
 #ladybird-poster {
-    bottom: 10%;
-    right: 25%;
-    width: 15%;
-    transform: rotate(-6deg);
+    bottom: 2%;
+    right: 2%;
+    width: 20%;
 }
 
 .dissertation-content {
