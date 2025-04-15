@@ -1,28 +1,33 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
+    // Get the dropdown button and content
     const dropdownBtn = document.getElementById('researchDropdown');
     const dropdownContent = document.getElementById('researchDropdownContent');
 
-    dropdownBtn.addEventListener('click', function (e) {
+    // Toggle dropdown on button click
+    dropdownBtn.addEventListener('click', function(e) {
         e.stopPropagation();
-        dropdownContent.style.display =
-            dropdownContent.style.display === 'block' ? 'none' : 'block';
+        dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
     });
 
+    // Handle dropdown item clicks
     const dropdownItems = dropdownContent.querySelectorAll('a');
     dropdownItems.forEach(item => {
-        item.addEventListener('click', function (e) {
+        item.addEventListener('click', function(e) {
             e.preventDefault();
             const href = this.getAttribute('href');
             if (href.startsWith('#')) {
+                // Handle internal links
                 dropdownBtn.textContent = this.textContent + ' ▾';
                 dropdownContent.style.display = 'none';
             } else {
+                // Handle external links
                 window.location.href = href;
             }
         });
     });
 
-    document.addEventListener('click', function (e) {
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
         if (!dropdownBtn.contains(e.target) && !dropdownContent.contains(e.target)) {
             dropdownContent.style.display = 'none';
         }
