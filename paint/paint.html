@@ -3,125 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paint</title>
+    <title>Untitled - Paint</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="paint-container">
-        <div class="paint-header">
-            <div class="title-bar">
-                <div class="title-bar-text">
-                    <img src="images/paint-icon.png" alt="Paint" class="title-icon">
-                    <span>Paint</span>
-                </div>
-                <div class="title-bar-controls">
-                    <button id="minimize-button">-</button>
-                    <button id="maximize-button">□</button>
-                    <button id="close-button">×</button>
-                </div>
+    <div class="window">
+        <div class="title-bar">
+            <div class="title-bar-text">
+                <img src="images/paint-icon.png" alt="Paint" class="title-icon">
+                Untitled - Paint
             </div>
-            <div class="menu-bar">
-                <div class="menu-item" id="fileMenu">
-                    File
-                    <div class="menu-dropdown">
-                        <button>New</button>
-                        <button>Open</button>
-                        <button>Save</button>
-                        <button>Print</button>
-                        <button>Exit</button>
-                    </div>
-                </div>
-                <div class="menu-item" id="editMenu">
-                    Edit
-                    <div class="menu-dropdown">
-                        <button>Undo</button>
-                        <button>Redo</button>
-                        <button>Cut</button>
-                        <button>Copy</button>
-                        <button>Paste</button>
-                    </div>
-                </div>
-                <div class="menu-item" id="viewMenu">
-                    View
-                    <div class="menu-dropdown">
-                        <button>Zoom In</button>
-                        <button>Zoom Out</button>
-                        <button>Full Screen</button>
-                    </div>
-                </div>
-                <div class="menu-item" id="colorsMenu">
-                    Colors
-                    <div class="menu-dropdown">
-                        <div class="color-grid">
-                            <div class="color-box" style="background-color: #000000;"></div>
-                            <div class="color-box" style="background-color: #808080;"></div>
-                            <div class="color-box" style="background-color: #800000;"></div>
-                            <div class="color-box" style="background-color: #808000;"></div>
-                            <div class="color-box" style="background-color: #008000;"></div>
-                            <div class="color-box" style="background-color: #008080;"></div>
-                            <div class="color-box" style="background-color: #000080;"></div>
-                            <div class="color-box" style="background-color: #800080;"></div>
-                            <div class="color-box" style="background-color: #FFFFFF;"></div>
-                            <div class="color-box" style="background-color: #C0C0C0;"></div>
-                            <div class="color-box" style="background-color: #FF0000;"></div>
-                            <div class="color-box" style="background-color: #FFFF00;"></div>
-                            <div class="color-box" style="background-color: #00FF00;"></div>
-                            <div class="color-box" style="background-color: #00FFFF;"></div>
-                            <div class="color-box" style="background-color: #0000FF;"></div>
-                            <div class="color-box" style="background-color: #FF00FF;"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="paint-toolbar">
-                <button class="tool-button" data-tool="pencil">
-                    <img src="images/pencil.png" alt="Pencil">
-                </button>
-                <button class="tool-button" data-tool="brush">
-                    <img src="images/brush.png" alt="Brush">
-                </button>
-                <button class="tool-button" data-tool="eraser">
-                    <img src="images/eraser.png" alt="Eraser">
-                </button>
-                <button class="tool-button" data-tool="fill">
-                    <img src="images/fill.png" alt="Fill">
-                </button>
-                <button class="tool-button" data-tool="rectangle">
-                    <img src="images/rectangle.png" alt="Rectangle">
-                </button>
-                <button class="tool-button" data-tool="ellipse">
-                    <img src="images/ellipse.png" alt="Ellipse">
-                </button>
-                <button class="tool-button" data-tool="line">
-                    <img src="images/line.png" alt="Line">
-                </button>
-                <button class="tool-button" data-tool="text">
-                    <img src="images/text.png" alt="Text">
-                </button>
-                <button class="tool-button" data-tool="spray">
-                    <img src="images/spray-can.png" alt="Spray">
-                </button>
-                <button class="tool-button" data-tool="undo">
-                    <img src="images/undo.png" alt="Undo">
-                </button>
-                <button class="tool-button" data-tool="redo">
-                    <img src="images/redo.png" alt="Redo">
-                </button>
-            </div>
-            <div class="paint-controls">
-                <div class="size-control">
-                    <label for="size">Size:</label>
-                    <input type="range" id="size" min="1" max="50" value="5">
-                    <span id="size-value">5</span>
-                </div>
-                <div class="color-control">
-                    <label for="color">Color:</label>
-                    <input type="color" id="color" value="#000000">
-                </div>
+            <div class="title-bar-controls">
+                <button class="minimize">-</button>
+                <button class="maximize">□</button>
+                <button class="close" onclick="window.location.href='../index.html'">×</button>
             </div>
         </div>
-        <div class="paint-canvas-container">
-            <canvas id="canvas"></canvas>
+        <div class="menu-bar">
+            <div class="menu-item">File</div>
+            <div class="menu-item">Edit</div>
+            <div class="menu-item">View</div>
+            <div class="menu-item">Image</div>
+            <div class="menu-item">Colors</div>
+            <div class="menu-item">Help</div>
+        </div>
+        <div class="main-content">
+            <div class="toolbar">
+                <button class="tool" data-tool="pencil"><img src="images/pencil.png" alt="Pencil"></button>
+                <button class="tool" data-tool="fill"><img src="images/fill.png" alt="Fill"></button>
+                <button class="tool" data-tool="eraser"><img src="images/eraser.png" alt="Eraser"></button>
+                <button class="tool" data-tool="colorpicker"><img src="images/brush.png" alt="Color Picker"></button>
+                <button class="tool" data-tool="rectangle"><img src="images/rectangle.png" alt="Rectangle"></button>
+                <button class="tool" data-tool="ellipse"><img src="images/ellipse.png" alt="Circle"></button>
+                <button class="tool" data-tool="line"><img src="images/line.png" alt="Line"></button>
+                <button class="tool" data-tool="text"><img src="images/text.png" alt="Text"></button>
+                <button class="tool" data-tool="spray"><img src="images/spray-can.png" alt="Spray"></button>
+                <button class="tool" data-tool="undo"><img src="images/undo.png" alt="Undo"></button>
+                <button class="tool" data-tool="redo"><img src="images/redo.png" alt="Redo"></button>
+            </div>
+            <div class="canvas-area">
+                <canvas id="canvas"></canvas>
+                <div class="color-palette">
+                    <div class="color" style="background: #000000;"></div>
+                    <div class="color" style="background: #808080;"></div>
+                    <div class="color" style="background: #800000;"></div>
+                    <div class="color" style="background: #808000;"></div>
+                    <div class="color" style="background: #008000;"></div>
+                    <div class="color" style="background: #008080;"></div>
+                    <div class="color" style="background: #000080;"></div>
+                    <div class="color" style="background: #800080;"></div>
+                    <div class="color" style="background: #808040;"></div>
+                    <div class="color" style="background: #004040;"></div>
+                    <div class="color" style="background: #0080FF;"></div>
+                    <div class="color" style="background: #004080;"></div>
+                    <div class="color" style="background: #8000FF;"></div>
+                    <div class="color" style="background: #804000;"></div>
+                    <div class="color" style="background: #FFFFFF;"></div>
+                    <div class="color" style="background: #C0C0C0;"></div>
+                    <div class="color" style="background: #FF0000;"></div>
+                    <div class="color" style="background: #FFFF00;"></div>
+                    <div class="color" style="background: #00FF00;"></div>
+                    <div class="color" style="background: #00FFFF;"></div>
+                    <div class="color" style="background: #0000FF;"></div>
+                    <div class="color" style="background: #FF00FF;"></div>
+                    <div class="color" style="background: #FFFF80;"></div>
+                    <div class="color" style="background: #00FF80;"></div>
+                    <div class="color" style="background: #80FFFF;"></div>
+                    <div class="color" style="background: #8080FF;"></div>
+                    <div class="color" style="background: #FF80FF;"></div>
+                    <div class="color" style="background: #FF8040;"></div>
+                </div>
+                <div class="status-bar">
+                    <span>100%</span>
+                    <span>800 x 600</span>
+                </div>
+            </div>
         </div>
     </div>
     <script src="script.js"></script>

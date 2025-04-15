@@ -4,8 +4,16 @@ const ctx = canvas.getContext('2d');
 const overlayContainer = document.querySelector('.overlay-container');
 
 // Set initial canvas size
-canvas.width = 800;
-canvas.height = 600;
+function resizeCanvas() {
+    const container = canvas.parentElement;
+    canvas.width = container.clientWidth - 4;
+    canvas.height = container.clientHeight - 60;
+    
+    // Fill with white
+    ctx.fillStyle = '#FFFFFF';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    saveState();
+}
 
 // Drawing state
 let isDrawing = false;
@@ -13,65 +21,74 @@ let lastX = 0;
 let lastY = 0;
 let currentTool = 'pencil';
 let currentColor = '#000000';
-let currentSize = 5;
+let currentSize = 1;
+let drawingSurface = null;
 let history = [];
 let historyIndex = -1;
 
-// Initialize canvas with white background
-ctx.fillStyle = '#FFFFFF';
-ctx.fillRect(0, 0, canvas.width, canvas.height);
-saveState();
+// Initialize
+window.addEventListener('load', () => {
+    resizeCanvas();
+    document.querySelector('.tool[data-tool="pencil"]').classList.add('active');
+});
 
-// Tool buttons
-const toolButtons = document.querySelectorAll('.tool-button');
-toolButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        toolButtons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-        currentTool = button.getAttribute('data-tool');
+window.addEventListener('resize', resizeCanvas);
+
+// Tool selection
+const tools = document.querySelectorAll('.tool');
+tools.forEach(tool => {
+    tool.addEventListener('click', () => {
+        const toolName = tool.getAttribute('data-tool');
+        if (toolName === 'undo') {
+            undo();
+            return;
+        }
+        if (toolName === 'redo') {
+            redo();
+            return;
+        }
+        tools.forEach(t => t.classList.remove('active'));
+        tool.classList.add('active');
+        currentTool = toolName;
         updateCursor();
     });
 });
 
-// Size control
-const sizeInput = document.getElementById('size');
-const sizeValue = document.getElementById('size-value');
-sizeInput.addEventListener('input', () => {
-    currentSize = parseInt(sizeInput.value);
-    sizeValue.textContent = currentSize;
-    updateCursor();
-});
-
-// Color control
-const colorInput = document.getElementById('color');
-colorInput.addEventListener('input', () => {
-    currentColor = colorInput.value;
-});
-
-// Canvas size control
-const widthInput = document.getElementById('canvas-width');
-const heightInput = document.getElementById('canvas-height');
-const resizeButton = document.getElementById('resize-canvas');
-resizeButton.addEventListener('click', () => {
-    const newWidth = parseInt(widthInput.value);
-    const newHeight = parseInt(heightInput.value);
-    if (newWidth >= 100 && newWidth <= 2000 && newHeight >= 100 && newHeight <= 2000) {
-        setCanvasSize(newWidth, newHeight);
-    }
+// Color selection
+const colors = document.querySelectorAll('.color');
+colors.forEach(color => {
+    color.addEventListener('click', () => {
+        colors.forEach(c => c.classList.remove('active'));
+        color.classList.add('active');
+        currentColor = color.style.backgroundColor;
+    });
 });
 
 // Drawing functions
 function startDrawing(e) {
     isDrawing = true;
     [lastX, lastY] = getMousePos(e);
+    
+    // Save the current canvas state for shape tools
+    if (['rectangle', 'ellipse', 'line'].includes(currentTool)) {
+        drawingSurface = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    }
+    
     if (currentTool === 'text') {
         const text = prompt('Enter text:');
         if (text) {
-            ctx.font = `${currentSize}px Arial`;
+            ctx.font = `${currentSize * 12}px Arial`;
             ctx.fillStyle = currentColor;
             ctx.fillText(text, lastX, lastY);
             saveState();
         }
+    } else if (currentTool === 'fill') {
+        floodFill(lastX, lastY);
+        saveState();
+    } else if (currentTool === 'colorpicker') {
+        const pixel = ctx.getImageData(lastX, lastY, 1, 1).data;
+        currentColor = `rgb(${pixel[0]}, ${pixel[1]}, ${pixel[2]})`;
+        document.querySelector('.tool[data-tool="pencil"]').click();
     }
 }
 
@@ -80,12 +97,14 @@ function draw(e) {
     
     const [x, y] = getMousePos(e);
     
+    if (['rectangle', 'ellipse', 'line'].includes(currentTool)) {
+        // Restore the saved state before drawing the new shape
+        ctx.putImageData(drawingSurface, 0, 0);
+    }
+    
     switch (currentTool) {
         case 'pencil':
             drawPencil(x, y);
-            break;
-        case 'brush':
-            drawBrush(x, y);
             break;
         case 'eraser':
             drawEraser(x, y);
@@ -110,7 +129,9 @@ function draw(e) {
 function stopDrawing() {
     if (isDrawing) {
         isDrawing = false;
-        saveState();
+        if (['rectangle', 'ellipse', 'line', 'pencil', 'eraser', 'spray'].includes(currentTool)) {
+            saveState();
+        }
     }
 }
 
@@ -125,32 +146,17 @@ function drawPencil(x, y) {
     ctx.stroke();
 }
 
-function drawBrush(x, y) {
-    ctx.beginPath();
-    ctx.moveTo(lastX, lastY);
-    ctx.lineTo(x, y);
-    ctx.strokeStyle = currentColor;
-    ctx.lineWidth = currentSize * 2;
-    ctx.lineCap = 'round';
-    ctx.lineJoin = 'round';
-    ctx.stroke();
-}
-
 function drawEraser(x, y) {
-    ctx.beginPath();
-    ctx.moveTo(lastX, lastY);
-    ctx.lineTo(x, y);
-    ctx.strokeStyle = '#FFFFFF';
-    ctx.lineWidth = currentSize * 2;
-    ctx.lineCap = 'round';
-    ctx.stroke();
+    const size = currentSize * 10;
+    ctx.fillStyle = '#FFFFFF';
+    ctx.fillRect(x - size/2, y - size/2, size, size);
 }
 
 function drawSpray(x, y) {
-    const density = currentSize * 2;
+    const density = currentSize * 5;
     for (let i = 0; i < density; i++) {
         const angle = Math.random() * Math.PI * 2;
-        const radius = Math.random() * currentSize;
+        const radius = Math.random() * currentSize * 10;
         const sprayX = x + Math.cos(angle) * radius;
         const sprayY = y + Math.sin(angle) * radius;
         ctx.fillStyle = currentColor;
@@ -161,23 +167,22 @@ function drawSpray(x, y) {
 function drawRectangle(x, y) {
     const width = x - lastX;
     const height = y - lastY;
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = currentColor;
-    ctx.fillRect(lastX, lastY, width, height);
+    ctx.strokeStyle = currentColor;
+    ctx.lineWidth = currentSize;
+    ctx.strokeRect(lastX, lastY, width, height);
 }
 
 function drawEllipse(x, y) {
-    const width = x - lastX;
-    const height = y - lastY;
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const width = Math.abs(x - lastX);
+    const height = Math.abs(y - lastY);
     ctx.beginPath();
-    ctx.ellipse(lastX + width/2, lastY + height/2, Math.abs(width/2), Math.abs(height/2), 0, 0, Math.PI * 2);
-    ctx.fillStyle = currentColor;
-    ctx.fill();
+    ctx.ellipse(lastX + (x - lastX)/2, lastY + (y - lastY)/2, width/2, height/2, 0, 0, Math.PI * 2);
+    ctx.strokeStyle = currentColor;
+    ctx.lineWidth = currentSize;
+    ctx.stroke();
 }
 
 function drawLine(x, y) {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.beginPath();
     ctx.moveTo(lastX, lastY);
     ctx.lineTo(x, y);
@@ -187,75 +192,48 @@ function drawLine(x, y) {
 }
 
 // Fill tool
-function floodFill(x, y) {
+function floodFill(startX, startY) {
     const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    const data = imageData.data;
-    const targetColor = getColorAt(x, y);
-    const fillColor = hexToRgb(currentColor);
+    const pixels = imageData.data;
     
-    if (!targetColor || !fillColor) return;
+    const startPos = (startY * canvas.width + startX) * 4;
+    const startR = pixels[startPos];
+    const startG = pixels[startPos + 1];
+    const startB = pixels[startPos + 2];
     
-    // Don't fill if clicking the same color
-    if (targetColor.r === fillColor.r && targetColor.g === fillColor.g && targetColor.b === fillColor.b) {
+    const fillColor = hexToRgba(currentColor);
+    
+    if (startR === fillColor.r && startG === fillColor.g && startB === fillColor.b) {
         return;
     }
     
-    const stack = [[Math.round(x), Math.round(y)]];
-    const visited = new Set();
-    const width = canvas.width;
-    const height = canvas.height;
+    const stack = [[startX, startY]];
     
-    while (stack.length > 0) {
-        const [currentX, currentY] = stack.pop();
-        const index = (currentY * width + currentX) * 4;
+    while (stack.length) {
+        const [x, y] = stack.pop();
+        const pos = (y * canvas.width + x) * 4;
         
-        if (currentX < 0 || currentX >= width || currentY < 0 || currentY >= height) continue;
-        if (visited.has(`${currentX},${currentY}`)) continue;
+        if (x < 0 || x >= canvas.width || y < 0 || y >= canvas.height) continue;
+        if (!colorsMatch(pixels[pos], pixels[pos + 1], pixels[pos + 2], {r: startR, g: startG, b: startB})) continue;
         
-        visited.add(`${currentX},${currentY}`);
+        pixels[pos] = fillColor.r;
+        pixels[pos + 1] = fillColor.g;
+        pixels[pos + 2] = fillColor.b;
+        pixels[pos + 3] = 255;
         
-        // Check if current pixel matches target color (with tolerance)
-        if (colorsMatch(data[index], data[index + 1], data[index + 2], targetColor)) {
-            // Fill the pixel
-            data[index] = fillColor.r;
-            data[index + 1] = fillColor.g;
-            data[index + 2] = fillColor.b;
-            data[index + 3] = 255;
-            
-            // Add neighboring pixels to stack
-            stack.push([currentX + 1, currentY]);
-            stack.push([currentX - 1, currentY]);
-            stack.push([currentX, currentY + 1]);
-            stack.push([currentX, currentY - 1]);
-            // Add diagonal pixels for better fill
-            stack.push([currentX + 1, currentY + 1]);
-            stack.push([currentX - 1, currentY - 1]);
-            stack.push([currentX + 1, currentY - 1]);
-            stack.push([currentX - 1, currentY + 1]);
-        }
+        stack.push([x + 1, y], [x - 1, y], [x, y + 1], [x, y - 1]);
     }
     
     ctx.putImageData(imageData, 0, 0);
-    saveState();
 }
 
-function getColorAt(x, y) {
-    const imageData = ctx.getImageData(x, y, 1, 1);
-    const data = imageData.data;
-    return {
-        r: data[0],
-        g: data[1],
-        b: data[2]
-    };
-}
-
-function colorsMatch(r1, g1, b1, targetColor, tolerance = 32) {
+function colorsMatch(r1, g1, b1, targetColor, tolerance = 0) {
     return Math.abs(r1 - targetColor.r) <= tolerance &&
            Math.abs(g1 - targetColor.g) <= tolerance &&
            Math.abs(b1 - targetColor.b) <= tolerance;
 }
 
-function hexToRgb(hex) {
+function hexToRgba(hex) {
     const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
     return result ? {
         r: parseInt(result[1], 16),
@@ -266,90 +244,49 @@ function hexToRgb(hex) {
 
 // History management
 function saveState() {
-    // Remove any states after current index
+    const state = ctx.getImageData(0, 0, canvas.width, canvas.height);
     history = history.slice(0, historyIndex + 1);
-    // Add new state
-    history.push(canvas.toDataURL());
-    historyIndex = history.length - 1;
-    // Limit history size
-    if (history.length > 50) {
-        history.shift();
-        historyIndex--;
-    }
+    history.push(state);
+    historyIndex++;
 }
 
 function undo() {
     if (historyIndex > 0) {
         historyIndex--;
-        const img = new Image();
-        img.onload = () => {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.drawImage(img, 0, 0);
-        };
-        img.src = history[historyIndex];
+        ctx.putImageData(history[historyIndex], 0, 0);
     }
 }
 
 function redo() {
     if (historyIndex < history.length - 1) {
         historyIndex++;
-        const img = new Image();
-        img.onload = () => {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.drawImage(img, 0, 0);
-        };
-        img.src = history[historyIndex];
+        ctx.putImageData(history[historyIndex], 0, 0);
     }
 }
 
-// Canvas size management
-function setCanvasSize(width, height) {
-    const tempCanvas = document.createElement('canvas');
-    const tempCtx = tempCanvas.getContext('2d');
-    tempCanvas.width = width;
-    tempCanvas.height = height;
-    
-    // Fill new canvas with white
-    tempCtx.fillStyle = '#FFFFFF';
-    tempCtx.fillRect(0, 0, width, height);
-    
-    // Copy existing content
-    tempCtx.drawImage(canvas, 0, 0);
-    
-    // Update canvas
-    canvas.width = width;
-    canvas.height = height;
-    ctx.drawImage(tempCanvas, 0, 0);
-    
-    saveState();
-}
-
-// Cursor update
+// Utility functions
 function updateCursor() {
     switch (currentTool) {
         case 'pencil':
-        case 'brush':
-        case 'eraser':
-        case 'spray':
             canvas.style.cursor = 'crosshair';
             break;
-        case 'fill':
-            canvas.style.cursor = 'pointer';
+        case 'eraser':
+            canvas.style.cursor = 'cell';
             break;
-        case 'rectangle':
-        case 'ellipse':
-        case 'line':
+        case 'fill':
             canvas.style.cursor = 'crosshair';
             break;
         case 'text':
             canvas.style.cursor = 'text';
             break;
+        case 'colorpicker':
+            canvas.style.cursor = 'crosshair';
+            break;
         default:
-            canvas.style.cursor = 'default';
+            canvas.style.cursor = 'crosshair';
     }
 }
 
-// Mouse position helper
 function getMousePos(e) {
     const rect = canvas.getBoundingClientRect();
     return [
