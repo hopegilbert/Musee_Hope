@@ -145,7 +145,7 @@ html, body {
 .canvas-container {
     position: absolute;
     top: 0;
-    left: 0;
+    left: 32px;
     right: 200px;
     bottom: 55px;
     background-color: #ffffff;
@@ -566,6 +566,7 @@ html, body {
     }
 
     .canvas-container {
+        left: 32px;
         right: 120px;
         bottom: 55px;
     }
