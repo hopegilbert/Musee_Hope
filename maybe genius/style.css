@@ -128,7 +128,6 @@ section {
     position: relative;
     box-shadow: none;
     backdrop-filter: blur(2px);
-    z-index: 1;
 }
 
 .process-card::before, .experiment-card::before {
@@ -189,10 +188,6 @@ section {
 .experiment-card a:hover {
     color: white;
     border-bottom-color: white;
-}
-
-.experiment-card:last-child {
-    z-index: 0;
 }
 
 footer {
