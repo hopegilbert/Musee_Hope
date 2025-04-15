@@ -73,19 +73,22 @@ colors.forEach(color => {
 
 // Mouse event handlers
 function startDrawing(e) {
-    isDrawing = true;
-    [lastX, lastY] = getMousePos(e);
-    
     if (currentTool === 'text') {
         const rect = canvas.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
         textBox.style.display = 'block';
-        textBox.style.left = (e.clientX - rect.left) + 'px';
-        textBox.style.top = (e.clientY - rect.top) + 'px';
+        textBox.style.left = x + 'px';
+        textBox.style.top = y + 'px';
         textBox.style.fontSize = (currentSize * 12) + 'px';
         textBox.style.color = currentColor;
         textBox.focus();
         return;
     }
+    
+    isDrawing = true;
+    [lastX, lastY] = getMousePos(e);
     
     if (['rectangle', 'ellipse', 'line'].includes(currentTool)) {
         drawingSurface = ctx.getImageData(0, 0, canvas.width, canvas.height);
@@ -516,15 +519,15 @@ document.addEventListener('keydown', (e) => {
 
 function createTextBox() {
     if (textBox) {
-        document.body.removeChild(textBox);
+        textBox.remove();
     }
     
     textBox = document.createElement('div');
     textBox.contentEditable = true;
     textBox.style.position = 'absolute';
     textBox.style.display = 'none';
-    textBox.style.minWidth = '50px';
-    textBox.style.minHeight = '20px';
+    textBox.style.minWidth = '1px';
+    textBox.style.minHeight = '1px';
     textBox.style.padding = '2px';
     textBox.style.border = '1px solid #000';
     textBox.style.background = 'white';
