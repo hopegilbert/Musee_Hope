@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dissertation - Does Cognitive Estimation Precede Visual Experience</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Inter:wght@400;500;600;700;800&family=Lora:wght@400;500;600;700&family=Schoolbell&family=Special+Elite&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .dissertation-content {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 40px;
+            margin: 40px auto;
+            max-width: 800px;
+            backdrop-filter: blur(2px);
+            position: relative;
+        }
+
+        .dissertation-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 3px solid rgba(255, 255, 255, 0.9);
+            clip-path: polygon(
+                0% 5%, 3% 0%, 97% 2%, 100% 7%,  /* top */
+                95% 0%, 100% 5%, 98% 95%, 100% 100%,  /* right */
+                95% 98%, 98% 100%, 2% 98%, 0% 95%,  /* bottom */
+                2% 100%, 0% 95%, 2% 5%, 0% 2%  /* left */
+            );
+            z-index: 1;
+        }
+
+        .dissertation-content::after {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            clip-path: polygon(
+                2% 3%, 5% 0%, 95% 4%, 98% 2%,  /* top */
+                98% 2%, 100% 7%, 96% 93%, 98% 98%,  /* right */
+                98% 98%, 95% 100%, 5% 96%, 2% 98%,  /* bottom */
+                2% 98%, 0% 93%, 4% 7%, 2% 2%  /* left */
+            );
+            z-index: 1;
+        }
+
+        .dissertation-text {
+            position: relative;
+            z-index: 2;
+            color: #f5f2e7;
+            font-family: 'Lora', serif;
+            line-height: 1.6;
+        }
+
+        .dissertation-text h1 {
+            font-family: 'Fredericka the Great', cursive;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #f5f2e7;
+        }
+
+        .dissertation-text h2 {
+            font-family: 'Fredericka the Great', cursive;
+            margin: 30px 0 15px;
+            color: #f5f2e7;
+        }
+
+        .dissertation-text p {
+            margin-bottom: 15px;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            color: #f5f2e7;
+            text-decoration: none;
+            font-family: 'Fredericka the Great', cursive;
+            position: relative;
+            z-index: 2;
+        }
+
+        .back-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 2px solid rgba(245, 232, 199, 0.9);
+            clip-path: polygon(
+                3% 0%, 97% 3%, 100% 97%, 3% 100%,
+                0% 97%, 97% 97%, 97% 3%, 0% 3%
+            );
+        }
+
+        .back-button::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border: 1px solid rgba(245, 232, 199, 0.4);
+            clip-path: polygon(
+                0% 3%, 100% 0%, 97% 100%, 0% 97%,
+                3% 94%, 94% 94%, 94% 6%, 3% 6%
+            );
+        }
+    </style>
+</head>
+<body>
+    <img src="images/brain.png" alt="Brain" class="poster" id="brain-poster">
+    <img src="images/tree.png" alt="Tree" class="poster" id="tree-poster">
+    <img src="images/rock.png" alt="Rock" class="poster" id="rock-poster">
+    <img src="images/butterfly.png" alt="Butterfly" class="poster" id="butterfly-poster">
+    <img src="images/ladybird.png" alt="Ladybird" class="poster" id="ladybird-poster">
+    
+    <div class="page-wrapper">
+        <nav class="nav-menu">
+            <a href="maybe-genius.html">BACK</a>
+        </nav>
+
+        <div class="dissertation-content">
+            <div class="dissertation-text">
+                <h1>Does Cognitive Estimation Precede Visual Experience in the Perception of Object Shape and Material, or Do They Occur Independently and Concurrently?</h1>
+                
+                <h2>Abstract</h2>
+                <p>This dissertation explores the relationship between cognitive estimation and visual experience in the perception of object shape and material properties. Through a series of experiments and theoretical analysis, we investigate whether cognitive processes precede visual experience or if these processes occur independently and concurrently.</p>
+
+                <h2>Introduction</h2>
+                <p>The perception of object shape and material properties is a complex process that involves both cognitive and visual components. This study aims to understand the temporal and functional relationship between these components.</p>
+
+                <h2>Methodology</h2>
+                <p>We conducted a series of experiments using various stimuli and measurement techniques to assess the timing and interaction of cognitive estimation and visual experience in object perception.</p>
+
+                <h2>Results</h2>
+                <p>Our findings suggest a complex interaction between cognitive estimation and visual experience, with evidence supporting both sequential and concurrent processing models.</p>
+
+                <h2>Discussion</h2>
+                <p>The results have significant implications for our understanding of perceptual processes and the relationship between cognition and visual experience.</p>
+
+                <h2>Conclusion</h2>
+                <p>This research contributes to the ongoing debate about the nature of perception and the relationship between cognitive and visual processes in object recognition.</p>
+            </div>
+        </div>
+
+        <a href="maybe-genius.html" class="back-button">Back to Experiments</a>
+    </div>
+</body>
+</html> 
