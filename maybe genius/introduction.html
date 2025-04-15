@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Introduction - Dissertation</title>
+    <title>Introduction - Maybe Genius</title>
     <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Inter:wght@400;500;600;700;800&family=Lora:wght@400;500;600;700&family=Schoolbell&family=Special+Elite&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        .section-content {
+        .dissertation-content {
             background: rgba(0, 0, 0, 0.6);
             padding: 40px;
             margin: 40px auto;
@@ -16,7 +16,7 @@
             position: relative;
         }
 
-        .section-content::before {
+        .dissertation-content::before {
             content: '';
             position: absolute;
             top: 0;
@@ -33,7 +33,7 @@
             z-index: 1;
         }
 
-        .section-content::after {
+        .dissertation-content::after {
             content: '';
             position: absolute;
             top: -4px;
@@ -50,7 +50,7 @@
             z-index: 1;
         }
 
-        .section-text {
+        .dissertation-text {
             position: relative;
             z-index: 2;
             color: #f5f2e7;
@@ -58,27 +58,21 @@
             line-height: 1.6;
         }
 
-        .section-text h1 {
+        .dissertation-text h1 {
             font-family: 'Fredericka the Great', cursive;
             text-align: center;
             margin-bottom: 30px;
             color: #f5f2e7;
         }
 
-        .section-text h2 {
-            font-family: 'Fredericka the Great', cursive;
-            margin: 30px 0 15px;
-            color: #f5f2e7;
-        }
-
-        .section-text p {
+        .dissertation-text p {
             margin-bottom: 15px;
         }
 
         .nav-links {
+            margin-top: 30px;
             display: flex;
             justify-content: space-between;
-            margin-top: 40px;
         }
 
         .nav-links a {
@@ -87,6 +81,7 @@
             font-family: 'Fredericka the Great', cursive;
             padding: 10px 20px;
             position: relative;
+            display: inline-block;
         }
 
         .nav-links a::before {
@@ -130,22 +125,24 @@
             <a href="dissertation.html">BACK TO DISSERTATION</a>
         </nav>
 
-        <div class="section-content">
-            <div class="section-text">
+        <div class="dissertation-content">
+            <div class="dissertation-text">
                 <h1>Introduction</h1>
-                
-                <p>The perception of object shape and material properties is a fundamental aspect of human cognition, yet the precise mechanisms underlying this process remain a subject of ongoing investigation. This dissertation explores the temporal relationship between cognitive estimation and visual experience in the perception of object shape and material properties.</p>
 
-                <p>Traditional models of perception have often assumed a sequential process, where cognitive estimation follows visual experience. However, recent research has challenged this assumption, suggesting that these processes may occur independently and concurrently. This study aims to investigate this temporal relationship through a series of carefully designed experiments.</p>
+                <p>The relationship between visual experience and cognitive estimation when viewing objects remains a fundamental question in perceptual psychology. Vision involves the initial sensory processing of an object's features, such as its shape, color, and texture, as captured by the eyes and transmitted to the brain. Cognitive estimation, on the other hand, involves higher-level processes where the brain interprets these sensory inputs to form a coherent understanding of the object's intrinsic properties, such as its true shape, material composition, and function. This dissertation explores whether our estimation of an object's intrinsic properties comes before or after our visual experience of the object.</p>
 
-                <p>The implications of this research extend beyond theoretical understanding. A clearer comprehension of the temporal dynamics of perception could inform the development of artificial intelligence systems, improve human-computer interaction, and contribute to the advancement of assistive technologies for individuals with perceptual impairments.</p>
+                <p>The central question is whether cognitive processes influence our initial visual experience or if they operate independently, or if they interact in a more complex manner, potentially occurring in parallel or influencing each other reciprocally (Palmer, 1999).</p>
+
+                <p>Historically, thinkers like Aristotle, von Helmholtz, and contemporary vision scientists like Mark McCourt, posited that visual experience must precede cognitive estimation. Aristotle suggested that perception starts with the reception of sensory data, which is then processed by the mind to form an understanding of the object. Von Helmholtz, a pioneer in the field of physiological optics, emphasized that perception involves unconscious inferences, where the brain interprets sensory inputs based on prior knowledge and experiences (Helmholtz, 1867). McCourt built on these ideas, arguing that visual experience provides the raw data that the cognitive system needs to interpret.</p>
 
                 <div class="nav-links">
-                    <a href="abstract.html">Previous: Abstract</a>
-                    <a href="methodology.html">Next: Methodology</a>
+                    <a href="abstract.html">← Abstract</a>
+                    <a href="methodology.html">Methodology →</a>
                 </div>
             </div>
         </div>
     </div>
+
+    <script src="scripts.js"></script>
 </body>
 </html> 
