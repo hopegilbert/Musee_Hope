@@ -392,11 +392,6 @@ footer {
     color: white;
 }
 
-/* Remove conflicting hover rule */
-/* .dropdown:hover .dropdown-content {
-    display: block;
-} */
-
 .dropdown-btn.selected {
     color: white;
     font-weight: bold;
