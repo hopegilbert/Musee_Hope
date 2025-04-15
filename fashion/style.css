@@ -61,8 +61,13 @@ html, body {
     cursor: pointer;
 }
 
+.title-bar-controls button:hover {
+    background: #efefef;
+}
+
 .title-bar-controls button:active {
     border-color: #808080 #ffffff #ffffff #808080;
+    padding: 1px 0 0 1px;
 }
 
 .menu-bar {
@@ -111,8 +116,13 @@ html, body {
     cursor: pointer;
 }
 
-.tool:active {
+.tool:hover {
+    background: #efefef;
+}
+
+.tool.active, .tool:active {
     border-color: #808080 #ffffff #ffffff #808080;
+    padding: 3px 1px 1px 3px;
 }
 
 .tool img {
@@ -198,21 +208,23 @@ html, body {
 }
 
 .category-button {
-    text-align: center;
-    padding: 2px 4px;
-    background: #c0c0c0;
+    width: 100%;
+    padding: 4px 8px;
+    margin: 1px 0;
     border: 1px solid;
     border-color: #ffffff #808080 #808080 #ffffff;
+    background: #d4d0c8;
+    text-align: left;
     cursor: pointer;
 }
 
 .category-button:hover {
-    background: #d4d0c8;
+    background: #efefef;
 }
 
-.category-button.active {
-    background: #d4d0c8;
+.category-button.active, .category-button:active {
     border-color: #808080 #ffffff #ffffff #808080;
+    padding: 5px 7px 3px 9px;
 }
 
 .items-container {
@@ -265,7 +277,7 @@ html, body {
     width: 280px;
     height: 40px;
     position: absolute;
-    bottom: 20px;  /* Align with status bar */
+    bottom: 20px;
     left: 0;
 }
 
@@ -276,7 +288,11 @@ html, body {
     cursor: pointer;
 }
 
-.color:active {
+.color:hover {
+    outline: 1px solid #000000;
+}
+
+.color:active, .color.active {
     border: 1px inset #fff;
 }
 
