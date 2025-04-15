@@ -259,33 +259,33 @@ footer {
 }
 
 #brain-poster {
-    top: 5%;
-    left: 5%;
-    width: 35%;
-}
-
-#tree-poster {
     top: 8%;
-    right: 15%;
+    left: 3%;
     width: 28%;
 }
 
-#rock-poster {
-    bottom: 12%;
-    left: 8%;
-    width: 32%;
+#tree-poster {
+    top: 5%;
+    right: 20%;
+    width: 22%;
 }
 
-#butterfly-poster {
-    top: 42%;
-    right: 10%;
+#rock-poster {
+    bottom: 15%;
+    left: 12%;
     width: 25%;
 }
 
+#butterfly-poster {
+    top: 38%;
+    right: 8%;
+    width: 20%;
+}
+
 #ladybird-poster {
-    bottom: 15%;
-    right: 22%;
-    width: 18%;
+    bottom: 10%;
+    right: 28%;
+    width: 15%;
 }
 
 .dissertation-content {
