@@ -140,7 +140,7 @@ img {
   transition: all 0.3s ease;
   z-index: 2;
   pointer-events: none;
-  width: 80%;
+  width: 60%;
 }
 
 .image-wrapper:hover .hover-text {
