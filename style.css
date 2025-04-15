@@ -111,15 +111,14 @@ img {
   display: inline-block;
   width: 100%;
   cursor: pointer;
+  z-index: 1;
 }
 
 .image-wrapper img {
   display: block;
   width: 100%;
   height: auto;
-  transition: filter 0.4s ease;
-  z-index: 1;
-  position: relative;
+  transition: filter 0.3s ease;
 }
 
 .hover-button {
@@ -138,7 +137,7 @@ img {
   text-decoration: none;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
-  z-index: 10;
+  z-index: 3;
   cursor: pointer;
 }
 
@@ -153,7 +152,7 @@ img {
 }
 
 .image-wrapper:hover img {
-  filter: brightness(90%);
+  filter: brightness(50%);
 }
 
 .hover-button:active {
@@ -172,18 +171,22 @@ img {
   padding: 1rem;
   text-align: center;
   border-radius: 8px;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-  max-width: 80%;
   font-family: 'Lora', serif;
+  font-size: 1rem;
+  max-width: 80%;
+  width: auto;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 2;
 }
 
 .image-wrapper:hover .hover-text {
   opacity: 1;
 }
 
-.image-wrapper .hover-text {
-  display: block;
+/* Make sure hover text is always displayed when visible */
+.hover-text {
+  display: block !important;
 }
 
 .overlay-content {
