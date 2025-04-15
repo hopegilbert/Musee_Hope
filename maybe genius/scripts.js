@@ -35,8 +35,8 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function toggleDropdown() {
-    const dropdown = document.querySelector('.dropdown-content');
-    dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+    const menu = document.getElementById("researchDropdownContent");
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
 }
 
 // Close dropdown when clicking outside
