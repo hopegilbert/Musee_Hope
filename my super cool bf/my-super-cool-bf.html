@@ -4,93 +4,78 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Super Cool BF</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="page-wrapper">
-    <section class="hero-section">
-      <h1 class="hero-title">My Favorite Person</h1>
-      <p class="hero-subtitle">A collection of memories and moments with the most amazing boyfriend</p>
-      <div class="card-content">
-        <div class="card-image">
-          <img src="images/profile.jpg" alt="My Super Cool BF">
-        </div>
-        <div class="card-text">
-          <p>Meet the guy who makes every day brighter with his smile, dad jokes, and endless supply of coffee knowledge. When he's not coding amazing things, you'll find him planning our next adventure or explaining why mechanical keyboards are actually an investment.</p>
+    <nav class="nav-menu">
+      <a href="#home">HOME</a>
+      <a href="#about">ABOUT</a>
+      <a href="#gallery">GALLERY</a>
+      <a href="#memories">MEMORIES</a>
+      <a href="#contact">CONTACT</a>
+    </nav>
+
+    <div class="hero-card">
+      <div class="hero-content">
+        <h1 class="hero-title">My Favorite Person</h1>
+        <p class="hero-text">A collection of memories and moments with the most amazing boyfriend who makes every day an adventure worth remembering.</p>
+        <a href="#gallery" class="learn-more">View Gallery</a>
+      </div>
+      <img src="images/profile.jpg" alt="My Super Cool BF" class="hero-image">
+    </div>
+
+    <div class="content-grid">
+      <div class="content-card">
+        <img src="images/coding.jpg" alt="Coding Session" class="card-image">
+        <div class="card-content">
+          <h3 class="card-title">Master Coder</h3>
+          <p class="card-text">Watching him debug code while explaining every step is like watching magic happen.</p>
         </div>
       </div>
-    </section>
-
-    <div class="content-card">
-      <h2 class="card-title">Why He's Amazing</h2>
-      <div class="card-content">
-        <div class="card-text">
-          <ul>
-            <li>Master of both coding and making the perfect cup of coffee</li>
-            <li>Can explain complex tech concepts while making me laugh</li>
-            <li>Always knows how to cheer me up with terrible puns</li>
-            <li>The best adventure partner I could ask for</li>
-          </ul>
+      <div class="content-card">
+        <img src="images/coffee.jpg" alt="Coffee Expert" class="card-image">
+        <div class="card-content">
+          <h3 class="card-title">Coffee Connoisseur</h3>
+          <p class="card-text">He knows the perfect brewing temperature for every type of coffee bean.</p>
         </div>
-        <div class="card-image">
-          <img src="images/coding.jpg" alt="Coding Session">
+      </div>
+      <div class="content-card">
+        <img src="images/gaming.jpg" alt="Gaming Time" class="card-image">
+        <div class="card-content">
+          <h3 class="card-title">Gaming Partner</h3>
+          <p class="card-text">Our weekend gaming marathons are the highlight of my week.</p>
         </div>
       </div>
     </div>
 
-    <section class="quote-section">
-      <p class="quote-text">"Sometimes the smallest things take up the most room in your heart"</p>
-      <p class="quote-author">- The way he explains his latest coding project</p>
-    </section>
+    <div class="quote-section">
+      <p class="quote-text">"Sometimes the smallest things take up the most room in your heart - like the way he gets excited about mechanical keyboards."</p>
+    </div>
 
-    <div class="content-card">
-      <h2 class="card-title">Our Favorite Things</h2>
-      <div class="card-content">
-        <div class="card-image">
-          <img src="images/coffee.jpg" alt="Coffee Date">
-        </div>
-        <div class="card-text">
-          <ul>
-            <li>Coffee shop coding sessions</li>
-            <li>Weekend gaming marathons</li>
-            <li>Trying new restaurants</li>
-            <li>Late night debugging (okay, maybe just him)</li>
-          </ul>
-        </div>
+    <div class="featured-section">
+      <img src="images/us.jpg" alt="Our Favorite Memory" class="featured-image">
+      <div class="featured-content">
+        <h2 class="featured-title">Our Story</h2>
+        <p class="card-text">From our first coffee shop debugging session to late-night coding adventures, every moment becomes special when shared with him.</p>
+        <a href="#story" class="learn-more">Read More</a>
       </div>
     </div>
 
-    <h2 class="card-title">Memory Gallery</h2>
-    <div class="gallery-grid">
-      <div class="gallery-item">
-        <img src="images/memory1.jpg" alt="First Date">
-        <div class="gallery-caption">Our first coffee shop debugging session</div>
+    <h2 class="text-white mb-4">Latest Adventures</h2>
+    <div class="collection-grid">
+      <div class="collection-card">
+        <h3 class="collection-title">Coffee Shop Tours</h3>
+        <p class="card-text">Exploring every new coffee shop in town, one cup at a time.</p>
       </div>
-      <div class="gallery-item">
-        <img src="images/memory2.jpg" alt="Game Night">
-        <div class="gallery-caption">Epic gaming marathon</div>
+      <div class="collection-card">
+        <h3 class="collection-title">Code Reviews</h3>
+        <p class="card-text">His passion for clean code is truly inspiring.</p>
       </div>
-      <div class="gallery-item">
-        <img src="images/memory3.jpg" alt="Coding Together">
-        <div class="gallery-caption">When he taught me about mechanical keyboards</div>
-      </div>
-    </div>
-
-    <div class="content-card">
-      <h2 class="card-title">Fun Facts</h2>
-      <div class="card-content">
-        <div class="card-text">
-          <ul>
-            <li>Has a collection of programming socks</li>
-            <li>Knows the exact brewing temperature for every type of coffee</li>
-            <li>Can debug code and make dinner simultaneously</li>
-            <li>His rubber duck debugging sessions are actually hilarious</li>
-          </ul>
-        </div>
-        <div class="card-image">
-          <img src="images/fun.jpg" alt="Fun Moments">
-        </div>
+      <div class="collection-card">
+        <h3 class="collection-title">Gaming Nights</h3>
+        <p class="card-text">Because sometimes debugging needs a break.</p>
       </div>
     </div>
 
