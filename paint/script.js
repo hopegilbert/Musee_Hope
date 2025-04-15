@@ -54,13 +54,22 @@ tools.forEach(tool => {
     });
 });
 
-// Color selection
+// Color selection from dropdown
+const colorBoxes = document.querySelectorAll('.color-box');
+colorBoxes.forEach(box => {
+    box.addEventListener('click', () => {
+        currentColor = box.style.backgroundColor;
+        document.querySelector('#colorsMenu').blur();
+    });
+});
+
+// Color selection from palette
 const colors = document.querySelectorAll('.color');
 colors.forEach(color => {
     color.addEventListener('click', () => {
         colors.forEach(c => c.classList.remove('active'));
         color.classList.add('active');
-        currentColor = color.style.backgroundColor;
+        currentColor = color.style.background;
     });
 });
 
