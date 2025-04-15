@@ -240,7 +240,7 @@ html, body {
     width: 280px;
     height: 35px;
     position: absolute;
-    bottom: 20px;
+    bottom: 40px;
     left: 2px;
 }
 
@@ -533,7 +533,7 @@ html, body {
         width: 200px;
         height: 35px;
         left: 2px;
-        bottom: 20px;
+        bottom: 40px;
         grid-template-columns: repeat(10, 1fr);
     }
 
@@ -570,6 +570,6 @@ html, body {
 
     .color-palette {
         height: 25px;
-        bottom: 20px;
+        bottom: 40px;
     }
 } 
