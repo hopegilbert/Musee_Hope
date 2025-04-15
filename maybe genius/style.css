@@ -248,37 +248,48 @@ footer {
 /* Background Posters */
 .poster {
     position: fixed;
-    z-index: 0;
-    opacity: 0.8;
-    transition: all 0.3s ease;
-    max-width: 300px;
-    height: auto;
+    opacity: 0.15;
+    z-index: -1;
+    transition: opacity 0.3s ease;
+}
+
+.poster:hover {
+    opacity: 0.3;
 }
 
 #brain-poster {
-    top: 10%;
-    left: 5%;
+    top: 5%;
+    left: 8%;
+    width: 25%;
+    transform: rotate(-8deg);
 }
 
 #tree-poster {
-    top: 20%;
-    right: 5%;
+    top: 15%;
+    right: 12%;
+    width: 22%;
+    transform: rotate(5deg);
 }
 
 #rock-poster {
-    bottom: 20%;
-    left: 5%;
+    bottom: 18%;
+    left: 15%;
+    width: 20%;
+    transform: rotate(-3deg);
 }
 
 #butterfly-poster {
-    bottom: 10%;
-    right: 5%;
+    top: 45%;
+    right: 18%;
+    width: 18%;
+    transform: rotate(8deg);
 }
 
 #ladybird-poster {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    bottom: 10%;
+    right: 25%;
+    width: 15%;
+    transform: rotate(-6deg);
 }
 
 @media (max-width: 768px) {
