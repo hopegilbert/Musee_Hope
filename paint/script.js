@@ -18,7 +18,7 @@ let textBox = null;
 // Set initial canvas size
 function resizeCanvas() {
     canvas.width = canvas.parentElement.clientWidth;
-    canvas.height = canvas.parentElement.clientHeight;
+    canvas.height = canvas.parentElement.clientHeight - 40; // Account for color palette
     ctx.fillStyle = '#FFFFFF';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     saveState();
@@ -77,7 +77,6 @@ function startDrawing(e) {
     [lastX, lastY] = getMousePos(e);
     
     if (currentTool === 'text') {
-        const rect = canvas.getBoundingClientRect();
         textBox.style.display = 'block';
         textBox.style.left = e.clientX + 'px';
         textBox.style.top = e.clientY + 'px';
@@ -121,6 +120,7 @@ function draw(e) {
             
         case 'brush':
             // Main stroke
+            ctx.save();
             ctx.lineWidth = currentSize * 5;
             ctx.globalAlpha = 1;
             ctx.beginPath();
@@ -136,7 +136,7 @@ function draw(e) {
             ctx.lineTo(x, y);
             ctx.stroke();
             
-            ctx.globalAlpha = 1;
+            ctx.restore();
             [lastX, lastY] = [x, y];
             break;
             
@@ -514,9 +514,13 @@ document.addEventListener('keydown', (e) => {
 });
 
 function createTextBox() {
+    if (textBox) {
+        document.body.removeChild(textBox);
+    }
+    
     textBox = document.createElement('div');
     textBox.contentEditable = true;
-    textBox.style.position = 'absolute';
+    textBox.style.position = 'fixed';
     textBox.style.display = 'none';
     textBox.style.minWidth = '50px';
     textBox.style.minHeight = '20px';

@@ -51,21 +51,23 @@
         </div>
         <div class="toolbar">
             <button class="tool" data-tool="pencil"><img src="images/pencil.png" alt="Pencil"></button>
+            <button class="tool" data-tool="brush"><img src="images/brush.png" alt="Brush"></button>
             <button class="tool" data-tool="fill"><img src="images/fill.png" alt="Fill"></button>
             <button class="tool" data-tool="eraser"><img src="images/eraser.png" alt="Eraser"></button>
-            <button class="tool" data-tool="colorpicker"><img src="images/brush.png" alt="Color Picker"></button>
+            <button class="tool" data-tool="colorpicker"><img src="images/colorpicker.png" alt="Color Picker"></button>
+            <button class="tool" data-tool="text"><img src="images/text.png" alt="Text"></button>
             <button class="tool" data-tool="rectangle"><img src="images/rectangle.png" alt="Rectangle"></button>
             <button class="tool" data-tool="ellipse"><img src="images/ellipse.png" alt="Circle"></button>
             <button class="tool" data-tool="line"><img src="images/line.png" alt="Line"></button>
-            <button class="tool" data-tool="text"><img src="images/text.png" alt="Text"></button>
-            <button class="tool" data-tool="spray"><img src="images/spray-can.png" alt="Spray"></button>
+            <button class="tool" data-tool="spray"><img src="images/spray.png" alt="Spray"></button>
             <button class="tool" data-tool="undo"><img src="images/undo.png" alt="Undo"></button>
             <button class="tool" data-tool="redo"><img src="images/redo.png" alt="Redo"></button>
         </div>
         <div class="canvas-area">
             <canvas id="canvas"></canvas>
+            <div class="overlay-container"></div>
             <div class="color-palette">
-                <div class="color" style="background: #000000;"></div>
+                <div class="color active" style="background: #000000;"></div>
                 <div class="color" style="background: #808080;"></div>
                 <div class="color" style="background: #800000;"></div>
                 <div class="color" style="background: #808000;"></div>
