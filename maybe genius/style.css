@@ -251,53 +251,74 @@ footer {
     z-index: 0;
     opacity: 0.8;
     transition: all 0.3s ease;
-    max-width: 200px;
+    max-width: 300px;
     height: auto;
 }
 
 #brain-poster {
     top: 10%;
     left: 5%;
-    transform: rotate(-5deg);
 }
 
 #tree-poster {
     top: 20%;
     right: 5%;
-    transform: rotate(5deg);
 }
 
 #rock-poster {
     bottom: 20%;
     left: 5%;
-    transform: rotate(-3deg);
 }
 
 #butterfly-poster {
     bottom: 10%;
     right: 5%;
-    transform: rotate(3deg);
 }
 
 #ladybird-poster {
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) rotate(2deg);
+    transform: translate(-50%, -50%);
 }
 
 @media (max-width: 768px) {
     .poster {
-        max-width: 150px;
+        max-width: 200px;
     }
 }
 
 @media (max-width: 480px) {
     .poster {
-        max-width: 100px;
+        max-width: 150px;
     }
 }
 
 /* Remove tape effects since we're not rotating posters anymore */
 .poster::after {
     display: none;
+}
+
+.acknowledgments {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: var(--cream);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.acknowledgments p {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+    color: var(--dark);
+}
+
+.acknowledgments p:last-child {
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .acknowledgments {
+        margin: 1.5rem 0;
+        padding: 1rem;
+    }
 }
