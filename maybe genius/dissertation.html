@@ -4,42 +4,165 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dissertation - Maybe Genius</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Inter:wght@400;500;600;700;800&family=Lora:wght@400;500;600;700&family=Schoolbell&family=Special+Elite&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        .dissertation-content {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 40px;
+            margin: 40px auto;
+            max-width: 800px;
+            backdrop-filter: blur(2px);
+            position: relative;
+        }
+
+        .dissertation-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 3px solid rgba(255, 255, 255, 0.9);
+            clip-path: polygon(
+                0% 5%, 3% 0%, 97% 2%, 100% 7%,  /* top */
+                95% 0%, 100% 5%, 98% 95%, 100% 100%,  /* right */
+                95% 98%, 98% 100%, 2% 98%, 0% 95%,  /* bottom */
+                2% 100%, 0% 95%, 2% 5%, 0% 2%  /* left */
+            );
+            z-index: 1;
+        }
+
+        .dissertation-content::after {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            clip-path: polygon(
+                2% 3%, 5% 0%, 95% 4%, 98% 2%,  /* top */
+                98% 2%, 100% 7%, 96% 93%, 98% 98%,  /* right */
+                98% 98%, 95% 100%, 5% 96%, 2% 98%,  /* bottom */
+                2% 98%, 0% 93%, 4% 7%, 2% 2%  /* left */
+            );
+            z-index: 1;
+        }
+
+        .dissertation-text {
+            position: relative;
+            z-index: 2;
+            color: #f5f2e7;
+            font-family: 'Lora', serif;
+            line-height: 1.6;
+        }
+
+        .dissertation-text h1 {
+            font-family: 'Fredericka the Great', cursive;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #f5f2e7;
+        }
+
+        .dissertation-text h2 {
+            font-family: 'Fredericka the Great', cursive;
+            margin: 30px 0 15px;
+            color: #f5f2e7;
+        }
+
+        .dissertation-text p {
+            margin-bottom: 15px;
+        }
+
+        .section-links {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .section-links li {
+            margin-bottom: 15px;
+        }
+
+        .section-links a {
+            color: #f5f2e7;
+            text-decoration: none;
+            font-family: 'Fredericka the Great', cursive;
+            padding: 10px 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 2px solid rgba(245, 232, 199, 0.9);
+            clip-path: polygon(
+                3% 0%, 97% 3%, 100% 97%, 3% 100%,
+                0% 97%, 97% 97%, 97% 3%, 0% 3%
+            );
+        }
+
+        .section-links a::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border: 1px solid rgba(245, 232, 199, 0.4);
+            clip-path: polygon(
+                0% 3%, 100% 0%, 97% 100%, 0% 97%,
+                3% 94%, 94% 94%, 94% 6%, 3% 6%
+            );
+        }
+
+        .pdf-viewer {
+            width: 100%;
+            height: 800px;
+            margin: 40px 0;
+            border: none;
+        }
+    </style>
 </head>
 <body>
-    <div class="posters">
-        <img src="images/brain.png" alt="Brain Poster" class="poster" id="brain-poster">
-        <img src="images/tree.png" alt="Tree Poster" class="poster" id="tree-poster">
-        <img src="images/rock.png" alt="Rock Poster" class="poster" id="rock-poster">
-        <img src="images/butterfly.png" alt="Butterfly Poster" class="poster" id="butterfly-poster">
-        <img src="images/ladybird.png" alt="Ladybird Poster" class="poster" id="ladybird-poster">
-    </div>
+    <img src="images/brain.png" alt="Brain" class="poster" id="brain-poster">
+    <img src="images/tree.png" alt="Tree" class="poster" id="tree-poster">
+    <img src="images/rock.png" alt="Rock" class="poster" id="rock-poster">
+    <img src="images/butterfly.png" alt="Butterfly" class="poster" id="butterfly-poster">
+    <img src="images/ladybird.png" alt="Ladybird" class="poster" id="ladybird-poster">
+    
+    <div class="page-wrapper">
+        <nav class="nav-menu">
+            <a href="maybe-genius.html">BACK TO MAYBE GENIUS</a>
+        </nav>
 
-    <div class="container">
-        <header>
-            <h1>Does Cognitive Estimation Precede Visual Experience in the Perception of Object Shape and Material, or Do They Occur Independently and Concurrently?</h1>
-        </header>
+        <div class="dissertation-content">
+            <div class="dissertation-text">
+                <h1>Dissertation</h1>
+                <h2>Does Cognitive Estimation Precede Visual Experience in the Perception of Object Shape and Material, or Do They Occur Independently and Concurrently?</h2>
 
-        <div class="acknowledgments">
-            <p>I would like to express my deepest gratitude to my advisor, Dr. Sarah Johnson, for her unwavering support, guidance, and encouragement throughout this research journey. Her expertise and insights have been invaluable in shaping this dissertation.</p>
-            <p>I am also grateful to my committee members, Dr. Michael Chen, Dr. Emily Rodriguez, and Dr. David Kim, for their constructive feedback and valuable suggestions that have significantly improved this work.</p>
-            <p>Special thanks to all the participants who generously contributed their time and effort to this study. Their willingness to engage with the research process made this work possible.</p>
-            <p>I would also like to acknowledge the technical support team and my fellow researchers in the Perception and Cognition Lab for their assistance and camaraderie throughout this process.</p>
-            <p>Finally, I am deeply thankful to my family and friends for their constant support, understanding, and encouragement during this challenging yet rewarding journey.</p>
-        </div>
+                <div class="acknowledgments">
+                    <p>I am also deeply thankful to my dissertation peers, for their exemplary work and steadfast support during this time. Their contributions have been truly remarkable.</p>
+                    <p>I would like to express my heartfelt gratitude to my dissertation supervisor for his unwavering support and invaluable insights throughout the course of this dissertation. His assistance and kind words of encouragement have been instrumental, and I am forever grateful.</p>
+                </div>
 
-        <ul class="section-links">
-            <li><a href="#introduction">Introduction</a></li>
-            <li><a href="#methodology">Methodology</a></li>
-            <li><a href="#results">Results</a></li>
-            <li><a href="#discussion">Discussion</a></li>
-            <li><a href="#conclusion">Conclusion</a></li>
-            <li><a href="#references">References</a></li>
-        </ul>
+                <ul class="section-links">
+                    <li><a href="abstract.html">Abstract</a></li>
+                    <li><a href="introduction.html">Introduction</a></li>
+                    <li><a href="methodology.html">Methodology</a></li>
+                    <li><a href="results.html">Results</a></li>
+                    <li><a href="discussion.html">Discussion</a></li>
+                    <li><a href="conclusion.html">Conclusion</a></li>
+                    <li><a href="references.html">References</a></li>
+                </ul>
 
-        <div class="pdf-viewer">
-            <embed src="Does Cognitive Estimation Precede Visual Experience in the Perception of Object Shape and Material, or Do They Occur Independently and Concurrently.pdf" type="application/pdf" width="100%" height="800px">
+                <iframe class="pdf-viewer" src="Does Cognitive Estimation Precede Visual Experience in the Perception of Object Shape and Material, or Do They Occur Independently and Concurrently.pdf"></iframe>
+            </div>
         </div>
     </div>
 
