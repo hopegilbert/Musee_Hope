@@ -73,14 +73,37 @@ section {
 }
 
 .process-card, .experiment-card {
-    background: #fefcf3;
-    border: 2px solid #c2b280;
-    box-shadow: 4px 4px 10px rgba(0,0,0,0.3);
+    border: 4px solid rgba(255, 255, 255, 0.9);
+    border-style: dashed solid;
     padding: 20px;
     width: 250px;
     font-family: 'Fredericka the Great', cursive;
-    color: #2d2d2d;
-    background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+    color: #f5f2e7;
+    background: transparent;
+    position: relative;
+    box-shadow: none;
+}
+
+.process-card::before, .experiment-card::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    right: -8px;
+    bottom: -8px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-style: solid dashed;
+    pointer-events: none;
+}
+
+.process-card h3, .experiment-card h3 {
+    margin-bottom: 15px;
+    color: #f5f2e7;
+}
+
+.process-card p, .experiment-card p {
+    color: #f5f2e7;
+    line-height: 1.4;
 }
 
 footer {
