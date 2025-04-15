@@ -43,6 +43,19 @@ categoryButtons.forEach((button) => {
     });
 });
 
+// Function to ensure overlays are stacked correctly
+function updateOverlayOrder() {
+    const overlays = Array.from(overlayContainer.children);
+    overlays.sort((a, b) => {
+        const aIndex = categoryZIndex[a.dataset.category] || 0;
+        const bIndex = categoryZIndex[b.dataset.category] || 0;
+        return aIndex - bIndex;
+    }).forEach(overlay => {
+        overlay.style.zIndex = categoryZIndex[overlay.dataset.category];
+        overlayContainer.appendChild(overlay);
+    });
+}
+
 // Handle clothing item clicks
 document.querySelectorAll('.clothing-item').forEach(item => {
     item.addEventListener('click', () => {
@@ -58,6 +71,7 @@ document.querySelectorAll('.clothing-item').forEach(item => {
             if (existingOverlay) {
                 existingOverlay.remove();
             }
+            updateOverlayOrder();
             return;
         }
         
@@ -83,6 +97,9 @@ document.querySelectorAll('.clothing-item').forEach(item => {
         // Update selected item
         selectedItems.set(category, item);
         item.classList.add('selected');
+        
+        // Ensure correct stacking order
+        updateOverlayOrder();
     });
 });
 
