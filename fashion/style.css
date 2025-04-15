@@ -94,6 +94,7 @@ html, body {
     display: flex;
     background: #c0c0c0;
     position: relative;
+    min-height: 0;
 }
 
 .toolbar {
@@ -137,7 +138,7 @@ html, body {
     flex: 1;
     display: flex;
     position: relative;
-    margin: 2px;
+    margin: 0;
     background: #c0c0c0;
 }
 
@@ -145,8 +146,8 @@ html, body {
     position: absolute;
     top: 0;
     left: 0;
-    right: 202px;
-    bottom: 0;
+    right: 200px;
+    bottom: 42px;
     background-color: #ffffff;
     border: 1px solid #808080;
     overflow: hidden;
@@ -191,11 +192,11 @@ html, body {
 
 .items-sidebar {
     width: 200px;
-    height: 100vh;
+    height: 100%;
     overflow-y: auto;
     background-color: #f0f0f0;
-    padding: 10px;
-    border-left: 1px solid #ccc;
+    border-left: 1px solid #808080;
+    padding: 2px;
 }
 
 .category-buttons {
@@ -555,12 +556,22 @@ html, body {
     }
 
     .canvas-container {
-        right: 122px;
+        right: 120px;
+        bottom: 42px;
     }
 
     .color-palette {
         left: 34px;
         width: 200px;
         grid-template-columns: repeat(10, 1fr);
+    }
+
+    .window {
+        height: 100%;
+        min-height: 100vh;
+    }
+
+    .main-content {
+        height: calc(100% - 40px);
     }
 } 
