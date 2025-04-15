@@ -141,6 +141,7 @@ html, body {
     width: auto;
     max-width: 90%;
     object-fit: contain;
+    cursor: default;
 }
 
 .overlay-container {
@@ -242,21 +243,19 @@ html, body {
     position: absolute;
     left: 34px;
     bottom: 23px;
-    width: calc(100% - 236px);
-    height: 32px;
+    width: 196px;
+    height: 64px;
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    grid-template-rows: repeat(4, 1fr);
+    grid-template-columns: repeat(7, 28px);
+    grid-template-rows: repeat(4, 16px);
     background: #c0c0c0;
     border: 1px solid;
     border-color: #808080 #ffffff #ffffff #808080;
-    padding: 1px;
-    gap: 1px;
 }
 
 .color {
-    width: 100%;
-    height: 100%;
+    width: 28px;
+    height: 16px;
     border: 1px solid;
     border-color: #ffffff #808080 #808080 #ffffff;
     cursor: pointer;
@@ -264,6 +263,11 @@ html, body {
 
 .color:active {
     border-color: #808080 #ffffff #ffffff #808080;
+}
+
+/* Remove scale control styles */
+.scale-control {
+    display: none;
 }
 
 .status-bar {

@@ -89,38 +89,4 @@ document.querySelectorAll('.clothing-item').forEach(item => {
 // Activate first category by default
 if (categoryButtons.length > 0) {
     categoryButtons[0].click();
-}
-
-// Add CSS for the scale control
-const style = document.createElement('style');
-style.textContent = `
-    .scale-control {
-        position: absolute;
-        left: 34px;
-        bottom: 55px;
-        background: #c0c0c0;
-        padding: 4px 8px;
-        border: 1px solid;
-        border-color: #ffffff #808080 #808080 #ffffff;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        z-index: 1100;
-    }
-    .scale-control label {
-        font-size: 11px;
-    }
-    .scale-control input {
-        width: 100px;
-    }
-    .scale-control span {
-        font-size: 11px;
-        min-width: 40px;
-    }
-    .background-image {
-        cursor: move;
-        transform-origin: center;
-        transition: transform 0.05s ease-out;
-    }
-`;
-document.head.appendChild(style); 
+} 
