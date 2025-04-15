@@ -189,7 +189,7 @@ html, body {
 
 .items-sidebar {
     width: 200px;
-    height: 100%;
+    height: 100vh;
     overflow-y: auto;
     background-color: #f0f0f0;
     padding: 10px;
@@ -471,6 +471,56 @@ html, body {
 }
 
 @media (max-width: 768px) {
+    body {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+    }
+
+    .main-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        overflow: hidden;
+    }
+
+    .canvas-area {
+        flex: 1;
+        min-height: 0;
+        overflow: hidden;
+    }
+
+    .items-sidebar {
+        width: 120px;
+        height: 100%;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .items-container {
+        height: calc(100vh - 180px);
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .category-button {
+        padding: 8px;
+        margin-bottom: 5px;
+        font-size: 12px;
+    }
+
+    .item-button {
+        height: 80px;
+        margin-bottom: 5px;
+    }
+
+    .item-button img {
+        max-height: 70px;
+        width: auto;
+    }
+
     .fashion-container {
         width: 95vw;
         height: 80vh;
@@ -502,59 +552,7 @@ html, body {
     }
 
     .items-container {
-        height: calc(100% - 35px);
-    }
-
-    .category-items {
-        max-height: none;
-        height: 100%;
-    }
-
-    .fashion-background {
-        max-height: 80%;
-        max-width: 80%;
-    }
-
-    .items-sidebar {
-        width: 120px;
-        font-size: 14px;
-    }
-
-    .category-button {
-        padding: 8px;
-        margin-bottom: 5px;
-        font-size: 12px;
-    }
-
-    .items-container {
         max-height: calc(100vh - 150px);
         overflow-y: auto;
-    }
-
-    .item-button {
-        height: 80px;
-        margin-bottom: 5px;
-    }
-
-    .item-button img {
-        max-height: 70px;
-        width: auto;
-    }
-
-    body {
-        min-height: 100vh;
-        overflow: hidden;
-    }
-
-    .main-container {
-        height: 100vh;
-        display: flex;
-        flex-direction: row;
-    }
-
-    .canvas-area {
-        flex: 1;
-        height: 100vh;
-        overflow: hidden;
     }
 } 
