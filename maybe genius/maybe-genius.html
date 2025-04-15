@@ -17,14 +17,15 @@
     <div class="page-wrapper">
         <nav class="nav-menu">
             <a href="../index.html">HOME</a>
-            <a href="#ideas">IDEAS</a>
             <a href="#process">PROCESS</a>
             <a href="#experiments">EXPERIMENTS</a>
         </nav>
 
         <header class="hero-card">
-            <h1>Stuff That Might Be Genius (Eventually)</h1>
-            <p class="subtitle">A collection of half-baked ideas that could either change the world or be completely ridiculous. Only time will tell.</p>
+            <div class="hero-content">
+                <h1>Stuff That Might Be Genius (Eventually)</h1>
+                <p class="subtitle">A collection of half-baked ideas that could either change the world or be completely ridiculous. Only time will tell.</p>
+            </div>
         </header>
 
         <section class="process-section" id="process">
@@ -51,8 +52,8 @@
                 <article class="experiment-card">
                     <h3>Psychology Research</h3>
                     <div class="dropdown">
-                        <button class="chalk-button dropdown-btn">Select Topic ▾</button>
-                        <div class="dropdown-content">
+                        <button class="chalk-button dropdown-btn" id="researchDropdown">Select Topic ▾</button>
+                        <div class="dropdown-content" id="researchDropdownContent">
                             <a href="#neural">Neural Networks</a>
                             <a href="#quantum">Quantum Computing</a>
                             <a href="#sustainable">Sustainable Energy</a>
