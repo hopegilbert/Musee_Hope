@@ -67,9 +67,10 @@ section {
 
 .process-grid, .experiments-grid {
     display: flex;
-    gap: 20px;
+    gap: 40px;
     flex-wrap: wrap;
     justify-content: center;
+    margin: 40px 0;
 }
 
 .process-card, .experiment-card {
