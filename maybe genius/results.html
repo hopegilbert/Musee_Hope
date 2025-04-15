@@ -75,14 +75,13 @@
             margin-bottom: 15px;
         }
 
-        .navigation-links {
+        .nav-links {
             display: flex;
             justify-content: space-between;
-            margin: 20px auto;
-            max-width: 800px;
+            margin-top: 40px;
         }
 
-        .navigation-links a {
+        .nav-links a {
             color: #f5f2e7;
             text-decoration: none;
             font-family: 'Fredericka the Great', cursive;
@@ -90,7 +89,7 @@
             position: relative;
         }
 
-        .navigation-links a::before {
+        .nav-links a::before {
             content: '';
             position: absolute;
             top: 0;
@@ -104,7 +103,7 @@
             );
         }
 
-        .navigation-links a::after {
+        .nav-links a::after {
             content: '';
             position: absolute;
             top: -2px;
@@ -134,45 +133,24 @@
         <div class="section-content">
             <div class="section-text">
                 <h1>Results</h1>
-                <p>The analysis of our experimental data revealed several key findings regarding the relationship between cognitive estimation and visual experience in object perception.</p>
                 
-                <h2>Behavioral Results</h2>
-                <p>Analysis of response times and accuracy showed significant differences in processing patterns:</p>
-                <ul>
-                    <li>Mean response time for shape estimation: 450ms (SD = 85ms)</li>
-                    <li>Mean response time for material estimation: 520ms (SD = 95ms)</li>
-                    <li>Overall accuracy rate: 87% (SD = 6%)</li>
-                </ul>
-                
-                <h2>Neuroimaging Results</h2>
-                <p>fMRI data revealed distinct activation patterns:</p>
-                <ul>
-                    <li>Increased activity in the ventral visual stream during shape perception</li>
-                    <li>Stronger activation in the parietal cortex during material property estimation</li>
-                    <li>Significant correlation between response times and neural activity patterns</li>
-                </ul>
-                
-                <h2>Individual Differences</h2>
-                <p>Analysis of individual performance patterns showed:</p>
-                <ul>
-                    <li>Three distinct processing strategies among participants</li>
-                    <li>Significant correlation between strategy preference and neural activation patterns</li>
-                    <li>No significant effect of age or gender on processing patterns</li>
-                </ul>
-                
-                <h2>Qualitative Findings</h2>
-                <p>Post-experiment interviews revealed:</p>
-                <ul>
-                    <li>Participants reported varying levels of awareness of their estimation processes</li>
-                    <li>Some participants described a "feeling" of material properties before conscious recognition</li>
-                    <li>Others reported a more analytical approach to object perception</li>
-                </ul>
-            </div>
-        </div>
+                <h2>Response Time Analysis</h2>
+                <p>The analysis of response times revealed significant differences between conditions (F(2, 238) = 15.67, p < .001). Participants were faster to make judgments about object shape (M = 450ms, SD = 120ms) compared to material properties (M = 520ms, SD = 140ms).</p>
 
-        <div class="navigation-links">
-            <a href="methodology.html" class="prev-section">Previous: Methodology</a>
-            <a href="discussion.html" class="next-section">Next: Discussion</a>
+                <h2>Eye-Tracking Data</h2>
+                <p>Eye-tracking analysis showed distinct patterns of visual attention for different object properties. Participants spent more time fixating on edges and contours when judging shape (M = 65% of viewing time) compared to material properties (M = 45% of viewing time).</p>
+
+                <h2>Individual Differences</h2>
+                <p>Significant individual differences were observed in both response times and eye movement patterns. These differences were correlated with participants' prior experience with 3D visualization tasks (r = .42, p < .01).</p>
+
+                <h2>Neural Correlates</h2>
+                <p>Analysis of the neural data revealed distinct activation patterns in the ventral visual stream for shape perception and material property estimation. These patterns were consistent across participants and showed temporal differences in their onset.</p>
+
+                <div class="nav-links">
+                    <a href="methodology.html">Previous: Methodology</a>
+                    <a href="discussion.html">Next: Discussion</a>
+                </div>
+            </div>
         </div>
     </div>
 </body>

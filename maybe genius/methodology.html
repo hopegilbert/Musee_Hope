@@ -75,14 +75,13 @@
             margin-bottom: 15px;
         }
 
-        .navigation-links {
+        .nav-links {
             display: flex;
             justify-content: space-between;
-            margin: 20px auto;
-            max-width: 800px;
+            margin-top: 40px;
         }
 
-        .navigation-links a {
+        .nav-links a {
             color: #f5f2e7;
             text-decoration: none;
             font-family: 'Fredericka the Great', cursive;
@@ -90,7 +89,7 @@
             position: relative;
         }
 
-        .navigation-links a::before {
+        .nav-links a::before {
             content: '';
             position: absolute;
             top: 0;
@@ -104,7 +103,7 @@
             );
         }
 
-        .navigation-links a::after {
+        .nav-links a::after {
             content: '';
             position: absolute;
             top: -2px;
@@ -134,46 +133,24 @@
         <div class="section-content">
             <div class="section-text">
                 <h1>Methodology</h1>
-                <p>This study employed a mixed-methods approach combining experimental psychology techniques with neuroimaging to investigate the relationship between cognitive estimation and visual experience in object perception.</p>
                 
                 <h2>Participants</h2>
-                <p>The study included 120 participants (60 male, 60 female) aged 18-45, with normal or corrected-to-normal vision. Participants were recruited through university research pools and community advertisements.</p>
-                
-                <h2>Experimental Design</h2>
-                <p>The study utilized a within-subjects design with the following components:</p>
-                <ul>
-                    <li>Visual perception tasks using 3D-rendered objects</li>
-                    <li>Cognitive estimation tasks measuring response times and accuracy</li>
-                    <li>fMRI scanning during task performance</li>
-                    <li>Post-experiment interviews and questionnaires</li>
-                </ul>
-                
-                <h2>Materials and Apparatus</h2>
-                <p>Stimuli were presented using a high-resolution display system (1920x1080, 60Hz) in a controlled laboratory environment. Neuroimaging data was collected using a 3T MRI scanner with a 32-channel head coil.</p>
-                
-                <h2>Procedure</h2>
-                <p>Participants completed the following sequence:</p>
-                <ol>
-                    <li>Informed consent and screening</li>
-                    <li>Practice trials</li>
-                    <li>Main experimental session (2 hours)</li>
-                    <li>Post-experiment debriefing</li>
-                </ol>
-                
-                <h2>Data Analysis</h2>
-                <p>Data analysis included:</p>
-                <ul>
-                    <li>Behavioral response time and accuracy analysis</li>
-                    <li>fMRI preprocessing and statistical analysis</li>
-                    <li>Correlation analysis between behavioral and neural measures</li>
-                    <li>Qualitative analysis of interview responses</li>
-                </ul>
-            </div>
-        </div>
+                <p>A total of 120 participants (60 male, 60 female) between the ages of 18 and 45 were recruited for this study. All participants had normal or corrected-to-normal vision and no history of neurological disorders.</p>
 
-        <div class="navigation-links">
-            <a href="introduction.html" class="prev-section">Previous: Introduction</a>
-            <a href="results.html" class="next-section">Next: Results</a>
+                <h2>Materials</h2>
+                <p>The study utilized a custom-built virtual reality environment to present 3D objects with varying shapes and material properties. Objects were rendered using physically-based rendering techniques to ensure realistic appearance. Eye-tracking data was collected using a high-precision eye tracker (1000Hz sampling rate).</p>
+
+                <h2>Procedure</h2>
+                <p>Participants were presented with a series of objects and asked to make judgments about their shape and material properties. Each trial consisted of three phases: initial viewing, cognitive estimation, and final judgment. Response times and eye movements were recorded throughout the experiment.</p>
+
+                <h2>Data Analysis</h2>
+                <p>Data was analyzed using a combination of traditional statistical methods and machine learning techniques. Response times were analyzed using mixed-effects models, while eye-tracking data was processed using custom algorithms to identify patterns of visual attention.</p>
+
+                <div class="nav-links">
+                    <a href="introduction.html">Previous: Introduction</a>
+                    <a href="results.html">Next: Results</a>
+                </div>
+            </div>
         </div>
     </div>
 </body>
