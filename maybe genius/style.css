@@ -204,16 +204,8 @@ footer {
     position: fixed;
     z-index: 0;
     filter: sepia(0.3) brightness(0.9) contrast(1.1);
-    transform: rotate(var(--rotation));
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease;
     opacity: 0.9;
-}
-
-.poster:hover {
-    transform: rotate(var(--rotation)) scale(1.05);
-    opacity: 1;
-    z-index: 1;
 }
 
 .poster::before {
@@ -228,80 +220,37 @@ footer {
 }
 
 #brain-poster {
-    --rotation: -8deg;
-    width: 180px;
+    width: 280px;
     top: 12%;
     left: 3%;
 }
 
 #tree-poster {
-    --rotation: 5deg;
-    width: 220px;
+    width: 320px;
     top: 8%;
     right: 4%;
 }
 
 #rock-poster {
-    --rotation: -12deg;
-    width: 160px;
+    width: 260px;
     bottom: 10%;
     left: 5%;
 }
 
 #butterfly-poster {
-    --rotation: 7deg;
-    width: 140px;
+    width: 240px;
     bottom: 15%;
     right: 6%;
 }
 
 #ladybird-poster {
-    --rotation: -4deg;
-    width: 200px;
+    width: 300px;
     top: 35%;
-    left: 45%;
-    transform: translateX(-50%) rotate(var(--rotation));
+    left: 50%;
+    transform: translateX(-50%);
 }
 
-/* Ensure content stays above posters */
-.page-wrapper {
-    position: relative;
-    z-index: 2;
-    padding: 20px;
-    max-width: 900px;
-    margin: 0 auto;
-    min-height: 100vh;
-}
-
-/* Add some random tape effects */
+/* Remove tape effects since we're not rotating posters anymore */
 .poster::after {
-    content: '';
-    position: absolute;
-    width: 20px;
-    height: 10px;
-    background: rgba(255, 255, 255, 0.7);
-    transform: rotate(45deg);
-    top: -5px;
-    left: 10px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-}
-
-#tree-poster::after {
-    right: 10px;
-    left: auto;
-    transform: rotate(-45deg);
-}
-
-#rock-poster::after {
-    top: auto;
-    bottom: -5px;
-    transform: rotate(-45deg);
-}
-
-#butterfly-poster::after {
-    top: auto;
-    bottom: -5px;
-    right: 10px;
-    left: auto;
-    transform: rotate(45deg);
+    display: none;
 }
