@@ -343,8 +343,6 @@ footer {
 .dropdown {
     position: relative;
     display: inline-block;
-    margin: 10px 0;
-    z-index: 100;
 }
 
 .dropdown-btn {
@@ -363,35 +361,25 @@ footer {
 .dropdown-content {
     display: none;
     position: absolute;
-    background: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(5px);
+    background-color: rgba(0, 0, 0, 0.9);
     min-width: 200px;
-    z-index: 101;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    z-index: 1;
     border: 2px solid rgba(245, 232, 199, 0.9);
-    clip-path: polygon(
-        3% 0%, 97% 3%, 100% 97%, 3% 100%,
-        0% 97%, 97% 97%, 97% 3%, 0% 3%
-    );
-    pointer-events: auto;
-}
-
-.dropdown-content.show {
-    display: block;
+    backdrop-filter: blur(2px);
 }
 
 .dropdown-content a {
-    color: #f5e8c7;
+    color: #f5f2e7;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
-    font-family: 'Fredericka the Great', cursive;
-    transition: all 0.3s ease;
-    pointer-events: auto;
+    font-family: 'Lora', serif;
+    transition: background-color 0.3s;
 }
 
 .dropdown-content a:hover {
-    background: rgba(245, 232, 199, 0.1);
-    transform: translateX(5px);
+    background-color: rgba(245, 232, 199, 0.2);
 }
 
 .dropdown-btn.selected {
