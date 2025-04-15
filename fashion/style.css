@@ -49,16 +49,20 @@ html, body {
 }
 
 .title-bar-controls button {
-    width: 14px;
-    height: 12px;
-    background: #c0c0c0;
+    width: 16px;
+    height: 14px;
+    margin: 2px;
     border: 1px solid;
     border-color: #ffffff #808080 #808080 #ffffff;
+    background: #d4d0c8;
+    padding: 0;
     font-size: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-bottom: 1px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.title-bar-controls button:active {
+    border-color: #808080 #ffffff #ffffff #808080;
 }
 
 .menu-bar {
@@ -99,18 +103,23 @@ html, body {
 .tool {
     width: 25px;
     height: 25px;
-    background: #c0c0c0;
+    margin: 2px;
     border: 1px solid;
     border-color: #ffffff #808080 #808080 #ffffff;
-    padding: 1px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background: #d4d0c8;
+    padding: 2px;
+    cursor: pointer;
+}
+
+.tool:active {
+    border-color: #808080 #ffffff #ffffff #808080;
 }
 
 .tool img {
     width: 16px;
     height: 16px;
+    display: block;
+    margin: auto;
 }
 
 .canvas-area {
@@ -177,6 +186,8 @@ html, body {
     display: flex;
     flex-direction: column;
     background: #c0c0c0;
+    border-left: 1px solid #808080;
+    margin-left: 0;
 }
 
 .category-buttons {
@@ -251,10 +262,10 @@ html, body {
     padding: 2px;
     background-color: #d4d0c8;
     border: 1px solid #808080;
-    width: 280px;  /* Adjusted width to accommodate 14 columns */
-    height: 40px;  /* Height for 2 rows */
+    width: 280px;
+    height: 40px;
     position: absolute;
-    bottom: 0;
+    bottom: 20px;  /* Align with status bar */
     left: 0;
 }
 
@@ -277,16 +288,16 @@ html, body {
 
 .status-bar {
     position: absolute;
-    left: 34px;
-    right: 202px;
     bottom: 0;
-    height: 23px;
-    background: #c0c0c0;
-    border-top: 1px solid #ffffff;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: #d4d0c8;
+    border-top: 1px solid #808080;
     display: flex;
     justify-content: space-between;
-    padding: 4px 8px;
-    font-size: 11px;
+    padding: 2px 8px;
+    font-size: 12px;
 }
 
 /* Custom scrollbar styling */
