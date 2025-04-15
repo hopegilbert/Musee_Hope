@@ -17,8 +17,12 @@ document.addEventListener('DOMContentLoaded', function () {
         item.addEventListener('click', function (e) {
             const href = this.getAttribute('href');
             if (href.startsWith('#')) {
+                // For hash links, prevent default and update button text
                 e.preventDefault();
                 dropdownBtn.textContent = this.textContent + ' ▾';
+                dropdownContent.style.display = 'none';
+            } else {
+                // For regular links, just close the dropdown
                 dropdownContent.style.display = 'none';
             }
         });
