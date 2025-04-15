@@ -129,6 +129,18 @@ section {
     z-index: 1;
 }
 
+.experiment-card a {
+    color: #f5e8c7;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(245, 232, 199, 0.4);
+    transition: all 0.3s ease;
+}
+
+.experiment-card a:hover {
+    color: white;
+    border-bottom-color: white;
+}
+
 footer {
     text-align: center;
     padding: 20px;
