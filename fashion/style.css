@@ -142,23 +142,23 @@ html, body {
 
 .canvas-area {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: #c0c0c0;
     position: relative;
     overflow: hidden;
-    background: #c0c0c0;
 }
 
 .canvas-container {
-    position: absolute;
-    top: 0;
-    left: 32px;
-    right: 200px;
-    bottom: 55px;
+    flex: 1;
+    margin: 0;
     background-color: #ffffff;
     border: 1px solid #808080;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
 
 .background-image {
@@ -245,9 +245,8 @@ html, body {
     border: 1px solid #808080;
     width: 280px;
     height: 35px;
-    position: absolute;
-    bottom: 40px;
-    left: 2px;
+    margin-bottom: 20px;
+    margin-left: 2px;
 }
 
 .color {
@@ -272,10 +271,6 @@ html, body {
 }
 
 .status-bar {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 200px;
     height: 20px;
     background: #d4d0c8;
     border-top: 1px solid #808080;
