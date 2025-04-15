@@ -80,9 +80,10 @@ section {
     width: 250px;
     font-family: 'Fredericka the Great', cursive;
     color: #f5f2e7;
-    background: transparent;
+    background: rgba(0, 0, 0, 0.6);
     position: relative;
     box-shadow: none;
+    backdrop-filter: blur(2px);
 }
 
 .process-card::before, .experiment-card::before {
@@ -99,6 +100,7 @@ section {
         95% 98%, 98% 100%, 2% 98%, 0% 95%,  /* bottom */
         2% 100%, 0% 95%, 2% 5%, 0% 2%  /* left */
     );
+    z-index: 1;
 }
 
 .process-card::after, .experiment-card::after {
@@ -115,20 +117,21 @@ section {
         98% 98%, 95% 100%, 5% 96%, 2% 98%,  /* bottom */
         2% 98%, 0% 93%, 4% 7%, 2% 2%  /* left */
     );
+    z-index: 1;
 }
 
 .process-card h3, .experiment-card h3 {
     margin-bottom: 15px;
     color: #f5f2e7;
     position: relative;
-    z-index: 1;
+    z-index: 2;
 }
 
 .process-card p, .experiment-card p {
     color: #f5f2e7;
     line-height: 1.4;
     position: relative;
-    z-index: 1;
+    z-index: 2;
 }
 
 .experiment-card a {
