@@ -144,14 +144,14 @@ html, body {
     flex: 1;
     position: relative;
     overflow: hidden;
-    background: #ffffff;
+    background: #c0c0c0;
 }
 
 .canvas-container {
     position: absolute;
     top: 0;
     left: 32px;
-    right: 200px;
+    right: 201px;
     bottom: 55px;
     background-color: #ffffff;
     border: 1px solid #808080;
@@ -275,7 +275,7 @@ html, body {
     position: absolute;
     bottom: 0;
     left: 0;
-    right: 200px;
+    right: 201px;
     height: 20px;
     background: #d4d0c8;
     border-top: 1px solid #808080;
@@ -593,7 +593,7 @@ html, body {
     }
 
     .canvas-container {
-        right: 120px;
+        right: 121px;
     }
 
     .color-palette {
@@ -602,7 +602,7 @@ html, body {
     }
 
     .status-bar {
-        right: 120px;
+        right: 121px;
     }
 
     .items-sidebar {
