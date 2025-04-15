@@ -159,12 +159,11 @@ html, body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    height: 90%;
-    width: auto;
+    max-height: 90%;
     max-width: 90%;
+    width: auto;
+    height: auto;
     object-fit: contain;
-    pointer-events: none;
-    z-index: 1;
 }
 
 .overlay-container {
@@ -181,10 +180,12 @@ html, body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    height: 90%;
-    width: auto;
+    max-height: 90%;
     max-width: 90%;
+    width: auto;
+    height: auto;
     object-fit: contain;
+    pointer-events: none;
 }
 
 .items-sidebar {
