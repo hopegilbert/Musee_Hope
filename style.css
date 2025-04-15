@@ -124,7 +124,10 @@ img {
 .hover-text {
   opacity: 0;
   position: absolute;
-  inset: 0;
+  top: 10%;
+  left: 10%;
+  right: 10%;
+  bottom: 10%;
   margin: 0;
   background: rgba(0, 0, 0, 0.8);
   color: white;
