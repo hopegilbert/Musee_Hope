@@ -2,7 +2,7 @@
 const categoryButtons = document.querySelectorAll('.category-button');
 const categoryItems = document.querySelectorAll('.category-items');
 const overlayContainer = document.querySelector('.overlay-container');
-const activeOverlays = new Set();
+let selectedItems = new Map(); // Track selected items by category
 
 // Initialize with first category active
 if (categoryButtons.length > 0 && categoryItems.length > 0) {
@@ -34,24 +34,39 @@ categoryButtons.forEach((button) => {
 document.querySelectorAll('.clothing-item').forEach(item => {
     item.addEventListener('click', () => {
         const overlayPath = item.dataset.overlay;
+        const category = item.closest('.category-items').dataset.category;
         
-        // Create or update overlay
-        let overlay = document.querySelector(`[src="${overlayPath}"]`);
-        if (!overlay) {
-            overlay = document.createElement('img');
-            overlay.src = overlayPath;
-            overlay.classList.add('overlay-image');
-            overlayContainer.appendChild(overlay);
+        // If clicking the same item, remove it
+        if (selectedItems.get(category) === item) {
+            const existingOverlay = document.querySelector(`[src="${overlayPath}"]`);
+            if (existingOverlay) {
+                existingOverlay.remove();
+            }
+            selectedItems.delete(category);
+            item.classList.remove('selected');
+            return;
         }
         
-        // Toggle overlay visibility
-        if (overlay.classList.contains('active')) {
-            overlay.classList.remove('active');
-            activeOverlays.delete(overlayPath);
-        } else {
-            overlay.classList.add('active');
-            activeOverlays.add(overlayPath);
+        // Remove selected class from previously selected item in this category
+        const previousItem = selectedItems.get(category);
+        if (previousItem) {
+            previousItem.classList.remove('selected');
+            const previousOverlay = document.querySelector(`[src="${previousItem.dataset.overlay}"]`);
+            if (previousOverlay) {
+                previousOverlay.remove();
+            }
         }
+        
+        // Add new overlay
+        const overlay = document.createElement('img');
+        overlay.src = overlayPath;
+        overlay.classList.add('overlay-image', 'active');
+        overlay.dataset.category = category;
+        overlayContainer.appendChild(overlay);
+        
+        // Update selected item
+        selectedItems.set(category, item);
+        item.classList.add('selected');
     });
 });
 
