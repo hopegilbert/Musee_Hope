@@ -1,9 +1,9 @@
 :root {
-  --terracotta: #c26d5c;
+  --terracotta: #6E6B4E;
   --cream: #f9f6f0;
   --beige: #e0dbd3;
   --gray: #6b6b6b;
-  --primary: #FF7B00;
+  --primary: #6E6B4E;
   --text: #000000;
   --background: #000000;
   --card-bg: #1a1a1a;
@@ -82,7 +82,7 @@ body {
 }
 
 .learn-more:hover {
-  background-color: #B04A2E;
+  background-color: #5d5a41;
 }
 
 /* Content Cards */
