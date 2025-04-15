@@ -108,44 +108,40 @@ img {
 
 .image-wrapper {
   position: relative;
+  display: inline-block;
+  width: 100%;
+  cursor: pointer;
   overflow: hidden;
-  z-index: 0; /* Ensure stacking context */
 }
 
 .image-wrapper img {
   display: block;
   width: 100%;
   height: auto;
-  transition: filter 0.4s ease;
-  z-index: 1;
-  position: relative;
+  transition: filter 0.3s ease;
 }
 
 .hover-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #f5e8c7;
-  font-family: 'Lora', serif;
-  font-size: 1.2rem;
-  font-weight: bold;
-  text-align: center;
-  padding: 1rem;
   opacity: 0;
-  transition: opacity 0.4s ease;
-  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  background: rgba(245, 232, 199, 0.9);
+  color: #821818;
+  padding: 1rem;
+  text-align: center;
+  font-family: 'Lora', serif;
+  font-size: clamp(0.7rem, 2vw, 1rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: opacity 0.3s ease;
   z-index: 2;
+  overflow: auto;
+  max-height: 100%;
 }
 
-.image-wrapper:hover img,
-.image-wrapper.active img {
-  filter: brightness(55%);
-}
-
-.image-wrapper:hover .hover-text,
-.image-wrapper.active .hover-text {
+.image-wrapper:hover .hover-text {
   opacity: 1;
 }
 
@@ -353,11 +349,16 @@ footer p {
   .hover-button:active {
     padding: 7px 11px 5px 13px;
   }
+
+  .hover-text {
+    padding: 0.5rem;
+    line-height: 1.2;
+  }
 }
 
-@media (max-width: 768px) {
-  .grid-item {
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+@media (max-width: 480px) {
+  .hover-text {
+    padding: 0.3rem;
   }
 }
 
