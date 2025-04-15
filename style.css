@@ -381,3 +381,13 @@ footer p {
   padding: 0;
   box-sizing: border-box;
 }
+
+.monetframe {
+  grid-row: span 3;
+  grid-column: span 2;
+}
+
+.fashionistaframe {
+  grid-row: span 3;
+  grid-column: span 2;
+}
