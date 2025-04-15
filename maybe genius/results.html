@@ -58,7 +58,7 @@
             line-height: 1.6;
         }
 
-        .dissertation-text h1, .dissertation-text h2 {
+        .dissertation-text h1 {
             font-family: 'Fredericka the Great', cursive;
             text-align: center;
             margin-bottom: 30px;
@@ -66,30 +66,13 @@
         }
 
         .dissertation-text h2 {
-            text-align: left;
-            font-size: 1.5em;
+            font-family: 'Fredericka the Great', cursive;
             margin: 30px 0 15px;
+            color: #f5f2e7;
         }
 
         .dissertation-text p {
             margin-bottom: 15px;
-        }
-
-        .graph-placeholder {
-            width: 100%;
-            height: 400px;
-            margin: 30px 0;
-            background: rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px dashed rgba(255, 255, 255, 0.3);
-        }
-
-        .graph-placeholder::after {
-            content: 'Graph will be added here';
-            color: rgba(255, 255, 255, 0.6);
-            font-family: 'Fredericka the Great', cursive;
         }
 
         .nav-links {
@@ -134,6 +117,45 @@
                 3% 94%, 94% 94%, 94% 6%, 3% 6%
             );
         }
+
+        .figure-container {
+            margin: 30px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .figure-container::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 2px solid rgba(245, 232, 199, 0.4);
+            clip-path: polygon(
+                5% 0%, 95% 3%, 100% 95%, 3% 100%,
+                0% 95%, 95% 95%, 95% 5%, 5% 5%
+            );
+        }
+
+        .figure-placeholder {
+            width: 100%;
+            height: 400px;
+            background: rgba(245, 232, 199, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Fredericka the Great', cursive;
+            color: rgba(245, 232, 199, 0.6);
+            font-size: 1.2em;
+        }
+
+        .figure-label {
+            margin-top: 15px;
+            font-family: 'Fredericka the Great', cursive;
+            color: #f5f2e7;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -154,18 +176,75 @@
 
                 <p>The points on the graph represent the proportion of trials where the participant identified the displayed ellipse on the screen as rounder than their experience of shape of the rim of the mug. The cumulative Gaussian curve fitted to these data allows us to estimate their subjective experience (the shape corresponding to the mean of the Gaussian) and the uncertainty in their decisions (the variance of the Gaussian), highlighting a gradual transition rather than a sharp change, which would indicate an absolute threshold.</p>
 
-                <div class="graph-placeholder" id="graph1"></div>
-
                 <p>The point where the fitted curve intersects the 50% mark represents the point of subjective equality (PSE), where participants would make an equal number of 'rounder' and 'not rounder' judgments. This point indicates where the shape on the screen matches the participants' experience of roundness. An PSE value of 5 in the 9 step set of stimuli we used would be expected if participants had perfect judgment, as this value represents the true point where the ellipse on the screen matches the actual shape.</p>
 
                 <h2>Participant 1</h2>
-                <p>The analysis of the 20-degree trials for Participant 1 reveals that the point of subjective equality (PSE) indicates an experience of equality when the ellipse is actually rounder, aligning with Thouless's findings. The true value of the point of objective equality falls significantly outside the 95% confidence interval (CI) of the PSE. This lack of overlap indicates a statistically significant deviation from objective equality, underscoring a systematic bias in perception.</p>
+                <p>The analysis of the 20-degree trials for Participant 1 reveals that the point of subjective equality (PSE) indicates an experience of equality when the ellipse is actually rounder, aligning with Thouless's findings. The true value of the point of objective equality falls significantly outside the 95% confidence interval (CI) of the PSE. This lack of overlap indicates a statistically significant deviation from objective equality, underscoring a perceptual shift consistent with prior cognitive estimations influencing visual experience. See Figure 1.</p>
 
-                <div class="graph-placeholder" id="graph2"></div>
+                <div class="figure-container">
+                    <div class="figure-placeholder">
+                        Participant 1 - 20-degree Trials Graph
+                    </div>
+                    <div class="figure-label">Figure 1</div>
+                </div>
+
+                <p>In the 40-degree condition, the results diverge from Thouless's theory. Here, the point of objective equality is within the 95% CI of the PSE, indicating that the participant's perceptual judgments were closer to objective equality under this viewing angle. This suggests that cognitive estimation did not significantly distort visual experience in this condition. See Figure 2.</p>
+
+                <div class="figure-container">
+                    <div class="figure-placeholder">
+                        Participant 1 - 40-degree Trials Graph
+                    </div>
+                    <div class="figure-label">Figure 2</div>
+                </div>
+
+                <h2>Participant 2</h2>
+                <p>For Participant 2, the 20-degree condition presented a substantial challenge, reflected by a large standard deviation (s.d.) in the cumulative Gaussian curve. Despite the increased difficulty and a larger CI, the PSE still shows a significant shift away from objective equality, indicating that cognitive estimations heavily influenced the participant's visual experience. The CI does not overlap with the point of objective equality, confirming this shift. See Figure 3.</p>
+
+                <div class="figure-container">
+                    <div class="figure-placeholder">
+                        Participant 2 - 20-degree Trials Graph
+                    </div>
+                    <div class="figure-label">Figure 3</div>
+                </div>
+
+                <p>In the 40-degree condition, Participant 2 exhibited a high degree of difficulty, responding almost uniformly across trials. This uniformity prevented the fitting of a meaningful curve, making it impossible to estimate the PSE accurately. This suggests that the task was too challenging for the participant, leading to consistent responses that did not vary with the stimulus. See Figure 4.</p>
+
+                <div class="figure-container">
+                    <div class="figure-placeholder">
+                        Participant 2 - 40-degree Trials Graph
+                    </div>
+                    <div class="figure-label">Figure 4</div>
+                </div>
+
+                <h2>Participant 3</h2>
+                <p>Participant 3's results closely mirror those of Participant 1. In the 20-degree trials, the PSE indicates that the participant perceives equality when the ellipse is rounder, consistent with Thouless's findings. The true point of objective equality falls well outside the 95% CI of the PSE, demonstrating a significant perceptual shift away from objective equality. See Figure 5.</p>
+
+                <div class="figure-container">
+                    <div class="figure-placeholder">
+                        Participant 3 - 20-degree Trials Graph
+                    </div>
+                    <div class="figure-label">Figure 5</div>
+                </div>
+
+                <p>In the 40-degree condition, Participant 3's PSE is significantly distant from the point of objective equality, indicating a large perceptual shift. This result aligns with Thouless's observations, suggesting that cognitive estimations significantly influence visual experience under this condition. See Figure 6.</p>
+
+                <div class="figure-container">
+                    <div class="figure-placeholder">
+                        Participant 3 - 40-degree Trials Graph
+                    </div>
+                    <div class="figure-label">Figure 6</div>
+                </div>
+
+                <h2>Summary and Implications</h2>
+                <p>We have 6 sets of data, of the 6 sets we could make estimates of the point of subject equality (PSE) in 5 sets. Of those 5 sets there are 4 sets that show absolutely clear shifts away objective equality consistent with Thouless.</p>
+
+                <p>Overall, the results across the three participants indicate that in 4 out of 5 measurable conditions, there is a clear shift away from objective equality consistent with Thouless's findings. These shifts suggest that cognitive estimations significantly influence visual experience, especially under conditions where the task is perceived as more difficult, such as the 20-degree viewing angle.</p>
+
+                <p>Given the substantial variability in task difficulty and shifts of the PSE away from objective equality, further experiments are warranted. Future studies could explore the relationship between task difficulty, foreshortening, and the size of the shift by varying the viewing angles incrementally (e.g., 10 degrees, 20 degrees, 30 degrees) to determine if the difficulty correlates with the extent of the shift. Such studies would provide deeper insights into the cognitive mechanisms underlying visual experience and the conditions under which cognitive estimations most strongly influence experience.</p>
 
                 <div class="nav-links">
-                    <a href="methodology.html">← Methodology</a>
-                    <a href="discussion.html">Discussion →</a>
+                    <a href="dissertation.html">← Back to Main</a>
+                    <a href="dissertation.html#discussion">Discussion →</a>
                 </div>
             </div>
         </div>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Methodology - Maybe Genius</title>
+    <title>Procedure - Maybe Genius</title>
     <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Inter:wght@400;500;600;700;800&family=Lora:wght@400;500;600;700&family=Schoolbell&family=Special+Elite&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
@@ -65,12 +65,6 @@
             color: #f5f2e7;
         }
 
-        .dissertation-text h2 {
-            font-family: 'Fredericka the Great', cursive;
-            margin: 30px 0 15px;
-            color: #f5f2e7;
-        }
-
         .dissertation-text p {
             margin-bottom: 15px;
         }
@@ -118,42 +112,14 @@
             );
         }
 
-        .bullet-list {
+        .numbered-list {
+            list-style-type: decimal;
             margin-left: 20px;
             margin-bottom: 15px;
-            list-style-type: disc;
         }
 
-        .image-container {
-            margin: 30px 0;
-            text-align: center;
-            position: relative;
-        }
-
-        .image-container::before {
-            content: '';
-            position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
-            border: 2px solid rgba(245, 232, 199, 0.4);
-            clip-path: polygon(
-                5% 0%, 95% 3%, 100% 95%, 3% 100%,
-                0% 95%, 95% 95%, 95% 5%, 5% 5%
-            );
-        }
-
-        .image-placeholder {
-            width: 100%;
-            height: 400px;
-            background: rgba(245, 232, 199, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Fredericka the Great', cursive;
-            color: rgba(245, 232, 199, 0.6);
-            font-size: 1.2em;
+        .numbered-list li {
+            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -171,29 +137,25 @@
 
         <div class="dissertation-content">
             <div class="dissertation-text">
-                <h1>Methodology</h1>
+                <h1>Procedure</h1>
 
-                <h2>Design</h2>
-                <p>The study employed a repeated measures design, which allowed each participant to experience both levels of the independent variable: the viewing angles of the mug at 20 degrees and 40 degrees. This design was chosen to control for individual differences in perception and ensure that any observed effects were due to the manipulation of the viewing angle rather than variability between participants. The dependent variable was the number of times participants selected the 'rounder' option when comparing the CGI discs to the real mug's rim.</p>
+                <p>The experiment was conducted individually in a well-lit laboratory at Durham University to ensure a controlled environment and consistency across participants. The procedure was as follows:</p>
 
-                <h2>Participants</h2>
-                <p>Three participants (2 males and 1 female) from Durham University participated in the study. Their ages ranged from 22 to 26 years. All participants reported having normal eyesight. The small sample size was strategically chosen to address the research question efficiently, following Aristotle's principle of careful and thorough investigation with a focused group. Taking a psychophysical approach in which a small number of participants make a large number of decisions over a carefully chose range of stimuli allows statistical analyses to be conducted at the level of individual observers is likely to produce clearer results than a groups study in which smaller numbers of trials lead to inaccurate estimates of each observers experience.</p>
+                <ol class="numbered-list">
+                    <li>Preparation: Participants were seated comfortably at a desk and instructed to place their heads on the chin rest. The height of their eyes was measured with a tape measure, and this measurement was input into MATLAB, which then computed the correct position for the mug to achieve the desired viewing angles of 20 degrees and 40 degrees.</li>
 
-                <h2>Apparatus and Materials</h2>
-                <p>The experimental setup included several key components designed to ensure precision and consistency:</p>
-                
-                <ul class="bullet-list">
-                    <li>Chin Rest: A chin rest was used to stabilize participants' heads, ensuring that their viewing angle remained constant throughout the experiment. This device was crucial for maintaining consistent eye level and minimizing head movement, which could affect perception.</li>
-                    <li>Mug and CGI Ellipses: A real mug was used as the reference object. The stimuli consisted of a sequence of CGI ellipses with varying degrees of roundness, designed to mimic the rim of the mug. These ellipses had black contours and were presented on a plain white background to eliminate any potential distractions or contextual influences.</li>
-                    <li>MATLAB Programming Platform: The experiment was controlled using MATLAB (Mathworks, N.D.), which managed the presentation of stimuli and recorded responses. MATLAB was also used to measure and adjust the distance of the mug to achieve the correct viewing angles for each condition.</li>
-                    <li>Laptop and Stand: The laptop displaying the stimuli was positioned on a stand to align with the participants' eye level from the table top. This setup ensured that the visual stimuli were presented consistently across trials and participants.</li>
-                </ul>
+                    <li>Stimulus Presentation: Participants were exposed to 30 blocks of trials, with 15 blocks at a 20-degree viewing angle and 15 blocks at a 40-degree viewing angle. Each block contained 90 trials (ten for each aspect ratio of ellipse), resulting in a total of 1,350 trials per viewing angle condition and 2,700  trials per participant. However,  participant 1 could only complete 10 blocks of each trials for reasons of limited time. Meaning one participant did 900 trials per angle condition and 1,800 trials in total.</li>
 
-                <div class="image-container">
-                    <div class="image-placeholder">
-                        Experimental Setup Diagram
-                    </div>
-                </div>
+                    <li>Task Instructions: Participants were instructed to respond to each visual stimulus (CGI ellipses) by pressing the '.' key if they perceived the disc as thinner than the mug's rim or the ',' key if they perceived it as rounder. There were no time constraints imposed, allowing participants to take as much time as needed to ensure accurate responses.</li>
+
+                    <li>Trial Execution: Each CGI disc was displayed within the participant's eyeline, and the next disc appeared only after a response was made. This ensured that participants had sufficient time to compare each disc to the mug's rim without feeling rushed.</li>
+
+                    <li>Data Collection: For each block, a score was recorded, reflecting the frequency with which participants pressed the ',' (rounder) key. This score indicated how often participants perceived the displayed stimuli as rounder compared to the actual rim of the mug.</li>
+
+                    <li>Consistency and Control: The individual nature of the experiment in a controlled laboratory setting ensured that external variables were minimized, providing consistency across participants and trials.</li>
+                </ol>
+
+                <p>The aim was to determine whether the cognitive estimation of an object's intrinsic properties, such as the roundness of the mug's rim, precedes or influences visual experience. By comparing responses across different viewing angles, the study sought to reveal the shape of ellipse corresponding to the observer's experience. If this shape was significantly different to the shape of the geometrically correct perspectival projection of a circle at the given viewing angle this would indicate that prior knowledge and cognitive processes affect experience, thereby contributing to the ongoing debate on the interplay between cognitive estimation and visual experience.</p>
 
                 <div class="nav-links">
                     <a href="dissertation.html">← Back to Main</a>
