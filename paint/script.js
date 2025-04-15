@@ -77,9 +77,10 @@ function startDrawing(e) {
     [lastX, lastY] = getMousePos(e);
     
     if (currentTool === 'text') {
+        const rect = canvas.getBoundingClientRect();
         textBox.style.display = 'block';
-        textBox.style.left = e.clientX + 'px';
-        textBox.style.top = e.clientY + 'px';
+        textBox.style.left = (e.clientX - rect.left) + 'px';
+        textBox.style.top = (e.clientY - rect.top) + 'px';
         textBox.style.fontSize = (currentSize * 12) + 'px';
         textBox.style.color = currentColor;
         textBox.focus();
@@ -520,7 +521,7 @@ function createTextBox() {
     
     textBox = document.createElement('div');
     textBox.contentEditable = true;
-    textBox.style.position = 'fixed';
+    textBox.style.position = 'absolute';
     textBox.style.display = 'none';
     textBox.style.minWidth = '50px';
     textBox.style.minHeight = '20px';
@@ -541,7 +542,7 @@ function createTextBox() {
         }
     });
     
-    document.body.appendChild(textBox);
+    canvas.parentElement.appendChild(textBox);
 }
 
 function finalizeText() {
@@ -554,7 +555,10 @@ function finalizeText() {
         
         ctx.font = `${currentSize * 12}px Arial`;
         ctx.fillStyle = currentColor;
-        ctx.fillText(text, rect.left - canvasRect.left, rect.top - canvasRect.top + parseInt(getComputedStyle(textBox).fontSize));
+        ctx.fillText(text, 
+            rect.left - canvasRect.left, 
+            rect.top - canvasRect.top + (currentSize * 12)
+        );
         saveState();
     }
     
