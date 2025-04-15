@@ -8,14 +8,15 @@ html, body {
 body {
     background-color: #2d3b2c;
     background-image: url('images/background.png');
-    background-size: 100% auto;
-    background-position: top center;
-    background-repeat: repeat-y;
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat;
     background-attachment: fixed;
     color: #f5f2e7;
     font-family: 'Fredericka the Great', cursive;
     position: relative;
     overflow-x: hidden;
+    min-height: 100vh;
 }
 
 h1, h2, h3 {
@@ -249,12 +250,12 @@ footer {
 .poster {
     position: fixed;
     opacity: 0.15;
-    z-index: -1;
+    z-index: 1;
     transition: opacity 0.3s ease;
 }
 
 .poster:hover {
-    opacity: 0.3;
+    opacity: 0.4;
 }
 
 #brain-poster {
@@ -290,6 +291,16 @@ footer {
     right: 25%;
     width: 15%;
     transform: rotate(-6deg);
+}
+
+.dissertation-content {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 40px;
+    margin: 40px auto;
+    max-width: 800px;
+    backdrop-filter: blur(2px);
+    position: relative;
+    z-index: 0;
 }
 
 @media (max-width: 768px) {
