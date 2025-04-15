@@ -194,12 +194,13 @@ html, body {
     overflow-y: auto;
     background: #ffffff;
     border: 1px solid #808080;
-    margin: 2px;
+    margin: 1px;
+    padding: 1px;
 }
 
 .category-items {
     display: none;
-    padding: 2px;
+    padding: 1px;
 }
 
 .category-items.active {
@@ -207,11 +208,11 @@ html, body {
 }
 
 .clothing-item {
-    width: calc(100% - 4px);
+    width: calc(100% - 2px);
     height: 80px;
     background: #ffffff;
     border: 1px solid #808080;
-    margin: 2px;
+    margin: 1px;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -232,7 +233,7 @@ html, body {
     display: grid;
     grid-template-columns: repeat(14, 1fr);
     grid-template-rows: repeat(2, 1fr);
-    gap: 1px;
+    gap: 0;
     padding: 2px;
     background-color: #d4d0c8;
     border: 1px solid #808080;
@@ -245,7 +246,7 @@ html, body {
 
 .color {
     width: 100%;
-    aspect-ratio: 1;
+    height: 100%;
     border: 1px outset #fff;
     cursor: pointer;
 }
@@ -445,6 +446,36 @@ html, body {
     background: #d4d0c8;
     border-left: 1px solid #808080;
     flex-shrink: 0;
+    padding: 2px;
+}
+
+.category-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    padding: 1px;
+    background: #d4d0c8;
+}
+
+.category-button {
+    width: 100%;
+    padding: 4px 8px;
+    border: 1px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    background: #d4d0c8;
+    text-align: left;
+    cursor: pointer;
+    font-size: 11px;
+    margin-bottom: 1px;
+}
+
+.category-button:hover {
+    background: #efefef;
+}
+
+.category-button.active, .category-button:active {
+    border-color: #808080 #ffffff #ffffff #808080;
+    padding: 5px 7px 3px 9px;
 }
 
 @media (max-width: 768px) {
@@ -471,6 +502,7 @@ html, body {
 
     .items-sidebar {
         width: 120px;
+        padding: 1px;
     }
 
     .items-container {
@@ -479,19 +511,17 @@ html, body {
     }
 
     .category-button {
-        padding: 8px;
-        margin-bottom: 5px;
-        font-size: 12px;
+        padding: 3px 6px;
+        font-size: 10px;
     }
 
-    .item-button {
-        height: 80px;
-        margin-bottom: 5px;
+    .category-button.active, .category-button:active {
+        padding: 4px 5px 2px 7px;
     }
 
-    .item-button img {
-        max-height: 70px;
-        width: auto;
+    .clothing-item {
+        height: 60px;
+        margin: 1px;
     }
 
     .fashion-container {
@@ -529,20 +559,12 @@ html, body {
         padding: 3px;
     }
 
-    .category-button {
-        padding: 3px;
-        font-size: 0.8em;
-    }
-
     .canvas-container {
         right: 120px;
     }
 
     .color-palette {
         width: 200px;
-        height: 35px;
-        left: 2px;
-        bottom: 40px;
         grid-template-columns: repeat(10, 1fr);
     }
 
