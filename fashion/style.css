@@ -189,15 +189,11 @@ html, body {
 
 .items-sidebar {
     width: 200px;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    display: flex;
-    flex-direction: column;
-    background: #c0c0c0;
-    border-left: 1px solid #808080;
-    margin-left: 0;
+    height: 100%;
+    overflow-y: auto;
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-left: 1px solid #ccc;
 }
 
 .category-buttons {
@@ -517,5 +513,48 @@ html, body {
     .fashion-background {
         max-height: 80%;
         max-width: 80%;
+    }
+
+    .items-sidebar {
+        width: 120px;
+        font-size: 14px;
+    }
+
+    .category-button {
+        padding: 8px;
+        margin-bottom: 5px;
+        font-size: 12px;
+    }
+
+    .items-container {
+        max-height: calc(100vh - 150px);
+        overflow-y: auto;
+    }
+
+    .item-button {
+        height: 80px;
+        margin-bottom: 5px;
+    }
+
+    .item-button img {
+        max-height: 70px;
+        width: auto;
+    }
+
+    body {
+        min-height: 100vh;
+        overflow: hidden;
+    }
+
+    .main-container {
+        height: 100vh;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .canvas-area {
+        flex: 1;
+        height: 100vh;
+        overflow: hidden;
     }
 } 
