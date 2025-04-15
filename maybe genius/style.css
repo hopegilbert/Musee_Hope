@@ -1,12 +1,20 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
 body {
     background-color: #2d3b2c;
     background-image: url('images/background.png');
     background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     background-attachment: fixed;
     color: #f5f2e7;
     font-family: 'Fredericka the Great', cursive;
-    margin: 0;
-    padding: 0;
+    position: relative;
 }
 
 h1, h2, h3 {
@@ -21,6 +29,9 @@ h1, h2, h3 {
     gap: 15px;
     justify-content: center;
     font-family: 'Fredericka the Great', cursive;
+    position: sticky;
+    top: 0;
+    z-index: 2;
 }
 
 .nav-menu a {
@@ -30,9 +41,12 @@ h1, h2, h3 {
 }
 
 .page-wrapper {
+    position: relative;
+    z-index: 1;
     padding: 20px;
     max-width: 900px;
     margin: 0 auto;
+    min-height: 100vh;
 }
 
 header {
