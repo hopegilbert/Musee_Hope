@@ -11,87 +11,6 @@ const categoryZIndex = {
     'shoes': 200
 };
 
-// Background image adjustment
-const backgroundImage = document.querySelector('.background-image');
-let isDragging = false;
-let currentX;
-let currentY;
-let initialX;
-let initialY;
-let xOffset = 0;
-let yOffset = 0;
-let scale = 1;
-
-// Add scale control to the UI
-const scaleControl = document.createElement('div');
-scaleControl.className = 'scale-control';
-scaleControl.innerHTML = `
-    <label for="scale-slider">Size:</label>
-    <input type="range" id="scale-slider" min="50" max="150" value="100">
-    <span id="scale-value">100%</span>
-`;
-document.querySelector('.canvas-area').appendChild(scaleControl);
-
-// Handle scale changes
-const scaleSlider = document.getElementById('scale-slider');
-const scaleValue = document.getElementById('scale-value');
-scaleSlider.addEventListener('input', (e) => {
-    scale = e.target.value / 100;
-    scaleValue.textContent = `${e.target.value}%`;
-    updateImageTransform();
-});
-
-// Mouse event handlers for dragging
-backgroundImage.addEventListener('mousedown', dragStart);
-document.addEventListener('mousemove', drag);
-document.addEventListener('mouseup', dragEnd);
-
-// Touch event handlers for mobile
-backgroundImage.addEventListener('touchstart', dragStart);
-document.addEventListener('touchmove', drag);
-document.addEventListener('touchend', dragEnd);
-
-function dragStart(e) {
-    if (e.type === 'mousedown') {
-        initialX = e.clientX - xOffset;
-        initialY = e.clientY - yOffset;
-    } else {
-        initialX = e.touches[0].clientX - xOffset;
-        initialY = e.touches[0].clientY - yOffset;
-    }
-
-    if (e.target === backgroundImage) {
-        isDragging = true;
-    }
-}
-
-function drag(e) {
-    if (isDragging) {
-        e.preventDefault();
-
-        if (e.type === 'mousemove') {
-            currentX = e.clientX - initialX;
-            currentY = e.clientY - initialY;
-        } else {
-            currentX = e.touches[0].clientX - initialX;
-            currentY = e.touches[0].clientY - initialY;
-        }
-
-        xOffset = currentX;
-        yOffset = currentY;
-
-        updateImageTransform();
-    }
-}
-
-function dragEnd() {
-    isDragging = false;
-}
-
-function updateImageTransform() {
-    backgroundImage.style.transform = `translate(${xOffset}px, ${yOffset}px) scale(${scale})`;
-}
-
 // Category and overlay management
 const categoryButtons = document.querySelectorAll('.category-button');
 const categoryItems = document.querySelectorAll('.category-items');
@@ -123,22 +42,6 @@ categoryButtons.forEach((button) => {
         });
     });
 });
-
-// Function to reorder overlays based on z-index
-function reorderOverlays() {
-    const overlays = Array.from(overlayContainer.children);
-    overlays.sort((a, b) => {
-        const aZIndex = categoryZIndex[a.dataset.category] || 0;
-        const bZIndex = categoryZIndex[b.dataset.category] || 0;
-        return bZIndex - aZIndex;
-    });
-    
-    // Reappend in correct order
-    overlays.forEach(overlay => {
-        overlay.style.zIndex = categoryZIndex[overlay.dataset.category];
-        overlayContainer.appendChild(overlay);
-    });
-}
 
 // Handle clothing item clicks
 document.querySelectorAll('.clothing-item').forEach(item => {
@@ -180,11 +83,6 @@ document.querySelectorAll('.clothing-item').forEach(item => {
         // Update selected item
         selectedItems.set(category, item);
         item.classList.add('selected');
-        
-        // Ensure all overlays have correct z-index
-        overlayContainer.querySelectorAll('.overlay-image').forEach(overlay => {
-            overlay.style.zIndex = categoryZIndex[overlay.dataset.category];
-        });
     });
 });
 
