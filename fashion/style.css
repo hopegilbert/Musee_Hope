@@ -12,6 +12,7 @@ html, body {
     font-size: 11px;
     overflow: hidden;
     background: #c0c0c0;
+    padding-bottom: env(safe-area-inset-bottom, 20px);
 }
 
 .window {
@@ -159,6 +160,7 @@ html, body {
     align-items: center;
     justify-content: center;
     position: relative;
+    margin-bottom: 75px;
 }
 
 .background-image {
@@ -247,6 +249,7 @@ html, body {
     height: 35px;
     margin-bottom: 20px;
     margin-left: 2px;
+    bottom: calc(env(safe-area-inset-bottom, 0) + 20px);
 }
 
 .color {
@@ -278,6 +281,7 @@ html, body {
     justify-content: space-between;
     padding: 2px 8px;
     font-size: 11px;
+    bottom: env(safe-area-inset-bottom, 0);
 }
 
 /* Custom scrollbar styling */
@@ -618,5 +622,11 @@ html, body {
     .color-palette {
         height: 25px;
         bottom: 40px;
+    }
+}
+
+@media (max-height: 800px) {
+    .canvas-container {
+        margin-bottom: 90px;
     }
 } 
