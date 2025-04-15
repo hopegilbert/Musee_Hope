@@ -344,6 +344,7 @@ footer {
     position: relative;
     display: inline-block;
     margin: 10px 0;
+    z-index: 10;
 }
 
 .dropdown-btn {
@@ -354,6 +355,9 @@ footer {
     font-size: 1em;
     padding: 10px 20px;
     color: #f5e8c7;
+    position: relative;
+    z-index: 10;
+    pointer-events: auto;
 }
 
 .dropdown-content {
@@ -362,12 +366,13 @@ footer {
     background: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(5px);
     min-width: 200px;
-    z-index: 3;
+    z-index: 11;
     border: 2px solid rgba(245, 232, 199, 0.9);
     clip-path: polygon(
         3% 0%, 97% 3%, 100% 97%, 3% 100%,
         0% 97%, 97% 97%, 97% 3%, 0% 3%
     );
+    pointer-events: auto;
 }
 
 .dropdown-content.show {
@@ -381,6 +386,7 @@ footer {
     display: block;
     font-family: 'Fredericka the Great', cursive;
     transition: all 0.3s ease;
+    pointer-events: auto;
 }
 
 .dropdown-content a:hover {
