@@ -108,8 +108,8 @@ img {
 
 .image-wrapper {
   position: relative;
-  overflow: hidden;
-  z-index: 0; /* Ensure stacking context */
+  display: inline-block;
+  width: 100%;
 }
 
 .image-wrapper img {
@@ -121,31 +121,39 @@ img {
   position: relative;
 }
 
-.hover-text {
+.hover-button {
+  opacity: 0;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  background: #821818;
   color: #f5e8c7;
-  font-family: 'Lora', serif;
+  padding: 12px 24px;
+  border: 2px solid #f5e8c7;
+  border-radius: 4px;
+  font-family: 'Playfair Display', serif;
   font-size: 1.2rem;
-  font-weight: bold;
-  text-align: center;
-  padding: 1rem;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  pointer-events: none;
+  text-decoration: none;
+  transition: all 0.3s ease;
   z-index: 2;
+  cursor: pointer;
 }
 
-.image-wrapper:hover img,
-.image-wrapper.active img {
-  filter: brightness(55%);
-}
-
-.image-wrapper:hover .hover-text,
-.image-wrapper.active .hover-text {
+.image-wrapper:hover .hover-button {
   opacity: 1;
+}
+
+.hover-button:hover {
+  background: #f5e8c7;
+  color: #821818;
+  border-color: #821818;
+  transform: translate(-50%, -50%) scale(1.05);
+}
+
+/* Remove old hover text styles */
+.image-wrapper .hover-text {
+  display: none;
 }
 
 .overlay-content {
@@ -343,32 +351,13 @@ footer p {
     font-size: 0.6rem;
     padding: 0.6rem 0.75rem;
   }
- /* Keep hover text hidden by default */
-.image-wrapper .hover-text {
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #f5e8c7;
-  padding: 0.5rem;
-  text-align: center;
-  font-size: 0.4rem;
-  line-height: 1.4;
-  z-index: 2;
+
+  .hover-button {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
 }
 
-/* Show hover text on hover (desktop) */
-.image-wrapper:hover .hover-text {
-  opacity: 1;
-}
-
-/* Show hover text on tap (mobile) */
-.image-wrapper.active .hover-text {
-  opacity: 1;
-}
-}
 @media (max-width: 768px) {
   .grid-item {
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
