@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abstract - Dissertation</title>
+    <title>Abstract - Maybe Genius</title>
     <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Inter:wght@400;500;600;700;800&family=Lora:wght@400;500;600;700&family=Schoolbell&family=Special+Elite&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        .section-content {
+        .dissertation-content {
             background: rgba(0, 0, 0, 0.6);
             padding: 40px;
             margin: 40px auto;
@@ -16,7 +16,7 @@
             position: relative;
         }
 
-        .section-content::before {
+        .dissertation-content::before {
             content: '';
             position: absolute;
             top: 0;
@@ -33,7 +33,7 @@
             z-index: 1;
         }
 
-        .section-content::after {
+        .dissertation-content::after {
             content: '';
             position: absolute;
             top: -4px;
@@ -50,7 +50,7 @@
             z-index: 1;
         }
 
-        .section-text {
+        .dissertation-text {
             position: relative;
             z-index: 2;
             color: #f5f2e7;
@@ -58,27 +58,21 @@
             line-height: 1.6;
         }
 
-        .section-text h1 {
+        .dissertation-text h1 {
             font-family: 'Fredericka the Great', cursive;
             text-align: center;
             margin-bottom: 30px;
             color: #f5f2e7;
         }
 
-        .section-text h2 {
-            font-family: 'Fredericka the Great', cursive;
-            margin: 30px 0 15px;
-            color: #f5f2e7;
-        }
-
-        .section-text p {
+        .dissertation-text p {
             margin-bottom: 15px;
         }
 
         .nav-links {
+            margin-top: 30px;
             display: flex;
             justify-content: space-between;
-            margin-top: 40px;
         }
 
         .nav-links a {
@@ -87,6 +81,7 @@
             font-family: 'Fredericka the Great', cursive;
             padding: 10px 20px;
             position: relative;
+            display: inline-block;
         }
 
         .nav-links a::before {
@@ -130,22 +125,24 @@
             <a href="dissertation.html">BACK TO DISSERTATION</a>
         </nav>
 
-        <div class="section-content">
-            <div class="section-text">
+        <div class="dissertation-content">
+            <div class="dissertation-text">
                 <h1>Abstract</h1>
-                
-                <p>This dissertation investigates the temporal relationship between cognitive estimation and visual experience in the perception of object shape and material properties. The study aims to determine whether cognitive estimation precedes visual experience, or if these processes occur independently and concurrently.</p>
 
-                <p>Through a series of carefully designed experiments, we examine the neural and cognitive mechanisms underlying object perception. Our findings suggest that while cognitive estimation and visual experience are closely intertwined, they may operate through distinct neural pathways that can function both sequentially and in parallel.</p>
+                <p>The relationship between cognitive estimation and visual experience remains a fundamental question in perceptual psychology. This dissertation explores whether cognitive processes influence our initial visual experience of objects or if they operate independently and concurrently. Revisiting Thouless's seminal work on perceptual constancy, we employed a modern experimental approach involving three participants who made judgments about the roundness of a mug's rim viewed from different angles.</p>
 
-                <p>The implications of this research extend to our understanding of perception, cognition, and the neural basis of object recognition. These findings have potential applications in artificial intelligence, human-computer interaction, and the development of assistive technologies for individuals with perceptual impairments.</p>
+                <p>The findings indicate that cognitive estimation significantly influences visual experience, particularly under challenging conditions where visual tasks are complicated by perspective distortions. In the majority of conditions tested, participants' perceptions deviated significantly from objective equality, suggesting that cognitive processes shape how we perceive intrinsic object properties. These results support the integrated approach to perception, where cognitive and sensory processes dynamically interact.</p>
+
+                <p>This research contributes to a comprehensive theory of perception, highlighting the critical role of cognitive factors in maintaining perceptual constancy and shaping visual experiences. Further studies with larger and more diverse samples, as well as the incorporation of neuroimaging techniques, are recommended to deepen our understanding of the neural mechanisms underlying these interactions.</p>
 
                 <div class="nav-links">
-                    <a href="dissertation.html">Back to Dissertation</a>
-                    <a href="introduction.html">Next: Introduction</a>
+                    <a href="dissertation.html">← Back to Main</a>
+                    <a href="introduction.html">Introduction →</a>
                 </div>
             </div>
         </div>
     </div>
+
+    <script src="scripts.js"></script>
 </body>
 </html> 
