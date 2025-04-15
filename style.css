@@ -128,14 +128,15 @@ img {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: #d4d0c8;
+  background-color: #f5e8c7;
   color: #821818;
-  padding: 8px 16px;
-  border: 1px solid;
-  border-color: #ffffff #808080 #808080 #ffffff;
-  font-family: 'Press Start 2P', cursive;
-  font-size: 0.8rem;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 25px;
+  font-family: 'Lora', serif;
+  font-size: 1rem;
   text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   z-index: 10;
   cursor: pointer;
@@ -145,13 +146,14 @@ img {
   opacity: 1;
 }
 
-.image-wrapper:hover img {
-  filter: brightness(90%);
+.hover-button:hover {
+  background-color: #dbc692;
+  transform: translate(-50%, -52%);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
 
-.hover-button:hover {
-  background: #efefef;
-  border-color: #ffffff #808080 #808080 #ffffff;
+.image-wrapper:hover img {
+  filter: brightness(90%);
 }
 
 .hover-button:active {
