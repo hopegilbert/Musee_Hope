@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dissertation - Maybe Genius</title>
+    <title>Abstract - Dissertation</title>
     <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Inter:wght@400;500;600;700;800&family=Lora:wght@400;500;600;700&family=Schoolbell&family=Special+Elite&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        .dissertation-content {
+        .section-content {
             background: rgba(0, 0, 0, 0.6);
             padding: 40px;
             margin: 40px auto;
@@ -16,7 +16,7 @@
             position: relative;
         }
 
-        .dissertation-content::before {
+        .section-content::before {
             content: '';
             position: absolute;
             top: 0;
@@ -33,7 +33,7 @@
             z-index: 1;
         }
 
-        .dissertation-content::after {
+        .section-content::after {
             content: '';
             position: absolute;
             top: -4px;
@@ -50,7 +50,7 @@
             z-index: 1;
         }
 
-        .dissertation-text {
+        .section-text {
             position: relative;
             z-index: 2;
             color: #f5f2e7;
@@ -58,42 +58,38 @@
             line-height: 1.6;
         }
 
-        .dissertation-text h1 {
+        .section-text h1 {
             font-family: 'Fredericka the Great', cursive;
             text-align: center;
             margin-bottom: 30px;
             color: #f5f2e7;
         }
 
-        .dissertation-text h2 {
+        .section-text h2 {
             font-family: 'Fredericka the Great', cursive;
             margin: 30px 0 15px;
             color: #f5f2e7;
         }
 
-        .dissertation-text p {
+        .section-text p {
             margin-bottom: 15px;
         }
 
-        .section-links {
-            list-style-type: none;
-            padding-left: 0;
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
         }
 
-        .section-links li {
-            margin-bottom: 15px;
-        }
-
-        .section-links a {
+        .nav-links a {
             color: #f5f2e7;
             text-decoration: none;
             font-family: 'Fredericka the Great', cursive;
             padding: 10px 20px;
             position: relative;
-            display: inline-block;
         }
 
-        .section-links a::before {
+        .nav-links a::before {
             content: '';
             position: absolute;
             top: 0;
@@ -107,7 +103,7 @@
             );
         }
 
-        .section-links a::after {
+        .nav-links a::after {
             content: '';
             position: absolute;
             top: -2px;
@@ -120,13 +116,6 @@
                 3% 94%, 94% 94%, 94% 6%, 3% 6%
             );
         }
-
-        .pdf-viewer {
-            width: 100%;
-            height: 800px;
-            margin: 40px 0;
-            border: none;
-        }
     </style>
 </head>
 <body>
@@ -138,25 +127,23 @@
     
     <div class="page-wrapper">
         <nav class="nav-menu">
-            <a href="maybe-genius.html">BACK TO MAYBE GENIUS</a>
+            <a href="dissertation.html">BACK TO DISSERTATION</a>
         </nav>
 
-        <div class="dissertation-content">
-            <div class="dissertation-text">
-                <h1>Dissertation</h1>
-                <h2>Does Cognitive Estimation Precede Visual Experience in the Perception of Object Shape and Material, or Do They Occur Independently and Concurrently?</h2>
+        <div class="section-content">
+            <div class="section-text">
+                <h1>Abstract</h1>
                 
-                <ul class="section-links">
-                    <li><a href="abstract.html">Abstract</a></li>
-                    <li><a href="introduction.html">Introduction</a></li>
-                    <li><a href="methodology.html">Methodology</a></li>
-                    <li><a href="results.html">Results</a></li>
-                    <li><a href="discussion.html">Discussion</a></li>
-                    <li><a href="conclusion.html">Conclusion</a></li>
-                    <li><a href="references.html">References</a></li>
-                </ul>
+                <p>This dissertation investigates the temporal relationship between cognitive estimation and visual experience in the perception of object shape and material properties. The study aims to determine whether cognitive estimation precedes visual experience, or if these processes occur independently and concurrently.</p>
 
-                <iframe class="pdf-viewer" src="Does Cognitive Estimation Precede Visual Experience in the Perception of Object Shape and Material, or Do They Occur Independently and Concurrently.pdf"></iframe>
+                <p>Through a series of carefully designed experiments, we examine the neural and cognitive mechanisms underlying object perception. Our findings suggest that while cognitive estimation and visual experience are closely intertwined, they may operate through distinct neural pathways that can function both sequentially and in parallel.</p>
+
+                <p>The implications of this research extend to our understanding of perception, cognition, and the neural basis of object recognition. These findings have potential applications in artificial intelligence, human-computer interaction, and the development of assistive technologies for individuals with perceptual impairments.</p>
+
+                <div class="nav-links">
+                    <a href="dissertation.html">Back to Dissertation</a>
+                    <a href="introduction.html">Next: Introduction</a>
+                </div>
             </div>
         </div>
     </div>
