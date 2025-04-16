@@ -115,6 +115,10 @@
             scrollbar-color: rgba(245, 232, 199, 0.4) rgba(0, 0, 0, 0.2);
         }
 
+        .dropdown-content.show {
+            display: block;
+        }
+
         .dropdown-content::-webkit-scrollbar {
             width: 8px;
         }
@@ -233,7 +237,7 @@
                 <div class="process-card">
                     <h3><span class="glitch-effect" data-text="Questionable Research">Questionable Research</span></h3>
                     <p>Deep diving into weird corners of the internet</p>
-                    <a href="questionable-research.html" class="chalk-button">whack shit</a>
+                    <a href="./questionable-research.html" class="chalk-button">whack shit</a>
                 </div>
             </div>
         </section>
@@ -243,23 +247,23 @@
                 <article class="experiment-card">
                     <h3>Psychology Research</h3>
                     <div class="dropdown-menu">
-                        <button class="dropdown-btn chalk-button">View Essays</button>
+                        <button class="dropdown-btn chalk-button" onclick="toggleDropdown(this)">View Essays</button>
                         <div class="dropdown-content">
-                            <a href="essays/attention.html">Attention and Consciousness</a>
-                            <a href="essays/perception.html">The Role of Perception in Consciousness</a>
-                            <a href="essays/embodied-mind.html">The Embodied Mind</a>
-                            <a href="essays/cognitive-architecture.html">Cognitive Architecture</a>
-                            <a href="essays/consciousness.html">Theories of Consciousness</a>
-                            <a href="essays/dissertation.html">Dissertation: Object Shape and Material Perception</a>
-                            <a href="essays/visual-experience.html">Visual Experience and Object Recognition</a>
-                            <a href="essays/mental-imagery.html">Mental Imagery and Cognitive Processing</a>
+                            <a href="./essays/attention.html">Attention and Consciousness</a>
+                            <a href="./essays/perception.html">The Role of Perception in Consciousness</a>
+                            <a href="./essays/embodied-mind.html">The Embodied Mind</a>
+                            <a href="./essays/cognitive-architecture.html">Cognitive Architecture</a>
+                            <a href="./essays/consciousness.html">Theories of Consciousness</a>
+                            <a href="./essays/dissertation.html">Dissertation: Object Shape and Material Perception</a>
+                            <a href="./essays/visual-experience.html">Visual Experience and Object Recognition</a>
+                            <a href="./essays/mental-imagery.html">Mental Imagery and Cognitive Processing</a>
                         </div>
                     </div>
                 </article>
                 <article class="experiment-card">
                     <h3>Dissertation</h3>
                     <p>Does Cognitive Estimation Precede Visual Experience in the Perception of Object Shape and Material, or Do They Occur Independently and Concurrently?</p>
-                    <a href="essays/dissertation.html" class="chalk-button">Read More</a>
+                    <a href="./essays/dissertation.html" class="chalk-button">Read More</a>
                 </article>
             </div>
         </section>
@@ -269,5 +273,33 @@
         </footer>
     </div>
     <script src="scripts.js"></script>
+    <script>
+        function toggleDropdown(button) {
+            const dropdown = button.nextElementSibling;
+            const allDropdowns = document.querySelectorAll('.dropdown-content');
+            
+            // Close all other dropdowns
+            allDropdowns.forEach(d => {
+                if (d !== dropdown && d.classList.contains('show')) {
+                    d.classList.remove('show');
+                }
+            });
+            
+            // Toggle current dropdown
+            dropdown.classList.toggle('show');
+        }
+
+        // Close dropdown when clicking outside
+        window.onclick = function(event) {
+            if (!event.target.matches('.dropdown-btn')) {
+                const dropdowns = document.querySelectorAll('.dropdown-content');
+                dropdowns.forEach(dropdown => {
+                    if (dropdown.classList.contains('show')) {
+                        dropdown.classList.remove('show');
+                    }
+                });
+            }
+        }
+    </script>
 </body>
 </html>
