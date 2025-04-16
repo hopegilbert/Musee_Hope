@@ -345,68 +345,48 @@
         }
 
         .modal {
-            display: none;
-            position: fixed;
-            z-index: 99999;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100vh;
-            background-color: rgba(0, 0, 0, 0.9);
-            overflow: hidden;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .modal.show {
             display: flex;
             justify-content: center;
             align-items: center;
-            opacity: 1;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 9999;
+            overflow: auto;
         }
 
         .modal-content {
             max-width: 90%;
-            max-height: 85vh;
+            max-height: 90vh;
             object-fit: contain;
-            transition: transform 0.3s ease;
-            display: block;
-            margin: auto;
-            position: relative;
-            transform: translateY(0);
+            z-index: 10000;
         }
 
         .close {
             position: fixed;
             top: 15px;
             right: 35px;
-            color: #f5f2e7;
+            color: #f1f1f1;
             font-size: 40px;
             font-weight: bold;
             cursor: pointer;
-            z-index: 100000;
-            transition: color 0.3s ease;
-        }
-
-        .close:hover {
-            color: #bbb;
+            z-index: 10001;
         }
 
         #caption {
-            margin: auto;
-            display: block;
-            width: 80%;
-            text-align: center;
-            color: #f5f2e7;
-            padding: 10px 0;
-            font-family: 'Lora', serif;
             position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            color: #f1f1f1;
+            text-align: center;
             background: rgba(0, 0, 0, 0.7);
-            border-radius: 5px;
-            z-index: 100000;
+            z-index: 10000;
+            font-family: 'Special Elite', cursive;
         }
     </style>
 </head>
