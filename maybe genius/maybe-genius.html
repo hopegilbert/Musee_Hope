@@ -60,7 +60,7 @@
             background: none;
             border: none;
             color: #f5f2e7;
-            font-family: 'Chalkboard', 'Comic Sans MS', cursive;
+            font-family: 'Special Elite', cursive;
             font-size: 1.2em;
             padding: 10px 20px;
             cursor: pointer;
@@ -93,7 +93,7 @@
             transform-origin: left;
         }
 
-        .dropdown-menu {
+        .dropdown {
             position: relative;
             display: inline-block;
         }
@@ -316,7 +316,7 @@
                     <h3>Psychology Research</h3>
                     <p>Dive into the fascinating world of psychological research, where we explore the mysteries of the human mind and behavior.</p>
                     <div class="dropdown">
-                        <button class="chalk-button">View Essays</button>
+                        <button class="chalk-button" onclick="toggleDropdown(this)">View Essays</button>
                         <div class="dropdown-content">
                             <a href="essays/autism-anxiety.html">Autism and Anxiety</a>
                             <a href="essays/business-and-economic.html">Improving Organisational Functioning</a>
@@ -357,21 +357,19 @@
             const dropdowns = document.querySelectorAll('.dropdown-content');
             dropdowns.forEach(dropdown => {
                 if (dropdown !== button.nextElementSibling) {
-                    dropdown.classList.remove('show');
+                    dropdown.classList.remove('active');
                 }
             });
 
             // Toggle the clicked dropdown
             const content = button.nextElementSibling;
-            content.classList.toggle('show');
+            content.classList.toggle('active');
 
             // Close dropdown when clicking outside
             window.onclick = function(event) {
-                if (!event.target.matches('.dropdown-btn')) {
+                if (!event.target.matches('.chalk-button')) {
                     dropdowns.forEach(dropdown => {
-                        if (dropdown.classList.contains('show')) {
-                            dropdown.classList.remove('show');
-                        }
+                        dropdown.classList.remove('active');
                     });
                 }
             }
