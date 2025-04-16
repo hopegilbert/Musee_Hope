@@ -581,9 +581,12 @@
                     <p>This one actually kept me up for 45 minutes.</p>
                 </div>
 
-                <button class="generate-thought">Generate Random Thought 🎲</button>
+                <button class="generate-thought">Generate Next Thought 🎲</button>
                 <div class="thoughts-container">
-                    <!-- New thoughts will be added here -->
+                    <div class="thought current-thought">
+                        <div class="timestamp">Click the button to start your thought journey</div>
+                        <div class="thought-text">What mysteries await in the depths of your mind?</div>
+                    </div>
                 </div>
 
                 <p class="timestamp" style="text-align: center; margin-top: 40px;">Last edited at 3:41 AM by Past Me (who may have been caffeinated)</p>
@@ -592,8 +595,8 @@
     </div>
     <script src="scripts.js"></script>
     <script>
-        // Random thoughts array
-        const randomThoughts = [
+        // Thoughts array
+        const thoughts = [
             "What if clouds are just sky pillows for tired birds?",
             "Do fish think they're flying in water?",
             "Is a hotdog a sandwich or a taco? A philosophical investigation.",
@@ -633,11 +636,13 @@
         document.addEventListener('DOMContentLoaded', function() {
             const generateButton = document.querySelector('.generate-thought');
             const thoughtsContainer = document.querySelector('.thoughts-container');
+            let currentThoughtIndex = -1;
             
-            generateButton.addEventListener('click', generateNewThought);
+            generateButton.addEventListener('click', showNextThought);
             
-            function generateNewThought() {
-                const thought = randomThoughts[Math.floor(Math.random() * randomThoughts.length)];
+            function showNextThought() {
+                currentThoughtIndex = (currentThoughtIndex + 1) % thoughts.length;
+                const thought = thoughts[currentThoughtIndex];
                 const timestamp = new Date().toLocaleTimeString('en-US', { 
                     hour: 'numeric',
                     minute: '2-digit',
@@ -648,46 +653,59 @@
                     year: 'numeric'
                 });
                 
-                const thoughtElement = document.createElement('div');
-                thoughtElement.className = 'thought new-thought';
-                thoughtElement.innerHTML = `
+                const newThought = document.createElement('div');
+                newThought.className = 'thought new-thought';
+                newThought.innerHTML = `
                     <div class="timestamp">${timestamp}</div>
                     <div class="thought-text">${thought}</div>
-                    <div class="thought-rating">🌀 Randomness Level: ${Math.floor(Math.random() * 5) + 1}/5</div>
                 `;
                 
-                thoughtsContainer.insertBefore(thoughtElement, thoughtsContainer.firstChild);
-                
-                // Add visible class after a small delay for animation
-                setTimeout(() => {
-                    thoughtElement.style.opacity = '1';
-                    thoughtElement.style.transform = 'translateY(0)';
-                }, 50);
+                // Remove the old thought with a fade out
+                const oldThought = thoughtsContainer.querySelector('.thought');
+                if (oldThought) {
+                    oldThought.style.opacity = '0';
+                    oldThought.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        thoughtsContainer.removeChild(oldThought);
+                        // Add the new thought
+                        thoughtsContainer.appendChild(newThought);
+                        // Trigger fade in animation
+                        setTimeout(() => {
+                            newThought.style.opacity = '1';
+                            newThought.style.transform = 'translateY(0)';
+                        }, 50);
+                    }, 300);
+                }
             }
         });
 
-        // Add these styles to the existing CSS
         const styleSheet = document.createElement('style');
         styleSheet.textContent = `
             .thoughts-container {
-                margin-top: 20px;
+                margin: 20px 0;
+                min-height: 150px;
+                position: relative;
+            }
+            
+            .thought {
+                opacity: 1;
+                transform: translateY(0);
+                transition: all 0.3s ease-out;
+                background: rgba(255, 255, 255, 0.05);
+                padding: 20px;
+                border-radius: 5px;
+                border-left: 3px solid rgba(245, 232, 199, 0.4);
             }
             
             .new-thought {
                 opacity: 0;
                 transform: translateY(-20px);
-                transition: all 0.3s ease-out;
-                background: rgba(255, 255, 255, 0.05);
-                padding: 20px;
-                margin-bottom: 15px;
-                border-radius: 5px;
-                border-left: 3px solid rgba(245, 232, 199, 0.4);
             }
             
-            .new-thought:hover {
+            .thought:hover {
                 background: rgba(255, 255, 255, 0.1);
                 border-left-color: #f5f2e7;
-                transform: translateX(5px) !important;
+                transform: translateX(5px);
             }
         `;
         document.head.appendChild(styleSheet);
