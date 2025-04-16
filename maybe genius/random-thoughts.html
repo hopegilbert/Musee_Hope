@@ -755,13 +755,44 @@
         document.addEventListener('DOMContentLoaded', function() {
             const generateButton = document.querySelector('.generate-thought');
             const thoughtsContainer = document.querySelector('.thoughts-container');
-            let currentThoughtIndex = -1;
+            const recentThoughts = new Array(20).fill(-1); // Queue to track recent thoughts
+            let queueIndex = 0;
             
-            generateButton.addEventListener('click', showNextThought);
+            function getRandomThought() {
+                let availableIndices = [];
+                // Get all indices that aren't in the recent thoughts queue
+                for (let i = 0; i < thoughts.length; i++) {
+                    if (!recentThoughts.includes(i)) {
+                        availableIndices.push(i);
+                    }
+                }
+                
+                // If we've used all thoughts, clear half of the queue
+                if (availableIndices.length === 0) {
+                    for (let i = 0; i < 10; i++) {
+                        recentThoughts[i] = -1;
+                    }
+                    // Rebuild available indices
+                    for (let i = 0; i < thoughts.length; i++) {
+                        if (!recentThoughts.includes(i)) {
+                            availableIndices.push(i);
+                        }
+                    }
+                }
+                
+                // Get random thought from available ones
+                const randomIndex = Math.floor(Math.random() * availableIndices.length);
+                const thoughtIndex = availableIndices[randomIndex];
+                
+                // Add to queue and update queue index
+                recentThoughts[queueIndex] = thoughtIndex;
+                queueIndex = (queueIndex + 1) % 20;
+                
+                return thoughts[thoughtIndex];
+            }
             
             function showNextThought() {
-                currentThoughtIndex = (currentThoughtIndex + 1) % thoughts.length;
-                const thought = thoughts[currentThoughtIndex];
+                const thought = getRandomThought();
                 const timestamp = new Date().toLocaleTimeString('en-US', { 
                     hour: 'numeric',
                     minute: '2-digit',
@@ -796,6 +827,8 @@
                     }, 300);
                 }
             }
+            
+            generateButton.addEventListener('click', showNextThought);
         });
 
         const styleSheet = document.createElement('style');
