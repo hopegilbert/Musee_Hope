@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questionable Research - Maybe Genius</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Inter:wght@400;500;600;700;800&family=Lora:wght@400;500;600;700&family=Schoolbell&family=Special+Elite&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .research-section {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 40px;
+            margin: 40px auto;
+            max-width: 800px;
+            backdrop-filter: blur(2px);
+            position: relative;
+        }
+
+        .research-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 3px solid rgba(255, 255, 255, 0.9);
+            clip-path: polygon(
+                0% 5%, 3% 0%, 97% 2%, 100% 7%,  /* top */
+                95% 0%, 100% 5%, 98% 95%, 100% 100%,  /* right */
+                95% 98%, 98% 100%, 2% 98%, 0% 95%,  /* bottom */
+                2% 100%, 0% 95%, 2% 5%, 0% 2%  /* left */
+            );
+            z-index: 1;
+        }
+
+        .research-section::after {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            clip-path: polygon(
+                2% 3%, 5% 0%, 95% 4%, 98% 2%,  /* top */
+                98% 2%, 100% 7%, 96% 93%, 98% 98%,  /* right */
+                98% 98%, 95% 100%, 5% 96%, 2% 98%,  /* bottom */
+                2% 98%, 0% 93%, 4% 7%, 2% 2%  /* left */
+            );
+            z-index: 1;
+        }
+
+        .research-content {
+            position: relative;
+            z-index: 2;
+            color: #f5f2e7;
+            font-family: 'Lora', serif;
+            line-height: 1.6;
+        }
+
+        .research-content h1 {
+            font-family: 'Fredericka the Great', cursive;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #f5f2e7;
+        }
+
+        .research-content h2 {
+            font-family: 'Special Elite', cursive;
+            margin: 30px 0 15px;
+            color: #f5f2e7;
+            border-bottom: 1px solid rgba(245, 232, 199, 0.3);
+            padding-bottom: 10px;
+            position: relative;
+        }
+
+        .research-content h2::before {
+            content: '📎';
+            position: absolute;
+            left: -30px;
+            top: 0;
+        }
+
+        .tab-section {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            border-left: 3px solid rgba(245, 232, 199, 0.4);
+            transition: all 0.3s ease;
+            cursor: url('images/magnifying-glass.png'), auto;
+        }
+
+        .tab-section:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-left-color: #f5f2e7;
+            transform: translateX(5px);
+        }
+
+        .glitch-effect {
+            position: relative;
+            display: inline-block;
+        }
+
+        .glitch-effect::before,
+        .glitch-effect::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            clip: rect(0, 0, 0, 0);
+        }
+
+        .glitch-effect::before {
+            left: 2px;
+            text-shadow: -1px 0 #ff00c1;
+            animation: glitch-anim 2s infinite linear alternate-reverse;
+        }
+
+        .glitch-effect::after {
+            left: -2px;
+            text-shadow: 2px 0 #00fff9;
+            animation: glitch-anim 3s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-anim {
+            0% {
+                clip: rect(44px, 9999px, 56px, 0);
+            }
+            20% {
+                clip: rect(12px, 9999px, 78px, 0);
+            }
+            40% {
+                clip: rect(89px, 9999px, 23px, 0);
+            }
+            60% {
+                clip: rect(67px, 9999px, 34px, 0);
+            }
+            80% {
+                clip: rect(90px, 9999px, 12px, 0);
+            }
+            100% {
+                clip: rect(0, 9999px, 100px, 0);
+            }
+        }
+
+        .footnote {
+            font-family: 'Special Elite', cursive;
+            font-size: 0.8em;
+            color: rgba(245, 232, 199, 0.6);
+            font-style: italic;
+            margin-top: 5px;
+        }
+
+        .highlight {
+            background: rgba(255, 255, 0, 0.2);
+            padding: 0 5px;
+        }
+    </style>
+</head>
+<body>
+    <img src="images/brain.png" alt="Brain" class="poster" id="brain-poster">
+    <img src="images/tree.png" alt="Tree" class="poster" id="tree-poster">
+    <img src="images/rock.png" alt="Rock" class="poster" id="rock-poster">
+    <img src="images/butterfly.png" alt="Butterfly" class="poster" id="butterfly-poster">
+    <img src="images/ladybird.png" alt="Ladybird" class="poster" id="ladybird-poster">
+    
+    <div class="page-wrapper">
+        <nav class="nav-menu">
+            <a href="maybe-genius.html">← Back to Maybe Genius</a>
+        </nav>
+
+        <div class="research-section">
+            <div class="research-content">
+                <h1 class="glitch-effect" data-text="Questionable Research">Questionable Research</h1>
+                <p>This is the digital equivalent of a browser with 37 tabs open.</p>
+
+                <h2>Internet Rabbit Holes</h2>
+                <div class="tab-section">
+                    <p>Deep dives into the weird and wonderful corners of the internet, including but not limited to:</p>
+                    <p class="highlight">"Why were Victorian people obsessed with phrenology?"</p>
+                    <p class="highlight">"How to fake your own death (theoretically)"</p>
+                    <div class="footnote">Source: Various 3 AM Wikipedia sessions</div>
+                </div>
+
+                <h2>Out-of-Context Screenshots</h2>
+                <div class="tab-section">
+                    <p>A curated collection of:</p>
+                    <ul>
+                        <li>Bizarre Wikipedia excerpts</li>
+                        <li>Forum conversations that raise more questions than answers</li>
+                        <li>Images that need no explanation (but we'll try anyway)</li>
+                    </ul>
+                    <div class="footnote">Found in: The depths of forgotten hard drives</div>
+                </div>
+
+                <h2>Conspiracy Lite™</h2>
+                <div class="tab-section">
+                    <p>Harmless speculative thinking, including such classics as:</p>
+                    <p class="highlight">"Maybe pigeons really are drones"</p>
+                    <p class="highlight">"What if clouds are just really good CGI?"</p>
+                    <div class="footnote">Disclaimer: No tinfoil hats were harmed in the making of these theories</div>
+                </div>
+
+                <h2>The Footnotes</h2>
+                <div class="tab-section">
+                    <p>A collection of questionable citations, including:</p>
+                    <ul>
+                        <li>References that lead to 404 pages</li>
+                        <li>Citations from "an 80s home improvement forum"</li>
+                        <li>Sources cited as "Trust me bro"</li>
+                    </ul>
+                    <div class="footnote">Citation needed</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html> 
