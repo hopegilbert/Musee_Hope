@@ -4,9 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Random Thoughts - Maybe Genius</title>
-    <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Inter:wght@400;500;600;700;800&family=Lora:wght@400;500;600;700&family=Schoolbell&family=Special+Elite&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Inter:wght@400;500;600;700;800&family=Lora:wght@400;500;600;700&family=Special+Elite&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
+        @font-face {
+            font-family: 'Des Montilles';
+            src: url('fonts/Des-Montilles.woff2') format('woff2'),
+                 url('fonts/Des-Montilles.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
         .thought-section {
             background: rgba(0, 0, 0, 0.6);
             padding: 40px;
@@ -97,8 +105,14 @@
         }
 
         .thought-text {
-            font-family: 'Schoolbell', cursive;
-            font-size: 1.1em;
+            font-family: 'Des Montilles', cursive;
+            font-size: 1.2em;
+            line-height: 1.5;
+        }
+
+        .new-thought .thought-text {
+            font-family: 'Des Montilles', cursive;
+            font-size: 1.2em;
             line-height: 1.5;
         }
 
