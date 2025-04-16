@@ -260,6 +260,12 @@
         .dropdown-icon.active {
             transform: rotate(180deg);
         }
+
+        .screenshot-image {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
@@ -355,15 +361,84 @@
                 <h2>Out-of-Context Screenshots</h2>
                 <div class="tab-section">
                     <p>A curated collection of:</p>
-                    <ul>
-                        <li>Bizarre Wikipedia excerpts</li>
-                        <li>Forum conversations that raise more questions than answers</li>
-                        <li>Images that need no explanation (but we'll try anyway)</li>
-                        <li>Weirdly specific Yahoo Answers questions</li>
-                        <li>Wild Reddit AMAs with no follow-up</li>
-                        <li>Deeply cursed Facebook marketplace listings</li>
-                        <li>Bootleg instruction manuals ("Warning: Do not attempt to iron while wearing the shirt")</li>
-                    </ul>
+                    
+                    <div class="topic-dropdown" onclick="toggleTopic(this)">
+                        <div class="topic-header">
+                            <h3 class="topic-title">Bizarre Wikipedia excerpts</h3>
+                            <span class="dropdown-icon">▼</span>
+                        </div>
+                        <div class="topic-content">
+                            <img src="images/wikipedia-excerpt.png" alt="Bizarre Wikipedia excerpt" class="screenshot-image">
+                            <p class="topic-summary">The internet's most reliable source of "wait, what?" moments.</p>
+                        </div>
+                    </div>
+
+                    <div class="topic-dropdown" onclick="toggleTopic(this)">
+                        <div class="topic-header">
+                            <h3 class="topic-title">Forum conversations that raise more questions than answers</h3>
+                            <span class="dropdown-icon">▼</span>
+                        </div>
+                        <div class="topic-content">
+                            <img src="images/forum-conversation.png" alt="Forum conversation" class="screenshot-image">
+                            <p class="topic-summary">Where context goes to die and confusion reigns supreme.</p>
+                        </div>
+                    </div>
+
+                    <div class="topic-dropdown" onclick="toggleTopic(this)">
+                        <div class="topic-header">
+                            <h3 class="topic-title">Images that need no explanation (but we'll try anyway)</h3>
+                            <span class="dropdown-icon">▼</span>
+                        </div>
+                        <div class="topic-content">
+                            <img src="images/unexplainable.png" alt="Unexplainable image" class="screenshot-image">
+                            <p class="topic-summary">A picture is worth a thousand words, but sometimes those words are just "why?"</p>
+                        </div>
+                    </div>
+
+                    <div class="topic-dropdown" onclick="toggleTopic(this)">
+                        <div class="topic-header">
+                            <h3 class="topic-title">Weirdly specific Yahoo Answers questions</h3>
+                            <span class="dropdown-icon">▼</span>
+                        </div>
+                        <div class="topic-content">
+                            <img src="images/yahoo-answers.png" alt="Yahoo Answers question" class="screenshot-image">
+                            <p class="topic-summary">The birthplace of "asking for a friend" and other questionable life choices.</p>
+                        </div>
+                    </div>
+
+                    <div class="topic-dropdown" onclick="toggleTopic(this)">
+                        <div class="topic-header">
+                            <h3 class="topic-title">Wild Reddit AMAs with no follow-up</h3>
+                            <span class="dropdown-icon">▼</span>
+                        </div>
+                        <div class="topic-content">
+                            <img src="images/reddit-ama.png" alt="Reddit AMA" class="screenshot-image">
+                            <p class="topic-summary">Where promises of "I'll be back to answer more questions" go to die.</p>
+                        </div>
+                    </div>
+
+                    <div class="topic-dropdown" onclick="toggleTopic(this)">
+                        <div class="topic-header">
+                            <h3 class="topic-title">Deeply cursed Facebook marketplace listings</h3>
+                            <span class="dropdown-icon">▼</span>
+                        </div>
+                        <div class="topic-content">
+                            <img src="images/facebook-marketplace.png" alt="Facebook marketplace listing" class="screenshot-image">
+                            <p class="topic-summary">The digital equivalent of a yard sale from another dimension.</p>
+                        </div>
+                    </div>
+
+                    <div class="topic-dropdown" onclick="toggleTopic(this)">
+                        <div class="topic-header">
+                            <h3 class="topic-title">Bootleg instruction manuals</h3>
+                            <span class="dropdown-icon">▼</span>
+                        </div>
+                        <div class="topic-content">
+                            <img src="images/bootleg-manual.png" alt="Bootleg instruction manual" class="screenshot-image">
+                            <p class="topic-summary">"Warning: Do not attempt to iron while wearing the shirt" and other sage advice.</p>
+                        </div>
+                    </div>
+
                     <div class="footnote">Found in: The depths of forgotten hard drives</div>
                 </div>
 
@@ -396,6 +471,7 @@
                                 <div class="citation-category">Filed under: Peer-unreviewed</div>
                             </div>
                         </li>
+                        <li><a href="https://en.wikipedia.org/wiki/Wikipedia:Unusual_articles" target="_blank" class="footnote-link">Wikipedia's Collection of Unusual Articles</a></li>
                         <li><a href="https://www.angelfire.com/planet/forbidden_knowledge/144index.html" target="_blank" class="footnote-link">Full Article Here</a></li>
                         <li><a href="https://www.vanityfair.com/culture/2015/10/ermahgerd-girl-true-story" target="_blank" class="footnote-link">As seen on Tumblr in 2012</a></li>
                         <li><a href="https://thisobscuredesireforbeauty.tumblr.com/post/172181413212/jacek-szust-poland-2012-jacek-szust-via" target="_blank" class="footnote-link">The Polish Man</a></li>
