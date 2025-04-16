@@ -394,6 +394,53 @@
             z-index: 10000;
             font-family: 'Special Elite', cursive;
         }
+
+        .dropdown-btn {
+            background: none;
+            border: none;
+            color: #f5f2e7;
+            font-family: 'Special Elite', cursive;
+            font-size: 1.2em;
+            cursor: pointer;
+            padding: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-btn:hover {
+            color: #f5f2e7;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .dropdown-content a {
+            color: #f5f2e7;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-family: 'Special Elite', cursive;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown-content a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #f5f2e7;
+        }
+
+        .chalk-button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-family: 'Special Elite', cursive;
+            color: #f5f2e7;
+            text-decoration: none;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(245, 232, 199, 0.4);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .chalk-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: #f5f2e7;
+        }
     </style>
 </head>
 <body>
@@ -780,6 +827,33 @@
                         <li>Primary source: Vibes</li>
                     </ul>
                     <div class="footnote">Citation needed</div>
+                </div>
+
+                <div class="experiment-card">
+                    <h3>Psychology Research</h3>
+                    <p>Unlocking the Secrets of the Mind: Investigating the Forces That Shape Human Experience</p>
+                    <div class="dropdown-menu">
+                        <button class="dropdown-btn chalk-button">View Essays</button>
+                        <div class="dropdown-content">
+                            <a href="./essays/autism-anxiety.html">Autism and Anxiety</a>
+                            <a href="./essays/business-and-economic.html">Business and Economic Psychology</a>
+                            <a href="./essays/close-relationships.html">Close Relationships and Love Languages</a>
+                            <a href="./essays/cognitive-biological.html">Cognitive and Biological Learning</a>
+                            <a href="./essays/crime-and-youth.html">Crime and Youth</a>
+                            <a href="./essays/dog-prisons.html">Dog Training Programs in Prisons</a>
+                            <a href="./essays/dopamine-reward.html">Dopamine and Reward Systems</a>
+                            <a href="./essays/drug-addiction.html">Drug Addiction and Treatment</a>
+                            <a href="./essays/eyewitness-testimony.html">Eyewitness Testimony</a>
+                            <a href="./essays/face-recognition.html">Face Recognition</a>
+                            <a href="./essays/jurors.html">Juror Competency</a>
+                            <a href="./essays/marriage.html">Marriage and Relationships</a>
+                            <a href="./essays/neural-personality.html">Neural Basis of Personality</a>
+                            <a href="./essays/stressors-mental-health.html">Stressors and Mental Health</a>
+                            <a href="./essays/theatre-of-consciousness.html">Theatre of Consciousness</a>
+                            <a href="./essays/vegetative-state.html">Vegetative State</a>
+                            <a href="./essays/visual-attention-and-working-memory.html">Visual Attention and Working Memory</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
