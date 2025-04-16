@@ -75,13 +75,24 @@
 
         .dissertation-text p {
             margin-bottom: 15px;
+            font-family: 'Lora', serif;
+            color: #f5f2e7;
+            line-height: 1.6;
         }
 
         .reference {
-            font-style: italic;
+            font-style: normal;
             margin-top: 30px;
             padding-top: 15px;
             border-top: 1px solid rgba(245, 232, 199, 0.3);
+        }
+
+        .reference p {
+            font-style: normal;
+            margin-bottom: 15px;
+            font-family: 'Lora', serif;
+            color: #f5f2e7;
+            line-height: 1.6;
         }
 
         .essay-tabs {
@@ -111,10 +122,17 @@
         }
 
         .author-info {
-            text-align: center;
+            text-align: left;
             margin-bottom: 30px;
+            font-style: normal;
+            color: #f5f2e7;
+        }
+
+        .author-credit {
+            text-align: right;
             font-style: italic;
-            color: rgba(245, 232, 199, 0.7);
+            margin-top: 30px;
+            color: #f5f2e7;
         }
     </style>
 </head>
@@ -154,7 +172,7 @@
 
                 <p>In conclusion, while stressors play a significant role in mental health outcomes, they are part of a broader picture that includes genetic predisposition, environmental influences, epigenetic changes, and individual differences in resilience and coping. Mental health conditions are best understood as the result of a complex interplay between these factors.</p>
 
-                <p style="text-align: right; font-style: italic; margin-top: 30px;">Written by Hope Gilbert<br>Durham University</p>
+                <p class="author-credit">Written by Hope Gilbert<br>Durham University</p>
 
                 <div class="reference">
                     <h2>References</h2>
