@@ -14,7 +14,6 @@
             max-width: 800px;
             backdrop-filter: blur(2px);
             position: relative;
-            text-align: left;
         }
 
         .thought-section::before {
@@ -55,90 +54,219 @@
             position: relative;
             z-index: 2;
             color: #f5f2e7;
-            font-family: 'Lora', serif;
-            line-height: 1.6;
         }
 
-        .thought-content h1 {
-            font-family: 'Fredericka the Great', cursive;
-            text-align: center;
-            margin-bottom: 30px;
-            color: #f5f2e7;
-        }
-
-        .thought-content h2 {
-            font-family: 'Fredericka the Great', cursive;
-            margin: 30px 0 15px;
-            color: #f5f2e7;
-            border-bottom: 1px solid rgba(245, 232, 199, 0.3);
-            padding-bottom: 10px;
-        }
-
-        .thought {
-            background: rgba(255, 255, 255, 0.05);
+        .dream-section {
+            position: relative;
             padding: 20px;
-            margin: 20px 0;
+            margin: 30px 0;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .dream-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                45deg,
+                rgba(255, 0, 255, 0.1),
+                rgba(0, 255, 255, 0.1)
+            );
+            pointer-events: none;
+            animation: vhs-flicker 8s infinite;
+        }
+
+        @keyframes vhs-flicker {
+            0%, 100% { opacity: 0.1; }
+            50% { opacity: 0.3; }
+        }
+
+        .dream-entry {
+            font-family: 'Special Elite', cursive;
+            margin: 15px 0;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 5px;
-            border-left: 3px solid rgba(245, 232, 199, 0.4);
+            transform: perspective(1000px) rotateX(2deg);
             transition: all 0.3s ease;
         }
 
-        .thought:hover {
+        .dream-entry:hover {
+            transform: perspective(1000px) rotateX(0deg);
             background: rgba(255, 255, 255, 0.1);
-            border-left-color: #f5f2e7;
-            transform: translateX(5px);
         }
 
-        .timestamp {
+        .mirror-section {
+            position: relative;
+            padding: 20px;
+            margin: 30px 0;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mirror-thought {
+            font-family: 'Lora', serif;
+            margin: 15px 0;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mirror-thought::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent,
+                rgba(255, 255, 255, 0.1),
+                transparent
+            );
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+
+        .mirror-thought:hover::before {
+            transform: translateX(100%);
+        }
+
+        .snack-section {
+            padding: 20px;
+            margin: 30px 0;
+        }
+
+        .snack-thought {
+            font-family: 'Special Elite', cursive;
+            margin: 20px 0;
+            padding: 15px;
+            background: #fff;
+            color: #000;
+            border-radius: 5px;
+            position: relative;
+        }
+
+        .nutrition-label {
+            border: 1px solid #000;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 0.9em;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .thought-rating {
+            margin-top: 10px;
+            font-family: 'Schoolbell', cursive;
+            color: rgba(245, 232, 199, 0.8);
+        }
+
+        .sticky-note {
+            font-family: 'Schoolbell', cursive;
+            padding: 15px;
+            background: #feff9c;
+            transform: rotate(-2deg);
+            color: #000;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .sticky-note::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            border-width: 0 20px 20px 0;
+            border-style: solid;
+            border-color: #fff8b8 #fff transparent transparent;
+        }
+
+        .random-button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-family: 'Special Elite', cursive;
+            color: #f5f2e7;
+            text-decoration: none;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(245, 232, 199, 0.4);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            margin: 20px 0;
+        }
+
+        .random-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: #f5f2e7;
+        }
+
+        .thought-card {
+            perspective: 1000px;
+            margin: 20px 0;
+        }
+
+        .thought-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: left;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .thought-card:hover .thought-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .thought-card-front,
+        .thought-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+        }
+
+        .thought-card-back {
+            transform: rotateY(180deg);
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .hand-drawn {
+            position: relative;
+        }
+
+        .hand-drawn::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 100%;
+            height: 2px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10"><path d="M0,5 Q25,0 50,5 T100,5" fill="none" stroke="%23f5f2e7" stroke-width="2"/></svg>') repeat-x;
+            background-size: 20px 10px;
+        }
+
+        .edit-time {
             font-family: 'Special Elite', cursive;
             font-size: 0.8em;
             color: rgba(245, 232, 199, 0.6);
-            margin-bottom: 5px;
-        }
-
-        .thought-text {
-            font-family: 'Schoolbell', cursive;
-            font-size: 1.1em;
-            line-height: 1.5;
-        }
-
-        .polaroid {
-            background: #fff;
-            padding: 10px;
-            transform: rotate(-2deg);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            margin: 30px auto;
-            max-width: 300px;
-            transition: all 0.3s ease;
-        }
-
-        .polaroid:hover {
-            transform: rotate(0deg) scale(1.02);
-        }
-
-        .polaroid img {
-            width: 100%;
-            height: auto;
-            margin-bottom: 10px;
-        }
-
-        .polaroid-caption {
-            font-family: 'Special Elite', cursive;
-            color: #333;
-            text-align: center;
-            padding: 5px;
-        }
-
-        @keyframes scribble {
-            0% { transform: rotate(-1deg); }
-            50% { transform: rotate(1deg); }
-            100% { transform: rotate(-1deg); }
-        }
-
-        .scribble {
-            display: inline-block;
-            animation: scribble 3s infinite;
-            transform-origin: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px dashed rgba(245, 232, 199, 0.3);
         }
     </style>
 </head>
@@ -156,63 +284,140 @@
 
         <div class="thought-section">
             <div class="thought-content">
-                <h1>Random Thoughts</h1>
-                <p>Welcome to the chaotic corner of my mind. This is where half-formed ideas, philosophical tangents, and shower epiphanies come to play. Some might be genius, most are probably not, but that's the beauty of unfiltered thinking.</p>
+                <h1 class="glitch-effect" data-text="Random Thoughts">Random Thoughts</h1>
+                <p>A collection of ideas that arrived unannounced and refused to leave.</p>
 
-                <h2>🌙 Midnight Musings</h2>
-                <div class="thought">
-                    <div class="timestamp">1:27 AM · January 3, 2024</div>
-                    <div class="thought-text">What if déjà vu is just your brain buffering?</div>
-                </div>
-                <div class="thought">
-                    <div class="timestamp">2:42 AM · February 9, 2024</div>
-                    <div class="thought-text">Are ghosts just outdated memories stuck in a glitchy simulation?</div>
-                </div>
-                <div class="thought">
-                    <div class="timestamp">3:16 AM · March 14, 2024</div>
-                    <div class="thought-text">What if thoughts have mass and we're just all slowly sinking under their weight?</div>
-                </div>
+                <button class="random-button" onclick="generateRandomThought()">Generate Random Thought</button>
 
-                <div class="polaroid">
-                    <img src="images/clouds.jpg" alt="Night sky through window">
-                    <div class="polaroid-caption">3 AM thoughts hit different</div>
-                </div>
-
-                <h2>🚿 Shower Realizations</h2>
-                <div class="thought">
-                    <div class="timestamp">9:03 AM · March 2, 2024</div>
-                    <div class="thought-text">Who was the first person to look at a cow and think, 'I should drink whatever comes out of that'?</div>
-                </div>
-                <div class="thought">
-                    <div class="timestamp">7:45 AM · January 20, 2024</div>
-                    <div class="thought-text">When you clean a vacuum, you become the vacuum cleaner.</div>
-                </div>
-                <div class="thought">
-                    <div class="timestamp">10:11 AM · April 1, 2024</div>
-                    <div class="thought-text">Do atoms ever get tired of holding everything together?</div>
-                </div>
-
-                <h2>🌪️ Thought Dump Archive</h2>
-                <div class="thought">
-                    <div class="timestamp">Various moments of questionable clarity</div>
-                    <div class="thought-text">
-                        • If you teleport, does your original body die?<br>
-                        • Why is yawning contagious but not sneezing?<br>
-                        • Are oranges named after the color, or is the color named after the fruit?<br>
-                        • Who decided that Monday is the start of the week and why do they hate us?<br>
-                        • Is cereal a soup?<br>
-                        • Why do we park in driveways but drive in parkways?<br>
-                        • Is a mirror ever truly dirty, or is it just covered in clean stuff?<br>
-                        • What if plants are actually farming us, giving us oxygen until they can harvest us?<br>
-                        • Do fish ever feel thirsty?<br>
-                        • Why isn't "phonetic" spelled the way it sounds?<br>
-                        • What if color is a shared hallucination and we're all just really good at describing it the same way?
+                <section class="dream-section">
+                    <h2>📼 Dream Logic</h2>
+                    <p>Where your subconscious takes the wheel—and promptly drives into a lake.</p>
+                    
+                    <div class="dream-entry">
+                        <p>"Had a dream where my dentist said I owed her 7,000 bees and I just… accepted that?"</p>
+                        <div class="thought-rating">
+                            🌀 Confusion: 9/10<br>
+                            🛏️ Dream Clarity: Surprisingly High<br>
+                            🐝 Bee Debt: Concerning
+                        </div>
                     </div>
+
+                    <div class="dream-entry">
+                        <p>"Was being hunted by a goose in a suit. The suit was burgundy. I remember that detail very clearly."</p>
+                        <div class="thought-rating">
+                            🌀 Confusion: 7/10<br>
+                            🦢 Goose Menace: Dapper<br>
+                            🎨 Color Accuracy: Impeccable
+                        </div>
+                    </div>
+                </section>
+
+                <section class="mirror-section">
+                    <h2>🪞 Weird Mirror Thoughts</h2>
+                    <p>For when you stare too long at your own face and start questioning reality.</p>
+
+                    <div class="mirror-thought">
+                        <p>"My face looks different every time I see it. Am I just rendering inconsistently?"</p>
+                        <div class="thought-rating">
+                            🌀 Confusion: 8/10<br>
+                            🎮 Graphics Settings: Low<br>
+                            👥 Identity Crisis: Loading...
+                        </div>
+                    </div>
+
+                    <div class="mirror-thought">
+                        <p>"What if mirrors are lying and we all actually look slightly better or worse in real life?"</p>
+                        <div class="thought-rating">
+                            🌀 Confusion: 6/10<br>
+                            🪞 Mirror Trust Issues: High<br>
+                            📸 Selfie Confidence: Shaken
+                        </div>
+                    </div>
+                </section>
+
+                <section class="snack-section">
+                    <h2>🧃 Snack-Related Philosophy</h2>
+                    <p>Deep thoughts, fueled by questionable snacks.</p>
+
+                    <div class="snack-thought">
+                        <p>"Is toast just really sad garlic bread?"</p>
+                        <div class="nutrition-label">
+                            <strong>Thought Nutrition Facts</strong><br>
+                            Serving Size: 1 Existential Crisis<br>
+                            Philosophical Value: 42%<br>
+                            Garlic Content: 0%<br>
+                            Sadness: 100%
+                        </div>
+                        <div class="thought-rating">
+                            Filed under: Existential breakfast
+                        </div>
+                    </div>
+
+                    <div class="snack-thought">
+                        <p>"Who decided the order of crisp multipack flavours? Why is Ready Salted always the one with the most packets?"</p>
+                        <div class="nutrition-label">
+                            <strong>Thought Nutrition Facts</strong><br>
+                            Serving Size: 1 Conspiracy Theory<br>
+                            Salt Content: Excessive<br>
+                            Justice: 0%<br>
+                            Questions: Too Many
+                        </div>
+                        <div class="thought-rating">
+                            Filed under: Flavour hierarchy injustice
+                        </div>
+                    </div>
+                </section>
+
+                <div class="sticky-note">
+                    <p>"This one actually kept me up for 45 minutes."</p>
                 </div>
 
+                <div class="sticky-note" style="transform: rotate(2deg);">
+                    <p>"Thought this was smart until I said it out loud."</p>
+                </div>
+
+                <p class="edit-time">Last edited at 3:41 AM by Past Me (who may have been caffeinated)</p>
             </div>
         </div>
     </div>
-    <script src="scripts.js"></script>
+
+    <script>
+        const thoughts = [
+            "What if plants think we're zombies because we keep trying to eat their brains (seeds)?",
+            "Is a sandwich still a sandwich if you eat it vertically?",
+            "Do fish get thirsty?",
+            "Why don't we have a word for the day after tomorrow's tomorrow?",
+            "What if clouds are just the sky's thoughts?"
+        ];
+
+        function generateRandomThought() {
+            const randomIndex = Math.floor(Math.random() * thoughts.length);
+            const thoughtElement = document.createElement('div');
+            thoughtElement.className = 'dream-entry';
+            thoughtElement.innerHTML = `
+                <p class="hand-drawn">"${thoughts[randomIndex]}"</p>
+                <div class="thought-rating">
+                    🌀 Confusion: ${Math.floor(Math.random() * 5) + 5}/10<br>
+                    🧼 Shower Appropriateness: ${Math.random() > 0.5 ? 'High' : 'Low'}<br>
+                    🧃 Would eat this thought with hummus: ${Math.random() > 0.5 ? 'Yes' : 'Maybe not'}
+                </div>
+            `;
+            
+            // Add sound effect
+            const audio = new Audio('data:audio/wav;base64,UklGRl9vT19XQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YU');
+            audio.play();
+
+            // Add animation
+            thoughtElement.style.opacity = '0';
+            thoughtElement.style.transform = 'translateY(20px)';
+            document.querySelector('.dream-section').appendChild(thoughtElement);
+            
+            setTimeout(() => {
+                thoughtElement.style.transition = 'all 0.5s ease';
+                thoughtElement.style.opacity = '1';
+                thoughtElement.style.transform = 'translateY(0)';
+            }, 10);
+        }
+    </script>
 </body>
 </html> 
