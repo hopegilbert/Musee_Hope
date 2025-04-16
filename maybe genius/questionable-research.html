@@ -369,6 +369,10 @@
             transition: transform 0.3s ease;
             display: block;
             margin: auto;
+            position: relative;
+            top: 0;
+            left: 0;
+            transform: none;
         }
 
         .close {
@@ -401,6 +405,7 @@
             transform: translateX(-50%);
             background: rgba(0, 0, 0, 0.7);
             border-radius: 5px;
+            z-index: 10000;
         }
     </style>
 </head>
