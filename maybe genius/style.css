@@ -8,9 +8,9 @@ html, body {
 body {
     background-color: #2d3b2c;
     background-image: url('images/background.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: repeat;
+    background-size: 100% auto;
+    background-position: top center;
+    background-repeat: repeat-y;
     background-attachment: fixed;
     color: #f5f2e7;
     font-family: 'Fredericka the Great', cursive;
@@ -254,13 +254,11 @@ footer {
 /* Background Posters */
 .poster {
     position: fixed;
-    opacity: 1;
-    z-index: 1;
-    transition: opacity 0.3s ease;
-}
-
-.poster:hover {
-    opacity: 1;
+    z-index: 0;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+    max-width: 300px;
+    height: auto;
 }
 
 #brain-poster {
@@ -551,4 +549,33 @@ footer {
 
 .dropdown-content::-webkit-scrollbar-thumb:hover {
     background: rgba(245, 242, 231, 0.5);
+}
+
+.references-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.references-list li {
+    margin-bottom: 20px;
+    padding-left: 20px;
+    text-indent: -20px;
+    line-height: 1.6;
+}
+
+.references-list a {
+    color: #f5e8c7;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(245, 232, 199, 0.4);
+    transition: all 0.3s ease;
+}
+
+.references-list a:hover {
+    color: white;
+    border-bottom-color: white;
+}
+
+.references-list i {
+    font-style: italic;
 }
