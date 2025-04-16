@@ -213,7 +213,8 @@
         }
 
         .dropdown-btn:hover {
-            color: #ffd700;
+            color: #f5f2e7;
+            background: rgba(255, 255, 255, 0.1);
         }
 
         .dropdown-content {
@@ -247,7 +248,7 @@
 
         .dropdown-content a:hover {
             background-color: rgba(255, 255, 255, 0.1);
-            color: #ffd700;
+            color: #f5f2e7;
         }
 
         .nav-menu {
@@ -378,6 +379,11 @@
     <script src="scripts.js"></script>
     <script>
         function toggleDropdown(button) {
+            // Only handle dropdown buttons, not regular links
+            if (!button.classList.contains('chalk-button')) {
+                return;
+            }
+            
             // Close all other dropdowns
             const dropdowns = document.querySelectorAll('.dropdown-content');
             dropdowns.forEach(dropdown => {
@@ -388,7 +394,9 @@
 
             // Toggle the clicked dropdown
             const content = button.nextElementSibling;
-            content.classList.toggle('show');
+            if (content && content.classList.contains('dropdown-content')) {
+                content.classList.toggle('show');
+            }
 
             // Close dropdown when clicking outside
             document.addEventListener('click', function(event) {
