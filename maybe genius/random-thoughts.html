@@ -8,151 +8,137 @@
     <link rel="stylesheet" href="style.css">
     <style>
         .thought-section {
-            background: rgba(0, 0, 0, 0.7);
-            border-radius: 15px;
-            padding: 20px;
-            margin: 20px 0;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(245, 242, 231, 0.2);
-        }
-
-        .dream-section {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 40px;
+            margin: 40px auto;
+            max-width: 800px;
+            backdrop-filter: blur(2px);
             position: relative;
-            overflow: hidden;
+            text-align: left;
         }
 
-        .dream-section::before {
+        .thought-section::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(45deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 100%);
+            border: 3px solid rgba(255, 255, 255, 0.9);
+            clip-path: polygon(
+                0% 5%, 3% 0%, 97% 2%, 100% 7%,  /* top */
+                95% 0%, 100% 5%, 98% 95%, 100% 100%,  /* right */
+                95% 98%, 98% 100%, 2% 98%, 0% 95%,  /* bottom */
+                2% 100%, 0% 95%, 2% 5%, 0% 2%  /* left */
+            );
             z-index: 1;
         }
 
-        .dream-entry {
-            position: relative;
-            padding: 15px;
-            margin: 10px 0;
-            background: rgba(245, 242, 231, 0.1);
-            border-radius: 10px;
-            transform-style: preserve-3d;
-            transition: transform 0.3s ease;
-            z-index: 2;
-        }
-
-        .dream-entry:hover {
-            transform: perspective(1000px) rotateX(5deg) translateY(-5px);
-            background: rgba(245, 242, 231, 0.15);
-        }
-
-        .dream-rating {
-            display: inline-block;
-            padding: 5px 10px;
-            background: rgba(245, 242, 231, 0.2);
-            border-radius: 15px;
-            font-size: 0.9em;
-            margin-top: 10px;
-        }
-
-        .mirror-section {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(5px);
-            border-radius: 15px;
-            padding: 20px;
-            margin: 20px 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .mirror-section::before {
+        .thought-section::after {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(
-                45deg,
-                transparent 0%,
-                rgba(255, 255, 255, 0.1) 50%,
-                transparent 100%
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            clip-path: polygon(
+                2% 3%, 5% 0%, 95% 4%, 98% 2%,  /* top */
+                98% 2%, 100% 7%, 96% 93%, 98% 98%,  /* right */
+                98% 98%, 95% 100%, 5% 96%, 2% 98%,  /* bottom */
+                2% 98%, 0% 93%, 4% 7%, 2% 2%  /* left */
             );
-            animation: shimmer 3s infinite;
             z-index: 1;
         }
 
-        .mirror-thought {
+        .thought-content {
             position: relative;
-            padding: 15px;
-            margin: 10px 0;
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 10px;
             z-index: 2;
-            transition: transform 0.3s ease;
+            color: #f5f2e7;
+            font-family: 'Lora', serif;
+            line-height: 1.6;
         }
 
-        .mirror-thought:hover {
-            transform: scale(1.02);
-        }
-
-        .snack-section {
-            background: rgba(0, 0, 0, 0.8);
-            border-radius: 15px;
-            padding: 20px;
-            margin: 20px 0;
-            position: relative;
-        }
-
-        .snack-label {
-            background: rgba(245, 242, 231, 0.1);
-            padding: 15px;
-            margin: 10px 0;
-            border-radius: 10px;
-            position: relative;
-        }
-
-        .snack-label::before {
-            content: 'Nutrition Facts';
-            position: absolute;
-            top: -20px;
-            left: 0;
-            font-size: 1.2em;
+        .thought-content h1 {
+            font-family: 'Fredericka the Great', cursive;
+            text-align: center;
+            margin-bottom: 30px;
             color: #f5f2e7;
         }
 
-        .snack-rating {
-            display: inline-block;
-            padding: 5px 10px;
-            background: rgba(245, 242, 231, 0.2);
-            border-radius: 15px;
-            font-size: 0.9em;
-            margin-top: 10px;
+        .thought-content h2 {
+            font-family: 'Fredericka the Great', cursive;
+            margin: 30px 0 15px;
+            color: #f5f2e7;
+            border-bottom: 1px solid rgba(245, 232, 199, 0.3);
+            padding-bottom: 10px;
         }
 
-        @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-
-        .random-thought-generator {
-            text-align: center;
+        .thought {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
             margin: 20px 0;
+            border-radius: 5px;
+            border-left: 3px solid rgba(245, 232, 199, 0.4);
+            transition: all 0.3s ease;
         }
 
-        .random-thought {
-            background: rgba(245, 242, 231, 0.1);
-            padding: 15px;
-            margin: 10px 0;
-            border-radius: 10px;
-            animation: fadeIn 0.5s ease;
+        .thought:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-left-color: #f5f2e7;
+            transform: translateX(5px);
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .timestamp {
+            font-family: 'Special Elite', cursive;
+            font-size: 0.8em;
+            color: rgba(245, 232, 199, 0.6);
+            margin-bottom: 5px;
+        }
+
+        .thought-text {
+            font-family: 'Schoolbell', cursive;
+            font-size: 1.1em;
+            line-height: 1.5;
+        }
+
+        .polaroid {
+            background: #fff;
+            padding: 10px;
+            transform: rotate(-2deg);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin: 30px auto;
+            max-width: 300px;
+            transition: all 0.3s ease;
+        }
+
+        .polaroid:hover {
+            transform: rotate(0deg) scale(1.02);
+        }
+
+        .polaroid img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .polaroid-caption {
+            font-family: 'Special Elite', cursive;
+            color: #333;
+            text-align: center;
+            padding: 5px;
+        }
+
+        @keyframes scribble {
+            0% { transform: rotate(-1deg); }
+            50% { transform: rotate(1deg); }
+            100% { transform: rotate(-1deg); }
+        }
+
+        .scribble {
+            display: inline-block;
+            animation: scribble 3s infinite;
+            transform-origin: center;
         }
     </style>
 </head>
@@ -170,92 +156,63 @@
 
         <div class="thought-section">
             <div class="thought-content">
-                <h1 class="glitch-effect" data-text="Random Thoughts">Random Thoughts</h1>
-                <p>Welcome to the corner of my mind where thoughts go to play.</p>
+                <h1>Random Thoughts</h1>
+                <p>Welcome to the chaotic corner of my mind. This is where half-formed ideas, philosophical tangents, and shower epiphanies come to play. Some might be genius, most are probably not, but that's the beauty of unfiltered thinking.</p>
 
-                <div class="dream-section">
-                    <h2>Dream Logic</h2>
-                    <div class="dream-entry">
-                        <p>Last night I dreamed I was a teacup in a library, and all the books were trying to pour themselves into me.</p>
-                        <span class="dream-rating">Confusion Level: 🌟🌟🌟🌟🌟</span>
-                    </div>
-                    <div class="dream-entry">
-                        <p>Had a dream where my cat was teaching a yoga class to a group of very confused penguins.</p>
-                        <span class="dream-rating">Confusion Level: 🌟🌟🌟🌟</span>
-                    </div>
-                    <div class="dream-entry">
-                        <p>Dreamt I was a professional bubble wrap popper, but all the bubbles were filled with tiny universes.</p>
-                        <span class="dream-rating">Confusion Level: 🌟🌟🌟🌟🌟</span>
+                <h2>🌙 Midnight Musings</h2>
+                <div class="thought">
+                    <div class="timestamp">1:27 AM · January 3, 2024</div>
+                    <div class="thought-text">What if déjà vu is just your brain buffering?</div>
+                </div>
+                <div class="thought">
+                    <div class="timestamp">2:42 AM · February 9, 2024</div>
+                    <div class="thought-text">Are ghosts just outdated memories stuck in a glitchy simulation?</div>
+                </div>
+                <div class="thought">
+                    <div class="timestamp">3:16 AM · March 14, 2024</div>
+                    <div class="thought-text">What if thoughts have mass and we're just all slowly sinking under their weight?</div>
+                </div>
+
+                <div class="polaroid">
+                    <img src="images/clouds.jpg" alt="Night sky through window">
+                    <div class="polaroid-caption">3 AM thoughts hit different</div>
+                </div>
+
+                <h2>🚿 Shower Realizations</h2>
+                <div class="thought">
+                    <div class="timestamp">9:03 AM · March 2, 2024</div>
+                    <div class="thought-text">Who was the first person to look at a cow and think, 'I should drink whatever comes out of that'?</div>
+                </div>
+                <div class="thought">
+                    <div class="timestamp">7:45 AM · January 20, 2024</div>
+                    <div class="thought-text">When you clean a vacuum, you become the vacuum cleaner.</div>
+                </div>
+                <div class="thought">
+                    <div class="timestamp">10:11 AM · April 1, 2024</div>
+                    <div class="thought-text">Do atoms ever get tired of holding everything together?</div>
+                </div>
+
+                <h2>🌪️ Thought Dump Archive</h2>
+                <div class="thought">
+                    <div class="timestamp">Various moments of questionable clarity</div>
+                    <div class="thought-text">
+                        • If you teleport, does your original body die?<br>
+                        • Why is yawning contagious but not sneezing?<br>
+                        • Are oranges named after the color, or is the color named after the fruit?<br>
+                        • Who decided that Monday is the start of the week and why do they hate us?<br>
+                        • Is cereal a soup?<br>
+                        • Why do we park in driveways but drive in parkways?<br>
+                        • Is a mirror ever truly dirty, or is it just covered in clean stuff?<br>
+                        • What if plants are actually farming us, giving us oxygen until they can harvest us?<br>
+                        • Do fish ever feel thirsty?<br>
+                        • Why isn't "phonetic" spelled the way it sounds?<br>
+                        • What if color is a shared hallucination and we're all just really good at describing it the same way?
                     </div>
                 </div>
 
-                <div class="mirror-section">
-                    <h2>Weird Mirror Thoughts</h2>
-                    <div class="mirror-thought">
-                        <p>If I stare at my reflection long enough, will it start thinking about me too?</p>
-                    </div>
-                    <div class="mirror-thought">
-                        <p>My reflection is technically older than me by the time the light reaches my eyes.</p>
-                    </div>
-                    <div class="mirror-thought">
-                        <p>Do mirrors get tired of reflecting? What if they just want to be windows sometimes?</p>
-                    </div>
-                </div>
-
-                <div class="snack-section">
-                    <h2>Snack-Related Philosophy</h2>
-                    <div class="snack-label">
-                        <p>If a cookie breaks in half, is it two cookies or one cookie in two pieces?</p>
-                        <span class="snack-rating">Food for Thought: 🌟🌟🌟🌟</span>
-                    </div>
-                    <div class="snack-label">
-                        <p>Are grapes just nature's gushers?</p>
-                        <span class="snack-rating">Food for Thought: 🌟🌟🌟</span>
-                    </div>
-                    <div class="snack-label">
-                        <p>If you eat a bag of chips in space, does it count as space food?</p>
-                        <span class="snack-rating">Food for Thought: 🌟🌟🌟🌟🌟</span>
-                    </div>
-                </div>
-
-                <div class="random-thought-generator">
-                    <button class="chalk-button" onclick="generateRandomThought()">Generate Random Thought</button>
-                    <div id="randomThought" class="random-thought"></div>
-                </div>
             </div>
         </div>
     </div>
-
-    <script>
-        const randomThoughts = [
-            "If trees could talk, would they have accents based on their location?",
-            "Do fish get thirsty?",
-            "If you're on a boat in the middle of the ocean, are you technically in the ocean?",
-            "Why do we say 'tuna fish' but not 'beef mammal'?",
-            "If you're waiting for the waiter, aren't you the waiter?",
-            "Do penguins have knees?",
-            "If you're in a room with no mirrors, are you still you?",
-            "Why do we park in driveways and drive on parkways?",
-            "If you're in a room with no clocks, does time still exist?",
-            "Do plants have favorite colors?"
-        ];
-
-        function generateRandomThought() {
-            const randomIndex = Math.floor(Math.random() * randomThoughts.length);
-            const thought = randomThoughts[randomIndex];
-            const thoughtElement = document.getElementById('randomThought');
-            
-            // Add sound effect
-            const audio = new Audio('sounds/thought.mp3');
-            audio.play();
-            
-            // Animate the thought
-            thoughtElement.style.animation = 'none';
-            thoughtElement.offsetHeight; // Trigger reflow
-            thoughtElement.style.animation = 'fadeIn 0.5s ease';
-            
-            thoughtElement.textContent = thought;
-        }
-    </script>
+    <script src="scripts.js"></script>
 </body>
 </html> 
