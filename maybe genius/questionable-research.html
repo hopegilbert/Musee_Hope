@@ -199,6 +199,67 @@
             color: rgba(245, 232, 199, 0.6);
             font-size: 0.9em;
         }
+
+        .topic-dropdown {
+            margin: 15px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .topic-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 3px solid rgba(245, 232, 199, 0.4);
+        }
+
+        .topic-header:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-left-color: #f5f2e7;
+        }
+
+        .topic-title {
+            font-family: 'Special Elite', cursive;
+            color: #f5f2e7;
+            margin: 0;
+        }
+
+        .topic-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 0 15px;
+        }
+
+        .topic-content.active {
+            max-height: 500px;
+            padding: 15px;
+        }
+
+        .topic-summary {
+            font-family: 'Lora', serif;
+            color: rgba(245, 232, 199, 0.8);
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+
+        .topic-category {
+            font-family: 'Special Elite', cursive;
+            color: rgba(245, 232, 199, 0.6);
+            font-size: 0.9em;
+            font-style: italic;
+        }
+
+        .dropdown-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown-icon.active {
+            transform: rotate(180deg);
+        }
     </style>
 </head>
 <body>
@@ -221,12 +282,73 @@
                 <h2>Internet Rabbit Holes</h2>
                 <div class="tab-section">
                     <p>Deep dives into the weird and wonderful corners of the internet, including but not limited to:</p>
-                    <p class="highlight">"Why were Victorian people obsessed with phrenology?"</p>
-                    <p class="highlight">"How to fake your own death (theoretically)"</p>
-                    <p class="highlight">"The Great Emu War: When Australia declared war on birds"</p>
-                    <p class="highlight">"The secret life of fake towns on maps (trap streets)"</p>
-                    <p class="highlight">"That time someone tried to sell the Eiffel Tower... twice"</p>
-                    <p class="highlight">"A guide to frog cryptids by region"</p>
+                    
+                    <div class="topic-dropdown" onclick="toggleTopic(this)">
+                        <div class="topic-header">
+                            <h3 class="topic-title">"Why were Victorian people obsessed with phrenology?"</h3>
+                            <span class="dropdown-icon">▼</span>
+                        </div>
+                        <div class="topic-content">
+                            <p class="topic-summary">In the 1800s, wealthy Victorians became inexplicably convinced that the bumps on your skull could reveal your deepest character flaws. Enter phrenology—a pseudoscience that claimed to read your morality like a brain horoscope. It was used for everything from matchmaking to criminal profiling. Some people even kept phrenological busts in their parlors like twisted self-help décor. The real kicker? Despite being thoroughly debunked, you can still buy phrenology head statues on Etsy.</p>
+                            <p class="topic-category">Filed under: Weird flex but okay</p>
+                        </div>
+                    </div>
+
+                    <div class="topic-dropdown" onclick="toggleTopic(this)">
+                        <div class="topic-header">
+                            <h3 class="topic-title">"How to fake your own death (theoretically)"</h3>
+                            <span class="dropdown-icon">▼</span>
+                        </div>
+                        <div class="topic-content">
+                            <p class="topic-summary">Let's be clear: this is strictly an academic exercise. That said, you'd need a staged accident, a body double (or cremation-friendly cover story), and a watertight offshore identity. Insurance fraud? Illegal. Escaping your responsibilities to start a new life as a goat farmer in rural New Zealand? Spiritually valid. Case studies include people who failed spectacularly—like the guy who "drowned" kayaking and was found years later hiding in a cupboard behind a fake wall.</p>
+                            <p class="topic-category">Filed under: Don't try this at home</p>
+                        </div>
+                    </div>
+
+                    <div class="topic-dropdown" onclick="toggleTopic(this)">
+                        <div class="topic-header">
+                            <h3 class="topic-title">"The secret life of fake towns on maps (trap streets)"</h3>
+                            <span class="dropdown-icon">▼</span>
+                        </div>
+                        <div class="topic-content">
+                            <p class="topic-summary">Ever notice a town on Google Maps that doesn't seem to exist? You might have found a trap street—fictional places mapmakers sprinkle into their work to catch copyright thieves. The best part? Some of these ghost towns accidentally became real places after businesses, tourists, and even real estate listings started referencing them. There's at least one town in New York that originated as a legal landmine and ended up with Yelp reviews.</p>
+                            <p class="topic-category">Filed under: Cartographic fanfiction</p>
+                        </div>
+                    </div>
+
+                    <div class="topic-dropdown" onclick="toggleTopic(this)">
+                        <div class="topic-header">
+                            <h3 class="topic-title">"That time someone tried to sell the Eiffel Tower... twice"</h3>
+                            <span class="dropdown-icon">▼</span>
+                        </div>
+                        <div class="topic-content">
+                            <p class="topic-summary">In 1925, con artist Victor Lustig convinced scrap metal dealers that the Eiffel Tower was being torn down. He forged government documents, held a fake bidding process, and walked away with a suitcase full of cash. When no one came forward out of embarrassment, he did it again. The Eiffel Tower remained, but Lustig made international scammer history.</p>
+                            <p class="topic-category">Filed under: Masterclass in audacity</p>
+                        </div>
+                    </div>
+
+                    <div class="topic-dropdown" onclick="toggleTopic(this)">
+                        <div class="topic-header">
+                            <h3 class="topic-title">"A guide to frog cryptids by region"</h3>
+                            <span class="dropdown-icon">▼</span>
+                        </div>
+                        <div class="topic-content">
+                            <p class="topic-summary">Yes, there are enough frog-based cryptids for a regional guide. From the Loveland Frogman in Ohio (who allegedly wields a wand that sparks) to the Namibian Tree Leaper (a rumored five-foot swamp witch frog), these amphibians range from adorable to eldritch. Includes stats, sighting timelines, and how likely each one is to whisper your name in the night.</p>
+                            <p class="topic-category">Filed under: Swamp things that go bump in the night</p>
+                        </div>
+                    </div>
+
+                    <div class="topic-dropdown" onclick="toggleTopic(this)">
+                        <div class="topic-header">
+                            <h3 class="topic-title">"The Great Emu War: When Australia declared war on birds"</h3>
+                            <span class="dropdown-icon">▼</span>
+                        </div>
+                        <div class="topic-content">
+                            <p class="topic-summary">In 1932, Australia faced an unexpected enemy: 20,000 emus. These flightless birds had invaded farmland in Western Australia, trampling crops and ignoring all social etiquette. The government, in a bafflingly serious move, sent soldiers—armed with machine guns—to deal with the "threat." The emus were fast, unpredictable, and weirdly tactical. After multiple failed ambushes, jammed guns, and a casualty count of zero emus but plenty of dignity, the military admitted defeat. The birds won. The government gave up and eventually installed fences.</p>
+                            <p class="topic-category">Filed under: Flightless but not fightless</p>
+                        </div>
+                    </div>
+
                     <div class="footnote">Source: Various 3 AM Wikipedia sessions</div>
                 </div>
 
@@ -260,7 +382,6 @@
                 <div class="tab-section">
                     <p>A collection of questionable citations, including:</p>
                     <ul>
-                        <li>References that lead to 404 pages</li>
                         <li>
                             <div class="citation">
                                 <div class="citation-title">Citations from "an 80s home improvement forum"</div>
@@ -287,5 +408,14 @@
         </div>
     </div>
     <script src="scripts.js"></script>
+    <script>
+        function toggleTopic(element) {
+            const content = element.querySelector('.topic-content');
+            const icon = element.querySelector('.dropdown-icon');
+            
+            content.classList.toggle('active');
+            icon.classList.toggle('active');
+        }
+    </script>
 </body>
 </html> 
