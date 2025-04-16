@@ -252,12 +252,44 @@
         .hand-drawn::after {
             content: '';
             position: absolute;
+            bottom: -2px;
             left: 0;
-            bottom: -5px;
             width: 100%;
             height: 2px;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10"><path d="M0,5 Q25,0 50,5 T100,5" fill="none" stroke="%23f5f2e7" stroke-width="2"/></svg>') repeat-x;
-            background-size: 20px 10px;
+            background: linear-gradient(90deg, transparent, #f5f2e7, transparent);
+            animation: draw-line 1s ease-out forwards;
+        }
+
+        @keyframes draw-line {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        .confusion-rating {
+            display: inline-block;
+            padding: 5px 10px;
+            background: rgba(255, 0, 255, 0.2);
+            border-radius: 15px;
+            font-size: 0.8em;
+            margin-left: 10px;
+        }
+
+        .mirror-rating {
+            display: inline-block;
+            padding: 5px 10px;
+            background: rgba(0, 255, 255, 0.2);
+            border-radius: 15px;
+            font-size: 0.8em;
+            margin-left: 10px;
+        }
+
+        .snack-rating {
+            display: inline-block;
+            padding: 5px 10px;
+            background: rgba(255, 255, 0, 0.2);
+            border-radius: 15px;
+            font-size: 0.8em;
+            margin-left: 10px;
         }
 
         .edit-time {
@@ -285,138 +317,128 @@
         <div class="thought-section">
             <div class="thought-content">
                 <h1 class="glitch-effect" data-text="Random Thoughts">Random Thoughts</h1>
-                <p>A collection of ideas that arrived unannounced and refused to leave.</p>
+                <p>Welcome to the corner of my mind where thoughts go to play.</p>
+
+                <div class="dream-section">
+                    <h2>Dream Logic</h2>
+                    <div class="dream-entry">
+                        <p>"Last night I dreamt I was a library book being checked out by a sentient cloud. The cloud kept apologizing for its raindrops smudging my pages."</p>
+                        <div class="confusion-rating">Confusion Level: 8/10</div>
+                    </div>
+                    <div class="dream-entry">
+                        <p>"Had a dream where my teeth were made of marshmallows. The dentist was very confused but also very tempted."</p>
+                        <div class="confusion-rating">Confusion Level: 6/10</div>
+                    </div>
+                    <div class="dream-entry">
+                        <p>"Dreamt I was a professional bubble wrap popper in a world where bubble wrap was currency. The economy was very satisfying but also very noisy."</p>
+                        <div class="confusion-rating">Confusion Level: 7/10</div>
+                    </div>
+                </div>
+
+                <div class="mirror-section">
+                    <h2>Weird Mirror Thoughts</h2>
+                    <div class="mirror-thought">
+                        <p>"If mirrors show us our reflection, do they also show us our self-reflection?"</p>
+                        <div class="mirror-rating">Deepness: 9/10</div>
+                    </div>
+                    <div class="mirror-thought">
+                        <p>"When you look in a mirror, are you seeing yourself now or a fraction of a second ago when the light bounced off you?"</p>
+                        <div class="mirror-rating">Deepness: 8/10</div>
+                    </div>
+                    <div class="mirror-thought">
+                        <p>"If you put two mirrors facing each other, do they create an infinite loop of reflections or just really good friends?"</p>
+                        <div class="mirror-rating">Deepness: 7/10</div>
+                    </div>
+                </div>
+
+                <div class="snack-section">
+                    <h2>Snack-Related Philosophy</h2>
+                    <div class="snack-thought">
+                        <p>"If you eat a Pringle, are you really ever satisfied until you've eaten the whole tube?"</p>
+                        <div class="nutrition-label">
+                            <p>Calories: 0 (purely existential)</p>
+                            <p>Ingredients: Existential dread, potato dust</p>
+                        </div>
+                        <div class="snack-rating">Snackability: 10/10</div>
+                    </div>
+                    <div class="snack-thought">
+                        <p>"Is a hot dog a sandwich? And if it is, does that make a taco a sandwich too? Where does it end?"</p>
+                        <div class="nutrition-label">
+                            <p>Calories: Too many to count</p>
+                            <p>Ingredients: Philosophical debate, questionable meat</p>
+                        </div>
+                        <div class="snack-rating">Snackability: 9/10</div>
+                    </div>
+                    <div class="snack-thought">
+                        <p>"Why do we say 'a piece of cake' to mean something easy, when baking a cake is actually quite difficult?"</p>
+                        <div class="nutrition-label">
+                            <p>Calories: Confusion</p>
+                            <p>Ingredients: Mixed metaphors, flour</p>
+                        </div>
+                        <div class="snack-rating">Snackability: 8/10</div>
+                    </div>
+                </div>
 
                 <button class="random-button" onclick="generateRandomThought()">Generate Random Thought</button>
-
-                <section class="dream-section">
-                    <h2>📼 Dream Logic</h2>
-                    <p>Where your subconscious takes the wheel—and promptly drives into a lake.</p>
-                    
-                    <div class="dream-entry">
-                        <p>"Had a dream where my dentist said I owed her 7,000 bees and I just… accepted that?"</p>
-                        <div class="thought-rating">
-                            🌀 Confusion: 9/10<br>
-                            🛏️ Dream Clarity: Surprisingly High<br>
-                            🐝 Bee Debt: Concerning
+                <div id="random-thought" class="thought-card">
+                    <div class="thought-card-inner">
+                        <div class="thought-card-front">
+                            <p>Click the button above for a random thought!</p>
+                        </div>
+                        <div class="thought-card-back">
+                            <p>Your random thought will appear here!</p>
                         </div>
                     </div>
-
-                    <div class="dream-entry">
-                        <p>"Was being hunted by a goose in a suit. The suit was burgundy. I remember that detail very clearly."</p>
-                        <div class="thought-rating">
-                            🌀 Confusion: 7/10<br>
-                            🦢 Goose Menace: Dapper<br>
-                            🎨 Color Accuracy: Impeccable
-                        </div>
-                    </div>
-                </section>
-
-                <section class="mirror-section">
-                    <h2>🪞 Weird Mirror Thoughts</h2>
-                    <p>For when you stare too long at your own face and start questioning reality.</p>
-
-                    <div class="mirror-thought">
-                        <p>"My face looks different every time I see it. Am I just rendering inconsistently?"</p>
-                        <div class="thought-rating">
-                            🌀 Confusion: 8/10<br>
-                            🎮 Graphics Settings: Low<br>
-                            👥 Identity Crisis: Loading...
-                        </div>
-                    </div>
-
-                    <div class="mirror-thought">
-                        <p>"What if mirrors are lying and we all actually look slightly better or worse in real life?"</p>
-                        <div class="thought-rating">
-                            🌀 Confusion: 6/10<br>
-                            🪞 Mirror Trust Issues: High<br>
-                            📸 Selfie Confidence: Shaken
-                        </div>
-                    </div>
-                </section>
-
-                <section class="snack-section">
-                    <h2>🧃 Snack-Related Philosophy</h2>
-                    <p>Deep thoughts, fueled by questionable snacks.</p>
-
-                    <div class="snack-thought">
-                        <p>"Is toast just really sad garlic bread?"</p>
-                        <div class="nutrition-label">
-                            <strong>Thought Nutrition Facts</strong><br>
-                            Serving Size: 1 Existential Crisis<br>
-                            Philosophical Value: 42%<br>
-                            Garlic Content: 0%<br>
-                            Sadness: 100%
-                        </div>
-                        <div class="thought-rating">
-                            Filed under: Existential breakfast
-                        </div>
-                    </div>
-
-                    <div class="snack-thought">
-                        <p>"Who decided the order of crisp multipack flavours? Why is Ready Salted always the one with the most packets?"</p>
-                        <div class="nutrition-label">
-                            <strong>Thought Nutrition Facts</strong><br>
-                            Serving Size: 1 Conspiracy Theory<br>
-                            Salt Content: Excessive<br>
-                            Justice: 0%<br>
-                            Questions: Too Many
-                        </div>
-                        <div class="thought-rating">
-                            Filed under: Flavour hierarchy injustice
-                        </div>
-                    </div>
-                </section>
+                </div>
 
                 <div class="sticky-note">
-                    <p>"This one actually kept me up for 45 minutes."</p>
+                    <p>Note to self: Remember to question everything, especially the important things. And maybe bring snacks.</p>
                 </div>
-
-                <div class="sticky-note" style="transform: rotate(2deg);">
-                    <p>"Thought this was smart until I said it out loud."</p>
-                </div>
-
-                <p class="edit-time">Last edited at 3:41 AM by Past Me (who may have been caffeinated)</p>
             </div>
         </div>
     </div>
 
     <script>
-        const thoughts = [
-            "What if plants think we're zombies because we keep trying to eat their brains (seeds)?",
-            "Is a sandwich still a sandwich if you eat it vertically?",
-            "Do fish get thirsty?",
-            "Why don't we have a word for the day after tomorrow's tomorrow?",
-            "What if clouds are just the sky's thoughts?"
+        const randomThoughts = [
+            {
+                text: "If trees could talk, would they have accents based on their location?",
+                category: "Nature",
+                rating: "7/10"
+            },
+            {
+                text: "Do fish get thirsty? And if they do, do they know they're already in water?",
+                category: "Aquatic",
+                rating: "8/10"
+            },
+            {
+                text: "If you're waiting for the waiter, aren't you the waiter?",
+                category: "Existential",
+                rating: "9/10"
+            },
+            {
+                text: "Why do we park in driveways and drive on parkways?",
+                category: "Linguistic",
+                rating: "6/10"
+            },
+            {
+                text: "If you try to fail and succeed, which have you done?",
+                category: "Paradox",
+                rating: "10/10"
+            }
         ];
 
         function generateRandomThought() {
-            const randomIndex = Math.floor(Math.random() * thoughts.length);
-            const thoughtElement = document.createElement('div');
-            thoughtElement.className = 'dream-entry';
-            thoughtElement.innerHTML = `
-                <p class="hand-drawn">"${thoughts[randomIndex]}"</p>
-                <div class="thought-rating">
-                    🌀 Confusion: ${Math.floor(Math.random() * 5) + 5}/10<br>
-                    🧼 Shower Appropriateness: ${Math.random() > 0.5 ? 'High' : 'Low'}<br>
-                    🧃 Would eat this thought with hummus: ${Math.random() > 0.5 ? 'Yes' : 'Maybe not'}
-                </div>
-            `;
+            const thought = randomThoughts[Math.floor(Math.random() * randomThoughts.length)];
+            const thoughtCard = document.getElementById('random-thought');
+            const front = thoughtCard.querySelector('.thought-card-front');
+            const back = thoughtCard.querySelector('.thought-card-back');
             
-            // Add sound effect
-            const audio = new Audio('data:audio/wav;base64,UklGRl9vT19XQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YU');
+            front.innerHTML = `<p>${thought.text}</p>`;
+            back.innerHTML = `<p>Category: ${thought.category}</p><p>Rating: ${thought.rating}</p>`;
+            
+            // Play a sound effect
+            const audio = new Audio('sounds/thought.mp3');
             audio.play();
-
-            // Add animation
-            thoughtElement.style.opacity = '0';
-            thoughtElement.style.transform = 'translateY(20px)';
-            document.querySelector('.dream-section').appendChild(thoughtElement);
-            
-            setTimeout(() => {
-                thoughtElement.style.transition = 'all 0.5s ease';
-                thoughtElement.style.opacity = '1';
-                thoughtElement.style.transform = 'translateY(0)';
-            }, 10);
         }
     </script>
 </body>
