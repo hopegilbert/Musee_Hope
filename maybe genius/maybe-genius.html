@@ -152,6 +152,54 @@
         .dropdown-btn {
             margin: 0;
         }
+
+        .header-box {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 30px;
+            margin: 40px auto;
+            max-width: 800px;
+            backdrop-filter: blur(2px);
+            position: relative;
+        }
+
+        .header-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 3px solid rgba(255, 255, 255, 0.9);
+            clip-path: polygon(
+                0% 5%, 3% 0%, 97% 2%, 100% 7%,  /* top */
+                95% 0%, 100% 5%, 98% 95%, 100% 100%,  /* right */
+                95% 98%, 98% 100%, 2% 98%, 0% 95%,  /* bottom */
+                2% 100%, 0% 95%, 2% 5%, 0% 2%  /* left */
+            );
+            z-index: 1;
+        }
+
+        .header-box::after {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            clip-path: polygon(
+                2% 3%, 5% 0%, 95% 4%, 98% 2%,  /* top */
+                98% 2%, 100% 7%, 96% 93%, 98% 98%,  /* right */
+                98% 98%, 95% 100%, 5% 96%, 2% 98%,  /* bottom */
+                2% 98%, 0% 93%, 4% 7%, 2% 2%  /* left */
+            );
+            z-index: 1;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
     </style>
 </head>
 <body>
@@ -169,20 +217,14 @@
             <a href="#experiments">EXPERIMENTS</a>
         </nav>
 
-        <header>
-            <h1>Stuff That Might Be Genius (Eventually)</h1>
-            <p class="subtitle">A collection of half-baked ideas that could either change the world or be completely ridiculous. Only time will tell.</p>
-        </header>
-
-        <section class="hero-section" id="ideas">
-            <div class="hero-content">
-                <h2>Work in Progress</h2>
-                <p>This section is currently under construction. Check back soon for potentially genius (or completely wild) ideas!</p>
+        <div class="header-box">
+            <div class="header-content">
+                <h1>Stuff That Might Be Genius (Eventually)</h1>
+                <p class="subtitle">A collection of half-baked ideas that could either change the world or be completely ridiculous. Only time will tell.</p>
             </div>
-        </section>
+        </div>
 
         <section class="process-section" id="process">
-            <h2>The Process</h2>
             <div class="process-grid">
                 <div class="process-card">
                     <h3><a href="random-thoughts.html" class="chalk-button">1. Random Thoughts</a></h3>
@@ -197,7 +239,6 @@
         </section>
 
         <section class="experiments-section" id="experiments">
-            <h2>Current Experiments</h2>
             <div class="experiments-grid">
                 <article class="experiment-card">
                     <h3>Psychology Research</h3>
@@ -219,10 +260,6 @@
                     <h3>Dissertation</h3>
                     <p>Does Cognitive Estimation Precede Visual Experience in the Perception of Object Shape and Material, or Do They Occur Independently and Concurrently?</p>
                     <a href="essays/dissertation.html" class="chalk-button">Read More</a>
-                </article>
-                <article class="experiment-card">
-                    <h3>Coming Soon</h3>
-                    <p>Experiments are brewing...</p>
                 </article>
             </div>
         </section>
