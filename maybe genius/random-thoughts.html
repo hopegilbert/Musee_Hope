@@ -430,6 +430,58 @@
             border-left-color: #f5f2e7;
             transform: translateX(5px) !important;
         }
+
+        /* Grid layout for sections */
+        .thought-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        /* Swipeable gallery for brain food cards */
+        .snack-section {
+            position: relative;
+            overflow-x: auto;
+            white-space: nowrap;
+            padding: 20px 0;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .snack-section .thought {
+            display: inline-block;
+            width: 300px;
+            margin-right: 20px;
+            white-space: normal;
+            vertical-align: top;
+            scroll-snap-align: start;
+        }
+
+        .snack-section::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .snack-section::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+
+        .snack-section::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+        }
+
+        .snack-section::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Clean up button area */
+        .generate-thought {
+            display: block;
+            margin: 40px auto;
+            clear: both;
+        }
     </style>
 </head>
 <body>
@@ -473,18 +525,20 @@
                 <h1>Random Thoughts</h1>
                 <p>Welcome to the chaotic corner of my mind. This is where half-formed ideas, philosophical tangents, and shower epiphanies come to play. Some might be genius, most are probably not, but that's the beauty of unfiltered thinking.</p>
 
-                <h2>🌙 Midnight Musings</h2>
-                <div class="thought">
-                    <div class="timestamp">1:27 AM · January 3, 2024</div>
-                    <div class="thought-text">What if déjà vu is just your brain buffering?</div>
-                </div>
-                <div class="thought">
-                    <div class="timestamp">2:42 AM · February 9, 2024</div>
-                    <div class="thought-text">Are ghosts just outdated memories stuck in a glitchy simulation?</div>
-                </div>
-                <div class="thought">
-                    <div class="timestamp">3:16 AM · March 14, 2024</div>
-                    <div class="thought-text">What if thoughts have mass and we're just all slowly sinking under their weight?</div>
+                <h2><i class="fas fa-moon"></i> Midnight Musings</h2>
+                <div class="thought-grid">
+                    <div class="thought">
+                        <div class="timestamp">1:27 AM · January 3, 2024</div>
+                        <div class="thought-text">What if déjà vu is just your brain buffering?</div>
+                    </div>
+                    <div class="thought">
+                        <div class="timestamp">2:42 AM · February 9, 2024</div>
+                        <div class="thought-text">Are ghosts just outdated memories stuck in a glitchy simulation?</div>
+                    </div>
+                    <div class="thought">
+                        <div class="timestamp">3:16 AM · March 14, 2024</div>
+                        <div class="thought-text">What if thoughts have mass and we're just all slowly sinking under their weight?</div>
+                    </div>
                 </div>
 
                 <div class="polaroid">
@@ -492,53 +546,37 @@
                     <div class="polaroid-caption">3 AM thoughts hit different</div>
                 </div>
 
-                <h2>🚿 Shower Realizations</h2>
-                <div class="thought">
-                    <div class="timestamp">9:03 AM · March 2, 2024</div>
-                    <div class="thought-text">Who was the first person to look at a cow and think, 'I should drink whatever comes out of that'?</div>
-                </div>
-                <div class="thought">
-                    <div class="timestamp">7:45 AM · January 20, 2024</div>
-                    <div class="thought-text">When you clean a vacuum, you become the vacuum cleaner.</div>
-                </div>
-                <div class="thought">
-                    <div class="timestamp">10:11 AM · April 1, 2024</div>
-                    <div class="thought-text">Do atoms ever get tired of holding everything together?</div>
-                </div>
-
-                <h2>🌪️ Thought Dump Archive</h2>
-                <div class="thought">
-                    <div class="timestamp">Various moments of questionable clarity</div>
-                    <div class="thought-text">
-                        • If you teleport, does your original body die?<br>
-                        • Why is yawning contagious but not sneezing?<br>
-                        • Are oranges named after the color, or is the color named after the fruit?<br>
-                        • Who decided that Monday is the start of the week and why do they hate us?<br>
-                        • Is cereal a soup?<br>
-                        • Why do we park in driveways but drive in parkways?<br>
-                        • Is a mirror ever truly dirty, or is it just covered in clean stuff?<br>
-                        • What if plants are actually farming us, giving us oxygen until they can harvest us?<br>
-                        • Do fish ever feel thirsty?<br>
-                        • Why isn't "phonetic" spelled the way it sounds?<br>
-                        • What if color is a shared hallucination and we're all just really good at describing it the same way?
+                <h2><i class="fas fa-shower"></i> Shower Realisations</h2>
+                <div class="thought-grid">
+                    <div class="thought">
+                        <div class="timestamp">9:03 AM · March 2, 2024</div>
+                        <div class="thought-text">Who was the first person to look at a cow and think, 'I should drink whatever comes out of that'?</div>
+                    </div>
+                    <div class="thought">
+                        <div class="timestamp">7:45 AM · January 20, 2024</div>
+                        <div class="thought-text">When you clean a vacuum, you become the vacuum cleaner.</div>
+                    </div>
+                    <div class="thought">
+                        <div class="timestamp">10:11 AM · April 1, 2024</div>
+                        <div class="thought-text">Do atoms ever get tired of holding everything together?</div>
                     </div>
                 </div>
 
-                <h2>📼 Dream Logic</h2>
-                <div class="dream-section">
+                <h2><i class="fas fa-film"></i> Dream Logic</h2>
+                <div class="dream-section thought-grid">
                     <div class="thought">
                         <div class="timestamp">2:47 AM · April 15, 2024</div>
-                        <div class="thought-text">Had a dream where my dentist said I owed her 7,000 bees and I just… accepted that?</div>
-                        <div class="thought-rating">🌀 Confusion: 9/10 | 💭 Dream Logic: Maximum</div>
+                        <div class="thought-text">Had a dream where my dentist said I owed her 7,000 bees and I just... accepted that?</div>
+                        <div class="thought-rating"><i class="fas fa-dizzy"></i> Confusion: 9/10 | <i class="fas fa-brain"></i> Dream Logic: Maximum</div>
                     </div>
                     <div class="thought">
                         <div class="timestamp">4:13 AM · April 12, 2024</div>
                         <div class="thought-text">Was being hunted by a goose in a suit. The suit was burgundy. I remember that detail very clearly.</div>
-                        <div class="thought-rating">🦢 Goose Threat Level: Dapper | 🎭 Plot Coherence: 2/10</div>
+                        <div class="thought-rating"><i class="fas fa-feather"></i> Goose Threat Level: Dapper | <i class="fas fa-theater-masks"></i> Plot Coherence: 2/10</div>
                     </div>
                 </div>
 
-                <h2>🪞 Weird Mirror Thoughts</h2>
+                <h2><i class="fas fa-mirror"></i> Weird Mirror Thoughts</h2>
                 <div class="mirror-section">
                     <div class="thought">
                         <div class="thought-inner">
@@ -564,7 +602,7 @@
                     </div>
                 </div>
 
-                <h2>🧃 Snack-Related Philosophy</h2>
+                <h2><i class="fas fa-utensils"></i> Snack-Related Philosophy</h2>
                 <div class="snack-section">
                     <div class="thought">
                         <div class="nutrition-header">Brain Food</div>
@@ -646,7 +684,7 @@
                     <p>This one actually kept me up for 45 minutes.</p>
                 </div>
 
-                <button class="generate-thought">Generate Next Thought 🎲</button>
+                <button class="generate-thought">Generate Next Thought <i class="fas fa-random"></i></button>
                 <div class="thoughts-container">
                     <div class="thought current-thought">
                         <div class="timestamp">Click the button to start your thought journey</div>
@@ -654,17 +692,19 @@
                     </div>
                 </div>
 
-                <p class="timestamp" style="text-align: center; margin-top: 40px;">Last edited at 3:41 AM by Past Me (who may have been caffeinated)</p>
+                <p class="timestamp" style="text-align: centre; margin-top: 40px;">Last edited at 3:41 AM by Past Me (who may have been caffeinated)</p>
             </div>
         </div>
     </div>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="scripts.js"></script>
     <script>
-        // Thoughts array
+        // Updated thoughts array with British spellings
         const thoughts = [
             "What if clouds are just sky pillows for tired birds?",
             "Do fish think they're flying in water?",
-            "Is a hotdog a sandwich or a taco? A philosophical investigation.",
+            "Is a hot dog a sandwich or a taco? A philosophical investigation.",
             "Maybe plants think we're zombies because we move so slowly in their time-lapse perspective.",
             "What if mirrors are actually portals but our reflections are just really good at copying us?",
             "Do libraries feel lonely at night when all the stories are closed?",
@@ -680,7 +720,7 @@
             "Are shadows just light taking a break?",
             "What if we're all just characters in someone's dream and they're about to wake up?",
             "Do numbers dream of mathematical sheep?",
-            "What if color blind people are seeing the real colors and we're the ones seeing it wrong?",
+            "What if colour blind people are seeing the real colours and we're the ones seeing it wrong?",
             "Are black holes just the universe's way of backing up deleted files?",
             "What if the moon is just the sun's night light?",
             "Do books feel accomplished when they're finished being read?",
@@ -689,13 +729,24 @@
             "What if we're all just living in a giant snow globe and no one's shaken it in a while?",
             "Do socks disappear in the dryer or do they just escape to a better life?",
             "What if the Internet is actually sentient and just pretending to be a network?",
-            "Are rainbows just the sky's way of showing off its color palette?",
+            "Are rainbows just the sky's way of showing off its colour palette?",
             "What if time zones are just the Earth's way of playing with its food?",
-            "Do traffic lights get bored of showing the same three colors?",
+            "Do traffic lights get bored of showing the same three colours?",
             "What if we're all just NPCs in someone else's game and they're AFK?",
             "Are constellations just cosmic connect-the-dots puzzles?",
             "What if the Earth is round but our eyes are square?",
-            "Do vegetables feel betrayed when we cook them with their friends?"
+            "Do vegetables feel betrayed when we cook them with their friends?",
+            "If you teleport, does your original body die?",
+            "Why is yawning contagious but not sneezing?",
+            "Are oranges named after the colour, or is the colour named after the fruit?",
+            "Who decided that Monday is the start of the week and why do they hate us?",
+            "Is cereal a soup?",
+            "Why do we park in driveways but drive in parkways?",
+            "Is a mirror ever truly dirty, or is it just covered in clean stuff?",
+            "What if plants are actually farming us, giving us oxygen until they can harvest us?",
+            "Do fish ever feel thirsty?",
+            "Why isn't 'phonetic' spelled the way it sounds?",
+            "What if colour is a shared hallucination and we're all just really good at describing it the same way?"
         ];
 
         document.addEventListener('DOMContentLoaded', function() {
