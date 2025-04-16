@@ -300,7 +300,124 @@ footer {
     max-width: 800px;
     backdrop-filter: blur(2px);
     position: relative;
-    z-index: 0;
+}
+
+.dissertation-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 3px solid rgba(255, 255, 255, 0.9);
+    clip-path: polygon(
+        0% 5%, 3% 0%, 97% 2%, 100% 7%,  /* top */
+        95% 0%, 100% 5%, 98% 95%, 100% 100%,  /* right */
+        95% 98%, 98% 100%, 2% 98%, 0% 95%,  /* bottom */
+        2% 100%, 0% 95%, 2% 5%, 0% 2%  /* left */
+    );
+    z-index: 1;
+}
+
+.dissertation-content::after {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    clip-path: polygon(
+        2% 3%, 5% 0%, 95% 4%, 98% 2%,  /* top */
+        98% 2%, 100% 7%, 96% 93%, 98% 98%,  /* right */
+        98% 98%, 95% 100%, 5% 96%, 2% 98%,  /* bottom */
+        2% 98%, 0% 93%, 4% 7%, 2% 2%  /* left */
+    );
+    z-index: 1;
+}
+
+.dissertation-text {
+    position: relative;
+    z-index: 2;
+    color: #f5f2e7;
+    font-family: 'Lora', serif;
+    line-height: 1.6;
+}
+
+.dissertation-text h1 {
+    font-family: 'Fredericka the Great', cursive;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #f5f2e7;
+}
+
+.dissertation-text h2 {
+    font-family: 'Fredericka the Great', cursive;
+    margin: 30px 0 15px;
+    color: #f5f2e7;
+}
+
+.dissertation-text p {
+    margin-bottom: 15px;
+}
+
+.section-links {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.section-links a {
+    color: #f5f2e7;
+    text-decoration: none;
+    font-family: 'Fredericka the Great', cursive;
+    padding: 15px 30px;
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.section-links a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 2px solid rgba(245, 232, 199, 0.9);
+    clip-path: polygon(
+        3% 0%, 97% 3%, 100% 97%, 3% 100%,
+        0% 97%, 97% 97%, 97% 3%, 0% 3%
+    );
+}
+
+.section-links a::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border: 1px solid rgba(245, 232, 199, 0.4);
+    clip-path: polygon(
+        0% 3%, 100% 0%, 97% 100%, 0% 97%,
+        3% 94%, 94% 94%, 94% 6%, 3% 6%
+    );
+}
+
+.section-links a:hover {
+    transform: scale(1.02);
+    transition: transform 0.2s ease;
+}
+
+.pdf-viewer {
+    width: 100%;
+    height: 800px;
+    margin: 40px 0;
+    border: none;
 }
 
 @media (max-width: 768px) {
