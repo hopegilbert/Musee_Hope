@@ -323,21 +323,12 @@
             z-index: 1;
         }
 
-        .image-thumbnail:hover {
-            z-index: 1000;
-        }
-
         .image-thumbnail img {
             width: 100%;
             height: 200px;
             object-fit: cover;
             transition: all 0.3s ease;
             border-radius: 4px;
-        }
-
-        .image-thumbnail:hover img {
-            transform: scale(1.5);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
         .image-title {
@@ -360,49 +351,58 @@
             opacity: 1;
         }
 
+        /* Modal styles */
         .modal {
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            z-index: 9999;
-            overflow: auto;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 10000;
+            cursor: pointer;
+        }
+
+        .modal.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .modal-content {
             max-width: 90%;
             max-height: 90vh;
+            position: relative;
+            cursor: default;
+        }
+
+        .modal-content img {
+            max-width: 100%;
+            max-height: 90vh;
             object-fit: contain;
-            z-index: 10000;
+            border-radius: 4px;
         }
 
-        .close {
-            position: fixed;
-            top: 15px;
-            right: 35px;
-            color: #f1f1f1;
-            font-size: 40px;
-            font-weight: bold;
-            cursor: pointer;
-            z-index: 10001;
-        }
-
-        #caption {
-            position: fixed;
-            bottom: 0;
+        .modal-caption {
+            position: absolute;
+            bottom: -40px;
             left: 0;
             width: 100%;
-            padding: 20px;
-            color: #f1f1f1;
+            color: #f5f2e7;
             text-align: center;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 10000;
             font-family: 'Special Elite', cursive;
+            padding: 10px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: #f5f2e7;
+            font-size: 30px;
+            cursor: pointer;
+            z-index: 10001;
         }
 
         .dropdown-btn {
@@ -857,19 +857,61 @@
                     event.stopPropagation();
                 });
             });
-        });
 
-        // Close dropdowns when clicking outside
-        document.addEventListener('click', function(event) {
-            if (!event.target.closest('.topic-dropdown')) {
-                const dropdowns = document.querySelectorAll('.topic-dropdown');
-                dropdowns.forEach(dropdown => {
-                    const content = dropdown.querySelector('.topic-content');
-                    const icon = dropdown.querySelector('.dropdown-icon');
-                    content.classList.remove('active');
-                    icon.classList.remove('active');
+            // Close dropdowns when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!event.target.closest('.topic-dropdown')) {
+                    const dropdowns = document.querySelectorAll('.topic-dropdown');
+                    dropdowns.forEach(dropdown => {
+                        const content = dropdown.querySelector('.topic-content');
+                        const icon = dropdown.querySelector('.dropdown-icon');
+                        content.classList.remove('active');
+                        icon.classList.remove('active');
+                    });
+                }
+            });
+
+            // Add modal functionality
+            const thumbnails = document.querySelectorAll('.image-thumbnail');
+            let modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <span class="modal-close">&times;</span>
+                    <img src="" alt="">
+                    <div class="modal-caption"></div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+
+            thumbnails.forEach(thumbnail => {
+                thumbnail.addEventListener('click', function(e) {
+                    const img = thumbnail.querySelector('img');
+                    const title = thumbnail.querySelector('.image-title').textContent;
+                    const modalImg = modal.querySelector('img');
+                    const modalCaption = modal.querySelector('.modal-caption');
+                    
+                    modalImg.src = img.src;
+                    modalImg.alt = img.alt;
+                    modalCaption.textContent = title;
+                    modal.classList.add('active');
+                    e.stopPropagation();
                 });
-            }
+            });
+
+            // Close modal when clicking outside the image
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal || e.target.classList.contains('modal-close')) {
+                    modal.classList.remove('active');
+                }
+            });
+
+            // Close modal with escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modal.classList.contains('active')) {
+                    modal.classList.remove('active');
+                }
+            });
         });
     </script>
 </body>
