@@ -344,3 +344,94 @@ footer {
         padding: 1rem;
     }
 }
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    z-index: 1000;
+}
+
+.dropdown-btn {
+    background: rgba(0, 0, 0, 0.6);
+    color: #f5f2e7;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Fredericka the Great', cursive;
+    font-size: 1em;
+    position: relative;
+    z-index: 2;
+    backdrop-filter: blur(2px);
+}
+
+.dropdown-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 2px solid rgba(255, 255, 255, 0.9);
+    clip-path: polygon(
+        0% 5%, 3% 0%, 97% 2%, 100% 7%,
+        95% 0%, 100% 5%, 98% 95%, 100% 100%,
+        95% 98%, 98% 100%, 2% 98%, 0% 95%,
+        2% 100%, 0% 95%, 2% 5%, 0% 2%
+    );
+    z-index: -1;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.9);
+    min-width: 300px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+    padding: 10px 0;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.dropdown-content a {
+    color: #f5f2e7;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-family: 'Lora', serif;
+    font-size: 0.9em;
+    transition: all 0.3s ease;
+    border-left: 2px solid transparent;
+}
+
+.dropdown-content a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-left: 2px solid #f5f2e7;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropdown-btn {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+/* Scrollbar styling for dropdown */
+.dropdown-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.dropdown-content::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.dropdown-content::-webkit-scrollbar-thumb {
+    background: rgba(245, 242, 231, 0.3);
+    border-radius: 4px;
+}
+
+.dropdown-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(245, 242, 231, 0.5);
+}
