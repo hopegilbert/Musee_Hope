@@ -6,255 +6,6 @@
     <title>Stuff That Might Be Genius (Eventually)</title>
     <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Inter:wght@400;500;600;700;800&family=Lora:wght@400;500;600;700&family=Schoolbell&family=Special+Elite&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <style>
-        .glitch-effect {
-            position: relative;
-            display: inline-block;
-        }
-
-        .glitch-effect::before,
-        .glitch-effect::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            clip: rect(0, 0, 0, 0);
-        }
-
-        .glitch-effect::before {
-            left: 2px;
-            text-shadow: -1px 0 #ff00c1;
-            animation: glitch-anim 2s infinite linear alternate-reverse;
-        }
-
-        .glitch-effect::after {
-            left: -2px;
-            text-shadow: 2px 0 #00fff9;
-            animation: glitch-anim 3s infinite linear alternate-reverse;
-        }
-
-        @keyframes glitch-anim {
-            0% {
-                clip: rect(44px, 9999px, 56px, 0);
-            }
-            20% {
-                clip: rect(12px, 9999px, 78px, 0);
-            }
-            40% {
-                clip: rect(89px, 9999px, 23px, 0);
-            }
-            60% {
-                clip: rect(67px, 9999px, 34px, 0);
-            }
-            80% {
-                clip: rect(90px, 9999px, 12px, 0);
-            }
-            100% {
-                clip: rect(0, 9999px, 100px, 0);
-            }
-        }
-
-        .chalk-button {
-            display: inline-block;
-            padding: 10px 20px;
-            font-family: 'Special Elite', cursive;
-            color: #f5f2e7;
-            text-decoration: none;
-            background: rgba(255, 255, 255, 0.1);
-            border: 2px solid rgba(245, 232, 199, 0.4);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-            z-index: 2;
-        }
-
-        .chalk-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                120deg,
-                transparent,
-                rgba(255, 255, 255, 0.2),
-                transparent
-            );
-            transition: all 0.6s;
-        }
-
-        .chalk-button:hover::before {
-            left: 100%;
-        }
-
-        .chalk-button:hover {
-            background: rgba(255, 255, 255, 0.2);
-            border-color: #f5f2e7;
-            transform: translateY(-2px);
-        }
-
-        .dropdown-menu {
-            position: relative;
-            display: inline-block;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background: rgba(0, 0, 0, 0.9);
-            min-width: 250px;
-            max-height: 300px;
-            overflow-y: auto;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
-            z-index: 10;
-            border: 1px solid rgba(245, 232, 199, 0.4);
-            scrollbar-width: thin;
-            scrollbar-color: rgba(245, 232, 199, 0.4) rgba(0, 0, 0, 0.2);
-        }
-
-        .dropdown-content.active,
-        .dropdown-content:hover {
-            display: block;
-        }
-
-        .dropdown-content::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        .dropdown-content::-webkit-scrollbar-track {
-            background: rgba(0, 0, 0, 0.2);
-        }
-
-        .dropdown-content::-webkit-scrollbar-thumb {
-            background-color: rgba(245, 232, 199, 0.4);
-            border-radius: 4px;
-        }
-
-        .dropdown-content a {
-            color: #f5f2e7;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            font-family: 'Special Elite', cursive;
-            transition: all 0.3s ease;
-        }
-
-        .dropdown-content a:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .dropdown-btn {
-            margin: 0;
-        }
-
-        .header-box {
-            background: rgba(0, 0, 0, 0.6);
-            padding: 30px;
-            margin: 40px auto;
-            max-width: 800px;
-            backdrop-filter: blur(2px);
-            position: relative;
-        }
-
-        .header-box::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border: 3px solid rgba(255, 255, 255, 0.9);
-            clip-path: polygon(
-                0% 5%, 3% 0%, 97% 2%, 100% 7%,  /* top */
-                95% 0%, 100% 5%, 98% 95%, 100% 100%,  /* right */
-                95% 98%, 98% 100%, 2% 98%, 0% 95%,  /* bottom */
-                2% 100%, 0% 95%, 2% 5%, 0% 2%  /* left */
-            );
-            z-index: 1;
-        }
-
-        .header-box::after {
-            content: '';
-            position: absolute;
-            top: -4px;
-            left: -4px;
-            right: -4px;
-            bottom: -4px;
-            border: 2px solid rgba(255, 255, 255, 0.4);
-            clip-path: polygon(
-                2% 3%, 5% 0%, 95% 4%, 98% 2%,  /* top */
-                98% 2%, 100% 7%, 96% 93%, 98% 98%,  /* right */
-                98% 98%, 95% 100%, 5% 96%, 2% 98%,  /* bottom */
-                2% 98%, 0% 93%, 4% 7%, 2% 2%  /* left */
-            );
-            z-index: 1;
-        }
-
-        .header-content {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-        }
-
-        /* Dropdown styles */
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .dropdown-btn {
-            background: none;
-            border: none;
-            color: #fff;
-            font-family: 'Special Elite', cursive;
-            font-size: 1.2em;
-            cursor: pointer;
-            padding: 10px;
-            transition: color 0.3s ease;
-        }
-
-        .dropdown-btn:hover {
-            color: #ffd700;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: rgba(0, 0, 0, 0.9);
-            min-width: 200px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-            z-index: 1;
-            border-radius: 5px;
-            padding: 10px 0;
-            transform: translateY(10px);
-            opacity: 0;
-            transition: opacity 0.3s ease, transform 0.3s ease;
-        }
-
-        .dropdown-content.show {
-            display: block;
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .dropdown-content a {
-            color: #fff;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            font-family: 'Special Elite', cursive;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        .dropdown-content a:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            color: #ffd700;
-        }
-    </style>
 </head>
 <body>
     <img src="images/brain.png" alt="Brain" class="poster" id="brain-poster">
@@ -266,55 +17,39 @@
     <div class="page-wrapper">
         <nav class="nav-menu">
             <a href="../index.html">HOME</a>
-            <div class="dropdown">
-                <button class="dropdown-btn" onclick="toggleDropdown(this)">Ideas</button>
-                <div class="dropdown-content">
-                    <a href="#idea1">Questionable Research</a>
-                    <a href="#idea2">Cursed Objects Museum</a>
-                    <a href="#idea3">Conspiracy Theory Generator</a>
-                </div>
-            </div>
-            <div class="dropdown">
-                <button class="dropdown-btn" onclick="toggleDropdown(this)">Process</button>
-                <div class="dropdown-content">
-                    <a href="#process1">Research Methods</a>
-                    <a href="#process2">Development</a>
-                    <a href="#process3">Testing</a>
-                </div>
-            </div>
-            <div class="dropdown">
-                <button class="dropdown-btn" onclick="toggleDropdown(this)">Experiments</button>
-                <div class="dropdown-content">
-                    <a href="#exp1">Visual Tests</a>
-                    <a href="#exp2">Interactive Prototypes</a>
-                    <a href="#exp3">Failed Attempts</a>
-                </div>
-            </div>
+            <a href="#ideas">IDEAS</a>
+            <a href="#process">PROCESS</a>
+            <a href="#experiments">EXPERIMENTS</a>
         </nav>
 
-        <div class="header-box">
-            <div class="header-content">
-                <h1>Stuff That Might Be Genius (Eventually)</h1>
-                <p class="subtitle">A collection of half-baked ideas that could either change the world or be completely ridiculous. Only time will tell.</p>
+        <header>
+            <h1>Stuff That Might Be Genius (Eventually)</h1>
+            <p class="subtitle">A collection of half-baked ideas that could either change the world or be completely ridiculous. Only time will tell.</p>
+        </header>
+
+        <section class="hero-section" id="ideas">
+            <div class="hero-content">
+                <h2>Work in Progress</h2>
+                <p>This section is currently under construction. Check back soon for potentially genius (or completely wild) ideas!</p>
             </div>
-        </div>
+        </section>
 
         <section class="process-section" id="process">
+            <h2>The Process</h2>
             <div class="process-grid">
                 <div class="process-card">
-                    <h3>Random Thoughts</h3>
+                    <h3>1. Random Thoughts</h3>
                     <p>Usually hits at 3 AM or in the shower</p>
-                    <a href="./random-thoughts.html" class="chalk-button">View Thoughts</a>
                 </div>
                 <div class="process-card">
-                    <h3><span class="glitch-effect" data-text="Questionable Research">Questionable Research</span></h3>
+                    <h3>2. Questionable Research</h3>
                     <p>Deep diving into weird corners of the internet</p>
-                    <a href="./questionable-research.html" class="chalk-button">whack shit</a>
                 </div>
             </div>
         </section>
 
         <section class="experiments-section" id="experiments">
+            <h2>Current Experiments</h2>
             <div class="experiments-grid">
                 <article class="experiment-card">
                     <h3>Psychology Research</h3>
@@ -343,29 +78,6 @@
                     </div>
                 </article>
                 <article class="experiment-card">
-                    <h3>Essays</h3>
-                    <div class="dropdown">
-                        <button class="dropdown-btn" onclick="toggleDropdown(this)">View Essays</button>
-                        <div class="dropdown-content">
-                            <a href="./essays/close-relationships.html">Close Relationships and Love Languages</a>
-                            <a href="./essays/cognitive-biologicall.html">Cognitive and Biological Learning</a>
-                            <a href="./essays/crime-and-youth.html">Crime and Youth</a>
-                            <a href="./essays/dog-prisions.html">Dog Training in Prisons</a>
-                            <a href="./essays/dopamine-reward.html">Dopamine and Reward Systems</a>
-                            <a href="./essays/drug-addiction.html">Drug Addiction and Treatment</a>
-                            <a href="./essays/eyewitness-testimony.html">Eyewitness Testimony</a>
-                            <a href="./essays/face-recognition.html">Face Recognition</a>
-                            <a href="./essays/jurors.html">Juror Competency</a>
-                            <a href="./essays/marriage.html">Marriage and Relationships</a>
-                            <a href="./essays/neural-personality.html">Neural Basis of Personality</a>
-                            <a href="./essays/stressors-mental-health.html">Stressors and Mental Health</a>
-                            <a href="./essays/theatre-of-conciousness.html">Theatre of Consciousness</a>
-                            <a href="./essays/vegatative-state.html">Vegetative State</a>
-                            <a href="./essays/visual-attention-and-working-memory.html">Visual Attention and Memory</a>
-                        </div>
-                    </div>
-                </article>
-                <article class="experiment-card">
                     <h3>Dissertation</h3>
                     <p>Does Cognitive Estimation Precede Visual Experience in the Perception of Object Shape and Material, or Do They Occur Independently and Concurrently?</p>
                     <a href="./dissertation/dissertation.html" class="chalk-button">Read More</a>
@@ -378,31 +90,5 @@
         </footer>
     </div>
     <script src="scripts.js"></script>
-    <script>
-        function toggleDropdown(button) {
-            // Close all other dropdowns
-            const dropdowns = document.querySelectorAll('.dropdown-content');
-            dropdowns.forEach(dropdown => {
-                if (dropdown !== button.nextElementSibling) {
-                    dropdown.classList.remove('show');
-                }
-            });
-
-            // Toggle the clicked dropdown
-            const content = button.nextElementSibling;
-            content.classList.toggle('show');
-
-            // Close dropdown when clicking outside
-            window.onclick = function(event) {
-                if (!event.target.matches('.dropdown-btn')) {
-                    dropdowns.forEach(dropdown => {
-                        if (dropdown.classList.contains('show')) {
-                            dropdown.classList.remove('show');
-                        }
-                    });
-                }
-            }
-        }
-    </script>
 </body>
 </html>
