@@ -787,20 +787,42 @@
     <script src="scripts.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Add click listeners to all topic dropdowns
             const dropdowns = document.querySelectorAll('.topic-dropdown');
             dropdowns.forEach(dropdown => {
-                dropdown.addEventListener('click', function(event) {
-                    const content = this.querySelector('.topic-content');
-                    const icon = this.querySelector('.dropdown-icon');
+                const header = dropdown.querySelector('.topic-header');
+                header.addEventListener('click', function(event) {
+                    const content = dropdown.querySelector('.topic-content');
+                    const icon = dropdown.querySelector('.dropdown-icon');
+                    
+                    // Close all other dropdowns
+                    dropdowns.forEach(otherDropdown => {
+                        if (otherDropdown !== dropdown) {
+                            const otherContent = otherDropdown.querySelector('.topic-content');
+                            const otherIcon = otherDropdown.querySelector('.dropdown-icon');
+                            otherContent.classList.remove('active');
+                            otherIcon.classList.remove('active');
+                        }
+                    });
                     
                     content.classList.toggle('active');
                     icon.classList.toggle('active');
                     
-                    // Prevent click from propagating to parent elements
                     event.stopPropagation();
                 });
             });
+        });
+
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.topic-dropdown')) {
+                const dropdowns = document.querySelectorAll('.topic-dropdown');
+                dropdowns.forEach(dropdown => {
+                    const content = dropdown.querySelector('.topic-content');
+                    const icon = dropdown.querySelector('.dropdown-icon');
+                    content.classList.remove('active');
+                    icon.classList.remove('active');
+                });
+            }
         });
 
         function openModal(thumbnail) {
@@ -829,14 +851,6 @@
                 modal.style.display = "none";
             }, 300);
         }
-
-        // Close modal when clicking outside the image
-        document.addEventListener('click', function(event) {
-            const modal = document.getElementById('imageModal');
-            if (event.target == modal) {
-                closeModal();
-            }
-        });
 
         // Close modal with Escape key
         document.addEventListener('keydown', function(event) {
