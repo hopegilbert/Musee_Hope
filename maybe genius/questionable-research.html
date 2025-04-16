@@ -353,12 +353,12 @@
             overflow: auto;
             opacity: 0;
             transition: opacity 0.3s ease;
-            display: flex;
-            justify-content: center;
-            align-items: center;
         }
 
         .modal.show {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             opacity: 1;
         }
 
@@ -765,6 +765,9 @@
             
             modalImg.src = imgElement.src;
             modal.style.display = "flex";
+            modal.style.justifyContent = "center";
+            modal.style.alignItems = "center";
+            
             setTimeout(() => {
                 modal.classList.add('show');
             }, 10);
