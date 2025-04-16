@@ -76,7 +76,7 @@
         }
 
         .research-content h2::before {
-            content: '📎';
+            content: '🔍';
             position: absolute;
             left: -30px;
             top: 0;
@@ -315,49 +315,26 @@
         .image-thumbnail {
             position: relative;
             overflow: visible;
+            cursor: pointer;
+            transition: all 0.3s ease;
             z-index: 1;
-            width: 100%;
-            height: 200px;
+        }
+
+        .image-thumbnail:hover {
+            z-index: 1000;
         }
 
         .image-thumbnail img {
             width: 100%;
-            height: 100%;
+            height: 200px;
             object-fit: cover;
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
+            border-radius: 4px;
         }
 
         .image-thumbnail:hover img {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(1.5);
-            max-width: 400px;
-            max-height: 400px;
-            width: auto;
-            height: auto;
-            object-fit: contain;
-            z-index: 1000;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-        }
-
-        .image-thumbnail::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.8);
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-            z-index: 999;
-        }
-
-        .image-thumbnail:hover::after {
-            opacity: 1;
-            pointer-events: auto;
+            transform: scale(1.5);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
         .image-title {
@@ -365,19 +342,19 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.8);
             color: #f5f2e7;
             padding: 8px;
             font-family: 'Special Elite', cursive;
             font-size: 0.9em;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
+            opacity: 0;
+            transition: opacity 0.3s ease;
             text-align: center;
-            z-index: 2;
+            pointer-events: none;
         }
 
         .image-thumbnail:hover .image-title {
-            transform: translateY(0);
+            opacity: 1;
         }
 
         .modal {
