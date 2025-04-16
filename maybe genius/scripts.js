@@ -1,38 +1,48 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const dropdownBtn = document.getElementById('researchDropdown');
-    const dropdownContent = document.getElementById('researchDropdownContent');
-
-    if (!dropdownBtn || !dropdownContent) return;
-
-    // Toggle dropdown on button click
-    dropdownBtn.addEventListener('click', function (e) {
-        e.stopPropagation();
-        dropdownContent.style.display =
-            dropdownContent.style.display === 'block' ? 'none' : 'block';
-    });
-
-    // Handle dropdown item clicks
-    const dropdownItems = dropdownContent.querySelectorAll('a');
-    dropdownItems.forEach(item => {
-        item.addEventListener('click', function (e) {
-            const href = this.getAttribute('href');
-            if (href.startsWith('#')) {
-                // For hash links, prevent default and update button text
-                e.preventDefault();
-                dropdownBtn.textContent = this.textContent + ' ▾';
-                dropdownContent.style.display = 'none';
-            } else {
-                // For regular links, just close the dropdown
-                dropdownContent.style.display = 'none';
-            }
-        });
-    });
-
-    // Close dropdown when clicking outside
-    document.addEventListener('click', function (e) {
-        if (!dropdownBtn.contains(e.target) && !dropdownContent.contains(e.target)) {
-            dropdownContent.style.display = 'none';
+// Dropdown menu functionality
+function toggleDropdown(button) {
+    const dropdown = button.nextElementSibling;
+    const allDropdowns = document.querySelectorAll('.dropdown-content');
+    
+    // Close all other dropdowns
+    allDropdowns.forEach(d => {
+        if (d !== dropdown && d.classList.contains('active')) {
+            d.classList.remove('active');
         }
     });
+    
+    // Toggle current dropdown
+    dropdown.classList.toggle('active');
+}
+
+// Close dropdown when clicking outside
+window.onclick = function(event) {
+    if (!event.target.matches('.dropdown-btn')) {
+        const dropdowns = document.querySelectorAll('.dropdown-content');
+        dropdowns.forEach(dropdown => {
+            if (dropdown.classList.contains('active')) {
+                dropdown.classList.remove('active');
+            }
+        });
+    }
+}
+
+// Topic dropdown functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // Add click listeners to all topic dropdowns
+    const dropdowns = document.querySelectorAll('.topic-dropdown');
+    dropdowns.forEach(dropdown => {
+        dropdown.addEventListener('click', function(event) {
+            const content = this.querySelector('.topic-content');
+            const icon = this.querySelector('.dropdown-icon');
+            
+            content.classList.toggle('active');
+            icon.classList.toggle('active');
+            
+            // Prevent click from propagating to parent elements
+            event.stopPropagation();
+        });
+    });
 });
+ 
+ 
  
