@@ -266,6 +266,75 @@
             height: auto;
             margin-bottom: 10px;
         }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .image-thumbnail {
+            cursor: pointer;
+            overflow: hidden;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .image-thumbnail:hover {
+            transform: scale(1.05);
+        }
+
+        .image-thumbnail img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            padding-top: 50px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 80vh;
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f5f2e7;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: #bbb;
+        }
+
+        #caption {
+            margin: auto;
+            display: block;
+            width: 80%;
+            text-align: center;
+            color: #f5f2e7;
+            padding: 10px 0;
+            font-family: 'Lora', serif;
+        }
     </style>
 </head>
 <body>
@@ -368,7 +437,97 @@
                             <span class="dropdown-icon">▼</span>
                         </div>
                         <div class="topic-content">
-                            <img src="images/wikipedia-excerpt.png" alt="Bizarre Wikipedia excerpt" class="screenshot-image">
+                            <div class="image-grid">
+                                <div class="image-thumbnail" onclick="openModal('images/wikipedia/wikipedia1.jpg')">
+                                    <img src="images/wikipedia/wikipedia1.jpg" alt="Wikipedia excerpt 1">
+                                </div>
+                                <div class="image-thumbnail" onclick="openModal('images/wikipedia/wikipedia2.jpg')">
+                                    <img src="images/wikipedia/wikipedia2.jpg" alt="Wikipedia excerpt 2">
+                                </div>
+                                <div class="image-thumbnail" onclick="openModal('images/wikipedia/wikipedia3.jpg')">
+                                    <img src="images/wikipedia/wikipedia3.jpg" alt="Wikipedia excerpt 3">
+                                </div>
+                                <div class="image-thumbnail" onclick="openModal('images/wikipedia/wikipedia4.jpg')">
+                                    <img src="images/wikipedia/wikipedia4.jpg" alt="Wikipedia excerpt 4">
+                                </div>
+                                <div class="image-thumbnail" onclick="openModal('images/wikipedia/wikipedia5.jpg')">
+                                    <img src="images/wikipedia/wikipedia5.jpg" alt="Wikipedia excerpt 5">
+                                </div>
+                                <div class="image-thumbnail" onclick="openModal('images/wikipedia/wikipedia6.jpg')">
+                                    <img src="images/wikipedia/wikipedia6.jpg" alt="Wikipedia excerpt 6">
+                                </div>
+                                <div class="image-thumbnail" onclick="openModal('images/wikipedia/wikipedia7.jpg')">
+                                    <img src="images/wikipedia/wikipedia7.jpg" alt="Wikipedia excerpt 7">
+                                </div>
+                                <div class="image-thumbnail" onclick="openModal('images/wikipedia/wikipedia8.jpg')">
+                                    <img src="images/wikipedia/wikipedia8.jpg" alt="Wikipedia excerpt 8">
+                                </div>
+                                <div class="image-thumbnail" onclick="openModal('images/wikipedia/wikipedia9.jpg')">
+                                    <img src="images/wikipedia/wikipedia9.jpg" alt="Wikipedia excerpt 9">
+                                </div>
+                                <div class="image-thumbnail" onclick="openModal('images/wikipedia/wikipedia10.jpg')">
+                                    <img src="images/wikipedia/wikipedia10.jpg" alt="Wikipedia excerpt 10">
+                                </div>
+                                <div class="image-thumbnail" onclick="openModal('images/wikipedia/wikipedia11.jpg')">
+                                    <img src="images/wikipedia/wikipedia11.jpg" alt="Wikipedia excerpt 11">
+                                </div>
+                                <div class="image-thumbnail" onclick="openModal('images/wikipedia/wikipedia12.jpg')">
+                                    <img src="images/wikipedia/wikipedia12.jpg" alt="Wikipedia excerpt 12">
+                                </div>
+                                <div class="image-thumbnail" onclick="openModal('images/wikipedia/wikipedia13.jpg')">
+                                    <img src="images/wikipedia/wikipedia13.jpg" alt="Wikipedia excerpt 13">
+                                </div>
+                                <div class="image-thumbnail" onclick="openModal('images/wikipedia/wikipedia14.jpg')">
+                                    <img src="images/wikipedia/wikipedia14.jpg" alt="Wikipedia excerpt 14">
+                                </div>
+                                <div class="image-thumbnail" onclick="openModal('images/wikipedia/wikipedia15.jpg')">
+                                    <img src="images/wikipedia/wikipedia15.jpg" alt="Wikipedia excerpt 15">
+                                </div>
+                                <div class="image-thumbnail" onclick="openModal('images/wikipedia/wikipedia16.jpg')">
+                                    <img src="images/wikipedia/wikipedia16.jpg" alt="Wikipedia excerpt 16">
+                                </div>
+                                <div class="image-thumbnail" onclick="openModal('images/wikipedia/wikipedia17.jpg')">
+                                    <img src="images/wikipedia/wikipedia17.jpg" alt="Wikipedia excerpt 17">
+                                </div>
+                                <div class="image-thumbnail" onclick="openModal('images/wikipedia/wikipedia18.jpg')">
+                                    <img src="images/wikipedia/wikipedia18.jpg" alt="Wikipedia excerpt 18">
+                                </div>
+                                <div class="image-thumbnail" onclick="openModal('images/wikipedia/wikipedia19.jpg')">
+                                    <img src="images/wikipedia/wikipedia19.jpg" alt="Wikipedia excerpt 19">
+                                </div>
+                                <div class="image-thumbnail" onclick="openModal('images/wikipedia/wikipedia20.jpg')">
+                                    <img src="images/wikipedia/wikipedia20.jpg" alt="Wikipedia excerpt 20">
+                                </div>
+                                <div class="image-thumbnail" onclick="openModal('images/wikipedia/wikipedia21.jpg')">
+                                    <img src="images/wikipedia/wikipedia21.jpg" alt="Wikipedia excerpt 21">
+                                </div>
+                                <div class="image-thumbnail" onclick="openModal('images/wikipedia/wikipedia22.jpg')">
+                                    <img src="images/wikipedia/wikipedia22.jpg" alt="Wikipedia excerpt 22">
+                                </div>
+                                <div class="image-thumbnail" onclick="openModal('images/wikipedia/wikipedia23.jpg')">
+                                    <img src="images/wikipedia/wikipedia23.jpg" alt="Wikipedia excerpt 23">
+                                </div>
+                                <div class="image-thumbnail" onclick="openModal('images/wikipedia/wikipedia24.jpg')">
+                                    <img src="images/wikipedia/wikipedia24.jpg" alt="Wikipedia excerpt 24">
+                                </div>
+                                <div class="image-thumbnail" onclick="openModal('images/wikipedia/wikipedia25.jpg')">
+                                    <img src="images/wikipedia/wikipedia25.jpg" alt="Wikipedia excerpt 25">
+                                </div>
+                                <div class="image-thumbnail" onclick="openModal('images/wikipedia/wikipedia26.jpg')">
+                                    <img src="images/wikipedia/wikipedia26.jpg" alt="Wikipedia excerpt 26">
+                                </div>
+                                <div class="image-thumbnail" onclick="openModal('images/wikipedia/wikipedia27.jpg')">
+                                    <img src="images/wikipedia/wikipedia27.jpg" alt="Wikipedia excerpt 27">
+                                </div>
+                                <div class="image-thumbnail" onclick="openModal('images/wikipedia/wikipedia28.jpg')">
+                                    <img src="images/wikipedia/wikipedia28.jpg" alt="Wikipedia excerpt 28">
+                                </div>
+                            </div>
+                            <div id="imageModal" class="modal">
+                                <span class="close" onclick="closeModal()">&times;</span>
+                                <img class="modal-content" id="modalImage">
+                                <div id="caption"></div>
+                            </div>
                             <p class="topic-summary">The internet's most reliable source of "wait, what?" moments.</p>
                         </div>
                     </div>
@@ -491,6 +650,25 @@
             
             content.classList.toggle('active');
             icon.classList.toggle('active');
+        }
+
+        function openModal(imgSrc) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modal.style.display = "block";
+            modalImg.src = imgSrc;
+        }
+
+        function closeModal() {
+            document.getElementById('imageModal').style.display = "none";
+        }
+
+        // Close modal when clicking outside the image
+        window.onclick = function(event) {
+            const modal = document.getElementById('imageModal');
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
         }
     </script>
 </body>
