@@ -106,9 +106,26 @@
             position: absolute;
             background: rgba(0, 0, 0, 0.9);
             min-width: 250px;
+            max-height: 400px;
+            overflow-y: auto;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
             z-index: 1;
             border: 1px solid rgba(245, 232, 199, 0.4);
+            scrollbar-width: thin;
+            scrollbar-color: rgba(245, 232, 199, 0.4) rgba(0, 0, 0, 0.2);
+        }
+
+        .dropdown-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .dropdown-content::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .dropdown-content::-webkit-scrollbar-thumb {
+            background-color: rgba(245, 232, 199, 0.4);
+            border-radius: 4px;
         }
 
         .dropdown-content a {
@@ -125,6 +142,10 @@
         }
 
         .dropdown-menu:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content:hover {
             display: block;
         }
 
@@ -164,9 +185,8 @@
             <h2>The Process</h2>
             <div class="process-grid">
                 <div class="process-card">
-                    <h3>1. Random Thoughts</h3>
+                    <h3><a href="random-thoughts.html" class="chalk-button">1. Random Thoughts</a></h3>
                     <p>Usually hits at 3 AM or in the shower</p>
-                    <a href="random-thoughts.html" class="chalk-button">View Thoughts</a>
                 </div>
                 <div class="process-card">
                     <h3><span class="glitch-effect" data-text="Questionable Research">Questionable Research</span></h3>
@@ -194,6 +214,11 @@
                             <a href="essays/mental-imagery.html">Mental Imagery and Cognitive Processing</a>
                         </div>
                     </div>
+                </article>
+                <article class="experiment-card">
+                    <h3>Dissertation</h3>
+                    <p>Does Cognitive Estimation Precede Visual Experience in the Perception of Object Shape and Material, or Do They Occur Independently and Concurrently?</p>
+                    <a href="essays/dissertation.html" class="chalk-button">Read More</a>
                 </article>
                 <article class="experiment-card">
                     <h3>Coming Soon</h3>
