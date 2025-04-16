@@ -250,6 +250,56 @@
             background-color: rgba(255, 255, 255, 0.1);
             color: #ffd700;
         }
+
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .nav-menu a,
+        .nav-menu .dropdown-btn {
+            color: #f5f2e7;
+            text-decoration: none;
+            font-family: 'Special Elite', cursive;
+            font-size: 1.2em;
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu .dropdown-btn:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-menu a::after,
+        .nav-menu .dropdown-btn::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #f5f2e7;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-menu a:hover::after,
+        .nav-menu .dropdown-btn:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .dropdown-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
