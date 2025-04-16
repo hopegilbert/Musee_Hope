@@ -172,6 +172,33 @@
             color: rgba(245, 232, 199, 0.8);
             text-decoration: underline;
         }
+
+        .citation {
+            margin: 10px 0;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 2px solid rgba(245, 232, 199, 0.4);
+        }
+
+        .citation-title {
+            font-family: 'Special Elite', cursive;
+            color: #f5f2e7;
+            margin-bottom: 5px;
+        }
+
+        .citation-summary {
+            font-family: 'Lora', serif;
+            color: rgba(245, 232, 199, 0.8);
+            font-style: italic;
+            margin-bottom: 5px;
+            line-height: 1.4;
+        }
+
+        .citation-category {
+            font-family: 'Special Elite', cursive;
+            color: rgba(245, 232, 199, 0.6);
+            font-size: 0.9em;
+        }
     </style>
 </head>
 <body>
@@ -234,8 +261,20 @@
                     <p>A collection of questionable citations, including:</p>
                     <ul>
                         <li>References that lead to 404 pages</li>
-                        <li>Citations from "an 80s home improvement forum"</li>
-                        <li>Sources cited as "Trust me bro"</li>
+                        <li>
+                            <div class="citation">
+                                <div class="citation-title">Citations from "an 80s home improvement forum"</div>
+                                <div class="citation-summary">You'd be surprised how often this comes up. A guy named Steve with 17 posts and an ASCII American flag signature once said "ghosts hate copper wiring," and that's now gospel in certain circles.</div>
+                                <div class="citation-category">Filed under: DIY metaphysics</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="citation">
+                                <div class="citation-title">Sources cited as "Trust me bro"</div>
+                                <div class="citation-summary">The academic equivalent of a guy in sunglasses whispering conspiracy facts at a dive bar. "I read it somewhere" and "My uncle works for NASA" are the gold standard here.</div>
+                                <div class="citation-category">Filed under: Peer-unreviewed</div>
+                            </div>
+                        </li>
                         <li><a href="https://www.angelfire.com/planet/forbidden_knowledge/144index.html" target="_blank" class="footnote-link">Full Article Here</a></li>
                         <li><a href="https://www.vanityfair.com/culture/2015/10/ermahgerd-girl-true-story" target="_blank" class="footnote-link">As seen on Tumblr in 2012</a></li>
                         <li><a href="https://thisobscuredesireforbeauty.tumblr.com/post/172181413212/jacek-szust-poland-2012-jacek-szust-via" target="_blank" class="footnote-link">The Polish Man</a></li>
