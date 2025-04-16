@@ -112,8 +112,7 @@
             scrollbar-color: rgba(245, 232, 199, 0.4) rgba(0, 0, 0, 0.2);
         }
 
-        .dropdown-content.active,
-        .dropdown-content:hover {
+        .dropdown-content.show {
             display: block;
         }
 
@@ -407,22 +406,22 @@
             const dropdowns = document.querySelectorAll('.dropdown-content');
             dropdowns.forEach(dropdown => {
                 if (dropdown !== button.nextElementSibling) {
-                    dropdown.classList.remove('active');
+                    dropdown.classList.remove('show');
                 }
             });
 
             // Toggle the clicked dropdown
             const content = button.nextElementSibling;
-            content.classList.toggle('active');
+            content.classList.toggle('show');
 
             // Close dropdown when clicking outside
-            window.onclick = function(event) {
-                if (!event.target.matches('.chalk-button')) {
+            document.addEventListener('click', function(event) {
+                if (!event.target.matches('.chalk-button') && !event.target.matches('.dropdown-content a')) {
                     dropdowns.forEach(dropdown => {
-                        dropdown.classList.remove('active');
+                        dropdown.classList.remove('show');
                     });
                 }
-            }
+            });
         }
     </script>
 </body>
