@@ -316,12 +316,13 @@
             overflow: hidden;
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
             position: relative;
         }
 
         .image-thumbnail:hover {
-            transform: scale(1.05);
+            transform: scale(1.1);
+            z-index: 2;
         }
 
         .image-thumbnail img {
@@ -329,6 +330,11 @@
             height: 200px;
             object-fit: cover;
             display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .image-thumbnail:hover img {
+            transform: scale(1.05);
         }
 
         .image-title {
@@ -544,123 +550,118 @@
                         </div>
                         <div class="topic-content">
                             <div class="image-grid">
-                                <div class="image-thumbnail" onclick="openModal(this)">
+                                <div class="image-thumbnail">
                                     <img src="images/wikipedia/wikipedia1.jpg" alt="Wikipedia excerpt 1">
                                     <div class="image-title">Umarell</div>
                                 </div>
-                                <div class="image-thumbnail" onclick="openModal(this)">
+                                <div class="image-thumbnail">
                                     <img src="images/wikipedia/wikipedia2.jpg" alt="Wikipedia excerpt 2">
                                     <div class="image-title">Paint Drying</div>
                                 </div>
-                                <div class="image-thumbnail" onclick="openModal(this)">
+                                <div class="image-thumbnail">
                                     <img src="images/wikipedia/wikipedia3.jpg" alt="Wikipedia excerpt 3">
                                     <div class="image-title">Revenge bedtime procrastination</div>
                                 </div>
-                                <div class="image-thumbnail" onclick="openModal(this)">
+                                <div class="image-thumbnail">
                                     <img src="images/wikipedia/wikipedia4.jpg" alt="Wikipedia excerpt 4">
                                     <div class="image-title">He never married</div>
                                 </div>
-                                <div class="image-thumbnail" onclick="openModal(this)">
+                                <div class="image-thumbnail">
                                     <img src="images/wikipedia/wikipedia5.jpg" alt="Wikipedia excerpt 5">
                                     <div class="image-title">Tsundoku</div>
                                 </div>
-                                <div class="image-thumbnail" onclick="openModal(this)">
+                                <div class="image-thumbnail">
                                     <img src="images/wikipedia/wikipedia6.jpg" alt="Wikipedia excerpt 6">
                                     <div class="image-title">Student Syndrome</div>
                                 </div>
-                                <div class="image-thumbnail" onclick="openModal(this)">
+                                <div class="image-thumbnail">
                                     <img src="images/wikipedia/wikipedia7.jpg" alt="Wikipedia excerpt 7">
                                     <div class="image-title">Josh fight</div>
                                 </div>
-                                <div class="image-thumbnail" onclick="openModal(this)">
+                                <div class="image-thumbnail">
                                     <img src="images/wikipedia/wikipedia8.jpg" alt="Wikipedia excerpt 8">
                                     <div class="image-title">Highway hypnosis</div>
                                 </div>
-                                <div class="image-thumbnail" onclick="openModal(this)">
+                                <div class="image-thumbnail">
                                     <img src="images/wikipedia/wikipedia9.jpg" alt="Wikipedia excerpt 9">
                                     <div class="image-title">Spaghetti-tree hoax</div>
                                 </div>
-                                <div class="image-thumbnail" onclick="openModal(this)">
+                                <div class="image-thumbnail">
                                     <img src="images/wikipedia/wikipedia10.jpg" alt="Wikipedia excerpt 10">
                                     <div class="image-title">Buffalo buffalo buffalo buffalo buffalo buffalo buffalo buffalo</div>
                                 </div>
-                                <div class="image-thumbnail" onclick="openModal(this)">
+                                <div class="image-thumbnail">
                                     <img src="images/wikipedia/wikipedia11.jpg" alt="Wikipedia excerpt 11">
                                     <div class="image-title">Law of holes</div>
                                 </div>
-                                <div class="image-thumbnail" onclick="openModal(this)">
+                                <div class="image-thumbnail">
                                     <img src="images/wikipedia/wikipedia12.jpg" alt="Wikipedia excerpt 12">
                                     <div class="image-title">Scientific wild-ass guess</div>
                                 </div>
-                                <div class="image-thumbnail" onclick="openModal(this)">
+                                <div class="image-thumbnail">
                                     <img src="images/wikipedia/wikipedia13.jpg" alt="Wikipedia excerpt 13">
                                     <div class="image-title">Boston marriage</div>
                                 </div>
-                                <div class="image-thumbnail" onclick="openModal(this)">
+                                <div class="image-thumbnail">
                                     <img src="images/wikipedia/wikipedia14.jpg" alt="Wikipedia excerpt 14">
                                     <div class="image-title">Crab mentality</div>
                                 </div>
-                                <div class="image-thumbnail" onclick="openModal(this)">
+                                <div class="image-thumbnail">
                                     <img src="images/wikipedia/wikipedia15.jpg" alt="Wikipedia excerpt 15">
                                     <div class="image-title">Dilbert principle</div>
                                 </div>
-                                <div class="image-thumbnail" onclick="openModal(this)">
+                                <div class="image-thumbnail">
                                     <img src="images/wikipedia/wikipedia16.jpg" alt="Wikipedia excerpt 16">
                                     <div class="image-title">Dunning-Kruger effect</div>
                                 </div>
-                                <div class="image-thumbnail" onclick="openModal(this)">
+                                <div class="image-thumbnail">
                                     <img src="images/wikipedia/wikipedia17.jpg" alt="Wikipedia excerpt 17">
                                     <div class="image-title">Cat Nuns (France, 1844)</div>
                                 </div>
-                                <div class="image-thumbnail" onclick="openModal(this)">
+                                <div class="image-thumbnail">
                                     <img src="images/wikipedia/wikipedia18.jpg" alt="Wikipedia excerpt 18">
                                     <div class="image-title">Frequency Illusion</div>
                                 </div>
-                                <div class="image-thumbnail" onclick="openModal(this)">
+                                <div class="image-thumbnail">
                                     <img src="images/wikipedia/wikipedia19.jpg" alt="Wikipedia excerpt 19">
                                     <div class="image-title">Microsoft v. MikeRoweSoft</div>
                                 </div>
-                                <div class="image-thumbnail" onclick="openModal(this)">
+                                <div class="image-thumbnail">
                                     <img src="images/wikipedia/wikipedia20.jpg" alt="Wikipedia excerpt 20">
                                     <div class="image-title">The Truman Show delusion</div>
                                 </div>
-                                <div class="image-thumbnail" onclick="openModal(this)">
+                                <div class="image-thumbnail">
                                     <img src="images/wikipedia/wikipedia21.jpg" alt="Wikipedia excerpt 21">
                                     <div class="image-title">Ironic last words</div>
                                 </div>
-                                <div class="image-thumbnail" onclick="openModal(this)">
+                                <div class="image-thumbnail">
                                     <img src="images/wikipedia/wikipedia22.jpg" alt="Wikipedia excerpt 22">
                                     <div class="image-title">Popemobile</div>
                                 </div>
-                                <div class="image-thumbnail" onclick="openModal(this)">
+                                <div class="image-thumbnail">
                                     <img src="images/wikipedia/wikipedia23.jpg" alt="Wikipedia excerpt 23">
                                     <div class="image-title">Chunibyo</div>
                                 </div>
-                                <div class="image-thumbnail" onclick="openModal(this)">
+                                <div class="image-thumbnail">
                                     <img src="images/wikipedia/wikipedia24.jpg" alt="Wikipedia excerpt 24">
                                     <div class="image-title">Truffle dog/hog</div>
                                 </div>
-                                <div class="image-thumbnail" onclick="openModal(this)">
+                                <div class="image-thumbnail">
                                     <img src="images/wikipedia/wikipedia25.jpg" alt="Wikipedia excerpt 25">
                                     <div class="image-title">Closing time effect</div>
                                 </div>
-                                <div class="image-thumbnail" onclick="openModal(this)">
+                                <div class="image-thumbnail">
                                     <img src="images/wikipedia/wikipedia26.jpg" alt="Wikipedia excerpt 26">
                                     <div class="image-title">Sweater curse</div>
                                 </div>
-                                <div class="image-thumbnail" onclick="openModal(this)">
+                                <div class="image-thumbnail">
                                     <img src="images/wikipedia/wikipedia27.jpg" alt="Wikipedia excerpt 27">
                                     <div class="image-title">Sexy prime</div>
                                 </div>
-                                <div class="image-thumbnail" onclick="openModal(this)">
+                                <div class="image-thumbnail">
                                     <img src="images/wikipedia/wikipedia28.jpg" alt="Wikipedia excerpt 28">
                                     <div class="image-title">How I Killed Pluto and Why It had It Coming</div>
                                 </div>
-                            </div>
-                            <div id="imageModal" class="modal">
-                                <span class="close" onclick="closeModal()">&times;</span>
-                                <img class="modal-content" id="modalImage">
-                                <div id="caption"></div>
                             </div>
                             <p class="topic-summary">The internet's most reliable source of "wait, what?" moments.</p>
                         </div>
@@ -717,59 +718,54 @@
                         </div>
                         <div class="topic-content">
                             <div class="image-grid">
-                                <div class="image-thumbnail" onclick="openModal(this)">
+                                <div class="image-thumbnail">
                                     <img src="images/facebook/facebook1.JPG" alt="Facebook listing 1">
                                     <div class="image-title">Listing 1</div>
                                 </div>
-                                <div class="image-thumbnail" onclick="openModal(this)">
+                                <div class="image-thumbnail">
                                     <img src="images/facebook/facebook2.JPG" alt="Facebook listing 2">
                                     <div class="image-title">Listing 2</div>
                                 </div>
-                                <div class="image-thumbnail" onclick="openModal(this)">
+                                <div class="image-thumbnail">
                                     <img src="images/facebook/facebook3.JPG" alt="Facebook listing 3">
                                     <div class="image-title">Listing 3</div>
                                 </div>
-                                <div class="image-thumbnail" onclick="openModal(this)">
+                                <div class="image-thumbnail">
                                     <img src="images/facebook/facebook4.JPG" alt="Facebook listing 4">
                                     <div class="image-title">Listing 4</div>
                                 </div>
-                                <div class="image-thumbnail" onclick="openModal(this)">
+                                <div class="image-thumbnail">
                                     <img src="images/facebook/facebook5.JPG" alt="Facebook listing 5">
                                     <div class="image-title">Listing 5</div>
                                 </div>
-                                <div class="image-thumbnail" onclick="openModal(this)">
+                                <div class="image-thumbnail">
                                     <img src="images/facebook/facebook6.JPG" alt="Facebook listing 6">
                                     <div class="image-title">Listing 6</div>
                                 </div>
-                                <div class="image-thumbnail" onclick="openModal(this)">
+                                <div class="image-thumbnail">
                                     <img src="images/facebook/facebook7.JPG" alt="Facebook listing 7">
                                     <div class="image-title">Listing 7</div>
                                 </div>
-                                <div class="image-thumbnail" onclick="openModal(this)">
+                                <div class="image-thumbnail">
                                     <img src="images/facebook/facebook8.JPG" alt="Facebook listing 8">
                                     <div class="image-title">Listing 8</div>
                                 </div>
-                                <div class="image-thumbnail" onclick="openModal(this)">
+                                <div class="image-thumbnail">
                                     <img src="images/facebook/facebook9.JPG" alt="Facebook listing 9">
                                     <div class="image-title">Listing 9</div>
                                 </div>
-                                <div class="image-thumbnail" onclick="openModal(this)">
+                                <div class="image-thumbnail">
                                     <img src="images/facebook/facebook10.JPG" alt="Facebook listing 10">
                                     <div class="image-title">Listing 10</div>
                                 </div>
-                                <div class="image-thumbnail" onclick="openModal(this)">
+                                <div class="image-thumbnail">
                                     <img src="images/facebook/facebook11.JPG" alt="Facebook listing 11">
                                     <div class="image-title">Listing 11</div>
                                 </div>
-                                <div class="image-thumbnail" onclick="openModal(this)">
+                                <div class="image-thumbnail">
                                     <img src="images/facebook/facebook12.JPG" alt="Facebook listing 12">
                                     <div class="image-title">Listing 12</div>
                                 </div>
-                            </div>
-                            <div id="imageModal" class="modal">
-                                <span class="close" onclick="closeModal()">&times;</span>
-                                <img class="modal-content" id="modalImage">
-                                <div id="caption"></div>
                             </div>
                             <p class="topic-summary">The digital equivalent of a yard sale from another dimension.</p>
                         </div>
@@ -896,40 +892,6 @@
                     content.classList.remove('active');
                     icon.classList.remove('active');
                 });
-            }
-        });
-
-        function openModal(thumbnail) {
-            const imgElement = thumbnail.querySelector('img');
-            const modal = document.getElementById('imageModal');
-            const modalImg = document.getElementById('modalImage');
-            const caption = document.getElementById('caption');
-            
-            modalImg.src = imgElement.src;
-            modal.style.display = "flex";
-            modal.style.justifyContent = "center";
-            modal.style.alignItems = "center";
-            
-            setTimeout(() => {
-                modal.classList.add('show');
-            }, 10);
-            
-            const imageTitle = thumbnail.querySelector('.image-title').textContent;
-            caption.textContent = imageTitle;
-        }
-
-        function closeModal() {
-            const modal = document.getElementById('imageModal');
-            modal.classList.remove('show');
-            setTimeout(() => {
-                modal.style.display = "none";
-            }, 300);
-        }
-
-        // Close modal with Escape key
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                closeModal();
             }
         });
     </script>
