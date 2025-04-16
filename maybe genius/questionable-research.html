@@ -335,13 +335,18 @@
             display: none;
             position: fixed;
             z-index: 1000;
-            padding-top: 50px;
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
             background-color: rgba(0, 0, 0, 0.9);
             overflow: auto;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.show {
+            opacity: 1;
         }
 
         .modal-content {
@@ -353,6 +358,7 @@
             position: relative;
             top: 50%;
             transform: translateY(-50%);
+            transition: transform 0.3s ease;
         }
 
         .close {
@@ -364,6 +370,7 @@
             font-weight: bold;
             cursor: pointer;
             z-index: 1001;
+            transition: color 0.3s ease;
         }
 
         .close:hover {
@@ -378,6 +385,12 @@
             color: #f5f2e7;
             padding: 10px 0;
             font-family: 'Lora', serif;
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 5px;
         }
     </style>
 </head>
@@ -727,21 +740,44 @@
         function openModal(imgSrc) {
             const modal = document.getElementById('imageModal');
             const modalImg = document.getElementById('modalImage');
-            modal.style.display = "block";
+            const caption = document.getElementById('caption');
+            
+            // Set the image source
             modalImg.src = imgSrc;
+            
+            // Show the modal with a slight delay to allow for transition
+            modal.style.display = "block";
+            setTimeout(() => {
+                modal.classList.add('show');
+            }, 10);
+            
+            // Set the caption to the image title
+            const imageTitle = event.target.closest('.image-thumbnail').querySelector('.image-title').textContent;
+            caption.textContent = imageTitle;
         }
 
         function closeModal() {
-            document.getElementById('imageModal').style.display = "none";
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('show');
+            setTimeout(() => {
+                modal.style.display = "none";
+            }, 300);
         }
 
         // Close modal when clicking outside the image
         window.onclick = function(event) {
             const modal = document.getElementById('imageModal');
             if (event.target == modal) {
-                modal.style.display = "none";
+                closeModal();
             }
         }
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
     </script>
 </body>
 </html> 
