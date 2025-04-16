@@ -199,6 +199,61 @@
             z-index: 2;
             text-align: center;
         }
+
+        /* Dropdown styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-btn {
+            background: none;
+            border: none;
+            color: #fff;
+            font-family: 'Special Elite', cursive;
+            font-size: 1.2em;
+            cursor: pointer;
+            padding: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .dropdown-btn:hover {
+            color: #ffd700;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.9);
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 5px;
+            padding: 10px 0;
+            transform: translateY(10px);
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .dropdown-content.show {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .dropdown-content a {
+            color: #fff;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-family: 'Special Elite', cursive;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .dropdown-content a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #ffd700;
+        }
     </style>
 </head>
 <body>
@@ -211,9 +266,30 @@
     <div class="page-wrapper">
         <nav class="nav-menu">
             <a href="../index.html">HOME</a>
-            <a href="#ideas">IDEAS</a>
-            <a href="#process">PROCESS</a>
-            <a href="#experiments">EXPERIMENTS</a>
+            <div class="dropdown">
+                <button class="dropdown-btn" onclick="toggleDropdown(this)">Ideas</button>
+                <div class="dropdown-content">
+                    <a href="#idea1">Questionable Research</a>
+                    <a href="#idea2">Cursed Objects Museum</a>
+                    <a href="#idea3">Conspiracy Theory Generator</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropdown-btn" onclick="toggleDropdown(this)">Process</button>
+                <div class="dropdown-content">
+                    <a href="#process1">Research Methods</a>
+                    <a href="#process2">Development</a>
+                    <a href="#process3">Testing</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropdown-btn" onclick="toggleDropdown(this)">Experiments</button>
+                <div class="dropdown-content">
+                    <a href="#exp1">Visual Tests</a>
+                    <a href="#exp2">Interactive Prototypes</a>
+                    <a href="#exp3">Failed Attempts</a>
+                </div>
+            </div>
         </nav>
 
         <div class="header-box">
@@ -267,6 +343,29 @@
                     </div>
                 </article>
                 <article class="experiment-card">
+                    <h3>Essays</h3>
+                    <div class="dropdown">
+                        <button class="dropdown-btn" onclick="toggleDropdown(this)">View Essays</button>
+                        <div class="dropdown-content">
+                            <a href="./essays/close-relationships.html">Close Relationships and Love Languages</a>
+                            <a href="./essays/cognitive-biologicall.html">Cognitive and Biological Learning</a>
+                            <a href="./essays/crime-and-youth.html">Crime and Youth</a>
+                            <a href="./essays/dog-prisions.html">Dog Training in Prisons</a>
+                            <a href="./essays/dopamine-reward.html">Dopamine and Reward Systems</a>
+                            <a href="./essays/drug-addiction.html">Drug Addiction and Treatment</a>
+                            <a href="./essays/eyewitness-testimony.html">Eyewitness Testimony</a>
+                            <a href="./essays/face-recognition.html">Face Recognition</a>
+                            <a href="./essays/jurors.html">Juror Competency</a>
+                            <a href="./essays/marriage.html">Marriage and Relationships</a>
+                            <a href="./essays/neural-personality.html">Neural Basis of Personality</a>
+                            <a href="./essays/stressors-mental-health.html">Stressors and Mental Health</a>
+                            <a href="./essays/theatre-of-conciousness.html">Theatre of Consciousness</a>
+                            <a href="./essays/vegatative-state.html">Vegetative State</a>
+                            <a href="./essays/visual-attention-and-working-memory.html">Visual Attention and Memory</a>
+                        </div>
+                    </div>
+                </article>
+                <article class="experiment-card">
                     <h3>Dissertation</h3>
                     <p>Does Cognitive Estimation Precede Visual Experience in the Perception of Object Shape and Material, or Do They Occur Independently and Concurrently?</p>
                     <a href="./dissertation/dissertation.html" class="chalk-button">Read More</a>
@@ -281,29 +380,27 @@
     <script src="scripts.js"></script>
     <script>
         function toggleDropdown(button) {
-            const dropdown = button.nextElementSibling;
-            const allDropdowns = document.querySelectorAll('.dropdown-content');
-            
             // Close all other dropdowns
-            allDropdowns.forEach(d => {
-                if (d !== dropdown && d.classList.contains('active')) {
-                    d.classList.remove('active');
+            const dropdowns = document.querySelectorAll('.dropdown-content');
+            dropdowns.forEach(dropdown => {
+                if (dropdown !== button.nextElementSibling) {
+                    dropdown.classList.remove('show');
                 }
             });
-            
-            dropdown.classList.toggle('active');
-        }
 
-        // Close dropdown when clicking outside of dropdown area
-        window.onclick = function(event) {
-            if (!event.target.matches('.dropdown-btn') && 
-                !event.target.closest('.dropdown-content')) {
-                const dropdowns = document.querySelectorAll('.dropdown-content');
-                dropdowns.forEach(dropdown => {
-                    if (dropdown.classList.contains('active')) {
-                        dropdown.classList.remove('active');
-                    }
-                });
+            // Toggle the clicked dropdown
+            const content = button.nextElementSibling;
+            content.classList.toggle('show');
+
+            // Close dropdown when clicking outside
+            window.onclick = function(event) {
+                if (!event.target.matches('.dropdown-btn')) {
+                    dropdowns.forEach(dropdown => {
+                        if (dropdown.classList.contains('show')) {
+                            dropdown.classList.remove('show');
+                        }
+                    });
+                }
             }
         }
     </script>
