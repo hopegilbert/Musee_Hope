@@ -140,6 +140,167 @@
             animation: scribble 3s infinite;
             transform-origin: center;
         }
+
+        /* VHS effect for dream entries */
+        .dream-section .thought {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dream-section .thought::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                transparent 50%,
+                rgba(0, 0, 0, 0.1) 51%,
+                transparent 52%
+            );
+            background-size: 100% 4px;
+            animation: vhs-lines 10s linear infinite;
+            pointer-events: none;
+            opacity: 0.3;
+        }
+
+        @keyframes vhs-lines {
+            from { transform: translateY(0); }
+            to { transform: translateY(4px); }
+        }
+
+        /* Mirror effect for mirror thoughts */
+        .mirror-section .thought {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.5s ease;
+        }
+
+        .mirror-section .thought:hover {
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+            transform: translateX(5px) translateY(-2px);
+        }
+
+        /* Snack philosophy styling */
+        .snack-section .thought {
+            background: #fff;
+            color: #333;
+            font-family: 'Inter', sans-serif;
+            border: none;
+            border-radius: 8px;
+            padding: 15px;
+        }
+
+        .snack-section .thought-text {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .nutrition-label {
+            border-bottom: 8px solid #333;
+            margin-top: 10px;
+            padding-top: 5px;
+            font-size: 0.9em;
+        }
+
+        /* Flip card effect */
+        .thought {
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .thought-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .thought:hover .thought-inner {
+            transform: rotateY(180deg);
+        }
+
+        .thought-front, .thought-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+        }
+
+        .thought-back {
+            transform: rotateY(180deg);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+        }
+
+        /* Rating system */
+        .thought-rating {
+            margin-top: 10px;
+            font-family: 'Special Elite', cursive;
+            font-size: 0.9em;
+            color: rgba(245, 232, 199, 0.8);
+        }
+
+        /* Hand-drawn elements */
+        .hand-drawn {
+            position: relative;
+            display: inline-block;
+        }
+
+        .hand-drawn::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -5px;
+            height: 3px;
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 10" xmlns="http://www.w3.org/2000/svg"><path d="M0,5 C20,2 40,8 60,5 C80,2 100,8 100,5" fill="none" stroke="rgba(245,232,199,0.4)" stroke-width="2"/></svg>') repeat-x;
+            background-size: 20px 10px;
+        }
+
+        /* Sticky note */
+        .sticky-note {
+            background: #feff9c;
+            padding: 15px;
+            transform: rotate(3deg);
+            font-family: 'Schoolbell', cursive;
+            color: #333;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+            margin: 20px 0;
+            max-width: 250px;
+            position: relative;
+        }
+
+        /* Random thought generator button */
+        .generate-thought {
+            background: none;
+            border: 2px solid #f5f2e7;
+            color: #f5f2e7;
+            padding: 10px 20px;
+            font-family: 'Special Elite', cursive;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .generate-thought:hover {
+            background: rgba(245, 232, 199, 0.1);
+        }
+
+        @keyframes thoughtPop {
+            0% { transform: scale(0.8); opacity: 0; }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .thought.new-thought {
+            animation: thoughtPop 0.5s ease-out;
+        }
     </style>
 </head>
 <body>
@@ -210,9 +371,106 @@
                     </div>
                 </div>
 
+                <h2>📼 Dream Logic</h2>
+                <div class="dream-section">
+                    <div class="thought">
+                        <div class="timestamp">2:47 AM · April 15, 2024</div>
+                        <div class="thought-text">Had a dream where my dentist said I owed her 7,000 bees and I just… accepted that?</div>
+                        <div class="thought-rating">🌀 Confusion: 9/10 | 💭 Dream Logic: Maximum</div>
+                    </div>
+                    <div class="thought">
+                        <div class="timestamp">4:13 AM · April 12, 2024</div>
+                        <div class="thought-text">Was being hunted by a goose in a suit. The suit was burgundy. I remember that detail very clearly.</div>
+                        <div class="thought-rating">🦢 Goose Threat Level: Dapper | 🎭 Plot Coherence: 2/10</div>
+                    </div>
+                </div>
+
+                <h2>🪞 Weird Mirror Thoughts</h2>
+                <div class="mirror-section">
+                    <div class="thought">
+                        <div class="thought-inner">
+                            <div class="thought-front">
+                                <div class="timestamp">5:22 PM · April 13, 2024</div>
+                                <div class="thought-text">My face looks different every time I see it. Am I just rendering inconsistently?</div>
+                            </div>
+                            <div class="thought-back">
+                                <div class="thought-text">Update: Tried to debug my face. No success. Will try clearing cache (sleep).</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="thought">
+                        <div class="thought-inner">
+                            <div class="thought-front">
+                                <div class="timestamp">7:15 AM · April 14, 2024</div>
+                                <div class="thought-text">What if mirrors are lying and we all actually look slightly better or worse in real life?</div>
+                            </div>
+                            <div class="thought-back">
+                                <div class="thought-text">Note to self: Stop having existential crises in front of reflective surfaces.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h2>🧃 Snack-Related Philosophy</h2>
+                <div class="snack-section">
+                    <div class="thought">
+                        <div class="thought-text">Is toast just really sad garlic bread?</div>
+                        <div class="nutrition-label">
+                            Filed under: Existential breakfast<br>
+                            Serving size: 1 revelation<br>
+                            Philosophical value: Moderate<br>
+                            🍞 Would eat this thought with hummus: Yes
+                        </div>
+                    </div>
+                    <div class="thought">
+                        <div class="thought-text">Who decided the order of crisp multipack flavours? Why is Ready Salted always the one with the most packets?</div>
+                        <div class="nutrition-label">
+                            Filed under: Flavour hierarchy injustice<br>
+                            Deep thought potential: High<br>
+                            Snack rage: 8/10<br>
+                            🥔 Crisp conspiracy level: Concerning
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sticky-note">
+                    <p>This one actually kept me up for 45 minutes.</p>
+                </div>
+
+                <button class="generate-thought">Generate Random Thought 🎲</button>
+
+                <p class="timestamp" style="text-align: center; margin-top: 40px;">Last edited at 3:41 AM by Past Me (who may have been caffeinated)</p>
             </div>
         </div>
     </div>
     <script src="scripts.js"></script>
+    <script>
+        // Random thought generator
+        const thoughts = [
+            "What if plants get scared when we water them because they think it's raining?",
+            "Is a hotdog a sandwich? A taco? A category error?",
+            "Do fish know they're wet?",
+            "What if we're all just brain cells in a larger cosmic brain?",
+            "Why do we say 'heads up' when we want someone to duck?"
+        ];
+
+        document.querySelector('.generate-thought').addEventListener('click', function() {
+            const randomThought = thoughts[Math.floor(Math.random() * thoughts.length)];
+            const thoughtElement = document.createElement('div');
+            thoughtElement.className = 'thought new-thought';
+            thoughtElement.innerHTML = `
+                <div class="timestamp">${new Date().toLocaleTimeString()} · ${new Date().toLocaleDateString()}</div>
+                <div class="thought-text">${randomThought}</div>
+                <div class="thought-rating">🤔 Random Factor: ${Math.floor(Math.random() * 10)}/10</div>
+            `;
+            
+            // Play scribble sound
+            const audio = new Audio('sounds/scribble.mp3');
+            audio.play().catch(() => {}); // Ignore if sound fails to play
+            
+            // Insert the new thought after the button
+            document.querySelector('.generate-thought').after(thoughtElement);
+        });
+    </script>
 </body>
 </html> 
