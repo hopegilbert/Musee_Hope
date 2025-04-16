@@ -94,6 +94,43 @@
             border-color: #f5f2e7;
             transform: translateY(-2px);
         }
+
+        .dropdown-menu {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: rgba(0, 0, 0, 0.9);
+            min-width: 250px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+            z-index: 1;
+            border: 1px solid rgba(245, 232, 199, 0.4);
+        }
+
+        .dropdown-content a {
+            font-family: 'Special Elite', cursive;
+            color: #f5f2e7;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-content a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .dropdown-menu:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-btn {
+            margin: 0;
+        }
     </style>
 </head>
 <body>
@@ -129,6 +166,7 @@
                 <div class="process-card">
                     <h3>1. Random Thoughts</h3>
                     <p>Usually hits at 3 AM or in the shower</p>
+                    <a href="random-thoughts.html" class="chalk-button">View Thoughts</a>
                 </div>
                 <div class="process-card">
                     <h3><span class="glitch-effect" data-text="Questionable Research">Questionable Research</span></h3>
@@ -140,6 +178,16 @@
 
         <section class="experiments-section" id="experiments">
             <h2>Current Experiments</h2>
+            <div class="dropdown-menu">
+                <button class="dropdown-btn chalk-button">Essays & Research</button>
+                <div class="dropdown-content">
+                    <a href="essays/perception.html">The Role of Perception in Consciousness</a>
+                    <a href="essays/embodied-mind.html">The Embodied Mind</a>
+                    <a href="essays/cognitive-architecture.html">Cognitive Architecture</a>
+                    <a href="essays/consciousness.html">Theories of Consciousness</a>
+                    <a href="essays/dissertation.html">Dissertation: Object Shape and Material Perception</a>
+                </div>
+            </div>
             <div class="experiments-grid">
                 <article class="experiment-card">
                     <h3><a href="dissertation.html" class="chalk-button">Dissertation</a></h3>
