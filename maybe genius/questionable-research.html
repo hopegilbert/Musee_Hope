@@ -202,9 +202,9 @@
 
         .topic-dropdown {
             margin: 15px 0;
-            cursor: pointer;
             transition: all 0.3s ease;
             position: relative;
+            background: transparent;
         }
 
         .topic-header {
@@ -216,6 +216,8 @@
             border-left: 3px solid rgba(245, 232, 199, 0.4);
             position: relative;
             z-index: 2;
+            cursor: pointer;
+            border-radius: 5px;
         }
 
         .topic-header:hover {
@@ -237,12 +239,16 @@
             padding: 0 15px;
             position: relative;
             z-index: 1;
+            display: none;
         }
 
         .topic-content.active {
-            max-height: none;
+            max-height: fit-content;
             padding: 15px;
+            display: block;
             overflow: visible;
+            background: rgba(0, 0, 0, 0.9);
+            border-radius: 0 0 5px 5px;
         }
 
         .topic-summary {
