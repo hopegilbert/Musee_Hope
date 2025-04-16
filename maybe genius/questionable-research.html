@@ -341,6 +341,7 @@
             width: 100%;
             height: 100%;
             background-color: rgba(0, 0, 0, 0.9);
+            overflow: auto;
         }
 
         .modal-content {
@@ -348,16 +349,21 @@
             display: block;
             max-width: 90%;
             max-height: 80vh;
+            object-fit: contain;
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
         }
 
         .close {
-            position: absolute;
+            position: fixed;
             top: 15px;
             right: 35px;
             color: #f5f2e7;
             font-size: 40px;
             font-weight: bold;
             cursor: pointer;
+            z-index: 1001;
         }
 
         .close:hover {
@@ -478,115 +484,115 @@
                             <div class="image-grid">
                                 <div class="image-thumbnail" onclick="openModal('images/wikipedia/wikipedia1.jpg')">
                                     <img src="images/wikipedia/wikipedia1.jpg" alt="Wikipedia excerpt 1">
-                                    <div class="image-title">The Curious Case of the Dancing Plague</div>
+                                    <div class="image-title">Umarell</div>
                                 </div>
                                 <div class="image-thumbnail" onclick="openModal('images/wikipedia/wikipedia2.jpg')">
                                     <img src="images/wikipedia/wikipedia2.jpg" alt="Wikipedia excerpt 2">
-                                    <div class="image-title">The Great Emu War of 1932</div>
+                                    <div class="image-title">Paint Drying</div>
                                 </div>
                                 <div class="image-thumbnail" onclick="openModal('images/wikipedia/wikipedia3.jpg')">
                                     <img src="images/wikipedia/wikipedia3.jpg" alt="Wikipedia excerpt 3">
-                                    <div class="image-title">The Man Who Sold the Eiffel Tower</div>
+                                    <div class="image-title">Revenge bedtime procrastination</div>
                                 </div>
                                 <div class="image-thumbnail" onclick="openModal('images/wikipedia/wikipedia4.jpg')">
                                     <img src="images/wikipedia/wikipedia4.jpg" alt="Wikipedia excerpt 4">
-                                    <div class="image-title">The Mystery of the Taos Hum</div>
+                                    <div class="image-title">He never married</div>
                                 </div>
                                 <div class="image-thumbnail" onclick="openModal('images/wikipedia/wikipedia5.jpg')">
                                     <img src="images/wikipedia/wikipedia5.jpg" alt="Wikipedia excerpt 5">
-                                    <div class="image-title">The Voynich Manuscript</div>
+                                    <div class="image-title">Tsundoku</div>
                                 </div>
                                 <div class="image-thumbnail" onclick="openModal('images/wikipedia/wikipedia6.jpg')">
                                     <img src="images/wikipedia/wikipedia6.jpg" alt="Wikipedia excerpt 6">
-                                    <div class="image-title">The Tunguska Event</div>
+                                    <div class="image-title">Student Syndrome</div>
                                 </div>
                                 <div class="image-thumbnail" onclick="openModal('images/wikipedia/wikipedia7.jpg')">
                                     <img src="images/wikipedia/wikipedia7.jpg" alt="Wikipedia excerpt 7">
-                                    <div class="image-title">The Wow! Signal</div>
+                                    <div class="image-title">Josh fight</div>
                                 </div>
                                 <div class="image-thumbnail" onclick="openModal('images/wikipedia/wikipedia8.jpg')">
                                     <img src="images/wikipedia/wikipedia8.jpg" alt="Wikipedia excerpt 8">
-                                    <div class="image-title">The Antikythera Mechanism</div>
+                                    <div class="image-title">Highway hypnosis</div>
                                 </div>
                                 <div class="image-thumbnail" onclick="openModal('images/wikipedia/wikipedia9.jpg')">
                                     <img src="images/wikipedia/wikipedia9.jpg" alt="Wikipedia excerpt 9">
-                                    <div class="image-title">The Dancing Plague of 1518</div>
+                                    <div class="image-title">Spaghetti-tree hoax</div>
                                 </div>
                                 <div class="image-thumbnail" onclick="openModal('images/wikipedia/wikipedia10.jpg')">
                                     <img src="images/wikipedia/wikipedia10.jpg" alt="Wikipedia excerpt 10">
-                                    <div class="image-title">The Bermuda Triangle Mystery</div>
+                                    <div class="image-title">Buffalo buffalo buffalo buffalo buffalo buffalo buffalo buffalo</div>
                                 </div>
                                 <div class="image-thumbnail" onclick="openModal('images/wikipedia/wikipedia11.jpg')">
                                     <img src="images/wikipedia/wikipedia11.jpg" alt="Wikipedia excerpt 11">
-                                    <div class="image-title">The Nazca Lines</div>
+                                    <div class="image-title">Law of holes</div>
                                 </div>
                                 <div class="image-thumbnail" onclick="openModal('images/wikipedia/wikipedia12.jpg')">
                                     <img src="images/wikipedia/wikipedia12.jpg" alt="Wikipedia excerpt 12">
-                                    <div class="image-title">The Mary Celeste</div>
+                                    <div class="image-title">Scientific wild-ass guess</div>
                                 </div>
                                 <div class="image-thumbnail" onclick="openModal('images/wikipedia/wikipedia13.jpg')">
                                     <img src="images/wikipedia/wikipedia13.jpg" alt="Wikipedia excerpt 13">
-                                    <div class="image-title">The Oak Island Money Pit</div>
+                                    <div class="image-title">Boston marriage</div>
                                 </div>
                                 <div class="image-thumbnail" onclick="openModal('images/wikipedia/wikipedia14.jpg')">
                                     <img src="images/wikipedia/wikipedia14.jpg" alt="Wikipedia excerpt 14">
-                                    <div class="image-title">The Dyatlov Pass Incident</div>
+                                    <div class="image-title">Crab mentality</div>
                                 </div>
                                 <div class="image-thumbnail" onclick="openModal('images/wikipedia/wikipedia15.jpg')">
                                     <img src="images/wikipedia/wikipedia15.jpg" alt="Wikipedia excerpt 15">
-                                    <div class="image-title">The Zodiac Killer</div>
+                                    <div class="image-title">Dilbert principle</div>
                                 </div>
                                 <div class="image-thumbnail" onclick="openModal('images/wikipedia/wikipedia16.jpg')">
                                     <img src="images/wikipedia/wikipedia16.jpg" alt="Wikipedia excerpt 16">
-                                    <div class="image-title">The Voynich Manuscript</div>
+                                    <div class="image-title">Dunning-Kruger effect</div>
                                 </div>
                                 <div class="image-thumbnail" onclick="openModal('images/wikipedia/wikipedia17.jpg')">
                                     <img src="images/wikipedia/wikipedia17.jpg" alt="Wikipedia excerpt 17">
-                                    <div class="image-title">The Tunguska Event</div>
+                                    <div class="image-title">Cat Nuns (France, 1844)</div>
                                 </div>
                                 <div class="image-thumbnail" onclick="openModal('images/wikipedia/wikipedia18.jpg')">
                                     <img src="images/wikipedia/wikipedia18.jpg" alt="Wikipedia excerpt 18">
-                                    <div class="image-title">The Wow! Signal</div>
+                                    <div class="image-title">Frequency Illusion</div>
                                 </div>
                                 <div class="image-thumbnail" onclick="openModal('images/wikipedia/wikipedia19.jpg')">
                                     <img src="images/wikipedia/wikipedia19.jpg" alt="Wikipedia excerpt 19">
-                                    <div class="image-title">The Antikythera Mechanism</div>
+                                    <div class="image-title">Microsoft v. MikeRoweSoft</div>
                                 </div>
                                 <div class="image-thumbnail" onclick="openModal('images/wikipedia/wikipedia20.jpg')">
                                     <img src="images/wikipedia/wikipedia20.jpg" alt="Wikipedia excerpt 20">
-                                    <div class="image-title">The Dancing Plague of 1518</div>
+                                    <div class="image-title">The Truman Show delusion</div>
                                 </div>
                                 <div class="image-thumbnail" onclick="openModal('images/wikipedia/wikipedia21.jpg')">
                                     <img src="images/wikipedia/wikipedia21.jpg" alt="Wikipedia excerpt 21">
-                                    <div class="image-title">The Bermuda Triangle Mystery</div>
+                                    <div class="image-title">Ironic last words</div>
                                 </div>
                                 <div class="image-thumbnail" onclick="openModal('images/wikipedia/wikipedia22.jpg')">
                                     <img src="images/wikipedia/wikipedia22.jpg" alt="Wikipedia excerpt 22">
-                                    <div class="image-title">The Nazca Lines</div>
+                                    <div class="image-title">Popemobile</div>
                                 </div>
                                 <div class="image-thumbnail" onclick="openModal('images/wikipedia/wikipedia23.jpg')">
                                     <img src="images/wikipedia/wikipedia23.jpg" alt="Wikipedia excerpt 23">
-                                    <div class="image-title">The Mary Celeste</div>
+                                    <div class="image-title">Chunibyo</div>
                                 </div>
                                 <div class="image-thumbnail" onclick="openModal('images/wikipedia/wikipedia24.jpg')">
                                     <img src="images/wikipedia/wikipedia24.jpg" alt="Wikipedia excerpt 24">
-                                    <div class="image-title">The Oak Island Money Pit</div>
+                                    <div class="image-title">Truffle dog/hog</div>
                                 </div>
                                 <div class="image-thumbnail" onclick="openModal('images/wikipedia/wikipedia25.jpg')">
                                     <img src="images/wikipedia/wikipedia25.jpg" alt="Wikipedia excerpt 25">
-                                    <div class="image-title">The Dyatlov Pass Incident</div>
+                                    <div class="image-title">Closing time effect</div>
                                 </div>
                                 <div class="image-thumbnail" onclick="openModal('images/wikipedia/wikipedia26.jpg')">
                                     <img src="images/wikipedia/wikipedia26.jpg" alt="Wikipedia excerpt 26">
-                                    <div class="image-title">The Zodiac Killer</div>
+                                    <div class="image-title">Sweater curse</div>
                                 </div>
                                 <div class="image-thumbnail" onclick="openModal('images/wikipedia/wikipedia27.jpg')">
                                     <img src="images/wikipedia/wikipedia27.jpg" alt="Wikipedia excerpt 27">
-                                    <div class="image-title">The Voynich Manuscript</div>
+                                    <div class="image-title">Sexy prime</div>
                                 </div>
                                 <div class="image-thumbnail" onclick="openModal('images/wikipedia/wikipedia28.jpg')">
                                     <img src="images/wikipedia/wikipedia28.jpg" alt="Wikipedia excerpt 28">
-                                    <div class="image-title">The Tunguska Event</div>
+                                    <div class="image-title">How I Killed Pluto and Why It had It Coming</div>
                                 </div>
                             </div>
                             <div id="imageModal" class="modal">
