@@ -751,13 +751,13 @@
 
         function openModal(event) {
             event.stopPropagation();
-            const imgSrc = event.currentTarget.getAttribute('onclick').match(/'([^']+)'/)[1];
+            const imgElement = event.currentTarget.querySelector('img');
             const modal = document.getElementById('imageModal');
             const modalImg = document.getElementById('modalImage');
             const caption = document.getElementById('caption');
             
-            modalImg.src = imgSrc;
-            modal.style.display = "block";
+            modalImg.src = imgElement.src;
+            modal.style.display = "flex";
             setTimeout(() => {
                 modal.classList.add('show');
             }, 10);
@@ -787,15 +787,6 @@
             if (event.key === 'Escape') {
                 closeModal();
             }
-        });
-
-        // Update the image thumbnail onclick attributes
-        document.addEventListener('DOMContentLoaded', function() {
-            const thumbnails = document.querySelectorAll('.image-thumbnail');
-            thumbnails.forEach(thumb => {
-                const imgSrc = thumb.getAttribute('onclick').match(/'([^']+)'/)[1];
-                thumb.onclick = function(e) { openModal(e); };
-            });
         });
     </script>
 </body>

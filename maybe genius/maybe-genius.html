@@ -6,6 +6,56 @@
     <title>Stuff That Might Be Genius (Eventually)</title>
     <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Inter:wght@400;500;600;700;800&family=Lora:wght@400;500;600;700&family=Schoolbell&family=Special+Elite&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+        .glitch-effect {
+            position: relative;
+            display: inline-block;
+        }
+
+        .glitch-effect::before,
+        .glitch-effect::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            clip: rect(0, 0, 0, 0);
+        }
+
+        .glitch-effect::before {
+            left: 2px;
+            text-shadow: -1px 0 #ff00c1;
+            animation: glitch-anim 2s infinite linear alternate-reverse;
+        }
+
+        .glitch-effect::after {
+            left: -2px;
+            text-shadow: 2px 0 #00fff9;
+            animation: glitch-anim 3s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-anim {
+            0% {
+                clip: rect(44px, 9999px, 56px, 0);
+            }
+            20% {
+                clip: rect(12px, 9999px, 78px, 0);
+            }
+            40% {
+                clip: rect(89px, 9999px, 23px, 0);
+            }
+            60% {
+                clip: rect(67px, 9999px, 34px, 0);
+            }
+            80% {
+                clip: rect(90px, 9999px, 12px, 0);
+            }
+            100% {
+                clip: rect(0, 9999px, 100px, 0);
+            }
+        }
+    </style>
 </head>
 <body>
     <img src="images/brain.png" alt="Brain" class="poster" id="brain-poster">
@@ -17,30 +67,32 @@
     <div class="page-wrapper">
         <nav class="nav-menu">
             <a href="../index.html">HOME</a>
+            <a href="#ideas">IDEAS</a>
             <a href="#process">PROCESS</a>
             <a href="#experiments">EXPERIMENTS</a>
         </nav>
 
-        <header class="hero-card">
-            <div class="hero-content">
-                <div class="content">
-                    <div class="title-box">
-                        <h1>Maybe Genius</h1>
-                        <p class="subtitle">Ideas & Experiments</p>
-                    </div>
-                </div>
-            </div>
+        <header>
+            <h1>Stuff That Might Be Genius (Eventually)</h1>
+            <p class="subtitle">A collection of half-baked ideas that could either change the world or be completely ridiculous. Only time will tell.</p>
         </header>
+
+        <section class="hero-section" id="ideas">
+            <div class="hero-content">
+                <h2>Work in Progress</h2>
+                <p>This section is currently under construction. Check back soon for potentially genius (or completely wild) ideas!</p>
+            </div>
+        </section>
 
         <section class="process-section" id="process">
             <h2>The Process</h2>
             <div class="process-grid">
                 <div class="process-card">
-                    <h3><a href="random-thoughts.html" class="chalk-button">Random Thoughts</a></h3>
+                    <h3>1. Random Thoughts</h3>
                     <p>Usually hits at 3 AM or in the shower</p>
                 </div>
                 <div class="process-card">
-                    <h3><a href="questionable-research.html" class="chalk-button">Questionable Research</a></h3>
+                    <h3><a href="questionable-research.html" class="chalk-button glitch-effect" data-text="Questionable Research">Questionable Research</a></h3>
                     <p>Deep diving into weird corners of the internet</p>
                 </div>
             </div>
@@ -50,35 +102,8 @@
             <h2>Current Experiments</h2>
             <div class="experiments-grid">
                 <article class="experiment-card">
-                    <h3><a href="dissertation/dissertation.html" class="chalk-button">Dissertation</a></h3>
+                    <h3><a href="dissertation.html" class="chalk-button">Dissertation</a></h3>
                     <p>Does Cognitive Estimation Precede Visual Experience in the Perception of Object Shape and Material, or Do They Occur Independently and Concurrently?</p>
-                </article>
-                <article class="experiment-card">
-                    <h3>Psychology Research</h3>
-                    <div class="dropdown">
-                        <button class="dropdown-btn" id="researchDropdown">Select Topic ▾</button>
-                        <div class="dropdown-content" id="researchDropdownContent">
-                            <a href="essays/autism-anxiety.html">Autism and Anxiety</a>
-                            <a href="essays/business-and-economic.html">Improving Organisational Functioning</a>
-                            <a href="essays/cognitive-biological.html">Deep and Meaningful Learning</a>
-                            <a href="essays/crime-and-youth.html">Crime and Youth</a>
-                            <a href="essays/dogs-prisons.html">Dog Training Programs in Prisons</a>
-                            <a href="essays/dopamine-reward.html">Dopamine and Reward</a>
-                            <a href="essays/drug-addiction.html">Drug Addiction and Treatment Approaches</a>
-                            <a href="essays/eyewitness-testimony.html">Eyewitness Testimony</a>
-                            <a href="essays/face-recognition.html">Face Recognition</a>
-                            <a href="essays/jurors.html">Are Jurors Competent Decision Makers?</a>
-                            <a href="essays/love-languages.html">Love Languages</a>
-                            <a href="essays/marriage.html">Marriage</a>
-                            <a href="essays/neural-personality.html">Neural and Personality-Based Explanations</a>
-                            <a href="essays/psychology-law.html">Psychology & Law</a>
-                            <a href="essays/stressors-mental-health.html">Stressors and Mental Health</a>
-                            <a href="essays/theatre-of-consciousness.html">The Theatre of Consciousness</a>
-                            <a href="essays/vegetative-state.html">Vegetative State and Consciousness</a>
-                            <a href="essays/visual-attention-working-memory.html">Visual Attention & Working Memory</a>
-                        </div>
-                    </div>
-                    <p>Explore various research topics and their potential implications for understanding human perception and cognition.</p>
                 </article>
                 <article class="experiment-card">
                     <h3>Coming Soon</h3>
