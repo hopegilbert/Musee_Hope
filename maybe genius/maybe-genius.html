@@ -67,6 +67,8 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            cursor: pointer;
+            z-index: 2;
         }
 
         .chalk-button::before {
@@ -98,7 +100,6 @@
         .dropdown-menu {
             position: relative;
             display: inline-block;
-            margin-bottom: 20px;
         }
 
         .dropdown-content {
@@ -109,13 +110,14 @@
             max-height: 300px;
             overflow-y: auto;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
-            z-index: 1;
+            z-index: 10;
             border: 1px solid rgba(245, 232, 199, 0.4);
             scrollbar-width: thin;
             scrollbar-color: rgba(245, 232, 199, 0.4) rgba(0, 0, 0, 0.2);
         }
 
-        .dropdown-content.active {
+        .dropdown-content.active,
+        .dropdown-content:hover {
             display: block;
         }
 
@@ -133,24 +135,16 @@
         }
 
         .dropdown-content a {
-            font-family: 'Special Elite', cursive;
             color: #f5f2e7;
             padding: 12px 16px;
             text-decoration: none;
             display: block;
+            font-family: 'Special Elite', cursive;
             transition: all 0.3s ease;
         }
 
         .dropdown-content a:hover {
             background: rgba(255, 255, 255, 0.1);
-        }
-
-        .dropdown-menu:hover .dropdown-content {
-            display: block;
-        }
-
-        .dropdown-content:hover {
-            display: block;
         }
 
         .dropdown-btn {
@@ -296,13 +290,13 @@
                 }
             });
             
-            // Toggle current dropdown
             dropdown.classList.toggle('active');
         }
 
-        // Close dropdown when clicking outside
+        // Close dropdown when clicking outside of dropdown area
         window.onclick = function(event) {
-            if (!event.target.matches('.dropdown-btn')) {
+            if (!event.target.matches('.dropdown-btn') && 
+                !event.target.closest('.dropdown-content')) {
                 const dropdowns = document.querySelectorAll('.dropdown-content');
                 dropdowns.forEach(dropdown => {
                     if (dropdown.classList.contains('active')) {
