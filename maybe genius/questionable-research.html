@@ -343,6 +343,9 @@
             overflow: auto;
             opacity: 0;
             transition: opacity 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .modal.show {
@@ -350,15 +353,12 @@
         }
 
         .modal-content {
-            margin: auto;
-            display: block;
             max-width: 90%;
-            max-height: 80vh;
+            max-height: 90vh;
             object-fit: contain;
-            position: relative;
-            top: 50%;
-            transform: translateY(-50%);
             transition: transform 0.3s ease;
+            display: block;
+            margin: auto;
         }
 
         .close {
