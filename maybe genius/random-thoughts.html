@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Thoughts - Maybe Genius</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Inter:wght@400;500;600;700;800&family=Lora:wght@400;500;600;700&family=Schoolbell&family=Special+Elite&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .thought-section {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 40px;
+            margin: 40px auto;
+            max-width: 800px;
+            backdrop-filter: blur(2px);
+            position: relative;
+            text-align: left;
+        }
+
+        .thought-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 3px solid rgba(255, 255, 255, 0.9);
+            clip-path: polygon(
+                0% 5%, 3% 0%, 97% 2%, 100% 7%,  /* top */
+                95% 0%, 100% 5%, 98% 95%, 100% 100%,  /* right */
+                95% 98%, 98% 100%, 2% 98%, 0% 95%,  /* bottom */
+                2% 100%, 0% 95%, 2% 5%, 0% 2%  /* left */
+            );
+            z-index: 1;
+        }
+
+        .thought-section::after {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            clip-path: polygon(
+                2% 3%, 5% 0%, 95% 4%, 98% 2%,  /* top */
+                98% 2%, 100% 7%, 96% 93%, 98% 98%,  /* right */
+                98% 98%, 95% 100%, 5% 96%, 2% 98%,  /* bottom */
+                2% 98%, 0% 93%, 4% 7%, 2% 2%  /* left */
+            );
+            z-index: 1;
+        }
+
+        .thought-content {
+            position: relative;
+            z-index: 2;
+            color: #f5f2e7;
+            font-family: 'Lora', serif;
+            line-height: 1.6;
+        }
+
+        .thought-content h1 {
+            font-family: 'Fredericka the Great', cursive;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #f5f2e7;
+        }
+
+        .thought-content h2 {
+            font-family: 'Fredericka the Great', cursive;
+            margin: 30px 0 15px;
+            color: #f5f2e7;
+            border-bottom: 1px solid rgba(245, 232, 199, 0.3);
+            padding-bottom: 10px;
+        }
+
+        .thought {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            border-left: 3px solid rgba(245, 232, 199, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .thought:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-left-color: #f5f2e7;
+            transform: translateX(5px);
+        }
+
+        .timestamp {
+            font-family: 'Special Elite', cursive;
+            font-size: 0.8em;
+            color: rgba(245, 232, 199, 0.6);
+            margin-bottom: 5px;
+        }
+
+        .thought-text {
+            font-family: 'Schoolbell', cursive;
+            font-size: 1.1em;
+            line-height: 1.5;
+        }
+
+        .polaroid {
+            background: #fff;
+            padding: 10px;
+            transform: rotate(-2deg);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin: 30px auto;
+            max-width: 300px;
+            transition: all 0.3s ease;
+        }
+
+        .polaroid:hover {
+            transform: rotate(0deg) scale(1.02);
+        }
+
+        .polaroid img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .polaroid-caption {
+            font-family: 'Special Elite', cursive;
+            color: #333;
+            text-align: center;
+            padding: 5px;
+        }
+
+        @keyframes scribble {
+            0% { transform: rotate(-1deg); }
+            50% { transform: rotate(1deg); }
+            100% { transform: rotate(-1deg); }
+        }
+
+        .scribble {
+            display: inline-block;
+            animation: scribble 3s infinite;
+            transform-origin: center;
+        }
+    </style>
+</head>
+<body>
+    <img src="images/brain.png" alt="Brain" class="poster" id="brain-poster">
+    <img src="images/tree.png" alt="Tree" class="poster" id="tree-poster">
+    <img src="images/rock.png" alt="Rock" class="poster" id="rock-poster">
+    <img src="images/butterfly.png" alt="Butterfly" class="poster" id="butterfly-poster">
+    <img src="images/ladybird.png" alt="Ladybird" class="poster" id="ladybird-poster">
+    
+    <div class="page-wrapper">
+        <nav class="nav-menu">
+            <a href="maybe-genius.html">← Back to Maybe Genius</a>
+        </nav>
+
+        <div class="thought-section">
+            <div class="thought-content">
+                <h1>Random Thoughts</h1>
+                <p>Welcome to the chaotic corner of my mind. This is where half-formed ideas, philosophical tangents, and shower epiphanies come to play. Some might be genius, most are probably not, but that's the beauty of unfiltered thinking.</p>
+
+                <h2>🌙 Midnight Musings</h2>
+                <div class="thought">
+                    <div class="timestamp">3:47 AM · December 15, 2023</div>
+                    <div class="thought-text">What if time is just a collective illusion we all agreed to believe in? Like, we're all just synchronized in our delusion of linear progression...</div>
+                </div>
+                <div class="thought">
+                    <div class="timestamp">2:13 AM · December 8, 2023</div>
+                    <div class="thought-text">Do bees ever get lost? And if they do, do they feel embarrassed about it when they finally find their way back to the hive?</div>
+                </div>
+
+                <div class="polaroid">
+                    <img src="images/clouds.jpg" alt="Night sky through window">
+                    <div class="polaroid-caption">3 AM thoughts hit different</div>
+                </div>
+
+                <h2>🚿 Shower Realizations</h2>
+                <div class="thought">
+                    <div class="timestamp">9:15 AM · December 18, 2023</div>
+                    <div class="thought-text">Started thinking about how shampoo bubbles form and ended up contemplating the surface tension of reality itself. Are we all just temporary formations of cosmic foam?</div>
+                </div>
+                <div class="thought">
+                    <div class="timestamp">7:30 PM · December 5, 2023</div>
+                    <div class="thought-text">The steam on the mirror is like temporary amnesia for reflections. Maybe that's why shower thoughts feel so pure - we're temporarily freed from our own self-image.</div>
+                </div>
+
+                <h2>🌪️ Thought Dump Archive</h2>
+                <div class="thought">
+                    <div class="timestamp">Various moments of questionable clarity</div>
+                    <div class="thought-text">
+                        • Why do we park in driveways but drive in parkways?<br>
+                        • Is a mirror ever truly dirty, or is it just covered in clean stuff?<br>
+                        • What if plants are actually farming us, giving us oxygen until they can harvest us?<br>
+                        • Do fish ever feel thirsty?<br>
+                        • Why isn't "phonetic" spelled the way it sounds?<br>
+                        • What if color is a shared hallucination and we're all just really good at describing it the same way?
+                    </div>
+                </div>
+
+                <p class="author-credit">Written by Hope Gilbert<br>Durham University</p>
+            </div>
+        </div>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html> 
