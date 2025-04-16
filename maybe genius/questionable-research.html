@@ -425,7 +425,7 @@
                 <div class="tab-section">
                     <p>Deep dives into the weird and wonderful corners of the internet, including but not limited to:</p>
                     
-                    <div class="topic-dropdown" onclick="toggleTopic(this)">
+                    <div class="topic-dropdown">
                         <div class="topic-header">
                             <h3 class="topic-title">"Why were Victorian people obsessed with phrenology?"</h3>
                             <span class="dropdown-icon">▼</span>
@@ -436,7 +436,7 @@
                         </div>
                     </div>
 
-                    <div class="topic-dropdown" onclick="toggleTopic(this)">
+                    <div class="topic-dropdown">
                         <div class="topic-header">
                             <h3 class="topic-title">"How to fake your own death (theoretically)"</h3>
                             <span class="dropdown-icon">▼</span>
@@ -447,7 +447,7 @@
                         </div>
                     </div>
 
-                    <div class="topic-dropdown" onclick="toggleTopic(this)">
+                    <div class="topic-dropdown">
                         <div class="topic-header">
                             <h3 class="topic-title">"The secret life of fake towns on maps (trap streets)"</h3>
                             <span class="dropdown-icon">▼</span>
@@ -458,7 +458,7 @@
                         </div>
                     </div>
 
-                    <div class="topic-dropdown" onclick="toggleTopic(this)">
+                    <div class="topic-dropdown">
                         <div class="topic-header">
                             <h3 class="topic-title">"That time someone tried to sell the Eiffel Tower... twice"</h3>
                             <span class="dropdown-icon">▼</span>
@@ -469,7 +469,7 @@
                         </div>
                     </div>
 
-                    <div class="topic-dropdown" onclick="toggleTopic(this)">
+                    <div class="topic-dropdown">
                         <div class="topic-header">
                             <h3 class="topic-title">"A guide to frog cryptids by region"</h3>
                             <span class="dropdown-icon">▼</span>
@@ -480,7 +480,7 @@
                         </div>
                     </div>
 
-                    <div class="topic-dropdown" onclick="toggleTopic(this)">
+                    <div class="topic-dropdown">
                         <div class="topic-header">
                             <h3 class="topic-title">"The Great Emu War: When Australia declared war on birds"</h3>
                             <span class="dropdown-icon">▼</span>
@@ -498,7 +498,7 @@
                 <div class="tab-section">
                     <p>A curated collection of:</p>
                     
-                    <div class="topic-dropdown" onclick="toggleTopic(this)">
+                    <div class="topic-dropdown">
                         <div class="topic-header">
                             <h3 class="topic-title">Bizarre Wikipedia excerpts</h3>
                             <span class="dropdown-icon">▼</span>
@@ -627,7 +627,7 @@
                         </div>
                     </div>
 
-                    <div class="topic-dropdown" onclick="toggleTopic(this)">
+                    <div class="topic-dropdown">
                         <div class="topic-header">
                             <h3 class="topic-title">Forum conversations that raise more questions than answers</h3>
                             <span class="dropdown-icon">▼</span>
@@ -638,7 +638,7 @@
                         </div>
                     </div>
 
-                    <div class="topic-dropdown" onclick="toggleTopic(this)">
+                    <div class="topic-dropdown">
                         <div class="topic-header">
                             <h3 class="topic-title">Images that need no explanation (but we'll try anyway)</h3>
                             <span class="dropdown-icon">▼</span>
@@ -649,7 +649,7 @@
                         </div>
                     </div>
 
-                    <div class="topic-dropdown" onclick="toggleTopic(this)">
+                    <div class="topic-dropdown">
                         <div class="topic-header">
                             <h3 class="topic-title">Weirdly specific Yahoo Answers questions</h3>
                             <span class="dropdown-icon">▼</span>
@@ -660,7 +660,7 @@
                         </div>
                     </div>
 
-                    <div class="topic-dropdown" onclick="toggleTopic(this)">
+                    <div class="topic-dropdown">
                         <div class="topic-header">
                             <h3 class="topic-title">Wild Reddit AMAs with no follow-up</h3>
                             <span class="dropdown-icon">▼</span>
@@ -671,7 +671,7 @@
                         </div>
                     </div>
 
-                    <div class="topic-dropdown" onclick="toggleTopic(this)">
+                    <div class="topic-dropdown">
                         <div class="topic-header">
                             <h3 class="topic-title">Deeply cursed Facebook marketplace listings</h3>
                             <span class="dropdown-icon">▼</span>
@@ -682,7 +682,7 @@
                         </div>
                     </div>
 
-                    <div class="topic-dropdown" onclick="toggleTopic(this)">
+                    <div class="topic-dropdown">
                         <div class="topic-header">
                             <h3 class="topic-title">Bootleg instruction manuals</h3>
                             <span class="dropdown-icon">▼</span>
@@ -740,18 +740,25 @@
     </div>
     <script src="scripts.js"></script>
     <script>
-        function toggleTopic(event) {
-            event.stopPropagation();
-            const content = event.currentTarget.querySelector('.topic-content');
-            const icon = event.currentTarget.querySelector('.dropdown-icon');
-            
-            content.classList.toggle('active');
-            icon.classList.toggle('active');
-        }
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add click listeners to all topic dropdowns
+            const dropdowns = document.querySelectorAll('.topic-dropdown');
+            dropdowns.forEach(dropdown => {
+                dropdown.addEventListener('click', function(event) {
+                    const content = this.querySelector('.topic-content');
+                    const icon = this.querySelector('.dropdown-icon');
+                    
+                    content.classList.toggle('active');
+                    icon.classList.toggle('active');
+                    
+                    // Prevent click from propagating to parent elements
+                    event.stopPropagation();
+                });
+            });
+        });
 
-        function openModal(event) {
-            event.stopPropagation();
-            const imgElement = event.currentTarget.querySelector('img');
+        function openModal(thumbnail) {
+            const imgElement = thumbnail.querySelector('img');
             const modal = document.getElementById('imageModal');
             const modalImg = document.getElementById('modalImage');
             const caption = document.getElementById('caption');
@@ -762,7 +769,7 @@
                 modal.classList.add('show');
             }, 10);
             
-            const imageTitle = event.currentTarget.querySelector('.image-title').textContent;
+            const imageTitle = thumbnail.querySelector('.image-title').textContent;
             caption.textContent = imageTitle;
         }
 
@@ -775,12 +782,12 @@
         }
 
         // Close modal when clicking outside the image
-        window.onclick = function(event) {
+        document.addEventListener('click', function(event) {
             const modal = document.getElementById('imageModal');
             if (event.target == modal) {
                 closeModal();
             }
-        }
+        });
 
         // Close modal with Escape key
         document.addEventListener('keydown', function(event) {
