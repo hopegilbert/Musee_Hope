@@ -139,6 +139,32 @@
         .image-space {
             display: none;
         }
+
+        .essay-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            gap: 10px;
+        }
+
+        .essay-tabs a {
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #f5f2e7;
+            text-decoration: none;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .essay-tabs a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .essay-tabs a.active {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
     </style>
 </head>
 <body>
@@ -154,6 +180,11 @@
         </nav>
 
         <div class="dissertation-content">
+            <div class="essay-tabs">
+                <a href="autism-anxiety.html" class="active">Sensory Differences and Anxiety</a>
+                <a href="anxiety-prediction.html">Hyperreactivity and Anxiety Prediction</a>
+            </div>
+            
             <div class="dissertation-text">
                 <h1>How are Sensory Differences Related to Anxiety in Autistic People?</h1>
 
