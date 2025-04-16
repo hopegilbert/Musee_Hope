@@ -57,44 +57,40 @@
         }
 
         .chalk-button {
-            display: inline-block;
-            padding: 10px 20px;
-            font-family: 'Special Elite', cursive;
+            background: none;
+            border: none;
             color: #f5f2e7;
-            text-decoration: none;
-            background: rgba(255, 255, 255, 0.1);
-            border: 2px solid rgba(245, 232, 199, 0.4);
+            font-family: 'Chalkboard', 'Comic Sans MS', cursive;
+            font-size: 1.2em;
+            padding: 10px 20px;
+            cursor: pointer;
             transition: all 0.3s ease;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
             position: relative;
             overflow: hidden;
-            cursor: pointer;
-            z-index: 2;
-        }
-
-        .chalk-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                120deg,
-                transparent,
-                rgba(255, 255, 255, 0.2),
-                transparent
-            );
-            transition: all 0.6s;
-        }
-
-        .chalk-button:hover::before {
-            left: 100%;
         }
 
         .chalk-button:hover {
-            background: rgba(255, 255, 255, 0.2);
-            border-color: #f5f2e7;
-            transform: translateY(-2px);
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .chalk-button::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #f5f2e7;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+
+        .chalk-button:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
         }
 
         .dropdown-menu {
@@ -318,27 +314,73 @@
             <div class="experiments-grid">
                 <article class="experiment-card">
                     <h3>Psychology Research</h3>
-                    <p>Unlocking the Secrets of the Mind: Investigating the Forces That Shape Human Experience</p>
-                    <div class="dropdown-menu">
-                        <button class="dropdown-btn chalk-button" onclick="toggleDropdown(this)">View Essays</button>
+                    <p>Dive into the fascinating world of psychological research, where we explore the mysteries of the human mind and behavior.</p>
+                    <div class="dropdown">
+                        <button class="chalk-button">View Essays</button>
                         <div class="dropdown-content">
-                            <a href="./essays/autism-anxiety.html">Autism and Anxiety</a>
-                            <a href="./essays/business-and-economic.html">Improving Organisational Functioning</a>
-                            <a href="./essays/close-relationships.html">Love Languages</a>
-                            <a href="./essays/cognitive-biologicall.html">Deep and Meaningful Learning</a>
-                            <a href="./essays/crime-and-youth.html">Crime and Youth</a>
-                            <a href="./essays/dog-prisions.html">Dog Training Programs in Prisions</a>
-                            <a href="./essays/dopamine-reward.html">Dopamine and Reward</a>
-                            <a href="./essays/drug-addiction.html">Drug Addiction and Treatment</a>
-                            <a href="./essays/eyewitness-testimony.html">Eyewitness Testimony</a>
-                            <a href="./essays/face-recognition.html">Face Recognition</a>
-                            <a href="./essays/jurors.html">Jurors Competency</a>
-                            <a href="./essays/marriage.html">Marriage</a>
-                            <a href="./essays/neural-personality.html">Personality and Behavioural Differences</a>
-                            <a href="./essays/stressors-mental-health.html">Stressors and Mental Health</a>
-                            <a href="./essays/theatre-of-conciousness.html">Theatre of Conciousness</a>
-                            <a href="./essays/vegatative-state.html">Vegetative State</a>
-                            <a href="./essays/visual-attention-and-working-memory.html">Visual Attention and Working Memory</a>
+                            <a href="essays/autism-and-anxiety.html">Autism and Anxiety</a>
+                            <a href="essays/business-and-economic-psychology.html">Business and Economic Psychology</a>
+                            <a href="essays/visual-attention-and-working-memory.html">Visual Attention and Working Memory</a>
+                            <a href="essays/psychology-of-education.html">Psychology of Education</a>
+                            <a href="essays/psychology-of-religion.html">Psychology of Religion</a>
+                            <a href="essays/psychology-of-sport.html">Psychology of Sport</a>
+                            <a href="essays/psychology-of-work.html">Psychology of Work</a>
+                            <a href="essays/psychology-of-health.html">Psychology of Health</a>
+                            <a href="essays/psychology-of-aging.html">Psychology of Aging</a>
+                            <a href="essays/psychology-of-death.html">Psychology of Death</a>
+                            <a href="essays/psychology-of-emotion.html">Psychology of Emotion</a>
+                            <a href="essays/psychology-of-motivation.html">Psychology of Motivation</a>
+                            <a href="essays/psychology-of-personality.html">Psychology of Personality</a>
+                            <a href="essays/psychology-of-social-behavior.html">Psychology of Social Behavior</a>
+                            <a href="essays/psychology-of-culture.html">Psychology of Culture</a>
+                            <a href="essays/psychology-of-language.html">Psychology of Language</a>
+                            <a href="essays/psychology-of-memory.html">Psychology of Memory</a>
+                            <a href="essays/psychology-of-perception.html">Psychology of Perception</a>
+                            <a href="essays/psychology-of-learning.html">Psychology of Learning</a>
+                            <a href="essays/psychology-of-development.html">Psychology of Development</a>
+                            <a href="essays/psychology-of-intelligence.html">Psychology of Intelligence</a>
+                            <a href="essays/psychology-of-creativity.html">Psychology of Creativity</a>
+                            <a href="essays/psychology-of-humor.html">Psychology of Humor</a>
+                            <a href="essays/psychology-of-art.html">Psychology of Art</a>
+                            <a href="essays/psychology-of-music.html">Psychology of Music</a>
+                            <a href="essays/psychology-of-dance.html">Psychology of Dance</a>
+                            <a href="essays/psychology-of-theater.html">Psychology of Theater</a>
+                            <a href="essays/psychology-of-film.html">Psychology of Film</a>
+                            <a href="essays/psychology-of-literature.html">Psychology of Literature</a>
+                            <a href="essays/psychology-of-poetry.html">Psychology of Poetry</a>
+                            <a href="essays/psychology-of-photography.html">Psychology of Photography</a>
+                            <a href="essays/psychology-of-sculpture.html">Psychology of Sculpture</a>
+                            <a href="essays/psychology-of-painting.html">Psychology of Painting</a>
+                            <a href="essays/psychology-of-drawing.html">Psychology of Drawing</a>
+                            <a href="essays/psychology-of-design.html">Psychology of Design</a>
+                            <a href="essays/psychology-of-architecture.html">Psychology of Architecture</a>
+                            <a href="essays/psychology-of-fashion.html">Psychology of Fashion</a>
+                            <a href="essays/psychology-of-food.html">Psychology of Food</a>
+                            <a href="essays/psychology-of-drink.html">Psychology of Drink</a>
+                            <a href="essays/psychology-of-sleep.html">Psychology of Sleep</a>
+                            <a href="essays/psychology-of-dreams.html">Psychology of Dreams</a>
+                            <a href="essays/psychology-of-meditation.html">Psychology of Meditation</a>
+                            <a href="essays/psychology-of-yoga.html">Psychology of Yoga</a>
+                            <a href="essays/psychology-of-exercise.html">Psychology of Exercise</a>
+                            <a href="essays/psychology-of-sports.html">Psychology of Sports</a>
+                            <a href="essays/psychology-of-games.html">Psychology of Games</a>
+                            <a href="essays/psychology-of-play.html">Psychology of Play</a>
+                            <a href="essays/psychology-of-work.html">Psychology of Work</a>
+                            <a href="essays/psychology-of-leisure.html">Psychology of Leisure</a>
+                            <a href="essays/psychology-of-travel.html">Psychology of Travel</a>
+                            <a href="essays/psychology-of-home.html">Psychology of Home</a>
+                            <a href="essays/psychology-of-family.html">Psychology of Family</a>
+                            <a href="essays/psychology-of-friendship.html">Psychology of Friendship</a>
+                            <a href="essays/psychology-of-love.html">Psychology of Love</a>
+                            <a href="essays/psychology-of-sex.html">Psychology of Sex</a>
+                            <a href="essays/psychology-of-marriage.html">Psychology of Marriage</a>
+                            <a href="essays/psychology-of-divorce.html">Psychology of Divorce</a>
+                            <a href="essays/psychology-of-parenting.html">Psychology of Parenting</a>
+                            <a href="essays/psychology-of-children.html">Psychology of Children</a>
+                            <a href="essays/psychology-of-adolescence.html">Psychology of Adolescence</a>
+                            <a href="essays/psychology-of-adulthood.html">Psychology of Adulthood</a>
+                            <a href="essays/psychology-of-aging.html">Psychology of Aging</a>
+                            <a href="essays/psychology-of-death.html">Psychology of Death</a>
                         </div>
                     </div>
                 </article>

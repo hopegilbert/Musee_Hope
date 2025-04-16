@@ -8,60 +8,16 @@
     <link rel="stylesheet" href="style.css">
     <style>
         .thought-section {
-            background: rgba(0, 0, 0, 0.6);
-            padding: 40px;
-            margin: 40px auto;
-            max-width: 800px;
-            backdrop-filter: blur(2px);
-            position: relative;
-        }
-
-        .thought-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border: 3px solid rgba(255, 255, 255, 0.9);
-            clip-path: polygon(
-                0% 5%, 3% 0%, 97% 2%, 100% 7%,  /* top */
-                95% 0%, 100% 5%, 98% 95%, 100% 100%,  /* right */
-                95% 98%, 98% 100%, 2% 98%, 0% 95%,  /* bottom */
-                2% 100%, 0% 95%, 2% 5%, 0% 2%  /* left */
-            );
-            z-index: 1;
-        }
-
-        .thought-section::after {
-            content: '';
-            position: absolute;
-            top: -4px;
-            left: -4px;
-            right: -4px;
-            bottom: -4px;
-            border: 2px solid rgba(255, 255, 255, 0.4);
-            clip-path: polygon(
-                2% 3%, 5% 0%, 95% 4%, 98% 2%,  /* top */
-                98% 2%, 100% 7%, 96% 93%, 98% 98%,  /* right */
-                98% 98%, 95% 100%, 5% 96%, 2% 98%,  /* bottom */
-                2% 98%, 0% 93%, 4% 7%, 2% 2%  /* left */
-            );
-            z-index: 1;
-        }
-
-        .thought-content {
-            position: relative;
-            z-index: 2;
-            color: #f5f2e7;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(245, 242, 231, 0.2);
         }
 
         .dream-section {
             position: relative;
-            padding: 20px;
-            margin: 30px 0;
-            background: rgba(0, 0, 0, 0.7);
-            border-radius: 10px;
             overflow: hidden;
         }
 
@@ -72,57 +28,46 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(
-                45deg,
-                rgba(255, 0, 255, 0.1),
-                rgba(0, 255, 255, 0.1)
-            );
-            pointer-events: none;
-            animation: vhs-flicker 8s infinite;
-        }
-
-        @keyframes vhs-flicker {
-            0%, 100% { opacity: 0.1; }
-            50% { opacity: 0.3; }
+            background: linear-gradient(45deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 100%);
+            z-index: 1;
         }
 
         .dream-entry {
-            font-family: 'Special Elite', cursive;
-            margin: 15px 0;
+            position: relative;
             padding: 15px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 5px;
-            transform: perspective(1000px) rotateX(2deg);
-            transition: all 0.3s ease;
+            margin: 10px 0;
+            background: rgba(245, 242, 231, 0.1);
+            border-radius: 10px;
+            transform-style: preserve-3d;
+            transition: transform 0.3s ease;
+            z-index: 2;
         }
 
         .dream-entry:hover {
-            transform: perspective(1000px) rotateX(0deg);
-            background: rgba(255, 255, 255, 0.1);
+            transform: perspective(1000px) rotateX(5deg) translateY(-5px);
+            background: rgba(245, 242, 231, 0.15);
+        }
+
+        .dream-rating {
+            display: inline-block;
+            padding: 5px 10px;
+            background: rgba(245, 242, 231, 0.2);
+            border-radius: 15px;
+            font-size: 0.9em;
+            margin-top: 10px;
         }
 
         .mirror-section {
-            position: relative;
-            padding: 20px;
-            margin: 30px 0;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(5px);
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .mirror-thought {
-            font-family: 'Lora', serif;
-            margin: 15px 0;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 5px;
-            transition: all 0.3s ease;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
             position: relative;
             overflow: hidden;
         }
 
-        .mirror-thought::before {
+        .mirror-section::before {
             content: '';
             position: absolute;
             top: -50%;
@@ -131,174 +76,83 @@
             height: 200%;
             background: linear-gradient(
                 45deg,
-                transparent,
-                rgba(255, 255, 255, 0.1),
-                transparent
+                transparent 0%,
+                rgba(255, 255, 255, 0.1) 50%,
+                transparent 100%
             );
-            transform: translateX(-100%);
-            transition: transform 0.6s;
+            animation: shimmer 3s infinite;
+            z-index: 1;
         }
 
-        .mirror-thought:hover::before {
-            transform: translateX(100%);
+        .mirror-thought {
+            position: relative;
+            padding: 15px;
+            margin: 10px 0;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            z-index: 2;
+            transition: transform 0.3s ease;
+        }
+
+        .mirror-thought:hover {
+            transform: scale(1.02);
         }
 
         .snack-section {
-            padding: 20px;
-            margin: 30px 0;
-        }
-
-        .snack-thought {
-            font-family: 'Special Elite', cursive;
-            margin: 20px 0;
-            padding: 15px;
-            background: #fff;
-            color: #000;
-            border-radius: 5px;
-            position: relative;
-        }
-
-        .nutrition-label {
-            border: 1px solid #000;
-            padding: 10px;
-            margin-top: 10px;
-            font-size: 0.9em;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .thought-rating {
-            margin-top: 10px;
-            font-family: 'Schoolbell', cursive;
-            color: rgba(245, 232, 199, 0.8);
-        }
-
-        .sticky-note {
-            font-family: 'Schoolbell', cursive;
-            padding: 15px;
-            background: #feff9c;
-            transform: rotate(-2deg);
-            color: #000;
-            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-            margin: 20px 0;
-            position: relative;
-        }
-
-        .sticky-note::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            border-width: 0 20px 20px 0;
-            border-style: solid;
-            border-color: #fff8b8 #fff transparent transparent;
-        }
-
-        .random-button {
-            display: inline-block;
-            padding: 10px 20px;
-            font-family: 'Special Elite', cursive;
-            color: #f5f2e7;
-            text-decoration: none;
-            background: rgba(255, 255, 255, 0.1);
-            border: 2px solid rgba(245, 232, 199, 0.4);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            margin: 20px 0;
-        }
-
-        .random-button:hover {
-            background: rgba(255, 255, 255, 0.2);
-            border-color: #f5f2e7;
-        }
-
-        .thought-card {
-            perspective: 1000px;
-            margin: 20px 0;
-        }
-
-        .thought-card-inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            text-align: left;
-            transition: transform 0.6s;
-            transform-style: preserve-3d;
-        }
-
-        .thought-card:hover .thought-card-inner {
-            transform: rotateY(180deg);
-        }
-
-        .thought-card-front,
-        .thought-card-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 5px;
-        }
-
-        .thought-card-back {
-            transform: rotateY(180deg);
             background: rgba(0, 0, 0, 0.8);
-        }
-
-        .hand-drawn {
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
             position: relative;
         }
 
-        .hand-drawn::after {
-            content: '';
+        .snack-label {
+            background: rgba(245, 242, 231, 0.1);
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .snack-label::before {
+            content: 'Nutrition Facts';
             position: absolute;
-            bottom: -2px;
+            top: -20px;
             left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #f5f2e7, transparent);
-            animation: draw-line 1s ease-out forwards;
-        }
-
-        @keyframes draw-line {
-            from { width: 0; }
-            to { width: 100%; }
-        }
-
-        .confusion-rating {
-            display: inline-block;
-            padding: 5px 10px;
-            background: rgba(255, 0, 255, 0.2);
-            border-radius: 15px;
-            font-size: 0.8em;
-            margin-left: 10px;
-        }
-
-        .mirror-rating {
-            display: inline-block;
-            padding: 5px 10px;
-            background: rgba(0, 255, 255, 0.2);
-            border-radius: 15px;
-            font-size: 0.8em;
-            margin-left: 10px;
+            font-size: 1.2em;
+            color: #f5f2e7;
         }
 
         .snack-rating {
             display: inline-block;
             padding: 5px 10px;
-            background: rgba(255, 255, 0, 0.2);
+            background: rgba(245, 242, 231, 0.2);
             border-radius: 15px;
-            font-size: 0.8em;
-            margin-left: 10px;
+            font-size: 0.9em;
+            margin-top: 10px;
         }
 
-        .edit-time {
-            font-family: 'Special Elite', cursive;
-            font-size: 0.8em;
-            color: rgba(245, 232, 199, 0.6);
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px dashed rgba(245, 232, 199, 0.3);
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .random-thought-generator {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .random-thought {
+            background: rgba(245, 242, 231, 0.1);
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
@@ -322,77 +176,51 @@
                 <div class="dream-section">
                     <h2>Dream Logic</h2>
                     <div class="dream-entry">
-                        <p>"Last night I dreamt I was a library book being checked out by a sentient cloud. The cloud kept apologizing for its raindrops smudging my pages."</p>
-                        <div class="confusion-rating">Confusion Level: 8/10</div>
+                        <p>Last night I dreamed I was a teacup in a library, and all the books were trying to pour themselves into me.</p>
+                        <span class="dream-rating">Confusion Level: 🌟🌟🌟🌟🌟</span>
                     </div>
                     <div class="dream-entry">
-                        <p>"Had a dream where my teeth were made of marshmallows. The dentist was very confused but also very tempted."</p>
-                        <div class="confusion-rating">Confusion Level: 6/10</div>
+                        <p>Had a dream where my cat was teaching a yoga class to a group of very confused penguins.</p>
+                        <span class="dream-rating">Confusion Level: 🌟🌟🌟🌟</span>
                     </div>
                     <div class="dream-entry">
-                        <p>"Dreamt I was a professional bubble wrap popper in a world where bubble wrap was currency. The economy was very satisfying but also very noisy."</p>
-                        <div class="confusion-rating">Confusion Level: 7/10</div>
+                        <p>Dreamt I was a professional bubble wrap popper, but all the bubbles were filled with tiny universes.</p>
+                        <span class="dream-rating">Confusion Level: 🌟🌟🌟🌟🌟</span>
                     </div>
                 </div>
 
                 <div class="mirror-section">
                     <h2>Weird Mirror Thoughts</h2>
                     <div class="mirror-thought">
-                        <p>"If mirrors show us our reflection, do they also show us our self-reflection?"</p>
-                        <div class="mirror-rating">Deepness: 9/10</div>
+                        <p>If I stare at my reflection long enough, will it start thinking about me too?</p>
                     </div>
                     <div class="mirror-thought">
-                        <p>"When you look in a mirror, are you seeing yourself now or a fraction of a second ago when the light bounced off you?"</p>
-                        <div class="mirror-rating">Deepness: 8/10</div>
+                        <p>My reflection is technically older than me by the time the light reaches my eyes.</p>
                     </div>
                     <div class="mirror-thought">
-                        <p>"If you put two mirrors facing each other, do they create an infinite loop of reflections or just really good friends?"</p>
-                        <div class="mirror-rating">Deepness: 7/10</div>
+                        <p>Do mirrors get tired of reflecting? What if they just want to be windows sometimes?</p>
                     </div>
                 </div>
 
                 <div class="snack-section">
                     <h2>Snack-Related Philosophy</h2>
-                    <div class="snack-thought">
-                        <p>"If you eat a Pringle, are you really ever satisfied until you've eaten the whole tube?"</p>
-                        <div class="nutrition-label">
-                            <p>Calories: 0 (purely existential)</p>
-                            <p>Ingredients: Existential dread, potato dust</p>
-                        </div>
-                        <div class="snack-rating">Snackability: 10/10</div>
+                    <div class="snack-label">
+                        <p>If a cookie breaks in half, is it two cookies or one cookie in two pieces?</p>
+                        <span class="snack-rating">Food for Thought: 🌟🌟🌟🌟</span>
                     </div>
-                    <div class="snack-thought">
-                        <p>"Is a hot dog a sandwich? And if it is, does that make a taco a sandwich too? Where does it end?"</p>
-                        <div class="nutrition-label">
-                            <p>Calories: Too many to count</p>
-                            <p>Ingredients: Philosophical debate, questionable meat</p>
-                        </div>
-                        <div class="snack-rating">Snackability: 9/10</div>
+                    <div class="snack-label">
+                        <p>Are grapes just nature's gushers?</p>
+                        <span class="snack-rating">Food for Thought: 🌟🌟🌟</span>
                     </div>
-                    <div class="snack-thought">
-                        <p>"Why do we say 'a piece of cake' to mean something easy, when baking a cake is actually quite difficult?"</p>
-                        <div class="nutrition-label">
-                            <p>Calories: Confusion</p>
-                            <p>Ingredients: Mixed metaphors, flour</p>
-                        </div>
-                        <div class="snack-rating">Snackability: 8/10</div>
+                    <div class="snack-label">
+                        <p>If you eat a bag of chips in space, does it count as space food?</p>
+                        <span class="snack-rating">Food for Thought: 🌟🌟🌟🌟🌟</span>
                     </div>
                 </div>
 
-                <button class="random-button" onclick="generateRandomThought()">Generate Random Thought</button>
-                <div id="random-thought" class="thought-card">
-                    <div class="thought-card-inner">
-                        <div class="thought-card-front">
-                            <p>Click the button above for a random thought!</p>
-                        </div>
-                        <div class="thought-card-back">
-                            <p>Your random thought will appear here!</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="sticky-note">
-                    <p>Note to self: Remember to question everything, especially the important things. And maybe bring snacks.</p>
+                <div class="random-thought-generator">
+                    <button class="chalk-button" onclick="generateRandomThought()">Generate Random Thought</button>
+                    <div id="randomThought" class="random-thought"></div>
                 </div>
             </div>
         </div>
@@ -400,45 +228,33 @@
 
     <script>
         const randomThoughts = [
-            {
-                text: "If trees could talk, would they have accents based on their location?",
-                category: "Nature",
-                rating: "7/10"
-            },
-            {
-                text: "Do fish get thirsty? And if they do, do they know they're already in water?",
-                category: "Aquatic",
-                rating: "8/10"
-            },
-            {
-                text: "If you're waiting for the waiter, aren't you the waiter?",
-                category: "Existential",
-                rating: "9/10"
-            },
-            {
-                text: "Why do we park in driveways and drive on parkways?",
-                category: "Linguistic",
-                rating: "6/10"
-            },
-            {
-                text: "If you try to fail and succeed, which have you done?",
-                category: "Paradox",
-                rating: "10/10"
-            }
+            "If trees could talk, would they have accents based on their location?",
+            "Do fish get thirsty?",
+            "If you're on a boat in the middle of the ocean, are you technically in the ocean?",
+            "Why do we say 'tuna fish' but not 'beef mammal'?",
+            "If you're waiting for the waiter, aren't you the waiter?",
+            "Do penguins have knees?",
+            "If you're in a room with no mirrors, are you still you?",
+            "Why do we park in driveways and drive on parkways?",
+            "If you're in a room with no clocks, does time still exist?",
+            "Do plants have favorite colors?"
         ];
 
         function generateRandomThought() {
-            const thought = randomThoughts[Math.floor(Math.random() * randomThoughts.length)];
-            const thoughtCard = document.getElementById('random-thought');
-            const front = thoughtCard.querySelector('.thought-card-front');
-            const back = thoughtCard.querySelector('.thought-card-back');
+            const randomIndex = Math.floor(Math.random() * randomThoughts.length);
+            const thought = randomThoughts[randomIndex];
+            const thoughtElement = document.getElementById('randomThought');
             
-            front.innerHTML = `<p>${thought.text}</p>`;
-            back.innerHTML = `<p>Category: ${thought.category}</p><p>Rating: ${thought.rating}</p>`;
-            
-            // Play a sound effect
+            // Add sound effect
             const audio = new Audio('sounds/thought.mp3');
             audio.play();
+            
+            // Animate the thought
+            thoughtElement.style.animation = 'none';
+            thoughtElement.offsetHeight; // Trigger reflow
+            thoughtElement.style.animation = 'fadeIn 0.5s ease';
+            
+            thoughtElement.textContent = thought;
         }
     </script>
 </body>
