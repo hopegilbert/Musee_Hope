@@ -106,7 +106,7 @@
             position: absolute;
             background: rgba(0, 0, 0, 0.9);
             min-width: 250px;
-            max-height: 400px;
+            max-height: 300px;
             overflow-y: auto;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
             z-index: 1;
@@ -115,7 +115,7 @@
             scrollbar-color: rgba(245, 232, 199, 0.4) rgba(0, 0, 0, 0.2);
         }
 
-        .dropdown-content.show {
+        .dropdown-content.active {
             display: block;
         }
 
@@ -203,6 +203,7 @@
         .header-content {
             position: relative;
             z-index: 2;
+            text-align: center;
         }
     </style>
 </head>
@@ -233,12 +234,12 @@
                 <div class="process-card">
                     <h3>Random Thoughts</h3>
                     <p>Usually hits at 3 AM or in the shower</p>
-                    <a href="./random-thoughts.html" class="chalk-button">View Thoughts</a>
+                    <a href="../random-thoughts.html" class="chalk-button">View Thoughts</a>
                 </div>
                 <div class="process-card">
                     <h3><span class="glitch-effect" data-text="Questionable Research">Questionable Research</span></h3>
                     <p>Deep diving into weird corners of the internet</p>
-                    <a href="./questionable-research.html" class="chalk-button">whack shit</a>
+                    <a href="../questionable-research.html" class="chalk-button">whack shit</a>
                 </div>
             </div>
         </section>
@@ -250,21 +251,18 @@
                     <div class="dropdown-menu">
                         <button class="dropdown-btn chalk-button" onclick="toggleDropdown(this)">View Essays</button>
                         <div class="dropdown-content">
-                            <a href="./essays/attention.html">Attention and Consciousness</a>
-                            <a href="./essays/perception.html">The Role of Perception in Consciousness</a>
-                            <a href="./essays/embodied-mind.html">The Embodied Mind</a>
-                            <a href="./essays/cognitive-architecture.html">Cognitive Architecture</a>
-                            <a href="./essays/consciousness.html">Theories of Consciousness</a>
-                            <a href="./essays/dissertation.html">Dissertation: Object Shape and Material Perception</a>
-                            <a href="./essays/visual-experience.html">Visual Experience and Object Recognition</a>
-                            <a href="./essays/mental-imagery.html">Mental Imagery and Cognitive Processing</a>
+                            <a href="../essays/perception.html">The Role of Perception in Consciousness</a>
+                            <a href="../essays/embodied-mind.html">The Embodied Mind</a>
+                            <a href="../essays/cognitive-architecture.html">Cognitive Architecture</a>
+                            <a href="../essays/consciousness.html">Theories of Consciousness</a>
+                            <a href="../essays/dissertation.html">Dissertation: Object Shape and Material Perception</a>
                         </div>
                     </div>
                 </article>
                 <article class="experiment-card">
                     <h3>Dissertation</h3>
                     <p>Does Cognitive Estimation Precede Visual Experience in the Perception of Object Shape and Material, or Do They Occur Independently and Concurrently?</p>
-                    <a href="./essays/dissertation.html" class="chalk-button">Read More</a>
+                    <a href="../essays/dissertation.html" class="chalk-button">Read More</a>
                 </article>
             </div>
         </section>
@@ -281,13 +279,13 @@
             
             // Close all other dropdowns
             allDropdowns.forEach(d => {
-                if (d !== dropdown && d.classList.contains('show')) {
-                    d.classList.remove('show');
+                if (d !== dropdown && d.classList.contains('active')) {
+                    d.classList.remove('active');
                 }
             });
             
             // Toggle current dropdown
-            dropdown.classList.toggle('show');
+            dropdown.classList.toggle('active');
         }
 
         // Close dropdown when clicking outside
@@ -295,8 +293,8 @@
             if (!event.target.matches('.dropdown-btn')) {
                 const dropdowns = document.querySelectorAll('.dropdown-content');
                 dropdowns.forEach(dropdown => {
-                    if (dropdown.classList.contains('show')) {
-                        dropdown.classList.remove('show');
+                    if (dropdown.classList.contains('active')) {
+                        dropdown.classList.remove('active');
                     }
                 });
             }
