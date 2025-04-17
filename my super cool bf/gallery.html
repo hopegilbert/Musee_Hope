@@ -49,6 +49,8 @@
             opacity: 0;
             transform: translateY(10px);
             transition: opacity 0.3s ease, transform 0.3s ease;
+            display: inline-block;
+            width: 100%;
         }
 
         .masonry-grid.loaded .gallery-item {
@@ -170,6 +172,7 @@
             color: var(--cream);
             transform: translateY(100%);
             transition: transform 0.3s ease;
+            z-index: 1;
         }
 
         .gallery-item:hover .gallery-caption {
@@ -318,20 +321,23 @@
                 'Otley Run 27/07/2024'    // Image 91
             ];
 
-            // Create an array of indices to shuffle
-            const indices = Array.from({length: imageFiles.length}, (_, i) => i);
+            // Create an array of image-caption pairs
+            const imageCaptionPairs = imageFiles.map((image, index) => ({
+                image: image,
+                caption: captions[index]
+            }));
             
-            // Fisher-Yates shuffle algorithm
-            for (let i = indices.length - 1; i > 0; i--) {
+            // Fisher-Yates shuffle algorithm for the pairs
+            for (let i = imageCaptionPairs.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
-                [indices[i], indices[j]] = [indices[j], indices[i]];
+                [imageCaptionPairs[i], imageCaptionPairs[j]] = [imageCaptionPairs[j], imageCaptionPairs[i]];
             }
 
             const masonryGrid = document.querySelector('.masonry-grid');
-            const galleryHTML = indices.map(index => `
+            const galleryHTML = imageCaptionPairs.map(pair => `
                 <div class="gallery-item">
-                    <img src="images/gallery/${imageFiles[index]}.jpg" alt="Gallery image ${index + 1}" class="gallery-image" loading="lazy">
-                    <div class="gallery-caption">${captions[index]}</div>
+                    <img src="images/gallery/${pair.image}.jpg" alt="Gallery image" class="gallery-image" loading="lazy">
+                    <div class="gallery-caption">${pair.caption}</div>
                 </div>
             `).join('');
             
