@@ -8,56 +8,31 @@
     <link rel="stylesheet" href="style.css">
     <style>
         .masonry-grid {
-            column-count: 4;
+            columns: 4 300px;
             column-gap: 20px;
             padding: 2rem 0;
         }
 
-        @media (max-width: 1200px) {
-            .masonry-grid {
-                column-count: 3;
-            }
-        }
-
-        @media (max-width: 900px) {
-            .masonry-grid {
-                column-count: 2;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .masonry-grid {
-                column-count: 1;
-            }
-        }
-
         .gallery-item {
-            break-inside: avoid;
+            width: 100%;
             margin-bottom: 20px;
-            position: relative;
-            overflow: hidden;
+            break-inside: avoid;
             border-radius: 8px;
             background-color: var(--beige);
-            display: block;
-        }
-
-        .gallery-item:hover {
-            transform: translateY(-5px);
         }
 
         .flip-card {
             position: relative;
             width: 100%;
-            text-align: center;
-            transition: transform 0.6s;
             transform-style: preserve-3d;
+            transition: transform 0.6s;
         }
 
         .gallery-item:hover .flip-card {
             transform: rotateY(180deg);
         }
 
-        .flip-card-front, .flip-card-back {
+        .flip-card-front {
             width: 100%;
             backface-visibility: hidden;
             -webkit-backface-visibility: hidden;
@@ -67,7 +42,10 @@
             position: absolute;
             top: 0;
             left: 0;
-            height: 100%;
+            right: 0;
+            bottom: 0;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
             transform: rotateY(180deg);
             background: rgba(0, 0, 0, 0.8);
             display: flex;
@@ -80,7 +58,7 @@
             width: 100%;
             height: auto;
             display: block;
-            vertical-align: middle;
+            border-radius: 8px;
         }
 
         .gallery-caption {
@@ -170,6 +148,24 @@
 
         .dropdown:hover .dropbtn {
             color: var(--terracotta);
+        }
+
+        @media (max-width: 1200px) {
+            .masonry-grid {
+                columns: 3 250px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .masonry-grid {
+                columns: 2 200px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .masonry-grid {
+                columns: 1 100%;
+            }
         }
     </style>
     <script>
