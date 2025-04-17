@@ -142,17 +142,35 @@
                 <div class="gallery-caption">Just us</div>
             </div>
             
-            <!-- New gallery images -->
+            <!-- Gallery images -->
             <script>
-                // Generate gallery items for images 1 through 91
-                for (let i = 1; i <= 91; i++) {
+                const imageFiles = [
+                    'sam0039', 'sam0094', 'sam0095', 'sam0097', 'sam0098', 'sam0099',
+                    'sam0102', 'sam0106', 'sam0107', 'sam0117', 'sam0118', 'sam0123',
+                    'sam0125', 'sam0130', 'sam0175', 'sam0325', 'sam0998', 'sam100',
+                    'sam1216', 'sam1302', 'sam1449', 'sam1482', 'sam1483', 'sam1496',
+                    'sam1497', 'sam1505', 'sam1634', 'sam1654', 'sam1808', 'sam1812',
+                    'sam1837', 'sam1916', 'sam1920', 'sam1936', 'sam1939', 'sam1942',
+                    'sam2037', 'sam2043', 'sam2151', 'sam2185', 'sam2188', 'sam2193',
+                    'sam2204', 'sam2269', 'sam2974', 'sam2999', 'sam3015', 'sam3024',
+                    'sam3030', 'sam3032', 'sam3041', 'sam3089', 'sam3120', 'sam3139',
+                    'sam3185', 'sam3199', 'sam3220', 'sam3222', 'sam3269', 'sam3360',
+                    'sam3372', 'sam3379', 'sam3386', 'sam3415', 'sam3426', 'sam4359',
+                    'sam5833', 'sam5840', 'sam8583', 'sam8586', 'sam8595', 'sam8665',
+                    'sam8669', 'sam8693', 'sam8756', 'sam8767', 'sam8775', 'sam8809',
+                    'sam9443', 'sam9474', 'sam9476', 'sam9477', 'sam9489', 'sam9619',
+                    'sam9702', 'sam9749', 'sam9917', 'sam9952', 'sam200', 'sam300',
+                    'sam400'
+                ];
+
+                imageFiles.forEach((filename, index) => {
                     document.write(`
                         <div class="gallery-item">
-                            <img src="images/gallery/sam${i}.jpg" alt="Gallery image ${i}" class="gallery-image" loading="lazy">
-                            <div class="gallery-caption">Memory #${i}</div>
+                            <img src="images/gallery/${filename}.jpg" alt="Gallery image ${index + 1}" class="gallery-image" loading="lazy">
+                            <div class="gallery-caption">Memory #${index + 1}</div>
                         </div>
                     `);
-                }
+                });
             </script>
         </div>
 
