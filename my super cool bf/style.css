@@ -238,3 +238,103 @@ footer {
 .mb-4 {
   margin-bottom: 2rem;
 }
+
+/* Media Queries */
+@media screen and (max-width: 768px) {
+    .page-wrapper {
+        padding: 1rem;
+    }
+
+    /* Navigation */
+    .nav-menu {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    /* Hero Section */
+    .hero-card {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 2rem;
+        text-align: center;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-text {
+        font-size: 1.1rem;
+    }
+
+    /* Content Grid */
+    .content-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin-bottom: 3rem;
+    }
+
+    .content-card {
+        padding: 1.5rem;
+    }
+
+    /* Quote Section */
+    .quote-section {
+        padding: 2rem;
+        margin: 2rem 0;
+    }
+
+    .quote-text {
+        font-size: 1.5rem;
+    }
+
+    /* Featured Section */
+    .featured-section {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 1.5rem;
+        margin: 2rem 0;
+    }
+
+    .featured-title {
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    .featured-content {
+        text-align: center;
+    }
+
+    /* Collection Grid */
+    .collection-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin-bottom: 3rem;
+    }
+}
+
+/* Additional breakpoint for very small screens */
+@media screen and (max-width: 480px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .quote-text {
+        font-size: 1.25rem;
+    }
+
+    .card-image {
+        height: 200px;
+    }
+
+    .featured-image {
+        height: 250px;
+    }
+
+    .learn-more {
+        width: 100%;
+        justify-content: center;
+    }
+}
