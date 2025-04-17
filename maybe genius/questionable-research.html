@@ -371,9 +371,10 @@
         }
 
         .modal-content {
+            position: relative;
             max-width: 90%;
             max-height: 90vh;
-            position: relative;
+            margin: auto;
             cursor: default;
         }
 
@@ -382,6 +383,7 @@
             max-height: 90vh;
             object-fit: contain;
             border-radius: 4px;
+            transition: transform 0.3s ease;
         }
 
         .modal-caption {
@@ -450,6 +452,34 @@
         .chalk-button:hover {
             background: rgba(255, 255, 255, 0.2);
             border-color: #f5f2e7;
+        }
+
+        .modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: #f5f2e7;
+            padding: 20px;
+            cursor: pointer;
+            font-size: 24px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            z-index: 10002;
+            border-radius: 5px;
+            user-select: none;
+        }
+
+        .modal-nav:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .modal-prev {
+            left: 20px;
+        }
+
+        .modal-next {
+            right: 20px;
         }
     </style>
 </head>
@@ -943,37 +973,83 @@
             modal.innerHTML = `
                 <div class="modal-content">
                     <span class="modal-close">&times;</span>
+                    <span class="modal-nav modal-prev">&lt;</span>
+                    <span class="modal-nav modal-next">&gt;</span>
                     <img src="" alt="">
                     <div class="modal-caption"></div>
                 </div>
             `;
             document.body.appendChild(modal);
 
+            let currentGrid = null;
+            let currentIndex = 0;
+
             thumbnails.forEach(thumbnail => {
                 thumbnail.addEventListener('click', function(e) {
-                    const img = thumbnail.querySelector('img');
-                    const title = thumbnail.querySelector('.image-title').textContent;
-                    const modalImg = modal.querySelector('img');
-                    const modalCaption = modal.querySelector('.modal-caption');
+                    const grid = thumbnail.closest('.image-grid');
+                    const gridThumbnails = Array.from(grid.querySelectorAll('.image-thumbnail'));
+                    currentGrid = gridThumbnails;
+                    currentIndex = gridThumbnails.indexOf(thumbnail);
                     
-                    modalImg.src = img.src;
-                    modalImg.alt = img.alt;
-                    modalCaption.textContent = title;
+                    updateModal();
                     modal.classList.add('active');
                     e.stopPropagation();
                 });
             });
 
-            // Close modal when clicking outside the image
-            modal.addEventListener('click', function(e) {
-                if (e.target === modal || e.target.classList.contains('modal-close')) {
-                    modal.classList.remove('active');
+            function updateModal() {
+                const thumbnail = currentGrid[currentIndex];
+                const img = thumbnail.querySelector('img');
+                const title = thumbnail.querySelector('.image-title').textContent;
+                const modalImg = modal.querySelector('img');
+                const modalCaption = modal.querySelector('.modal-caption');
+                
+                modalImg.src = img.src;
+                modalImg.alt = img.alt;
+                modalCaption.textContent = title;
+
+                // Update navigation visibility
+                const prevNav = modal.querySelector('.modal-prev');
+                const nextNav = modal.querySelector('.modal-next');
+                prevNav.style.display = currentIndex > 0 ? 'block' : 'none';
+                nextNav.style.display = currentIndex < currentGrid.length - 1 ? 'block' : 'none';
+            }
+
+            // Add navigation click handlers
+            modal.querySelector('.modal-prev').addEventListener('click', function(e) {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updateModal();
+                }
+                e.stopPropagation();
+            });
+
+            modal.querySelector('.modal-next').addEventListener('click', function(e) {
+                if (currentIndex < currentGrid.length - 1) {
+                    currentIndex++;
+                    updateModal();
+                }
+                e.stopPropagation();
+            });
+
+            // Add keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (modal.classList.contains('active')) {
+                    if (e.key === 'ArrowLeft' && currentIndex > 0) {
+                        currentIndex--;
+                        updateModal();
+                    } else if (e.key === 'ArrowRight' && currentIndex < currentGrid.length - 1) {
+                        currentIndex++;
+                        updateModal();
+                    } else if (e.key === 'Escape') {
+                        modal.classList.remove('active');
+                    }
                 }
             });
 
-            // Close modal with escape key
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && modal.classList.contains('active')) {
+            // Close modal when clicking outside the image
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal || e.target.classList.contains('modal-close')) {
                     modal.classList.remove('active');
                 }
             });
