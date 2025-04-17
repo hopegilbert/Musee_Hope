@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - The Boyf Files</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            background-color: var(--beige);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.7);
+            color: var(--cream);
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+
+        .gallery-title {
+            font-size: 2.5rem;
+            color: var(--primary);
+            text-align: center;
+            margin: 2rem 0;
+            font-weight: 800;
+        }
+
+        .gallery-description {
+            text-align: center;
+            color: var(--gray);
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            font-size: 1.1rem;
+        }
+
+        @media screen and (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 1.5rem;
+                padding: 1.5rem 0;
+            }
+
+            .gallery-title {
+                font-size: 2rem;
+                margin: 1.5rem 0;
+            }
+
+            .gallery-description {
+                font-size: 1rem;
+                margin: 0 auto 2rem;
+                padding: 0 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <nav class="nav-menu">
+            <a href="../index.html">HOME</a>
+            <a href="my-super-cool-bf.html">ABOUT</a>
+            <a href="gallery.html">GALLERY</a>
+            <a href="#memories">MEMORIES</a>
+            <a href="#contact">CONTACT</a>
+        </nav>
+
+        <h1 class="gallery-title">Our Photo Gallery</h1>
+        <p class="gallery-description">A collection of our favorite moments together, from coding sessions to coffee dates and everything in between.</p>
+
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="images/coding.jpg" alt="Coding session" class="gallery-image">
+                <div class="gallery-caption">Late night coding session</div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/coffee.jpg" alt="Coffee date" class="gallery-image">
+                <div class="gallery-caption">Morning coffee ritual</div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/gaming.jpg" alt="Gaming together" class="gallery-image">
+                <div class="gallery-caption">Gaming adventures</div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/featured.jpg" alt="Special moment" class="gallery-image">
+                <div class="gallery-caption">Special moments</div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/hero.jpg" alt="Us together" class="gallery-image">
+                <div class="gallery-caption">Just us</div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Made with ❤️ and lots of coffee</p>
+        </footer>
+    </div>
+</body>
+</html> 
