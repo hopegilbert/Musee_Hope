@@ -124,11 +124,105 @@
                 'sam400'
             ];
 
+            // Add your captions here - one for each image
+            const captions = [
+                'Rhosneigr 12/08/2024',  // Image 1
+                'Otley Run 27/07/2024',  // Image 3
+                'Sams Kitchen 10/08/2024',  // Image 4
+                'Drinks 09/08/2024',  // Image 5
+                'Birmingham 09/08/2024',  // Image 6
+                'Wales 20/08/2024',  // Image 7
+                'The Cottage 22/08/2024',  // Image 8
+                'The Cottage 22/08/2024',  // Image 9
+                'Sams Kitchen 10/08/2024',  // Image 10
+                'Sams Kitchen 10/08/2024',  // Image 11
+                'Sams Garden 10/08/2024',  // Image 12
+                'Sams Garden 10/08/2024',  // Image 13
+                'Conwy 18/08/2024',  // Image 14
+                'Hopes Garden 28/07/2024',  // Image 15
+                'Sams Garden 11/08/2024',  // Image 16
+                'Spags 01/10/2024',  // Image 17
+                'Otley Run 27/07/2024',   // Image 18
+                'Observatory Hill 05/11/2024',  // Image 19
+                'Zen 12/11/2024',  // Image 20
+                'Winter Ball 02/12/2024',  // Image 21
+                'Winter Ball 02/12/2024',  // Image 22
+                'Winter Ball 02/12/2024',  // Image 23
+                'Winter Ball 02/12/2024',  // Image 24
+                'Winter Ball 02/12/2024',  // Image 25
+                'The Bus Home 03/12/2024',  // Image 26
+                'Family Xmas Dinner 21/12/2024',  // Image 27
+                'Xmas Market 22/12/2024',  // Image 28
+                'NYE Drinks 31/12/2024',  // Image 29
+                'Sams Street 01/01/2025',  // Image 30
+                'Graduation 10/01/2025',  // Image 31
+                'Jimmys 11/01/2025',  // Image 32
+                'Jimmys 11/01/2025',  // Image 33
+                'Winter Ball 02/12/2024',  // Image 34
+                'Winter Ball 02/12/2024',  // Image 35
+                'Sams Room 03/12/2024',  // Image 36
+                'Speakeasy 01/02/2025',  // Image 37
+                'Leonards 02/02/2024',  // Image 38
+                'Hopes Couch 22/02/2025',  // Image 39
+                'Dinner Party 22/02/2025',  // Image 40
+                'Dinner Party 22/02/2025',  // Image 41
+                'Dinner Party 22/02/2025',  // Image 42
+                'Dinner Party 22/02/2025',  // Image 43
+                'Dinner Party 22/02/2025',  // Image 44
+                'LBA 21/03/2025',  // Image 45
+                'Paris Hotel Room 21/03/2025',  // Image 46
+                'Les Tommates 21/03/2025',  // Image 47
+                'Hotel Lift 21/03/2025',  // Image 48
+                'Hotel Lift 22/03/2025',  // Image 49
+                'Eifel Tower 22/03/2025',  // Image 50
+                'Musee D Orsay 22/03/2025',  // Image 51
+                'Musee D Orsay 22/03/2025',  // Image 52
+                'Montmarte 22/03/2025',  // Image 53
+                'Hotel Lift 22/03/2025',  // Image 54
+                'Le Caveau de la Huchette 22/03/2025',  // Image 55
+                'Hotel Lift 23/03/2025',  // Image 56
+                'Louvre 23/03/2025',  // Image 57
+                'Louvre 23/03/2025',  // Image 58
+                'Louvre 23/03/2025',  // Image 59
+                'Hotel Lift 23/03/2025',  // Image 60
+                'Eifel Tower 23/03/2025',  // Image 61
+                'Eifel Tower 23/03/2025',  // Image 62
+                'Judy Market 24/03/2025',  // Image 63
+                'Luxembourg Gardens 24/03/2025',  // Image 64
+                'Eifel Tower 24/03/2025',  // Image 65
+                'Van & James House 22/12/2024',  // Image 66
+                'Snow Day 13/06/2024',  // Image 67
+                'Snow Day 13/06/2024',  // Image 68
+                '1st Date 26/07/2024',  // Image 69
+                'Gustos 26/07/2024',  // Image 70
+                'Mini Golf 26/07/2024',  // Image 71
+                'Otley Run 27/07/2024',  // Image 72
+                'Otley Run 27/07/2024',  // Image 73
+                'Otley Run 27/07/2024',  // Image 74
+                'Ilkley Moor 28/07/2024',  // Image 75
+                'Ilkley Moor 28/07/2024',  // Image 76
+                'Ilkley Moor 28/07/2024',  // Image 77
+                'Rummikub 28/07/2024',  // Image 78
+                'Dinner 09/08/2024',  // Image 79
+                'Sams Garden 10/08/2024',  // Image 80
+                'Sams Garden 10/08/2024',  // Image 81
+                'Sams Garden 10/08/2024',  // Image 82
+                'Sams Garden 10/08/2024',  // Image 83
+                'Ipad Kid 16/08/2024',  // Image 84
+                'Llandudno 18/08/2024',  // Image 85
+                'Llandudno 18/08/2024',  // Image 86
+                'Llyn Geirionydd 20/08/2024',  // Image 87
+                'Penmaenmawr 21/08/2024',  // Image 88
+                'Sams Kitchen 10/08/2024',   // Image 89
+                'Graduation 10/01/2024',   // Image 90
+                'Otley Run 27/07/2024'    // Image 91
+            ];
+
             const masonryGrid = document.querySelector('.masonry-grid');
             const galleryHTML = imageFiles.map((filename, index) => `
                 <div class="gallery-item">
                     <img src="images/gallery/${filename}.jpg" alt="Gallery image ${index + 1}" class="gallery-image" loading="lazy">
-                    <div class="gallery-caption">Memory #${index + 1}</div>
+                    <div class="gallery-caption">${captions[index]}</div>
                 </div>
             `).join('');
             
