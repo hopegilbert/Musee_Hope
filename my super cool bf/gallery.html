@@ -3,656 +3,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gallery - The Boyf Files</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <style>
-        /* Dropdown styles */
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .dropbtn {
-            background-color: transparent;
-            color: var(--text);
-            padding: 0.5rem 1rem;
-            font-size: 1rem;
-            border: none;
-            cursor: pointer;
-            font-family: 'Inter', sans-serif;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .dropbtn:hover {
-            color: var(--terracotta);
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: var(--beige);
-            min-width: 200px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            z-index: 1;
-            border-radius: 8px;
-            padding: 0.5rem;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            margin-top: 0.5rem;
-        }
-
-        .dropdown:hover .dropdown-content {
-            display: block;
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .dropdown-content a {
-            color: var(--text);
-            padding: 0.75rem 1rem;
-            text-decoration: none;
-            display: block;
-            transition: background-color 0.3s ease, color 0.3s ease;
-            border-radius: 4px;
-        }
-
-        .dropdown-content a:hover {
-            background-color: var(--terracotta);
-            color: var(--cream);
-        }
-
-        @media (max-width: 768px) {
-            .dropdown-content {
-                position: static;
-                box-shadow: none;
-                width: 100%;
-            }
-            
-            .dropdown:hover .dropdown-content {
-                display: block;
-            }
-        }
-    </style>
+    <title>My Super Cool BF Gallery</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="page-wrapper">
-        <nav class="nav-menu">
-            <a href="../index.html">HOME</a>
-            <a href="my-super-cool-bf.html">ABOUT</a>
-            <a href="gallery.html">GALLERY</a>
-            <a href="#memories">MEMORIES</a>
-            <div class="dropdown">
-                <button class="dropbtn">GENIUS WORK</button>
-                <div class="dropdown-content">
-                    <a href="#">Questionable Research</a>
-                    <a href="#">Random Thoughts</a>
-                    <a href="#">Philosophical Musings</a>
-                    <a href="#">Creative Experiments</a>
-                </div>
-            </div>
-        </nav>
+    <div class="masonry-grid"></div>
 
-        <h1 class="gallery-title">Our Photo Gallery</h1>
-        <p class="gallery-description">A collection of photos from our adventures together.</p>
+    <script>
+        const images = [
+            { src: 'images/gallery/LBA.jpg', caption: '' },
+            { src: 'images/gallery/eiffel-tower.jpg', caption: '' },
+            { src: 'images/gallery/winter-ball.jpg', caption: '' },
+            { src: 'images/gallery/paris-street.jpg', caption: '' },
+            { src: 'images/gallery/paris-bridge.jpg', caption: '' },
+            { src: 'images/gallery/paris-cafe.jpg', caption: '' },
+            { src: 'images/gallery/paris-museum.jpg', caption: '' },
+            { src: 'images/gallery/paris-park.jpg', caption: '' },
+            { src: 'images/gallery/paris-river.jpg', caption: '' },
+            { src: 'images/gallery/paris-sunset.jpg', caption: '' },
+            { src: 'images/gallery/paris-night.jpg', caption: '' },
+            { src: 'images/gallery/paris-market.jpg', caption: '' },
+            { src: 'images/gallery/paris-garden.jpg', caption: '' },
+            { src: 'images/gallery/paris-art.jpg', caption: '' },
+            { src: 'images/gallery/paris-architecture.jpg', caption: '' },
+            { src: 'images/gallery/paris-street-art.jpg', caption: '' },
+            { src: 'images/gallery/paris-food.jpg', caption: '' },
+            { src: 'images/gallery/paris-wine.jpg', caption: '' },
+            { src: 'images/gallery/paris-bakery.jpg', caption: '' },
+            { src: 'images/gallery/paris-cheese.jpg', caption: '' },
+            { src: 'images/gallery/paris-chocolate.jpg', caption: '' },
+            { src: 'images/gallery/paris-pastry.jpg', caption: '' },
+            { src: 'images/gallery/paris-coffee.jpg', caption: '' },
+            { src: 'images/gallery/paris-tea.jpg', caption: '' },
+            { src: 'images/gallery/paris-restaurant.jpg', caption: '' },
+            { src: 'images/gallery/paris-bistro.jpg', caption: '' },
+            { src: 'images/gallery/paris-cafe-terrace.jpg', caption: '' },
+            { src: 'images/gallery/paris-street-food.jpg', caption: '' },
+            { src: 'images/gallery/paris-market-food.jpg', caption: '' },
+            { src: 'images/gallery/paris-grocery.jpg', caption: '' },
+            { src: 'images/gallery/paris-wine-shop.jpg', caption: '' },
+            { src: 'images/gallery/paris-cheese-shop.jpg', caption: '' },
+            { src: 'images/gallery/paris-bakery-shop.jpg', caption: '' },
+            { src: 'images/gallery/paris-chocolate-shop.jpg', caption: '' },
+            { src: 'images/gallery/paris-pastry-shop.jpg', caption: '' },
+            { src: 'images/gallery/paris-coffee-shop.jpg', caption: '' },
+            { src: 'images/gallery/paris-tea-shop.jpg', caption: '' },
+            { src: 'images/gallery/paris-restaurant-shop.jpg', caption: '' },
+            { src: 'images/gallery/paris-bistro-shop.jpg', caption: '' },
+            { src: 'images/gallery/paris-cafe-terrace-shop.jpg', caption: '' },
+            { src: 'images/gallery/paris-street-food-shop.jpg', caption: '' },
+            { src: 'images/gallery/paris-market-food-shop.jpg', caption: '' },
+            { src: 'images/gallery/paris-grocery-shop.jpg', caption: '' },
+            { src: 'images/gallery/paris-wine-bar.jpg', caption: '' },
+            { src: 'images/gallery/paris-cheese-bar.jpg', caption: '' },
+            { src: 'images/gallery/paris-bakery-bar.jpg', caption: '' },
+            { src: 'images/gallery/paris-chocolate-bar.jpg', caption: '' },
+            { src: 'images/gallery/paris-pastry-bar.jpg', caption: '' },
+            { src: 'images/gallery/paris-coffee-bar.jpg', caption: '' },
+            { src: 'images/gallery/paris-tea-bar.jpg', caption: '' },
+            { src: 'images/gallery/paris-restaurant-bar.jpg', caption: '' },
+            { src: 'images/gallery/paris-bistro-bar.jpg', caption: '' },
+            { src: 'images/gallery/paris-cafe-terrace-bar.jpg', caption: '' },
+            { src: 'images/gallery/paris-street-food-bar.jpg', caption: '' },
+            { src: 'images/gallery/paris-market-food-bar.jpg', caption: '' },
+            { src: 'images/gallery/paris-grocery-bar.jpg', caption: '' },
+            { src: 'images/gallery/paris-wine-cellar.jpg', caption: '' },
+            { src: 'images/gallery/paris-cheese-cellar.jpg', caption: '' },
+            { src: 'images/gallery/paris-bakery-cellar.jpg', caption: '' },
+            { src: 'images/gallery/paris-chocolate-cellar.jpg', caption: '' },
+            { src: 'images/gallery/paris-pastry-cellar.jpg', caption: '' },
+            { src: 'images/gallery/paris-coffee-cellar.jpg', caption: '' },
+            { src: 'images/gallery/paris-tea-cellar.jpg', caption: '' },
+            { src: 'images/gallery/paris-restaurant-cellar.jpg', caption: '' },
+            { src: 'images/gallery/paris-bistro-cellar.jpg', caption: '' },
+            { src: 'images/gallery/paris-cafe-terrace-cellar.jpg', caption: '' },
+            { src: 'images/gallery/paris-street-food-cellar.jpg', caption: '' },
+            { src: 'images/gallery/paris-market-food-cellar.jpg', caption: '' },
+            { src: 'images/gallery/paris-grocery-cellar.jpg', caption: '' }
+        ];
 
-        <div class="masonry-grid">
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/skyrack.jpg" alt="Skyrack">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/ipad-kid.jpg" alt="iPad kid">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/llandudno.jpg" alt="Llandudno">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/llandudno2.jpg" alt="Llandudno 2">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/llyn-geirionydd.jpg" alt="Llyn Geirionydd">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/penmaemawr.jpg" alt="Penmaemawr">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/dinner.jpg" alt="Dinner">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/ilkley-moor3.jpg" alt="Ilkley Moor 3">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/rummikub.jpg" alt="Rummikub">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/sams-garden4.jpg" alt="Sam's Garden 4">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/sams-garden5.jpg" alt="Sam's Garden 5">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/sams-garden6.jpg" alt="Sam's Garden 6">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/sams-garden7.jpg" alt="Sam's Garden 7">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/first-date.jpg" alt="First Date">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/gustos.jpg" alt="Gustos">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/ilkley-moor.jpg" alt="Ilkley Moor">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/ilkley-moor2.jpg" alt="Ilkley Moor 2">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/mini-golf.jpg" alt="Mini Golf">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/otley-run3.jpg" alt="Otley Run 3">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/otley-run4.jpg" alt="Otley Run 4">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/otley-run5.jpg" alt="Otley Run 5">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/snow-day2.jpg" alt="Snow Day 2">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/eiffel-tower3.jpg" alt="Eiffel Tower 3">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/eiffel-tower4.jpg" alt="Eiffel Tower 4">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/judy-market.jpg" alt="Judy Market">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/luxembourg-gardens.jpg" alt="Luxembourg Gardens">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/snow-day.jpg" alt="Snow Day">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/van-and-james-house.jpg" alt="Van and James House">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/eiffel-tower2.jpg" alt="Eiffel Tower 2">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/hotel-lift4.jpg" alt="Hotel Lift 4">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/louvre3.jpg" alt="Louvre 3">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/hotel-lift3.jpg" alt="Hotel Lift 3">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/louvre.jpg" alt="Louvre">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/louvre2.jpg" alt="Louvre 2">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/eiffel-tower.jpg" alt="Eiffel Tower">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/hotel-lift.jpg" alt="Hotel Lift">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/hotel-lift2.jpg" alt="Hotel Lift 2">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/la-cavaeu-de-la-hauchette.jpg" alt="La Cavaeu de la Hauchette">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/montmarte.jpg" alt="Montmarte">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/musee-dorsay.jpg" alt="Musee d'Orsay">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/musee-dorsay2.jpg" alt="Musee d'Orsay 2">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/LBA.jpg" alt="LBA">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/dinner-party3.jpg" alt="Dinner Party 3">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/dinner-party4.jpg" alt="Dinner Party 4">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/dinner-party5.jpg" alt="Dinner Party 5">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/hotel-room-paris.jpg" alt="Hotel Room Paris">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/les-tomattes.jpg" alt="Les Tomattes">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/wet-lift.jpg" alt="Wet Lift">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/dinner-party.jpg" alt="Dinner Party">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/dinner-party2.jpg" alt="Dinner Party 2">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/hopes-couch.jpg" alt="Hope's Couch">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/leonards.jpg" alt="Leonards">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/post-winter-ball.jpg" alt="Post Winter Ball">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/speakeasy-durham.jpg" alt="Speakeasy Durham">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/winter-ball6.jpg" alt="Winter Ball 6">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/winter-ball7.jpg" alt="Winter Ball 7">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/graduation2.jpg" alt="Graduation 2">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/jimmys.jpg" alt="Jimmys">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/jimmys2.jpg" alt="Jimmys 2">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/nye-drinks.jpg" alt="NYE Drinks">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/sams-street.jpg" alt="Sam's Street">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/bus-home.jpg" alt="Bus Home">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/family-xmas-meal.jpg" alt="Family Xmas Meal">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/winter-ball3.jpg" alt="Winter Ball 3">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/winter-ball4.jpg" alt="Winter Ball 4">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/winter-ball5.jpg" alt="Winter Ball 5">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/xmas-market.jpg" alt="Xmas Market">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/hopes-garden.jpg" alt="Hope's Garden">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/observatory-hill.jpg" alt="Observatory Hill">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/sams-garden3.jpg" alt="Sam's Garden 3">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/spags.jpg" alt="Spags">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/winter-ball.jpg" alt="Winter Ball">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/winter-ball2.jpg" alt="Winter Ball 2">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/zen.jpg" alt="Zen">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/beers.jpg" alt="Beers">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/birmingham.jpg" alt="Birmingham">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/conwy.jpg" alt="Conwy">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/drinks.jpg" alt="Drinks">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/graduation.jpg" alt="Graduation">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/otley-run.jpg" alt="Otley Run">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/otley-run2.jpg" alt="Otley Run 2">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/rhosniegr.jpg" alt="Rhosniegr">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/sams-garden.jpg" alt="Sam's Garden">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/sams-garden2.jpg" alt="Sam's Garden 2">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/sams-kitchen.jpg" alt="Sam's Kitchen">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/sams-kitchen2.jpg" alt="Sam's Kitchen 2">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/sams-kitchen3.jpg" alt="Sam's Kitchen 3">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/the-cottage.jpg" alt="The Cottage">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/the-cottage2.jpg" alt="The Cottage 2">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/wales.jpg" alt="Wales">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="image-wrapper">
-                    <img src="images/gallery/sams-kitchen4.jpg" alt="Sam's Kitchen 4">
-                    <div class="hover-text"></div>
-                </div>
-            </div>
-        </div>
+        function shuffleArray(array) {
+            // Create a copy of the array to avoid modifying the original
+            const shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
 
-        <footer>
-            <p>Made with ❤️ and lots of coffee</p>
-        </footer>
-    </div>
+        function createGallery() {
+            const gallery = document.querySelector('.masonry-grid');
+            // Clear any existing content
+            gallery.innerHTML = '';
+            
+            // Shuffle the images array
+            const shuffledImages = shuffleArray(images);
+            
+            shuffledImages.forEach((item, index) => {
+                const gridItem = document.createElement('div');
+                gridItem.className = 'grid-item';
+                
+                const wrapper = document.createElement('div');
+                wrapper.className = 'image-wrapper';
+                
+                const img = document.createElement('img');
+                img.src = item.src;
+                img.alt = item.src.split('/').pop().split('.')[0];
+                img.className = 'gallery-image';
+                
+                const hoverText = document.createElement('div');
+                hoverText.className = 'hover-text';
+                hoverText.textContent = item.caption || '';
+                
+                wrapper.appendChild(img);
+                wrapper.appendChild(hoverText);
+                gridItem.appendChild(wrapper);
+                gallery.appendChild(gridItem);
+                
+                // Add fade-in effect
+                setTimeout(() => {
+                    gridItem.classList.add('visible');
+                }, index * 50);
+            });
+        }
+
+        // Create gallery on page load
+        document.addEventListener('DOMContentLoaded', createGallery);
+    </script>
 </body>
 </html>
