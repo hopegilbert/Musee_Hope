@@ -3,10 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Super Cool BF Gallery</title>
+    <title>Gallery - The Boyf Files</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
+        /* Header styles */
+        header {
+            text-align: center;
+            padding: 2rem 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        header h1 {
+            font-family: 'Inter', sans-serif;
+            font-size: 2.5rem;
+            color: var(--text);
+            margin-bottom: 1rem;
+        }
+
+        header p {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.2rem;
+            color: var(--text);
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+
         /* Dropdown styles */
         .dropdown {
             position: relative;
@@ -94,6 +117,8 @@
             position: relative;
             opacity: 0;
             transition: opacity 0.6s ease-out;
+            display: inline-block;
+            width: 100%;
         }
 
         .grid-item.visible {
@@ -102,7 +127,7 @@
 
         .image-wrapper {
             position: relative;
-            display: inline-block;
+            display: block;
             width: 100%;
             cursor: pointer;
             overflow: hidden;
@@ -151,6 +176,12 @@
             .masonry-grid {
                 column-count: 2;
             }
+            header h1 {
+                font-size: 2rem;
+            }
+            header p {
+                font-size: 1rem;
+            }
         }
 
         @media (max-width: 600px) {
@@ -177,6 +208,11 @@
                 </div>
             </div>
         </nav>
+
+        <header>
+            <h1>Gallery</h1>
+            <p>Proof that we do, in fact, go outside and have fun sometimes.</p>
+        </header>
 
         <div class="masonry-grid"></div>
 
