@@ -212,6 +212,13 @@
             ];
             
             const masonryGrid = document.querySelector('.masonry-grid');
+            
+            // Create a container for all images
+            const container = document.createElement('div');
+            container.style.opacity = '0';
+            container.style.transition = 'opacity 0.3s ease-out';
+            
+            // Generate all gallery items
             const galleryHTML = images.map(image => `
                 <div class="grid-item">
                     <div class="image-wrapper">
@@ -223,10 +230,14 @@
                 </div>
             `).join('');
             
-            masonryGrid.innerHTML = galleryHTML;
-
-            // Add visible class to items after they're loaded
-            const items = document.querySelectorAll('.grid-item');
+            // Add items to container
+            container.innerHTML = galleryHTML;
+            
+            // Add container to masonry grid
+            masonryGrid.appendChild(container);
+            
+            // Set up IntersectionObserver for individual items
+            const items = container.querySelectorAll('.grid-item');
             const observer = new IntersectionObserver(entries => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -235,10 +246,28 @@
                     }
                 });
             }, {
-                threshold: 0.1
+                threshold: 0.1,
+                rootMargin: '50px'
             });
 
+            // Observe all items
             items.forEach(item => observer.observe(item));
+            
+            // Fade in the entire container once images are loaded
+            const imageLoadPromises = Array.from(container.querySelectorAll('img')).map(img => {
+                return new Promise((resolve) => {
+                    if (img.complete) {
+                        resolve();
+                    } else {
+                        img.onload = resolve;
+                        img.onerror = resolve; // Resolve even if image fails to load
+                    }
+                });
+            });
+            
+            Promise.all(imageLoadPromises).then(() => {
+                container.style.opacity = '1';
+            });
         });
     </script>
 </head>
