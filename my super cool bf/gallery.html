@@ -52,6 +52,7 @@
             display: inline-block;
             width: 100%;
             perspective: 1000px;
+            height: 300px; /* Fixed height for consistency */
         }
 
         .masonry-grid.loaded .gallery-item {
@@ -196,9 +197,9 @@
 
         .gallery-image {
             width: 100%;
-            height: auto;
-            display: block;
+            height: 100%;
             object-fit: cover;
+            display: block;
         }
 
         .gallery-caption {
@@ -281,7 +282,7 @@
                     <div class="flip-card">
                         <div class="flip-card-inner">
                             <div class="flip-card-front">
-                                <img src="images/gallery/${pair.image}.jpg" alt="Gallery image" class="gallery-image" loading="lazy">
+                                <img src="images/gallery/${pair.image}.jpg" alt="${pair.image}" class="gallery-image" loading="lazy">
                             </div>
                             <div class="flip-card-back">
                                 <div class="gallery-caption">${pair.caption}</div>
