@@ -20,6 +20,7 @@
             border-radius: 8px;
             background-color: var(--beige);
             transition: transform 0.3s ease;
+            aspect-ratio: 1;
         }
 
         .gallery-item:hover {
@@ -28,9 +29,11 @@
 
         .gallery-image {
             width: 100%;
-            height: 300px;
+            height: 100%;
             object-fit: cover;
             transition: transform 0.3s ease;
+            opacity: 0;
+            animation: fadeIn 0.5s ease forwards;
         }
 
         .gallery-caption {
@@ -83,6 +86,11 @@
                 padding: 0 1rem;
             }
         }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
     </style>
 </head>
 <body>
@@ -96,9 +104,10 @@
         </nav>
 
         <h1 class="gallery-title">Our Photo Gallery</h1>
-        <p class="gallery-description">A collection of our favorite moments together, from coding sessions to coffee dates and everything in between.</p>
+        <p class="gallery-description">A collection of our favorite moments together, capturing every smile, adventure, and precious memory we've shared.</p>
 
         <div class="gallery-grid">
+            <!-- Original images -->
             <div class="gallery-item">
                 <img src="images/coding.jpg" alt="Coding session" class="gallery-image">
                 <div class="gallery-caption">Late night coding session</div>
@@ -119,6 +128,19 @@
                 <img src="images/hero.jpg" alt="Us together" class="gallery-image">
                 <div class="gallery-caption">Just us</div>
             </div>
+            
+            <!-- New gallery images -->
+            <script>
+                // Generate gallery items for images 1 through 91
+                for (let i = 1; i <= 91; i++) {
+                    document.write(`
+                        <div class="gallery-item">
+                            <img src="images/gallery/gallery${i}.jpg" alt="Gallery image ${i}" class="gallery-image" loading="lazy">
+                            <div class="gallery-caption">Memory #${i}</div>
+                        </div>
+                    `);
+                }
+            </script>
         </div>
 
         <footer>
