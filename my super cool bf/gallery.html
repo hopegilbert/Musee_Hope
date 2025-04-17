@@ -23,6 +23,13 @@
             position: relative;
             opacity: 0;
             transition: opacity 0.6s ease-out;
+            display: block;
+            width: 100%;
+            background: #000;
+            border-radius: 4px;
+            overflow: hidden;
+            transform: translateZ(0);
+            backface-visibility: hidden;
         }
 
         .gallery-item.visible {
@@ -34,6 +41,8 @@
             height: auto;
             display: block;
             border-radius: 4px;
+            transform: translateZ(0);
+            backface-visibility: hidden;
         }
 
         .gallery-caption {
@@ -134,6 +143,12 @@
         @media (max-width: 768px) {
             .masonry-grid {
                 column-count: 2;
+                column-gap: 0.5rem;
+                padding: 0.5rem;
+            }
+            
+            .gallery-item {
+                margin-bottom: 0.5rem;
             }
         }
 
@@ -242,7 +257,10 @@
             const masonryGrid = document.querySelector('.masonry-grid');
             const galleryHTML = images.map(image => `
                 <div class="gallery-item">
-                    <img src="${image}" alt="${image.split('/').pop().split('.')[0]}" class="gallery-image">
+                    <img src="${image}" 
+                         alt="${image.split('/').pop().split('.')[0]}" 
+                         class="gallery-image"
+                         loading="lazy">
                 </div>
             `).join('');
             
