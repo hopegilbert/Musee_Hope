@@ -497,6 +497,14 @@
             gap: 20px;
             margin: 20px 0;
             flex-wrap: wrap;
+            position: relative;
+            z-index: 2000;
+        }
+
+        .back-to-gallery {
+            display: block;
+            margin: 20px auto 0;
+            width: fit-content;
         }
 
         .nav-menu .chalk-button {
@@ -542,6 +550,7 @@
         .nav-menu .dropdown {
             position: relative;
             display: inline-block;
+            z-index: 2001;
         }
 
         .nav-menu .dropdown-content {
@@ -550,7 +559,7 @@
             background-color: rgba(0, 0, 0, 0.9);
             min-width: 200px;
             box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-            z-index: 3;
+            z-index: 2002;
             border-radius: 5px;
             padding: 10px 0;
             transform: translateY(10px);
@@ -707,34 +716,34 @@
     <img src="images/ladybird.png" alt="Ladybird" class="poster" id="ladybird-poster">
     
     <div class="page-wrapper">
+        <a href="../../index.html" class="chalk-button back-to-gallery">Back to Gallery</a>
         <nav class="nav-menu">
-            <a href="../index.html" class="chalk-button">Back to Gallery</a>
-            <a href="maybe-genius.html" class="chalk-button">Maybe Genius</a>
-            <a href="random-thoughts.html" class="chalk-button">Random Thoughts</a>
-            <a href="questionable-research.html" class="chalk-button">Questionable Research</a>
+            <a href="../maybe-genius.html" class="chalk-button">Maybe Genius</a>
+            <a href="../random-thoughts.html" class="chalk-button">Random Thoughts</a>
+            <a href="../questionable-research.html" class="chalk-button">Questionable Research</a>
             <div class="dropdown">
                 <button class="chalk-button" onclick="toggleDropdown(this)">Essays</button>
                 <div class="dropdown-content">
-                    <a href="essays/autism-anxiety.html">Autism and Anxiety</a>
-                    <a href="essays/business-and-economic.html">Improving Organisational Functioning</a>
-                    <a href="essays/close-relationships.html">Love Languages</a>
-                    <a href="essays/cognitive-biological.html">Deep and Meaningful Learning</a>
-                    <a href="essays/crime-and-youth.html">Crime and Youth</a>
-                    <a href="essays/dogs-prisons.html">Dog Training Programs in Prisons</a>
-                    <a href="essays/dopamine-reward.html">Dopamine and Reward</a>
-                    <a href="essays/drug-addiction.html">Drug Addiction and Treatment</a>
-                    <a href="essays/eyewitness-testimony.html">Eyewitness Testimony</a>
-                    <a href="essays/face-recognition.html">Face Recognition</a>
-                    <a href="essays/jurors.html">Jurors Competency</a>
-                    <a href="essays/marriage.html">Marriage</a>
-                    <a href="essays/neural-personality.html">Personality and Behavioural Differences</a>
-                    <a href="essays/stressors-mental-health.html">Stressors and Mental Health</a>
-                    <a href="essays/theatre-of-consciousness.html">Theatre of Consciousness</a>
-                    <a href="essays/vegetative-state.html">Vegetative State</a>
-                    <a href="essays/visual-attention-working-memory.html">Visual Attention and Working Memory</a>
+                    <a href="autism-anxiety.html">Autism and Anxiety</a>
+                    <a href="business-and-economic.html">Improving Organisational Functioning</a>
+                    <a href="close-relationships.html">Love Languages</a>
+                    <a href="cognitive-biological.html">Deep and Meaningful Learning</a>
+                    <a href="crime-and-youth.html">Crime and Youth</a>
+                    <a href="dogs-prisons.html">Dog Training Programs in Prisons</a>
+                    <a href="dopamine-reward.html">Dopamine and Reward</a>
+                    <a href="drug-addiction.html">Drug Addiction and Treatment</a>
+                    <a href="eyewitness-testimony.html">Eyewitness Testimony</a>
+                    <a href="face-recognition.html">Face Recognition</a>
+                    <a href="jurors.html">Jurors Competency</a>
+                    <a href="marriage.html">Marriage</a>
+                    <a href="neural-personality.html">Personality and Behavioural Differences</a>
+                    <a href="stressors-mental-health.html">Stressors and Mental Health</a>
+                    <a href="theatre-of-consciousness.html">Theatre of Consciousness</a>
+                    <a href="vegetative-state.html">Vegetative State</a>
+                    <a href="visual-attention-working-memory.html">Visual Attention and Working Memory</a>
                 </div>
             </div>
-            <a href="./dissertation/dissertation.html" class="chalk-button">Dissertation</a>
+            <a href="../dissertation/dissertation.html" class="chalk-button">Dissertation</a>
         </nav>
 
         <div class="thought-section">
