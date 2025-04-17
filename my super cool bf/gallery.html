@@ -230,7 +230,7 @@
             // Create a container for all images
             const container = document.createElement('div');
             container.style.opacity = '0';
-            container.style.transition = 'opacity 0.3s ease-out';
+            container.style.transition = 'opacity 0.5s ease-out';
             
             // Generate all gallery items using shuffled images
             const galleryHTML = shuffledImages.map(image => `
@@ -261,35 +261,48 @@
                 });
             }, {
                 threshold: 0.1,
-                rootMargin: '50px'
+                rootMargin: '100px'
             });
 
             // Observe all items
             items.forEach(item => observer.observe(item));
             
-            // Fade in the entire container once images are loaded
+            // Preload images and handle loading states
+            let loadedImages = 0;
+            const totalImages = items.length;
+            
             const imageLoadPromises = Array.from(container.querySelectorAll('img')).map(img => {
                 return new Promise((resolve) => {
                     if (img.complete) {
+                        loadedImages++;
                         resolve();
                     } else {
-                        img.onload = resolve;
-                        img.onerror = resolve; // Resolve even if image fails to load
+                        img.onload = () => {
+                            loadedImages++;
+                            resolve();
+                        };
+                        img.onerror = resolve;
                     }
                 });
             });
             
-            Promise.all(imageLoadPromises).then(() => {
-                container.style.opacity = '1';
-                // Add a small delay before starting the fade-in animations
-                setTimeout(() => {
-                    items.forEach((item, index) => {
-                        setTimeout(() => {
-                            item.classList.add('visible');
-                        }, index * 50); // Stagger the animations slightly
-                    });
-                }, 100);
-            });
+            // Show loading progress
+            const progress = setInterval(() => {
+                const progress = (loadedImages / totalImages) * 100;
+                if (progress >= 100) {
+                    clearInterval(progress);
+                    // Fade in container
+                    container.style.opacity = '1';
+                    // Start staggered animation
+                    setTimeout(() => {
+                        items.forEach((item, index) => {
+                            setTimeout(() => {
+                                item.classList.add('visible');
+                            }, index * 30); // Reduced stagger time
+                        });
+                    }, 200); // Slightly longer initial delay
+                }
+            }, 100);
         });
     </script>
 </head>
