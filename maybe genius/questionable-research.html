@@ -437,21 +437,27 @@
             color: #f5f2e7;
         }
 
-        .chalk-button {
-            display: inline-block;
-            padding: 10px 20px;
-            font-family: 'Special Elite', cursive;
-            color: #f5f2e7;
-            text-decoration: none;
+        .chalk-button:hover {
+            transform: scale(1.05);
             background: rgba(255, 255, 255, 0.1);
-            border: 2px solid rgba(245, 232, 199, 0.4);
-            transition: all 0.3s ease;
-            cursor: pointer;
         }
 
-        .chalk-button:hover {
-            background: rgba(255, 255, 255, 0.2);
-            border-color: #f5f2e7;
+        .chalk-button::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #f5f2e7;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+
+        .chalk-button:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
         }
 
         .modal-nav {
@@ -592,7 +598,6 @@
         <nav class="nav-menu">
             <a href="maybe-genius.html" class="chalk-button">Maybe Genius</a>
             <a href="random-thoughts.html" class="chalk-button">Random Thoughts</a>
-            <a href="questionable-research.html" class="chalk-button">Questionable Research</a>
             <div class="dropdown">
                 <button class="chalk-button" onclick="toggleDropdown(this)">Essays</button>
                 <div class="dropdown-content">
