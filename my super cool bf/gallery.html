@@ -37,52 +37,18 @@
             overflow: hidden;
             border-radius: 4px;
             background: #000;
-            perspective: 1000px;
-            height: 300px;
         }
 
-        .flip-card {
-            position: relative;
+        .image-wrapper img {
+            display: block;
             width: 100%;
-            height: 100%;
-            text-align: center;
-            transition: transform 0.6s;
-            transform-style: preserve-3d;
+            height: auto;
+            transition: all 0.3s ease;
         }
 
-        .image-wrapper:hover .flip-card {
-            transform: rotateY(180deg);
-        }
-
-        .flip-card-front, .flip-card-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            -webkit-backface-visibility: hidden;
-        }
-
-        .flip-card-front {
-            background-color: #000;
-        }
-
-        .flip-card-front img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .flip-card-back {
-            background-color: var(--beige);
-            color: var(--text);
-            transform: rotateY(180deg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
-            font-family: 'Inter', sans-serif;
-            font-size: 1rem;
-            line-height: 1.5;
+        .image-wrapper:hover img {
+            filter: brightness(0.3);
+            transform: scale(1.02);
         }
 
         .hover-text {
@@ -362,26 +328,20 @@
             const galleryHTML = shuffledImages.map(image => `
                 <div class="grid-item">
                     <div class="image-wrapper">
-                        <div class="flip-card">
-                            <div class="flip-card-front">
-                                <img src="${image.src}" 
-                                     alt="${image.caption}" 
-                                     loading="lazy">
-                            </div>
-                            <div class="flip-card-back">
-                                <div class="caption-content">${image.caption}</div>
-                            </div>
-                        </div>
+                        <img src="${image.src}" 
+                             alt="${image.caption}" 
+                             loading="lazy">
+                        <div class="hover-text">${image.caption}</div>
                     </div>
                 </div>
             `).join('');
-
+            
             // Add items to container
             container.innerHTML = galleryHTML;
-
+            
             // Add container to masonry grid
             masonryGrid.appendChild(container);
-
+            
             // Set up IntersectionObserver for individual items
             const items = container.querySelectorAll('.grid-item');
             const observer = new IntersectionObserver(entries => {
@@ -398,11 +358,11 @@
 
             // Observe all items
             items.forEach(item => observer.observe(item));
-
+            
             // Preload images and handle loading states
             let loadedImages = 0;
             const totalImages = items.length;
-
+            
             // Add loading animation for images
             const imageLoadPromises = Array.from(container.querySelectorAll('img')).map(img => {
                 return new Promise((resolve) => {
@@ -418,7 +378,7 @@
                     }
                 });
             });
-
+            
             // Show loading progress
             const progress = setInterval(() => {
                 const progress = (loadedImages / totalImages) * 100;
@@ -431,9 +391,9 @@
                         items.forEach((item, index) => {
                             setTimeout(() => {
                                 item.classList.add('visible');
-                            }, index * 50); // Increased stagger time for smoother effect
+                            }, index * 50);
                         });
-                    }, 300); // Longer initial delay
+                    }, 300);
                 }
             }, 100);
 
