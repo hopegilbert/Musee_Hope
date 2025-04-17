@@ -124,7 +124,6 @@
                 'sam400'
             ];
 
-            // Add your captions here - one for each image
             const captions = [
                 'Rhosneigr 12/08/2024',  // Image 1
                 'Otley Run 27/07/2024',  // Image 3
@@ -218,10 +217,19 @@
                 'Otley Run 27/07/2024'    // Image 91
             ];
 
+            // Create an array of indices to shuffle
+            const indices = Array.from({length: imageFiles.length}, (_, i) => i);
+            
+            // Fisher-Yates shuffle algorithm
+            for (let i = indices.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [indices[i], indices[j]] = [indices[j], indices[i]];
+            }
+
             const masonryGrid = document.querySelector('.masonry-grid');
-            const galleryHTML = imageFiles.map((filename, index) => `
+            const galleryHTML = indices.map(index => `
                 <div class="gallery-item">
-                    <img src="images/gallery/${filename}.jpg" alt="Gallery image ${index + 1}" class="gallery-image" loading="lazy">
+                    <img src="images/gallery/${imageFiles[index]}.jpg" alt="Gallery image ${index + 1}" class="gallery-image" loading="lazy">
                     <div class="gallery-caption">${captions[index]}</div>
                 </div>
             `).join('');
