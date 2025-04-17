@@ -8,50 +8,16 @@
     <link rel="stylesheet" href="style.css">
     <style>
         .masonry-grid {
-            columns: 4 300px;
-            column-gap: 20px;
+            column-count: 4;
+            column-gap: 16px;
             padding: 2rem 0;
         }
 
         .gallery-item {
+            display: inline-block;
             width: 100%;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
             break-inside: avoid;
-            border-radius: 8px;
-            background-color: var(--beige);
-        }
-
-        .flip-card {
-            position: relative;
-            width: 100%;
-            transform-style: preserve-3d;
-            transition: transform 0.6s;
-        }
-
-        .gallery-item:hover .flip-card {
-            transform: rotateY(180deg);
-        }
-
-        .flip-card-front {
-            width: 100%;
-            backface-visibility: hidden;
-            -webkit-backface-visibility: hidden;
-        }
-
-        .flip-card-back {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            backface-visibility: hidden;
-            -webkit-backface-visibility: hidden;
-            transform: rotateY(180deg);
-            background: rgba(0, 0, 0, 0.8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
         }
 
         .gallery-image {
@@ -59,6 +25,11 @@
             height: auto;
             display: block;
             border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-image:hover {
+            transform: scale(1.02);
         }
 
         .gallery-caption {
@@ -152,19 +123,19 @@
 
         @media (max-width: 1200px) {
             .masonry-grid {
-                columns: 3 250px;
+                column-count: 3;
             }
         }
 
         @media (max-width: 900px) {
             .masonry-grid {
-                columns: 2 200px;
+                column-count: 2;
             }
         }
 
         @media (max-width: 600px) {
             .masonry-grid {
-                columns: 1 100%;
+                column-count: 1;
             }
         }
     </style>
@@ -263,38 +234,15 @@
                 'images/gallery/xmas-market.jpg',
                 'images/gallery/zen.jpg'
             ];
-
-            // Create an array of image-caption pairs with descriptive captions
-            const imageCaptionPairs = images.map((image, index) => ({
-                image: image,
-                caption: `Add your caption for ${image} here...` // You can edit these captions
-            }));
             
-            // Fisher-Yates shuffle algorithm for the pairs
-            for (let i = imageCaptionPairs.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [imageCaptionPairs[i], imageCaptionPairs[j]] = [imageCaptionPairs[j], imageCaptionPairs[i]];
-            }
-
             const masonryGrid = document.querySelector('.masonry-grid');
-            const galleryHTML = imageCaptionPairs.map(pair => `
+            const galleryHTML = images.map(image => `
                 <div class="gallery-item">
-                    <div class="flip-card">
-                        <div class="flip-card-front">
-                            <img src="${pair.image}" alt="${pair.image}" class="gallery-image" loading="lazy">
-                        </div>
-                        <div class="flip-card-back">
-                            <div class="gallery-caption">${pair.caption}</div>
-                        </div>
-                    </div>
+                    <img src="${image}" alt="${image.split('/').pop().split('.')[0]}" class="gallery-image" loading="lazy">
                 </div>
             `).join('');
             
             masonryGrid.innerHTML = galleryHTML;
-            
-            // Show the grid immediately
-            masonryGrid.style.opacity = '1';
-            masonryGrid.style.visibility = 'visible';
         });
     </script>
 </head>
