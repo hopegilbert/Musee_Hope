@@ -211,6 +211,18 @@
                 { src: 'images/gallery/zen.jpg', caption: '' }
             ];
             
+            // Fisher-Yates shuffle algorithm
+            function shuffleArray(array) {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
+                }
+                return array;
+            }
+            
+            // Shuffle the images array
+            const shuffledImages = shuffleArray([...images]);
+            
             const masonryGrid = document.querySelector('.masonry-grid');
             
             // Create a container for all images
@@ -218,8 +230,8 @@
             container.style.opacity = '0';
             container.style.transition = 'opacity 0.3s ease-out';
             
-            // Generate all gallery items
-            const galleryHTML = images.map(image => `
+            // Generate all gallery items using shuffled images
+            const galleryHTML = shuffledImages.map(image => `
                 <div class="grid-item">
                     <div class="image-wrapper">
                         <img src="${image.src}" 
