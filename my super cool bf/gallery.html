@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gallery - The Boyf Files</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -183,30 +183,6 @@
             .dropdown:hover .dropdown-content {
                 display: block;
             }
-        }
-
-        .nav-menu {
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
-            padding: 1rem;
-            background-color: var(--cream);
-            border-radius: 15px;
-            margin: 1rem;
-        }
-
-        .nav-menu a, .nav-menu .dropdown {
-            color: var(--text);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1rem;
-            transition: color 0.3s ease;
-            display: flex;
-            align-items: center;
-        }
-
-        .nav-menu a:hover {
-            color: var(--terracotta);
         }
     </style>
     <script>
@@ -391,9 +367,9 @@
                         items.forEach((item, index) => {
                             setTimeout(() => {
                                 item.classList.add('visible');
-                            }, index * 50);
+                            }, index * 50); // Increased stagger time for smoother effect
                         });
-                    }, 300);
+                    }, 300); // Longer initial delay
                 }
             }, 100);
 
@@ -438,13 +414,15 @@
                 </div>
             </div>
         </nav>
-        <div class="container">
-            <h1 class="gallery-title">Gallery</h1>
-            <p class="gallery-description">Here are some of the best moments captured in our adventures together.</p>
-            <div class="masonry-grid">
-                <!-- Gallery items will be dynamically added here -->
-            </div>
-        </div>
+
+        <h1 class="gallery-title">Our Photo Gallery</h1>
+        <p class="gallery-description">A collection of photos from our adventures together.</p>
+
+        <div class="masonry-grid"></div>
+
+        <footer>
+            <p>Made with ❤️ and lots of coffee</p>
+        </footer>
     </div>
 </body>
-</html>
+</html> 
