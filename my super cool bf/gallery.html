@@ -117,6 +117,8 @@
             position: relative;
             opacity: 0;
             transition: opacity 0.6s ease-out;
+            display: inline-block;
+            width: 100%;
         }
 
         .grid-item.visible {
@@ -128,15 +130,17 @@
             height: auto;
             display: block;
             border-radius: 8px;
+            vertical-align: bottom;
         }
 
         .image-wrapper {
             position: relative;
-            display: inline-block;
+            display: block;
             width: 100%;
             cursor: pointer;
             overflow: hidden;
             border-radius: 8px;
+            line-height: 0;
         }
 
         .image-wrapper img {
@@ -144,6 +148,7 @@
             width: 100%;
             height: auto;
             transition: all 0.3s ease;
+            margin: 0;
         }
 
         .image-wrapper:hover img {
