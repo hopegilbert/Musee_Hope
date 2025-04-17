@@ -7,20 +7,38 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
+        .masonry-grid {
+            column-count: 4;
+            column-gap: 20px;
             padding: 2rem 0;
         }
 
+        @media (max-width: 1200px) {
+            .masonry-grid {
+                column-count: 3;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .masonry-grid {
+                column-count: 2;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .masonry-grid {
+                column-count: 1;
+            }
+        }
+
         .gallery-item {
+            break-inside: avoid;
+            margin-bottom: 20px;
             position: relative;
             overflow: hidden;
             border-radius: 8px;
             background-color: var(--beige);
             transition: transform 0.3s ease;
-            aspect-ratio: 1;
         }
 
         .gallery-item:hover {
@@ -29,7 +47,8 @@
 
         .gallery-image {
             width: 100%;
-            height: 100%;
+            height: auto;
+            display: block;
             object-fit: cover;
             transition: transform 0.3s ease;
             opacity: 0;
@@ -68,45 +87,39 @@
             font-size: 1.1rem;
         }
 
-        @media screen and (max-width: 768px) {
-            .gallery-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-                gap: 1.5rem;
-                padding: 1.5rem 0;
-            }
-
-            .gallery-title {
-                font-size: 2rem;
-                margin: 1.5rem 0;
-            }
-
-            .gallery-description {
-                font-size: 1rem;
-                margin: 0 auto 2rem;
-                padding: 0 1rem;
-            }
-        }
-
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
+        }
+
+        .return-link {
+            background-color: var(--terracotta);
+            color: var(--cream) !important;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+
+        .return-link:hover {
+            background-color: #5d5a41;
+            color: var(--cream) !important;
         }
     </style>
 </head>
 <body>
     <div class="page-wrapper">
         <nav class="nav-menu">
-            <a href="../index.html">HOME</a>
+            <a href="my-really-cool-bf.html">HOME</a>
             <a href="my-super-cool-bf.html">ABOUT</a>
             <a href="gallery.html">GALLERY</a>
             <a href="#memories">MEMORIES</a>
             <a href="#contact">CONTACT</a>
+            <a href="../index.html" class="return-link">RETURN TO GALLERY</a>
         </nav>
 
         <h1 class="gallery-title">Our Photo Gallery</h1>
         <p class="gallery-description">A collection of our favorite moments together, capturing every smile, adventure, and precious memory we've shared.</p>
 
-        <div class="gallery-grid">
+        <div class="masonry-grid">
             <!-- Original images -->
             <div class="gallery-item">
                 <img src="images/coding.jpg" alt="Coding session" class="gallery-image">
@@ -135,7 +148,7 @@
                 for (let i = 1; i <= 91; i++) {
                     document.write(`
                         <div class="gallery-item">
-                            <img src="images/gallery/gallery${i}.jpg" alt="Gallery image ${i}" class="gallery-image" loading="lazy">
+                            <img src="images/gallery/sam${i}.jpg" alt="Gallery image ${i}" class="gallery-image" loading="lazy">
                             <div class="gallery-caption">Memory #${i}</div>
                         </div>
                     `);
