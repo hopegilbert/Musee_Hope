@@ -286,14 +286,66 @@ footer {
 }
 
 @media (max-width: 768px) {
+  .hero-card {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 2rem;
+  }
+
+  .content-grid,
+  .collection-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .featured-section {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-menu {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
   .masonry-grid {
     column-count: 2;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .quote-text {
+    font-size: 1.5rem;
+    padding: 1rem;
+  }
+
+  .card-image {
+    height: 200px;
   }
 }
 
 @media (max-width: 480px) {
   .masonry-grid {
     column-count: 1;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .quote-text {
+    font-size: 1.25rem;
+  }
+
+  .nav-menu {
+    padding: 0.5rem;
+  }
+
+  .content-card,
+  .collection-card {
+    padding: 1rem;
   }
 }
 
