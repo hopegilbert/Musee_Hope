@@ -21,7 +21,7 @@
             position: relative;
             opacity: 0;
             transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            transition: opacity 0.3s ease-out, transform 0.3s ease-out;
         }
 
         .grid-item.visible {
@@ -71,22 +71,6 @@
 
         .image-wrapper:hover .hover-text {
             opacity: 1;
-        }
-
-        .gallery-title {
-            font-size: 2.5rem;
-            color: var(--primary);
-            text-align: center;
-            margin: 2rem 0;
-            font-weight: 800;
-        }
-
-        .gallery-description {
-            text-align: center;
-            color: var(--gray);
-            max-width: 800px;
-            margin: 0 auto 3rem;
-            font-size: 1.1rem;
         }
 
         @media (max-width: 1024px) {
@@ -183,6 +167,30 @@
             .dropdown:hover .dropdown-content {
                 display: block;
             }
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 1rem;
+            background-color: var(--cream);
+            border-radius: 15px;
+            margin: 1rem;
+        }
+
+        .nav-menu a, .nav-menu .dropdown {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-menu a:hover {
+            color: var(--terracotta);
         }
     </style>
     <script>
@@ -367,9 +375,9 @@
                         items.forEach((item, index) => {
                             setTimeout(() => {
                                 item.classList.add('visible');
-                            }, index * 50); // Increased stagger time for smoother effect
+                            }, index * 50);
                         });
-                    }, 300); // Longer initial delay
+                    }, 300);
                 }
             }, 100);
 
@@ -425,4 +433,4 @@
         </footer>
     </div>
 </body>
-</html> 
+</html>

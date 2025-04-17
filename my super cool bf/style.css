@@ -330,7 +330,46 @@ footer {
   }
 }
 
+/* Gallery styles */
+.gallery-title {
+  font-size: 2.5rem;
+  color: var(--primary);
+  text-align: center;
+  margin: 2rem 0;
+  font-weight: 800;
+}
+
+.gallery-description {
+  text-align: center;
+  color: var(--gray);
+  max-width: 800px;
+  margin: 0 auto 3rem;
+  font-size: 1.1rem;
+}
+
+/* Remove duplicate title */
+.page-title {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .gallery-title {
+    font-size: 2rem;
+    margin: 1.5rem 0;
+  }
+
+  .gallery-description {
+    font-size: 1rem;
+    margin: 0 auto 2rem;
+    padding: 0 1rem;
+  }
+}
+
 @media (max-width: 480px) {
+  .gallery-title {
+    font-size: 1.75rem;
+  }
+
   .nav-menu {
     padding: 0.75rem;
   }
