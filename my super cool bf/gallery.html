@@ -21,7 +21,7 @@
             position: relative;
             opacity: 0;
             transform: translateY(20px);
-            transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
 
         .grid-item.visible {
@@ -37,18 +37,52 @@
             overflow: hidden;
             border-radius: 4px;
             background: #000;
+            perspective: 1000px;
+            height: 300px;
         }
 
-        .image-wrapper img {
-            display: block;
+        .flip-card {
+            position: relative;
             width: 100%;
-            height: auto;
-            transition: all 0.3s ease;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
         }
 
-        .image-wrapper:hover img {
-            filter: brightness(0.3);
-            transform: scale(1.02);
+        .image-wrapper:hover .flip-card {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+
+        .flip-card-front {
+            background-color: #000;
+        }
+
+        .flip-card-front img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .flip-card-back {
+            background-color: var(--beige);
+            color: var(--text);
+            transform: rotateY(180deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            line-height: 1.5;
         }
 
         .hover-text {
@@ -304,20 +338,26 @@
             const galleryHTML = shuffledImages.map(image => `
                 <div class="grid-item">
                     <div class="image-wrapper">
-                        <img src="${image.src}" 
-                             alt="${image.caption}" 
-                             loading="lazy">
-                        <div class="hover-text">${image.caption}</div>
+                        <div class="flip-card">
+                            <div class="flip-card-front">
+                                <img src="${image.src}" 
+                                     alt="${image.caption}" 
+                                     loading="lazy">
+                            </div>
+                            <div class="flip-card-back">
+                                <div class="caption-content">${image.caption}</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             `).join('');
-            
+
             // Add items to container
             container.innerHTML = galleryHTML;
-            
+
             // Add container to masonry grid
             masonryGrid.appendChild(container);
-            
+
             // Set up IntersectionObserver for individual items
             const items = container.querySelectorAll('.grid-item');
             const observer = new IntersectionObserver(entries => {
@@ -334,11 +374,12 @@
 
             // Observe all items
             items.forEach(item => observer.observe(item));
-            
+
             // Preload images and handle loading states
             let loadedImages = 0;
             const totalImages = items.length;
-            
+
+            // Add loading animation for images
             const imageLoadPromises = Array.from(container.querySelectorAll('img')).map(img => {
                 return new Promise((resolve) => {
                     if (img.complete) {
@@ -353,7 +394,7 @@
                     }
                 });
             });
-            
+
             // Show loading progress
             const progress = setInterval(() => {
                 const progress = (loadedImages / totalImages) * 100;
@@ -361,45 +402,48 @@
                     clearInterval(progress);
                     // Fade in container
                     container.style.opacity = '1';
-                    // Start staggered animation
+                    // Start staggered animation with longer delays
                     setTimeout(() => {
                         items.forEach((item, index) => {
                             setTimeout(() => {
                                 item.classList.add('visible');
-                            }, index * 30); // Reduced stagger time
+                            }, index * 50); // Increased stagger time for smoother effect
                         });
-                    }, 200); // Slightly longer initial delay
+                    }, 300); // Longer initial delay
                 }
             }, 100);
+
+            // Add loading placeholder
+            items.forEach(item => {
+                const placeholder = document.createElement('div');
+                placeholder.className = 'loading-placeholder';
+                placeholder.style.height = '300px';
+                placeholder.style.backgroundColor = 'var(--beige)';
+                placeholder.style.borderRadius = '4px';
+                item.appendChild(placeholder);
+            });
+
+            // Remove placeholder when image loads
+            container.querySelectorAll('img').forEach(img => {
+                img.onload = () => {
+                    const placeholder = img.parentElement.querySelector('.loading-placeholder');
+                    if (placeholder) {
+                        placeholder.style.opacity = '0';
+                        placeholder.style.transition = 'opacity 0.3s ease-out';
+                        setTimeout(() => placeholder.remove(), 300);
+                    }
+                };
+            });
         });
     </script>
 </head>
 <body>
-    <div class="page-wrapper">
-        <nav class="nav-menu">
-            <a href="../index.html">HOME</a>
-            <a href="my-super-cool-bf.html">ABOUT</a>
-            <a href="gallery.html">GALLERY</a>
-            <a href="#memories">MEMORIES</a>
-            <div class="dropdown">
-                <button class="dropbtn">GENIUS WORK</button>
-                <div class="dropdown-content">
-                    <a href="#">Questionable Research</a>
-                    <a href="#">Random Thoughts</a>
-                    <a href="#">Philosophical Musings</a>
-                    <a href="#">Creative Experiments</a>
-                </div>
-            </div>
-        </nav>
-
-        <h1 class="gallery-title">Our Photo Gallery</h1>
-        <p class="gallery-description">A collection of photos from our adventures together.</p>
-
-        <div class="masonry-grid"></div>
-
-        <footer>
-            <p>Made with ❤️ and lots of coffee</p>
-        </footer>
+    <div class="container">
+        <h1 class="gallery-title">Gallery</h1>
+        <p class="gallery-description">Here are some of the best moments captured in our adventures together.</p>
+        <div class="masonry-grid">
+            <!-- Gallery items will be dynamically added here -->
+        </div>
     </div>
 </body>
-</html> 
+</html>
