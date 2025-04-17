@@ -7,6 +7,70 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
+        .masonry-grid {
+            column-count: 4;
+            column-gap: 1rem;
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        .grid-item {
+            break-inside: avoid;
+            margin-bottom: 1rem;
+            position: relative;
+            opacity: 0;
+            transition: opacity 0.6s ease-out;
+        }
+
+        .grid-item.visible {
+            opacity: 1;
+        }
+
+        .image-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            cursor: pointer;
+            overflow: hidden;
+            border-radius: 4px;
+            background: #000;
+        }
+
+        .image-wrapper img {
+            display: block;
+            width: 100%;
+            height: auto;
+            transition: all 0.3s ease;
+        }
+
+        .image-wrapper:hover img {
+            filter: brightness(0.3);
+            transform: scale(1.02);
+        }
+
+        .hover-text {
+            opacity: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: transparent;
+            color: var(--cream);
+            padding: 1rem;
+            text-align: center;
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            z-index: 2;
+            pointer-events: none;
+            width: 80%;
+        }
+
+        .image-wrapper:hover .hover-text {
+            opacity: 1;
+        }
+
         .gallery-title {
             font-size: 2.5rem;
             color: var(--primary);
@@ -23,58 +87,87 @@
             font-size: 1.1rem;
         }
 
-        /* Dropdown Menu Styles */
-        .dropdown {
-            position: relative;
-            display: inline-block;
+        @media (max-width: 1024px) {
+            .masonry-grid {
+                column-count: 3;
+            }
         }
 
-        .dropbtn {
-            background-color: transparent;
-            color: var(--text);
-            padding: 0;
-            font-size: 1em;
-            border: none;
-            cursor: pointer;
-            font-family: 'Inter', sans-serif;
-            font-weight: 500;
+        @media (max-width: 768px) {
+            .masonry-grid {
+                column-count: 2;
+                column-gap: 0.5rem;
+                padding: 0.5rem;
+            }
+            
+            .grid-item {
+                margin-bottom: 0.5rem;
+            }
+
+            .hover-text {
+                font-size: 0.9rem;
+            }
         }
 
-        .dropdown-content {
-            visibility: hidden;
-            opacity: 0;
-            position: absolute;
-            background-color: var(--beige);
-            min-width: 200px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1;
-            border-radius: 4px;
-            margin-top: 0.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .dropdown:hover .dropdown-content {
-            visibility: visible;
-            opacity: 1;
-        }
-
-        .dropdown-content a {
-            color: var(--text);
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            white-space: nowrap;
-        }
-
-        .dropdown-content a:hover {
-            background-color: var(--terracotta);
-            color: var(--cream);
-        }
-
-        .dropdown:hover .dropbtn {
-            color: var(--terracotta);
+        @media (max-width: 480px) {
+            .masonry-grid {
+                column-count: 1;
+            }
         }
     </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const images = [
+                { src: 'images/gallery/LBA.jpg', caption: 'Leeds Beckett Adventures' },
+                { src: 'images/gallery/beers.jpg', caption: 'Cheers to good times!' },
+                { src: 'images/gallery/birmingham.jpg', caption: 'Birmingham adventures' },
+                { src: 'images/gallery/bus-home.jpg', caption: 'Journey home' },
+                { src: 'images/gallery/conwy.jpg', caption: 'Exploring Conwy' },
+                { src: 'images/gallery/dinner-party.jpg', caption: 'Dinner party memories' },
+                { src: 'images/gallery/eiffel-tower.jpg', caption: 'Paris dreams' },
+                { src: 'images/gallery/family-xmas-meal.jpg', caption: 'Christmas celebrations' },
+                { src: 'images/gallery/first-date.jpg', caption: 'Where it all began' },
+                { src: 'images/gallery/graduation.jpg', caption: 'Graduation day' },
+                { src: 'images/gallery/hotel-lift.jpg', caption: 'Hotel shenanigans' },
+                { src: 'images/gallery/jimmys.jpg', caption: 'Jimmys memories' },
+                { src: 'images/gallery/louvre.jpg', caption: 'Art appreciation' },
+                { src: 'images/gallery/luxembourg-gardens.jpg', caption: 'Luxembourg Gardens' },
+                { src: 'images/gallery/musee-dorsay.jpg', caption: 'Musée d\'Orsay' },
+                { src: 'images/gallery/otley-run.jpg', caption: 'Otley Run adventures' },
+                { src: 'images/gallery/sams-garden.jpg', caption: 'Garden moments' },
+                { src: 'images/gallery/winter-ball.jpg', caption: 'Winter Ball magic' }
+            ];
+            
+            const masonryGrid = document.querySelector('.masonry-grid');
+            const galleryHTML = images.map(image => `
+                <div class="grid-item">
+                    <div class="image-wrapper">
+                        <img src="${image.src}" 
+                             alt="${image.caption}" 
+                             loading="lazy">
+                        <div class="hover-text">${image.caption}</div>
+                    </div>
+                </div>
+            `).join('');
+            
+            masonryGrid.innerHTML = galleryHTML;
+
+            // Add visible class to items after they're loaded
+            const items = document.querySelectorAll('.grid-item');
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            items.forEach(item => observer.observe(item));
+        });
+    </script>
 </head>
 <body>
     <div class="page-wrapper">
@@ -97,7 +190,7 @@
         <h1 class="gallery-title">Our Photo Gallery</h1>
         <p class="gallery-description">A collection of photos from our adventures together.</p>
 
-        <div class="gallery"></div>
+        <div class="masonry-grid"></div>
 
         <footer>
             <p>Made with ❤️ and lots of coffee</p>
