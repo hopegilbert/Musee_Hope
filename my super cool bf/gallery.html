@@ -8,17 +8,20 @@
     <link rel="stylesheet" href="style.css">
     <style>
         .masonry-grid {
-            column-count: 4;
+            columns: 4;
             column-gap: 20px;
+            padding: 20px;
         }
 
         .gallery-item {
+            display: inline-block;
+            width: 100%;
             margin-bottom: 20px;
-            break-inside: avoid;
         }
 
         .gallery-image {
-            max-width: 100%;
+            width: 100%;
+            height: auto;
             display: block;
         }
 
@@ -113,19 +116,19 @@
 
         @media (max-width: 1200px) {
             .masonry-grid {
-                column-count: 3;
+                columns: 3;
             }
         }
 
         @media (max-width: 900px) {
             .masonry-grid {
-                column-count: 2;
+                columns: 2;
             }
         }
 
         @media (max-width: 600px) {
             .masonry-grid {
-                column-count: 1;
+                columns: 1;
             }
         }
     </style>
