@@ -9,27 +9,17 @@
     <style>
         .masonry-grid {
             column-count: 4;
-            column-gap: 16px;
-            padding: 2rem 0;
+            column-gap: 20px;
         }
 
         .gallery-item {
-            display: inline-block;
-            width: 100%;
-            margin-bottom: 16px;
+            margin-bottom: 20px;
             break-inside: avoid;
         }
 
         .gallery-image {
-            width: 100%;
-            height: auto;
+            max-width: 100%;
             display: block;
-            border-radius: 8px;
-            transition: transform 0.3s ease;
-        }
-
-        .gallery-image:hover {
-            transform: scale(1.02);
         }
 
         .gallery-caption {
@@ -238,7 +228,7 @@
             const masonryGrid = document.querySelector('.masonry-grid');
             const galleryHTML = images.map(image => `
                 <div class="gallery-item">
-                    <img src="${image}" alt="${image.split('/').pop().split('.')[0]}" class="gallery-image" loading="lazy">
+                    <img src="${image}" alt="${image.split('/').pop().split('.')[0]}" class="gallery-image">
                 </div>
             `).join('');
             
