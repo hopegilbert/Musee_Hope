@@ -240,8 +240,8 @@ footer {
 /* Dropdown styles */
 .dropdown {
   position: relative;
-  display: inline-block;
-  height: 100%;
+  display: inline-flex;
+  align-items: center;
 }
 
 .dropbtn {
@@ -254,9 +254,6 @@ footer {
   font-family: 'Inter', sans-serif;
   font-weight: 500;
   transition: color 0.3s ease;
-  height: 100%;
-  display: flex;
-  align-items: center;
 }
 
 .dropbtn:hover {
@@ -269,13 +266,16 @@ footer {
   background-color: var(--beige);
   min-width: 200px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  z-index: 1;
+  z-index: 1000;
   border-radius: 8px;
   padding: 0.5rem;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease, visibility 0.3s ease;
   top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 0.5rem;
 }
 
 .dropdown:hover .dropdown-content {
@@ -291,7 +291,6 @@ footer {
   display: block;
   transition: background-color 0.3s ease, color 0.3s ease;
   border-radius: 4px;
-  height: auto;
 }
 
 .dropdown-content a:hover {
@@ -304,115 +303,38 @@ footer {
     flex-direction: column;
     gap: 1rem;
     padding: 1rem;
-    position: relative;
-    width: 100%;
   }
-  
+
   .nav-menu a, .nav-menu .dropdown {
     width: 100%;
     text-align: center;
     justify-content: center;
-    padding: 0.5rem;
   }
-  
+
   .dropdown {
     width: 100%;
   }
-  
+
   .dropbtn {
     width: 100%;
     justify-content: center;
   }
-  
+
   .dropdown-content {
     position: static;
-    width: 100%;
+    transform: none;
+    left: auto;
     margin-top: 0.5rem;
+    width: 100%;
     box-shadow: none;
-    background-color: var(--cream);
-  }
-  
-  .hero-card {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    padding: 1.5rem;
-    margin-bottom: 3rem;
-  }
-  
-  .hero-title {
-    font-size: 2.5rem;
-  }
-  
-  .hero-text {
-    font-size: 1.1rem;
-  }
-  
-  .content-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    margin-bottom: 3rem;
-  }
-  
-  .collection-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-  
-  .featured-section {
-    grid-template-columns: 1fr;
-    padding: 1.5rem;
-  }
-  
-  .quote-section {
-    padding: 2rem 1rem;
-  }
-  
-  .quote-text {
-    font-size: 1.5rem;
-  }
-  
-  .gallery-title {
-    font-size: 2rem;
-    margin: 1.5rem 0;
-  }
-  
-  .gallery-description {
-    font-size: 1rem;
-    margin: 0 auto 2rem;
-    padding: 0 1rem;
-  }
-  
-  .masonry-grid {
-    padding: 0.5rem;
-  }
-  
-  .grid-item {
-    margin-bottom: 0.5rem;
-  }
-  
-  .hover-text {
-    font-size: 0.9rem;
-    padding: 0.5rem;
   }
 }
 
 @media (max-width: 480px) {
-  .hero-title {
-    font-size: 2rem;
-  }
-  
-  .hero-text {
-    font-size: 1rem;
-  }
-  
-  .gallery-title {
-    font-size: 1.75rem;
-  }
-  
   .nav-menu {
     padding: 0.75rem;
   }
-  
+
   .dropdown-content a {
     padding: 0.5rem;
   }
