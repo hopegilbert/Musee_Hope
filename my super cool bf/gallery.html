@@ -218,6 +218,30 @@
                 display: block;
             }
         }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 1rem;
+            background-color: var(--cream);
+            border-radius: 15px;
+            margin: 1rem;
+        }
+
+        .nav-menu a, .nav-menu .dropdown {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-menu a:hover {
+            color: var(--terracotta);
+        }
     </style>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -438,11 +462,28 @@
     </script>
 </head>
 <body>
-    <div class="container">
-        <h1 class="gallery-title">Gallery</h1>
-        <p class="gallery-description">Here are some of the best moments captured in our adventures together.</p>
-        <div class="masonry-grid">
-            <!-- Gallery items will be dynamically added here -->
+    <div class="page-wrapper">
+        <nav class="nav-menu">
+            <a href="../index.html">HOME</a>
+            <a href="my-super-cool-bf.html">ABOUT</a>
+            <a href="gallery.html">GALLERY</a>
+            <a href="#memories">MEMORIES</a>
+            <div class="dropdown">
+                <button class="dropbtn">GENIUS WORK</button>
+                <div class="dropdown-content">
+                    <a href="#">Questionable Research</a>
+                    <a href="#">Random Thoughts</a>
+                    <a href="#">Philosophical Musings</a>
+                    <a href="#">Creative Experiments</a>
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+            <h1 class="gallery-title">Gallery</h1>
+            <p class="gallery-description">Here are some of the best moments captured in our adventures together.</p>
+            <div class="masonry-grid">
+                <!-- Gallery items will be dynamically added here -->
+            </div>
         </div>
     </div>
 </body>

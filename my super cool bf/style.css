@@ -210,20 +210,23 @@ footer {
 
 /* Navigation */
 .nav-menu {
-  background-color: var(--beige);
-  padding: 1rem 2rem;
-  border-radius: 8px;
-  margin-bottom: 2rem;
   display: flex;
-  justify-content: space-between;
-  gap: 2rem;
+  align-items: center;
+  justify-content: space-around;
+  padding: 1rem;
+  background-color: var(--cream);
+  border-radius: 15px;
+  margin: 1rem;
 }
 
-.nav-menu a {
+.nav-menu a, .nav-menu .dropdown {
   color: var(--text);
   text-decoration: none;
   font-weight: 500;
+  font-size: 1rem;
   transition: color 0.3s ease;
+  display: flex;
+  align-items: center;
 }
 
 .nav-menu a:hover {
