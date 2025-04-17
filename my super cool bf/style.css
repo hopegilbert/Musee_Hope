@@ -210,173 +210,24 @@ footer {
 
 /* Navigation */
 .nav-menu {
+  background-color: var(--beige);
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1.5rem;
-  padding: 1rem;
-  background-color: var(--cream);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  justify-content: space-between;
+  gap: 2rem;
 }
 
-.nav-menu a, .nav-menu .dropdown {
+.nav-menu a {
   color: var(--text);
   text-decoration: none;
   font-weight: 500;
-  font-size: 1rem;
   transition: color 0.3s ease;
-  display: flex;
-  align-items: center;
-  height: 100%;
 }
 
 .nav-menu a:hover {
   color: var(--terracotta);
-}
-
-/* Dropdown styles */
-.dropdown {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-}
-
-.dropbtn {
-  background-color: transparent;
-  color: var(--text);
-  padding: 0;
-  font-size: 1rem;
-  border: none;
-  cursor: pointer;
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;
-  transition: color 0.3s ease;
-}
-
-.dropbtn:hover {
-  color: var(--terracotta);
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: var(--beige);
-  min-width: 200px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  z-index: 1000;
-  border-radius: 8px;
-  padding: 0.5rem;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  margin-top: 0.5rem;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-  opacity: 1;
-  visibility: visible;
-}
-
-.dropdown-content a {
-  color: var(--text);
-  padding: 0.75rem 1rem;
-  text-decoration: none;
-  display: block;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  border-radius: 4px;
-}
-
-.dropdown-content a:hover {
-  background-color: var(--terracotta);
-  color: var(--cream);
-}
-
-@media (max-width: 768px) {
-  .nav-menu {
-    flex-direction: column;
-    gap: 1rem;
-    padding: 1rem;
-  }
-
-  .nav-menu a, .nav-menu .dropdown {
-    width: 100%;
-    text-align: center;
-    justify-content: center;
-  }
-
-  .dropdown {
-    width: 100%;
-  }
-
-  .dropbtn {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .dropdown-content {
-    position: static;
-    transform: none;
-    left: auto;
-    margin-top: 0.5rem;
-    width: 100%;
-    box-shadow: none;
-  }
-}
-
-/* Gallery styles */
-.gallery-title {
-  font-size: 2.5rem;
-  color: var(--primary);
-  text-align: center;
-  margin: 2rem 0;
-  font-weight: 800;
-}
-
-.gallery-description {
-  text-align: center;
-  color: var(--gray);
-  max-width: 800px;
-  margin: 0 auto 3rem;
-  font-size: 1.1rem;
-}
-
-/* Remove duplicate title */
-.page-title {
-  display: none;
-}
-
-@media (max-width: 768px) {
-  .gallery-title {
-    font-size: 2rem;
-    margin: 1.5rem 0;
-  }
-
-  .gallery-description {
-    font-size: 1rem;
-    margin: 0 auto 2rem;
-    padding: 0 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .gallery-title {
-    font-size: 1.75rem;
-  }
-
-  .nav-menu {
-    padding: 0.75rem;
-  }
-
-  .dropdown-content a {
-    padding: 0.5rem;
-  }
 }
 
 /* Utility Classes */
@@ -387,3 +238,63 @@ footer {
 .mb-4 {
   margin-bottom: 2rem;
 }
+
+/* Gallery Grid */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+  padding: 1.5rem;
+}
+
+.gallery-item {
+  position: relative;
+  height: 300px;
+  perspective: 1000px;
+}
+
+.flip-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+}
+
+.gallery-item:hover .flip-card {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.flip-card-front {
+  background-color: var(--beige);
+}
+
+.flip-card-back {
+  background-color: var(--terracotta);
+  color: var(--cream);
+  transform: rotateY(180deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.gallery-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Media queries */
