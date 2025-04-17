@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gallery - The Boyf Files</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
         /* Header styles */
@@ -108,7 +108,7 @@
             column-gap: 1rem;
             max-width: 100%;
             margin: 0 auto;
-            padding: 20px;
+            padding: 1rem;
         }
 
         .grid-item {
@@ -117,17 +117,21 @@
             position: relative;
             opacity: 0;
             transition: opacity 0.6s ease-out;
-            display: inline-block;
-            width: 100%;
         }
 
         .grid-item.visible {
             opacity: 1;
         }
 
+        .grid-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
         .image-wrapper {
             position: relative;
-            display: block;
+            display: inline-block;
             width: 100%;
             cursor: pointer;
             overflow: hidden;
@@ -159,7 +163,7 @@
             transition: all 0.3s ease;
             z-index: 2;
             pointer-events: none;
-            width: 80%;
+            width: 40%;
         }
 
         .image-wrapper:hover .hover-text {
@@ -346,7 +350,6 @@
                     gridItem.appendChild(wrapper);
                     gallery.appendChild(gridItem);
                     
-                    // Add fade-in effect
                     setTimeout(() => {
                         gridItem.classList.add('visible');
                     }, index * 50);
