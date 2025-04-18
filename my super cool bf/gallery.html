@@ -118,15 +118,16 @@
 
         /* Gallery styles */
         .masonry-grid {
-            column-count: 4;
-            column-gap: 0.5rem;
-            max-width: 100%;
             margin: 0 auto;
             padding: 0 0.5rem;
         }
 
+        .grid-sizer,
         .grid-item {
-            break-inside: avoid;
+            width: calc(25% - 0.375rem); /* 4 columns with 0.5rem gap */
+        }
+
+        .grid-item {
             margin-bottom: 0.5rem;
             position: relative;
             opacity: 0;
@@ -207,42 +208,26 @@
         }
 
         @media (max-width: 1200px) {
-            .masonry-grid {
-                column-count: 3;
-                column-gap: 0.5rem;
+            .grid-sizer,
+            .grid-item {
+                width: calc(33.333% - 0.333rem); /* 3 columns */
             }
         }
 
         @media (max-width: 900px) {
-            .masonry-grid {
-                column-count: 2;
-                column-gap: 0.5rem;
-            }
-            header h1 {
-                font-size: 2rem;
-            }
-            header p {
-                font-size: 1rem;
+            .grid-sizer,
+            .grid-item {
+                width: calc(50% - 0.25rem); /* 2 columns */
             }
         }
 
         @media (max-width: 600px) {
-            .masonry-grid {
-                column-count: 1;
-                padding: 0 0.25rem;
-                column-gap: 0.25rem;
+            .grid-sizer,
+            .grid-item {
+                width: 100%; /* 1 column */
             }
             .grid-item {
                 margin-bottom: 0.25rem;
-            }
-            header {
-                padding: 1rem 0.5rem;
-            }
-            header h1 {
-                font-size: 1.8rem;
-            }
-            .hover-text {
-                padding: 0.8rem;
             }
         }
 
@@ -399,8 +384,14 @@
                 const gallery = document.querySelector('.masonry-grid');
                 gallery.innerHTML = '';
                 
+                // Add grid sizer element
+                const gridSizer = document.createElement('div');
+                gridSizer.className = 'grid-sizer';
+                gallery.appendChild(gridSizer);
+                
                 const shuffledImages = shuffleArray(images);
                 
+                // Create all items first
                 shuffledImages.forEach((item, index) => {
                     const gridItem = document.createElement('div');
                     gridItem.className = 'grid-item';
@@ -412,14 +403,11 @@
                     img.alt = item.src.split('/').pop().split('.')[0];
                     img.loading = 'lazy';
                     
-                    // Create a temporary image to get the real dimensions
-                    const tempImg = new Image();
-                    tempImg.onload = () => {
-                        const aspectRatio = (tempImg.naturalHeight / tempImg.naturalWidth) * 100;
+                    img.onload = () => {
+                        const aspectRatio = (img.naturalHeight / img.naturalWidth) * 100;
                         wrapper.style.paddingBottom = `${aspectRatio}%`;
                         gridItem.classList.add('visible');
                     };
-                    tempImg.src = item.src;
                     
                     img.src = item.src;
                     
@@ -429,7 +417,6 @@
                     const captionParts = item.caption.split(' - ');
                     if (captionParts.length === 2) {
                         const [dateAndTitle, description] = captionParts;
-                        // Find the last space before the date (which will be in the format DD/MM/YYYY)
                         const lastSpaceIndex = dateAndTitle.lastIndexOf(' ');
                         const location = dateAndTitle.substring(0, lastSpaceIndex);
                         const date = dateAndTitle.substring(lastSpaceIndex + 1);
@@ -457,6 +444,17 @@
                     wrapper.appendChild(hoverText);
                     gridItem.appendChild(wrapper);
                     gallery.appendChild(gridItem);
+                });
+
+                // Initialize Masonry after all images are loaded
+                imagesLoaded(gallery, function() {
+                    new Masonry(gallery, {
+                        itemSelector: '.grid-item',
+                        columnWidth: '.grid-sizer',
+                        percentPosition: true,
+                        gutter: 8, // 0.5rem = 8px
+                        initLayout: true
+                    });
                 });
             }
 
