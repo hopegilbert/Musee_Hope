@@ -1,59 +1,126 @@
-<div class="movies-grid">
-    <!-- Movie Card Template -->
-    <div class="movie-card">
-        <div class="movie-poster">
-            <img src="path/to/poster1.jpg" alt="Movie Title">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vintage Cinema Collection</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="film-grain-overlay"></div>
+
+    <header class="cinema-header">
+        <div class="ticket-stub">
+            <h1>Vintage Cinema Collection</h1>
+            <div class="ticket-tear"></div>
         </div>
-        <div class="movie-info">
-            <h3 class="movie-title">Movie Title</h3>
-            <p class="movie-year">2024</p>
-            <p class="movie-rating">★★★★☆</p>
-        </div>
+    </header>
+
+    <div class="filter-bar">
+        <select id="genre-filter">
+            <option value="all">All Genres</option>
+            <option value="Drama">Drama</option>
+            <option value="Comedy">Comedy</option>
+            <option value="Romance">Romance</option>
+            <option value="Thriller">Thriller</option>
+            <option value="Film-Noir">Film-Noir</option>
+        </select>
+
+        <select id="year-filter">
+            <option value="all">All Decades</option>
+            <option value="1930">1930s</option>
+            <option value="1940">1940s</option>
+            <option value="1950">1950s</option>
+            <option value="1960">1960s</option>
+        </select>
+
+        <select id="sort-filter">
+            <option value="rating">Sort by Rating</option>
+            <option value="year">Sort by Year</option>
+            <option value="title">Sort by Title</option>
+        </select>
     </div>
 
-    <!-- Filler Spaces -->
-    <div class="movie-card placeholder">
-        <div class="movie-poster">
-            <div class="placeholder-content">
-                <span class="placeholder-icon">🎬</span>
-                <span class="placeholder-text">Coming Soon</span>
+    <main class="movies-grid">
+        <!-- Movie Card Template -->
+        <div class="movie-card">
+            <div class="movie-poster">
+                <img src="path/to/poster1.jpg" alt="Movie Title">
+            </div>
+            <div class="movie-info">
+                <h3 class="movie-title">Movie Title</h3>
+                <p class="movie-year">2024</p>
+                <p class="movie-rating">★★★★☆</p>
+            </div>
+        </div>
+
+        <!-- Filler Spaces -->
+        <div class="movie-card placeholder">
+            <div class="movie-poster">
+                <div class="placeholder-content">
+                    <span class="placeholder-icon">🎬</span>
+                    <span class="placeholder-text">Coming Soon</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="movie-card placeholder">
+            <div class="movie-poster">
+                <div class="placeholder-content">
+                    <span class="placeholder-icon">🎬</span>
+                    <span class="placeholder-text">Coming Soon</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="movie-card placeholder">
+            <div class="movie-poster">
+                <div class="placeholder-content">
+                    <span class="placeholder-icon">🎬</span>
+                    <span class="placeholder-text">Coming Soon</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="movie-card placeholder">
+            <div class="movie-poster">
+                <div class="placeholder-content">
+                    <span class="placeholder-icon">🎬</span>
+                    <span class="placeholder-text">Coming Soon</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="movie-card placeholder">
+            <div class="movie-poster">
+                <div class="placeholder-content">
+                    <span class="placeholder-icon">🎬</span>
+                    <span class="placeholder-text">Coming Soon</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 class="modal-title"></h2>
+            
+            <div class="rating-section">
+                <h3>Rate this Film</h3>
+                <div class="stars">
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                </div>
+                <textarea id="rating-comment" placeholder="Share your thoughts about this film..."></textarea>
+                <button class="submit-rating">Submit Rating</button>
             </div>
         </div>
     </div>
 
-    <div class="movie-card placeholder">
-        <div class="movie-poster">
-            <div class="placeholder-content">
-                <span class="placeholder-icon">🎬</span>
-                <span class="placeholder-text">Coming Soon</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="movie-card placeholder">
-        <div class="movie-poster">
-            <div class="placeholder-content">
-                <span class="placeholder-icon">🎬</span>
-                <span class="placeholder-text">Coming Soon</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="movie-card placeholder">
-        <div class="movie-poster">
-            <div class="placeholder-content">
-                <span class="placeholder-icon">🎬</span>
-                <span class="placeholder-text">Coming Soon</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="movie-card placeholder">
-        <div class="movie-poster">
-            <div class="placeholder-content">
-                <span class="placeholder-icon">🎬</span>
-                <span class="placeholder-text">Coming Soon</span>
-            </div>
-        </div>
-    </div>
-</div> 
+    <script src="script.js"></script>
+</body>
+</html> 
