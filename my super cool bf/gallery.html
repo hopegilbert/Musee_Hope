@@ -120,7 +120,7 @@
         .masonry-grid {
             margin: 0 auto;
             padding: 0 1rem;
-            max-width: 2400px; /* Increased to allow for more columns */
+            max-width: 1600px;
             width: 100%;
             position: relative;
             left: 50%;
@@ -129,7 +129,7 @@
 
         .grid-sizer,
         .grid-item {
-            width: 300px; /* Fixed width for each item */
+            width: calc(25% - 0.25px); /* 4 columns with 0.25px gap */
         }
 
         .grid-item {
@@ -212,10 +212,31 @@
             opacity: 1;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 1200px) {
             .masonry-grid {
                 margin: 0 auto;
                 padding: 0 1rem;
+                max-width: 1200px;
+                width: 100%;
+                position: relative;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .grid-sizer,
+            .grid-item {
+                width: calc(33.333% - 0.25px); /* 3 columns */
+            }
+
+            .grid-item {
+                margin-bottom: 0.25px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .masonry-grid {
+                margin: 0 auto;
+                padding: 0 0.5rem;
                 max-width: 768px;
                 width: 100%;
                 position: relative;
@@ -231,12 +252,18 @@
             .grid-item {
                 margin-bottom: 0.25px;
             }
+
+            .hover-text {
+                width: 80%;
+                padding: 0.5rem;
+                font-size: 0.8rem;
+            }
         }
 
         @media (max-width: 480px) {
             .masonry-grid {
                 margin: 0 auto;
-                padding: 0 1rem;
+                padding: 0 0.25rem;
                 max-width: 480px;
                 width: 100%;
                 position: relative;
@@ -246,11 +273,17 @@
             
             .grid-sizer,
             .grid-item {
-                width: calc(50% - 0.25px); /* Keep 2 columns */
+                width: calc(50% - 0.125px); /* Keep 2 columns but reduce gap */
             }
 
             .grid-item {
-                margin-bottom: 0.25px;
+                margin-bottom: 0.125px;
+            }
+
+            .hover-text {
+                width: 90%;
+                padding: 0.25rem;
+                font-size: 0.75rem;
             }
         }
 
@@ -473,7 +506,7 @@
                     new Masonry(gallery, {
                         itemSelector: '.grid-item',
                         columnWidth: '.grid-sizer',
-                        percentPosition: false,
+                        percentPosition: true,
                         gutter: 0.25,
                         fitWidth: true,
                         horizontalOrder: true
@@ -491,7 +524,7 @@
                     const msnry = new Masonry(gallery, {
                         itemSelector: '.grid-item',
                         columnWidth: '.grid-sizer',
-                        percentPosition: false,
+                        percentPosition: true,
                         gutter: 0.25,
                         fitWidth: true,
                         horizontalOrder: true
@@ -502,7 +535,7 @@
 
             // Initialize gallery when DOM is ready
             if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', createGallery);
+            document.addEventListener('DOMContentLoaded', createGallery);
             } else {
                 createGallery();
             }
