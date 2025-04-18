@@ -17,72 +17,44 @@ document.addEventListener("DOMContentLoaded", () => {
   const grid = document.querySelector(".masonry-grid");
   const gridItems = document.querySelectorAll(".grid-item");
 
+  // Make grid visible immediately
+  grid.style.opacity = "1";
+
   // Function to add visible class with delay
   function addVisibleWithDelay(item, delay) {
     setTimeout(() => {
       item.classList.add("visible");
+      item.style.opacity = "1";
     }, delay);
   }
 
   // Initial load animation based on visual position
   function animateInitialItems() {
-    const viewportHeight = window.innerHeight;
-    
-    // Get all items and their positions
-    const itemPositions = Array.from(gridItems).map(item => {
-      const rect = item.getBoundingClientRect();
-      return {
-        element: item,
-        top: rect.top
-      };
-    });
-
-    // Sort by visual position (top to bottom)
-    itemPositions.sort((a, b) => a.top - b.top);
-
-    // Animate in order of visual position
-    itemPositions.forEach((item, index) => {
-      if (item.top < viewportHeight) {
-        addVisibleWithDelay(item.element, index * 100);
-      }
+    gridItems.forEach((item, index) => {
+      addVisibleWithDelay(item, index * 50);
     });
   }
 
-  // Scroll animation
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-        observer.unobserve(entry.target);
-      }
-    });
-  }, {
-    threshold: 0.1
-  });
-
   // Wait until images are loaded
   imagesLoaded(grid, () => {
-    // Initialize Masonry
+    // Initialize Masonry with better settings
     const msnry = new Masonry(grid, {
       itemSelector: ".grid-item",
       columnWidth: ".grid-item",
       gutter: 10,
-      percentPosition: true
+      percentPosition: true,
+      fitWidth: true,
+      horizontalOrder: true,
+      initLayout: true
     });
 
-    // Wait a bit for Masonry to settle
-    setTimeout(() => {
-      // Start initial animation
-      animateInitialItems();
-      
-      // Observe items for scroll animation
-      gridItems.forEach(item => {
-        const rect = item.getBoundingClientRect();
-        if (rect.top >= window.innerHeight) {
-          observer.observe(item);
-        }
-      });
-    }, 100);
+    // Start animation immediately after Masonry initializes
+    animateInitialItems();
+    
+    // Re-layout Masonry when window is resized
+    window.addEventListener('resize', () => {
+      msnry.layout();
+    });
   });
 });
 
