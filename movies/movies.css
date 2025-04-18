@@ -243,19 +243,39 @@ select:hover {
 
 .movie-card {
     position: relative;
-    background-color: var(--card-background);
-    border-radius: 8px;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(65, 105, 225, 0.1);
-    border: 1px solid var(--primary-color);
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+    cursor: pointer;
     aspect-ratio: 27/40;
 }
 
 .movie-card:hover {
-    transform: translateY(-5px) scale(1.02);
-    box-shadow: 0 8px 25px rgba(65, 105, 225, 0.2);
-    border-color: var(--accent-color);
+    transform: rotateY(180deg);
+}
+
+.movie-card-front,
+.movie-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.movie-card-front {
+    background-color: var(--primary-color);
+}
+
+.movie-card-back {
+    background-color: var(--primary-color);
+    transform: rotateY(180deg);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .movie-poster {
@@ -263,43 +283,60 @@ select:hover {
     height: 100%;
     object-fit: cover;
     transition: transform 0.5s ease;
-    filter: blur(0);
 }
 
 .movie-card:hover .movie-poster {
     transform: scale(1.05);
-    filter: blur(2px);
 }
 
 .movie-info {
-    padding: 1.5rem;
-    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.8));
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    transform: translateY(100%);
-    transition: transform 0.3s ease;
-}
-
-.movie-card:hover .movie-info {
-    transform: translateY(0);
+    padding: 1.5rem;
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.8));
+    color: white;
 }
 
 .movie-title {
     font-family: 'Cormorant', serif;
-    margin: 0;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     font-weight: 600;
-    color: var(--text-color);
+    margin-bottom: 0.5rem;
+    color: white;
 }
 
 .movie-year {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Special Elite', cursive;
+    font-size: 1rem;
     color: var(--accent-color);
-    font-style: italic;
-    font-size: 0.9rem;
-    margin-top: 0.5rem;
+}
+
+.review-section {
+    flex-grow: 1;
+    margin-top: 1rem;
+}
+
+.review-textarea {
+    width: 100%;
+    height: 60%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    padding: 0.5rem;
+    color: white;
+    font-family: 'Special Elite', cursive;
+    resize: none;
+}
+
+.review-textarea:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+
+.review-textarea::placeholder {
+    color: rgba(255, 255, 255, 0.5);
 }
 
 /* Modal Styles */

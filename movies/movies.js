@@ -6638,11 +6638,22 @@ function filterMovies() {
         movieCard.dataset.year = movie.year;
         
         movieCard.innerHTML = `
-            <img class="movie-poster" src="${movie.poster}" alt="${movie.title}" 
-                 onerror="this.src='images/movies/placeholder.jpg'">
-            <div class="movie-info">
-                <h3 class="movie-title">${movie.title}</h3>
-                <p class="movie-year">${movie.year}</p>
+            <div class="movie-card-front">
+                <img class="movie-poster" src="${movie.poster}" alt="${movie.title}" 
+                     onerror="this.src='images/movies/placeholder.jpg'">
+                <div class="movie-info">
+                    <h3 class="movie-title">${movie.title}</h3>
+                    <p class="movie-year">${movie.year}</p>
+                </div>
+            </div>
+            <div class="movie-card-back">
+                <div>
+                    <h3 class="movie-title">${movie.title}</h3>
+                    <p class="movie-year">${movie.year}</p>
+                </div>
+                <div class="review-section">
+                    <textarea class="review-textarea" placeholder="Write your review here..."></textarea>
+                </div>
             </div>
         `;
         
