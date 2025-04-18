@@ -387,7 +387,7 @@ export const movies = [
     },
     {
         title: "\"I",
-        year:  Tonya",
+        year: 0,
         genre: "Action",
         rating: 3.5,
         poster: "2017"
@@ -527,7 +527,7 @@ export const movies = [
     },
     {
         title: "\"Monsters",
-        year:  Inc.",
+        year: 0,
         genre: "Action",
         rating: 3.5,
         poster: "2001"
@@ -1262,7 +1262,7 @@ export const movies = [
     },
     {
         title: "\"Crazy",
-        year:  Stupid,
+        year: 0,
         genre: "Action",
         rating: 3.5,
         poster: " Love.""
@@ -1556,7 +1556,7 @@ export const movies = [
     },
     {
         title: "\"The Chronicles of Narnia: The Lion",
-        year:  the Witch and the Wardrobe",
+        year: 0,
         genre: "Action",
         rating: 3.5,
         poster: "2005"
@@ -1885,7 +1885,7 @@ export const movies = [
     },
     {
         title: "\"Girl",
-        year:  Interrupted",
+        year: 0,
         genre: "Action",
         rating: 3.5,
         poster: "1999"
@@ -2662,7 +2662,7 @@ export const movies = [
     },
     {
         title: "\"Love",
-        year:  Rosie",
+        year: 0,
         genre: "Action",
         rating: 3.5,
         poster: "2014"
@@ -4762,7 +4762,7 @@ export const movies = [
     },
     {
         title: "\"Love",
-        year:  Simon",
+        year: 0,
         genre: "Action",
         rating: 3.5,
         poster: "2018"
@@ -4979,7 +4979,7 @@ export const movies = [
     },
     {
         title: "\"As Above",
-        year:  So Below",
+        year: 0,
         genre: "Action",
         rating: 3.5,
         poster: "2014"
@@ -5007,7 +5007,7 @@ export const movies = [
     },
     {
         title: "\"Are You There God? It's Me",
-        year:  Margaret.",
+        year: 0,
         genre: "Horror",
         rating: 3.5,
         poster: "2023"
@@ -5819,7 +5819,7 @@ export const movies = [
     },
     {
         title: "\"Extremely Wicked",
-        year:  Shockingly Evil and Vile",
+        year: 0,
         genre: "Action",
         rating: 3.5,
         poster: "2019"
@@ -6190,7 +6190,7 @@ export const movies = [
     },
     {
         title: "\"Angus",
-        year:  Thongs and Perfect Snogging",
+        year: 0,
         genre: "Action",
         rating: 3.5,
         poster: "2008"
@@ -6204,7 +6204,7 @@ export const movies = [
     },
     {
         title: "\"Legally Blonde 2: Red",
-        year:  White & Blonde",
+        year: 0,
         genre: "Action",
         rating: 3.5,
         poster: "2003"
@@ -6323,7 +6323,7 @@ export const movies = [
     },
     {
         title: "\"Yes",
-        year:  God,
+        year: 0,
         genre: "Action",
         rating: 3.5,
         poster: " Yes""
@@ -6572,5 +6572,5 @@ export const movies = [
         genre: "Action",
         rating: 3.5,
         poster: "https://image.tmdb.org/t/p/w500/zf6h5dJ7wVG7LqMO9dhHGHVejzj.jpg"
-    },
+    }
 ];
