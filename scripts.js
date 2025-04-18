@@ -15,46 +15,36 @@ function navigateTo(page) {
 
 document.addEventListener("DOMContentLoaded", () => {
   const grid = document.querySelector(".masonry-grid");
-  const gridItems = document.querySelectorAll(".grid-item");
+  if (!grid) return;
 
   // Make grid visible immediately
   grid.style.opacity = "1";
 
-  // Function to add visible class with delay
-  function addVisibleWithDelay(item, delay) {
-    setTimeout(() => {
-      item.classList.add("visible");
-      item.style.opacity = "1";
-    }, delay);
-  }
+  // Initialize Masonry with better settings
+  const msnry = new Masonry(grid, {
+    itemSelector: ".grid-item",
+    columnWidth: ".grid-item",
+    gutter: 10,
+    percentPosition: true,
+    fitWidth: true,
+    horizontalOrder: true
+  });
 
-  // Initial load animation based on visual position
-  function animateInitialItems() {
-    gridItems.forEach((item, index) => {
-      addVisibleWithDelay(item, index * 50);
-    });
-  }
-
-  // Wait until images are loaded
+  // Load images and show items
   imagesLoaded(grid, () => {
-    // Initialize Masonry with better settings
-    const msnry = new Masonry(grid, {
-      itemSelector: ".grid-item",
-      columnWidth: ".grid-item",
-      gutter: 10,
-      percentPosition: true,
-      fitWidth: true,
-      horizontalOrder: true,
-      initLayout: true
+    const items = grid.querySelectorAll('.grid-item');
+    items.forEach((item, index) => {
+      setTimeout(() => {
+        item.style.opacity = "1";
+        item.classList.add("visible");
+      }, index * 50);
     });
+    msnry.layout();
+  });
 
-    // Start animation immediately after Masonry initializes
-    animateInitialItems();
-    
-    // Re-layout Masonry when window is resized
-    window.addEventListener('resize', () => {
-      msnry.layout();
-    });
+  // Re-layout on resize
+  window.addEventListener('resize', () => {
+    msnry.layout();
   });
 });
 
