@@ -291,12 +291,12 @@ select:hover {
     margin: 0;
     font-size: 1.4rem;
     font-weight: 600;
-    color: var(--primary-color);
+    color: var(--text-color);
 }
 
 .movie-year {
     font-family: 'IBM Plex Mono', monospace;
-    color: var(--accent-color);
+    color: var(--accent-yellow);
     font-style: italic;
     font-size: 0.9rem;
     margin-top: 0.5rem;
@@ -671,7 +671,7 @@ body::after {
     background: rgba(28, 28, 45, 0.95);
     min-width: 250px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    border: 1px solid var(--primary-color);
+    border: 1px solid var(--accent-yellow);
     z-index: 1;
     transform: translateY(10px);
     opacity: 0;
@@ -691,12 +691,12 @@ body::after {
     display: block;
     font-size: 0.9rem;
     transition: all 0.3s ease;
-    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+    border-bottom: 1px solid var(--accent-yellow);
 }
 
 .dropdown-content a:hover {
-    background: rgba(212, 175, 55, 0.1);
-    color: var(--primary-color);
+    background: rgba(255, 215, 0, 0.1);
+    color: var(--text-color);
     padding-left: 1.2rem;
 }
 
