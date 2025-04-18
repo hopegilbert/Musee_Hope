@@ -3,15 +3,17 @@
 :root {
     --primary-color: #4169E1; /* Bright royal blue */
     --secondary-color: #000033; /* Deep navy/black */
-    --accent-color: #FFA500; /* Orange */
+    --accent-color: #FF4500; /* Vibrant orange-red */
+    --accent-yellow: #FFD700; /* Bright yellow */
     --text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    --text-color: #E8F1FF; /* Light blue-white */
+    --text-color: #FFFFFF; /* Pure white */
     --background-color: #000033; /* Deep navy/black */
     --modal-background: rgba(0, 0, 15, 0.95);
     --card-background: #000022;
     --blue-gradient: linear-gradient(135deg, #4169E1 0%, #000033 100%);
     --vintage-border: 1px solid rgba(65, 105, 225, 0.2);
+    --header-gradient: linear-gradient(45deg, var(--accent-yellow) 0%, var(--accent-color) 30%, var(--primary-color) 60%, #FFFFFF 100%);
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Monoton&family=Rubik+Mono+One&family=VT323&family=IBM+Plex+Mono:wght@400;500&family=Cormorant:wght@400;500;600&display=swap');
@@ -31,7 +33,7 @@ body {
     background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxsaW5lIHgxPSIwIiB5PSIwIiB4Mj0iMCIgeTI9IjQwIiBzdHJva2U9IiMyYjJiMmIiIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==');
 }
 
-/* Film Grain Effect - adjusted to match blue noise */
+/* Film Grain Effect - adjusted to match new colors */
 body::before {
     content: '';
     position: fixed;
@@ -40,38 +42,25 @@ body::before {
     width: 100%;
     height: 100%;
     background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyBAMAAADsEZWCAAAAGFBMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANxM8mAAAACHRSTlMoADcKLRkQEAwV+y0AAACWSURBVHgBhc4xCsJAEIXhN7MQBAtLW0HwAoKt4AHs7T2AYGtvAQRbwQMI9h7A3tLeFxC2S5wZeOxiM+/jJ0mSJEn+XezqrB0K2YtTnb0hU+GeqEPlnjCGTD3hDYV7Qg2Fe8IMmXvCHDL3hBYK94QRCveENWTuCXMo3BM2kLknrCFzT5hD4Z6whsQ9YQ+Je0KS/N0HqPyPpYKXWkIAAAAASUVORK5CYII=');
-    opacity: 0.2;
-    mix-blend-mode: screen;
+    opacity: 0.15;
+    mix-blend-mode: color-dodge;
     pointer-events: none;
     z-index: 1000;
-    filter: hue-rotate(240deg) saturate(2);
 }
 
-/* Film Reel Banner */
+/* Cinema Header Styles */
 .cinema-header {
+    background: var(--header-gradient);
     text-align: center;
     padding: 3rem 2rem;
     position: relative;
     overflow: hidden;
     border-bottom: 2px solid var(--accent-color);
     min-height: 300px;
-    background: var(--secondary-color);
 }
 
-/* Background GIF container */
 .cinema-header::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 2px; /* Stop at the red line */
-    background-image: url('images/film-reel.gif');
-    background-size: 100% auto;
-    background-position: top center;
-    background-repeat: no-repeat;
-    opacity: 1;
-    z-index: 0;
+    opacity: 0.8;
 }
 
 /* Dark overlay for better text readability */
@@ -110,12 +99,13 @@ body::before {
 
 .subtitle {
     font-family: 'Abril Fatface', serif;
-    font-style: italic;
-    color: var(--accent-color);
+    color: var(--accent-yellow);
     opacity: 0.9;
     margin-top: 0.5rem;
     font-size: 1.4rem;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    text-shadow: 
+        1px 1px 0 var(--primary-color),
+        2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .ticket-tear {
@@ -134,29 +124,29 @@ body::before {
 }
 
 h1 {
-    font-family: 'Monoton', cursive;
+    font-family: 'Abril Fatface', serif;
     margin: 0;
     font-size: 3.5rem;
     text-transform: uppercase;
     letter-spacing: 2px;
     font-weight: 400;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5),
-                 0 0 10px rgba(65, 105, 225, 0.8),
-                 0 0 20px rgba(255, 165, 0, 0.4);
-    color: var(--primary-color);
-    animation: neonPulse 2s infinite;
+    color: var(--accent-color);
+    text-shadow: 
+        -2px -2px 0 #fff,  
+         2px -2px 0 #fff,
+        -2px  2px 0 #fff,
+         2px  2px 0 #fff,
+        4px 4px 0 var(--primary-color),
+        5px 5px 10px rgba(0, 0, 0, 0.4);
+    animation: gentleFloat 3s ease-in-out infinite;
 }
 
-@keyframes neonPulse {
+@keyframes gentleFloat {
     0%, 100% {
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5),
-                     0 0 10px rgba(65, 105, 225, 0.8),
-                     0 0 20px rgba(255, 165, 0, 0.4);
+        transform: translateY(0);
     }
     50% {
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5),
-                     0 0 15px rgba(65, 105, 225, 0.9),
-                     0 0 25px rgba(255, 165, 0, 0.6);
+        transform: translateY(-5px);
     }
 }
 
@@ -564,9 +554,9 @@ body::after {
 
 /* Cinema Navigation Styles */
 .cinema-nav {
-    background: linear-gradient(to right, #1a0f0a, #2c1810);
+    background: linear-gradient(to right, var(--primary-color), var(--accent-color), var(--accent-yellow));
     padding: 1rem 0;
-    border-bottom: 1px solid rgba(244, 228, 188, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     margin-bottom: 2rem;
 }
 
@@ -581,7 +571,8 @@ body::after {
 }
 
 .nav-item {
-    color: var(--primary-color);
+    color: var(--text-color);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
     text-decoration: none;
     font-family: 'Special Elite', cursive;
     font-size: 1.1rem;
@@ -611,8 +602,8 @@ body::after {
 }
 
 .nav-item:hover {
-    color: var(--accent-color);
-    text-shadow: 0 0 10px rgba(244, 228, 188, 0.5);
+    color: var(--accent-yellow);
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
 }
 
 /* Dropdown Styles */
