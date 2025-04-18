@@ -83,33 +83,6 @@
             color: var(--terracotta);
         }
 
-        /* Inherit navigation styles from my-super-cool-bf.html */
-        .nav-menu {
-            text-align: center;
-            padding: 1rem 2rem;
-            background-color: var(--beige);
-            border-radius: 12px;
-            margin-bottom: 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 2rem;
-        }
-
-        .nav-menu a {
-            color: var(--text);
-            text-decoration: none;
-            font-family: 'Inter', sans-serif;
-            font-weight: 500;
-            transition: color 0.3s ease;
-            display: inline-block;
-            padding: 0.5rem 1rem;
-        }
-
-        .nav-menu a:hover {
-            color: var(--terracotta);
-        }
-
         /* Dropdown styles */
         .dropdown {
             position: relative;
@@ -150,10 +123,21 @@
             margin-top: 0.5rem;
         }
 
+        /* Add padding above dropdown to prevent gap */
+        .dropdown::after {
+            content: '';
+            position: absolute;
+            height: 20px;
+            width: 100%;
+            top: 100%;
+            left: 0;
+        }
+
         .dropdown:hover .dropdown-content {
             display: block;
             opacity: 1;
             visibility: visible;
+            pointer-events: auto;
         }
 
         .dropdown-content a {
@@ -163,6 +147,7 @@
             display: block;
             transition: background-color 0.3s ease, color 0.3s ease;
             border-radius: 4px;
+            white-space: normal;
         }
 
         .dropdown-content a:hover {
@@ -188,6 +173,32 @@
             .essay-content h2 {
                 font-size: 1.5rem;
             }
+        }
+
+        .nav-menu {
+            text-align: center;
+            padding: 1rem 2rem;
+            background-color: var(--beige);
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: var(--text);
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            display: inline-block;
+            padding: 0.5rem 1rem;
+        }
+
+        .nav-menu a:hover {
+            color: var(--terracotta);
         }
     </style>
 </head>
