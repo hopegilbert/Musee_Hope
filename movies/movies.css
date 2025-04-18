@@ -168,10 +168,10 @@ select:hover {
 /* Movies Grid Styles */
 .movies-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1rem;
     padding: 2rem;
-    max-width: 1400px;
+    max-width: 1800px;
     margin: 0 auto;
 }
 
@@ -183,16 +183,17 @@ select:hover {
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     border: var(--vintage-border);
+    aspect-ratio: 27/40;
 }
 
 .movie-card:hover {
-    transform: translateY(-10px) scale(1.02);
+    transform: translateY(-5px) scale(1.02);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
 .movie-poster {
     width: 100%;
-    height: 400px;
+    height: 100%;
     object-fit: cover;
     transition: transform 0.5s ease;
     filter: blur(0);
@@ -379,16 +380,38 @@ body::after {
     z-index: 1000;
 }
 
-/* Responsive Design */
+/* Update responsive breakpoints for 7-column grid */
+@media (max-width: 1800px) {
+    .movies-grid {
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+@media (max-width: 1500px) {
+    .movies-grid {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
 @media (max-width: 1200px) {
     .movies-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 900px) {
+    .movies-grid {
+        grid-template-columns: repeat(4, 1fr);
     }
 }
 
 @media (max-width: 768px) {
     .movies-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.5rem;
+        padding: 0.5rem;
     }
     
     .ticket-stub {
@@ -418,6 +441,14 @@ body::after {
         margin: 10% auto;
         padding: 2rem;
         width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    .movies-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.25rem;
+        padding: 0.25rem;
     }
 }
 
