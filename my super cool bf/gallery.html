@@ -210,7 +210,7 @@
 
         @media (max-width: 900px) {
             .grid-item {
-                width: calc(50% - 1rem);
+                width: calc(50% - 1rem) !important;
             }
             header h1 {
                 font-size: 2rem;
@@ -218,14 +218,18 @@
             header p {
                 font-size: 1rem;
             }
+            .masonry-grid {
+                max-width: 600px;
+            }
         }
 
         @media (max-width: 600px) {
             .grid-item {
-                width: calc(100% - 1rem);
+                width: calc(50% - 0.5rem) !important;
             }
             .masonry-grid {
                 padding: 0.5rem;
+                gap: 0.5rem;
             }
             header {
                 padding: 1rem 0.5rem;
@@ -285,7 +289,7 @@
 
         <script>
             const images = [
-                { src: 'images/gallery/skyrack.jpg', caption: 'Skyrack 27/07/2024 - First photobooth moment on the Otley Run. We Literally werent even bf gf at this point aha.' },
+                { src: 'images/gallery/skyrack.jpg', caption: 'Skyrack 27/07/2024 - First photobooth moment on the Otley Run. We literally weren\'t even bf/gf at this point aha.' },
                 { src: 'images/gallery/ipad-kid.jpg', caption: 'The car 16/08/2024 - Sam being an ipad kid, i gave him my switch and a snack and he was appeased for the car journey.' },
                 { src: 'images/gallery/llandudno.jpg', caption: 'Llandudno 18/08/2024 - Cute selfie at the beach.' },
                 { src: 'images/gallery/llandudno2.jpg', caption: 'Llandudno 18/08/2024 - What a beautiful view (Im talking about Sam).' },
@@ -306,76 +310,76 @@
                 { src: 'images/gallery/otley-run3.jpg', caption: 'Otley Run 27/07/2024 - Very very happy Ken and Barbie' },
                 { src: 'images/gallery/otley-run4.jpg', caption: 'Otley Run 27/07/2024 - Giggling at something that was obviously funny' },
                 { src: 'images/gallery/otley-run5.jpg', caption: 'Otley Run 27/07/2024 - Classic 0.5 of Sam with his Pint.' },
-                { src: 'images/gallery/snow-day2.jpg', caption: 'Snow Day 13/06/2024 - On this day we werent even together yet and Sam was not taking the hint even though I was literally on his shoulders.' },
+                { src: 'images/gallery/snow-day2.jpg', caption: 'Snow Day 13/06/2024 - On this day we weren\'t even together yet and Sam was not taking the hint even though I was literally on his shoulders.' },
                 { src: 'images/gallery/eiffel-tower3.jpg', caption: 'Eiffel Tower 23/03/2025  - Watching the Efiffel Tower Sparkel with my favourite person.' },
                 { src: 'images/gallery/eiffel-tower4.jpg', caption: 'Eiffel Tower 24/03/2025 - This is a recreation of a photo Sams parents took 40 years ago.' },
                 { src: 'images/gallery/judy-market.jpg', caption: 'Judy Market 24/03/2025 - Sitting outside this all gluten free Parisian cafe was a dream.' },
                 { src: 'images/gallery/luxembourg-gardens.jpg', caption: 'Luxembourg Gardens 24/03/2025 - I was still dragging Sam around Paris and he was stressing about getting to our flight on time.' },
-                { src: 'images/gallery/snow-day.jpg', caption: 'Snow Day 13/06/2024 - On this day we werent even together yet and Sam was not taking the hint even though I was literally on his shoulders.' },
-                { src: 'images/gallery/van-and-james-house.jpg', caption: 'Van and James House 21/12/2024 - Cuddled up on Van and James couch after xmas dinner with my family.' },
-                { src: 'images/gallery/eiffel-tower2.jpg', caption: 'Eiffel Tower 23/03/2025 - One of my favuorite views ever.' },
+                { src: 'images/gallery/snow-day.jpg', caption: 'Snow Day 13/06/2024 - On this day we weren\'t even together yet and Sam was not taking the hint even though I was literally on his shoulders.' },
+                { src: 'images/gallery/van-and-james-house.jpg', caption: 'Van and James\' House 21/12/2024 - Cuddled up on Van and James\' couch after xmas dinner with my family.' },
+                { src: 'images/gallery/eiffel-tower2.jpg', caption: 'Eiffel Tower 23/03/2025 - One of my favourite views ever.' },
                 { src: 'images/gallery/hotel-lift4.jpg', caption: 'Hotel Lift 23/03/2025 - Trying to see more of Paris even though we were rather hungover.' },
                 { src: 'images/gallery/louvre3.jpg', caption: 'Louvre - 23/03/2025 - Handsome Sam in a very cool room.' },
-                { src: 'images/gallery/hotel-lift3.jpg', caption: 'Hotel Lift 23/03/2025 - We had gotten in at 6am and had to be at the Lovre at 10am. This photo contains 2 very hungover people.' },
+                { src: 'images/gallery/hotel-lift3.jpg', caption: 'Hotel Lift 23/03/2025 - We\'d gotten in at 6am and had to be at the Louvre at 10am. This photo contains 2 very hungover people.' },
                 { src: 'images/gallery/louvre.jpg', caption: 'Louvre 23/04/2025- Cute selfie in the Louvre.' },
                 { src: 'images/gallery/louvre2.jpg', caption: 'Louvre 23/03/2025 - A very beautiful ceiling.' },
-                { src: 'images/gallery/eiffel-tower.jpg', caption: 'Eiffel Tower 22/03/2025 - Cool guy infront of a big thing.' },
+                { src: 'images/gallery/eiffel-tower.jpg', caption: 'Eiffel Tower 22/03/2025 - Cool guy in front of a big thing.' },
                 { src: 'images/gallery/hotel-lift.jpg', caption: 'Hotel Lift 22/03/2025 - Taking pics every day in the hotel lift was necessary.' },
                 { src: 'images/gallery/hotel-lift2.jpg', caption: 'Hotel Lift 22/03/2025 - Cool kids ready for their night out in Paris.' },
                 { src: 'images/gallery/la-cavaeu-de-la-hauchette.jpg', caption: 'La Cavaeu de la Hauchette 23/03/2025 - Questionable dancing in a very cool club in Paris.' },
                 { src: 'images/gallery/montmarte.jpg', caption: 'Montmarte 22/03/2025 - We found a really cool little brewery in Montmarte.' },
-                { src: 'images/gallery/musee-dorsay.jpg', caption: 'Musee Dorsay 22/03/2025 - Which is a better sight, the painting or Sam?' },
-                { src: 'images/gallery/musee-dorsay2.jpg', caption: 'Musee D Orsay 22/03/2025 - Cute selfie  at the top of the Musee D Orsay' },
+                { src: 'images/gallery/musee-dorsay.jpg', caption: "Musee D'Orsay 22/03/2025 - Which is a better sight, the painting or Sam?" },
+                { src: 'images/gallery/musee-dorsay2.jpg', caption: "Musee D'Orsay 22/03/2025 - Cute selfie at the top of the Musee D'Orsay" },
                 { src: 'images/gallery/LBA.jpg', caption: 'LBA 21/03/2025 - At the airport ready for our first trip together.' },
                 { src: 'images/gallery/dinner-party3.jpg', caption: 'Dinner Party 22/02/2025 - Fine dining and wine.' },
                 { src: 'images/gallery/dinner-party4.jpg', caption: 'Dinner Party 22/02/2025 - Dining in a beautiful place with friends.' },
                 { src: 'images/gallery/dinner-party5.jpg', caption: 'Dinner Party 22/02/2025 - Selfie at the table.' },
                 { src: 'images/gallery/hotel-room-paris.jpg', caption: 'Hotel Room 21/03/2025 - My favourite person.' },
-                { src: 'images/gallery/les-tomattes.jpg', caption: 'Les Tomattes 21/03/2025 - I think i peaked at life this day. I got a new job and was dining in an amazing restaurant in Paris with the one I love.' },
-                { src: 'images/gallery/wet-lift.jpg', caption: 'Wet Lift 21/03/2024 - Rainy Paris and prossecco.' },
+                { src: 'images/gallery/les-tomattes.jpg', caption: 'Les Tomattes 21/03/2025 - I think I\'ve peaked at life this day. I got a new job and was dining in an amazing restaurant in Paris with the one I love.' },
+                { src: 'images/gallery/wet-lift.jpg', caption: 'Wet Lift 21/03/2024 - Rainy Paris and prosecco.' },
                 { src: 'images/gallery/dinner-party.jpg', caption: 'Dinner Party 22/02/2025 - Fine dining and wine.' },
-                { src: 'images/gallery/dinner-party2.jpg', caption: 'Dinner Party 22/02/2025 - Awww look at how hes looking at me hehe.' },
-                { src: 'images/gallery/hopes-couch.jpg', caption: 'Hopes Couch 22/02/2025 - Sam and his dawgs.' },
-                { src: 'images/gallery/leonards.jpg', caption: 'Leonards 02/02/2025 - Morning coffee at Leonards.' },
+                { src: 'images/gallery/dinner-party2.jpg', caption: 'Dinner Party 22/02/2025 - Awww look at how he\'s looking at me hehe.' },
+                { src: 'images/gallery/hopes-couch.jpg', caption: 'Hope\'s Couch 22/02/2025 - Sam and his dawgs.' },
+                { src: 'images/gallery/leonards.jpg', caption: 'Leonard\'s 02/02/2025 - Morning coffee at Leonard\'s.' },
                 { src: 'images/gallery/post-winter-ball.jpg', caption: 'Post Winter Ball 03/12/2024 - Blurry disposable camera shot.' },
                 { src: 'images/gallery/speakeasy-durham.jpg', caption: '33 Durham 01/02/2025 - A very strong drink in the secret bar in Durham.' },
                 { src: 'images/gallery/winter-ball6.jpg', caption: 'Winter Ball Pres 02/12/2024 - Couples shot.' },
                 { src: 'images/gallery/winter-ball7.jpg', caption: 'Winter Ball Pres 02/12/2024 - One of my favourite pics of us.' },
-                { src: 'images/gallery/graduation2.jpg', caption: 'Graduation 10/01/2025 - Me and Sam with out Durham teddy bears.' },
-                { src: 'images/gallery/jimmys.jpg', caption: 'Jimmys 10/01/2025 - Sam in the naughty corner in Jimmys.' },
-                { src: 'images/gallery/jimmys2.jpg', caption: 'Jimmys 10/01/2025 - Introducing Mum and Dad to Jimmys.' },
+                { src: 'images/gallery/graduation2.jpg', caption: 'Graduation 10/01/2025 - Me and Sam with our Durham teddy bears.' },
+                { src: 'images/gallery/jimmys.jpg', caption: 'Jimmy\'s 10/01/2025 - Sam in the naughty corner in Jimmy\'s.' },
+                { src: 'images/gallery/jimmys2.jpg', caption: 'Jimmy\'s 10/01/2025 - Introducing Mum and Dad to Jimmy\'s.' },
                 { src: 'images/gallery/nye-drinks.jpg', caption: '31/12/2024 - A quiet NYE just me and you.' },
-                { src: 'images/gallery/sams-street.jpg', caption: 'Sams Street 01/01/2025- Sams parents dragging us to a party at 2am on New Years Day' },
+                { src: 'images/gallery/sams-street.jpg', caption: 'Sam\'s Street 01/01/2025- Sam\'s parents dragging us to a party at 2am on New Year\'s Day' },
                 { src: 'images/gallery/bus-home.jpg', caption: 'Bus Home 03/12/2024 - Very drunken bus home from the ball.' },
-                { src: 'images/gallery/family-xmas-meal.jpg', caption: 'Family Xmas Meal 21/12/2024 - Sam with his frame at my family xmmas meal.' },
+                { src: 'images/gallery/family-xmas-meal.jpg', caption: 'Family Xmas Meal 21/12/2024 - Sam with his frame at my family xmas meal.' },
                 { src: 'images/gallery/winter-ball3.jpg', caption: 'Winter Ball 02/12/2024 - A kiss on the cheek.' },
                 { src: 'images/gallery/winter-ball4.jpg', caption: 'Winter Ball 02/12/2024 - Couple pic at the ball.' },
                 { src: 'images/gallery/winter-ball5.jpg', caption: 'Winter Ball 02/12/2024 - Happy happy at the ball.' },
                 { src: 'images/gallery/xmas-market.jpg', caption: 'Xmas Market 22/12/2024 - Sam and his mulled wine.' },
-                { src: 'images/gallery/hopes-garden.jpg', caption: 'Hopes Garden 28/07/2024 - Sam cooked a lovely rissotto and we ate out in the sunny garden.' },
+                { src: 'images/gallery/hopes-garden.jpg', caption: 'Hope\'s Garden 28/07/2024 - Sam cooked a lovely risotto and we ate out in the sunny garden.' },
                 { src: 'images/gallery/observatory-hill.jpg', caption: 'Observatory Hill 05/11/2024 - Bonfire night watching the fireworks over Durham.' },
-                { src: 'images/gallery/sams-garden3.jpg', caption: 'Sams Garden 11/08/2024 - Cuddled up by the fire.' },
-                { src: 'images/gallery/spags.jpg', caption: 'Spags 01/10/2024 - Obligatory spags date and 2L bottle of wine.' },
+                { src: 'images/gallery/sams-garden3.jpg', caption: 'Sam\'s Garden 11/08/2024 - Cuddled up by the fire.' },
+                { src: 'images/gallery/spags.jpg', caption: 'Spag\'s 01/10/2024 - Obligatory spags date and 2L bottle of wine.' },
                 { src: 'images/gallery/winter-ball.jpg', caption: 'Winter Ball 02/12/2024 - Fireworks selfie at the ball.' },
                 { src: 'images/gallery/winter-ball2.jpg', caption: 'Winter Ball 02/12/2024 - Cute pic at the ball.' },
                 { src: 'images/gallery/zen.jpg', caption: 'Zen 12/11/2024 - Tasty Thai food.' },
-                { src: 'images/gallery/beers.jpg', caption: 'Beers 09/08/2024 - Beers at a brewery for Sams bday.' },
+                { src: 'images/gallery/beers.jpg', caption: 'Beers 09/08/2024 - Beers at a brewery for Sam\'s bday.' },
                 { src: 'images/gallery/birmingham.jpg', caption: 'Birmingham 09/08/2024 - Happy us at the restaurant.' },
                 { src: 'images/gallery/conwy.jpg', caption: 'Conwy 18/08/2024 - A pretty view of Conwy.' },
-                { src: 'images/gallery/drinks.jpg', caption: 'Drinks 09/08/2024 - Drinks for Sams bday.' },
-                { src: 'images/gallery/graduation.jpg', caption: 'Graduation 10/01/2025 - At cellar door for the best meal ever eaten and lovely company.' },
+                { src: 'images/gallery/drinks.jpg', caption: 'Drinks 09/08/2024 - Drinks for Sam\'s bday.' },
+                { src: 'images/gallery/graduation.jpg', caption: 'Graduation 10/01/2025 - At Cellar Door for the best meal ever eaten and lovely company.' },
                 { src: 'images/gallery/otley-run.jpg', caption: 'Otley Run 27/07/2024 - Boogying in Box.' },
                 { src: 'images/gallery/otley-run2.jpg', caption: 'Otley Run 27/07/2024 - Blurry Box.' },
                 { src: 'images/gallery/rhosniegr.jpg', caption: 'Rhosniegr 23/08/2024 - Lovely day at the beach followed by a cheeky beer.' },
-                { src: 'images/gallery/sams-garden.jpg', caption: 'Sams Garden 11/08/2024 - Disposable camera pic of a cool guy.' },
-                { src: 'images/gallery/sams-garden2.jpg', caption: 'Sams Garden 11/08/2024 - Disposible camera shot.' },
-                { src: 'images/gallery/sams-kitchen.jpg', caption: 'Sams Kitchen 10/08/2024 - Sams 5th outfit change of the night.' },
-                { src: 'images/gallery/sams-kitchen2.jpg', caption: 'Sams Kitchen 10/08/2024 - Cuties.' },
-                { src: 'images/gallery/sams-kitchen3.jpg', caption: 'Sams Kitchen 10/08/2024 - One of our favourite pics.' },
+                { src: 'images/gallery/sams-garden.jpg', caption: 'Sam\'s Garden 11/08/2024 - Disposable camera pic of a cool guy.' },
+                { src: 'images/gallery/sams-garden2.jpg', caption: 'Sam\'s Garden 11/08/2024 - Disposable camera shot.' },
+                { src: 'images/gallery/sams-kitchen.jpg', caption: 'Sam\'s Kitchen 10/08/2024 - Sam\'s 5th outfit change of the night.' },
+                { src: 'images/gallery/sams-kitchen2.jpg', caption: 'Sam\'s Kitchen 10/08/2024 - Cuties.' },
+                { src: 'images/gallery/sams-kitchen3.jpg', caption: 'Sam\'s Kitchen 10/08/2024 - One of our favourite pics.' },
                 { src: 'images/gallery/the-cottage.jpg', caption: 'The Cottage 22/08/2024 - Snap of Sam in The Cottage doorway.' },
                 { src: 'images/gallery/the-cottage2.jpg', caption: 'The Cottage 22/08/2024 - Selfie at the cottage.' },
-                { src: 'images/gallery/wales.jpg', caption: 'Wales 20/08/2024 - Just before we went zoomingon the forest coaster.' },
-                { src: 'images/gallery/sams-kitchen4.jpg', caption: 'Sams Kitchen 10/08/2024 - Another outfit change from Sam.' }
+                { src: 'images/gallery/wales.jpg', caption: 'Wales 20/08/2024 - Just before we went zooming on the forest coaster.' },
+                { src: 'images/gallery/sams-kitchen4.jpg', caption: 'Sam\'s Kitchen 10/08/2024 - Another outfit change from Sam.' }
             ];
 
             function shuffleArray(array) {
