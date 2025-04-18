@@ -3,203 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cinematic Musings - My Digital Museum</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Special+Elite&display=swap" rel="stylesheet">
+    <title>Vintage Cinema Collection</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="images/movie-icon.ico" type="image/x-icon">
-    <style>
-        /* Header styles */
-        header {
-            text-align: center;
-            padding: 2rem 1rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        header h1 {
-            font-family: 'Inter', sans-serif;
-            font-size: 2.5rem;
-            color: var(--beige);
-            margin-bottom: 1rem;
-        }
-
-        header p {
-            font-family: 'Lora', serif;
-            font-size: 1.2rem;
-            color: var(--beige);
-            opacity: 0.9;
-            line-height: 1.5;
-        }
-
-        /* Navigation styles */
-        .nav-menu {
-            text-align: center;
-            padding: 1rem 2rem;
-            background-color: var(--beige);
-            border-radius: 12px;
-            margin-bottom: 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 2rem;
-        }
-
-        .nav-menu a {
-            color: var(--text);
-            text-decoration: none;
-            font-family: 'Inter', sans-serif;
-            font-weight: 500;
-            transition: color 0.3s ease;
-            display: inline-block;
-            padding: 0.5rem 1rem;
-        }
-
-        /* Content styles */
-        .movies-content {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 2rem;
-            font-family: 'Lora', serif;
-            color: var(--beige);
-        }
-
-        .movie-review {
-            margin-bottom: 3rem;
-            padding: 2rem;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            transition: transform 0.3s ease;
-        }
-
-        .movie-review:hover {
-            transform: translateY(-5px);
-        }
-
-        .movie-review h2 {
-            font-family: 'Inter', sans-serif;
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            color: var(--terracotta);
-        }
-
-        .movie-meta {
-            font-size: 0.9rem;
-            color: var(--cream);
-            margin-bottom: 1rem;
-            font-style: italic;
-        }
-
-        .movie-review p {
-            line-height: 1.8;
-            margin-bottom: 1rem;
-        }
-
-        .rating {
-            font-family: 'Inter', sans-serif;
-            font-weight: 600;
-            color: var(--terracotta);
-        }
-    </style>
 </head>
 <body>
     <div class="film-grain-overlay"></div>
-    <div class="page-wrapper">
-        <nav class="nav-menu">
-            <a href="../index.html">HOME</a>
-            <a href="../my super cool bf/my-super-cool-bf.html">ABOUT</a>
-            <a href="../my super cool bf/gallery.html">GALLERY</a>
-            <a href="#memories">MEMORIES</a>
-            <div class="dropdown">
-                <button class="dropbtn">GENIUS WORK</button>
-                <div class="dropdown-content">
-                    <a href="../my super cool bf/feminism-essay.html">Exploring de Beauvoir's Concept of Becoming a Woman</a>
-                </div>
-            </div>
-        </nav>
-
-        <header class="cinema-header">
-            <div class="ticket-stub">
-                <h1>Cinematic Musings</h1>
-                <p class="subtitle">of a Questionable Critic</p>
-                <div class="ticket-tear"></div>
-            </div>
-        </header>
-
-        <div class="filter-bar">
-            <div class="filter-group">
-                <label for="genre">Genre:</label>
-                <select id="genre">
-                    <option value="all">All Genres</option>
-                    <option value="drama">Drama</option>
-                    <option value="thriller">Thriller</option>
-                    <option value="comedy">Comedy</option>
-                </select>
-            </div>
-            <div class="filter-group">
-                <label for="year">Year:</label>
-                <select id="year">
-                    <option value="all">All Years</option>
-                    <option value="2024">2024</option>
-                    <option value="2023">2023</option>
-                </select>
-            </div>
-            <div class="filter-group">
-                <label for="sort">Sort By:</label>
-                <select id="sort">
-                    <option value="newest">Newest First</option>
-                    <option value="rating">Highest Rated</option>
-                    <option value="controversial">Most Controversial</option>
-                </select>
-            </div>
+    
+    <header class="cinema-header">
+        <div class="ticket-stub">
+            <h1>Vintage Cinema Collection</h1>
+            <div class="ticket-tear"></div>
         </div>
+    </header>
 
-        <div class="movies-grid">
-            <!-- Saltburn -->
-            <div class="movie-card" data-genre="thriller" data-year="2023" data-rating="5">
-                <a href="reviews/saltburn.html" class="movie-link">
-                    <div class="poster-wrapper">
-                        <img src="posters/saltburn.jpg" alt="Saltburn Movie Poster" loading="lazy">
-                        <div class="hover-content">
-                            <div class="rating">★★★★★</div>
-                            <p class="hot-take">"A deliciously twisted exploration of privilege, obsession, and really questionable bathtub etiquette."</p>
-                        </div>
-                    </div>
-                    <div class="movie-info">
-                        <h3>Saltburn</h3>
-                        <p>2023 | Emerald Fennell</p>
-                    </div>
-                </a>
-                <div class="community-rating">
-                    <div class="rating-stats">
-                        <span class="avg-rating">4.8</span>
-                        <span class="total-ratings">(42 ratings)</span>
-                    </div>
-                    <div class="rate-this">
-                        <button class="rate-btn" data-movie="saltburn">Rate This Film</button>
-                    </div>
+    <div class="filter-bar">
+        <select id="genre-filter">
+            <option value="all">All Genres</option>
+            <option value="Drama">Drama</option>
+            <option value="Comedy">Comedy</option>
+            <option value="Romance">Romance</option>
+            <option value="Thriller">Thriller</option>
+            <option value="Film-Noir">Film-Noir</option>
+        </select>
+
+        <select id="year-filter">
+            <option value="all">All Decades</option>
+            <option value="1930">1930s</option>
+            <option value="1940">1940s</option>
+            <option value="1950">1950s</option>
+            <option value="1960">1960s</option>
+        </select>
+
+        <select id="sort-filter">
+            <option value="rating">Sort by Rating</option>
+            <option value="year">Sort by Year</option>
+            <option value="title">Sort by Title</option>
+        </select>
+    </div>
+
+    <main class="movies-grid">
+        <!-- Movie cards will be dynamically inserted here -->
+    </main>
+
+    <div class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 class="modal-title"></h2>
+            
+            <div class="rating-section">
+                <h3>Rate this Film</h3>
+                <div class="stars">
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
                 </div>
-            </div>
-
-            <!-- Add more movie cards here -->
-        </div>
-
-        <!-- Rating Modal -->
-        <div id="ratingModal" class="modal">
-            <div class="modal-content">
-                <span class="close-modal">&times;</span>
-                <h2>Rate This Film</h2>
-                <div class="star-rating">
-                    <span class="star" data-rating="1">★</span>
-                    <span class="star" data-rating="2">★</span>
-                    <span class="star" data-rating="3">★</span>
-                    <span class="star" data-rating="4">★</span>
-                    <span class="star" data-rating="5">★</span>
-                </div>
-                <textarea placeholder="Share your thoughts (optional)..." maxlength="500"></textarea>
+                <textarea id="rating-comment" placeholder="Share your thoughts about this film..."></textarea>
                 <button class="submit-rating">Submit Rating</button>
             </div>
         </div>
     </div>
+
     <script src="movies.js"></script>
 </body>
-</html>
+</html> 
