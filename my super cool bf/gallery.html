@@ -120,7 +120,7 @@
         .masonry-grid {
             margin: 0 auto;
             padding: 0 1rem;
-            max-width: 1600px;
+            max-width: 2400px; /* Increased to allow for more columns */
             width: 100%;
             position: relative;
             left: 50%;
@@ -129,7 +129,7 @@
 
         .grid-sizer,
         .grid-item {
-            width: calc(25% - 0.25px); /* 4 columns with 0.25px gap */
+            width: 300px; /* Fixed width for each item */
         }
 
         .grid-item {
@@ -210,27 +210,6 @@
 
         .image-wrapper:hover .hover-text {
             opacity: 1;
-        }
-
-        @media (max-width: 1200px) {
-            .masonry-grid {
-                margin: 0 auto;
-                padding: 0 1rem;
-                max-width: 1200px;
-                width: 100%;
-                position: relative;
-                left: 50%;
-                transform: translateX(-50%);
-            }
-            
-            .grid-sizer,
-            .grid-item {
-                width: calc(33.333% - 0.25px); /* 3 columns */
-            }
-
-            .grid-item {
-                margin-bottom: 0.25px;
-            }
         }
 
         @media (max-width: 768px) {
@@ -494,7 +473,7 @@
                     new Masonry(gallery, {
                         itemSelector: '.grid-item',
                         columnWidth: '.grid-sizer',
-                        percentPosition: true,
+                        percentPosition: false,
                         gutter: 0.25,
                         fitWidth: true,
                         horizontalOrder: true
@@ -512,7 +491,7 @@
                     const msnry = new Masonry(gallery, {
                         itemSelector: '.grid-item',
                         columnWidth: '.grid-sizer',
-                        percentPosition: true,
+                        percentPosition: false,
                         gutter: 0.25,
                         fitWidth: true,
                         horizontalOrder: true
