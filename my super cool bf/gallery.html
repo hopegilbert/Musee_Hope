@@ -119,7 +119,7 @@
         /* Gallery styles */
         .masonry-grid {
             margin: 0 auto;
-            padding: 0 1rem;
+            padding: 0;
             max-width: 1600px;
             width: 100%;
             position: relative;
@@ -130,15 +130,15 @@
         .grid-sizer,
         .grid-item {
             width: 25%; /* 4 columns */
+            padding: 0;
         }
 
         .grid-item {
-            margin-bottom: 4px; /* Smaller bottom margin */
+            margin-bottom: 1px;
             position: relative;
             line-height: 0;
             opacity: 0;
             transition: opacity 0.3s ease-out;
-            padding: 0 2px; /* Smaller padding */
         }
 
         .grid-item.visible {
@@ -222,18 +222,14 @@
 
         @media (max-width: 768px) {
             .masonry-grid {
-                padding: 0 4px;
-                margin: 0 auto;
+                padding: 0;
+                width: 100%;
             }
             
             .grid-sizer,
             .grid-item {
                 width: 50%; /* 2 columns */
-            }
-
-            .grid-item {
-                padding: 0 2px; /* Smaller padding on mobile */
-                margin-bottom: 4px; /* Smaller bottom margin on mobile */
+                padding: 0;
             }
         }
 
@@ -468,8 +464,8 @@
                         itemSelector: '.grid-item',
                         columnWidth: '.grid-sizer',
                         percentPosition: true,
-                        gutter: 0, // Remove gutter since we're using padding
-                        fitWidth: true,
+                        gutter: 0, // Remove gutter completely
+                        fitWidth: false, // Change to false to fill container
                         horizontalOrder: true
                     });
 
@@ -486,8 +482,8 @@
                         itemSelector: '.grid-item',
                         columnWidth: '.grid-sizer',
                         percentPosition: true,
-                        gutter: 0, // Remove gutter since we're using padding
-                        fitWidth: true,
+                        gutter: 0, // Remove gutter completely
+                        fitWidth: false, // Change to false to fill container
                         horizontalOrder: true
                     });
                     msnry.layout();
