@@ -141,6 +141,8 @@
             position: relative;
             display: inline-block;
             width: 100%;
+            height: 0;
+            padding-bottom: 100%; /* Default ratio, will be updated by JS */
             cursor: pointer;
             overflow: hidden;
             border-radius: 6px;
@@ -148,8 +150,12 @@
         }
 
         .grid-item img {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            height: auto;
+            height: 100%;
+            object-fit: cover;
             display: block;
             transition: all 0.3s ease;
         }
@@ -399,6 +405,9 @@
                     
                     // Add load event before setting src
                     img.onload = () => {
+                        // Set padding-bottom based on actual image aspect ratio
+                        const aspectRatio = (img.naturalHeight / img.naturalWidth) * 100;
+                        wrapper.style.paddingBottom = `${aspectRatio}%`;
                         setTimeout(() => {
                             gridItem.classList.add('visible');
                         }, index * 50);
