@@ -110,11 +110,12 @@ body::before {
 }
 
 .subtitle {
-    font-family: 'Abril Fatface', serif;
+    font-family: 'IBM Plex Mono', monospace;
     color: var(--accent-yellow);
     opacity: 0.9;
-    margin-top: 0.5rem;
-    font-size: 1.4rem;
+    margin-top: 1rem;
+    font-size: 1.6rem;
+    letter-spacing: 2px;
     text-shadow: 
         1px 1px 0 var(--primary-color),
         2px 2px 4px rgba(0, 0, 0, 0.3);
@@ -138,29 +139,30 @@ body::before {
 h1 {
     font-family: 'Monoton', cursive;
     margin: 0;
-    font-size: 3.5rem;
+    font-size: 4rem;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 4px;
     font-weight: 400;
     color: var(--primary-color);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5),
-                 0 0 10px rgba(255, 215, 0, 0.8),
-                 0 0 20px rgba(255, 69, 0, 0.4);
+                 0 0 15px rgba(255, 215, 0, 0.8),
+                 0 0 25px rgba(255, 69, 0, 0.4);
     animation: neonPulse 2s infinite;
     position: relative;
     z-index: 1;
+    padding: 1rem 0;
 }
 
 @keyframes neonPulse {
     0%, 100% {
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5),
-                     0 0 10px rgba(255, 215, 0, 0.8),
-                     0 0 20px rgba(255, 69, 0, 0.4);
+                     0 0 15px rgba(255, 215, 0, 0.8),
+                     0 0 25px rgba(255, 69, 0, 0.4);
     }
     50% {
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5),
-                     0 0 15px rgba(255, 215, 0, 0.9),
-                     0 0 25px rgba(255, 69, 0, 0.6);
+                     0 0 20px rgba(255, 215, 0, 0.9),
+                     0 0 30px rgba(255, 69, 0, 0.6);
     }
 }
 
