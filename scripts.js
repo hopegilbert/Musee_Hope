@@ -24,19 +24,28 @@ document.addEventListener("DOMContentLoaded", () => {
     }, delay);
   }
 
-  // Initial load animation
+  // Initial load animation based on visual position
   function animateInitialItems() {
     const viewportHeight = window.innerHeight;
-    gridItems.forEach((item, index) => {
+    
+    // Get all items and their positions
+    const itemPositions = Array.from(gridItems).map(item => {
       const rect = item.getBoundingClientRect();
-      if (rect.top < viewportHeight) {
-        addVisibleWithDelay(item, index * 100); // 100ms delay between each item
+      return {
+        element: item,
+        top: rect.top
+      };
+    });
+
+    // Sort by visual position (top to bottom)
+    itemPositions.sort((a, b) => a.top - b.top);
+
+    // Animate in order of visual position
+    itemPositions.forEach((item, index) => {
+      if (item.top < viewportHeight) {
+        addVisibleWithDelay(item.element, index * 100);
       }
     });
-    // Add loaded class to grid after a small delay
-    setTimeout(() => {
-      grid.classList.add("loaded");
-    }, 100);
   }
 
   // Scroll animation
@@ -53,23 +62,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Wait until images are loaded
   imagesLoaded(grid, () => {
-    new Masonry(grid, {
+    // Initialize Masonry
+    const msnry = new Masonry(grid, {
       itemSelector: ".grid-item",
       columnWidth: ".grid-item",
       gutter: 10,
       percentPosition: true
     });
-    
-    // Start initial animation
-    animateInitialItems();
-    
-    // Observe items for scroll animation
-    gridItems.forEach(item => {
-      const rect = item.getBoundingClientRect();
-      if (rect.top >= window.innerHeight) {
-        observer.observe(item);
-      }
-    });
+
+    // Wait a bit for Masonry to settle
+    setTimeout(() => {
+      // Start initial animation
+      animateInitialItems();
+      
+      // Observe items for scroll animation
+      gridItems.forEach(item => {
+        const rect = item.getBoundingClientRect();
+        if (rect.top >= window.innerHeight) {
+          observer.observe(item);
+        }
+      });
+    }, 100);
   });
 });
 
