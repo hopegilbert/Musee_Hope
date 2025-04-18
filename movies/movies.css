@@ -1,17 +1,17 @@
 /* Base Styles */
-/* Updated with grungy indie mood - April 2024 */
+/* Updated with film reel color scheme - April 2024 */
 :root {
-    --primary-color: #E8D5C4; /* Creamy white */
-    --secondary-color: #2B2B2B; /* Dark blackboard green */
-    --accent-color: #8B2E32; /* Dark red */
+    --primary-color: #4169E1; /* Bright royal blue */
+    --secondary-color: #000033; /* Deep navy/black */
+    --accent-color: #FFA500; /* Orange */
     --text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    --text-color: #E8D5C4; /* Creamy white */
-    --background-color: #2B2B2B; /* Dark blackboard green */
-    --modal-background: rgba(0, 0, 0, 0.95);
-    --card-background: #1C1C1C;
-    --gold-gradient: linear-gradient(135deg, #E8D5C4 0%, #8B2E32 100%);
-    --vintage-border: 1px solid rgba(232, 213, 196, 0.2);
+    --text-color: #E8F1FF; /* Light blue-white */
+    --background-color: #000033; /* Deep navy/black */
+    --modal-background: rgba(0, 0, 15, 0.95);
+    --card-background: #000022;
+    --blue-gradient: linear-gradient(135deg, #4169E1 0%, #000033 100%);
+    --vintage-border: 1px solid rgba(65, 105, 225, 0.2);
 }
 
 @import url('https://fonts.googleapis.com/css2?family=VT323&family=IBM+Plex+Mono:wght@400;500&family=Cormorant:wght@400;500;600&display=swap');
@@ -31,7 +31,7 @@ body {
     background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxsaW5lIHgxPSIwIiB5PSIwIiB4Mj0iMCIgeTI9IjQwIiBzdHJva2U9IiMyYjJiMmIiIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==');
 }
 
-/* Film Grain Effect */
+/* Film Grain Effect - adjusted to match blue noise */
 body::before {
     content: '';
     position: fixed;
@@ -40,9 +40,11 @@ body::before {
     width: 100%;
     height: 100%;
     background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyBAMAAADsEZWCAAAAGFBMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANxM8mAAAACHRSTlMoADcKLRkQEAwV+y0AAACWSURBVHgBhc4xCsJAEIXhN7MQBAtLW0HwAoKt4AHs7T2AYGtvAQRbwQMI9h7A3tLeFxC2S5wZeOxiM+/jJ0mSJEn+XezqrB0K2YtTnb0hU+GeqEPlnjCGTD3hDYV7Qg2Fe8IMmXvCHDL3hBYK94QRCveENWTuCXMo3BM2kLknrCFzT5hD4Z6whsQ9YQ+Je0KS/N0HqPyPpYKXWkIAAAAASUVORK5CYII=');
-    opacity: 0.1;
+    opacity: 0.2;
+    mix-blend-mode: screen;
     pointer-events: none;
     z-index: 1000;
+    filter: hue-rotate(240deg) saturate(2);
 }
 
 /* Film Reel Banner */
@@ -99,7 +101,7 @@ body::before {
     transform: perspective(1000px) rotateX(5deg);
     transition: transform 0.3s ease;
     border: 2px solid var(--accent-color);
-    background-color: rgba(28, 28, 28, 0.7);
+    background-color: rgba(0, 0, 51, 0.85);
 }
 
 .ticket-stub:hover {
@@ -109,7 +111,7 @@ body::before {
 .subtitle {
     font-family: 'Cormorant', serif;
     font-style: italic;
-    color: var(--primary-color);
+    color: var(--accent-color);
     opacity: 0.9;
     margin-top: 0.5rem;
     font-size: 1.2rem;
@@ -137,7 +139,8 @@ h1 {
     text-transform: uppercase;
     letter-spacing: 2px;
     font-weight: 400;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5),
+                 0 0 10px rgba(65, 105, 225, 0.5);
     color: var(--primary-color);
 }
 
@@ -153,10 +156,10 @@ h1 {
     justify-content: center;
     gap: 2rem;
     padding: 2rem;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 51, 0.7);
     backdrop-filter: blur(10px);
-    border-top: var(--vintage-border);
-    border-bottom: var(--vintage-border);
+    border-top: 1px solid var(--primary-color);
+    border-bottom: 1px solid var(--primary-color);
     margin: 2rem 0;
 }
 
@@ -177,12 +180,17 @@ label {
 select {
     font-family: 'IBM Plex Mono', monospace;
     padding: 0.8rem 1.5rem;
-    background-color: rgba(232, 213, 196, 0.1);
-    color: var(--primary-color);
-    border: var(--vintage-border);
+    background-color: rgba(65, 105, 225, 0.1);
+    color: var(--text-color);
+    border: 1px solid var(--primary-color);
     border-radius: 4px;
     cursor: pointer;
     transition: all 0.3s ease;
+}
+
+select:hover {
+    background-color: rgba(65, 105, 225, 0.2);
+    border-color: var(--accent-color);
 }
 
 /* Movies Grid Styles */
@@ -201,14 +209,15 @@ select {
     border-radius: 8px;
     overflow: hidden;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    border: 1px solid var(--accent-color);
+    box-shadow: 0 4px 15px rgba(65, 105, 225, 0.1);
+    border: 1px solid var(--primary-color);
     aspect-ratio: 27/40;
 }
 
 .movie-card:hover {
     transform: translateY(-5px) scale(1.02);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 25px rgba(65, 105, 225, 0.2);
+    border-color: var(--accent-color);
 }
 
 .movie-poster {
@@ -278,7 +287,7 @@ select {
     max-width: 600px;
     border-radius: 8px;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-    border: var(--vintage-border);
+    border: 1px solid var(--primary-color);
     animation: modalFadeIn 0.3s ease;
 }
 
@@ -299,7 +308,7 @@ select {
     right: 1.5rem;
     font-size: 2rem;
     cursor: pointer;
-    color: var(--accent-color);
+    color: var(--primary-color);
     transition: transform 0.3s ease;
 }
 
@@ -316,7 +325,7 @@ select {
 .stars {
     font-size: 2rem;
     color: var(--primary-color);
-    text-shadow: 0 0 5px rgba(139, 46, 50, 0.5);
+    text-shadow: 0 0 5px rgba(65, 105, 225, 0.5);
 }
 
 .star {
@@ -387,10 +396,9 @@ select {
 }
 
 .submit-rating {
-    background: var(--gold-gradient);
-    color: var(--secondary-color);
-    border: none;
-    padding: 1rem 2rem;
+    background: var(--blue-gradient);
+    color: var(--text-color);
+    border: 1px solid var(--primary-color);
     border-radius: 4px;
     cursor: pointer;
     font-family: inherit;
@@ -403,7 +411,8 @@ select {
 
 .submit-rating:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 6px 20px rgba(65, 105, 225, 0.3);
+    border-color: var(--accent-color);
 }
 
 /* Film Grain Effect */
@@ -574,7 +583,7 @@ body::after {
     left: 0;
     width: 100%;
     height: 1px;
-    background: var(--gold-gradient);
+    background: var(--blue-gradient);
     transform: scaleX(0);
     transform-origin: right;
     transition: transform 0.3s ease;
