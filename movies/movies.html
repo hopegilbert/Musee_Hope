@@ -50,6 +50,7 @@
             </div>
             <div class="filter-group">
                 <select id="sort-filter">
+                    <option value="none">No Sorting</option>
                     <option value="rating">Sort by Rating</option>
                     <option value="year">Sort by Year</option>
                     <option value="title">Sort by Title</option>
@@ -60,26 +61,6 @@
         <main class="movies-grid">
             <!-- Movie cards will be dynamically generated here -->
         </main>
-
-        <div class="modal">
-            <div class="modal-content">
-                <span class="close-modal">&times;</span>
-                <h2 class="modal-title"></h2>
-                
-                <div class="rating-section">
-                    <h3>Rate this Film</h3>
-                    <div class="stars">
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                    </div>
-                    <textarea id="rating-comment" placeholder="Share your thoughts about this film..."></textarea>
-                    <button class="submit-rating">Submit Rating</button>
-                </div>
-            </div>
-        </div>
     </div>
 
     <script type="module" src="movieData.js"></script>

@@ -144,68 +144,41 @@ async function filterMovies() {
     const moviesGrid = document.querySelector('.movies-grid');
     const searchTerm = searchInput ? searchInput.value.toLowerCase().trim() : '';
 
-    // Clear existing movies
+    // Clear existing movies and show loading state
     moviesGrid.innerHTML = '';
-    
-    // Show loading state
     moviesGrid.classList.add('loading');
 
     // Filter and sort movies
     let filteredMovies = movies.filter(movie => {
-        // Skip the "One Day" movie
         if (movie.title === "One Day") return false;
-
-        const matchesSearch = !searchTerm || 
+        
+        return (!searchTerm || 
             movie.title.toLowerCase().includes(searchTerm) ||
             (movie.genre && movie.genre.toLowerCase().includes(searchTerm)) ||
-            movie.year.toString().includes(searchTerm);
-
-        const matchesGenre = genreFilter === 'all' || 
-            (movie.genre && movie.genre.toLowerCase() === genreFilter.toLowerCase());
-
-        const decade = Math.floor(movie.year / 10) * 10;
-        const matchesYear = yearFilter === 'all' || decade.toString() === yearFilter;
-
-        return matchesSearch && matchesGenre && matchesYear;
+            movie.year.toString().includes(searchTerm)) &&
+            (genreFilter === 'all' || 
+            (movie.genre && movie.genre.toLowerCase() === genreFilter.toLowerCase())) &&
+            (yearFilter === 'all' || Math.floor(movie.year / 10) * 10 === parseInt(yearFilter));
     });
 
-    // Sort movies
+    // Sort movies if needed
     if (sortFilter !== 'none') {
-        filteredMovies.sort((a, b) => {
-            switch(sortFilter) {
-                case 'year':
-                    return b.year - a.year;
-                case 'title':
-                    return a.title.localeCompare(b.title);
-                case 'rating':
-                    return (b.rating || 0) - (a.rating || 0);
-                default:
-                    return 0;
-            }
-        });
+        const sortFunctions = {
+            'year': (a, b) => b.year - a.year,
+            'title': (a, b) => a.title.localeCompare(b.title),
+            'rating': (a, b) => (b.rating || 0) - (a.rating || 0)
+        };
+        filteredMovies.sort(sortFunctions[sortFilter] || (() => 0));
     }
 
     try {
-        // Create and append movie cards with a slight delay between each
         const fragment = document.createDocumentFragment();
-        
-        // Create all cards first
-        const cards = filteredMovies.map((movie, index) => createMovieCard(movie, index));
-        
-        // Add a small delay between batches of cards for better loading
-        const batchSize = 20;
-        for (let i = 0; i < cards.length; i += batchSize) {
-            const batch = cards.slice(i, i + batchSize);
-            batch.forEach(card => fragment.appendChild(card));
-            
-            if (i + batchSize < cards.length) {
-                await new Promise(resolve => setTimeout(resolve, 100));
-            }
-        }
+        filteredMovies.forEach((movie, index) => {
+            fragment.appendChild(createMovieCard(movie, index));
+        });
         
         moviesGrid.appendChild(fragment);
 
-        // Show no results message if needed
         if (filteredMovies.length === 0) {
             const noResults = document.createElement('div');
             noResults.className = 'no-results';
@@ -213,10 +186,8 @@ async function filterMovies() {
             moviesGrid.appendChild(noResults);
         }
 
-        // Give a small delay before removing loading state
-        setTimeout(() => {
-            moviesGrid.classList.remove('loading');
-        }, 300);
+        // Remove loading state immediately
+        moviesGrid.classList.remove('loading');
     } catch (error) {
         console.error('Error creating movie cards:', error);
         moviesGrid.classList.remove('loading');
