@@ -273,13 +273,17 @@ select:hover {
     position: relative;
     width: 100%;
     height: 450px;
-    perspective: 1000px;
+    perspective: 2000px;
     cursor: pointer;
     transform-style: preserve-3d;
+    transition: none;
+}
+
+.movie-card.flipping {
     transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.movie-card:hover {
+.movie-card.flipped {
     transform: rotateY(180deg);
 }
 
@@ -288,15 +292,19 @@ select:hover {
     position: absolute;
     width: 100%;
     height: 100%;
+    -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform-style: preserve-3d;
+    will-change: transform;
 }
 
 .movie-card-front {
     background: var(--card-background);
     transform: rotateY(0deg);
+    z-index: 1;
 }
 
 .movie-card-front.loading {
@@ -873,4 +881,23 @@ body::after {
     to {
         transform: translate(-50%, -50%) rotate(360deg);
     }
+}
+
+/* Prevent text selection during flip */
+.movie-card * {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+/* Hardware acceleration hints */
+.movie-card,
+.movie-card-front,
+.movie-card-back {
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    will-change: transform;
 }

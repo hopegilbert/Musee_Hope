@@ -23,17 +23,14 @@ function createMovieCard(movie, index) {
     const front = document.createElement('div');
     front.className = 'movie-card-front loading';
 
-    // Create a low-quality placeholder
     const placeholder = document.createElement('div');
     placeholder.className = 'movie-placeholder';
 
-    // Create the actual image with lazy loading
     const poster = document.createElement('img');
     poster.className = 'movie-poster';
-    poster.loading = 'lazy'; // Native lazy loading
+    poster.loading = 'lazy';
     poster.alt = `${movie.title} Poster`;
     
-    // Only set the src when the card comes into view
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -42,13 +39,12 @@ function createMovieCard(movie, index) {
             }
         });
     }, {
-        rootMargin: '50px 0px', // Start loading slightly before the image comes into view
+        rootMargin: '50px 0px',
         threshold: 0.1
     });
 
     observer.observe(card);
 
-    // Handle image load events
     poster.onload = () => {
         front.classList.remove('loading');
         poster.classList.add('loaded');
@@ -57,7 +53,7 @@ function createMovieCard(movie, index) {
     poster.onerror = () => {
         front.classList.remove('loading');
         front.classList.add('error');
-        poster.src = 'images/placeholder.jpg'; // Fallback image
+        poster.src = 'images/placeholder.jpg';
     };
 
     const info = document.createElement('div');
@@ -65,6 +61,7 @@ function createMovieCard(movie, index) {
     info.innerHTML = `
         <h3 class="movie-title">${movie.title}</h3>
         <p class="movie-year">${movie.year}</p>
+        <p class="movie-genre">${movie.genre}</p>
     `;
 
     front.appendChild(placeholder);
@@ -76,6 +73,7 @@ function createMovieCard(movie, index) {
     back.innerHTML = `
         <h3 class="movie-title">${movie.title}</h3>
         <p class="movie-year">${movie.year}</p>
+        <p class="movie-genre">${movie.genre}</p>
         <div class="review-section">
             <textarea class="review-textarea" placeholder="Write your review here..."></textarea>
         </div>
@@ -83,6 +81,37 @@ function createMovieCard(movie, index) {
 
     card.appendChild(front);
     card.appendChild(back);
+
+    // Use touch and mouse events for smoother interaction
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    const handleFlip = () => {
+        if (!card.classList.contains('flipping')) {
+            card.classList.add('flipping');
+            card.classList.toggle('flipped');
+            setTimeout(() => {
+                card.classList.remove('flipping');
+            }, 600); // Match this with CSS transition duration
+        }
+    };
+
+    // Mouse events
+    card.addEventListener('click', handleFlip);
+
+    // Touch events
+    card.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+    }, { passive: true });
+
+    card.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].clientX;
+        const swipeDistance = touchEndX - touchStartX;
+        
+        if (Math.abs(swipeDistance) > 50) { // Minimum swipe distance
+            handleFlip();
+        }
+    });
 
     card.addEventListener('click', () => openModal(index, movie.title, movie.year));
     return card;
@@ -107,10 +136,12 @@ async function filterMovies() {
     let filteredMovies = movies.filter(movie => {
         const matchesSearch = !searchTerm || 
             movie.title.toLowerCase().includes(searchTerm) ||
-            movie.genre.toLowerCase().includes(searchTerm) ||
+            (movie.genre && movie.genre.toLowerCase().includes(searchTerm)) ||
             movie.year.toString().includes(searchTerm);
 
-        const matchesGenre = genreFilter === 'all' || movie.genre === genreFilter;
+        // More robust genre matching
+        const matchesGenre = genreFilter === 'all' || 
+            (movie.genre && movie.genre.toLowerCase() === genreFilter.toLowerCase());
 
         const decade = Math.floor(movie.year / 10) * 10;
         const matchesYear = yearFilter === 'all' || decade.toString() === yearFilter;
@@ -142,6 +173,7 @@ async function filterMovies() {
         
         moviesGrid.appendChild(fragment);
 
+        // Show no results message if needed
         if (filteredMovies.length === 0) {
             const noResults = document.createElement('div');
             noResults.className = 'no-results';
