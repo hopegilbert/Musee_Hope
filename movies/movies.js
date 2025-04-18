@@ -1,4 +1,4 @@
-// Movie data with actual posters
+// Movie data with TMDb poster URLs
 const movies = [
     {
         id: 1,
@@ -6,7 +6,7 @@ const movies = [
         year: 1980,
         genre: "Horror",
         rating: 4.8,
-        poster: "images/movie posters/The_Shining.png",
+        poster: "https://image.tmdb.org/t/p/w500/tFXcEccSQMf3lfhfXKSU9iRBpa3.jpg",
         description: "A family heads to an isolated hotel for the winter where a sinister presence influences the father into violence."
     },
     {
@@ -15,7 +15,7 @@ const movies = [
         year: 1991,
         genre: "Thriller",
         rating: 4.9,
-        poster: "images/movie posters/The_Silence_of_the_Lambs.jpg",
+        poster: "https://image.tmdb.org/t/p/w500/uS9m8OBk1A8eM9I042bx8XXpqAq.jpg",
         description: "An FBI cadet must receive the help of an incarcerated and manipulative cannibal killer to help catch another serial killer."
     },
     {
@@ -24,7 +24,7 @@ const movies = [
         year: 1995,
         genre: "Crime",
         rating: 4.7,
-        poster: "images/movie posters/Seven.jpg",
+        poster: "https://image.tmdb.org/t/p/w500/191nKfP0ehp3uIvWqgPbFmI4lv9.jpg",
         description: "Two detectives track a brilliant serial killer who uses the seven deadly sins as his motives."
     },
     {
@@ -33,7 +33,7 @@ const movies = [
         year: 1997,
         genre: "Drama",
         rating: 4.8,
-        poster: "images/movie posters/Good_Will_Hunting.png",
+        poster: "https://image.tmdb.org/t/p/w500/z2FnLKpFi1HPO7BEJxdkv6hpJSU.jpg",
         description: "A janitor at MIT has a gift for mathematics but needs help from a psychologist to find direction in his life."
     },
     {
@@ -42,7 +42,7 @@ const movies = [
         year: 1999,
         genre: "Thriller",
         rating: 4.6,
-        poster: "images/movie posters/The_Sixth_Sense.png",
+        poster: "https://image.tmdb.org/t/p/w500/fIssD3w3SvIhPPmVo4WMgZDVLID.jpg",
         description: "A boy who communicates with spirits seeks the help of a disheartened child psychologist."
     },
     {
@@ -51,7 +51,7 @@ const movies = [
         year: 2007,
         genre: "Drama",
         rating: 4.7,
-        poster: "images/movie posters/Atonement.jpg",
+        poster: "https://image.tmdb.org/t/p/w500/hMRIyBjPzxaSXWM06se3OcNjIQa.jpg",
         description: "A young girl's false accusation forever changes the lives of her older sister and the man she loves."
     },
     {
@@ -60,7 +60,7 @@ const movies = [
         year: 2007,
         genre: "Fantasy",
         rating: 4.5,
-        poster: "images/movie posters/Stardust.jpg",
+        poster: "https://image.tmdb.org/t/p/w500/A9Mzm5lXKeW7mYwSQhNvhG7jcGh.jpg",
         description: "A young man ventures into a magical realm to retrieve a fallen star for his beloved."
     },
     {
@@ -69,7 +69,7 @@ const movies = [
         year: 2009,
         genre: "Animation",
         rating: 4.6,
-        poster: "images/movie posters/FantasticMrFox.webp",
+        poster: "https://image.tmdb.org/t/p/w500/t5v2Zsb5sa6c9QkYGFZd9OI1gXi.jpg",
         description: "An urbane fox cannot resist returning to his farm raiding ways and must help his community survive the farmers' retaliation."
     },
     {
@@ -78,7 +78,7 @@ const movies = [
         year: 2010,
         genre: "Sci-Fi",
         rating: 4.9,
-        poster: "images/movie posters/Inception.jpg",
+        poster: "https://image.tmdb.org/t/p/w500/ljsZTbVsrQSqZgWeep2B1QiDKuh.jpg",
         description: "A thief who enters the dreams of others to steal secrets is offered a chance to regain his old life in exchange for a task considered impossible."
     },
     {
@@ -87,7 +87,7 @@ const movies = [
         year: 2014,
         genre: "Comedy",
         rating: 4.8,
-        poster: "images/movie posters/The-Grand-Budapest-Hotel.webp",
+        poster: "https://image.tmdb.org/t/p/w500/eWdyYQreja6JGCzqHWXpWHDrrPo.jpg",
         description: "A concierge at a famous European hotel between the wars and his trusted lobby boy become wrapped up in a murder mystery."
     },
     {
@@ -96,7 +96,7 @@ const movies = [
         year: 2014,
         genre: "Drama",
         rating: 4.9,
-        poster: "images/movie posters/Whiplash.jpg",
+        poster: "https://image.tmdb.org/t/p/w500/6uSPcdGNA2A6vJmCagXkvnutegs.jpg",
         description: "A promising young drummer enrolls at a cut-throat music conservatory where his dreams of greatness are mentored by an instructor who will stop at nothing to realize a student's potential."
     },
     {
@@ -105,7 +105,7 @@ const movies = [
         year: 2014,
         genre: "Sci-Fi",
         rating: 4.8,
-        poster: "images/movie posters/Interstellar.jpg",
+        poster: "https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg",
         description: "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival."
     },
     {
@@ -114,7 +114,7 @@ const movies = [
         year: 2005,
         genre: "Romance",
         rating: 4.7,
-        poster: "images/movie posters/Pride-and_Prejudice.webp",
+        poster: "https://image.tmdb.org/t/p/w500/sGjIvtVvTlWnia2zfJfHz81pZ9Q.jpg",
         description: "Sparks fly when spirited Elizabeth Bennet meets single, rich, and proud Mr. Darcy."
     },
     {
@@ -123,7 +123,7 @@ const movies = [
         year: 2017,
         genre: "Romance",
         rating: 4.7,
-        poster: "images/movie posters/CallMeByYourName.png",
+        poster: "https://image.tmdb.org/t/p/w500/gXiE0WveDnT0n5J4sW9TMxXF4oT.jpg",
         description: "In 1980s Italy, romance blossoms between a seventeen-year-old student and the older man hired as his father's research assistant."
     },
     {
@@ -132,7 +132,7 @@ const movies = [
         year: 2017,
         genre: "War",
         rating: 4.8,
-        poster: "images/movie posters/Dunkirk.jpg",
+        poster: "https://image.tmdb.org/t/p/w500/b4Oe15CGLL61Ped0RAS9JpqdmCt.jpg",
         description: "Allied soldiers from Belgium, the British Commonwealth and Empire, and France are surrounded by the German Army and evacuated during a fierce battle in World War II."
     },
     {
@@ -141,7 +141,7 @@ const movies = [
         year: 2013,
         genre: "Thriller",
         rating: 4.7,
-        poster: "images/movie posters/Prisoners.jpg",
+        poster: "https://image.tmdb.org/t/p/w500/uhviyknTT5cEQXbn6vWIqfM4vGm.jpg",
         description: "When his daughter and her friend go missing, a desperate father takes matters into his own hands as the police pursue multiple leads."
     },
     {
@@ -150,7 +150,7 @@ const movies = [
         year: 2014,
         genre: "Thriller",
         rating: 4.8,
-        poster: "images/movie posters/Gone_Girl.jpg",
+        poster: "https://image.tmdb.org/t/p/w500/ts996lKsxvjkO2yiYG0ht4qAicO.jpg",
         description: "With his wife's disappearance becoming the focus of an intense media circus, a man sees the spotlight turned on him when it's suspected that he may not be innocent."
     },
     {
@@ -159,7 +159,7 @@ const movies = [
         year: 2016,
         genre: "Drama",
         rating: 4.5,
-        poster: "images/movie posters/The_Light_Between_Oceans.jpg",
+        poster: "https://image.tmdb.org/t/p/w500/2A5QvTb7hYNjcZQe5h9gF8XtiHl.jpg",
         description: "A lighthouse keeper and his wife living off the coast of Western Australia raise a baby they rescue from a drifting rowing boat."
     },
     {
@@ -168,7 +168,7 @@ const movies = [
         year: 2018,
         genre: "Horror",
         rating: 4.7,
-        poster: "images/movie posters/Hereditary.png",
+        poster: "https://image.tmdb.org/t/p/w500/lHV8HHlhwNup2VbpiACtlKzaGIQ.jpg",
         description: "A grieving family is haunted by tragic and disturbing occurrences after the death of their secretive grandmother."
     },
     {
@@ -177,7 +177,7 @@ const movies = [
         year: 2017,
         genre: "Horror",
         rating: 4.3,
-        poster: "images/movie posters/Happy-Death-Day.png",
+        poster: "https://image.tmdb.org/t/p/w500/hcCX4zqu5b8v7DuDCJGcmI3MmlA.jpg",
         description: "A college student must relive the day of her murder over and over again until she discovers her killer's identity."
     },
     {
@@ -186,7 +186,7 @@ const movies = [
         year: 2018,
         genre: "Drama",
         rating: 4.4,
-        poster: "images/movie posters/Adrift.png",
+        poster: "https://image.tmdb.org/t/p/w500/5gLDeADaETvwQlQow5szlyuhLbj.jpg",
         description: "A true story of survival, as a young couple's chance encounter leads them first to love, and then on the adventure of a lifetime as they face one of the most catastrophic hurricanes in recorded history."
     },
     {
@@ -195,7 +195,7 @@ const movies = [
         year: 2022,
         genre: "Drama",
         rating: 4.6,
-        poster: "images/movie posters/Where-the-Crawdads-Sing.jpg",
+        poster: "https://image.tmdb.org/t/p/w500/9QHiWxLGP5VRGKVVqHyHGMsZxQD.jpg",
         description: "A woman who raised herself in the marshes of the deep South becomes a suspect in the murder of a man she was once involved with."
     }
 ];
