@@ -134,12 +134,14 @@ async function filterMovies() {
 
     // Filter and sort movies
     let filteredMovies = movies.filter(movie => {
+        // Skip the "One Day" movie
+        if (movie.title === "One Day") return false;
+
         const matchesSearch = !searchTerm || 
             movie.title.toLowerCase().includes(searchTerm) ||
             (movie.genre && movie.genre.toLowerCase().includes(searchTerm)) ||
             movie.year.toString().includes(searchTerm);
 
-        // More robust genre matching
         const matchesGenre = genreFilter === 'all' || 
             (movie.genre && movie.genre.toLowerCase() === genreFilter.toLowerCase());
 
@@ -164,12 +166,22 @@ async function filterMovies() {
     });
 
     try {
-        // Create and append movie cards
+        // Create and append movie cards with a slight delay between each
         const fragment = document.createDocumentFragment();
-        filteredMovies.forEach((movie, index) => {
-            const movieCard = createMovieCard(movie, index);
-            fragment.appendChild(movieCard);
-        });
+        
+        // Create all cards first
+        const cards = filteredMovies.map((movie, index) => createMovieCard(movie, index));
+        
+        // Add a small delay between batches of cards for better loading
+        const batchSize = 20;
+        for (let i = 0; i < cards.length; i += batchSize) {
+            const batch = cards.slice(i, i + batchSize);
+            batch.forEach(card => fragment.appendChild(card));
+            
+            if (i + batchSize < cards.length) {
+                await new Promise(resolve => setTimeout(resolve, 100));
+            }
+        }
         
         moviesGrid.appendChild(fragment);
 
@@ -180,10 +192,13 @@ async function filterMovies() {
             noResults.textContent = 'No movies found matching your criteria';
             moviesGrid.appendChild(noResults);
         }
+
+        // Give a small delay before removing loading state
+        setTimeout(() => {
+            moviesGrid.classList.remove('loading');
+        }, 300);
     } catch (error) {
         console.error('Error creating movie cards:', error);
-    } finally {
-        // Remove loading state
         moviesGrid.classList.remove('loading');
     }
 }
