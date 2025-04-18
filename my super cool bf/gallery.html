@@ -20,7 +20,7 @@
         header h1 {
             font-family: 'Inter', sans-serif;
             font-size: 2.5rem;
-            color: var(--text);
+            color: var(--beige);
             margin-bottom: 1rem;
         }
 
@@ -199,11 +199,26 @@
             .grid-item {
                 width: calc(50% - 1rem);
             }
+            header h1 {
+                font-size: 2rem;
+            }
+            header p {
+                font-size: 1rem;
+            }
         }
 
         @media (max-width: 600px) {
             .grid-item {
                 width: calc(100% - 1rem);
+            }
+            .masonry-grid {
+                padding: 0.5rem;
+            }
+            header {
+                padding: 1rem 0.5rem;
+            }
+            header h1 {
+                font-size: 1.8rem;
             }
         }
     </style>
@@ -353,6 +368,7 @@
                     const img = document.createElement('img');
                     img.src = item.src;
                     img.alt = item.src.split('/').pop().split('.')[0];
+                    img.loading = 'lazy';
                     
                     const hoverText = document.createElement('div');
                     hoverText.className = 'hover-text';
@@ -374,8 +390,24 @@
                         itemSelector: '.grid-item',
                         percentPosition: true,
                         gutter: 16,
-                        fitWidth: true
+                        fitWidth: true,
+                        transitionDuration: 0
                     });
+                });
+
+                // Reinitialize Masonry on window resize
+                let resizeTimer;
+                window.addEventListener('resize', function() {
+                    clearTimeout(resizeTimer);
+                    resizeTimer = setTimeout(function() {
+                        new Masonry(gallery, {
+                            itemSelector: '.grid-item',
+                            percentPosition: true,
+                            gutter: 16,
+                            fitWidth: true,
+                            transitionDuration: 0
+                        });
+                    }, 250);
                 });
             }
 
