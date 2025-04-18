@@ -14,28 +14,78 @@ function preloadImages(movies) {
     return Promise.all(imagePromises);
 }
 
-// Function to create a movie card
+// Create a movie card with front and back sides
 function createMovieCard(movie, index) {
-    const movieCard = document.createElement('div');
-    movieCard.className = 'movie-card';
-    movieCard.innerHTML = `
-        <div class="movie-card-front">
-            <img class="movie-poster" src="${movie.poster}" alt="${movie.title} Poster" loading="lazy">
-            <div class="movie-info">
-                <h3 class="movie-title">${movie.title}</h3>
-                <p class="movie-year">${movie.year}</p>
-            </div>
-        </div>
-        <div class="movie-card-back">
-            <h3>${movie.title}</h3>
-            <p>${movie.year}</p>
-            <div class="review-section">
-                <textarea class="review-textarea" placeholder="Write your review here..."></textarea>
-            </div>
+    const card = document.createElement('div');
+    card.className = 'movie-card';
+    card.dataset.index = index;
+
+    const front = document.createElement('div');
+    front.className = 'movie-card-front loading';
+
+    // Create a low-quality placeholder
+    const placeholder = document.createElement('div');
+    placeholder.className = 'movie-placeholder';
+
+    // Create the actual image with lazy loading
+    const poster = document.createElement('img');
+    poster.className = 'movie-poster';
+    poster.loading = 'lazy'; // Native lazy loading
+    poster.alt = `${movie.title} Poster`;
+    
+    // Only set the src when the card comes into view
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                poster.src = movie.poster;
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        rootMargin: '50px 0px', // Start loading slightly before the image comes into view
+        threshold: 0.1
+    });
+
+    observer.observe(card);
+
+    // Handle image load events
+    poster.onload = () => {
+        front.classList.remove('loading');
+        poster.classList.add('loaded');
+    };
+
+    poster.onerror = () => {
+        front.classList.remove('loading');
+        front.classList.add('error');
+        poster.src = 'images/placeholder.jpg'; // Fallback image
+    };
+
+    const info = document.createElement('div');
+    info.className = 'movie-info';
+    info.innerHTML = `
+        <h3 class="movie-title">${movie.title}</h3>
+        <p class="movie-year">${movie.year}</p>
+    `;
+
+    front.appendChild(placeholder);
+    front.appendChild(poster);
+    front.appendChild(info);
+
+    const back = document.createElement('div');
+    back.className = 'movie-card-back';
+    back.innerHTML = `
+        <h3 class="movie-title">${movie.title}</h3>
+        <p class="movie-year">${movie.year}</p>
+        <div class="review-section">
+            <textarea class="review-textarea" placeholder="Write your review here..."></textarea>
         </div>
     `;
-    movieCard.addEventListener('click', () => openModal(index, movie.title, movie.year));
-    return movieCard;
+
+    card.appendChild(front);
+    card.appendChild(back);
+
+    card.addEventListener('click', () => openModal(index, movie.title, movie.year));
+    return card;
 }
 
 // Function to filter movies based on selected criteria
@@ -55,16 +105,13 @@ async function filterMovies() {
 
     // Filter and sort movies
     let filteredMovies = movies.filter(movie => {
-        // Search filter
         const matchesSearch = !searchTerm || 
             movie.title.toLowerCase().includes(searchTerm) ||
             movie.genre.toLowerCase().includes(searchTerm) ||
             movie.year.toString().includes(searchTerm);
 
-        // Genre filter
         const matchesGenre = genreFilter === 'all' || movie.genre === genreFilter;
 
-        // Decade filter
         const decade = Math.floor(movie.year / 10) * 10;
         const matchesYear = yearFilter === 'all' || decade.toString() === yearFilter;
 
@@ -86,9 +133,6 @@ async function filterMovies() {
     });
 
     try {
-        // Preload images for filtered movies
-        await preloadImages(filteredMovies);
-        
         // Create and append movie cards
         const fragment = document.createDocumentFragment();
         filteredMovies.forEach((movie, index) => {
@@ -98,7 +142,6 @@ async function filterMovies() {
         
         moviesGrid.appendChild(fragment);
 
-        // Update movie count or show no results message
         if (filteredMovies.length === 0) {
             const noResults = document.createElement('div');
             noResults.className = 'no-results';
@@ -106,7 +149,7 @@ async function filterMovies() {
             moviesGrid.appendChild(noResults);
         }
     } catch (error) {
-        console.error('Error loading images:', error);
+        console.error('Error creating movie cards:', error);
     } finally {
         // Remove loading state
         moviesGrid.classList.remove('loading');
@@ -255,12 +298,9 @@ function addFilmGrainEffect() {
 }
 
 // Initialize everything
-document.addEventListener('DOMContentLoaded', async () => {
+document.addEventListener('DOMContentLoaded', () => {
     try {
-        // Preload all movie images first
-        await preloadImages(movies);
-        
-        // Then initialize the UI
+        // Initialize the UI
         filterMovies();
         setupEventListeners();
         addFilmGrainEffect();
