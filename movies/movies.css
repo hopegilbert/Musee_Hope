@@ -49,31 +49,53 @@ body::before {
 .cinema-header {
     text-align: center;
     padding: 3rem 2rem;
-    background: linear-gradient(to bottom, #1C1C1C, var(--secondary-color));
+    background: linear-gradient(to bottom, rgba(28, 28, 28, 0.7), var(--secondary-color));
     position: relative;
     overflow: hidden;
     border-bottom: 2px solid var(--accent-color);
+    min-height: 300px; /* Ensure enough space for the GIF */
 }
 
+/* Background GIF container */
 .cinema-header::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    height: 100%;
-    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxsaW5lIHgxPSIwIiB5PSIwIiB4Mj0iMCIgeTI9IjQwIiBzdHJva2U9IiNENEFGMzciIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==');
-    opacity: 0.1;
+    bottom: 2px; /* Stop at the red line */
+    background-image: url('../images/film-reel.gif');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.3; /* Adjust this value to control GIF visibility */
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Dark overlay for better text readability */
+.cinema-header::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 2px; /* Stop at the red line */
+    background: linear-gradient(to bottom, 
+        rgba(28, 28, 28, 0.4),
+        rgba(28, 28, 28, 0.7)
+    );
+    z-index: -1;
     pointer-events: none;
 }
 
 .ticket-stub {
+    position: relative;
+    z-index: 1; /* Ensure ticket stub appears above the GIF */
+    background-color: rgba(28, 28, 28, 0.8); /* Semi-transparent background */
     display: inline-block;
     padding: 3rem;
-    background-color: var(--secondary-color);
     color: var(--text-color);
     border-radius: 8px 8px 0 0;
-    position: relative;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     transform: perspective(1000px) rotateX(5deg);
     transition: transform 0.3s ease;
