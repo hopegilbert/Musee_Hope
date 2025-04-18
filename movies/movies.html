@@ -3,64 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vintage Cinema Collection</title>
+    <title>Cinematic Musings - My Digital Museum</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Special+Elite&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="images/movie-icon.ico" type="image/x-icon">
 </head>
 <body>
     <div class="film-grain-overlay"></div>
-    
-    <header class="cinema-header">
-        <div class="ticket-stub">
-            <h1>Vintage Cinema Collection</h1>
-            <div class="ticket-tear"></div>
-        </div>
-    </header>
-
-    <div class="filter-bar">
-        <select id="genre-filter">
-            <option value="all">All Genres</option>
-            <option value="Drama">Drama</option>
-            <option value="Comedy">Comedy</option>
-            <option value="Romance">Romance</option>
-            <option value="Thriller">Thriller</option>
-            <option value="Film-Noir">Film-Noir</option>
-        </select>
-
-        <select id="year-filter">
-            <option value="all">All Decades</option>
-            <option value="1930">1930s</option>
-            <option value="1940">1940s</option>
-            <option value="1950">1950s</option>
-            <option value="1960">1960s</option>
-        </select>
-
-        <select id="sort-filter">
-            <option value="rating">Sort by Rating</option>
-            <option value="year">Sort by Year</option>
-            <option value="title">Sort by Title</option>
-        </select>
-    </div>
-
-    <main class="movies-grid">
-        <!-- Movie cards will be dynamically inserted here -->
-    </main>
-
-    <div class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2 class="modal-title"></h2>
-            
-            <div class="rating-section">
-                <h3>Rate this Film</h3>
-                <div class="stars">
-                    <span class="star">★</span>
-                    <span class="star">★</span>
-                    <span class="star">★</span>
-                    <span class="star">★</span>
-                    <span class="star">★</span>
+    <div class="page-wrapper">
+        <nav class="cinema-nav">
+            <div class="nav-wrapper">
+                <a href="../index.html" class="nav-item">HOME</a>
+                <a href="../my super cool bf/my-super-cool-bf.html" class="nav-item">ABOUT</a>
+                <a href="../my super cool bf/gallery.html" class="nav-item">GALLERY</a>
+                <a href="#memories" class="nav-item">MEMORIES</a>
+                <div class="dropdown">
+                    <button class="dropbtn">GENIUS WORK</button>
+                    <div class="dropdown-content">
+                        <a href="../my super cool bf/feminism-essay.html">Exploring de Beauvoir's Concept of Becoming a Woman</a>
+                    </div>
                 </div>
-                <textarea id="rating-comment" placeholder="Share your thoughts about this film..."></textarea>
-                <button class="submit-rating">Submit Rating</button>
+            </div>
+        </nav>
+
+        <header class="cinema-header">
+            <div class="ticket-stub">
+                <h1>Cinematic Musings</h1>
+                <p class="subtitle">of a Questionable Critic</p>
+                <div class="ticket-tear"></div>
+            </div>
+        </header>
+
+        <div class="filter-bar">
+            <select id="genre-filter">
+                <option value="all">All Genres</option>
+                <option value="Drama">Drama</option>
+                <option value="Comedy">Comedy</option>
+                <option value="Romance">Romance</option>
+                <option value="Thriller">Thriller</option>
+                <option value="Film-Noir">Film-Noir</option>
+            </select>
+
+            <select id="year-filter">
+                <option value="all">All Decades</option>
+                <option value="1930">1930s</option>
+                <option value="1940">1940s</option>
+                <option value="1950">1950s</option>
+                <option value="1960">1960s</option>
+            </select>
+
+            <select id="sort-filter">
+                <option value="rating">Sort by Rating</option>
+                <option value="year">Sort by Year</option>
+                <option value="title">Sort by Title</option>
+            </select>
+        </div>
+
+        <main class="movies-grid">
+            <!-- Movie cards will be dynamically inserted here -->
+        </main>
+
+        <div class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h2 class="modal-title"></h2>
+                
+                <div class="rating-section">
+                    <h3>Rate this Film</h3>
+                    <div class="stars">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <textarea id="rating-comment" placeholder="Share your thoughts about this film..."></textarea>
+                    <button class="submit-rating">Submit Rating</button>
+                </div>
             </div>
         </div>
     </div>
