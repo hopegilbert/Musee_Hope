@@ -47,10 +47,21 @@
       margin-top: 0.5rem;
     }
 
+    /* Add padding above dropdown to prevent gap */
+    .dropdown::after {
+      content: '';
+      position: absolute;
+      height: 20px;
+      width: 100%;
+      top: 100%;
+      left: 0;
+    }
+
     .dropdown:hover .dropdown-content {
       display: block;
       opacity: 1;
       visibility: visible;
+      pointer-events: auto;
     }
 
     .dropdown-content a {
@@ -60,6 +71,7 @@
       display: block;
       transition: background-color 0.3s ease, color 0.3s ease;
       border-radius: 4px;
+      white-space: normal;
     }
 
     .dropdown-content a:hover {
@@ -78,6 +90,39 @@
         display: block;
       }
     }
+
+    .nav-menu {
+      text-align: center;
+      padding: 1rem 2rem;
+      background-color: var(--beige);
+      border-radius: 12px;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .nav-menu a, .nav-menu .dropdown {
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+
+    .nav-menu a {
+      color: var(--text);
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      transition: color 0.3s ease;
+      padding: 0.5rem 1rem;
+    }
+
+    .dropbtn {
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
   </style>
 </head>
 <body>
@@ -90,7 +135,10 @@
       <div class="dropdown">
         <button class="dropbtn">GENIUS WORK</button>
         <div class="dropdown-content">
-          <a href="feminism-essay.html">Exploring de Beauvoir's Concept of Becoming a Woman</a>
+          <a href="#">Questionable Research</a>
+          <a href="#">Random Thoughts</a>
+          <a href="#">Philosophical Musings</a>
+          <a href="#">Creative Experiments</a>
         </div>
       </div>
     </nav>

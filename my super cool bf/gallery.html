@@ -72,10 +72,21 @@
             margin-top: 0.5rem;
         }
 
+        /* Add padding above dropdown to prevent gap */
+        .dropdown::after {
+            content: '';
+            position: absolute;
+            height: 20px;
+            width: 100%;
+            top: 100%;
+            left: 0;
+        }
+
         .dropdown:hover .dropdown-content {
             display: block;
             opacity: 1;
             visibility: visible;
+            pointer-events: auto;
         }
 
         .dropdown-content a {
@@ -85,6 +96,7 @@
             display: block;
             transition: background-color 0.3s ease, color 0.3s ease;
             border-radius: 4px;
+            white-space: normal;
         }
 
         .dropdown-content a:hover {
@@ -107,14 +119,14 @@
         /* Gallery styles */
         .masonry-grid {
             width: 100%;
-            max-width: 1400px;
+            max-width: 1600px;
             margin: 0 auto;
-            padding: 0.5rem;
+            padding: 0.3rem;
         }
 
         .grid-item {
-            width: calc(33.333% - 0.5rem);
-            margin-bottom: 0.5rem;
+            width: calc(33.333% - 0.3rem);
+            margin-bottom: 0.3rem;
             position: relative;
             opacity: 0;
             transform: translateY(20px);
@@ -129,20 +141,26 @@
         .image-wrapper {
             position: relative;
             width: 100%;
-            padding-bottom: 133.33%; /* 3:4 aspect ratio for portrait photos */
+            height: 0;
+            padding-bottom: 100%; /* Default square ratio */
             overflow: hidden;
             border-radius: 6px;
+            background: rgba(0, 0, 0, 0.05);
         }
 
         .grid-item img {
             position: absolute;
-            top: 0;
-            left: 0;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
             display: block;
-            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .grid-item.loaded img {
+            object-fit: cover;
         }
 
         /* Loading placeholder */
@@ -435,7 +453,7 @@
                 msnry = new Masonry(gallery, {
                     itemSelector: '.grid-item',
                     percentPosition: true,
-                    gutter: 8,
+                    gutter: 4,
                     fitWidth: true,
                     transitionDuration: 0,
                     initLayout: false
@@ -455,8 +473,11 @@
                     
                     // Add load event before setting src
                     img.onload = () => {
+                        // Set padding-bottom based on actual image aspect ratio
+                        const aspectRatio = (img.naturalHeight / img.naturalWidth) * 100;
+                        wrapper.style.paddingBottom = `${aspectRatio}%`;
                         gridItem.classList.add('loaded');
-                        msnry.layout(); // Update layout when image loads
+                        msnry.layout();
                     };
                     
                     img.src = item.src;
@@ -504,7 +525,7 @@
                     setTimeout(() => {
                         item.classList.add('visible');
                         msnry.layout();
-                    }, index * 100);
+                    }, index * 50);
                 });
 
                 // Update layout on window resize with debounce
