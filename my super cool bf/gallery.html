@@ -119,20 +119,24 @@
         /* Gallery styles */
         .masonry-grid {
             margin: 0 auto;
-            padding: 0 1rem;
-            max-width: 1400px; /* Maximum width for larger screens */
+            padding: 0 0.5rem;
+            max-width: 1600px; /* Increased max-width to ensure 4 columns fit */
+            opacity: 0; /* Start hidden */
+            transition: opacity 0.3s ease;
+        }
+
+        .masonry-grid.loaded {
+            opacity: 1;
         }
 
         .grid-sizer,
         .grid-item {
-            width: calc(25% - 0.1875rem); /* 4 columns with 0.25rem gap */
+            width: calc(25% - 2px); /* 4 columns with 2px gap */
         }
 
         .grid-item {
-            margin-bottom: 0.25rem;
+            margin-bottom: 2px;
             position: relative;
-            opacity: 0;
-            transition: opacity 0.6s ease-out;
             line-height: 0;
         }
 
@@ -211,28 +215,27 @@
         @media (max-width: 1200px) {
             .grid-sizer,
             .grid-item {
-                width: calc(33.333% - 0.1667rem); /* 3 columns */
+                width: calc(33.333% - 2px); /* 3 columns */
             }
             .masonry-grid {
-                max-width: 1000px;
+                max-width: 1200px;
             }
         }
 
         @media (max-width: 768px) {
             .grid-sizer,
             .grid-item {
-                width: calc(50% - 0.125rem); /* 2 columns */
+                width: calc(50% - 2px); /* 2 columns */
             }
             .masonry-grid {
-                max-width: 700px;
-                padding: 0 0.5rem;
+                max-width: 800px;
             }
         }
 
         @media (max-width: 480px) {
             .grid-sizer,
             .grid-item {
-                width: 100%; /* 1 column */
+                width: calc(50% - 1px); /* Keep 2 columns but smaller gap */
             }
             .masonry-grid {
                 padding: 0 0.25rem;
@@ -414,7 +417,6 @@
                     img.onload = () => {
                         const aspectRatio = (img.naturalHeight / img.naturalWidth) * 100;
                         wrapper.style.paddingBottom = `${aspectRatio}%`;
-                        gridItem.classList.add('visible');
                     };
                     
                     img.src = item.src;
@@ -460,10 +462,12 @@
                         itemSelector: '.grid-item',
                         columnWidth: '.grid-sizer',
                         percentPosition: true,
-                        gutter: 4, // 0.25rem = 4px
+                        gutter: 2, // Minimal 2px gap
                         initLayout: true,
-                        horizontalOrder: true // This helps maintain order across rows
+                        horizontalOrder: true
                     });
+                    // Add loaded class to fade in the grid
+                    gallery.classList.add('loaded');
                 });
             }
 
