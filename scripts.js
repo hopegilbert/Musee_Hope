@@ -15,36 +15,30 @@ function navigateTo(page) {
 
 document.addEventListener("DOMContentLoaded", () => {
   const grid = document.querySelector(".masonry-grid");
-  if (!grid) return;
+  const gridItems = document.querySelectorAll(".grid-item");
 
-  // Make grid visible immediately
-  grid.style.opacity = "1";
-
-  // Initialize Masonry with better settings
-  const msnry = new Masonry(grid, {
-    itemSelector: ".grid-item",
-    columnWidth: ".grid-item",
-    gutter: 10,
-    percentPosition: true,
-    fitWidth: true,
-    horizontalOrder: true
-  });
-
-  // Load images and show items
-  imagesLoaded(grid, () => {
-    const items = grid.querySelectorAll('.grid-item');
-    items.forEach((item, index) => {
-      setTimeout(() => {
-        item.style.opacity = "1";
-        item.classList.add("visible");
-      }, index * 50);
+  // Lazy-load observer
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
     });
-    msnry.layout();
+  }, {
+    threshold: 0.1
   });
 
-  // Re-layout on resize
-  window.addEventListener('resize', () => {
-    msnry.layout();
+  gridItems.forEach(item => observer.observe(item));
+
+  // Wait until images are loaded, then Masonry
+  imagesLoaded(grid, () => {
+    new Masonry(grid, {
+      itemSelector: ".grid-item",
+      columnWidth: ".grid-item",
+      gutter: 10,
+      percentPosition: true
+    });
   });
 });
 
