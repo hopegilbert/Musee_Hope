@@ -1,31 +1,139 @@
-// Sample movie data - Replace with your actual movie data
+// Movie data with actual posters
 const movies = [
     {
         id: 1,
-        title: "Casablanca",
-        year: 1942,
-        genre: "Drama",
+        title: "The Shining",
+        year: 1980,
+        genre: "Horror",
         rating: 4.8,
-        poster: "images/movies/casablanca.jpg",
-        description: "A cynical American expatriate meets a former lover in Morocco during World War II."
+        poster: "images/movie posters/The_Shining.png",
+        description: "A family heads to an isolated hotel for the winter where a sinister presence influences the father into violence."
     },
     {
         id: 2,
-        title: "Citizen Kane",
-        year: 1941,
-        genre: "Drama",
+        title: "The Silence of the Lambs",
+        year: 1991,
+        genre: "Thriller",
         rating: 4.9,
-        poster: "images/movies/citizen-kane.jpg",
-        description: "A newspaper tycoon's rise to power and the mystery of his last word: 'Rosebud'."
+        poster: "images/movie posters/The_Silence_of_the_Lambs.jpg",
+        description: "An FBI cadet must receive the help of an incarcerated and manipulative cannibal killer to help catch another serial killer."
     },
     {
         id: 3,
-        title: "The Wizard of Oz",
-        year: 1939,
-        genre: "Fantasy",
+        title: "Seven",
+        year: 1995,
+        genre: "Crime",
         rating: 4.7,
-        poster: "images/movies/wizard-of-oz.jpg",
-        description: "Dorothy and her dog Toto are swept away to the magical Land of Oz."
+        poster: "images/movie posters/Seven.jpg",
+        description: "Two detectives track a brilliant serial killer who uses the seven deadly sins as his motives."
+    },
+    {
+        id: 4,
+        title: "Good Will Hunting",
+        year: 1997,
+        genre: "Drama",
+        rating: 4.8,
+        poster: "images/movie posters/Good_Will_Hunting.png",
+        description: "A janitor at MIT has a gift for mathematics but needs help from a psychologist to find direction in his life."
+    },
+    {
+        id: 5,
+        title: "The Sixth Sense",
+        year: 1999,
+        genre: "Thriller",
+        rating: 4.6,
+        poster: "images/movie posters/The_Sixth_Sense.png",
+        description: "A boy who communicates with spirits seeks the help of a disheartened child psychologist."
+    },
+    {
+        id: 6,
+        title: "Atonement",
+        year: 2007,
+        genre: "Drama",
+        rating: 4.7,
+        poster: "images/movie posters/Atonement.jpg",
+        description: "A young girl's false accusation forever changes the lives of her older sister and the man she loves."
+    },
+    {
+        id: 7,
+        title: "Stardust",
+        year: 2007,
+        genre: "Fantasy",
+        rating: 4.5,
+        poster: "images/movie posters/Stardust.jpg",
+        description: "A young man ventures into a magical realm to retrieve a fallen star for his beloved."
+    },
+    {
+        id: 8,
+        title: "Fantastic Mr. Fox",
+        year: 2009,
+        genre: "Animation",
+        rating: 4.6,
+        poster: "images/movie posters/FantasticMrFox.webp",
+        description: "An urbane fox cannot resist returning to his farm raiding ways and must help his community survive the farmers' retaliation."
+    },
+    {
+        id: 9,
+        title: "Inception",
+        year: 2010,
+        genre: "Sci-Fi",
+        rating: 4.9,
+        poster: "images/movie posters/Inception.jpg",
+        description: "A thief who enters the dreams of others to steal secrets is offered a chance to regain his old life in exchange for a task considered impossible."
+    },
+    {
+        id: 10,
+        title: "The Grand Budapest Hotel",
+        year: 2014,
+        genre: "Comedy",
+        rating: 4.8,
+        poster: "images/movie posters/The-Grand-Budapest-Hotel.webp",
+        description: "A concierge at a famous European hotel between the wars and his trusted lobby boy become wrapped up in a murder mystery."
+    },
+    {
+        id: 11,
+        title: "Whiplash",
+        year: 2014,
+        genre: "Drama",
+        rating: 4.9,
+        poster: "images/movie posters/Whiplash.jpg",
+        description: "A promising young drummer enrolls at a cut-throat music conservatory where his dreams of greatness are mentored by an instructor who will stop at nothing to realize a student's potential."
+    },
+    {
+        id: 12,
+        title: "Interstellar",
+        year: 2014,
+        genre: "Sci-Fi",
+        rating: 4.8,
+        poster: "images/movie posters/Interstellar.jpg",
+        description: "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival."
+    },
+    {
+        id: 13,
+        title: "Pride and Prejudice",
+        year: 2005,
+        genre: "Romance",
+        rating: 4.7,
+        poster: "images/movie posters/Pride-and_Prejudice.webp",
+        description: "Sparks fly when spirited Elizabeth Bennet meets single, rich, and proud Mr. Darcy."
+    },
+    {
+        id: 14,
+        title: "Call Me By Your Name",
+        year: 2017,
+        genre: "Romance",
+        rating: 4.7,
+        poster: "images/movie posters/CallMeByYourName.png",
+        description: "In 1980s Italy, romance blossoms between a seventeen-year-old student and the older man hired as his father's research assistant."
+    },
+    {
+        id: 15,
+        title: "Dunkirk",
+        year: 2017,
+        genre: "War",
+        rating: 4.8,
+        poster: "images/movie posters/Dunkirk.jpg",
+        description: "Allied soldiers from Belgium, the British Commonwealth and Empire, and France are surrounded by the German Army and evacuated during a fierce battle in World War II."
     }
 ];
 

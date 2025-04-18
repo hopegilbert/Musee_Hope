@@ -43,11 +43,15 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyBAMAAADsEZWCAAAAGFBMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANxM8mAAAACHRSTlMoADcKLRkQEAwV+y0AAACWSURBVHgBhc4xCsJAEIXhN7MQBAtLW0HwAoKt4AHs7T2AYGtvAQRbwQMI9h7A3tLeFxC2S5wZeOxiM+/jJ0mSJEn+XezqrB0K2YtTnb0hU+GeqEPlnjCGTD3hDYV7Qg2Fe8IMmXvCHDL3hBYK94QRCveENWTuCXMo3BM2kLknrCFzT5hD4Z6whsQ9YQ+Je0KS/N0HqPyPpYKXWkIAAAAASUVORK5CYII=');
-    opacity: 0.15;
-    mix-blend-mode: color-dodge;
+    background-image: linear-gradient(45deg, var(--accent-yellow) 25%, transparent 25%),
+                      linear-gradient(-45deg, var(--accent-yellow) 25%, transparent 25%),
+                      linear-gradient(45deg, transparent 75%, var(--accent-yellow) 75%),
+                      linear-gradient(-45deg, transparent 75%, var(--accent-yellow) 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+    opacity: 0.1;
     pointer-events: none;
-    z-index: 1000;
+    z-index: -1;
 }
 
 /* Cinema Header Styles */
@@ -146,10 +150,10 @@ h1 {
     font-size: 4rem;
     text-transform: uppercase;
     letter-spacing: 4px;
-    color: var(--primary-color);
+    color: var(--text-color);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5),
-                 0 0 15px rgba(255, 215, 0, 0.8),
-                 0 0 25px rgba(255, 69, 0, 0.4);
+                 0 0 15px rgba(255, 255, 255, 0.8),
+                 0 0 25px rgba(255, 255, 255, 0.4);
     animation: neonPulse 2s infinite, gentleFloat 3s ease-in-out infinite;
     position: relative;
     z-index: 1;
@@ -168,13 +172,13 @@ h1 {
 @keyframes neonPulse {
     0%, 100% {
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5),
-                     0 0 15px rgba(255, 215, 0, 0.8),
-                     0 0 25px rgba(255, 69, 0, 0.4);
+                     0 0 15px rgba(255, 255, 255, 0.8),
+                     0 0 25px rgba(255, 255, 255, 0.4);
     }
     50% {
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5),
-                     0 0 20px rgba(255, 215, 0, 0.9),
-                     0 0 30px rgba(255, 69, 0, 0.6);
+                     0 0 20px rgba(255, 255, 255, 0.9),
+                     0 0 30px rgba(255, 255, 255, 0.6);
     }
 }
 
