@@ -118,68 +118,44 @@
 
         /* Gallery styles */
         .masonry-grid {
-            width: 100%;
-            max-width: 1600px;
+            column-count: 4;
+            column-gap: 1rem;
+            max-width: 100%;
             margin: 0 auto;
-            padding: 0.3rem;
+            padding: 0 1rem;
         }
 
         .grid-item {
-            width: calc(33.333% - 0.3rem);
-            margin-bottom: 0.3rem;
+            break-inside: avoid;
+            margin-bottom: 1rem;
             position: relative;
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+            transition: opacity 0.6s ease-out;
         }
 
         .grid-item.visible {
             opacity: 1;
-            transform: translateY(0);
         }
 
         .image-wrapper {
             position: relative;
+            display: inline-block;
             width: 100%;
-            height: 0;
-            padding-bottom: 100%; /* Default square ratio */
+            cursor: pointer;
             overflow: hidden;
             border-radius: 6px;
             background: rgba(0, 0, 0, 0.05);
         }
 
         .grid-item img {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
             width: 100%;
-            height: 100%;
-            object-fit: contain;
+            height: auto;
             display: block;
+            transition: all 0.3s ease;
         }
 
-        .grid-item.loaded img {
-            object-fit: cover;
-        }
-
-        /* Loading placeholder */
-        .grid-item::before {
-            content: '';
-            display: block;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--beige);
-            opacity: 0.1;
-            border-radius: 8px;
-            transition: opacity 0.3s ease;
-        }
-
-        .grid-item.loaded::before {
-            opacity: 0;
+        .image-wrapper:hover img {
+            filter: brightness(0.3);
         }
 
         .hover-text {
@@ -193,25 +169,13 @@
             padding: 1.2rem;
             text-align: center;
             font-family: 'Lora', serif;
-            font-size: 0.9rem;
-            line-height: 1.4;
-            transition: all 0.3s ease;
-            z-index: 2;
-            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            opacity: 0;
-            border-radius: 6px;
-            white-space: normal;
-            overflow-y: auto;
-        }
-
-        .hover-text p {
-            margin: 0;
-            padding: 0;
-            width: 100%;
+            pointer-events: none;
         }
 
         .hover-text .date {
@@ -232,43 +196,15 @@
             opacity: 1;
         }
 
-        @media (max-width: 768px) {
-            .hover-text {
-                padding: 1rem;
-                font-size: 0.85rem;
-            }
-
-            .hover-text .date {
-                font-size: 0.9rem;
-            }
-
-            .hover-text .description {
-                font-size: 0.8rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hover-text {
-                padding: 0.8rem;
-            }
-        }
-
         @media (max-width: 1200px) {
-            .grid-item {
-                width: calc(33.333% - 0.5rem) !important;
-            }
             .masonry-grid {
-                max-width: 1100px;
+                column-count: 3;
             }
         }
 
         @media (max-width: 900px) {
-            .grid-item {
-                width: calc(50% - 0.4rem) !important;
-            }
             .masonry-grid {
-                max-width: 800px;
-                padding: 0.4rem;
+                column-count: 2;
             }
             header h1 {
                 font-size: 2rem;
@@ -279,17 +215,18 @@
         }
 
         @media (max-width: 600px) {
-            .grid-item {
-                width: calc(50% - 0.3rem) !important;
-            }
             .masonry-grid {
-                padding: 0.3rem;
+                column-count: 1;
+                padding: 0 0.5rem;
             }
             header {
                 padding: 1rem 0.5rem;
             }
             header h1 {
                 font-size: 1.8rem;
+            }
+            .hover-text {
+                padding: 0.8rem;
             }
         }
 
@@ -447,19 +384,8 @@
                 gallery.innerHTML = '';
                 
                 const shuffledImages = shuffleArray(images);
-                let msnry = null;
                 
-                // Initialize Masonry with initial options
-                msnry = new Masonry(gallery, {
-                    itemSelector: '.grid-item',
-                    percentPosition: true,
-                    gutter: 4,
-                    fitWidth: true,
-                    transitionDuration: 0,
-                    initLayout: false
-                });
-
-                // Create and append all items first
+                // Create and append all items
                 shuffledImages.forEach((item, index) => {
                     const gridItem = document.createElement('div');
                     gridItem.className = 'grid-item';
@@ -473,11 +399,9 @@
                     
                     // Add load event before setting src
                     img.onload = () => {
-                        // Set padding-bottom based on actual image aspect ratio
-                        const aspectRatio = (img.naturalHeight / img.naturalWidth) * 100;
-                        wrapper.style.paddingBottom = `${aspectRatio}%`;
-                        gridItem.classList.add('loaded');
-                        msnry.layout();
+                        setTimeout(() => {
+                            gridItem.classList.add('visible');
+                        }, index * 50);
                     };
                     
                     img.src = item.src;
@@ -514,32 +438,6 @@
                     wrapper.appendChild(hoverText);
                     gridItem.appendChild(wrapper);
                     gallery.appendChild(gridItem);
-                });
-
-                // Initial layout
-                msnry.layout();
-
-                // Add visible class with slight delay between items
-                const items = gallery.querySelectorAll('.grid-item');
-                items.forEach((item, index) => {
-                    setTimeout(() => {
-                        item.classList.add('visible');
-                        msnry.layout();
-                    }, index * 50);
-                });
-
-                // Update layout on window resize with debounce
-                let resizeTimer;
-                window.addEventListener('resize', () => {
-                    clearTimeout(resizeTimer);
-                    resizeTimer = setTimeout(() => {
-                        msnry.layout();
-                    }, 150);
-                });
-
-                // Reflow layout when all images are loaded
-                imagesLoaded(gallery).on('always', () => {
-                    msnry.layout();
                 });
             }
 
