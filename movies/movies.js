@@ -1,6577 +1,1404 @@
 // Sample movie data
 const movies = [
     {
-        title: "Movie 1",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 2",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 3",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 4",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 5",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 6",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 7",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 8",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 9",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 10",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 11",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 12",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 13",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 14",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 15",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 16",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 17",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 18",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 19",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 20",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 21",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 22",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 23",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 24",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 25",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 26",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 27",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 28",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 29",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 30",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 31",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 32",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 33",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 34",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 35",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 36",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 37",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 38",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 39",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 40",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 41",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 42",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 43",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 44",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 45",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 46",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 47",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 48",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 49",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 50",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 51",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 52",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 53",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 54",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 55",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 56",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 57",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 58",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 59",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 60",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 61",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 62",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 63",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 64",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 65",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 66",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 67",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 68",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 69",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 70",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 71",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 72",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 73",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 74",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 75",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 76",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 77",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 78",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 79",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 80",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 81",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 82",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 83",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 84",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 85",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 86",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 87",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 88",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 89",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 90",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 91",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 92",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 93",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 94",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 95",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 96",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 97",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 98",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 99",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 100",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 101",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 102",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 103",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 104",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 105",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 106",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 107",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 108",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 109",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 110",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 111",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 112",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 113",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 114",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 115",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 116",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 117",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 118",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 119",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 120",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 121",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 122",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 123",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 124",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 125",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 126",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 127",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 128",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 129",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 130",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 131",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 132",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 133",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 134",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 135",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 136",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 137",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 138",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 139",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 140",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 141",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 142",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 143",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 144",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 145",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 146",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 147",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 148",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 149",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 150",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 151",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 152",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 153",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 154",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 155",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 156",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 157",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 158",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 159",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 160",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 161",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 162",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 163",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 164",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 165",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 166",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 167",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 168",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 169",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 170",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 171",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 172",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 173",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 174",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 175",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 176",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 177",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 178",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 179",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 180",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 181",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 182",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 183",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 184",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 185",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 186",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 187",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 188",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 189",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 190",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 191",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 192",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 193",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 194",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 195",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 196",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 197",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 198",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 199",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 200",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 201",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 202",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 203",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 204",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 205",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 206",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 207",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 208",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 209",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 210",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 211",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 212",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 213",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 214",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 215",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 216",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 217",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 218",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 219",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 220",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 221",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 222",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 223",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 224",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 225",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 226",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 227",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 228",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 229",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 230",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 231",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 232",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 233",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 234",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 235",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 236",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 237",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 238",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 239",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 240",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 241",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 242",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 243",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 244",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 245",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 246",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 247",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 248",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 249",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 250",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 251",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 252",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 253",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 254",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 255",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 256",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 257",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 258",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 259",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 260",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 261",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 262",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 263",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 264",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 265",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 266",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 267",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 268",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 269",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 270",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 271",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 272",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 273",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 274",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 275",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 276",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 277",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 278",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 279",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 280",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 281",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 282",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 283",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 284",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 285",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 286",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 287",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 288",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 289",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 290",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 291",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 292",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 293",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 294",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 295",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 296",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 297",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 298",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 299",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 300",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 301",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 302",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 303",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 304",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 305",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 306",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 307",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 308",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 309",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 310",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 311",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 312",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 313",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 314",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 315",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 316",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 317",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 318",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 319",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 320",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 321",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 322",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 323",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 324",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 325",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 326",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 327",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 328",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 329",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 330",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 331",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 332",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 333",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 334",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 335",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 336",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 337",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 338",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 339",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 340",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 341",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 342",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 343",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 344",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 345",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 346",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 347",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 348",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 349",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 350",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 351",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 352",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 353",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 354",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 355",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 356",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 357",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 358",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 359",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 360",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 361",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 362",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 363",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 364",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 365",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 366",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 367",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 368",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 369",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 370",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 371",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 372",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 373",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 374",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 375",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 376",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 377",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 378",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 379",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 380",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 381",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 382",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 383",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 384",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 385",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 386",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 387",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 388",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 389",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 390",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 391",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 392",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 393",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 394",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 395",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 396",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 397",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 398",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 399",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 400",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 401",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 402",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 403",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 404",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 405",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 406",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 407",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 408",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 409",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 410",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 411",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 412",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 413",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 414",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 415",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 416",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 417",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 418",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 419",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 420",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 421",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 422",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 423",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 424",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 425",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 426",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 427",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 428",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 429",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 430",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 431",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 432",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 433",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 434",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 435",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 436",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 437",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 438",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 439",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 440",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 441",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 442",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 443",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 444",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 445",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 446",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 447",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 448",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 449",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 450",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 451",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 452",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 453",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 454",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 455",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 456",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 457",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 458",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 459",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 460",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 461",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 462",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 463",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 464",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 465",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 466",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 467",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 468",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 469",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 470",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 471",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 472",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 473",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 474",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 475",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 476",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 477",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 478",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 479",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 480",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 481",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 482",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 483",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 484",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 485",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 486",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 487",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 488",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 489",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 490",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 491",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 492",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 493",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 494",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 495",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 496",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 497",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 498",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 499",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 500",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 501",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 502",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 503",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 504",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 505",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 506",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 507",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 508",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 509",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 510",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 511",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 512",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 513",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 514",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 515",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 516",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 517",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 518",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 519",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 520",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 521",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 522",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 523",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 524",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 525",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 526",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 527",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 528",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 529",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 530",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 531",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 532",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 533",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 534",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 535",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 536",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 537",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 538",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 539",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 540",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 541",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 542",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 543",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 544",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 545",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 546",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 547",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 548",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 549",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 550",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 551",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 552",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 553",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 554",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 555",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 556",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 557",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 558",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 559",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 560",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 561",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 562",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 563",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 564",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 565",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 566",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 567",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 568",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 569",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 570",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 571",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 572",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 573",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 574",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 575",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 576",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 577",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 578",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 579",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 580",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 581",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 582",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 583",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 584",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 585",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 586",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 587",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 588",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 589",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 590",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 591",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 592",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 593",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 594",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 595",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 596",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 597",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 598",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 599",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 600",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 601",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 602",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 603",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 604",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 605",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 606",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 607",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 608",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 609",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 610",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 611",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 612",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 613",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 614",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 615",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 616",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 617",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 618",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 619",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 620",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 621",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 622",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 623",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 624",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 625",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 626",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 627",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 628",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 629",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 630",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 631",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 632",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 633",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 634",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 635",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 636",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 637",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 638",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 639",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 640",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 641",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 642",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 643",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 644",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 645",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 646",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 647",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 648",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 649",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 650",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 651",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 652",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 653",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 654",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 655",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 656",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 657",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 658",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 659",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 660",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 661",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 662",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 663",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 664",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 665",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 666",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 667",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 668",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 669",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 670",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 671",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 672",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 673",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 674",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 675",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 676",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 677",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 678",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 679",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 680",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 681",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 682",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 683",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 684",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 685",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 686",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 687",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 688",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 689",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 690",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 691",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 692",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 693",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 694",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 695",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 696",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 697",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 698",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 699",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 700",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 701",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 702",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 703",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 704",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 705",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 706",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 707",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 708",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 709",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 710",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 711",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 712",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 713",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 714",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 715",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 716",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 717",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 718",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 719",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 720",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 721",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 722",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 723",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 724",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 725",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 726",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 727",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 728",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 729",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 730",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 731",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 732",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 733",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 734",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 735",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 736",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 737",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 738",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 739",
-        year: 2024,
-        genre: "Action",
-        rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
-    },
-    {
-        title: "Movie 740",
-        year: 2024,
-        genre: "Action",
+        title: "Get Out",
+        year: 2017,
+        genre: "Horror",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/tFXcEccSQMf3lfhfXKSU9iRBpa3.jpg"
     },
     {
-        title: "Movie 741",
-        year: 2024,
+        title: "Avengers: Infinity War",
+        year: 2018,
         genre: "Action",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg"
     },
     {
-        title: "Movie 742",
-        year: 2024,
-        genre: "Action",
+        title: "La La Land",
+        year: 2016,
+        genre: "Romance",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/uDO8zWDhfWwoFdKS4fzkUJt0Rf0.jpg"
     },
     {
-        title: "Movie 743",
-        year: 2024,
+        title: "Black Panther",
+        year: 2018,
         genre: "Action",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/uxzzxijgPIY7slzFvMotPv8wjKA.jpg"
     },
     {
-        title: "Movie 744",
-        year: 2024,
+        title: "Mad Max: Fury Road",
+        year: 2015,
         genre: "Action",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/hA2ple9q4qnwxp3hKVNhroipsir.jpg"
     },
     {
-        title: "Movie 745",
-        year: 2024,
+        title: "Avengers: Endgame",
+        year: 2019,
         genre: "Action",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/ulzhLuWrPK07P1YkdWQLZnQh1JL.jpg"
     },
     {
-        title: "Movie 746",
-        year: 2024,
-        genre: "Action",
+        title: "Arrival",
+        year: 2016,
+        genre: "Sci-Fi",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/x2FJsf1ElAgr63Y3PNPtJrcmpoe.jpg"
     },
     {
-        title: "Movie 747",
-        year: 2024,
+        title: "Guardians of the Galaxy",
+        year: 2014,
         genre: "Action",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/jPrJPZKJVhvyJ4DmUTrDgmFN0yG.jpg"
     },
     {
-        title: "Movie 748",
-        year: 2024,
-        genre: "Action",
+        title: "Interstellar",
+        year: 2014,
+        genre: "Sci-Fi",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg"
     },
     {
-        title: "Movie 749",
-        year: 2024,
-        genre: "Action",
+        title: "Star Wars: The Force Awakens",
+        year: 2015,
+        genre: "Sci-Fi",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/wqnLdwVXoBjKibFRR5U3y0aDUhs.jpg"
     },
     {
-        title: "Movie 750",
-        year: 2024,
+        title: "Thor: Ragnarok",
+        year: 2017,
         genre: "Action",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/rzRwTcFvttcN1ZpX2xv4j3tSdJu.jpg"
     },
     {
-        title: "Movie 751",
-        year: 2024,
-        genre: "Action",
+        title: "Gone Girl",
+        year: 2014,
+        genre: "Thriller",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/ts996lKsxvjkO2yiYG0ht4qAicO.jpg"
     },
     {
-        title: "Movie 752",
-        year: 2024,
-        genre: "Action",
+        title: "Dunkirk",
+        year: 2017,
+        genre: "War",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/b4Oe15CGLL61Ped0RAS9JpqdmCt.jpg"
     },
     {
-        title: "Movie 753",
-        year: 2024,
-        genre: "Action",
+        title: "Blade Runner 2049",
+        year: 2017,
+        genre: "Sci-Fi",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/gajva2L0rPYkEWjzgFlBXCAVBE5.jpg"
     },
     {
-        title: "Movie 754",
-        year: 2024,
-        genre: "Action",
+        title: "Call Me by Your Name",
+        year: 2017,
+        genre: "Romance",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/gXiE0WveDnT0n5J4sW9TMxXF4oT.jpg"
     },
     {
-        title: "Movie 755",
-        year: 2024,
+        title: "Spider-Man: Homecoming",
+        year: 2017,
         genre: "Action",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/c24sv2weTHPsmDa7jEMN0m2P3RT.jpg"
     },
     {
-        title: "Movie 756",
-        year: 2024,
+        title: "Deadpool",
+        year: 2016,
         genre: "Action",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/3E53WEZJqP6aM84D8CckXx4pIHw.jpg"
     },
     {
-        title: "Movie 757",
-        year: 2024,
-        genre: "Action",
+        title: "The Wolf of Wall Street",
+        year: 2013,
+        genre: "Drama",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/kW9LmvYHAaS9iA0tHmZVq8hQYoq.jpg"
     },
     {
-        title: "Movie 758",
-        year: 2024,
-        genre: "Action",
+        title: "Star Wars: The Last Jedi",
+        year: 2017,
+        genre: "Sci-Fi",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/kOVEVeg59E0wsnXmF9nrh6OmWII.jpg"
     },
     {
-        title: "Movie 759",
-        year: 2024,
-        genre: "Action",
+        title: "Django Unchained",
+        year: 2012,
+        genre: "Drama",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/bV0rWoiRo7pHUTQkh6Oio6irlXO.jpg"
     },
     {
-        title: "Movie 760",
-        year: 2024,
+        title: "Guardians of the Galaxy Vol. 2",
+        year: 2017,
         genre: "Action",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/y4MBh0EjBlMuOzv9axM4qJlmhzz.jpg"
     },
     {
-        title: "Movie 761",
-        year: 2024,
+        title: "The Avengers",
+        year: 2012,
         genre: "Action",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/RYMX2wcKCBAr24UyPD7xwmjaTn.jpg"
     },
     {
-        title: "Movie 762",
-        year: 2024,
+        title: "Captain America: Civil War",
+        year: 2016,
         genre: "Action",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/rAGiXaUfPzY7CDEyNKUofk3Kw2e.jpg"
     },
     {
-        title: "Movie 763",
-        year: 2024,
-        genre: "Action",
+        title: "Inside Out",
+        year: 2015,
+        genre: "Animation",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/2H1TmgdfNtsKlU9jKdeNyYL5y8T.jpg"
     },
     {
-        title: "Movie 764",
-        year: 2024,
-        genre: "Action",
+        title: "It",
+        year: 2017,
+        genre: "Horror",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/9tzN8sPbyod2dsa0lwuvrwBDWra.jpg"
     },
     {
-        title: "Movie 765",
-        year: 2024,
-        genre: "Action",
+        title: "Ex Machina",
+        year: 2015,
+        genre: "Sci-Fi",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/dmJW8IAKHKxFNiUnoDR7JfsK7Rp.jpg"
     },
     {
-        title: "Movie 766",
-        year: 2024,
-        genre: "Action",
+        title: "The Silence of the Lambs",
+        year: 1991,
+        genre: "Thriller",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/uS9m8OBk1A8eM9I042bx8XXpqAq.jpg"
     },
     {
-        title: "Movie 767",
-        year: 2024,
-        genre: "Action",
+        title: "Blade Runner",
+        year: 1982,
+        genre: "Sci-Fi",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/63N9uy8nd9j7Eog2axPQ8lbr3Wj.jpg"
     },
     {
-        title: "Movie 768",
-        year: 2024,
+        title: "Wonder Woman",
+        year: 2017,
         genre: "Action",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/v4ncgZjG2Zu8ZW5al1vIZTsSjqX.jpg"
     },
     {
-        title: "Movie 769",
-        year: 2024,
-        genre: "Action",
+        title: "The Social Network",
+        year: 2010,
+        genre: "Drama",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/n0ybibhJtQ5icDqTp8eRytcIHJx.jpg"
     },
     {
-        title: "Movie 770",
-        year: 2024,
+        title: "Captain Marvel",
+        year: 2019,
         genre: "Action",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/AtsgWhDnHTq68L0lLsUrCnM7TjG.jpg"
     },
     {
-        title: "Movie 771",
-        year: 2024,
+        title: "Captain America: The Winter Soldier",
+        year: 2014,
         genre: "Action",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/tVFRpFw3xTedgPGqxW0AOI8Qhh0.jpg"
     },
     {
-        title: "Movie 772",
-        year: 2024,
-        genre: "Action",
+        title: "Rogue One: A Star Wars Story",
+        year: 2016,
+        genre: "Sci-Fi",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/i0yw1mFbB7sNGHCs7EXZPzFkdA1.jpg"
     },
     {
-        title: "Movie 773",
-        year: 2024,
-        genre: "Action",
+        title: "Annihilation",
+        year: 2018,
+        genre: "Sci-Fi",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/z19tTNd8YxJnaDwQiNC7yCUkgbr.jpg"
     },
     {
-        title: "Movie 774",
-        year: 2024,
-        genre: "Action",
+        title: "Se7en",
+        year: 1995,
+        genre: "Thriller",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/191nKfP0ehp3uIvWqgPbFmI4lv9.jpg"
     },
     {
-        title: "Movie 775",
-        year: 2024,
-        genre: "Action",
+        title: "The Martian",
+        year: 2015,
+        genre: "Sci-Fi",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/3ndAx3weG6KDkJIRMCi5vXX6Dyb.jpg"
     },
     {
-        title: "Movie 776",
-        year: 2024,
+        title: "Doctor Strange",
+        year: 2016,
         genre: "Action",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/uGBVj3bEbCoZbDjjl9wTxcygko1.jpg"
     },
     {
-        title: "Movie 777",
-        year: 2024,
-        genre: "Action",
+        title: "The Lord of the Rings: The Fellowship of the Ring",
+        year: 2001,
+        genre: "Fantasy",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/6oom5QYQ2yQTMJIbnvbkBL9cHo6.jpg"
     },
     {
-        title: "Movie 778",
-        year: 2024,
-        genre: "Action",
+        title: "Bohemian Rhapsody",
+        year: 2018,
+        genre: "Biography",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/lHu1wtNaczFPGFDTrjCSzeLPTKN.jpg"
     },
     {
-        title: "Movie 779",
-        year: 2024,
-        genre: "Action",
+        title: "Green Book",
+        year: 2018,
+        genre: "Drama",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/7BsvSuDQuoqhWmU2fL7W2GcgrC1.jpg"
     },
     {
-        title: "Movie 780",
-        year: 2024,
-        genre: "Action",
+        title: "Spider-Man: Into the Spider-Verse",
+        year: 2018,
+        genre: "Animation",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/iiLAGb4f0HOZ3JrX9HnZ0XzX0Xz.jpg"
     },
     {
-        title: "Movie 781",
-        year: 2024,
-        genre: "Action",
+        title: "Incredibles 2",
+        year: 2018,
+        genre: "Animation",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/9lFKBtaVIhP7E2Pk0IY1CwTKTMZ.jpg"
     },
     {
-        title: "Movie 782",
-        year: 2024,
-        genre: "Action",
+        title: "Forrest Gump",
+        year: 1994,
+        genre: "Drama",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/arw2vcBveWOVZr6pxd9XTd1TdQa.jpg"
     },
     {
-        title: "Movie 783",
-        year: 2024,
+        title: "Avengers: Age of Ultron",
+        year: 2015,
         genre: "Action",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/4ssDuvEDkSArWEdyBl2X5EHvYKU.jpg"
     },
     {
-        title: "Movie 784",
-        year: 2024,
-        genre: "Action",
+        title: "Back to the Future",
+        year: 1985,
+        genre: "Sci-Fi",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/vN5B5WgYscRGcQpVhHl6p9DDTP0.jpg"
     },
     {
-        title: "Movie 785",
-        year: 2024,
-        genre: "Action",
+        title: "A Star Is Born",
+        year: 2018,
+        genre: "Drama",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/3Hr63lBDhvYGpSd8HxDpWvowZpY.jpg"
     },
     {
-        title: "Movie 786",
-        year: 2024,
+        title: "Iron Man",
+        year: 2008,
         genre: "Action",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/78lPtwv72eTNqFW9COBYI0dWDJa.jpg"
     },
     {
-        title: "Movie 787",
-        year: 2024,
+        title: "Spider-Man: Far From Home",
+        year: 2019,
         genre: "Action",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/4q2NNj4S5dG2RLF9CpXsej7yXl.jpg"
     },
     {
-        title: "Movie 788",
-        year: 2024,
-        genre: "Action",
+        title: "The Incredibles",
+        year: 2004,
+        genre: "Animation",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/2LqaLgk4Z226KkgPJuiOQ58wvrm.jpg"
     },
     {
-        title: "Movie 789",
-        year: 2024,
+        title: "Ant-Man",
+        year: 2015,
         genre: "Action",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/rQRnQfUl3kfp78nCWq8Ks04vnq1.jpg"
     },
     {
-        title: "Movie 790",
-        year: 2024,
-        genre: "Action",
+        title: "Toy Story",
+        year: 1995,
+        genre: "Animation",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/uXDfjJbdP4ijW5hWSBrPrlKpxab.jpg"
     },
     {
-        title: "Movie 791",
-        year: 2024,
-        genre: "Action",
+        title: "WALL·E",
+        year: 2008,
+        genre: "Animation",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/hbhFnRzzg6ZDmm8YAmxBnQpQIPh.jpg"
     },
     {
-        title: "Movie 792",
-        year: 2024,
-        genre: "Action",
+        title: "The Lord of the Rings: The Return of the King",
+        year: 2003,
+        genre: "Fantasy",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/rCzpDGLbOoPwLjy3OAm5NUPOTrC.jpg"
     },
     {
-        title: "Movie 793",
-        year: 2024,
-        genre: "Action",
+        title: "Up",
+        year: 2009,
+        genre: "Animation",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/mFvoEwSfLqbcWwFsDjQebn9bzFe.jpg"
     },
     {
-        title: "Movie 794",
-        year: 2024,
-        genre: "Action",
+        title: "Split",
+        year: 2016,
+        genre: "Thriller",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/lli31lYTFpvxVBeFHWoe5PMfW5s.jpg"
     },
     {
-        title: "Movie 795",
-        year: 2024,
-        genre: "Action",
+        title: "Zootopia",
+        year: 2016,
+        genre: "Animation",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/hlK0e0wAQ3VLuJcsfIYPvb4JVud.jpg"
     },
     {
-        title: "Movie 796",
-        year: 2024,
+        title: "Kingsman: The Secret Service",
+        year: 2014,
         genre: "Action",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/r6q9wZK5a2K51KFj4LWVID6Ja1r.jpg"
     },
     {
-        title: "Movie 797",
-        year: 2024,
-        genre: "Action",
+        title: "I, Tonya",
+        year: 2017,
+        genre: "Drama",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/6gNXwSHxaksR1PjVZRqNapmkgj3.jpg"
     },
     {
-        title: "Movie 798",
-        year: 2024,
+        title: "Ant-Man and the Wasp",
+        year: 2018,
         genre: "Action",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/cFQEO687n1K6umXbInzocxcnAQz.jpg"
     },
     {
-        title: "Movie 799",
-        year: 2024,
-        genre: "Action",
+        title: "The Lion King",
+        year: 1994,
+        genre: "Animation",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/sKCr78MXSLixwmZ8DyJLrpMsd15.jpg"
     },
     {
-        title: "Movie 800",
-        year: 2024,
-        genre: "Action",
+        title: "The Lord of the Rings: The Two Towers",
+        year: 2002,
+        genre: "Fantasy",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/5VTN0pR8gcqV3EPUHHfMGnJYN9L.jpg"
     },
     {
-        title: "Movie 801",
-        year: 2024,
+        title: "Captain America: The First Avenger",
+        year: 2011,
         genre: "Action",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/vSNxAJTlD0r02V9sPYpOjqDZXUK.jpg"
     },
     {
-        title: "Movie 802",
-        year: 2024,
-        genre: "Action",
+        title: "Finding Nemo",
+        year: 2003,
+        genre: "Animation",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/eHuGQ10FUzK1mdOY69wF5pGgEf5.jpg"
     },
     {
-        title: "Movie 803",
-        year: 2024,
-        genre: "Action",
+        title: "Ready Player One",
+        year: 2018,
+        genre: "Sci-Fi",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/pU1ULUq8D3iRxl1fdX2lZIzdHuI.jpg"
     },
     {
-        title: "Movie 804",
-        year: 2024,
+        title: "Suicide Squad",
+        year: 2016,
         genre: "Action",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/sk3FZgh3sRrmr8vyhaitNobMcfh.jpg"
     },
     {
-        title: "Movie 805",
-        year: 2024,
+        title: "Iron Man 3",
+        year: 2013,
         genre: "Action",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/qhPtAc1TKbMPqNvcdXSOn9Bn7hZ.jpg"
     },
     {
-        title: "Movie 806",
-        year: 2024,
-        genre: "Action",
+        title: "Toy Story 3",
+        year: 2010,
+        genre: "Animation",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/AbbXspMOwdvwWZgVN0nabZq03Ec.jpg"
     },
     {
-        title: "Movie 807",
-        year: 2024,
-        genre: "Action",
+        title: "The Breakfast Club",
+        year: 1985,
+        genre: "Drama",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/wM9ErA8UVdcce5P4oefQinN8VVV.jpg"
     },
     {
-        title: "Movie 808",
-        year: 2024,
-        genre: "Action",
+        title: "Harry Potter and the Prisoner of Azkaban",
+        year: 2004,
+        genre: "Fantasy",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/aWxwnYoe8p2d2fcxOqtvAtJ72Rw.jpg"
     },
     {
-        title: "Movie 809",
-        year: 2024,
-        genre: "Action",
+        title: "Ratatouille",
+        year: 2007,
+        genre: "Animation",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/t3vaWRPSf6WjDSamIkKDs1iQWna.jpg"
     },
     {
-        title: "Movie 810",
-        year: 2024,
-        genre: "Action",
+        title: "Shaun of the Dead",
+        year: 2004,
+        genre: "Comedy",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/dgXPhzNJH8HFTBjXPB177yNx6RI.jpg"
     },
     {
-        title: "Movie 811",
-        year: 2024,
-        genre: "Action",
+        title: "Moana",
+        year: 2016,
+        genre: "Animation",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/9tzN8sPbyod2dsa0lwuvrwBDWra.jpg"
     },
     {
-        title: "Movie 812",
-        year: 2024,
-        genre: "Action",
+        title: "Inception",
+        year: 2010,
+        genre: "Sci-Fi",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/ljsZTbVsrQSqZgWeep2B1QiDKuh.jpg"
     },
     {
-        title: "Movie 813",
-        year: 2024,
-        genre: "Action",
+        title: "Harry Potter and the Philosopher's Stone",
+        year: 2001,
+        genre: "Fantasy",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/wuMc08IPKEatf9rnMNXvIDxqP4W.jpg"
     },
     {
-        title: "Movie 814",
-        year: 2024,
+        title: "Jurassic World",
+        year: 2015,
         genre: "Action",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/rhr4y79GpxQF9IsfJItRXVaoGs4.jpg"
     },
     {
-        title: "Movie 815",
-        year: 2024,
-        genre: "Action",
+        title: "Fantastic Beasts and Where to Find Them",
+        year: 2016,
+        genre: "Fantasy",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/fLsaFKExQt05yqjoAvKsmOMYvJR.jpg"
     },
     {
-        title: "Movie 816",
-        year: 2024,
+        title: "Thor",
+        year: 2011,
         genre: "Action",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/prSfAi1xGrhLQNxVSUFh61xQ4Qy.jpg"
     },
     {
-        title: "Movie 817",
-        year: 2024,
-        genre: "Action",
+        title: "Monsters, Inc.",
+        year: 2001,
+        genre: "Animation",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/qjlbN6aK1qgeg3SspFVovT2D1Me.jpg"
     },
     {
-        title: "Movie 818",
-        year: 2024,
+        title: "Batman v Superman: Dawn of Justice",
+        year: 2016,
         genre: "Action",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/5UsK3grJvtQrtzEgqNlDljJW96w.jpg"
     },
     {
-        title: "Movie 819",
-        year: 2024,
-        genre: "Action",
+        title: "It Follows",
+        year: 2014,
+        genre: "Horror",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/iwnQ1JH1wdWrGYkgWySptJ5284A.jpg"
     },
     {
-        title: "Movie 820",
-        year: 2024,
-        genre: "Action",
+        title: "Avatar",
+        year: 2009,
+        genre: "Sci-Fi",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/kyeqWdyUXW608qlYkRqosgbbJyK.jpg"
     },
     {
-        title: "Movie 821",
-        year: 2024,
-        genre: "Action",
+        title: "Good Will Hunting",
+        year: 1997,
+        genre: "Drama",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/z2FnLKpFi1HPO7BEJxdkv6hpJSU.jpg"
     },
     {
-        title: "Movie 822",
-        year: 2024,
-        genre: "Action",
+        title: "Toy Story 4",
+        year: 2019,
+        genre: "Animation",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/w9kR8qbmQ01HwnvK4alvnQ2ca0L.jpg"
     },
     {
-        title: "Movie 823",
-        year: 2024,
-        genre: "Action",
+        title: "Prisoners",
+        year: 2013,
+        genre: "Thriller",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/uhviyknTT5cEQXbn6vWIqfM4vGm.jpg"
     },
     {
-        title: "Movie 824",
-        year: 2024,
+        title: "Iron Man 2",
+        year: 2010,
         genre: "Action",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/6WBeq4fCfn7AN0o21W9qNcRF2l9.jpg"
     },
     {
-        title: "Movie 825",
-        year: 2024,
-        genre: "Action",
+        title: "Harry Potter and the Deathly Hallows: Part 2",
+        year: 2011,
+        genre: "Fantasy",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/c54HpQmuwXjHq2C9wmoACjxoom3.jpg"
     },
     {
-        title: "Movie 826",
-        year: 2024,
+        title: "X-Men: Days of Future Past",
+        year: 2014,
         genre: "Action",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/tYfijzolzgoMOtegh1Y7j2Enorg.jpg"
     },
     {
-        title: "Movie 827",
-        year: 2024,
-        genre: "Action",
+        title: "Big Hero 6",
+        year: 2014,
+        genre: "Animation",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/2mxS4wUimwlLmI1xp6QW6NSU361.jpg"
     },
     {
-        title: "Movie 828",
-        year: 2024,
-        genre: "Action",
+        title: "The Lego Movie",
+        year: 2014,
+        genre: "Animation",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/lbctonEnewCYZ4FYoTZhs8cidAl.jpg"
     },
     {
-        title: "Movie 829",
-        year: 2024,
-        genre: "Action",
+        title: "The Perks of Being a Wallflower",
+        year: 2012,
+        genre: "Drama",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/aKCvdFFF5n80P2VdS7d8YBwbCjh.jpg"
     },
     {
-        title: "Movie 830",
-        year: 2024,
+        title: "Thor: The Dark World",
+        year: 2013,
         genre: "Action",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/wD6g4EcmR6R3VNbuBmNOVq2qWrM.jpg"
     },
     {
-        title: "Movie 831",
-        year: 2024,
-        genre: "Action",
+        title: "Toy Story 2",
+        year: 1999,
+        genre: "Animation",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/yFWQkz2ynjwsazT6xQiIXEUsyuh.jpg"
     },
     {
-        title: "Movie 832",
-        year: 2024,
+        title: "Skyfall",
+        year: 2012,
         genre: "Action",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/d0IVecFQvsGdSbnMAHqiYsNYaJT.jpg"
     },
     {
-        title: "Movie 833",
-        year: 2024,
+        title: "Venom",
+        year: 2018,
         genre: "Action",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/2uNW4WbgBXL25BAbXGLnLqX71Sw.jpg"
     },
     {
-        title: "Movie 834",
-        year: 2024,
+        title: "The Hunger Games",
+        year: 2012,
         genre: "Action",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/yXCbOiVDCxO71zI7cuwBRXdftq8.jpg"
     },
     {
-        title: "Movie 835",
-        year: 2024,
+        title: "Spider-Man 2",
+        year: 2004,
         genre: "Action",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/aGuvNAaaZuWXYQQ6N2v7DeuP6mB.jpg"
     },
     {
-        title: "Movie 836",
-        year: 2024,
-        genre: "Action",
+        title: "Harry Potter and the Chamber of Secrets",
+        year: 2002,
+        genre: "Fantasy",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/sdEOH0992YZ0QSxgXNIGLq1ToUi.jpg"
     },
     {
-        title: "Movie 837",
-        year: 2024,
+        title: "Spider-Man",
+        year: 2002,
         genre: "Action",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/gh4cZbhZxyTbgxQPxD0dOudNPTn.jpg"
     },
     {
-        title: "Movie 838",
-        year: 2024,
-        genre: "Action",
+        title: "Frozen",
+        year: 2013,
+        genre: "Animation",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/m4uhSpErBKprhsclr0zynTYdupb.jpg"
     },
     {
-        title: "Movie 839",
-        year: 2024,
-        genre: "Action",
+        title: "Bird Box",
+        year: 2018,
+        genre: "Thriller",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/rGfGfgL2pEPCfhIvqHXieXFn7gp.jpg"
     },
     {
-        title: "Movie 840",
-        year: 2024,
-        genre: "Action",
+        title: "Harry Potter and the Goblet of Fire",
+        year: 2005,
+        genre: "Fantasy",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/fECBtHlr0RB3foNHDiCBXeg9Bv9.jpg"
     },
     {
-        title: "Movie 841",
-        year: 2024,
-        genre: "Action",
+        title: "Ferris Bueller's Day Off",
+        year: 1986,
+        genre: "Comedy",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/9LTQNCvoLsKXP0LtaKAaYVtRaQL.jpg"
     },
     {
-        title: "Movie 842",
-        year: 2024,
+        title: "The Dark Knight",
+        year: 2008,
         genre: "Action",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg"
     },
     {
-        title: "Movie 843",
-        year: 2024,
-        genre: "Action",
+        title: "Inception",
+        year: 2010,
+        genre: "Sci-Fi",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/9jBA6xEdbXbG6Kx0uQkXQZzQqQ.jpg"
     },
     {
-        title: "Movie 844",
-        year: 2024,
-        genre: "Action",
+        title: "The Matrix",
+        year: 1999,
+        genre: "Sci-Fi",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg"
     },
     {
-        title: "Movie 845",
-        year: 2024,
-        genre: "Action",
+        title: "Pulp Fiction",
+        year: 1994,
+        genre: "Crime",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/d5iIlFn5s0ImszYzBPb8JPIfbXD.jpg"
     },
     {
-        title: "Movie 846",
-        year: 2024,
-        genre: "Action",
+        title: "The Shawshank Redemption",
+        year: 1994,
+        genre: "Drama",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg"
     },
     {
-        title: "Movie 847",
-        year: 2024,
-        genre: "Action",
+        title: "Fight Club",
+        year: 1999,
+        genre: "Drama",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/pB8BM7pdSp6B6Ih7QZ4DrQ3PmJK.jpg"
     },
     {
-        title: "Movie 848",
-        year: 2024,
-        genre: "Action",
+        title: "The Godfather",
+        year: 1972,
+        genre: "Crime",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/3bhkrj58Vtu7enYsRolD1fZdja1.jpg"
     },
     {
-        title: "Movie 849",
-        year: 2024,
-        genre: "Action",
+        title: "Goodfellas",
+        year: 1990,
+        genre: "Crime",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/aKuFiU82s5ISJpGZp7YkIr3kCUd.jpg"
     },
     {
-        title: "Movie 850",
-        year: 2024,
-        genre: "Action",
+        title: "The Silence of the Lambs",
+        year: 1991,
+        genre: "Thriller",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/uS9m8OBk1A8eM9I042bx8XXpqAq.jpg"
     },
     {
-        title: "Movie 851",
-        year: 2024,
-        genre: "Action",
+        title: "The Departed",
+        year: 2006,
+        genre: "Crime",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/nT97ifVT2J1yMQmeq20Qblg61T.jpg"
     },
     {
-        title: "Movie 852",
-        year: 2024,
-        genre: "Action",
+        title: "The Prestige",
+        year: 2006,
+        genre: "Drama",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/5MXyQfz8xUP3dIFPTubhTsbFY6N.jpg"
     },
     {
-        title: "Movie 853",
-        year: 2024,
-        genre: "Action",
+        title: "The Social Network",
+        year: 2010,
+        genre: "Drama",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/ok5Wh8385Hgblq8Q1plQmpTbR3N.jpg"
     },
     {
-        title: "Movie 854",
-        year: 2024,
-        genre: "Action",
+        title: "Whiplash",
+        year: 2014,
+        genre: "Drama",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/7lSfJQZPZq6Kbkkh3GHPFgDgMw8.jpg"
     },
     {
-        title: "Movie 855",
-        year: 2024,
-        genre: "Action",
+        title: "The Grand Budapest Hotel",
+        year: 2014,
+        genre: "Comedy",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/nX5XotM9yprCKarRH4fzOq1VM1J.jpg"
     },
     {
-        title: "Movie 856",
-        year: 2024,
-        genre: "Action",
+        title: "Birdman",
+        year: 2014,
+        genre: "Drama",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/nglTHFK4bF8L0jW1vALtnqm8OW1.jpg"
     },
     {
-        title: "Movie 857",
-        year: 2024,
-        genre: "Action",
+        title: "The Revenant",
+        year: 2015,
+        genre: "Adventure",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/ji3ecJphATlVgWNY0B0RVXZ4W7R.jpg"
     },
     {
-        title: "Movie 858",
-        year: 2024,
+        title: "Mad Max: Fury Road",
+        year: 2015,
         genre: "Action",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/hA2ple9q4qnwxp3hKVNhroipsir.jpg"
     },
     {
-        title: "Movie 859",
-        year: 2024,
-        genre: "Action",
+        title: "The Martian",
+        year: 2015,
+        genre: "Sci-Fi",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/3ndAx3weG6KDkJIRMCi5vXX6Dyb.jpg"
     },
     {
-        title: "Movie 860",
-        year: 2024,
-        genre: "Action",
+        title: "Spotlight",
+        year: 2015,
+        genre: "Drama",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/ngjRmT9yGpzQwZbW3E0UWDxItkA.jpg"
     },
     {
-        title: "Movie 861",
-        year: 2024,
-        genre: "Action",
+        title: "The Big Short",
+        year: 2015,
+        genre: "Drama",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/p11Ftd4VposrAzthkhF53vv9Lf9.jpg"
     },
     {
-        title: "Movie 862",
-        year: 2024,
-        genre: "Action",
+        title: "La La Land",
+        year: 2016,
+        genre: "Musical",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/uDO8zWDhfWwoFdKS4fzkUJt0Rf0.jpg"
     },
     {
-        title: "Movie 863",
-        year: 2024,
-        genre: "Action",
+        title: "Moonlight",
+        year: 2016,
+        genre: "Drama",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/gsim0uXaZo3RHLI0B8kSMqF8Qk.jpg"
     },
     {
-        title: "Movie 864",
-        year: 2024,
-        genre: "Action",
+        title: "Arrival",
+        year: 2016,
+        genre: "Sci-Fi",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/x2FJsf1ElAgr63Y3PNPtJrcmpoe.jpg"
     },
     {
-        title: "Movie 865",
-        year: 2024,
-        genre: "Action",
+        title: "Hell or High Water",
+        year: 2016,
+        genre: "Crime",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/6YtVbP5d0qm6QpK9pL46r5eK5.jpg"
     },
     {
-        title: "Movie 866",
-        year: 2024,
-        genre: "Action",
+        title: "Manchester by the Sea",
+        year: 2016,
+        genre: "Drama",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/pev79X40VBMV2mZHHWZ0wEHE4V.jpg"
     },
     {
-        title: "Movie 867",
-        year: 2024,
-        genre: "Action",
+        title: "Three Billboards Outside Ebbing, Missouri",
+        year: 2017,
+        genre: "Drama",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/vgvw6w1CtcFZk7QwXQZ0XZ0XZ0X.jpg"
     },
     {
-        title: "Movie 868",
-        year: 2024,
-        genre: "Action",
+        title: "The Shape of Water",
+        year: 2017,
+        genre: "Fantasy",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/k4FwHlMhuRR5BISY2Gm2QJkYoR.jpg"
     },
     {
-        title: "Movie 869",
-        year: 2024,
-        genre: "Action",
+        title: "Lady Bird",
+        year: 2017,
+        genre: "Drama",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/iySFtKLrWvVzXzlFj7x1zalxi5G.jpg"
     },
     {
-        title: "Movie 870",
-        year: 2024,
-        genre: "Action",
+        title: "Call Me by Your Name",
+        year: 2017,
+        genre: "Romance",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/gXiE0WveDnT0n5J4sW9TMxXF4oT.jpg"
     },
     {
-        title: "Movie 871",
-        year: 2024,
-        genre: "Action",
+        title: "Blade Runner 2049",
+        year: 2017,
+        genre: "Sci-Fi",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/gajva2L0rPYkEWjzgFlBXCAVBE5.jpg"
     },
     {
-        title: "Movie 872",
-        year: 2024,
-        genre: "Action",
+        title: "The Florida Project",
+        year: 2017,
+        genre: "Drama",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/bnSTP1PY2fDyat0eUa4QtGX8bNH.jpg"
     },
     {
-        title: "Movie 873",
-        year: 2024,
-        genre: "Action",
+        title: "A Quiet Place",
+        year: 2018,
+        genre: "Horror",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/nAU74GmpUk7t5iklEp3bufwDq4n.jpg"
     },
     {
-        title: "Movie 874",
-        year: 2024,
+        title: "Black Panther",
+        year: 2018,
         genre: "Action",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/uxzzxijgPIY7slzFvMotPv8wjKA.jpg"
     },
     {
-        title: "Movie 875",
-        year: 2024,
+        title: "Avengers: Infinity War",
+        year: 2018,
         genre: "Action",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg"
     },
     {
-        title: "Movie 876",
-        year: 2024,
+        title: "Mission: Impossible - Fallout",
+        year: 2018,
         genre: "Action",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/AkjD1i0LmZQfLzA3T1V5q1U0z0X.jpg"
     },
     {
-        title: "Movie 877",
-        year: 2024,
-        genre: "Action",
+        title: "First Man",
+        year: 2018,
+        genre: "Drama",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/i91mfvFcSru6F6qlr7x0HlH5HlH.jpg"
     },
     {
-        title: "Movie 878",
-        year: 2024,
-        genre: "Action",
+        title: "Roma",
+        year: 2018,
+        genre: "Drama",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/6ZHxQ8fNE4X7pUQJ4XzX0XzX0Xz.jpg"
     },
     {
-        title: "Movie 879",
-        year: 2024,
-        genre: "Action",
+        title: "The Favourite",
+        year: 2018,
+        genre: "Drama",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/kWuvfEFb7Uj8e2hpwCbV5K1Q5lF.jpg"
     },
     {
-        title: "Movie 880",
-        year: 2024,
-        genre: "Action",
+        title: "Bohemian Rhapsody",
+        year: 2018,
+        genre: "Biography",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/lHu1wtNaczFPGFDTrjCSzeLPTKN.jpg"
     },
     {
-        title: "Movie 881",
-        year: 2024,
-        genre: "Action",
+        title: "Green Book",
+        year: 2018,
+        genre: "Drama",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/7BsvSuDQuoqhWmU2fL7W2GcgrC1.jpg"
     },
     {
-        title: "Movie 882",
-        year: 2024,
-        genre: "Action",
+        title: "Spider-Man: Into the Spider-Verse",
+        year: 2018,
+        genre: "Animation",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/iiLAGb4f0HOZ3JrX9HnZ0XzX0Xz.jpg"
     },
     {
-        title: "Movie 883",
-        year: 2024,
+        title: "Avengers: Endgame",
+        year: 2019,
         genre: "Action",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/ulzhLuWrPK07P1YkdWQLZnQh1JL.jpg"
     },
     {
-        title: "Movie 884",
-        year: 2024,
-        genre: "Action",
+        title: "Joker",
+        year: 2019,
+        genre: "Crime",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg"
     },
     {
-        title: "Movie 885",
-        year: 2024,
-        genre: "Action",
+        title: "Parasite",
+        year: 2019,
+        genre: "Thriller",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg"
     },
     {
-        title: "Movie 886",
-        year: 2024,
-        genre: "Action",
+        title: "Once Upon a Time in Hollywood",
+        year: 2019,
+        genre: "Comedy",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/8j58iEBw9pOXFD2L0nt0ZXeHviB.jpg"
     },
     {
-        title: "Movie 887",
-        year: 2024,
-        genre: "Action",
+        title: "The Irishman",
+        year: 2019,
+        genre: "Crime",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/sYIvh7g0zX8N7m9dZJ0XzX0XzX0.jpg"
     },
     {
-        title: "Movie 888",
-        year: 2024,
-        genre: "Action",
+        title: "1917",
+        year: 2019,
+        genre: "War",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/iZf0KyrE25z1sage4SYFLCCrMi9.jpg"
     },
     {
-        title: "Movie 889",
-        year: 2024,
-        genre: "Action",
+        title: "Knives Out",
+        year: 2019,
+        genre: "Mystery",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/pThyQovXQrw2m0s9x82twj48Jq4.jpg"
     },
     {
-        title: "Movie 890",
-        year: 2024,
-        genre: "Action",
+        title: "Marriage Story",
+        year: 2019,
+        genre: "Drama",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/kb3X943WMIJ8VhJQKt9Lz5XzX0X.jpg"
     },
     {
-        title: "Movie 891",
-        year: 2024,
-        genre: "Action",
+        title: "Little Women",
+        year: 2019,
+        genre: "Drama",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/erj5B5uX0XzX0XzX0XzX0XzX0XzX0Xz.jpg"
     },
     {
-        title: "Movie 892",
-        year: 2024,
-        genre: "Action",
+        title: "The Farewell",
+        year: 2019,
+        genre: "Drama",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/xzX0XzX0XzX0XzX0XzX0XzX0XzX.jpg"
     },
     {
-        title: "Movie 893",
-        year: 2024,
-        genre: "Action",
+        title: "Jojo Rabbit",
+        year: 2019,
+        genre: "Comedy",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/7GsMZ9e4Y0XzX0XzX0XzX0XzX0Xz.jpg"
     },
     {
-        title: "Movie 894",
-        year: 2024,
-        genre: "Action",
+        title: "Ford v Ferrari",
+        year: 2019,
+        genre: "Drama",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/dR1Ju50iudrOh3YgfwkAU1g2HZe.jpg"
     },
     {
-        title: "Movie 895",
-        year: 2024,
-        genre: "Action",
+        title: "The Lighthouse",
+        year: 2019,
+        genre: "Horror",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/3nk9UoepYmv1G9oP18q6JJCeYwN.jpg"
     },
     {
-        title: "Movie 896",
-        year: 2024,
-        genre: "Action",
+        title: "Uncut Gems",
+        year: 2019,
+        genre: "Crime",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/zX0XzX0XzX0XzX0XzX0XzX0XzX0X.jpg"
     },
     {
-        title: "Movie 897",
-        year: 2024,
-        genre: "Action",
+        title: "Midsommar",
+        year: 2019,
+        genre: "Horror",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/7LEI8ulZzO5gy9Ww2NVCrKmN6q.jpg"
     },
     {
-        title: "Movie 898",
-        year: 2024,
-        genre: "Action",
+        title: "The Two Popes",
+        year: 2019,
+        genre: "Drama",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/df3qw7JCFTb0XzX0XzX0XzX0XzX0X.jpg"
     },
     {
-        title: "Movie 899",
-        year: 2024,
-        genre: "Action",
+        title: "Dolemite Is My Name",
+        year: 2019,
+        genre: "Biography",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/1L7MkEkXzX0XzX0XzX0XzX0XzX0Xz.jpg"
     },
     {
-        title: "Movie 900",
-        year: 2024,
-        genre: "Action",
+        title: "The Trial of the Chicago 7",
+        year: 2020,
+        genre: "Drama",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/ahf5cOsGk1XzX0XzX0XzX0XzX0XzX.jpg"
     },
     {
-        title: "Movie 901",
-        year: 2024,
-        genre: "Action",
+        title: "Nomadland",
+        year: 2020,
+        genre: "Drama",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/kf456ZqeC45XTvo6W9pW5clYKfQ.jpg"
     },
     {
-        title: "Movie 902",
-        year: 2024,
-        genre: "Action",
+        title: "Sound of Metal",
+        year: 2020,
+        genre: "Drama",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/6QIE7X0XzX0XzX0XzX0XzX0XzX0Xz.jpg"
     },
     {
-        title: "Movie 903",
-        year: 2024,
-        genre: "Action",
+        title: "Minari",
+        year: 2020,
+        genre: "Drama",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/3ZxX0XzX0XzX0XzX0XzX0XzX0XzX0.jpg"
     },
     {
-        title: "Movie 904",
-        year: 2024,
-        genre: "Action",
+        title: "Promising Young Woman",
+        year: 2020,
+        genre: "Thriller",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/tQ91wWQJ2WRNDXwxuO7GCk5q3PZ.jpg"
     },
     {
-        title: "Movie 905",
-        year: 2024,
-        genre: "Action",
+        title: "The Father",
+        year: 2020,
+        genre: "Drama",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/9Rq14Eyrf7Tu1xk0Pl7VcNbH1xP.jpg"
     },
     {
-        title: "Movie 906",
-        year: 2024,
-        genre: "Action",
+        title: "Soul",
+        year: 2020,
+        genre: "Animation",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/hm58Jw4Lw8OIeECIq5qyPYhAeRJ.jpg"
     },
     {
-        title: "Movie 907",
-        year: 2024,
+        title: "Tenet",
+        year: 2020,
         genre: "Action",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/k68nPLb4836WQzLd0Cec8XzX0XzX.jpg"
     },
     {
-        title: "Movie 908",
-        year: 2024,
-        genre: "Action",
+        title: "The Invisible Man",
+        year: 2020,
+        genre: "Horror",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/5EufsDwXdY2CVttYOk2WtYhgKpa.jpg"
     },
     {
-        title: "Movie 909",
-        year: 2024,
-        genre: "Action",
+        title: "Palm Springs",
+        year: 2020,
+        genre: "Comedy",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/yf5IuMW6GHghuXzX0XzX0XzX0XzX0X.jpg"
     },
     {
-        title: "Movie 910",
-        year: 2024,
-        genre: "Action",
+        title: "The White Tiger",
+        year: 2021,
+        genre: "Drama",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/5mzr6JZbrqnqD8rCEvPhuXzX0XzX.jpg"
     },
     {
-        title: "Movie 911",
-        year: 2024,
-        genre: "Action",
+        title: "Judas and the Black Messiah",
+        year: 2021,
+        genre: "Biography",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/iIgr75GoqFxe1X5Wz9siOODGe9u.jpg"
     },
     {
-        title: "Movie 912",
-        year: 2024,
-        genre: "Action",
+        title: "The Mitchells vs. The Machines",
+        year: 2021,
+        genre: "Animation",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/1L7MkEkXzX0XzX0XzX0XzX0XzX0Xz.jpg"
     },
     {
-        title: "Movie 913",
-        year: 2024,
-        genre: "Action",
+        title: "CODA",
+        year: 2021,
+        genre: "Drama",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/BzVjmm8l23rPsijLiNLUzuQtyd.jpg"
     },
     {
-        title: "Movie 914",
-        year: 2024,
-        genre: "Action",
+        title: "Dune",
+        year: 2021,
+        genre: "Sci-Fi",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/d5NXSklXo0qyIYkgV94XAgMIckC.jpg"
     },
     {
-        title: "Movie 915",
-        year: 2024,
-        genre: "Action",
+        title: "The Power of the Dog",
+        year: 2021,
+        genre: "Drama",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/kEy48iCzGnp0ao6J1Z6X0XzX0XzX.jpg"
     },
     {
-        title: "Movie 916",
-        year: 2024,
-        genre: "Action",
+        title: "West Side Story",
+        year: 2021,
+        genre: "Musical",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/5e8k8b2X0XzX0XzX0XzX0XzX0XzX0.jpg"
     },
     {
-        title: "Movie 917",
-        year: 2024,
-        genre: "Action",
+        title: "Licorice Pizza",
+        year: 2021,
+        genre: "Comedy",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/jD98aUKHQZNAmrk0wQQ9wmNQPnP.jpg"
     },
     {
-        title: "Movie 918",
-        year: 2024,
-        genre: "Action",
+        title: "Nightmare Alley",
+        year: 2021,
+        genre: "Thriller",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/680klE0dIreQOy6FcXQxrpr9mAt.jpg"
     },
     {
-        title: "Movie 919",
-        year: 2024,
-        genre: "Action",
+        title: "The Tragedy of Macbeth",
+        year: 2021,
+        genre: "Drama",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/9Rq14Eyrf7Tu1xk0Pl7VcNbH1xP.jpg"
     },
     {
-        title: "Movie 920",
-        year: 2024,
-        genre: "Action",
+        title: "Everything Everywhere All at Once",
+        year: 2022,
+        genre: "Sci-Fi",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/rJHC1RUORuUhtfNb4Npclx0xnOf.jpg"
     },
     {
-        title: "Movie 921",
-        year: 2024,
-        genre: "Action",
+        title: "The Banshees of Inisherin",
+        year: 2022,
+        genre: "Comedy",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/4yFG6cSPaCaPhyJ1vtGOtMD1lgh.jpg"
     },
     {
-        title: "Movie 922",
-        year: 2024,
-        genre: "Action",
+        title: "Tár",
+        year: 2022,
+        genre: "Drama",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/2LqaLgk4Z226KkgPJuiOQ58wvrm.jpg"
     },
     {
-        title: "Movie 923",
-        year: 2024,
+        title: "Top Gun: Maverick",
+        year: 2022,
         genre: "Action",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/62HCnUTziyWcpDaBO2i1DX17ljH.jpg"
     },
     {
-        title: "Movie 924",
-        year: 2024,
-        genre: "Action",
+        title: "The Fabelmans",
+        year: 2022,
+        genre: "Drama",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/d2IywyOPS78vEnJvwVqkVRTiNC1.jpg"
     },
     {
-        title: "Movie 925",
-        year: 2024,
-        genre: "Action",
+        title: "Women Talking",
+        year: 2022,
+        genre: "Drama",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/26yQPXymbWeCLKwcmyL8dRjAzth.jpg"
     },
     {
-        title: "Movie 926",
-        year: 2024,
-        genre: "Action",
+        title: "Triangle of Sadness",
+        year: 2022,
+        genre: "Comedy",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/kU6DqdjxwyK8Lt3b7fMxXzX0XzX0.jpg"
     },
     {
-        title: "Movie 927",
-        year: 2024,
-        genre: "Action",
+        title: "All Quiet on the Western Front",
+        year: 2022,
+        genre: "War",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/hYqOjJ7Gh1fbqXrxlIao1g8ZehF.jpg"
     },
     {
-        title: "Movie 928",
-        year: 2024,
-        genre: "Action",
+        title: "The Whale",
+        year: 2022,
+        genre: "Drama",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/jQjcGgSqXwE9zX0XzX0XzX0XzX0Xz.jpg"
     },
     {
-        title: "Movie 929",
-        year: 2024,
-        genre: "Action",
+        title: "Avatar: The Way of Water",
+        year: 2022,
+        genre: "Sci-Fi",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg"
     },
     {
-        title: "Movie 930",
-        year: 2024,
-        genre: "Action",
+        title: "Oppenheimer",
+        year: 2023,
+        genre: "Drama",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/8Gv8nW7kTW6XzX0XzX0XzX0XzX0Xz.jpg"
     },
     {
-        title: "Movie 931",
-        year: 2024,
-        genre: "Action",
+        title: "Barbie",
+        year: 2023,
+        genre: "Comedy",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/iuFNMS8U5cb6xfzi51Dbkovj7vM.jpg"
     },
     {
-        title: "Movie 932",
-        year: 2024,
-        genre: "Action",
+        title: "Killers of the Flower Moon",
+        year: 2023,
+        genre: "Drama",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/dB6Krk806zeqd0YNp2ngQ9zXteH.jpg"
     },
     {
-        title: "Movie 933",
-        year: 2024,
-        genre: "Action",
+        title: "Poor Things",
+        year: 2023,
+        genre: "Comedy",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/kCGlIMHnOm8JPXq3rXM6c5wMxcT.jpg"
     },
     {
-        title: "Movie 934",
-        year: 2024,
-        genre: "Action",
+        title: "The Holdovers",
+        year: 2023,
+        genre: "Comedy",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/2EHsD1XzX0XzX0XzX0XzX0XzX0XzX.jpg"
     },
     {
-        title: "Movie 935",
-        year: 2024,
-        genre: "Action",
+        title: "Anatomy of a Fall",
+        year: 2023,
+        genre: "Drama",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/kQs6keheMwCxJxrzV83VUwFtHkB.jpg"
     },
     {
-        title: "Movie 936",
-        year: 2024,
-        genre: "Action",
+        title: "The Zone of Interest",
+        year: 2023,
+        genre: "Drama",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/5X0XzX0XzX0XzX0XzX0XzX0XzX0Xz.jpg"
     },
     {
-        title: "Movie 937",
-        year: 2024,
-        genre: "Action",
+        title: "American Fiction",
+        year: 2023,
+        genre: "Comedy",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/5a4JXzX0XzX0XzX0XzX0XzX0XzX0X.jpg"
     },
     {
-        title: "Movie 938",
-        year: 2024,
-        genre: "Action",
+        title: "Past Lives",
+        year: 2023,
+        genre: "Drama",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/k3twD4nRjVl3dIYt1ejXXRlXzX0.jpg"
     },
     {
-        title: "Movie 939",
-        year: 2024,
-        genre: "Action",
+        title: "Maestro",
+        year: 2023,
+        genre: "Biography",
         rating: 3.5,
-        poster: "images/movies/placeholder.jpg"
+        poster: "https://image.tmdb.org/t/p/w500/2EHsD1XzX0XzX0XzX0XzX0XzX0XzX.jpg"
     }
 ];
 
