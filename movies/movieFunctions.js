@@ -75,9 +75,24 @@ function createMovieCard(movie, index) {
         <p class="movie-year">${movie.year}</p>
         <p class="movie-genre">${movie.genre}</p>
         <div class="review-section">
-            <textarea class="review-textarea" placeholder="Write your review here..."></textarea>
+            <h4>Your Review</h4>
+            <textarea class="review-textarea" placeholder="Write your thoughts about this film...">${movie.review || ''}</textarea>
+            <button class="save-review">Save Review</button>
         </div>
     `;
+
+    // Add event listener for saving reviews
+    const saveButton = back.querySelector('.save-review');
+    const reviewTextarea = back.querySelector('.review-textarea');
+    
+    saveButton.addEventListener('click', () => {
+        const review = reviewTextarea.value;
+        movie.review = review;
+        saveButton.textContent = 'Saved!';
+        setTimeout(() => {
+            saveButton.textContent = 'Save Review';
+        }, 2000);
+    });
 
     card.appendChild(front);
     card.appendChild(back);
@@ -113,7 +128,6 @@ function createMovieCard(movie, index) {
         }
     });
 
-    card.addEventListener('click', () => openModal(index, movie.title, movie.year));
     return card;
 }
 
@@ -152,18 +166,20 @@ async function filterMovies() {
     });
 
     // Sort movies
-    filteredMovies.sort((a, b) => {
-        switch(sortFilter) {
-            case 'year':
-                return b.year - a.year;
-            case 'title':
-                return a.title.localeCompare(b.title);
-            case 'rating':
-                return (b.rating || 0) - (a.rating || 0);
-            default:
-                return 0;
-        }
-    });
+    if (sortFilter !== 'none') {
+        filteredMovies.sort((a, b) => {
+            switch(sortFilter) {
+                case 'year':
+                    return b.year - a.year;
+                case 'title':
+                    return a.title.localeCompare(b.title);
+                case 'rating':
+                    return (b.rating || 0) - (a.rating || 0);
+                default:
+                    return 0;
+            }
+        });
+    }
 
     try {
         // Create and append movie cards with a slight delay between each
@@ -213,17 +229,6 @@ function setupEventListeners() {
     document.getElementById('genre-filter').addEventListener('change', filterMovies);
     document.getElementById('year-filter').addEventListener('change', filterMovies);
     document.getElementById('sort-filter').addEventListener('change', filterMovies);
-    
-    document.querySelector('.close-modal').addEventListener('click', closeModalHandler);
-    
-    const stars = document.querySelectorAll('.star');
-    stars.forEach((star, index) => {
-        star.addEventListener('click', () => handleStarClick(index));
-        star.addEventListener('mouseover', () => previewRating(index));
-        star.addEventListener('mouseout', resetRating);
-    });
-    
-    document.querySelector('.submit-rating').addEventListener('click', submitRatingHandler);
 }
 
 // Debounce function to prevent too many filter operations while typing
@@ -237,68 +242,6 @@ function debounce(func, wait) {
         clearTimeout(timeout);
         timeout = setTimeout(later, wait);
     };
-}
-
-// Modal functions
-function openModal(movieId, title, year) {
-    const modal = document.querySelector('.modal');
-    document.querySelector('.modal-title').textContent = `${title} (${year})`;
-    modal.style.display = 'block';
-    currentMovieId = movieId;
-    resetRating();
-}
-
-function closeModalHandler() {
-    document.querySelector('.modal').style.display = 'none';
-}
-
-// Rating functions
-let currentRating = 0;
-let currentMovieId = null;
-
-function handleStarClick(index) {
-    currentRating = index + 1;
-    updateStars();
-}
-
-function previewRating(index) {
-    const stars = document.querySelectorAll('.star');
-    stars.forEach((star, i) => {
-        star.style.color = i <= index ? '#ffd700' : '#ccc';
-    });
-}
-
-function updateStars() {
-    const stars = document.querySelectorAll('.star');
-    stars.forEach((star, index) => {
-        star.style.color = index < currentRating ? '#ffd700' : '#ccc';
-    });
-}
-
-function resetRating() {
-    const stars = document.querySelectorAll('.star');
-    stars.forEach(star => star.style.color = '#ccc');
-}
-
-function submitRatingHandler() {
-    if (currentMovieId === null) return;
-    
-    const comment = document.getElementById('rating-comment').value;
-    movies[currentMovieId].rating = currentRating;
-    
-    // Here you would typically send the rating and comment to a server
-    console.log(`Movie: ${movies[currentMovieId].title}`);
-    console.log(`Rating: ${currentRating}`);
-    console.log(`Comment: ${comment}`);
-    
-    // Close modal and reset
-    closeModalHandler();
-    document.getElementById('rating-comment').value = '';
-    currentRating = 0;
-    currentMovieId = null;
-    
-    // Refresh the display
-    filterMovies();
 }
 
 // Film grain effect
