@@ -154,16 +154,46 @@ let currentRating = 0;
 // Initialize the page
 document.addEventListener('DOMContentLoaded', () => {
     if (moviesGrid) {
-        renderMovies();
+        filterMovies(); // This will handle the initial render with default filters
     }
     setupEventListeners();
     addFilmGrainEffect();
 });
 
-// Render movies
-function renderMovies() {
+// Movie filtering
+function filterMovies() {
+    const selectedGenre = genreFilter.value;
+    const selectedYear = yearFilter.value;
+    const selectedSort = document.getElementById('sort-filter').value;
+    
+    // Filter movies
+    let filteredMovies = movies.filter(movie => {
+        const genreMatch = selectedGenre === 'all' || movie.genre === selectedGenre;
+        const yearMatch = selectedYear === 'all' || 
+            (movie.year >= parseInt(selectedYear) && movie.year < parseInt(selectedYear) + 10);
+        
+        return genreMatch && yearMatch;
+    });
+
+    // Sort movies
+    filteredMovies.sort((a, b) => {
+        switch(selectedSort) {
+            case 'rating':
+                return b.rating - a.rating;
+            case 'year':
+                return b.year - a.year;
+            case 'title':
+                return a.title.localeCompare(b.title);
+            default:
+                return 0;
+        }
+    });
+
+    // Clear and rebuild the grid
     moviesGrid.innerHTML = '';
-    movies.forEach(movie => {
+    
+    // Add movies to grid
+    filteredMovies.forEach(movie => {
         const movieCard = document.createElement('div');
         movieCard.className = 'movie-card';
         movieCard.dataset.genre = movie.genre;
@@ -175,6 +205,7 @@ function renderMovies() {
             <div class="movie-info">
                 <h3 class="movie-title">${movie.title}</h3>
                 <p class="movie-year">${movie.year}</p>
+                <div class="movie-rating">Rating: ${movie.rating.toFixed(1)} ★</div>
             </div>
         `;
         
@@ -188,6 +219,7 @@ function setupEventListeners() {
     // Filter events
     genreFilter?.addEventListener('change', filterMovies);
     yearFilter?.addEventListener('change', filterMovies);
+    document.getElementById('sort-filter')?.addEventListener('change', filterMovies);
     
     // Modal events
     closeModal?.addEventListener('click', closeModalHandler);
@@ -212,24 +244,6 @@ function setupEventListeners() {
         if (e.key === 'Escape' && modal?.style.display === 'block') {
             closeModalHandler();
         }
-    });
-}
-
-// Movie filtering
-function filterMovies() {
-    const selectedGenre = genreFilter.value;
-    const selectedYear = yearFilter.value;
-    
-    const movieCards = document.querySelectorAll('.movie-card');
-    movieCards.forEach(card => {
-        const genre = card.dataset.genre;
-        const year = parseInt(card.dataset.year);
-        
-        const genreMatch = selectedGenre === 'all' || genre === selectedGenre;
-        const yearMatch = selectedYear === 'all' || 
-            (year >= parseInt(selectedYear) && year < parseInt(selectedYear) + 10);
-        
-        card.style.display = genreMatch && yearMatch ? 'block' : 'none';
     });
 }
 
