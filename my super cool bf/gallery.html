@@ -129,15 +129,16 @@
 
         .grid-sizer,
         .grid-item {
-            width: 25%; /* 4 columns without gap calculation */
+            width: 25%; /* 4 columns */
         }
 
         .grid-item {
-            margin-bottom: 0.25px;
+            margin-bottom: 8px; /* Consistent bottom margin */
             position: relative;
             line-height: 0;
             opacity: 0;
             transition: opacity 0.3s ease-out;
+            padding: 0 4px; /* Add padding for gap between items */
         }
 
         .grid-item.visible {
@@ -220,30 +221,30 @@
         }
 
         @media (max-width: 768px) {
+            .masonry-grid {
+                padding: 0 12px;
+                margin: 0 auto;
+            }
+            
             .grid-sizer,
             .grid-item {
                 width: 50%; /* 2 columns */
             }
-            
-            .masonry-grid {
-                padding: 0;
-            }
 
-            .hover-text {
-                padding: 0.8rem;
-                font-size: 0.9rem;
+            .grid-item {
+                padding: 0 6px; /* Slightly larger padding on mobile */
+                margin-bottom: 12px; /* Larger bottom margin on mobile */
             }
         }
 
         @media (max-width: 480px) {
+            .masonry-grid {
+                padding: 0 8px;
+            }
+            
             .grid-sizer,
             .grid-item {
                 width: 50%; /* Maintain 2 columns */
-            }
-            
-            .hover-text {
-                padding: 0.5rem;
-                font-size: 0.8rem;
             }
         }
 
@@ -467,7 +468,7 @@
                         itemSelector: '.grid-item',
                         columnWidth: '.grid-sizer',
                         percentPosition: true,
-                        gutter: 1, // Minimal gap between columns
+                        gutter: 0, // Remove gutter since we're using padding
                         fitWidth: true,
                         horizontalOrder: true
                     });
@@ -485,7 +486,7 @@
                         itemSelector: '.grid-item',
                         columnWidth: '.grid-sizer',
                         percentPosition: true,
-                        gutter: 1, // Maintain same minimal gap
+                        gutter: 0, // Remove gutter since we're using padding
                         fitWidth: true,
                         horizontalOrder: true
                     });
