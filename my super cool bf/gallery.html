@@ -133,12 +133,12 @@
         }
 
         .grid-item {
-            margin-bottom: 8px; /* Consistent bottom margin */
+            margin-bottom: 4px; /* Smaller bottom margin */
             position: relative;
             line-height: 0;
             opacity: 0;
             transition: opacity 0.3s ease-out;
-            padding: 0 4px; /* Add padding for gap between items */
+            padding: 0 2px; /* Smaller padding */
         }
 
         .grid-item.visible {
@@ -222,7 +222,7 @@
 
         @media (max-width: 768px) {
             .masonry-grid {
-                padding: 0 12px;
+                padding: 0 4px;
                 margin: 0 auto;
             }
             
@@ -232,14 +232,14 @@
             }
 
             .grid-item {
-                padding: 0 6px; /* Slightly larger padding on mobile */
-                margin-bottom: 12px; /* Larger bottom margin on mobile */
+                padding: 0 2px; /* Smaller padding on mobile */
+                margin-bottom: 4px; /* Smaller bottom margin on mobile */
             }
         }
 
         @media (max-width: 480px) {
             .masonry-grid {
-                padding: 0 8px;
+                padding: 0 4px;
             }
             
             .grid-sizer,
