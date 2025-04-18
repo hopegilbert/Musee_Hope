@@ -1,8 +1,45 @@
 // Import movies data
 import { movies } from './movieData.js';
 
+// Preload images function
+function preloadImages(movies) {
+    const imagePromises = movies.map(movie => {
+        return new Promise((resolve, reject) => {
+            const img = new Image();
+            img.onload = () => resolve(movie.poster);
+            img.onerror = () => reject(`Failed to load image: ${movie.poster}`);
+            img.src = movie.poster;
+        });
+    });
+    return Promise.all(imagePromises);
+}
+
+// Function to create a movie card
+function createMovieCard(movie, index) {
+    const movieCard = document.createElement('div');
+    movieCard.className = 'movie-card';
+    movieCard.innerHTML = `
+        <div class="movie-card-front">
+            <img class="movie-poster" src="${movie.poster}" alt="${movie.title} Poster" loading="lazy">
+            <div class="movie-info">
+                <h3 class="movie-title">${movie.title}</h3>
+                <p class="movie-year">${movie.year}</p>
+            </div>
+        </div>
+        <div class="movie-card-back">
+            <h3>${movie.title}</h3>
+            <p>${movie.year}</p>
+            <div class="review-section">
+                <textarea class="review-textarea" placeholder="Write your review here..."></textarea>
+            </div>
+        </div>
+    `;
+    movieCard.addEventListener('click', () => openModal(index, movie.title, movie.year));
+    return movieCard;
+}
+
 // Function to filter movies based on selected criteria
-function filterMovies() {
+async function filterMovies() {
     const genreFilter = document.getElementById('genre-filter').value;
     const yearFilter = document.getElementById('year-filter').value;
     const sortFilter = document.getElementById('sort-filter').value;
@@ -10,6 +47,9 @@ function filterMovies() {
 
     // Clear existing movies
     moviesGrid.innerHTML = '';
+    
+    // Show loading state
+    moviesGrid.classList.add('loading');
 
     // Filter and sort movies
     let filteredMovies = movies.filter(movie => {
@@ -36,29 +76,24 @@ function filterMovies() {
         }
     });
 
-    // Create movie cards
-    filteredMovies.forEach((movie, index) => {
-        const movieCard = document.createElement('div');
-        movieCard.className = 'movie-card';
-        movieCard.innerHTML = `
-            <div class="movie-card-front">
-                <img class="movie-poster" src="${movie.poster}" alt="${movie.title} Poster">
-                <div class="movie-info">
-                    <h3>${movie.title}</h3>
-                    <p>${movie.year}</p>
-                </div>
-            </div>
-            <div class="movie-card-back">
-                <h3>${movie.title}</h3>
-                <p>${movie.year}</p>
-                <div class="review-section">
-                    <textarea placeholder="Write your review here..."></textarea>
-                </div>
-            </div>
-        `;
-        movieCard.addEventListener('click', () => openModal(index, movie.title, movie.year));
-        moviesGrid.appendChild(movieCard);
-    });
+    try {
+        // Preload images for filtered movies
+        await preloadImages(filteredMovies);
+        
+        // Create and append movie cards
+        const fragment = document.createDocumentFragment();
+        filteredMovies.forEach((movie, index) => {
+            const movieCard = createMovieCard(movie, index);
+            fragment.appendChild(movieCard);
+        });
+        
+        moviesGrid.appendChild(fragment);
+    } catch (error) {
+        console.error('Error loading images:', error);
+    } finally {
+        // Remove loading state
+        moviesGrid.classList.remove('loading');
+    }
 }
 
 // Event listeners setup
@@ -185,8 +220,16 @@ function addFilmGrainEffect() {
 }
 
 // Initialize everything
-document.addEventListener('DOMContentLoaded', () => {
-    filterMovies();
-    setupEventListeners();
-    addFilmGrainEffect();
+document.addEventListener('DOMContentLoaded', async () => {
+    try {
+        // Preload all movie images first
+        await preloadImages(movies);
+        
+        // Then initialize the UI
+        filterMovies();
+        setupEventListeners();
+        addFilmGrainEffect();
+    } catch (error) {
+        console.error('Error during initialization:', error);
+    }
 }); 
