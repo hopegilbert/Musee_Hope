@@ -58,10 +58,12 @@ function createMovieCard(movie, index) {
 
     const info = document.createElement('div');
     info.className = 'movie-info';
+    const genreColor = getGenreColor(movie.genre || '');
+    const yearColor = getYearColor(movie.year);
     info.innerHTML = `
         <h3 class="movie-title">${movie.title}</h3>
-        <p class="movie-year">${movie.year}</p>
-        <p class="movie-genre">${movie.genre}</p>
+        <p class="movie-year" style="color: ${yearColor}">${movie.year}</p>
+        <p class="movie-genre" style="color: ${genreColor}">${movie.genre || 'Unknown'}</p>
     `;
 
     front.appendChild(placeholder);
@@ -72,8 +74,8 @@ function createMovieCard(movie, index) {
     back.className = 'movie-card-back';
     back.innerHTML = `
         <h3 class="movie-title">${movie.title}</h3>
-        <p class="movie-year">${movie.year}</p>
-        <p class="movie-genre">${movie.genre}</p>
+        <p class="movie-year" style="color: ${yearColor}">${movie.year}</p>
+        <p class="movie-genre" style="color: ${genreColor}">${movie.genre || 'Unknown'}</p>
         <div class="review-section">
             <h4>Your Review</h4>
             <textarea class="review-textarea" placeholder="Write your thoughts about this film...">${movie.review || ''}</textarea>
@@ -112,7 +114,9 @@ function createMovieCard(movie, index) {
     };
 
     // Mouse events
-    card.addEventListener('click', handleFlip);
+    card.addEventListener('click', () => {
+        handleFlip();
+    });
 
     // Touch events
     card.addEventListener('touchstart', (e) => {
@@ -285,6 +289,37 @@ function addFilmGrainEffect() {
     }
     
     animate();
+}
+
+function getGenreColor(genre) {
+    const colors = {
+        'horror': '#ff4d4d',    // Red
+        'thriller': '#ff8533',  // Orange
+        'crime': '#e6b800',     // Gold
+        'drama': '#4d94ff',     // Blue
+        'fantasy': '#9933ff',   // Purple
+        'animation': '#00cc99', // Teal
+        'sci-fi': '#00ffff',   // Cyan
+        'comedy': '#ffff66',    // Yellow
+        'romance': '#ff99cc',   // Pink
+        'war': '#808080',       // Gray
+        'action': '#ff531a',    // Bright Orange-Red
+        'adventure': '#33cc33', // Green
+        'documentary': '#a6a6a6' // Light Gray
+    };
+    return colors[genre.toLowerCase()] || '#666666'; // Default gray if genre not found
+}
+
+function getYearColor(year) {
+    const decade = Math.floor(year / 10) * 10;
+    const colors = {
+        1980: '#ff99cc',  // Pink for 80s
+        1990: '#ff944d',  // Orange for 90s
+        2000: '#80b3ff',  // Light Blue for 00s
+        2010: '#99ff99',  // Light Green for 10s
+        2020: '#cc99ff'   // Purple for 20s
+    };
+    return colors[decade] || '#666666';
 }
 
 // Initialize everything
