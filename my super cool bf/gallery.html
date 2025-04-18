@@ -213,77 +213,37 @@
         }
 
         @media (max-width: 1200px) {
-            .masonry-grid {
-                margin: 0 auto;
-                padding: 0 1rem;
-                max-width: 1200px;
-                width: 100%;
-                position: relative;
-                left: 50%;
-                transform: translateX(-50%);
-            }
-            
             .grid-sizer,
             .grid-item {
                 width: calc(33.333% - 0.25px); /* 3 columns */
             }
-
-            .grid-item {
-                margin-bottom: 0.25px;
-            }
         }
 
         @media (max-width: 768px) {
-            .masonry-grid {
-                margin: 0 auto;
-                padding: 0 0.5rem;
-                max-width: 768px;
-                width: 100%;
-                position: relative;
-                left: 50%;
-                transform: translateX(-50%);
-            }
-            
             .grid-sizer,
             .grid-item {
                 width: calc(50% - 0.25px); /* 2 columns */
             }
-
-            .grid-item {
-                margin-bottom: 0.25px;
+            
+            .masonry-grid {
+                padding: 0 0.5rem;
             }
 
             .hover-text {
-                width: 80%;
-                padding: 0.5rem;
-                font-size: 0.8rem;
+                padding: 0.8rem;
+                font-size: 0.9rem;
             }
         }
 
         @media (max-width: 480px) {
-            .masonry-grid {
-                margin: 0 auto;
-                padding: 0 0.25rem;
-                max-width: 480px;
-                width: 100%;
-                position: relative;
-                left: 50%;
-                transform: translateX(-50%);
-            }
-            
             .grid-sizer,
             .grid-item {
-                width: calc(50% - 0.125px); /* Keep 2 columns but reduce gap */
+                width: calc(50% - 0.25px); /* Maintain 2 columns on very small screens */
             }
-
-            .grid-item {
-                margin-bottom: 0.125px;
-            }
-
+            
             .hover-text {
-                width: 90%;
-                padding: 0.25rem;
-                font-size: 0.75rem;
+                padding: 0.5rem;
+                font-size: 0.8rem;
             }
         }
 
