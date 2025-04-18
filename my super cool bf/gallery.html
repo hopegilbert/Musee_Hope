@@ -107,6 +107,7 @@
         /* Gallery styles */
         .masonry-grid {
             width: 100%;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 1rem;
         }
@@ -358,7 +359,8 @@
                     new Masonry(gallery, {
                         itemSelector: '.grid-item',
                         percentPosition: true,
-                        gutter: 16
+                        gutter: 16,
+                        fitWidth: true
                     });
                 });
             }
