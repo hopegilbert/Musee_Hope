@@ -148,15 +148,29 @@
             position: relative;
             display: block;
             width: 100%;
+            height: 0;
+            padding-bottom: 100%;
             cursor: pointer;
             overflow: hidden;
+            border-radius: 6px;
+            background: rgba(0, 0, 0, 0.05);
+            line-height: 0;
         }
 
-        .image-wrapper img {
-            display: block;
+        .grid-item img {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            height: auto;
+            height: 100%;
+            object-fit: cover;
+            display: block;
             transition: all 0.3s ease;
+            margin: 0; /* Remove any default margins */
+        }
+
+        .image-wrapper:hover img {
+            filter: brightness(0.3);
         }
 
         .hover-text {
@@ -201,7 +215,7 @@
         @media (max-width: 1200px) {
             .grid-sizer,
             .grid-item {
-                width: calc(33.333% - 0.25px); /* 3 columns */
+                width: calc(33.333% - 0.167px); /* 3 columns */
             }
             .masonry-grid {
                 padding: 0 0.75rem;
@@ -211,7 +225,7 @@
         @media (max-width: 768px) {
             .grid-sizer,
             .grid-item {
-                width: calc(50% - 0.25px); /* 2 columns */
+                width: calc(50% - 0.125px); /* 2 columns */
             }
             .masonry-grid {
                 padding: 0 0.5rem;
@@ -221,7 +235,7 @@
         @media (max-width: 480px) {
             .grid-sizer,
             .grid-item {
-                width: calc(100% - 0.25px); /* 1 column */
+                width: calc(50% - 0.125px); /* Keep 2 columns */
             }
             .masonry-grid {
                 padding: 0 0.25rem;
@@ -403,7 +417,6 @@
                     img.onload = () => {
                         const aspectRatio = (img.naturalHeight / img.naturalWidth) * 100;
                         wrapper.style.paddingBottom = `${aspectRatio}%`;
-                        gridItem.classList.add('visible');
                     };
                     
                     img.src = item.src;
@@ -445,6 +458,25 @@
 
                 // Initialize Masonry after all images are loaded
                 imagesLoaded(gallery, function() {
+                    new Masonry(gallery, {
+                        itemSelector: '.grid-item',
+                        columnWidth: '.grid-sizer',
+                        percentPosition: true,
+                        gutter: 0.25, // Reduced to 0.25px gap
+                        initLayout: true,
+                        fitWidth: true, // Enable fitWidth for better column distribution
+                        horizontalOrder: true // Maintain horizontal order to prevent gaps
+                    });
+
+                    // Make all items visible immediately after Masonry initializes
+                    const gridItems = document.querySelectorAll('.grid-item');
+                    gridItems.forEach(item => {
+                        item.classList.add('visible');
+                    });
+                });
+
+                // Re-layout Masonry when window is resized
+                window.addEventListener('resize', function() {
                     const msnry = new Masonry(gallery, {
                         itemSelector: '.grid-item',
                         columnWidth: '.grid-sizer',
@@ -453,11 +485,7 @@
                         fitWidth: true,
                         horizontalOrder: true
                     });
-
-                    // Re-layout Masonry when window is resized
-                    window.addEventListener('resize', function() {
-                        msnry.layout();
-                    });
+                    msnry.layout();
                 });
             }
 
