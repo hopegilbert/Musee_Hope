@@ -809,3 +809,16 @@ body::after {
     font-size: 1.2rem;
     letter-spacing: 1px;
 }
+
+.loading-indicator {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    border-radius: 8px;
+    z-index: 1000;
+    font-size: 1.2em;
+}
