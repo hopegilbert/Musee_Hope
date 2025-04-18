@@ -17,7 +17,29 @@ document.addEventListener("DOMContentLoaded", () => {
   const grid = document.querySelector(".masonry-grid");
   const gridItems = document.querySelectorAll(".grid-item");
 
-  // Lazy-load observer
+  // Function to add visible class with delay
+  function addVisibleWithDelay(item, delay) {
+    setTimeout(() => {
+      item.classList.add("visible");
+    }, delay);
+  }
+
+  // Initial load animation
+  function animateInitialItems() {
+    const viewportHeight = window.innerHeight;
+    gridItems.forEach((item, index) => {
+      const rect = item.getBoundingClientRect();
+      if (rect.top < viewportHeight) {
+        addVisibleWithDelay(item, index * 100); // 100ms delay between each item
+      }
+    });
+    // Add loaded class to grid after a small delay
+    setTimeout(() => {
+      grid.classList.add("loaded");
+    }, 100);
+  }
+
+  // Scroll animation
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -29,15 +51,24 @@ document.addEventListener("DOMContentLoaded", () => {
     threshold: 0.1
   });
 
-  gridItems.forEach(item => observer.observe(item));
-
-  // Wait until images are loaded, then Masonry
+  // Wait until images are loaded
   imagesLoaded(grid, () => {
     new Masonry(grid, {
       itemSelector: ".grid-item",
       columnWidth: ".grid-item",
       gutter: 10,
       percentPosition: true
+    });
+    
+    // Start initial animation
+    animateInitialItems();
+    
+    // Observe items for scroll animation
+    gridItems.forEach(item => {
+      const rect = item.getBoundingClientRect();
+      if (rect.top >= window.innerHeight) {
+        observer.observe(item);
+      }
     });
   });
 });
