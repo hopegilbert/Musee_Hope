@@ -171,6 +171,7 @@
             z-index: 2;
             pointer-events: none;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             width: 100%;
@@ -184,11 +185,19 @@
         .hover-text p {
             margin: 0;
             padding: 0;
+            width: 100%;
         }
 
         .hover-text .date {
             font-weight: bold;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.25rem;
+            font-size: 1rem;
+        }
+
+        .hover-text .description {
+            margin-top: 0.75rem;
+            font-size: 0.9rem;
+            opacity: 0.9;
         }
 
         .image-wrapper:hover .hover-text {
@@ -415,14 +424,23 @@
                     // Split caption into date and description
                     const captionParts = item.caption.split(' - ');
                     if (captionParts.length === 2) {
+                        const [dateAndTitle, description] = captionParts;
+                        const [date, title] = dateAndTitle.split(' ');
+                        
                         const dateSpan = document.createElement('p');
                         dateSpan.className = 'date';
-                        dateSpan.textContent = captionParts[0];
+                        dateSpan.textContent = date;
+                        
+                        const titleP = document.createElement('p');
+                        titleP.className = 'date';
+                        titleP.textContent = title;
                         
                         const descP = document.createElement('p');
-                        descP.textContent = captionParts[1];
+                        descP.className = 'description';
+                        descP.textContent = description;
                         
                         hoverText.appendChild(dateSpan);
+                        hoverText.appendChild(titleP);
                         hoverText.appendChild(descP);
                     } else {
                         hoverText.textContent = item.caption;
