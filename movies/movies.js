@@ -268,7 +268,6 @@ function filterMovies() {
             <div class="movie-info">
                 <h3 class="movie-title">${movie.title}</h3>
                 <p class="movie-year">${movie.year}</p>
-                <div class="movie-rating">Rating: ${movie.rating.toFixed(1)} ★</div>
             </div>
         `;
         
