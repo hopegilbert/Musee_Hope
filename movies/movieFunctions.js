@@ -40,10 +40,12 @@ function createMovieCard(movie, index) {
 
 // Function to filter movies based on selected criteria
 async function filterMovies() {
+    const searchInput = document.getElementById('search-input');
     const genreFilter = document.getElementById('genre-filter').value;
     const yearFilter = document.getElementById('year-filter').value;
     const sortFilter = document.getElementById('sort-filter').value;
     const moviesGrid = document.querySelector('.movies-grid');
+    const searchTerm = searchInput ? searchInput.value.toLowerCase().trim() : '';
 
     // Clear existing movies
     moviesGrid.innerHTML = '';
@@ -53,13 +55,20 @@ async function filterMovies() {
 
     // Filter and sort movies
     let filteredMovies = movies.filter(movie => {
+        // Search filter
+        const matchesSearch = !searchTerm || 
+            movie.title.toLowerCase().includes(searchTerm) ||
+            movie.genre.toLowerCase().includes(searchTerm) ||
+            movie.year.toString().includes(searchTerm);
+
+        // Genre filter
         const matchesGenre = genreFilter === 'all' || movie.genre === genreFilter;
-        const matchesYear = yearFilter === 'all' || 
-            (yearFilter === '1980' && movie.year >= 1980 && movie.year < 1990) ||
-            (yearFilter === '1990' && movie.year >= 1990 && movie.year < 2000) ||
-            (yearFilter === '2000' && movie.year >= 2000 && movie.year < 2010) ||
-            (yearFilter === '2010' && movie.year >= 2010 && movie.year < 2020);
-        return matchesGenre && matchesYear;
+
+        // Decade filter
+        const decade = Math.floor(movie.year / 10) * 10;
+        const matchesYear = yearFilter === 'all' || decade.toString() === yearFilter;
+
+        return matchesSearch && matchesGenre && matchesYear;
     });
 
     // Sort movies
@@ -70,7 +79,7 @@ async function filterMovies() {
             case 'title':
                 return a.title.localeCompare(b.title);
             case 'rating':
-                return b.rating - a.rating;
+                return (b.rating || 0) - (a.rating || 0);
             default:
                 return 0;
         }
@@ -88,6 +97,14 @@ async function filterMovies() {
         });
         
         moviesGrid.appendChild(fragment);
+
+        // Update movie count or show no results message
+        if (filteredMovies.length === 0) {
+            const noResults = document.createElement('div');
+            noResults.className = 'no-results';
+            noResults.textContent = 'No movies found matching your criteria';
+            moviesGrid.appendChild(noResults);
+        }
     } catch (error) {
         console.error('Error loading images:', error);
     } finally {
@@ -98,6 +115,11 @@ async function filterMovies() {
 
 // Event listeners setup
 function setupEventListeners() {
+    const searchInput = document.getElementById('search-input');
+    if (searchInput) {
+        searchInput.addEventListener('input', debounce(filterMovies, 300));
+    }
+    
     document.getElementById('genre-filter').addEventListener('change', filterMovies);
     document.getElementById('year-filter').addEventListener('change', filterMovies);
     document.getElementById('sort-filter').addEventListener('change', filterMovies);
@@ -112,6 +134,19 @@ function setupEventListeners() {
     });
     
     document.querySelector('.submit-rating').addEventListener('click', submitRatingHandler);
+}
+
+// Debounce function to prevent too many filter operations while typing
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
 }
 
 // Modal functions

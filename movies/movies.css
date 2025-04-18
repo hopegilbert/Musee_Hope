@@ -232,6 +232,28 @@ select:hover {
     border-color: var(--accent-color);
 }
 
+.search-input {
+    font-family: 'IBM Plex Mono', monospace;
+    padding: 0.8rem 1.5rem;
+    background-color: rgba(65, 105, 225, 0.1);
+    color: var(--text-color);
+    border: 1px solid var(--primary-color);
+    border-radius: 4px;
+    min-width: 250px;
+    transition: all 0.3s ease;
+}
+
+.search-input:hover,
+.search-input:focus {
+    background-color: rgba(65, 105, 225, 0.2);
+    border-color: var(--accent-color);
+    outline: none;
+}
+
+.search-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
 /* Movies Grid Styles */
 .movies-grid {
     display: grid;
@@ -826,4 +848,16 @@ body::after {
     color: var(--text-color);
     font-size: 1.2rem;
     letter-spacing: 1px;
+}
+
+.no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 2rem;
+    font-size: 1.2rem;
+    color: var(--text-color);
+    background: rgba(65, 105, 225, 0.1);
+    border: 1px solid var(--primary-color);
+    border-radius: 8px;
+    margin: 2rem 0;
 }
