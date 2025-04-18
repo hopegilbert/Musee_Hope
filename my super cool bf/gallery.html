@@ -129,7 +129,7 @@
 
         .grid-sizer,
         .grid-item {
-            width: calc(25% - 0.25px); /* 4 columns with 0.25px gap */
+            width: 25%; /* 4 columns without gap calculation */
         }
 
         .grid-item {
@@ -215,18 +215,18 @@
         @media (max-width: 1200px) {
             .grid-sizer,
             .grid-item {
-                width: calc(33.333% - 0.25px); /* 3 columns */
+                width: 33.333%; /* 3 columns */
             }
         }
 
         @media (max-width: 768px) {
             .grid-sizer,
             .grid-item {
-                width: calc(50% - 0.25px); /* 2 columns */
+                width: 50%; /* 2 columns */
             }
             
             .masonry-grid {
-                padding: 0 0.5rem;
+                padding: 0;
             }
 
             .hover-text {
@@ -238,7 +238,7 @@
         @media (max-width: 480px) {
             .grid-sizer,
             .grid-item {
-                width: calc(50% - 0.25px); /* Maintain 2 columns on very small screens */
+                width: 50%; /* Maintain 2 columns */
             }
             
             .hover-text {
@@ -467,7 +467,7 @@
                         itemSelector: '.grid-item',
                         columnWidth: '.grid-sizer',
                         percentPosition: true,
-                        gutter: 0.25,
+                        gutter: 1, // Minimal gap between columns
                         fitWidth: true,
                         horizontalOrder: true
                     });
@@ -485,7 +485,7 @@
                         itemSelector: '.grid-item',
                         columnWidth: '.grid-sizer',
                         percentPosition: true,
-                        gutter: 0.25,
+                        gutter: 1, // Maintain same minimal gap
                         fitWidth: true,
                         horizontalOrder: true
                     });
