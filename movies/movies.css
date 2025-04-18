@@ -1,5 +1,7 @@
 /* Base Styles */
 /* Updated with film reel color scheme - April 2024 */
+@import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
+
 :root {
     --primary-color: #4169E1; /* Bright royal blue */
     --secondary-color: #000033; /* Deep navy/black */
@@ -137,12 +139,13 @@ body::before {
 }
 
 h1 {
-    font-family: 'Monoton', cursive;
+    font-family: "Monoton", sans-serif;
+    font-weight: 400;
+    font-style: normal;
     margin: 0;
     font-size: 4rem;
     text-transform: uppercase;
     letter-spacing: 4px;
-    font-weight: 400;
     color: var(--primary-color);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5),
                  0 0 15px rgba(255, 215, 0, 0.8),

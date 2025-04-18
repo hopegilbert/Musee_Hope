@@ -6,10 +6,27 @@ const movies = [
         year: 1942,
         genre: "Drama",
         rating: 4.8,
-        poster: "https://example.com/casablanca.jpg",
+        poster: "images/movies/casablanca.jpg",
         description: "A cynical American expatriate meets a former lover in Morocco during World War II."
     },
-    // Add more movies here
+    {
+        id: 2,
+        title: "Citizen Kane",
+        year: 1941,
+        genre: "Drama",
+        rating: 4.9,
+        poster: "images/movies/citizen-kane.jpg",
+        description: "A newspaper tycoon's rise to power and the mystery of his last word: 'Rosebud'."
+    },
+    {
+        id: 3,
+        title: "The Wizard of Oz",
+        year: 1939,
+        genre: "Fantasy",
+        rating: 4.7,
+        poster: "images/movies/wizard-of-oz.jpg",
+        description: "Dorothy and her dog Toto are swept away to the magical Land of Oz."
+    }
 ];
 
 // DOM Elements
@@ -28,9 +45,35 @@ let currentRating = 0;
 
 // Initialize the page
 document.addEventListener('DOMContentLoaded', () => {
+    if (moviesGrid) {
+        renderMovies();
+    }
     setupEventListeners();
     addFilmGrainEffect();
 });
+
+// Render movies
+function renderMovies() {
+    moviesGrid.innerHTML = '';
+    movies.forEach(movie => {
+        const movieCard = document.createElement('div');
+        movieCard.className = 'movie-card';
+        movieCard.dataset.genre = movie.genre;
+        movieCard.dataset.year = movie.year;
+        
+        movieCard.innerHTML = `
+            <img class="movie-poster" src="${movie.poster}" alt="${movie.title}" 
+                 onerror="this.src='images/movies/placeholder.jpg'">
+            <div class="movie-info">
+                <h3 class="movie-title">${movie.title}</h3>
+                <p class="movie-year">${movie.year}</p>
+            </div>
+        `;
+        
+        movieCard.addEventListener('click', () => openModal(movie.id, movie.title, movie.year));
+        moviesGrid.appendChild(movieCard);
+    });
+}
 
 // Event Listeners
 function setupEventListeners() {
