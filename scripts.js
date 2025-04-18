@@ -17,38 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const grid = document.querySelector(".masonry-grid");
   const gridItems = document.querySelectorAll(".grid-item");
 
-  // Function to add visible class with delay
-  function addVisibleWithDelay(item, delay) {
-    setTimeout(() => {
-      item.classList.add("visible");
-    }, delay);
-  }
-
-  // Initial load animation based on visual position
-  function animateInitialItems() {
-    const viewportHeight = window.innerHeight;
-    
-    // Get all items and their positions
-    const itemPositions = Array.from(gridItems).map(item => {
-      const rect = item.getBoundingClientRect();
-      return {
-        element: item,
-        top: rect.top
-      };
-    });
-
-    // Sort by visual position (top to bottom)
-    itemPositions.sort((a, b) => a.top - b.top);
-
-    // Animate in order of visual position
-    itemPositions.forEach((item, index) => {
-      if (item.top < viewportHeight) {
-        addVisibleWithDelay(item.element, index * 100);
-      }
-    });
-  }
-
-  // Scroll animation
+  // Lazy-load observer
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -60,29 +29,16 @@ document.addEventListener("DOMContentLoaded", () => {
     threshold: 0.1
   });
 
-  // Wait until images are loaded
+  gridItems.forEach(item => observer.observe(item));
+
+  // Wait until images are loaded, then Masonry
   imagesLoaded(grid, () => {
-    // Initialize Masonry
-    const msnry = new Masonry(grid, {
+    new Masonry(grid, {
       itemSelector: ".grid-item",
       columnWidth: ".grid-item",
       gutter: 10,
       percentPosition: true
     });
-
-    // Wait a bit for Masonry to settle
-    setTimeout(() => {
-      // Start initial animation
-      animateInitialItems();
-      
-      // Observe items for scroll animation
-      gridItems.forEach(item => {
-        const rect = item.getBoundingClientRect();
-        if (rect.top >= window.innerHeight) {
-          observer.observe(item);
-        }
-      });
-    }, 100);
   });
 });
 
