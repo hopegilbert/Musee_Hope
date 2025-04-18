@@ -162,10 +162,11 @@
             bottom: 0;
             background: rgba(0, 0, 0, 0.7);
             color: var(--beige);
-            padding: 1rem;
+            padding: 1.5rem;
             text-align: center;
             font-family: 'Lora', serif;
             font-size: 0.9rem;
+            line-height: 1.4;
             transition: all 0.3s ease;
             z-index: 2;
             pointer-events: none;
@@ -176,6 +177,18 @@
             height: 100%;
             margin: 0;
             border-radius: 8px;
+            white-space: pre-line;
+            overflow-y: auto;
+        }
+
+        .hover-text p {
+            margin: 0;
+            padding: 0;
+        }
+
+        .hover-text .date {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
         }
 
         .image-wrapper:hover .hover-text {
@@ -372,7 +385,22 @@
                     
                     const hoverText = document.createElement('div');
                     hoverText.className = 'hover-text';
-                    hoverText.textContent = item.caption || '';
+                    
+                    // Split caption into date and description
+                    const captionParts = item.caption.split(' - ');
+                    if (captionParts.length === 2) {
+                        const dateSpan = document.createElement('p');
+                        dateSpan.className = 'date';
+                        dateSpan.textContent = captionParts[0];
+                        
+                        const descP = document.createElement('p');
+                        descP.textContent = captionParts[1];
+                        
+                        hoverText.appendChild(dateSpan);
+                        hoverText.appendChild(descP);
+                    } else {
+                        hoverText.textContent = item.caption;
+                    }
                     
                     wrapper.appendChild(img);
                     wrapper.appendChild(hoverText);
