@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinematic Musings - My Digital Museum</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="images/movie-icon.ico" type="image/x-icon">
+    <style>
+        /* Header styles */
+        header {
+            text-align: center;
+            padding: 2rem 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        header h1 {
+            font-family: 'Inter', sans-serif;
+            font-size: 2.5rem;
+            color: var(--beige);
+            margin-bottom: 1rem;
+        }
+
+        header p {
+            font-family: 'Lora', serif;
+            font-size: 1.2rem;
+            color: var(--beige);
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+
+        /* Navigation styles */
+        .nav-menu {
+            text-align: center;
+            padding: 1rem 2rem;
+            background-color: var(--beige);
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: var(--text);
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            display: inline-block;
+            padding: 0.5rem 1rem;
+        }
+
+        /* Content styles */
+        .movies-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            font-family: 'Lora', serif;
+            color: var(--beige);
+        }
+
+        .movie-review {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .movie-review:hover {
+            transform: translateY(-5px);
+        }
+
+        .movie-review h2 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--terracotta);
+        }
+
+        .movie-meta {
+            font-size: 0.9rem;
+            color: var(--cream);
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .movie-review p {
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .rating {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            color: var(--terracotta);
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <nav class="nav-menu">
+            <a href="../index.html">HOME</a>
+            <a href="../my super cool bf/my-super-cool-bf.html">ABOUT</a>
+            <a href="../my super cool bf/gallery.html">GALLERY</a>
+            <a href="#memories">MEMORIES</a>
+            <div class="dropdown">
+                <button class="dropbtn">GENIUS WORK</button>
+                <div class="dropdown-content">
+                    <a href="../my super cool bf/feminism-essay.html">Exploring de Beauvoir's Concept of Becoming a Woman</a>
+                </div>
+            </div>
+        </nav>
+
+        <header>
+            <h1>Cinematic Musings of a Questionable Critic</h1>
+            <p>Where pretentious film analysis meets questionable taste. Proceed with caution.</p>
+        </header>
+
+        <div class="movies-content">
+            <!-- Example movie review structure -->
+            <div class="movie-review">
+                <h2>Saltburn</h2>
+                <div class="movie-meta">Watched: January 2024 | Director: Emerald Fennell</div>
+                <p>Coming soon... a very questionable analysis of this masterpiece.</p>
+                <p class="rating">Rating: ★★★★★ (Obviously)</p>
+            </div>
+        </div>
+    </div>
+    <script src="movies.js"></script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+:root {
+    --text: #2C3639;
+    --background: #DCD7C9;
+    --cream: #A27B5C;
+    --terracotta: #3F4E4F;
+    --beige: #2C3639;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--background);
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+}
+
+.page-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Dropdown styles */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    background-color: transparent;
+    color: var(--text);
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.dropbtn:hover {
+    color: var(--terracotta);
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--beige);
+    min-width: 200px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    z-index: 1;
+    border-radius: 8px;
+    padding: 0.5rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 0.5rem;
+}
+
+.dropdown::after {
+    content: '';
+    position: absolute;
+    height: 20px;
+    width: 100%;
+    top: 100%;
+    left: 0;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.dropdown-content a {
+    color: var(--text);
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border-radius: 4px;
+    white-space: normal;
+}
+
+.dropdown-content a:hover {
+    background-color: var(--terracotta);
+    color: var(--cream);
+}
+
+@media (max-width: 768px) {
+    .page-wrapper {
+        padding: 1rem;
+    }
+    
+    .movies-content {
+        padding: 1rem;
+    }
+    
+    .movie-review {
+        padding: 1.5rem;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+}
