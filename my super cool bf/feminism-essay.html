@@ -3,84 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exploring de Beauvoir's Concept of Becoming a Woman - The Boyf Files</title>
+    <title>Exploring de Beauvoir's Concept - The Boyf Files</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Essay specific styles */
-        .essay-container {
+        /* Header styles */
+        header {
+            text-align: center;
+            padding: 2rem 1rem;
             max-width: 800px;
-            margin: 2rem auto;
-            padding: 0 1rem;
+            margin: 0 auto;
         }
 
-        .essay-title {
+        header h1 {
             font-family: 'Inter', sans-serif;
             font-size: 2.5rem;
-            color: var(--text);
-            margin-bottom: 2rem;
-            text-align: center;
+            color: var(--beige);
+            margin-bottom: 1rem;
         }
 
+        /* Essay styles */
         .essay-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
             font-family: 'Lora', serif;
-            font-size: 1.1rem;
             line-height: 1.8;
             color: var(--text);
         }
 
-        .essay-content h2 {
-            font-family: 'Inter', sans-serif;
-            font-size: 1.8rem;
-            color: var(--text);
-            margin: 2rem 0 1rem;
-        }
-
         .essay-content p {
             margin-bottom: 1.5rem;
+            text-align: justify;
         }
 
-        .essay-content ul, .essay-content ol {
-            margin-bottom: 1.5rem;
-            padding-left: 2rem;
+        /* Navigation styles */
+        .nav-menu {
+            text-align: center;
+            padding: 1rem 2rem;
+            background-color: var(--beige);
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
         }
 
-        .essay-content li {
-            margin-bottom: 0.5rem;
-        }
-
-        .references {
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 2px solid var(--beige);
-        }
-
-        .references h2 {
-            font-family: 'Inter', sans-serif;
-            font-size: 1.5rem;
-            color: var(--text);
-            margin-bottom: 1.5rem;
-        }
-
-        .references p {
-            font-size: 0.95rem;
-            margin-bottom: 1rem;
-            padding-left: 2em;
-            text-indent: -2em;
-        }
-
-        .back-link {
-            display: inline-block;
-            margin-top: 2rem;
+        .nav-menu a {
             color: var(--text);
             text-decoration: none;
             font-family: 'Inter', sans-serif;
             font-weight: 500;
             transition: color 0.3s ease;
-        }
-
-        .back-link:hover {
-            color: var(--terracotta);
+            display: inline-block;
+            padding: 0.5rem 1rem;
         }
 
         /* Dropdown styles */
@@ -123,7 +100,6 @@
             margin-top: 0.5rem;
         }
 
-        /* Add padding above dropdown to prevent gap */
         .dropdown::after {
             content: '';
             position: absolute;
@@ -154,52 +130,6 @@
             background-color: var(--terracotta);
             color: var(--cream);
         }
-
-        @media (max-width: 768px) {
-            .dropdown-content {
-                position: static;
-                box-shadow: none;
-                width: 100%;
-            }
-            
-            .dropdown:hover .dropdown-content {
-                display: block;
-            }
-
-            .essay-title {
-                font-size: 2rem;
-            }
-
-            .essay-content h2 {
-                font-size: 1.5rem;
-            }
-        }
-
-        .nav-menu {
-            text-align: center;
-            padding: 1rem 2rem;
-            background-color: var(--beige);
-            border-radius: 12px;
-            margin-bottom: 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 2rem;
-        }
-
-        .nav-menu a {
-            color: var(--text);
-            text-decoration: none;
-            font-family: 'Inter', sans-serif;
-            font-weight: 500;
-            transition: color 0.3s ease;
-            display: inline-block;
-            padding: 0.5rem 1rem;
-        }
-
-        .nav-menu a:hover {
-            color: var(--terracotta);
-        }
     </style>
 </head>
 <body>
@@ -217,19 +147,24 @@
             </div>
         </nav>
 
-        <div class="essay-container">
-            <h1 class="essay-title">Exploring de Beauvoir's Concept of Becoming a Woman</h1>
-            
-            <div class="essay-content">
-                <!-- Content will go here -->
-            </div>
+        <header>
+            <h1>Exploring de Beauvoir's Concept of Becoming a Woman</h1>
+        </header>
 
-            <div class="references">
-                <h2>References</h2>
-                <!-- References will go here -->
-            </div>
+        <div class="essay-content">
+            <p>"One is not born, but rather becomes, a woman" (S. de Beauvoir, 1949). Discuss in relation to Feminist and Queer theory.</p>
 
-            <a href="my-super-cool-bf.html" class="back-link">← Back to About</a>
+            <p>Feminist theory aims to "make intellectual sense of, and then to critique, the subordination of women to men" according to Cudd and Andreasen, (2005), it also "seeks to explain the conditions under which those lives are lived" (Jackson and Jones,1998). Feminist theory takes a focus on ideas of 'gender' which is the socially constructed ideas around 'gender expression' as well as oppressive systems of patriarchy which oppress women through gender relations, impacting all of society.  Feminist theory can be seen as active and moving beyond viewing women as static and homogenous and feminist politics fundamentally aims to tackle gendered inequalities of power, gender norms and the subordination women. In this essay, I aim to focus on a central idea within feminist theory; the idea that gender is constructed and therefore, a woman is not necessarily born a 'woman' but 'becomes' a 'woman' through a plethora of gendered social and epistemological structures as explained in the quote by de Beauvoir. I will firstly explore historic patriarchal knowledge systems and then how feminist thinkers have challenged them through a social constructivist perspective I will also explore de Beauvoir's quote through the ways feminist thinkers are moving past a social construction of gender through new epistemologies as well as taking an intersectional understanding of how race can construct the idea of women in different ways.</p>
+
+            <p>Firstly, I wish to analyse the ways of knowing that have traditionally presented women as being born with pre-determined differences to men through the concepts of 'modernity' and 'mastery'. These ideas can be traced to Enlightenment ways of knowing where women were tied to their bodies and seen as being both 'emotional' and 'irrational'. While men were associated with the mind and seen as 'rationalist' and detached from emotions. These Enlightenment ideas can be seen as one of the 'universal truths' of that time, where knowledge about the world was linked to the mind over the body. Disch and Hawkesworth, (2016) cite Laqueur, (1990) who states that a transition to natural sciences within 'enlightenment metaphysics' proposed the idea of a 'two-sex' model. The epistemology that constructed men and women as opposites and the "social roles and responsibilities" of women were legitimized through human biology instead of "corporeal differences" (Disch and Hawkesworth, 2016, p.5-6).  Political theorists thought that a "reproductive physiology determines individual character and political capacity" and any difference to this was a threat to both society and civilisation (ibid, 2016, p.5). We can see how gender has historically been constructed as a predetermined and objective categorisation of human behaviour and attributes and the critique of this is central to de Beauvoir's quote and feminist theory.</p>
+
+            <p>The 'Social Construction of Gender' is a key principle of Feminist theory and relates to the idea raised by de Beauvoir. Dixon and Jones, (2006, p.49) state that a 'social constructivist' is focused on the differences "between individuals and groups, made and natural objects, types of experience, and aspects of meanings" are not "naively given to us as unmediated parts of reality". The point here is that society shapes what it means to be a woman and pre-determined ideas are not natural or real. Examples of these ideas can be seen through gender norms in workplace positions and perceived attitudes such as women being more caring and passive while men are seen to be more violent and aggressive. Feminist theory and de Beauvoir are critically analysing the origins of such distinctions, from being natural to being socially constructed. I wish to highlight the fluidity of this construction as women are not perceived in a set way, but this perception is mediated by constantly changing and reforming societal values, so the idea of 'becoming' a woman is a fluid and dynamic. This important aspect of de Beauvoir's claim is also explained well by Valentine, (2007,p.18) who refers to a "constant and unpredictable process of becoming". Examples of 'becoming' can also be seen through the 'body' which is a key site of concern for Feminist theory. Gendered perceptions about the ideal body shape and type as well as the sexuality of the body and how it is shown and viewed have changed. Therefore, changes in aspects such as what level and type of sexuality is acceptable and how the gendered body should look are rooted in political and cultural factors which are highly subject to change, meaning that the female body is in this constant state of 'becoming'. Finally, this also contradicts the Enlightenment perceptions of an objective woman, as women can never be seen to 'become', they are instead just constructed in relation to an infinite temporal scale of cultural and social values.</p>
+
+            <p>Feminist scholarship has critiqued the objective and binaries constructions of gender as well as rejecting the idea of a 'view from nowhere' which can also be referred to as the 'god trick gaze' where "the master, the Man, the One God whose Eye produces, appropriates, and orders all difference" (Haraway, 1991, p.193). Instead, a situated form of knowledge is presented by Rose, (1997) which can "see the world from specific locations" rather than from 'nowhere'. I argue that the knowledges around the constant state of construction and becoming are challenged by feminist epistemologies. Here, there is the sense that a social constructivist lens places too much power in the hands of culture. Sarah Haring coins the idea of 'Standpoint Theory' which sees knowledge as 'socially situated' as well as advocating for a focus on the 'lives of the marginalized'. I believe this takes a much more nuanced lens to the idea of 'becoming' a woman which should not just be linked to social construction, but the individual themselves. Donna Haraway builds upon this through the idea of 'situated knowledges' which are both embodied and partial ('never finished') which relates to the constant process of becoming. There are two important areas of Feminist epistemologies that I wish to explore; 'positionality' and 'reflexivity'. Positionality relates to the researcher's 'own social, cultural and subject positions' and reflexivity entails a form of 'self-identification' as according to Haraway, researchers are "not immediately present to ourselves". Rose, (1997) implies that a process of situating is key for all "critical geographies" (p.306) and is a way of "avoiding the false neutrality and universality of so much academic knowledge". Rose, (1997, p.307) states that situatedness leads to knowledges that are "limited, specific and partial" rather than "universal" which ties into an Anti-essentialism approach. There is a rejection of the essentialist idea of a woman having certain traits which goes beyond the social construction idea as no predetermined female categorizations are recognised.</p>
+
+            <p>I now wish to briefly explain how this epistemological argument flows into another form of analysis around the 'becoming' of a woman, as situated knowledges understand far more nuance which can extend to deferring experiences of 'becoming' on racial and lines as well as sexual preferences, Rose, (1997, p.307) refers to the "feminisms of white straight women ignored the specificities of black and lesbian women". This issue is tied to the idea of 'Intersectionality' and Angela Davis (1981), a Feminist Scholar, provides an example in terms of issues of domestic work where "Black women have had to do their own housekeeping and other women's home chores as well" and that "the demands of the job in a white woman's home have forced the domestic worker to neglect her own home and even her own children". Relating this back to de Beauvoir's original quote, we can see how the process of 'becoming' can be variegated, challenging and complex for women of colour.</p>
+
+            <p>In conclusion, I think that de Beauvoir's quote that women 'become' rather than being born, raises a multifaceted range of responses from Feminist and Queer theory, highlighting a range of viewpoints and theories which this essay has explored. There is a flow of viewpoints from historic enlightenment views around the objectivity of female nature, to a social constructivist view and then to epistemological critiques advocating for a nuanced perspective on 'becoming' and also feminist research being self-reflexive and understanding positionality. Finally, I briefly showed how this can be taken further to recognise that non-white and non-straight women have different struggles and therefore 'become' women in different ways. I believe that de Beauvoir's quote resonates strongly with the central issues in Feminist Theory showing how perspectives of women in a state of 'becoming' can be seen through social construction or nuanced epistemological situated knowledges.</p>
         </div>
     </div>
 </body>
