@@ -30,7 +30,28 @@ function createMovieCard(movie) {
 
   const movieInfo = document.createElement('div');
   movieInfo.className = 'movie-info';
-  // ... existing code ...
+  movieInfo.innerHTML = `
+    <h3 class="movie-title">${movie.title}</h3>
+    <p class="movie-year">${movie.year}</p>
+  `;
+
+  cardFront.appendChild(poster);
+  cardFront.appendChild(movieInfo);
+
+  const cardBack = document.createElement('div');
+  cardBack.className = 'movie-card-back';
+  cardBack.innerHTML = `
+    <h3 class="movie-title">${movie.title}</h3>
+    <p class="movie-year">${movie.year}</p>
+    <div class="review-section">
+      <p class="review-text">${movie.review || 'Working on it...'}</p>
+    </div>
+  `;
+
+  movieCard.appendChild(cardFront);
+  movieCard.appendChild(cardBack);
+
+  return movieCard;
 }
 
 async function displayMovies(moviesToShow) {
