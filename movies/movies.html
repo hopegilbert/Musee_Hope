@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cinematic Musings - My Digital Museum</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Special+Elite&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="images/movie-icon.ico" type="image/x-icon">
     <style>
@@ -102,6 +102,7 @@
     </style>
 </head>
 <body>
+    <div class="film-grain-overlay"></div>
     <div class="page-wrapper">
         <nav class="nav-menu">
             <a href="../index.html">HOME</a>
@@ -116,18 +117,86 @@
             </div>
         </nav>
 
-        <header>
-            <h1>Cinematic Musings of a Questionable Critic</h1>
-            <p>Where pretentious film analysis meets questionable taste. Proceed with caution.</p>
+        <header class="cinema-header">
+            <div class="ticket-stub">
+                <h1>Cinematic Musings</h1>
+                <p class="subtitle">of a Questionable Critic</p>
+                <div class="ticket-tear"></div>
+            </div>
         </header>
 
-        <div class="movies-content">
-            <!-- Example movie review structure -->
-            <div class="movie-review">
-                <h2>Saltburn</h2>
-                <div class="movie-meta">Watched: January 2024 | Director: Emerald Fennell</div>
-                <p>Coming soon... a very questionable analysis of this masterpiece.</p>
-                <p class="rating">Rating: ★★★★★ (Obviously)</p>
+        <div class="filter-bar">
+            <div class="filter-group">
+                <label for="genre">Genre:</label>
+                <select id="genre">
+                    <option value="all">All Genres</option>
+                    <option value="drama">Drama</option>
+                    <option value="thriller">Thriller</option>
+                    <option value="comedy">Comedy</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="year">Year:</label>
+                <select id="year">
+                    <option value="all">All Years</option>
+                    <option value="2024">2024</option>
+                    <option value="2023">2023</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="sort">Sort By:</label>
+                <select id="sort">
+                    <option value="newest">Newest First</option>
+                    <option value="rating">Highest Rated</option>
+                    <option value="controversial">Most Controversial</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="movies-grid">
+            <!-- Saltburn -->
+            <div class="movie-card" data-genre="thriller" data-year="2023" data-rating="5">
+                <a href="reviews/saltburn.html" class="movie-link">
+                    <div class="poster-wrapper">
+                        <img src="posters/saltburn.jpg" alt="Saltburn Movie Poster" loading="lazy">
+                        <div class="hover-content">
+                            <div class="rating">★★★★★</div>
+                            <p class="hot-take">"A deliciously twisted exploration of privilege, obsession, and really questionable bathtub etiquette."</p>
+                        </div>
+                    </div>
+                    <div class="movie-info">
+                        <h3>Saltburn</h3>
+                        <p>2023 | Emerald Fennell</p>
+                    </div>
+                </a>
+                <div class="community-rating">
+                    <div class="rating-stats">
+                        <span class="avg-rating">4.8</span>
+                        <span class="total-ratings">(42 ratings)</span>
+                    </div>
+                    <div class="rate-this">
+                        <button class="rate-btn" data-movie="saltburn">Rate This Film</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add more movie cards here -->
+        </div>
+
+        <!-- Rating Modal -->
+        <div id="ratingModal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h2>Rate This Film</h2>
+                <div class="star-rating">
+                    <span class="star" data-rating="1">★</span>
+                    <span class="star" data-rating="2">★</span>
+                    <span class="star" data-rating="3">★</span>
+                    <span class="star" data-rating="4">★</span>
+                    <span class="star" data-rating="5">★</span>
+                </div>
+                <textarea placeholder="Share your thoughts (optional)..." maxlength="500"></textarea>
+                <button class="submit-rating">Submit Rating</button>
             </div>
         </div>
     </div>
