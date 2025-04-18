@@ -234,21 +234,26 @@ select:hover {
 /* Movies Grid Styles */
 .movies-grid {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 2rem;
     padding: 2rem;
-    max-width: 1800px;
-    margin: 0 auto;
+    transition: opacity 0.3s ease;
 }
 
+.movies-grid.loading {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+/* Movie Card Styles - Updated with smoother flip */
 .movie-card {
     position: relative;
     width: 100%;
-    height: 100%;
-    transform-style: preserve-3d;
-    transition: transform 0.6s;
+    height: 300px;
+    perspective: 1000px;
     cursor: pointer;
-    aspect-ratio: 27/40;
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .movie-card:hover {
@@ -261,32 +266,34 @@ select:hover {
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
-    border-radius: 8px;
+    border-radius: 10px;
     overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .movie-card-front {
-    background-color: var(--primary-color);
+    background: #1a1a1a;
 }
 
 .movie-card-back {
-    background-color: var(--primary-color);
+    background: #2a2a2a;
     transform: rotateY(180deg);
-    padding: 1.5rem;
+    padding: 1rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
 }
 
 .movie-poster {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
+    opacity: 0;
+    animation: fadeIn 0.3s ease forwards;
 }
 
-.movie-card:hover .movie-poster {
-    transform: scale(1.05);
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 .movie-info {
@@ -294,45 +301,51 @@ select:hover {
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 1.5rem;
-    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.8));
+    padding: 1rem;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
     color: white;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.movie-card-front:hover .movie-info {
+    transform: translateY(0);
 }
 
 .movie-title {
-    font-family: 'Cormorant', serif;
-    font-size: 1.5rem;
+    margin: 0;
+    font-size: 1.1rem;
     font-weight: 600;
-    margin-bottom: 0.5rem;
-    color: white;
 }
 
 .movie-year {
-    font-family: 'Special Elite', cursive;
-    font-size: 1rem;
-    color: var(--accent-color);
+    margin: 0.5rem 0 0;
+    font-size: 0.9rem;
+    opacity: 0.8;
 }
 
 .review-section {
     flex-grow: 1;
+    display: flex;
+    flex-direction: column;
     margin-top: 1rem;
 }
 
 .review-textarea {
-    width: 100%;
-    height: 60%;
+    flex-grow: 1;
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 4px;
-    padding: 0.5rem;
+    border-radius: 5px;
     color: white;
-    font-family: 'Special Elite', cursive;
+    padding: 0.5rem;
+    font-size: 0.9rem;
     resize: none;
+    transition: border-color 0.3s ease;
 }
 
 .review-textarea:focus {
     outline: none;
-    border-color: var(--accent-color);
+    border-color: rgba(255, 255, 255, 0.4);
 }
 
 .review-textarea::placeholder {
