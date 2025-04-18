@@ -441,3 +441,32 @@ footer p {
         font-size: 0.8rem;
     }
 }
+
+.hover-button {
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: transparent;
+  color: #f5e8c7;
+  padding: 1rem;
+  text-align: center;
+  font-family: 'Lora', serif;
+  font-size: clamp(0.7rem, 2vw, 1rem);
+  text-decoration: none;
+  border: 2px solid #f5e8c7;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.image-wrapper:hover .hover-button {
+  opacity: 1;
+}
+
+.hover-button:hover {
+  background: rgba(245, 232, 199, 0.2);
+  transform: translate(-50%, -50%) scale(1.05);
+}
