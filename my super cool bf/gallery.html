@@ -107,13 +107,13 @@
         /* Gallery styles */
         .masonry-grid {
             width: 100%;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 1rem;
         }
 
         .grid-item {
-            width: calc(25% - 1rem);
+            width: calc(33.333% - 1rem);
             margin-bottom: 1rem;
             position: relative;
             opacity: 0;
@@ -182,9 +182,9 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.8);
             color: var(--beige);
-            padding: 1.5rem;
+            padding: 1.2rem;
             text-align: center;
             font-family: 'Lora', serif;
             font-size: 0.9rem;
@@ -200,7 +200,7 @@
             height: 100%;
             margin: 0;
             border-radius: 8px;
-            white-space: pre-line;
+            white-space: normal;
             overflow-y: auto;
         }
 
@@ -212,14 +212,16 @@
 
         .hover-text .date {
             font-weight: bold;
-            margin-bottom: 0.25rem;
-            font-size: 1rem;
+            margin-bottom: 0.3rem;
+            font-size: 0.95rem;
+            color: var(--cream);
         }
 
         .hover-text .description {
-            margin-top: 0.75rem;
-            font-size: 0.9rem;
-            opacity: 0.9;
+            margin-top: 0.5rem;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            padding: 0 0.5rem;
         }
 
         .image-wrapper:hover .hover-text {
@@ -228,29 +230,47 @@
 
         @media (max-width: 768px) {
             .hover-text {
+                padding: 1rem;
+                font-size: 0.85rem;
+            }
+
+            .hover-text .date {
+                font-size: 0.9rem;
+            }
+
+            .hover-text .description {
                 font-size: 0.8rem;
-                padding: 0.75rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hover-text {
+                padding: 0.8rem;
             }
         }
 
         @media (max-width: 1200px) {
             .grid-item {
-                width: calc(33.333% - 1rem);
+                width: calc(33.333% - 1rem) !important;
+            }
+            .masonry-grid {
+                max-width: 1000px;
             }
         }
 
         @media (max-width: 900px) {
             .grid-item {
-                width: calc(50% - 1rem) !important;
+                width: calc(50% - 0.75rem) !important;
+            }
+            .masonry-grid {
+                max-width: 700px;
+                padding: 0.75rem;
             }
             header h1 {
                 font-size: 2rem;
             }
             header p {
                 font-size: 1rem;
-            }
-            .masonry-grid {
-                max-width: 600px;
             }
         }
 
@@ -303,10 +323,7 @@
             <div class="dropdown">
                 <button class="dropbtn">GENIUS WORK</button>
                 <div class="dropdown-content">
-                    <a href="#">Questionable Research</a>
-                    <a href="#">Random Thoughts</a>
-                    <a href="#">Philosophical Musings</a>
-                    <a href="#">Creative Experiments</a>
+                    <a href="feminism-essay.html">Exploring de Beauvoir's Concept of Becoming a Woman</a>
                 </div>
             </div>
         </nav>

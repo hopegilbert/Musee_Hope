@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exploring de Beauvoir's Concept of Becoming a Woman - The Boyf Files</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Essay specific styles */
+        .essay-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .essay-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 2.5rem;
+            color: var(--text);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .essay-content {
+            font-family: 'Lora', serif;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text);
+        }
+
+        .essay-content h2 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.8rem;
+            color: var(--text);
+            margin: 2rem 0 1rem;
+        }
+
+        .essay-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .essay-content ul, .essay-content ol {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+        }
+
+        .essay-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .references {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid var(--beige);
+        }
+
+        .references h2 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.5rem;
+            color: var(--text);
+            margin-bottom: 1.5rem;
+        }
+
+        .references p {
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            padding-left: 2em;
+            text-indent: -2em;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 2rem;
+            color: var(--text);
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--terracotta);
+        }
+
+        /* Inherit navigation styles from my-super-cool-bf.html */
+        .nav-menu {
+            text-align: center;
+            padding: 1rem 2rem;
+            background-color: var(--beige);
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: var(--text);
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            display: inline-block;
+            padding: 0.5rem 1rem;
+        }
+
+        .nav-menu a:hover {
+            color: var(--terracotta);
+        }
+
+        /* Dropdown styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropbtn {
+            background-color: transparent;
+            color: var(--text);
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .dropbtn:hover {
+            color: var(--terracotta);
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--beige);
+            min-width: 200px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            z-index: 1;
+            border-radius: 8px;
+            padding: 0.5rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-top: 0.5rem;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .dropdown-content a {
+            color: var(--text);
+            padding: 0.75rem 1rem;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            border-radius: 4px;
+        }
+
+        .dropdown-content a:hover {
+            background-color: var(--terracotta);
+            color: var(--cream);
+        }
+
+        @media (max-width: 768px) {
+            .dropdown-content {
+                position: static;
+                box-shadow: none;
+                width: 100%;
+            }
+            
+            .dropdown:hover .dropdown-content {
+                display: block;
+            }
+
+            .essay-title {
+                font-size: 2rem;
+            }
+
+            .essay-content h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <nav class="nav-menu">
+            <a href="../index.html">HOME</a>
+            <a href="my-super-cool-bf.html">ABOUT</a>
+            <a href="gallery.html">GALLERY</a>
+            <a href="#memories">MEMORIES</a>
+            <div class="dropdown">
+                <button class="dropbtn">GENIUS WORK</button>
+                <div class="dropdown-content">
+                    <a href="feminism-essay.html">Exploring de Beauvoir's Concept of Becoming a Woman</a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="essay-container">
+            <h1 class="essay-title">Exploring de Beauvoir's Concept of Becoming a Woman</h1>
+            
+            <div class="essay-content">
+                <!-- Content will go here -->
+            </div>
+
+            <div class="references">
+                <h2>References</h2>
+                <!-- References will go here -->
+            </div>
+
+            <a href="my-super-cool-bf.html" class="back-link">← Back to About</a>
+        </div>
+    </div>
+</body>
+</html> 
