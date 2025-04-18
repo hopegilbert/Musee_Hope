@@ -75,29 +75,28 @@ html {
   column-gap: 1rem;
   max-width: 100%;
   margin: 0 auto;
-  opacity: 1;
-  padding: 0 1rem;
-  position: relative;
 }
+
 
 .grid-item {
   break-inside: avoid;
   margin-bottom: 1rem;
   position: relative;
-  opacity: 0;
-  transition: opacity 0.5s ease-out;
-  will-change: opacity;
-  width: 100%;
-}
-
-.grid-item.visible {
-  opacity: 1;
 }
 
 .grid-item img {
   width: 100%;
   height: auto;
   display: block;
+}
+
+.grid-item {
+  opacity: 0;
+  transition: opacity 0.6s ease-out;
+}
+
+.grid-item.visible {
+  opacity: 1;
 }
 
 img {
@@ -109,7 +108,7 @@ img {
 
 .image-wrapper {
   position: relative;
-  display: block;
+  display: inline-block;
   width: 100%;
   cursor: pointer;
   overflow: hidden;
@@ -270,13 +269,15 @@ footer p {
 
 @media (max-width: 1024px) {
   .masonry-grid {
-    column-count: 3;
+    column-count: 2;
   }
 }
 
 @media (max-width: 768px) {
   .masonry-grid {
     column-count: 2;
+    column-gap: 0.5rem;
+    padding: 0 1rem;
   }
 
   .title-frame img {
@@ -358,10 +359,6 @@ footer p {
 }
 
 @media (max-width: 480px) {
-  .masonry-grid {
-    column-count: 1;
-  }
-
   .hover-text {
     padding: 0.3rem;
   }
