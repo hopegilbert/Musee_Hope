@@ -217,6 +217,9 @@
             .grid-item {
                 width: calc(33.333% - 0.167px); /* 3 columns */
             }
+            .masonry-grid {
+                padding: 0 0.75rem;
+            }
         }
 
         @media (max-width: 768px) {
@@ -460,7 +463,9 @@
                         columnWidth: '.grid-sizer',
                         percentPosition: true,
                         gutter: 0.25, // Reduced to 0.25px gap
-                        initLayout: true
+                        initLayout: true,
+                        fitWidth: true, // Enable fitWidth for better column distribution
+                        horizontalOrder: true // Maintain horizontal order to prevent gaps
                     });
 
                     // Make all items visible immediately after Masonry initializes
@@ -468,6 +473,19 @@
                     gridItems.forEach(item => {
                         item.classList.add('visible');
                     });
+                });
+
+                // Re-layout Masonry when window is resized
+                window.addEventListener('resize', function() {
+                    const msnry = new Masonry(gallery, {
+                        itemSelector: '.grid-item',
+                        columnWidth: '.grid-sizer',
+                        percentPosition: true,
+                        gutter: 0.25,
+                        fitWidth: true,
+                        horizontalOrder: true
+                    });
+                    msnry.layout();
                 });
             }
 
