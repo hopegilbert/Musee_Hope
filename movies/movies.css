@@ -50,17 +50,29 @@ body::before {
 
 /* Cinema Header Styles */
 .cinema-header {
-    background: var(--header-gradient);
     text-align: center;
     padding: 3rem 2rem;
     position: relative;
     overflow: hidden;
     border-bottom: 2px solid var(--accent-color);
     min-height: 300px;
+    background: var(--secondary-color);
 }
 
+/* Background GIF container */
 .cinema-header::before {
-    opacity: 0.8;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 2px; /* Stop at the border */
+    background-image: url('images/film-reel.gif');
+    background-size: 100% auto;
+    background-position: top center;
+    background-repeat: no-repeat;
+    opacity: 1;
+    z-index: 0;
 }
 
 /* Dark overlay for better text readability */
@@ -124,29 +136,31 @@ body::before {
 }
 
 h1 {
-    font-family: 'Abril Fatface', serif;
+    font-family: 'Monoton', cursive;
     margin: 0;
     font-size: 3.5rem;
     text-transform: uppercase;
     letter-spacing: 2px;
     font-weight: 400;
-    color: var(--accent-color);
-    text-shadow: 
-        -2px -2px 0 #fff,  
-         2px -2px 0 #fff,
-        -2px  2px 0 #fff,
-         2px  2px 0 #fff,
-        4px 4px 0 var(--primary-color),
-        5px 5px 10px rgba(0, 0, 0, 0.4);
-    animation: gentleFloat 3s ease-in-out infinite;
+    color: var(--primary-color);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5),
+                 0 0 10px rgba(255, 215, 0, 0.8),
+                 0 0 20px rgba(255, 69, 0, 0.4);
+    animation: neonPulse 2s infinite;
+    position: relative;
+    z-index: 1;
 }
 
-@keyframes gentleFloat {
+@keyframes neonPulse {
     0%, 100% {
-        transform: translateY(0);
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5),
+                     0 0 10px rgba(255, 215, 0, 0.8),
+                     0 0 20px rgba(255, 69, 0, 0.4);
     }
     50% {
-        transform: translateY(-5px);
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5),
+                     0 0 15px rgba(255, 215, 0, 0.9),
+                     0 0 25px rgba(255, 69, 0, 0.6);
     }
 }
 
