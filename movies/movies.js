@@ -134,6 +134,69 @@ const movies = [
         rating: 4.8,
         poster: "images/movie posters/Dunkirk.jpg",
         description: "Allied soldiers from Belgium, the British Commonwealth and Empire, and France are surrounded by the German Army and evacuated during a fierce battle in World War II."
+    },
+    {
+        id: 16,
+        title: "Prisoners",
+        year: 2013,
+        genre: "Thriller",
+        rating: 4.7,
+        poster: "images/movie posters/Prisoners.jpg",
+        description: "When his daughter and her friend go missing, a desperate father takes matters into his own hands as the police pursue multiple leads."
+    },
+    {
+        id: 17,
+        title: "Gone Girl",
+        year: 2014,
+        genre: "Thriller",
+        rating: 4.8,
+        poster: "images/movie posters/Gone_Girl.jpg",
+        description: "With his wife's disappearance becoming the focus of an intense media circus, a man sees the spotlight turned on him when it's suspected that he may not be innocent."
+    },
+    {
+        id: 18,
+        title: "The Light Between Oceans",
+        year: 2016,
+        genre: "Drama",
+        rating: 4.5,
+        poster: "images/movie posters/The_Light_Between_Oceans.jpg",
+        description: "A lighthouse keeper and his wife living off the coast of Western Australia raise a baby they rescue from a drifting rowing boat."
+    },
+    {
+        id: 19,
+        title: "Hereditary",
+        year: 2018,
+        genre: "Horror",
+        rating: 4.7,
+        poster: "images/movie posters/Hereditary.png",
+        description: "A grieving family is haunted by tragic and disturbing occurrences after the death of their secretive grandmother."
+    },
+    {
+        id: 20,
+        title: "Happy Death Day",
+        year: 2017,
+        genre: "Horror",
+        rating: 4.3,
+        poster: "images/movie posters/Happy-Death-Day.png",
+        description: "A college student must relive the day of her murder over and over again until she discovers her killer's identity."
+    },
+    {
+        id: 21,
+        title: "Adrift",
+        year: 2018,
+        genre: "Drama",
+        rating: 4.4,
+        poster: "images/movie posters/Adrift.png",
+        description: "A true story of survival, as a young couple's chance encounter leads them first to love, and then on the adventure of a lifetime as they face one of the most catastrophic hurricanes in recorded history."
+    },
+    {
+        id: 22,
+        title: "Where the Crawdads Sing",
+        year: 2022,
+        genre: "Drama",
+        rating: 4.6,
+        poster: "images/movie posters/Where-the-Crawdads-Sing.jpg",
+        description: "A woman who raised herself in the marshes of the deep South becomes a suspect in the murder of a man she was once involved with."
     }
 ];
 
