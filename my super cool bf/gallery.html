@@ -119,19 +119,19 @@
         /* Gallery styles */
         .masonry-grid {
             column-count: 4;
-            column-gap: 1rem;
+            column-gap: 0.5rem;
             max-width: 100%;
             margin: 0 auto;
-            padding: 0 1rem;
+            padding: 0 0.5rem;
         }
 
         .grid-item {
             break-inside: avoid;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
             position: relative;
             opacity: 0;
             transition: opacity 0.6s ease-out;
-            line-height: 0; /* Remove any line height spacing */
+            line-height: 0;
         }
 
         .grid-item.visible {
@@ -209,12 +209,14 @@
         @media (max-width: 1200px) {
             .masonry-grid {
                 column-count: 3;
+                column-gap: 0.5rem;
             }
         }
 
         @media (max-width: 900px) {
             .masonry-grid {
                 column-count: 2;
+                column-gap: 0.5rem;
             }
             header h1 {
                 font-size: 2rem;
@@ -227,7 +229,11 @@
         @media (max-width: 600px) {
             .masonry-grid {
                 column-count: 1;
-                padding: 0 0.5rem;
+                padding: 0 0.25rem;
+                column-gap: 0.25rem;
+            }
+            .grid-item {
+                margin-bottom: 0.25rem;
             }
             header {
                 padding: 1rem 0.5rem;
@@ -423,7 +429,10 @@
                     const captionParts = item.caption.split(' - ');
                     if (captionParts.length === 2) {
                         const [dateAndTitle, description] = captionParts;
-                        const [location, date] = dateAndTitle.split(' ');
+                        // Find the last space before the date (which will be in the format DD/MM/YYYY)
+                        const lastSpaceIndex = dateAndTitle.lastIndexOf(' ');
+                        const location = dateAndTitle.substring(0, lastSpaceIndex);
+                        const date = dateAndTitle.substring(lastSpaceIndex + 1);
                         
                         const dateSpan = document.createElement('p');
                         dateSpan.className = 'date';
