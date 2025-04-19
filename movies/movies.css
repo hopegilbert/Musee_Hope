@@ -218,16 +218,17 @@ h1 {
 .results-count {
     color: var(--text-color);
     margin-right: 20px;
+    font-family: 'IBM Plex Mono', monospace;
 }
 
 .search-input {
     font-family: 'IBM Plex Mono', monospace;
     padding: 8px 16px;
-    background-color: var(--input-background);
+    background-color: rgba(0, 0, 51, 0.5);
     color: var(--text-color);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 4px;
-    min-width: 250px;
+    min-width: 300px;
 }
 
 .search-input:focus {
@@ -242,11 +243,20 @@ h1 {
 select {
     font-family: 'IBM Plex Mono', monospace;
     padding: 8px 16px;
-    background-color: var(--input-background);
+    background-color: rgba(0, 0, 51, 0.5);
     color: var(--text-color);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 4px;
     cursor: pointer;
+    min-width: 150px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 20px;
+    padding-right: 32px;
 }
 
 select:focus {
