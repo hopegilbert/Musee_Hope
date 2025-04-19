@@ -59,20 +59,28 @@ function createMovieCard(movie) {
     const title = document.createElement('h3');
     title.textContent = movie.title;
     
-    const year = document.createElement('p');
-    year.textContent = movie.year;
+    const dateGenreRow = document.createElement('div');
+    dateGenreRow.className = 'date-genre-row';
+
+    // Create decade badge
+    const decadeBadge = document.createElement('span');
+    const decade = Math.floor(movie.year / 10) * 10;
+    decadeBadge.className = `decade-badge decade-${decade}s`;
+    decadeBadge.textContent = `${decade}s`;
 
     const genreBadges = document.createElement('div');
     genreBadges.className = 'genre-badges';
-    // Handle single genre
+    
     const badge = document.createElement('span');
     badge.className = `genre-badge genre-${movie.genre.toLowerCase()}`;
     badge.textContent = movie.genre;
     genreBadges.appendChild(badge);
 
+    dateGenreRow.appendChild(decadeBadge);
+    dateGenreRow.appendChild(genreBadges);
+
     movieInfo.appendChild(title);
-    movieInfo.appendChild(year);
-    movieInfo.appendChild(genreBadges);
+    movieInfo.appendChild(dateGenreRow);
     
     cardFront.appendChild(poster);
     cardFront.appendChild(movieInfo);
@@ -87,10 +95,7 @@ function createMovieCard(movie) {
     const backTitle = document.createElement('h3');
     backTitle.textContent = movie.title;
 
-    const backYear = document.createElement('p');
-    backYear.textContent = movie.year;
-
-    const backGenreBadges = genreBadges.cloneNode(true);
+    const backDateGenreRow = dateGenreRow.cloneNode(true);
 
     const reviewSection = document.createElement('div');
     reviewSection.className = 'review-section';
@@ -102,7 +107,6 @@ function createMovieCard(movie) {
     const reviewTextarea = document.createElement('textarea');
     reviewTextarea.className = 'review-textarea';
     reviewTextarea.id = `review-${movie.title.replace(/\s+/g, '-')}`;
-    reviewTextarea.value = 'Working on it...';
     reviewTextarea.placeholder = 'Share your thoughts about this movie...';
 
     // Load saved review if it exists
@@ -128,8 +132,7 @@ function createMovieCard(movie) {
     reviewSection.appendChild(reviewTextarea);
 
     backContent.appendChild(backTitle);
-    backContent.appendChild(backYear);
-    backContent.appendChild(backGenreBadges);
+    backContent.appendChild(backDateGenreRow);
     backContent.appendChild(reviewSection);
     
     cardBack.appendChild(backContent);

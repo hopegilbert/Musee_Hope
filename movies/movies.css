@@ -32,6 +32,14 @@
     --genre-comedy: #FFDC00;
     --genre-musical: #F012BE;
     --genre-war: #AAAAAA;
+
+    /* Decade Colors - chosen to be distinct from genre colors */
+    --decade-1980: #2E8B57;  /* Sea Green */
+    --decade-1990: #8B4513;  /* Saddle Brown */
+    --decade-2000: #4B0082;  /* Indigo */
+    --decade-2010: #008080;  /* Teal */
+    --decade-2020: #DAA520;  /* Goldenrod */
+    
     --main-font: 'Poetsen One', sans-serif;
     --title-font: 'Monoton', sans-serif;
 }
@@ -329,7 +337,7 @@ select:focus {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    margin-bottom: 0.1rem;
+    margin: 0.25rem 0;
 }
 
 .back-content p {
@@ -429,7 +437,7 @@ select:focus {
     display: flex;
     flex-wrap: wrap;
     gap: 4px;
-    margin-top: 8px;
+    margin: 0;
 }
 
 .genre-badge {
@@ -441,6 +449,7 @@ select:focus {
     color: var(--text-color) !important;
     text-transform: uppercase;
     letter-spacing: 1px;
+    white-space: nowrap;
 }
 
 .genre-horror { background-color: var(--genre-horror); }
@@ -456,6 +465,25 @@ select:focus {
 .genre-sci-fi { background-color: var(--genre-sci-fi); }
 .genre-adventure { background-color: var(--genre-adventure); }
 .genre-action { background-color: var(--genre-action); }
+
+/* Decade Badge Styles */
+.decade-badge {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.7rem;
+    font-family: var(--main-font);
+    color: var(--text-color) !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.decade-1980s { background-color: var(--decade-1980); }
+.decade-1990s { background-color: var(--decade-1990); }
+.decade-2000s { background-color: var(--decade-2000); }
+.decade-2010s { background-color: var(--decade-2010); }
+.decade-2020s { background-color: var(--decade-2020); }
 
 /* Responsive Styles */
 @media (max-width: 1600px) {
@@ -494,6 +522,17 @@ select:focus {
         padding: 0.75rem;
         max-width: 100%;
     }
+    h1 {
+        font-size: 2.5rem;
+        letter-spacing: 2px;
+        padding: 0.5rem 0;
+    }
+    .subtitle {
+        font-size: 1.2rem;
+    }
+    .ticket-stub {
+        padding: 2rem;
+    }
 }
 
 @media (max-width: 600px) {
@@ -510,6 +549,19 @@ select:focus {
         gap: 0.4rem;
         padding: 0.4rem;
         margin: 0.4rem;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 2rem;
+        letter-spacing: 1px;
+    }
+    .subtitle {
+        font-size: 1rem;
+    }
+    .ticket-stub {
+        padding: 1.5rem;
     }
 }
 
