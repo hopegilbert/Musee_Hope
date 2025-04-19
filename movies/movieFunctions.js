@@ -62,16 +62,11 @@ function createMovieCard(movie) {
     const dateGenreRow = document.createElement('div');
     dateGenreRow.className = 'date-genre-row';
 
-    // Create year display
+    // Create year display with decade styling
     const yearDisplay = document.createElement('span');
-    yearDisplay.className = 'year';
-    yearDisplay.textContent = movie.year;
-
-    // Create decade badge
-    const decadeBadge = document.createElement('span');
     const decade = Math.floor(movie.year / 10) * 10;
-    decadeBadge.className = `decade-badge decade-${decade}s`;
-    decadeBadge.textContent = `${decade}s`;
+    yearDisplay.className = `decade-badge decade-${decade}s`;
+    yearDisplay.textContent = movie.year;
 
     const genreBadges = document.createElement('div');
     genreBadges.className = 'genre-badges';
@@ -82,7 +77,6 @@ function createMovieCard(movie) {
     genreBadges.appendChild(badge);
 
     dateGenreRow.appendChild(yearDisplay);
-    dateGenreRow.appendChild(decadeBadge);
     dateGenreRow.appendChild(genreBadges);
 
     movieInfo.appendChild(title);
