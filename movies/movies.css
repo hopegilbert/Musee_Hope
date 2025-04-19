@@ -675,8 +675,8 @@ body::after {
 .genre-war { background-color: var(--genre-war); }
 
 /* Year Colors */
-.year-1980s { color: var(--year-1980) !important; }
-.year-1990s { color: var(--year-1990) !important; }
-.year-2000s { color: var(--year-2000) !important; }
-.year-2010s { color: var(--year-2010) !important; }
-.year-2020s { color: var(--year-2020) !important; }
+.year-1980s { color: #8B4513 !important; } /* Saddle Brown */
+.year-1990s { color: #4B0082 !important; } /* Indigo */
+.year-2000s { color: #008080 !important; } /* Teal */
+.year-2010s { color: #483D8B !important; } /* Dark Slate Blue */
+.year-2020s { color: #800000 !important; } /* Maroon */
