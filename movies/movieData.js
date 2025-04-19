@@ -6,7 +6,7 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/tFXcEccSQMf3lfhfXKSU9iRBpa3.jpg",
-        "review": "Coming Soon."
+        "review": "A masterful blend of horror and social commentary. Jordan Peele's directorial debut brilliantly tackles racial issues while keeping viewers on the edge of their seats."
     },
     {
         "title": "Avengers: Infinity War",
@@ -14,7 +14,7 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg",
-        "review": "Coming Soon."
+        "review": "An ambitious crossover event that successfully balances multiple storylines and characters. The ending leaves audiences stunned and eager for the conclusion."
     },
     {
         "title": "La La Land",
@@ -22,6 +22,9 @@ export const movies = [
         "genre": "Romance",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/uDO8zWDhfWwoFdKS4fzkUJt0Rf0.jpg",
+<<<<<<< HEAD
+        "review": "A beautiful homage to classic Hollywood musicals with modern sensibilities. The chemistry between Stone and Gosling is magical, and the music is unforgettable."
+=======
         "review": "Coming Soon."
     },
     {
@@ -1583,6 +1586,7 @@ export const movies = [
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/bDG3yei6AJlEAK3A5wN7RwFXQ7V.jpg",
         "review": "Coming Soon."
+>>>>>>> 0a35a62 (Update movie card functionality: Add flip card feature, improve styling, fix event handling)
     },
     {
         "title": "Happy Death Day",
@@ -1590,6 +1594,9 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/hcCX4zqu5b8v7DuDCJGcmI3MmlA.jpg",
+<<<<<<< HEAD
+        "review": "Add your review here..."
+=======
         "review": "Coming Soon."
     },
     {
@@ -7471,5 +7478,6 @@ export const movies = [
         "rating": 3.5,
         "poster": "https://www.themoviedb.org/t/p/w1280/8hX6rcxnCidaqegPCyeFm9PODBn.jpg",
         "review": "Coming Soon."
+>>>>>>> 0a35a62 (Update movie card functionality: Add flip card feature, improve styling, fix event handling)
     }
 ];
