@@ -21,7 +21,7 @@
     /* Genre Colors */
     --genre-action: #FF4136;
     --genre-adventure: #FF851B;
-    --genre-scifi: #7FDBFF;
+    --genre-sci-fi: #7FDBFF;
     --genre-horror: #85144b;
     --genre-romance: #F012BE;
     --genre-animation: #39CCCC;
@@ -453,7 +453,7 @@ select:focus {
 .genre-comedy { background-color: var(--genre-comedy); }
 .genre-musical { background-color: var(--genre-musical); }
 .genre-war { background-color: var(--genre-war); }
-.genre-sci-fi { background-color: var(--genre-scifi); }
+.genre-sci-fi { background-color: var(--genre-sci-fi); }
 .genre-adventure { background-color: var(--genre-adventure); }
 .genre-action { background-color: var(--genre-action); }
 
