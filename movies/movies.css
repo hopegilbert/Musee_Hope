@@ -364,6 +364,9 @@ select:focus {
 .year-display {
     font-size: 0.875rem;
     font-weight: 500;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    color: white;
 }
 
 .genre-badges {

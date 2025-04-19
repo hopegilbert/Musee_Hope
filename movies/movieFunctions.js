@@ -54,7 +54,8 @@ function createMovieCard(movie) {
     dateGenreRow.className = 'date-genre-row';
 
     const yearDisplay = document.createElement('span');
-    yearDisplay.className = 'year-display';
+    const decade = Math.floor(movie.year / 10) * 10;
+    yearDisplay.className = `year-display decade-${decade}s`;
     yearDisplay.textContent = movie.year;
 
     const genreBadges = document.createElement('div');
@@ -87,7 +88,10 @@ function createMovieCard(movie) {
     const backDateGenreRow = document.createElement('div');
     backDateGenreRow.className = 'back-date-genre-row';
 
-    const backYearDisplay = yearDisplay.cloneNode(true);
+    const backYearDisplay = document.createElement('span');
+    backYearDisplay.className = `year-display decade-${decade}s`;
+    backYearDisplay.textContent = movie.year;
+
     const backGenreBadges = genreBadges.cloneNode(true);
 
     backDateGenreRow.appendChild(backYearDisplay);
