@@ -63,6 +63,22 @@ function createMovieCard(movie) {
     reviewTextarea.id = `review-${movie.title.replace(/\s+/g, '-')}`;
     reviewTextarea.placeholder = 'Share your thoughts about this movie...';
 
+    // Load saved review if it exists
+    const savedReview = localStorage.getItem(`review-${movie.title}`);
+    if (savedReview) {
+        reviewTextarea.value = savedReview;
+    }
+
+    // Save review when user types
+    reviewTextarea.addEventListener('input', (e) => {
+        localStorage.setItem(`review-${movie.title}`, e.target.value);
+    });
+
+    // Prevent card from flipping when typing in textarea
+    reviewTextarea.addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
+
     reviewSection.appendChild(reviewLabel);
     reviewSection.appendChild(reviewTextarea);
 
@@ -75,6 +91,12 @@ function createMovieCard(movie) {
 
     card.appendChild(cardFront);
     card.appendChild(cardBack);
+
+    // Handle card flipping
+    card.addEventListener('click', () => {
+        card.classList.add('flipping');
+        card.classList.toggle('flipped');
+    });
 
     return card;
 } 
