@@ -453,7 +453,7 @@ select:focus {
 .genre-comedy { background-color: var(--genre-comedy); }
 .genre-musical { background-color: var(--genre-musical); }
 .genre-war { background-color: var(--genre-war); }
-.genre-scifi { background-color: var(--genre-scifi); }
+.genre-sci-fi { background-color: var(--genre-scifi); }
 .genre-adventure { background-color: var(--genre-adventure); }
 .genre-action { background-color: var(--genre-action); }
 
