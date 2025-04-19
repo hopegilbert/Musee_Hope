@@ -267,9 +267,8 @@ select:focus {
     grid-template-columns: repeat(7, 1fr);
     gap: 1rem;
     padding: 1rem;
-    max-width: 1200px;
-    margin: 0 auto;
     width: 100%;
+    margin: 0 auto;
 }
 
 /* Movie Card Styles */
@@ -456,7 +455,7 @@ select:focus {
 /* Responsive Styles */
 @media (max-width: 1600px) {
     .movies-grid {
-        grid-template-columns: repeat(7, 1fr); /* Keep 7 columns */
+        grid-template-columns: repeat(7, 1fr);
     }
 }
 
@@ -468,11 +467,7 @@ select:focus {
 
 @media (max-width: 1200px) {
     .movies-grid {
-        grid-template-columns: repeat(6, 1fr); /* Keep 6 columns */
-    }
-
-    .filter-bar {
-        padding: 15px;
+        grid-template-columns: repeat(6, 1fr);
     }
 }
 
@@ -510,7 +505,8 @@ select:focus {
         grid-template-columns: repeat(4, 1fr);
         gap: 0.75rem;
         padding: 0.75rem;
-        max-width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
     }
 
     .movie-card {
