@@ -311,26 +311,36 @@ select:focus {
 }
 
 .movie-card-front {
-    transform: rotateY(0deg);
+    display: flex;
+    flex-direction: column;
+    opacity: 1;
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .movie-card-front.loading {
     background: var(--card-background);
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .movie-poster {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: opacity 0.5s ease;
-    opacity: 0;
     aspect-ratio: 27/40;
+    opacity: 0;
+    transform: scale(1.02);
+    filter: brightness(0.8);
+    transition: 
+        opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+        filter 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .movie-poster.loaded {
     opacity: 1;
+    transform: scale(1);
+    filter: brightness(1);
 }
 
 .movie-info {
@@ -827,4 +837,17 @@ select:focus {
     display: inline;
     width: auto;
     margin: 0 2px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(1.02);
+        filter: brightness(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+        filter: brightness(1);
+    }
 }
