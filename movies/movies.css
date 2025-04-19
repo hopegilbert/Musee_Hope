@@ -301,18 +301,17 @@ select:focus {
     position: absolute;
     width: 100%;
     height: 100%;
+    -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     background: var(--card-background);
+    transform-style: preserve-3d;
 }
 
 .movie-card-front {
-    display: flex;
-    flex-direction: column;
-    opacity: 1;
-    transition: opacity 0.3s ease;
+    transform: rotateY(0deg);
 }
 
 .movie-card-front.loading {
