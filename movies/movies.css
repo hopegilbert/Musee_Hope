@@ -283,11 +283,11 @@ select:focus {
 .movie-card {
     position: relative;
     width: 100%;
-    aspect-ratio: 27/40; /* Standard movie poster ratio */
+    aspect-ratio: 27/40;
     perspective: 1000px;
     cursor: pointer;
     transform-style: preserve-3d;
-    transition: transform 0.6s;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .movie-card.flipped {
@@ -338,26 +338,32 @@ select:focus {
     padding: 1rem;
     background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
     color: white;
-    transform: translateY(0);
-    transition: transform 0.3s ease;
+    transform: translateY(100%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
 }
 
 .movie-card:hover .movie-info {
     transform: translateY(0);
+    opacity: 1;
 }
 
 .movie-info h3 {
     margin: 0;
     font-size: 1rem;
     font-weight: 600;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .date-genre-row {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    gap: 0.5rem;
     margin-top: 0.5rem;
+}
+
+.year-display {
+    font-size: 0.875rem;
+    font-weight: 500;
 }
 
 .genre-badges {
@@ -373,18 +379,6 @@ select:focus {
     text-transform: uppercase;
     letter-spacing: 0.5px;
     color: white;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-}
-
-.decade-badge {
-    padding: 0.25rem 0.5rem;
-    border-radius: 4px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    color: white;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .movie-card-back {
@@ -392,7 +386,7 @@ select:focus {
     display: flex;
     flex-direction: column;
     padding: 1rem;
-    background: var(--card-back-color);
+    background: var(--card-background);
     color: var(--text-color);
 }
 
@@ -409,18 +403,28 @@ select:focus {
     font-weight: 600;
 }
 
+.back-date-genre-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
 .review-section {
     flex: 1;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+    border-radius: 8px;
 }
 
 .review-heading {
     margin: 0;
     font-size: 1rem;
     font-weight: 600;
-    color: var(--accent-color);
+    color: white;
 }
 
 .review-text {

@@ -29,9 +29,8 @@ function createMovieCard(movie) {
     const poster = document.createElement('img');
     poster.className = 'movie-poster';
     poster.alt = `${movie.title} Poster`;
-    poster.dataset.src = movie.poster; // Use data-src for lazy loading
+    poster.dataset.src = movie.poster;
     
-    // Add to intersection observer
     imageObserver.observe(poster);
 
     poster.onload = () => {
@@ -54,10 +53,8 @@ function createMovieCard(movie) {
     const dateGenreRow = document.createElement('div');
     dateGenreRow.className = 'date-genre-row';
 
-    // Create year display with decade styling
     const yearDisplay = document.createElement('span');
-    const decade = Math.floor(movie.year / 10) * 10;
-    yearDisplay.className = `decade-badge decade-${decade}s`;
+    yearDisplay.className = 'year-display';
     yearDisplay.textContent = movie.year;
 
     const genreBadges = document.createElement('div');
@@ -87,7 +84,14 @@ function createMovieCard(movie) {
     const backTitle = document.createElement('h3');
     backTitle.textContent = movie.title;
 
-    const backDateGenreRow = dateGenreRow.cloneNode(true);
+    const backDateGenreRow = document.createElement('div');
+    backDateGenreRow.className = 'back-date-genre-row';
+
+    const backYearDisplay = yearDisplay.cloneNode(true);
+    const backGenreBadges = genreBadges.cloneNode(true);
+
+    backDateGenreRow.appendChild(backYearDisplay);
+    backDateGenreRow.appendChild(backGenreBadges);
 
     const reviewSection = document.createElement('div');
     reviewSection.className = 'review-section';
@@ -112,7 +116,7 @@ function createMovieCard(movie) {
     card.appendChild(cardFront);
     card.appendChild(cardBack);
 
-    // Use passive event listeners for better performance
+    // Add click handlers for both sides
     const handleFlip = (e) => {
         e.stopPropagation();
         requestAnimationFrame(() => {
@@ -123,15 +127,14 @@ function createMovieCard(movie) {
     cardFront.addEventListener('click', handleFlip, { passive: true });
     cardBack.addEventListener('click', handleFlip, { passive: true });
     
+    // Add touch handlers with preventDefault to avoid double-tap zoom
     cardFront.addEventListener('touchend', (e) => {
         e.preventDefault();
-        e.stopPropagation();
         handleFlip(e);
     }, { passive: false });
     
     cardBack.addEventListener('touchend', (e) => {
         e.preventDefault();
-        e.stopPropagation();
         handleFlip(e);
     }, { passive: false });
 
