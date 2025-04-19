@@ -1,48 +1,22 @@
 /* Base Styles */
 /* Updated with cinema navigation - April 2024 */
+@import url('https://fonts.googleapis.com/css2?family=Poetsen+One&family=Cinzel:wght@400;700&display=swap');
+
 :root {
-    --primary-color: #FFFFFF;
-    --secondary-color: #000033;
-    --accent-color: #FF4500; /* Vibrant orange-red */
-    --accent-yellow: #FFD700; /* Bright yellow */
-    --card-back-color: #1A237E; /* Deep indigo */
+    --primary-color: #D4AF37; /* Gold */
+    --secondary-color: #0a0f2d;
+    --accent-color: #8B2E32; /* Dusty red */
     --text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    --text-color: #FFFFFF;
-    --background-color: #000033;
-    --modal-background: rgba(0, 0, 15, 0.95);
-    --card-background: #000022;
-    --blue-gradient: linear-gradient(135deg, #4169E1 0%, #000033 100%);
-    --vintage-border: 1px solid rgba(65, 105, 225, 0.2);
-    --header-gradient: linear-gradient(45deg, var(--accent-yellow) 0%, var(--accent-color) 30%, var(--primary-color) 60%, #FFFFFF 100%);
-    
-    /* Genre Colors */
-    --genre-action: #FF4136;
-    --genre-adventure: #FF851B;
-    --genre-scifi: #2E5BFF;
-    --genre-horror: #85144b;
-    --genre-romance: #F012BE;
-    --genre-animation: #39CCCC;
-    --genre-drama: #B10DC9;
-    --genre-thriller: #FF4136;
-    --genre-crime: #111111;
-    --genre-fantasy: #01FF70;
-    --genre-comedy: #FFDC00;
-    --genre-musical: #F012BE;
-    --genre-war: #AAAAAA;
-
-    /* Year Colors - Using distinct colors from genres */
-    --year-1980: #8B4513; /* Saddle Brown */
-    --year-1990: #4B0082; /* Indigo */
-    --year-2000: #008080; /* Teal */
-    --year-2010: #483D8B; /* Dark Slate Blue */
-    --year-2020: #800000; /* Maroon */
-    
+    --text-color: #ffffff;
+    --background-color: #0a0f2d;
+    --modal-background: rgba(0, 0, 0, 0.95);
+    --card-background: rgba(10, 15, 45, 0.7);
+    --gold-gradient: linear-gradient(135deg, #D4AF37 0%, #F8F6F0 100%);
+    --vintage-border: 1px solid rgba(212, 175, 55, 0.2);
     --main-font: 'Poetsen One', sans-serif;
-    --title-font: 'Monoton', sans-serif;
+    --title-font: 'Cinzel', serif;
 }
-
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Libre+Baskerville:wght@400;700&family=Inter:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap');
 
 * {
     margin: 0;
@@ -51,12 +25,18 @@
 }
 
 body {
-    font-family: 'Inter', sans-serif;
-    background-color: var(--secondary-color);
+    font-family: var(--main-font);
+    background-color: var(--background-color);
     color: var(--text-color);
     line-height: 1.6;
     position: relative;
-    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxsaW5lIHgxPSIwIiB5PSIwIiB4Mj0iMCIgeTI9IjQwIiBzdHJva2U9IiMyYzE4MTAiIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==');
+    background-image: repeating-linear-gradient(
+        45deg,
+        rgba(10, 15, 45, 0.8) 0px,
+        rgba(10, 15, 45, 0.8) 2px,
+        rgba(10, 15, 45, 0.9) 2px,
+        rgba(10, 15, 45, 0.9) 4px
+    );
 }
 
 /* Film Grain Effect */
@@ -77,7 +57,7 @@ body::before {
 .cinema-header {
     text-align: center;
     padding: 3rem 2rem;
-    background: linear-gradient(to bottom, #1C1C2D, var(--secondary-color));
+    background: linear-gradient(to bottom, rgba(10, 15, 45, 0.9), var(--background-color));
     position: relative;
     overflow: hidden;
     border-bottom: 2px solid var(--primary-color);
@@ -127,17 +107,29 @@ body::before {
     );
 }
 
-h1 {
-    font-family: 'Cinzel', serif;
-    margin: 0;
-    font-size: 3rem;
+.main-title {
+    font-family: var(--title-font);
+    font-size: 4rem;
+    font-weight: 700;
+    color: #fff;
     text-transform: uppercase;
     letter-spacing: 3px;
-    font-weight: 700;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-    background: var(--gold-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    text-shadow: 
+        0 0 5px #fff,
+        0 0 10px #fff,
+        0 0 20px #fff,
+        0 0 40px #0ff,
+        0 0 80px #0ff,
+        0 0 90px #0ff,
+        0 0 100px #0ff,
+        0 0 150px #0ff;
+}
+
+.subtitle {
+    font-style: italic;
+    color: #cccccc;
+    margin-top: 0.5rem;
+    font-size: 1.2rem;
 }
 
 .ticket-stub p {
@@ -149,13 +141,11 @@ h1 {
 .filter-bar {
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 2rem;
-    padding: 2rem;
+    padding: 1rem;
     background-color: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(10px);
-    border-top: var(--vintage-border);
-    border-bottom: var(--vintage-border);
-    margin: 2rem 0;
+    margin: 1rem 0;
 }
 
 .filter-group {
@@ -172,34 +162,26 @@ label {
     letter-spacing: 1px;
 }
 
-select {
-    padding: 0.8rem 1.5rem;
-    font-family: inherit;
-    background-color: rgba(244, 228, 188, 0.1);
-    color: var(--primary-color);
-    border: var(--vintage-border);
+select, input {
+    padding: 0.5rem 1rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 4px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23f4e4bc'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
-    background-repeat: no-repeat;
-    background-position: right 0.5rem center;
-    background-size: 1.5rem;
+    font-family: inherit;
 }
 
-select:hover {
-    background-color: rgba(244, 228, 188, 0.2);
-    border-color: var(--primary-color);
+select:hover, input:hover {
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 /* Movies Grid Styles */
 .movies-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    padding: 2rem;
-    max-width: 1400px;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1rem;
+    padding: 1rem;
+    max-width: 100%;
     margin: 0 auto;
 }
 
@@ -209,26 +191,19 @@ select:hover {
     border-radius: 8px;
     overflow: hidden;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    border: var(--vintage-border);
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    cursor: pointer;
 }
 
 .movie-card:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    transform: scale(1.05);
 }
 
 .movie-poster {
     width: 100%;
-    height: 400px;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-    filter: blur(0);
-}
-
-.movie-card:hover .movie-poster {
-    transform: scale(1.05);
-    filter: blur(2px);
+    height: auto;
+    display: block;
 }
 
 .movie-info {
@@ -408,17 +383,53 @@ body::after {
 }
 
 /* Responsive Design */
+@media (max-width: 1600px) {
+    .movies-grid {
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+@media (max-width: 1400px) {
+    .movies-grid {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
 @media (max-width: 1200px) {
     .movies-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .movies-grid {
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 
 @media (max-width: 768px) {
     .movies-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
     }
     
+    .main-title {
+        font-size: 3rem;
+    }
+
+    .filter-bar {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 1rem;
+    }
+
+    .filter-group {
+        width: 100%;
+    }
+
+    select, input {
+        width: 100%;
+    }
+
     .ticket-stub {
         padding: 2rem;
     }
@@ -426,26 +437,15 @@ body::after {
     .ticket-stub h1 {
         font-size: 2rem;
     }
+}
 
-    .filter-bar {
-        flex-direction: column;
-        align-items: center;
-        gap: 1rem;
+@media (max-width: 480px) {
+    .movies-grid {
+        grid-template-columns: 1fr;
     }
-
-    .filter-group {
-        width: 100%;
-        max-width: 300px;
-    }
-
-    .movie-poster {
-        height: 350px;
-    }
-
-    .modal-content {
-        margin: 10% auto;
-        padding: 2rem;
-        width: 90%;
+    
+    .main-title {
+        font-size: 2rem;
     }
 }
 
@@ -656,27 +656,29 @@ body::after {
     letter-spacing: 1px;
 }
 
-/* Genre Badge Styles */
-.genre-action { background-color: var(--genre-action); }
-.genre-adventure { background-color: var(--genre-adventure); }
-.genre-scifi { 
-    background-color: var(--genre-scifi);
-    color: var(--text-color) !important;
+.genre-badge {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0.2rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
-.genre-horror { background-color: var(--genre-horror); }
-.genre-romance { background-color: var(--genre-romance); }
-.genre-animation { background-color: var(--genre-animation); }
-.genre-drama { background-color: var(--genre-drama); }
-.genre-thriller { background-color: var(--genre-thriller); }
-.genre-crime { background-color: var(--genre-crime); }
-.genre-fantasy { background-color: var(--genre-fantasy); }
-.genre-comedy { background-color: var(--genre-comedy); }
-.genre-musical { background-color: var(--genre-musical); }
-.genre-war { background-color: var(--genre-war); }
 
-/* Year Colors */
-.year-1980s { color: #8B4513 !important; } /* Saddle Brown */
-.year-1990s { color: #4B0082 !important; } /* Indigo */
-.year-2000s { color: #008080 !important; } /* Teal */
-.year-2010s { color: #483D8B !important; } /* Dark Slate Blue */
-.year-2020s { color: #800000 !important; } /* Maroon */
+.genre-action { background-color: #E63946; }
+.genre-adventure { background-color: #F4A261; }
+.genre-scifi { background-color: #2A9D8F; }
+.genre-horror { background-color: #540B0E; }
+.genre-romance { background-color: #FF69B4; }
+.genre-animation { background-color: #4CC9F0; }
+.genre-drama { background-color: #7209B7; }
+.genre-thriller { background-color: #3A0CA3; }
+.genre-crime { background-color: #B7094C; }
+.genre-fantasy { background-color: #8B5CF6; }
+.genre-comedy { background-color: #34D399; }
+.genre-musical { background-color: #F472B6; }
+.genre-war { background-color: #4B5563; }
