@@ -171,8 +171,12 @@ async function filterMovies() {
     const searchTerm = searchInput ? searchInput.value.toLowerCase().trim() : '';
 
     // Clear existing movies and show loading state
-    moviesGrid.innerHTML = '';
     moviesGrid.classList.add('loading');
+    
+    // Small delay to ensure loading state is visible
+    await new Promise(resolve => setTimeout(resolve, 100));
+    
+    moviesGrid.innerHTML = '';
 
     // Filter and sort movies
     let filteredMovies = movies.filter(movie => {
@@ -213,9 +217,12 @@ async function filterMovies() {
             noResults.textContent = 'No movies found matching your criteria';
             moviesGrid.appendChild(noResults);
         }
+
+        // Small delay before removing loading state to ensure smooth transition
+        await new Promise(resolve => setTimeout(resolve, 100));
+        moviesGrid.classList.remove('loading');
     } catch (error) {
         console.error('Error displaying movies:', error);
-    } finally {
         moviesGrid.classList.remove('loading');
     }
 }
