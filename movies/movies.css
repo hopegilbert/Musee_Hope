@@ -213,6 +213,7 @@ h1 {
     background: var(--background-color);
     margin: 20px auto;
     max-width: 1200px;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
 }
 
 .results-count {
@@ -228,7 +229,8 @@ h1 {
     color: var(--text-color);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 4px;
-    min-width: 300px;
+    width: 100%;
+    max-width: 300px;
 }
 
 .search-input:focus {
@@ -248,15 +250,8 @@ select {
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 4px;
     cursor: pointer;
-    min-width: 150px;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
-    background-repeat: no-repeat;
-    background-position: right 8px center;
-    background-size: 20px;
-    padding-right: 32px;
+    width: 100%;
+    max-width: 150px;
 }
 
 select:focus {
@@ -267,9 +262,11 @@ select:focus {
 /* Movies Grid Styles */
 .movies-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
-    padding: 2rem;
+    grid-template-columns: repeat(7, 1fr); /* 7 movies per row on large screens */
+    gap: 1rem;
+    padding: 1rem;
+    max-width: 100%;
+    margin: 0 auto;
 }
 
 /* Movie Card Styles */
@@ -394,19 +391,100 @@ select:focus {
 .genre-war { background-color: var(--genre-war); }
 
 /* Responsive Styles */
+@media (max-width: 1600px) {
+    .movies-grid {
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+@media (max-width: 1400px) {
+    .movies-grid {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+@media (max-width: 1200px) {
+    .movies-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .filter-bar {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 900px) {
+    .movies-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.8rem;
+    }
+
+    .movie-card {
+        height: 450px;
+    }
+}
+
 @media (max-width: 768px) {
     .filter-bar {
         flex-direction: column;
         align-items: stretch;
+        gap: 10px;
+        padding: 10px;
     }
     
     .search-input,
     select {
         width: 100%;
+        max-width: none;
+    }
+
+    .results-count {
+        margin: 0;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+        padding: 0.5rem;
+    }
+
+    .cinema-header {
+        padding: 1.5rem 1rem;
+        min-height: 200px;
+    }
+
+    .ticket-stub {
+        padding: 1.5rem;
+    }
+
+    .subtitle {
+        font-size: 1.2rem;
     }
 
     .movie-card {
-        height: 550px;
+        height: 400px;
+    }
+}
+
+@media (max-width: 600px) {
+    .movies-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+        padding: 0.5rem;
+    }
+
+    .movie-card {
+        height: 400px;
+    }
+}
+
+@media (max-width: 400px) {
+    .movies-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .movie-card {
+        height: 500px;
     }
 }
 
