@@ -122,8 +122,6 @@ function createMovieCard(movie) {
 
     // Handle card flipping with both click and touch events
     const handleFlip = (e) => {
-        if (e.target.closest('.movie-card-back') && !card.classList.contains('flipped')) return;
-        if (e.target.closest('.movie-card-front') && card.classList.contains('flipped')) return;
         card.classList.toggle('flipped');
     };
 
