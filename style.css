@@ -431,3 +431,20 @@ footer p {
         font-size: 0.8rem;
     }
 }
+
+.license-footer {
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+}
+
+.license-footer a {
+    color: white;
+    text-decoration: none;
+}
+
+.license-footer a:hover {
+    text-decoration: underline;
+}
