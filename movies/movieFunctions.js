@@ -122,22 +122,28 @@ function createMovieCard(movie) {
 
     // Add click handlers for both sides
     const handleFlip = () => {
-        card.classList.toggle('flipped');
+        requestAnimationFrame(() => {
+            card.classList.toggle('flipped');
+        });
     };
 
+    // Handle front card click
     cardFront.addEventListener('click', (e) => {
-        e.stopPropagation();
         if (!e.target.classList.contains('review-text')) {
             handleFlip();
         }
     });
 
-    cardBack.addEventListener('click', (e) => {
+    // Handle back card click - add listeners to both back and back content
+    const handleBackClick = (e) => {
         e.stopPropagation();
         if (!e.target.classList.contains('review-text')) {
             handleFlip();
         }
-    });
+    };
+
+    cardBack.addEventListener('click', handleBackClick);
+    backContent.addEventListener('click', handleBackClick);
 
     return card;
 }
