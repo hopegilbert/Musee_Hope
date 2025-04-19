@@ -15,30 +15,36 @@ function navigateTo(page) {
 
 document.addEventListener("DOMContentLoaded", () => {
   const grid = document.querySelector(".masonry-grid");
-  const gridItems = document.querySelectorAll(".grid-item");
+  if (!grid) return;
 
-  // Lazy-load observer
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-        observer.unobserve(entry.target);
-      }
-    });
-  }, {
-    threshold: 0.1
+  // Make grid visible immediately
+  grid.style.opacity = "1";
+
+  // Initialize Masonry with better settings
+  const msnry = new Masonry(grid, {
+    itemSelector: ".grid-item",
+    columnWidth: ".grid-item",
+    gutter: 10,
+    percentPosition: true,
+    fitWidth: true,
+    horizontalOrder: true
   });
 
-  gridItems.forEach(item => observer.observe(item));
-
-  // Wait until images are loaded, then Masonry
+  // Load images and show items
   imagesLoaded(grid, () => {
-    new Masonry(grid, {
-      itemSelector: ".grid-item",
-      columnWidth: ".grid-item",
-      gutter: 10,
-      percentPosition: true
+    const items = grid.querySelectorAll('.grid-item');
+    items.forEach((item, index) => {
+      setTimeout(() => {
+        item.style.opacity = "1";
+        item.classList.add("visible");
+      }, index * 50);
     });
+    msnry.layout();
+  });
+
+  // Re-layout on resize
+  window.addEventListener('resize', () => {
+    msnry.layout();
   });
 });
 
