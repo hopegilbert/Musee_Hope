@@ -140,18 +140,19 @@ function createMovieCard(movie) {
     // Handle card flipping with both click and touch events
     const handleFlip = (e) => {
         if (e.target.closest('.review-textarea')) return;
-        
-        const card = e.target.closest('.movie-card');
-        if (!card) return;
-        
         card.classList.toggle('flipped');
     };
 
     // Add click handlers to both front and back
-    card.addEventListener('click', handleFlip);
+    cardFront.addEventListener('click', handleFlip);
+    cardBack.addEventListener('click', handleFlip);
     
-    // Add touch handlers
-    card.addEventListener('touchend', (e) => {
+    // Add touch handlers to both front and back
+    cardFront.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        handleFlip(e);
+    });
+    cardBack.addEventListener('touchend', (e) => {
         e.preventDefault();
         handleFlip(e);
     });
