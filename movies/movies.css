@@ -273,7 +273,7 @@ select:focus {
 .movie-card {
     position: relative;
     width: 100%;
-    height: 500px;
+    height: 360px; /* Adjusted for better poster fit */
     perspective: 2000px;
     cursor: pointer;
     transform-style: preserve-3d;
@@ -420,7 +420,7 @@ select:focus {
     }
 
     .movie-card {
-        height: 450px;
+        height: 320px;
     }
 }
 
@@ -466,7 +466,7 @@ select:focus {
     }
 
     .movie-card {
-        height: 400px;
+        height: 300px;
     }
 }
 
@@ -478,7 +478,7 @@ select:focus {
     }
 
     .movie-card {
-        height: 400px;
+        height: 280px;
     }
 }
 
@@ -488,7 +488,7 @@ select:focus {
     }
 
     .movie-card {
-        height: 500px;
+        height: 360px; /* Back to larger size for 2 columns */
     }
 }
 
