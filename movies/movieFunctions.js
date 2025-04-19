@@ -135,6 +135,14 @@ function createMovieCard(movie, index) {
     return card;
 }
 
+// Function to update results count
+function updateResultsCount(count) {
+    const resultsCount = document.getElementById('results-count');
+    if (resultsCount) {
+        resultsCount.textContent = count;
+    }
+}
+
 // Function to filter movies based on selected criteria
 async function filterMovies() {
     const searchInput = document.getElementById('search-input');
@@ -160,6 +168,9 @@ async function filterMovies() {
             (movie.genre && movie.genre.toLowerCase() === genreFilter.toLowerCase())) &&
             (yearFilter === 'all' || Math.floor(movie.year / 10) * 10 === parseInt(yearFilter));
     });
+
+    // Update results count
+    updateResultsCount(filteredMovies.length);
 
     // Sort movies if needed
     if (sortFilter !== 'none') {
@@ -296,6 +307,10 @@ function getYearColor(year) {
 // Initialize everything
 document.addEventListener('DOMContentLoaded', () => {
     try {
+        // Log all unique genres
+        const uniqueGenres = [...new Set(movies.map(movie => movie.genre))].filter(Boolean).sort();
+        console.log('All unique genres in movies:', uniqueGenres);
+        
         // Initialize the UI
         filterMovies();
         setupEventListeners();
