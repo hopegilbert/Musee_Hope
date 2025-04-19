@@ -6530,5 +6530,12 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://www.themoviedb.org/t/p/w1280/b9lUSfCjv8jjNRSsmk65HEV1Pv3.jpg"
+    },
+    {
+        "title": "The Nanny Diaries",
+        "year": 2007,
+        "genre": "Comedy",
+        "rating": 3.5,
+        "poster": "https://www.themoviedb.org/t/p/w1280/8hX6rcxnCidaqegPCyeFm9PODBn.jpg"
     }
 ];
