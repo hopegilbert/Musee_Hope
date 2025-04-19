@@ -579,3 +579,39 @@ footer {
 .references-list i {
     font-style: italic;
 }
+.license-footer {
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.license-footer p {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.license-footer a {
+    color: white;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.license-footer a:hover {
+    text-decoration: underline;
+}
+
+.license-footer img {
+    display: inline;
+    width: auto;
+    margin: 0 2px;
+}
