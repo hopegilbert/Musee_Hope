@@ -122,23 +122,31 @@ function createMovieCard(movie) {
 
     // Add click handlers for both sides
     const handleFlip = (e) => {
+        // Prevent the event from bubbling up to parent elements
+        e.preventDefault();
         e.stopPropagation();
-        requestAnimationFrame(() => {
-            card.classList.toggle('flipped');
-        });
+        
+        // Only flip if clicking the card itself or its immediate children
+        const clickedElement = e.target;
+        const isClickableElement = 
+            clickedElement.classList.contains('movie-card-front') ||
+            clickedElement.classList.contains('movie-card-back') ||
+            clickedElement.classList.contains('back-content') ||
+            clickedElement === cardFront ||
+            clickedElement === cardBack;
+
+        if (isClickableElement) {
+            requestAnimationFrame(() => {
+                card.classList.toggle('flipped');
+            });
+        }
     };
 
-    cardFront.addEventListener('click', handleFlip, { passive: true });
-    cardBack.addEventListener('click', handleFlip, { passive: true });
+    // Add click handlers to the card itself
+    card.addEventListener('click', handleFlip, { passive: false });
     
     // Add touch handlers with preventDefault to avoid double-tap zoom
-    cardFront.addEventListener('touchend', (e) => {
-        e.preventDefault();
-        handleFlip(e);
-    }, { passive: false });
-    
-    cardBack.addEventListener('touchend', (e) => {
-        e.preventDefault();
+    card.addEventListener('touchend', (e) => {
         handleFlip(e);
     }, { passive: false });
 
