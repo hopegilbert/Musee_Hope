@@ -95,13 +95,14 @@ function createMovieCard(movie) {
     const reviewSection = document.createElement('div');
     reviewSection.className = 'review-section';
 
-    const reviewLabel = document.createElement('label');
-    reviewLabel.textContent = 'Write your review here:';
-    reviewLabel.htmlFor = `review-${movie.title.replace(/\s+/g, '-')}`;
+    const reviewHeading = document.createElement('h4');
+    reviewHeading.textContent = 'Review';
+    reviewHeading.className = 'review-heading';
 
     const reviewTextarea = document.createElement('textarea');
     reviewTextarea.className = 'review-textarea';
     reviewTextarea.id = `review-${movie.title.replace(/\s+/g, '-')}`;
+    reviewTextarea.value = 'Working on it...';
     reviewTextarea.placeholder = 'Share your thoughts about this movie...';
 
     // Load saved review if it exists
@@ -115,12 +116,15 @@ function createMovieCard(movie) {
         localStorage.setItem(`review-${movie.title}`, e.target.value);
     });
 
-    // Prevent card from flipping when typing in textarea
+    // Prevent card from flipping when interacting with textarea
     reviewTextarea.addEventListener('click', (e) => {
         e.stopPropagation();
     });
+    reviewTextarea.addEventListener('focus', (e) => {
+        e.stopPropagation();
+    });
 
-    reviewSection.appendChild(reviewLabel);
+    reviewSection.appendChild(reviewHeading);
     reviewSection.appendChild(reviewTextarea);
 
     backContent.appendChild(backTitle);
@@ -140,25 +144,14 @@ function createMovieCard(movie) {
         const card = e.target.closest('.movie-card');
         if (!card) return;
         
-        if (!card.classList.contains('flipping')) {
-            card.classList.add('flipping');
-            card.classList.toggle('flipped');
-            setTimeout(() => {
-                card.classList.remove('flipping');
-            }, 600);
-        }
+        card.classList.toggle('flipped');
     };
 
     // Add click handlers to both front and back
-    cardFront.addEventListener('click', handleFlip);
-    cardBack.addEventListener('click', handleFlip);
+    card.addEventListener('click', handleFlip);
     
-    // Add touch handlers to both front and back
-    cardFront.addEventListener('touchend', (e) => {
-        e.preventDefault();
-        handleFlip(e);
-    });
-    cardBack.addEventListener('touchend', (e) => {
+    // Add touch handlers
+    card.addEventListener('touchend', (e) => {
         e.preventDefault();
         handleFlip(e);
     });

@@ -277,7 +277,7 @@ select:focus {
     perspective: 2000px;
     cursor: pointer;
     transform-style: preserve-3d;
-    transition: none;
+    transition: transform 0.6s;
 }
 
 .movie-card.flipping {
@@ -293,8 +293,8 @@ select:focus {
     position: absolute;
     width: 100%;
     height: 100%;
-    -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
+    -webkit-backface-visibility: hidden; /* Safari */
     border-radius: 8px;
     overflow: hidden;
     transform-style: preserve-3d;
@@ -306,12 +306,13 @@ select:focus {
 }
 
 .movie-card-back {
-    background: var(--card-background);
     transform: rotateY(180deg);
+    background: linear-gradient(to bottom, #1a1a2e, #16213e);
     padding: 1rem;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    align-items: flex-start;
+    border-radius: 12px;
 }
 
 .back-content {
@@ -367,30 +368,43 @@ select:focus {
 }
 
 /* Review Section Styles */
-.review-section {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-    margin-top: 0.25rem;
+.review-heading {
+    color: #fff;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+    text-align: left;
+    width: 100%;
 }
 
-.review-section label {
-    font-size: 0.7rem;
-    opacity: 0.8;
+.review-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    margin-top: 1rem;
 }
 
 .review-textarea {
-    flex-grow: 1;
+    width: 100%;
     min-height: 120px;
+    padding: 0.5rem;
+    border-radius: 8px;
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 4px;
-    color: white;
-    padding: 0.5rem;
-    font-family: inherit;
-    font-size: 0.8rem;
+    color: #fff;
+    font-size: 0.9rem;
     resize: none;
+    transition: all 0.3s ease;
+}
+
+.review-textarea:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.review-textarea::placeholder {
+    color: rgba(255, 255, 255, 0.5);
 }
 
 /* Genre Badge Styles */
