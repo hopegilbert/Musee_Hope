@@ -6516,5 +6516,19 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/zf6h5dJ7wVG7LqMO9dhHGHVejzj.jpg"
+    },
+    {
+        "title": "The Life List",
+        "year": 2025,
+        "genre": "Drama",
+        "rating": 3.5,
+        "poster": "https://www.themoviedb.org/t/p/w1280/5fg98cVo7da7OIK45csdLSd4NaU.jpg"
+    },
+    {
+        "title": "Life or Something Like It",
+        "year": 2002,
+        "genre": "Drama",
+        "rating": 3.5,
+        "poster": "https://www.themoviedb.org/t/p/w1280/b9lUSfCjv8jjNRSsmk65HEV1Pv3.jpg"
     }
 ];
