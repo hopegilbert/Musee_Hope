@@ -266,7 +266,7 @@ select:focus {
 .movie-card {
     position: relative;
     width: 100%;
-    height: 450px;
+    height: 500px;
     perspective: 2000px;
     cursor: pointer;
     transform-style: preserve-3d;
@@ -393,6 +393,10 @@ select:focus {
     .search-input,
     select {
         width: 100%;
+    }
+
+    .movie-card {
+        height: 550px;
     }
 }
 
