@@ -325,17 +325,26 @@ select:focus {
     font-family: var(--main-font);
 }
 
+.back-content .date-genre-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.1rem;
+}
+
 .back-content p {
     font-size: 0.7rem;
     opacity: 0.8;
     color: var(--accent-yellow);
-    margin-bottom: 0.1rem;
+    margin: 0;
     font-family: var(--main-font);
 }
 
 .back-content .genre-badges {
-    margin-top: 0.1rem;
-    margin-bottom: 0.25rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin: 0;
 }
 
 .back-content .genre-badge {

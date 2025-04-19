@@ -1104,7 +1104,7 @@ export const movies = [
         "year": 2016,
         "genre": "Adventure",
         "rating": 3.5,
-        "poster": ""
+        "poster": "https://www.themoviedb.org/t/p/w1280/fc7THOunWR5fKOn65cXrLrrv7s9.jpg"
     },
     {
         "title": "Monsters University",
@@ -1181,7 +1181,7 @@ export const movies = [
         "year": 2019,
         "genre": "Action",
         "rating": 3.5,
-        "poster": ""
+        "poster": "https://www.themoviedb.org/t/p/w1280/dzBtMocZuJbjLOXvrl4zGYigDzh.jpg"
     },
     {
         "title": "It's a Wonderful Life",
