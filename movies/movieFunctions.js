@@ -122,7 +122,6 @@ function createMovieCard(movie) {
 
     // Handle card flipping with both click and touch events
     const handleFlip = (e) => {
-        e.stopPropagation(); // Prevent event from bubbling up
         card.classList.toggle('flipped');
     };
 
@@ -133,12 +132,10 @@ function createMovieCard(movie) {
     // Add touch handlers to both front and back
     cardFront.addEventListener('touchend', (e) => {
         e.preventDefault();
-        e.stopPropagation();
         handleFlip(e);
     });
     cardBack.addEventListener('touchend', (e) => {
         e.preventDefault();
-        e.stopPropagation();
         handleFlip(e);
     });
 
