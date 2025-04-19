@@ -104,32 +104,12 @@ function createMovieCard(movie) {
     reviewHeading.textContent = 'Review';
     reviewHeading.className = 'review-heading';
 
-    const reviewTextarea = document.createElement('textarea');
-    reviewTextarea.className = 'review-textarea';
-    reviewTextarea.id = `review-${movie.title.replace(/\s+/g, '-')}`;
-    reviewTextarea.placeholder = 'Share your thoughts about this movie...';
-
-    // Load saved review if it exists
-    const savedReview = localStorage.getItem(`review-${movie.title}`);
-    if (savedReview) {
-        reviewTextarea.value = savedReview;
-    }
-
-    // Save review when user types
-    reviewTextarea.addEventListener('input', (e) => {
-        localStorage.setItem(`review-${movie.title}`, e.target.value);
-    });
-
-    // Prevent card from flipping when interacting with textarea
-    reviewTextarea.addEventListener('click', (e) => {
-        e.stopPropagation();
-    });
-    reviewTextarea.addEventListener('focus', (e) => {
-        e.stopPropagation();
-    });
+    const reviewText = document.createElement('p');
+    reviewText.className = 'review-text';
+    reviewText.textContent = movie.review || 'No review available.';
 
     reviewSection.appendChild(reviewHeading);
-    reviewSection.appendChild(reviewTextarea);
+    reviewSection.appendChild(reviewText);
 
     backContent.appendChild(backTitle);
     backContent.appendChild(backDateGenreRow);
@@ -142,7 +122,6 @@ function createMovieCard(movie) {
 
     // Handle card flipping with both click and touch events
     const handleFlip = (e) => {
-        if (e.target.closest('.review-textarea')) return;
         if (e.target.closest('.movie-card-back') && !card.classList.contains('flipped')) return;
         if (e.target.closest('.movie-card-front') && card.classList.contains('flipped')) return;
         card.classList.toggle('flipped');

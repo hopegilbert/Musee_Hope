@@ -414,28 +414,18 @@ select:focus {
     margin-top: 1rem;
 }
 
-.review-textarea {
+.review-text {
     width: 100%;
-    min-height: 120px;
     padding: 0.5rem;
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
     color: #fff;
     font-size: 0.9rem;
-    resize: none;
-    transition: all 0.3s ease;
     font-family: var(--main-font);
-}
-
-.review-textarea:focus {
-    outline: none;
-    background: rgba(255, 255, 255, 0.15);
-    border-color: rgba(255, 255, 255, 0.3);
-}
-
-.review-textarea::placeholder {
-    color: rgba(255, 255, 255, 0.5);
+    line-height: 1.4;
+    max-height: 120px;
+    overflow-y: auto;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    margin-top: 0.5rem;
 }
 
 /* Genre Badge Styles */
@@ -794,7 +784,7 @@ select:focus {
     -ms-user-select: none;
 }
 
-.review-textarea {
+.review-text {
     user-select: text;
     -webkit-user-select: text;
     -moz-user-select: text;
