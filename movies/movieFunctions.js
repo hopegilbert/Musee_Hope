@@ -6,9 +6,9 @@ function preloadImages(movies) {
     const imagePromises = movies.map(movie => {
         return new Promise((resolve, reject) => {
             const img = new Image();
-            img.onload = () => resolve(movie.posterUrl);
-            img.onerror = () => reject(`Failed to load image: ${movie.posterUrl}`);
-            img.src = movie.posterUrl;
+            img.onload = () => resolve(movie.poster);
+            img.onerror = () => reject(`Failed to load image: ${movie.poster}`);
+            img.src = movie.poster;
         });
     });
     return Promise.all(imagePromises);
@@ -31,7 +31,7 @@ function createMovieCard(movie) {
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                poster.src = movie.posterUrl;
+                poster.src = movie.poster;
                 observer.unobserve(entry.target);
             }
         });
@@ -64,12 +64,11 @@ function createMovieCard(movie) {
 
     const genreBadges = document.createElement('div');
     genreBadges.className = 'genre-badges';
-    movie.genres.forEach(genre => {
-        const badge = document.createElement('span');
-        badge.className = `genre-badge genre-${genre.toLowerCase()}`;
-        badge.textContent = genre;
-        genreBadges.appendChild(badge);
-    });
+    // Handle single genre
+    const badge = document.createElement('span');
+    badge.className = `genre-badge genre-${movie.genre.toLowerCase()}`;
+    badge.textContent = movie.genre;
+    genreBadges.appendChild(badge);
 
     movieInfo.appendChild(title);
     movieInfo.appendChild(year);
@@ -190,14 +189,14 @@ async function filterMovies() {
 
     // Filter and sort movies
     let filteredMovies = movies.filter(movie => {
-        const movieGenres = movie.genres ? movie.genres.map(g => g.toLowerCase()) : [];
+        const movieGenre = movie.genre.toLowerCase();
         
         return (!searchTerm || 
             movie.title.toLowerCase().includes(searchTerm) ||
-            movieGenres.some(g => g.includes(searchTerm)) ||
+            movieGenre.includes(searchTerm) ||
             movie.year.toString().includes(searchTerm)) &&
             (genreFilter === 'all' || 
-            movieGenres.includes(genreFilter.toLowerCase())) &&
+            movieGenre === genreFilter.toLowerCase()) &&
             (yearFilter === 'all' || Math.floor(movie.year / 10) * 10 === parseInt(yearFilter));
     });
 
@@ -248,29 +247,31 @@ function debounce(func, wait) {
 }
 
 // Set up event listeners
-function setupEventListeners() {
-    const searchInput = document.getElementById('search-input');
-    const filters = ['genre-filter', 'year-filter', 'sort-filter'];
-    
-    if (searchInput) {
-        searchInput.addEventListener('input', debounce(() => filterMovies(), 300));
-    }
-    
-    filters.forEach(id => {
-        const element = document.getElementById(id);
-        if (element) {
-            element.addEventListener('change', filterMovies);
-        }
-    });
-}
+document.addEventListener('DOMContentLoaded', () => {
+    // Initial load of movies
+    filterMovies();
 
-// Initialize the page
-document.addEventListener('DOMContentLoaded', async () => {
-    try {
-        await preloadImages(movies);
-        await filterMovies();
-        setupEventListeners();
-    } catch (error) {
-        console.error('Error initializing page:', error);
+    // Set up event listeners for filters
+    const searchInput = document.getElementById('search-input');
+    const genreFilter = document.getElementById('genre-filter');
+    const yearFilter = document.getElementById('year-filter');
+    const sortFilter = document.getElementById('sort-filter');
+
+    if (searchInput) {
+        searchInput.addEventListener('input', debounce(filterMovies, 300));
     }
+    if (genreFilter) {
+        genreFilter.addEventListener('change', filterMovies);
+    }
+    if (yearFilter) {
+        yearFilter.addEventListener('change', filterMovies);
+    }
+    if (sortFilter) {
+        sortFilter.addEventListener('change', filterMovies);
+    }
+
+    // Preload all movie images
+    preloadImages(movies).catch(error => {
+        console.error('Error preloading images:', error);
+    });
 }); 
