@@ -272,22 +272,22 @@ select:focus {
 /* Movies Grid Styles */
 .movies-grid {
     display: grid;
-    grid-template-columns: repeat(7, minmax(120px, 1fr));
-    gap: 1rem;
-    padding: 1rem;
-    max-width: 1600px;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1.5rem;
+    padding: 1.5rem;
+    max-width: 100%;
     margin: 0 auto;
-    width: 100%;
 }
 
 /* Movie Card Styles */
 .movie-card {
     position: relative;
     width: 100%;
-    height: 100%;
+    aspect-ratio: 27/40; /* Standard movie poster ratio */
+    perspective: 1000px;
+    cursor: pointer;
     transform-style: preserve-3d;
     transition: transform 0.6s;
-    cursor: pointer;
 }
 
 .movie-card.flipped {
@@ -300,83 +300,34 @@ select:focus {
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
-    -webkit-backface-visibility: hidden; /* Safari */
+    border-radius: 8px;
     overflow: hidden;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: var(--card-background);
 }
 
 .movie-card-front {
-    background: var(--card-background);
-    transform: rotateY(0deg);
-}
-
-.movie-card-back {
-    background: var(--card-back-color);
-    transform: rotateY(180deg);
     display: flex;
     flex-direction: column;
-    padding: 1rem;
 }
 
-.back-content {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    height: 100%;
-}
-
-.back-content h3 {
-    font-size: 0.9rem;
-    line-height: 1.1;
-    margin-bottom: 0.1rem;
-    font-family: var(--main-font);
-}
-
-.back-content .date-genre-row {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-top: 0.5rem;
-}
-
-.back-content .year {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--text-color);
-}
-
-.back-content p {
-    font-size: 0.7rem;
-    opacity: 0.8;
-    color: var(--accent-yellow);
-    margin: 0;
-    font-family: var(--main-font);
-}
-
-.back-content .genre-badges {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px;
-    margin: 0;
-}
-
-.back-content .genre-badge {
-    font-size: 0.55rem;
-    padding: 1px 3px;
-    font-family: var(--main-font);
-    color: var(--text-color) !important;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: 400;
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+.movie-card-front.loading {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
 }
 
 .movie-poster {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: opacity 0.3s ease;
+    opacity: 0;
     aspect-ratio: 27/40; /* Ensure poster maintains ratio */
+}
+
+.movie-poster.loaded {
+    opacity: 1;
 }
 
 .movie-info {
@@ -385,47 +336,108 @@ select:focus {
     left: 0;
     right: 0;
     padding: 1rem;
-    background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
     color: white;
-    transform: translateY(100%);
+    transform: translateY(0);
     transition: transform 0.3s ease;
-    font-family: var(--main-font);
 }
 
-.movie-card-front:hover .movie-info {
+.movie-card:hover .movie-info {
     transform: translateY(0);
 }
 
-/* Review Section Styles */
-.review-heading {
-    color: #fff;
-    margin-bottom: 0.5rem;
-    font-size: 1.2rem;
-    text-align: left;
-    width: 100%;
-    font-family: var(--main-font);
+.movie-info h3 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.date-genre-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.5rem;
+}
+
+.genre-badges {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.genre-badge {
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.decade-badge {
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.movie-card-back {
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    background: var(--card-back-color);
+    color: var(--text-color);
+}
+
+.back-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.back-content h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
 }
 
 .review-section {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    width: 100%;
-    margin-top: 1rem;
+    gap: 0.5rem;
+}
+
+.review-heading {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--accent-color);
 }
 
 .review-text {
-    width: 100%;
-    padding: 0.5rem;
-    color: #fff;
-    font-size: 0.9rem;
-    font-family: var(--main-font);
-    line-height: 1.4;
-    max-height: 120px;
+    margin: 0;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--text-color);
     overflow-y: auto;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    margin-top: 0.5rem;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
 }
 
 /* Genre Badge Styles */
@@ -481,80 +493,39 @@ select:focus {
 /* Responsive Styles */
 @media (max-width: 1600px) {
     .movies-grid {
-        grid-template-columns: repeat(6, minmax(120px, 1fr));
-        max-width: 1400px;
+        grid-template-columns: repeat(6, 1fr);
     }
 }
 
 @media (max-width: 1400px) {
     .movies-grid {
-        grid-template-columns: repeat(5, minmax(120px, 1fr));
-        max-width: 1200px;
+        grid-template-columns: repeat(5, 1fr);
     }
 }
 
 @media (max-width: 1200px) {
     .movies-grid {
-        grid-template-columns: repeat(4, minmax(120px, 1fr));
-        max-width: 1000px;
+        grid-template-columns: repeat(4, 1fr);
     }
 }
 
 @media (max-width: 900px) {
     .movies-grid {
-        grid-template-columns: repeat(3, minmax(120px, 1fr));
-        gap: 0.8rem;
-        max-width: 800px;
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 
 @media (max-width: 768px) {
     .movies-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 0.75rem;
-        padding: 0.75rem;
-        max-width: 100%;
-    }
-    h1 {
-        font-size: 2.5rem;
-        letter-spacing: 2px;
-        padding: 0.5rem 0;
-    }
-    .subtitle {
-        font-size: 1.2rem;
-    }
-    .ticket-stub {
-        padding: 2rem;
-    }
-}
-
-@media (max-width: 600px) {
-    .movies-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 0.5rem;
-        padding: 0.5rem;
-    }
-}
-
-@media (max-width: 400px) {
-    .movies-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0.4rem;
-        padding: 0.4rem;
-        margin: 0.4rem;
+        gap: 1rem;
+        padding: 1rem;
     }
 }
 
 @media (max-width: 480px) {
-    h1 {
-        font-size: 2rem;
-        letter-spacing: 1px;
-    }
-    .subtitle {
-        font-size: 1rem;
-    }
-    .ticket-stub {
-        padding: 1.5rem;
+    .movies-grid {
+        grid-template-columns: 1fr;
     }
 }
 

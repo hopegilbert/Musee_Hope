@@ -1,18 +1,22 @@
 // Import movies data
 import { movies } from './movieData.js';
 
-// Preload images function
-function preloadImages(movies) {
-    const imagePromises = movies.map(movie => {
-        return new Promise((resolve, reject) => {
-            const img = new Image();
-            img.onload = () => resolve(movie.poster);
-            img.onerror = () => reject(`Failed to load image: ${movie.poster}`);
-            img.src = movie.poster;
-        });
+// Create a single IntersectionObserver instance for all cards
+const imageObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const img = entry.target;
+            if (img.dataset.src) {
+                img.src = img.dataset.src;
+                delete img.dataset.src;
+                observer.unobserve(img);
+            }
+        }
     });
-    return Promise.all(imagePromises);
-}
+}, {
+    rootMargin: '100px 0px',
+    threshold: 0.1
+});
 
 function createMovieCard(movie) {
     const card = document.createElement('div');
@@ -24,23 +28,11 @@ function createMovieCard(movie) {
 
     const poster = document.createElement('img');
     poster.className = 'movie-poster';
-    poster.loading = 'lazy';
     poster.alt = `${movie.title} Poster`;
+    poster.dataset.src = movie.poster; // Use data-src for lazy loading
     
-    // Set up lazy loading with Intersection Observer
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                poster.src = movie.poster;
-                observer.unobserve(entry.target);
-            }
-        });
-    }, {
-        rootMargin: '50px 0px',
-        threshold: 0.1
-    });
-
-    observer.observe(card);
+    // Add to intersection observer
+    imageObserver.observe(poster);
 
     poster.onload = () => {
         cardFront.classList.remove('loading');
@@ -120,24 +112,28 @@ function createMovieCard(movie) {
     card.appendChild(cardFront);
     card.appendChild(cardBack);
 
-    // Handle card flipping with both click and touch events
+    // Use passive event listeners for better performance
     const handleFlip = (e) => {
-        card.classList.toggle('flipped');
+        e.stopPropagation();
+        requestAnimationFrame(() => {
+            card.classList.toggle('flipped');
+        });
     };
 
-    // Add click handlers to both front and back
-    cardFront.addEventListener('click', handleFlip);
-    cardBack.addEventListener('click', handleFlip);
+    cardFront.addEventListener('click', handleFlip, { passive: true });
+    cardBack.addEventListener('click', handleFlip, { passive: true });
     
-    // Add touch handlers to both front and back
     cardFront.addEventListener('touchend', (e) => {
         e.preventDefault();
+        e.stopPropagation();
         handleFlip(e);
-    });
+    }, { passive: false });
+    
     cardBack.addEventListener('touchend', (e) => {
         e.preventDefault();
+        e.stopPropagation();
         handleFlip(e);
-    });
+    }, { passive: false });
 
     return card;
 }
