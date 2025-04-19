@@ -6259,13 +6259,6 @@ export const movies = [
         "poster": "https://image.tmdb.org/t/p/w500/1DPUFG6QnGqzpvEaDEv7TaepycM.jpg"
     },
     {
-        "title": "Agatha All Along",
-        "year": 2024,
-        "genre": "Fantasy",
-        "rating": 3.5,
-        "poster": "https://image.tmdb.org/t/p/w500/8gJ4SkWVzFDcUfYVJDTWl85HnNU.jpg"
-    },
-    {
         "title": "Peter Pan",
         "year": 2003,
         "genre": "Adventure",
