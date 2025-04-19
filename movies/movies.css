@@ -659,7 +659,10 @@ body::after {
 /* Genre Badge Styles */
 .genre-action { background-color: var(--genre-action); }
 .genre-adventure { background-color: var(--genre-adventure); }
-.genre-scifi { background-color: var(--genre-scifi); }
+.genre-scifi { 
+    background-color: var(--genre-scifi);
+    color: var(--text-color) !important;
+}
 .genre-horror { background-color: var(--genre-horror); }
 .genre-romance { background-color: var(--genre-romance); }
 .genre-animation { background-color: var(--genre-animation); }
