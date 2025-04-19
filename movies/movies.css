@@ -32,6 +32,8 @@
     --genre-comedy: #FFDC00;
     --genre-musical: #F012BE;
     --genre-war: #AAAAAA;
+    --main-font: 'Poetsen One', sans-serif;
+    --title-font: 'Monoton', sans-serif;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Monoton&family=Rubik+Mono+One&family=VT323&family=IBM+Plex+Mono:wght@400;500&family=Cormorant:wght@400;500;600&display=swap');
@@ -43,7 +45,7 @@
 }
 
 body {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: var(--main-font);
     background-color: var(--background-color);
     color: var(--text-color);
     line-height: 1.6;
@@ -132,7 +134,7 @@ body::before {
 }
 
 .subtitle {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: var(--main-font);
     color: var(--accent-yellow);
     opacity: 0.9;
     margin-top: 1rem;
@@ -159,7 +161,7 @@ body::before {
 }
 
 h1 {
-    font-family: "Monoton", sans-serif;
+    font-family: var(--title-font);
     font-weight: 400;
     font-style: normal;
     margin: 0;
@@ -219,11 +221,11 @@ h1 {
 .results-count {
     color: var(--text-color);
     margin-right: 20px;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: var(--main-font);
 }
 
 .search-input {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: var(--main-font);
     padding: 8px 16px;
     background-color: rgba(0, 0, 51, 0.5);
     color: var(--text-color);
@@ -243,7 +245,7 @@ h1 {
 }
 
 select {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: var(--main-font);
     padding: 8px 16px;
     background-color: rgba(0, 0, 51, 0.5);
     color: var(--text-color);
@@ -320,6 +322,7 @@ select:focus {
     font-size: 0.9rem;
     line-height: 1.1;
     margin-bottom: 0.1rem;
+    font-family: var(--main-font);
 }
 
 .back-content p {
@@ -327,6 +330,7 @@ select:focus {
     opacity: 0.8;
     color: var(--accent-yellow);
     margin-bottom: 0.1rem;
+    font-family: var(--main-font);
 }
 
 .back-content .genre-badges {
@@ -337,6 +341,12 @@ select:focus {
 .back-content .genre-badge {
     font-size: 0.55rem;
     padding: 1px 3px;
+    font-family: var(--main-font);
+    color: var(--text-color) !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 400;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
 .movie-poster {
@@ -356,6 +366,7 @@ select:focus {
     color: white;
     transform: translateY(100%);
     transition: transform 0.3s ease;
+    font-family: var(--main-font);
 }
 
 .movie-card-front:hover .movie-info {
@@ -369,6 +380,7 @@ select:focus {
     font-size: 1.2rem;
     text-align: left;
     width: 100%;
+    font-family: var(--main-font);
 }
 
 .review-section {
@@ -390,6 +402,7 @@ select:focus {
     font-size: 0.9rem;
     resize: none;
     transition: all 0.3s ease;
+    font-family: var(--main-font);
 }
 
 .review-textarea:focus {
@@ -415,20 +428,19 @@ select:focus {
     padding: 2px 6px;
     border-radius: 3px;
     font-size: 0.7rem;
-    font-family: 'Monoton', sans-serif;
-    color: var(--text-color);
+    font-family: var(--main-font);
+    color: var(--text-color) !important;
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: 400;
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
 .genre-action { background-color: var(--genre-action); }
 .genre-adventure { background-color: var(--genre-adventure); }
 .genre-scifi { 
     background-color: #7FDBFF; 
-    color: #000033;
-    text-shadow: 0 0 5px rgba(0, 0, 51, 0.5);
+    color: var(--text-color) !important;
 }
 .genre-horror { background-color: var(--genre-horror); }
 .genre-romance { background-color: var(--genre-romance); }
@@ -642,6 +654,7 @@ select:focus {
     padding: 0.5rem 1rem;
     position: relative;
     transition: all 0.3s ease;
+    font-family: var(--main-font);
 }
 
 .nav-item::after {
@@ -685,6 +698,7 @@ select:focus {
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: var(--main-font);
 }
 
 .dropbtn:hover {
@@ -721,6 +735,7 @@ select:focus {
     font-size: 0.9rem;
     transition: all 0.3s ease;
     border-bottom: 1px solid var(--accent-yellow);
+    font-family: var(--main-font);
 }
 
 .dropdown-content a:hover {
@@ -764,6 +779,7 @@ select:focus {
     color: var(--text-color);
     font-size: 1.2rem;
     letter-spacing: 1px;
+    font-family: var(--main-font);
 }
 
 .no-results {
