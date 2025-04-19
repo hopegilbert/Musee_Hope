@@ -308,19 +308,22 @@ select:focus {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     background: var(--card-background);
     transform-style: preserve-3d;
+    cursor: pointer;
 }
 
 .movie-card-front {
-    display: flex;
-    flex-direction: column;
-    opacity: 1;
-    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: rotateY(0deg);
+    z-index: 1;
 }
 
-.movie-card-front.loading {
+.movie-card-back {
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
     background: var(--card-background);
-    opacity: 0;
-    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    color: var(--text-color);
+    z-index: 0;
 }
 
 .movie-poster {
@@ -399,22 +402,11 @@ select:focus {
     color: white;
 }
 
-.movie-card-back {
-    transform: rotateY(180deg);
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
-    background: var(--card-background);
-    color: var(--text-color);
-    cursor: pointer;
-}
-
 .back-content {
     flex: 1;
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
-    pointer-events: none;
 }
 
 .back-content * {
@@ -458,8 +450,8 @@ select:focus {
     line-height: 1.5;
     color: var(--text-color);
     overflow-y: auto;
-    pointer-events: auto;
     cursor: text;
+    user-select: text;
 }
 
 @keyframes loading {

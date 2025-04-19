@@ -120,30 +120,17 @@ function createMovieCard(movie) {
     card.appendChild(cardFront);
     card.appendChild(cardBack);
 
-    // Add click handlers for both sides
-    const handleFlip = () => {
-        requestAnimationFrame(() => {
+    // Simplified click handling
+    function handleClick(e) {
+        // Only flip if not clicking review text
+        if (!e.target.classList.contains('review-text')) {
             card.classList.toggle('flipped');
-        });
-    };
-
-    // Handle front card click
-    cardFront.addEventListener('click', (e) => {
-        if (!e.target.classList.contains('review-text')) {
-            handleFlip();
         }
-    });
+    }
 
-    // Handle back card click - add listeners to both back and back content
-    const handleBackClick = (e) => {
-        e.stopPropagation();
-        if (!e.target.classList.contains('review-text')) {
-            handleFlip();
-        }
-    };
-
-    cardBack.addEventListener('click', handleBackClick);
-    backContent.addEventListener('click', handleBackClick);
+    // Add click handlers to both front and back
+    cardFront.addEventListener('click', handleClick);
+    cardBack.addEventListener('click', handleClick);
 
     return card;
 }
