@@ -17,6 +17,21 @@
     --blue-gradient: linear-gradient(135deg, #4169E1 0%, #000033 100%);
     --vintage-border: 1px solid rgba(65, 105, 225, 0.2);
     --header-gradient: linear-gradient(45deg, var(--accent-yellow) 0%, var(--accent-color) 30%, var(--primary-color) 60%, #FFFFFF 100%);
+    
+    /* Genre Colors */
+    --genre-action: #FF4136;
+    --genre-adventure: #FF851B;
+    --genre-scifi: #7FDBFF;
+    --genre-horror: #85144b;
+    --genre-romance: #F012BE;
+    --genre-animation: #39CCCC;
+    --genre-drama: #B10DC9;
+    --genre-thriller: #FF4136;
+    --genre-crime: #111111;
+    --genre-fantasy: #01FF70;
+    --genre-comedy: #FFDC00;
+    --genre-musical: #F012BE;
+    --genre-war: #AAAAAA;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Monoton&family=Rubik+Mono+One&family=VT323&family=IBM+Plex+Mono:wght@400;500&family=Cormorant:wght@400;500;600&display=swap');
@@ -914,3 +929,31 @@ body::after {
     color: #333;
     font-weight: bold;
 }
+
+/* Genre Badge Styles */
+.genre-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-color);
+    margin: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: var(--box-shadow);
+}
+
+.genre-action { background-color: var(--genre-action); }
+.genre-adventure { background-color: var(--genre-adventure); }
+.genre-scifi { background-color: var(--genre-scifi); }
+.genre-horror { background-color: var(--genre-horror); }
+.genre-romance { background-color: var(--genre-romance); }
+.genre-animation { background-color: var(--genre-animation); }
+.genre-drama { background-color: var(--genre-drama); }
+.genre-thriller { background-color: var(--genre-thriller); }
+.genre-crime { background-color: var(--genre-crime); }
+.genre-fantasy { background-color: var(--genre-fantasy); }
+.genre-comedy { background-color: var(--genre-comedy); }
+.genre-musical { background-color: var(--genre-musical); }
+.genre-war { background-color: var(--genre-war); }
