@@ -273,7 +273,7 @@ select:focus {
 .movie-card {
     position: relative;
     width: 100%;
-    height: 360px; /* Adjusted for better poster fit */
+    aspect-ratio: 27/40; /* Standard movie poster ratio */
     perspective: 2000px;
     cursor: pointer;
     transform-style: preserve-3d;
@@ -317,6 +317,7 @@ select:focus {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    aspect-ratio: 27/40; /* Ensure poster maintains ratio */
 }
 
 .movie-info {
@@ -417,10 +418,6 @@ select:focus {
     .movies-grid {
         grid-template-columns: repeat(5, 1fr);
         gap: 0.8rem;
-    }
-
-    .movie-card {
-        height: 320px;
     }
 }
 
