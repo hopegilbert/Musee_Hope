@@ -6689,7 +6689,7 @@ export const movies = [
         "year": 1997,
         "genre": "Animation",
         "rating": 3.5,
-        "poster": "https://image.tmdb.org/t/p/w500/yjLkrpnVCkdP7m3ZDkwsGSqylb4.jpg",
+        "poster": "https://www.themoviedb.org/t/p/w1280/bppGWGA8zq1sRvTdDJnUzVW9GcH.jpg",
         "review": "Coming Soon."
     },
     {
