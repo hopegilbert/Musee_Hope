@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Watch List - A Personal Film Library</title>
+    <title>Musée Hope - A Curated Collection of Cinema</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Monoton&family=Poetsen+One&display=swap" rel="stylesheet">
@@ -22,55 +22,38 @@
     <div class="page-wrapper">
         <header class="cinema-header">
             <div class="ticket-stub">
-                <h1>My Watch List</h1>
-                <p class="subtitle">A Personal Film Library</p>
+                <h1>Musée Hope</h1>
+                <p class="subtitle">A Curated Collection of Cinema</p>
                 <div class="ticket-tear"></div>
             </div>
         </header>
-
-        <!-- Action Buttons -->
-        <div class="action-buttons">
-            <button id="stats-button" class="stats-button">
-                <i class="fas fa-chart-bar"></i>
-                Stats
-            </button>
-            <button id="lucky-button" class="lucky-button">
-                <i class="fas fa-film"></i>
-                Random Movie
-            </button>
-            <button id="favorites-button" class="favorites-button">
-                <i class="fas fa-heart"></i>
-                Favorites
-            </button>
-        </div>
 
         <!-- Search and Results Count -->
         <div class="search-container">
             <div class="search-wrapper">
                 <input type="text" id="search-input" class="search-input" placeholder="Search movies...">
-                <span id="results-count" class="results-count">0 movies</span>
+                <div class="results-count" id="results-count">0 movies</div>
             </div>
         </div>
 
         <!-- Filter Bar -->
         <div class="filter-bar">
-            <!-- Main Filters -->
             <div class="filter-row">
                 <select id="genre-filter" class="filter-select">
                     <option value="all">All Genres</option>
-                    <option value="action">Action</option>
-                    <option value="adventure">Adventure</option>
-                    <option value="animation">Animation</option>
-                    <option value="comedy">Comedy</option>
-                    <option value="crime">Crime</option>
-                    <option value="drama">Drama</option>
-                    <option value="fantasy">Fantasy</option>
-                    <option value="horror">Horror</option>
-                    <option value="musical">Musical</option>
-                    <option value="romance">Romance</option>
-                    <option value="sci-fi">Sci-Fi</option>
-                    <option value="thriller">Thriller</option>
-                    <option value="war">War</option>
+                    <option value="Action">Action</option>
+                    <option value="Adventure">Adventure</option>
+                    <option value="Animation">Animation</option>
+                    <option value="Comedy">Comedy</option>
+                    <option value="Crime">Crime</option>
+                    <option value="Drama">Drama</option>
+                    <option value="Fantasy">Fantasy</option>
+                    <option value="Horror">Horror</option>
+                    <option value="Musical">Musical</option>
+                    <option value="Romance">Romance</option>
+                    <option value="Sci-Fi">Sci-Fi</option>
+                    <option value="Thriller">Thriller</option>
+                    <option value="War">War</option>
                 </select>
 
                 <select id="year-filter" class="filter-select">
@@ -84,32 +67,43 @@
 
                 <select id="rating-filter" class="filter-select">
                     <option value="0">All Ratings</option>
-                    <option value="1">1 Star</option>
-                    <option value="2">2 Stars</option>
-                    <option value="3">3 Stars</option>
-                    <option value="4">4 Stars</option>
                     <option value="5">5 Stars</option>
+                    <option value="4">4 Stars</option>
+                    <option value="3">3 Stars</option>
+                    <option value="2">2 Stars</option>
+                    <option value="1">1 Star</option>
                 </select>
 
                 <select id="sort-filter" class="filter-select">
                     <option value="none">Sort By</option>
+                    <option value="rating">Rating</option>
                     <option value="year">Year</option>
                     <option value="title">Title</option>
                 </select>
 
-                <button id="reset-filters" class="filter-select">
-                    <i class="fas fa-undo"></i>
-                    <span>Reset Filters</span>
+                <button id="reset-filters" class="reset-filters-button">
+                    <i class="fas fa-undo"></i> Reset Filters
                 </button>
             </div>
+        </div>
 
-            <!-- Recommendations Generator -->
-            <div class="filter-row">
-                <button id="recommendations-button" class="recommendations-button">
-                    <i class="fas fa-magic"></i>
-                    <span>Generate Recommendations</span>
-                </button>
-            </div>
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <button id="stats-button" class="stats-button">
+                <i class="fas fa-chart-bar"></i> Stats
+            </button>
+            
+            <button id="lucky-button" class="lucky-button">
+                <i class="fas fa-film"></i> Random Movie
+            </button>
+            
+            <button id="recommendations-button" class="recommendations-button">
+                <i class="fas fa-magic"></i> Recommendations
+            </button>
+            
+            <button id="favorites-button" class="favorites-button">
+                <i class="fas fa-heart"></i> Favorites
+            </button>
         </div>
 
         <!-- Main Content -->
@@ -119,74 +113,87 @@
 
         <div class="film-grain-overlay"></div>
 
-        <!-- Recommendations Panel -->
-        <div id="recommendations-panel" class="recommendations-panel hidden">
-            <div class="recommendations-content">
-                <h3>Movie Recommendations</h3>
-                <div class="recommendations-filters">
-                    <div class="filter-group">
-                        <select id="rec-genre-filter">
-                            <option value="all">All Genres</option>
-                            <option value="Action">Action</option>
-                            <option value="Adventure">Adventure</option>
-                            <option value="Animation">Animation</option>
-                            <option value="Comedy">Comedy</option>
-                            <option value="Crime">Crime</option>
-                            <option value="Drama">Drama</option>
-                            <option value="Fantasy">Fantasy</option>
-                            <option value="Horror">Horror</option>
-                            <option value="Musical">Musical</option>
-                            <option value="Romance">Romance</option>
-                            <option value="Sci-Fi">Sci-Fi</option>
-                            <option value="Thriller">Thriller</option>
-                            <option value="War">War</option>
-                        </select>
-                    </div>
-                    <div class="filter-group">
-                        <select id="rec-decade-filter">
-                            <option value="all">All Decades</option>
-                            <option value="1980">1980s</option>
-                            <option value="1990">1990s</option>
-                            <option value="2000">2000s</option>
-                            <option value="2010">2010s</option>
-                            <option value="2020">2020s</option>
-                        </select>
-                    </div>
-                    <div class="filter-group">
-                        <button id="generate-recommendations" class="generate-button">
-                            <i class="fas fa-sync"></i> Generate
-                        </button>
-                    </div>
-                </div>
-                <div class="recommendations-grid">
-                    <!-- Recommendations will be dynamically generated here -->
-                </div>
+        <!-- Stats Panel -->
+        <div class="stats-overlay"></div>
+        <div class="stats-panel hidden">
+            <div class="stats-header">
+                <h2>Movie Statistics</h2>
+                <button class="close-stats"><i class="fas fa-times"></i></button>
+            </div>
+            
+            <div class="stats-section genre-stats">
+                <h3>Genre Distribution</h3>
+                <div class="stats-chart"></div>
+            </div>
+            
+            <div class="stats-section decade-stats">
+                <h3>Movies by Decade</h3>
+                <div class="stats-chart"></div>
+            </div>
+            
+            <div class="stats-section top-rated">
+                <h3>Top Rated Movies</h3>
+                <div class="top-movies"></div>
+            </div>
+            
+            <div class="stats-section newest">
+                <h3>Latest Releases</h3>
+                <div class="top-movies"></div>
+            </div>
+            
+            <div class="stats-section overview">
+                <h3>Overview</h3>
+                <p>Average Rating: <span class="average-rating"></span> / 5.0</p>
+                <p>Total Movies: <span class="total-movies"></span></p>
             </div>
         </div>
 
-        <div id="stats-panel" class="stats-panel hidden">
-            <div class="stats-content">
-                <h3>Movie Statistics</h3>
-                <div class="stats-grid">
-                    <div class="stats-section">
-                        <h4>Movies by Genre</h4>
-                        <div id="genre-stats" class="stats-chart"></div>
-                    </div>
-                    <div class="stats-section">
-                        <h4>Movies by Decade</h4>
-                        <div id="decade-stats" class="stats-chart"></div>
-                    </div>
-                    <div class="stats-section">
-                        <h4>Top 5 Genres</h4>
-                        <div id="top-genres" class="stats-list"></div>
-                    </div>
-                </div>
+        <!-- Recommendations Panel -->
+        <div class="recommendations-panel">
+            <div class="recommendations-header">
+                <h2>Movie Recommendations</h2>
+                <button class="close-recommendations"><i class="fas fa-times"></i></button>
             </div>
+            
+            <div class="recommendation-filters">
+                <select id="rec-genre-filter" class="filter-select">
+                    <option value="all">All Genres</option>
+                    <option value="Action">Action</option>
+                    <option value="Adventure">Adventure</option>
+                    <option value="Animation">Animation</option>
+                    <option value="Comedy">Comedy</option>
+                    <option value="Crime">Crime</option>
+                    <option value="Drama">Drama</option>
+                    <option value="Fantasy">Fantasy</option>
+                    <option value="Horror">Horror</option>
+                    <option value="Musical">Musical</option>
+                    <option value="Romance">Romance</option>
+                    <option value="Sci-Fi">Sci-Fi</option>
+                    <option value="Thriller">Thriller</option>
+                    <option value="War">War</option>
+                </select>
+                
+                <select id="rec-decade-filter" class="filter-select">
+                    <option value="all">All Decades</option>
+                    <option value="1980">1980s</option>
+                    <option value="1990">1990s</option>
+                    <option value="2000">2000s</option>
+                    <option value="2010">2010s</option>
+                    <option value="2020">2020s</option>
+                </select>
+                
+                <button id="generate-recommendations" class="generate-recommendations">
+                    <i class="fas fa-magic"></i> Generate
+                </button>
+            </div>
+            
+            <div class="recommendations-grid"></div>
         </div>
     </div>
+
     <div class="license-footer">
         <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a property="dct:title" rel="cc:attributionURL" href="https://hopegilbert.github.io/Musee_Hope/index.html">Hope Gilbert's Musings and Research</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://hopegilbert.github.io/Musee_Hope/index.html">Hope Gilbert</a> is licensed under <a href="https://creativecommons.org/licenses/by-nd/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-ND 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/nd.svg?ref=chooser-v1" alt=""></a></p>
-      </div>
+    </div>
 
     <script type="module" src="./movieData.js"></script>
     <script type="module" src="./movieFunctions.js"></script>
