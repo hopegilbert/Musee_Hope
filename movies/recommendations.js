@@ -142,18 +142,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const recommendationsPanel = document.getElementById('recommendations-panel');
     const generateButton = document.getElementById('generate-recommendations');
     const overlay = document.createElement('div');
-    overlay.className = 'stats-overlay';
+    overlay.id = 'recommendations-overlay';
+    overlay.className = 'recommendations-overlay';
     document.body.appendChild(overlay);
 
     recommendationsButton.addEventListener('click', () => {
-        recommendationsPanel.classList.toggle('hidden');
-        overlay.classList.toggle('visible');
+        recommendationsPanel.classList.toggle('active');
+        overlay.classList.toggle('active');
     });
 
     generateButton.addEventListener('click', displayRecommendations);
 
     overlay.addEventListener('click', () => {
-        recommendationsPanel.classList.add('hidden');
-        overlay.classList.remove('visible');
+        recommendationsPanel.classList.remove('active');
+        overlay.classList.remove('active');
     });
 }); 
