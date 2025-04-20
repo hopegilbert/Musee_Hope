@@ -908,22 +908,30 @@ select:focus {
     display: flex;
     align-items: center;
     gap: 8px;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
     margin-left: auto;
+    height: 40px;
+    min-width: 120px;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
 }
 
 .favorites-button:hover {
     background-color: rgba(0, 0, 51, 0.8);
     border-color: var(--accent-yellow);
     color: var(--accent-yellow);
+    transform: scale(1.02);
 }
 
 .favorites-button.active {
     background-color: var(--accent-yellow);
     color: var(--secondary-color);
     border-color: var(--accent-yellow);
+    transform: scale(0.98);
 }
 
 .favorites-icon {
     font-size: 1.2em;
+    flex-shrink: 0;
 }
