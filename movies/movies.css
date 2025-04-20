@@ -1688,21 +1688,25 @@ h1 {
 }
 
 .reset-filters {
+    font-family: var(--main-font);
     padding: 8px 16px;
-    background-color: rgba(0, 0, 51, 0.5);
+    background-color: var(--primary-color);
     color: white;
-    border: 1px solid var(--accent-yellow);
+    border: 2px solid var(--secondary-color);
     border-radius: 4px;
     cursor: pointer;
-    font-family: var(--main-font);
     font-size: 1rem;
     transition: all 0.3s ease;
     margin-left: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 40px;
 }
 
 .reset-filters:hover {
-    background-color: rgba(0, 0, 51, 0.8);
-    border-color: var(--accent-color);
-    color: var(--accent-yellow);
+    background-color: var(--secondary-color);
+    color: white;
     transform: scale(1.02);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
