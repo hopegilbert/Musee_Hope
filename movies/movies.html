@@ -13,7 +13,92 @@
     <link rel="icon" href="images/movie-icon.ico" type="image/x-icon">
 </head>
 <body>
-    <a href="../index.html" class="back-to-gallery">Back to Gallery</a>
+    <div class="cinema-nav">
+        <div class="nav-wrapper">
+            <a href="../index.html" class="nav-item">Back to Gallery</a>
+        </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="action-buttons">
+        <button id="stats-toggle" class="stats-button">
+            <i class="fas fa-chart-bar"></i>
+            <span>Stats</span>
+        </button>
+        <button id="lucky-button" class="lucky-button">
+            <i class="fas fa-film"></i>
+            <span>Random Movie</span>
+        </button>
+    </div>
+
+    <!-- Search and Results Count -->
+    <div class="search-container">
+        <div class="search-wrapper">
+            <input type="text" id="search-input" class="search-input" placeholder="Search movies...">
+            <span id="results-count" class="results-count">0 movies found</span>
+        </div>
+    </div>
+
+    <!-- Filter Bar -->
+    <div class="filter-bar">
+        <!-- Main Filters -->
+        <div class="filter-row">
+            <select id="genre-filter" class="filter-select">
+                <option value="all">All Genres</option>
+                <option value="action">Action</option>
+                <option value="adventure">Adventure</option>
+                <option value="animation">Animation</option>
+                <option value="comedy">Comedy</option>
+                <option value="crime">Crime</option>
+                <option value="drama">Drama</option>
+                <option value="fantasy">Fantasy</option>
+                <option value="horror">Horror</option>
+                <option value="musical">Musical</option>
+                <option value="romance">Romance</option>
+                <option value="sci-fi">Sci-Fi</option>
+                <option value="thriller">Thriller</option>
+                <option value="war">War</option>
+            </select>
+
+            <select id="year-filter" class="filter-select">
+                <option value="all">All Decades</option>
+                <option value="1980">1980s</option>
+                <option value="1990">1990s</option>
+                <option value="2000">2000s</option>
+                <option value="2010">2010s</option>
+                <option value="2020">2020s</option>
+            </select>
+
+            <select id="rating-filter" class="filter-select">
+                <option value="0">All Ratings</option>
+                <option value="1">1 Star</option>
+                <option value="2">2 Stars</option>
+                <option value="3">3 Stars</option>
+                <option value="4">4 Stars</option>
+                <option value="5">5 Stars</option>
+            </select>
+
+            <select id="sort-filter" class="filter-select">
+                <option value="none">Sort By</option>
+                <option value="year">Year</option>
+                <option value="title">Title</option>
+            </select>
+        </div>
+
+        <!-- Recommendations Generator -->
+        <div class="filter-row">
+            <button id="recommendations-button" class="recommendations-button">
+                <i class="fas fa-magic"></i>
+                <span>Generate Recommendations</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="movies-grid"></div>
+    </main>
+
     <div class="film-grain-overlay"></div>
     <div class="page-wrapper">
         <header class="cinema-header">
@@ -23,80 +108,6 @@
                 <div class="ticket-tear"></div>
             </div>
         </header>
-
-        <div class="filter-bar">
-            <div class="results-count">
-                <span id="results-count">0</span> movies found
-            </div>
-            <div class="filter-group">
-                <input type="text" id="search-input" placeholder="Search movies..." class="search-input">
-            </div>
-            <div class="filter-group">
-                <select id="genre-filter">
-                    <option value="all">All Genres</option>
-                    <option value="Action">Action</option>
-                    <option value="Adventure">Adventure</option>
-                    <option value="Animation">Animation</option>
-                    <option value="Comedy">Comedy</option>
-                    <option value="Crime">Crime</option>
-                    <option value="Drama">Drama</option>
-                    <option value="Fantasy">Fantasy</option>
-                    <option value="Horror">Horror</option>
-                    <option value="Musical">Musical</option>
-                    <option value="Romance">Romance</option>
-                    <option value="Sci-Fi">Sci-Fi</option>
-                    <option value="Thriller">Thriller</option>
-                    <option value="War">War</option>
-                </select>
-            </div>
-            <div class="filter-group">
-                <select id="year-filter">
-                    <option value="all">All Decades</option>
-                    <option value="1980">1980s</option>
-                    <option value="1990">1990s</option>
-                    <option value="2000">2000s</option>
-                    <option value="2010">2010s</option>
-                    <option value="2020">2020s</option>
-                </select>
-            </div>
-            <div class="filter-group">
-                <select id="rating-filter">
-                    <option value="0">All Ratings</option>
-                    <option value="1">1 Star</option>
-                    <option value="2">2 Stars</option>
-                    <option value="3">3 Stars</option>
-                    <option value="4">4 Stars</option>
-                    <option value="5">5 Stars</option>
-                </select>
-            </div>
-            <div class="filter-group">
-                <select id="sort-filter">
-                    <option value="title" selected>Sort by Title</option>
-                    <option value="rating">Sort by Rating</option>
-                    <option value="year">Sort by Year</option>
-                </select>
-            </div>
-            <div class="filter-group">
-                <button id="favorites-filter" class="favorites-button">
-                    <span class="favorites-icon">★</span> Favorites
-                </button>
-            </div>
-            <div class="filter-group">
-                <button id="stats-toggle" class="stats-button">
-                    <i class="fas fa-chart-bar"></i> Stats
-                </button>
-            </div>
-            <div class="filter-group">
-                <button id="lucky-button" class="lucky-button">
-                    <i class="fas fa-film"></i> Feeling Lucky?
-                </button>
-            </div>
-            <div class="filter-group">
-                <button id="recommendations-button" class="recommendations-button">
-                    <i class="fas fa-magic"></i> Get Recommendations
-                </button>
-            </div>
-        </div>
 
         <div id="recommendations-panel" class="recommendations-panel hidden">
             <div class="recommendations-content">
@@ -161,10 +172,6 @@
                 </div>
             </div>
         </div>
-
-        <main class="movies-grid">
-            <!-- Movie cards will be dynamically generated here -->
-        </main>
     </div>
     <div class="license-footer">
         <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a property="dct:title" rel="cc:attributionURL" href="https://hopegilbert.github.io/Musee_Hope/index.html">Hope Gilbert's Musings and Research</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://hopegilbert.github.io/Musee_Hope/index.html">Hope Gilbert</a> is licensed under <a href="https://creativecommons.org/licenses/by-nd/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-ND 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/nd.svg?ref=chooser-v1" alt=""></a></p>
