@@ -91,6 +91,55 @@
                     <i class="fas fa-film"></i> Feeling Lucky?
                 </button>
             </div>
+            <div class="filter-group">
+                <button id="recommendations-button" class="recommendations-button">
+                    <i class="fas fa-magic"></i> Get Recommendations
+                </button>
+            </div>
+        </div>
+
+        <div id="recommendations-panel" class="recommendations-panel hidden">
+            <div class="recommendations-content">
+                <h3>Movie Recommendations</h3>
+                <div class="recommendations-filters">
+                    <div class="filter-group">
+                        <select id="rec-genre-filter">
+                            <option value="all">All Genres</option>
+                            <option value="Action">Action</option>
+                            <option value="Adventure">Adventure</option>
+                            <option value="Animation">Animation</option>
+                            <option value="Comedy">Comedy</option>
+                            <option value="Crime">Crime</option>
+                            <option value="Drama">Drama</option>
+                            <option value="Fantasy">Fantasy</option>
+                            <option value="Horror">Horror</option>
+                            <option value="Musical">Musical</option>
+                            <option value="Romance">Romance</option>
+                            <option value="Sci-Fi">Sci-Fi</option>
+                            <option value="Thriller">Thriller</option>
+                            <option value="War">War</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <select id="rec-decade-filter">
+                            <option value="all">All Decades</option>
+                            <option value="1980">1980s</option>
+                            <option value="1990">1990s</option>
+                            <option value="2000">2000s</option>
+                            <option value="2010">2010s</option>
+                            <option value="2020">2020s</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <button id="generate-recommendations" class="generate-button">
+                            <i class="fas fa-sync"></i> Generate
+                        </button>
+                    </div>
+                </div>
+                <div class="recommendations-grid">
+                    <!-- Recommendations will be dynamically generated here -->
+                </div>
+            </div>
         </div>
 
         <div id="stats-panel" class="stats-panel hidden">
@@ -123,5 +172,6 @@
 
     <script type="module" src="./movieData.js"></script>
     <script type="module" src="./movieFunctions.js"></script>
+    <script src="recommendations.js"></script>
 </body>
 </html> 

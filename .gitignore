@@ -1,3 +1,11 @@
+# API Keys and sensitive data
+config.js
+.env
+.env.local
+.env.*.local
+movies/.env
+
+# OS generated files
 .DS_Store
 .DS_Store?
 ._*
@@ -5,3 +13,12 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Node modules
+node_modules/
