@@ -110,17 +110,19 @@ function createMovieCard(movie) {
     card.appendChild(cardFront);
     card.appendChild(cardBack);
 
-    // Simplified click handling
+    // Improved click handling
     function handleClick(e) {
+        // Stop event from bubbling up
+        e.stopPropagation();
+        
         // Only flip if not clicking review text
         if (!e.target.classList.contains('review-text')) {
             card.classList.toggle('flipped');
         }
     }
 
-    // Add click handlers to both front and back
-    cardFront.addEventListener('click', handleClick);
-    cardBack.addEventListener('click', handleClick);
+    // Add click handlers to both front and back with capture phase
+    card.addEventListener('click', handleClick, true);
 
     return card;
 }
