@@ -51,7 +51,23 @@ function createMovieCard(movie) {
     title.textContent = movie.title;
     
     // Create star rating
-    const starRating = createStarRating(movie.rating);
+    const starRating = document.createElement('div');
+    starRating.className = 'star-rating';
+    for (let i = 1; i <= 5; i++) {
+        const star = document.createElement('i');
+        star.className = 'fas fa-star';
+        
+        if (i <= Math.floor(movie.rating)) {
+            star.classList.add('star');
+        } else if (i === Math.ceil(movie.rating) && movie.rating % 1 !== 0) {
+            star.classList.add('partial');
+            star.style.setProperty('--percent', `${(movie.rating % 1) * 100}%`);
+        } else {
+            star.classList.add('empty');
+        }
+        
+        starRating.appendChild(star);
+    }
 
     const dateGenreRow = document.createElement('div');
     dateGenreRow.className = 'date-genre-row';
