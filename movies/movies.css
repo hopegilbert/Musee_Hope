@@ -65,10 +65,13 @@ body {
     line-height: 1.6;
     position: relative;
     background-image: url('images/background.jpg');
-    background-size: cover;
+    background-size: 100% auto;
     background-position: center;
     background-repeat: no-repeat;
     min-height: 100vh;
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 /* Cinema Header Styles */
