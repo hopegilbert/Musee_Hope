@@ -6,7 +6,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/tFXcEccSQMf3lfhfXKSU9iRBpa3.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Avengers: Infinity War",
@@ -14,7 +15,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "La La Land",
@@ -22,7 +24,8 @@ export const movies = [
         "genre": "Romance",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/uDO8zWDhfWwoFdKS4fzkUJt0Rf0.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Black Panther",
@@ -30,7 +33,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/uxzzxijgPIY7slzFvMotPv8wjKA.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Mad Max: Fury Road",
@@ -38,7 +42,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/hA2ple9q4qnwxp3hKVNhroipsir.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Avengers: Endgame",
@@ -46,7 +51,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/ulzhLuWrPK07P1YkdWQLZnQh1JL.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Arrival",
@@ -54,7 +60,8 @@ export const movies = [
         "genre": "Sci-Fi",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/x2FJsf1ElAgr63Y3PNPtJrcmpoe.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Guardians of the Galaxy",
@@ -62,7 +69,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/jPrJPZKJVhvyJ4DmUTrDgmFN0yG.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Interstellar",
@@ -71,6 +79,7 @@ export const movies = [
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg",
         "review": "Coming Soon.",
+        "trailerUrl": "",
         "favourite": true
     },
     {
@@ -79,7 +88,8 @@ export const movies = [
         "genre": "Sci-Fi",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/wqnLdwVXoBjKibFRR5U3y0aDUhs.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Thor: Ragnarok",
@@ -87,7 +97,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/rzRwTcFvttcN1ZpX2xv4j3tSdJu.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Gone Girl",
@@ -96,6 +107,7 @@ export const movies = [
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/ts996lKsxvjkO2yiYG0ht4qAicO.jpg",
         "review": "Coming Soon.",
+        "trailerUrl": "",
         "favourite": true
     },
     {
@@ -105,6 +117,7 @@ export const movies = [
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/b4Oe15CGLL61Ped0RAS9JpqdmCt.jpg",
         "review": "Coming Soon.",
+        "trailerUrl": "",
         "favourite": true
     },
     {
@@ -113,7 +126,8 @@ export const movies = [
         "genre": "Sci-Fi",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/gajva2L0rPYkEWjzgFlBXCAVBE5.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Call Me by Your Name",
@@ -122,6 +136,7 @@ export const movies = [
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/gXiE0WveDnT0n5J4sW9TMxXF4oT.jpg",
         "review": "Coming Soon.",
+        "trailerUrl": "",
         "favourite": true
     },
     {
@@ -130,7 +145,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/c24sv2weTHPsmDa7jEMN0m2P3RT.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Deadpool",
@@ -138,7 +154,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/3E53WEZJqP6aM84D8CckXx4pIHw.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Wolf of Wall Street",
@@ -146,7 +163,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/kW9LmvYHAaS9iA0tHmZVq8hQYoq.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Star Wars: The Last Jedi",
@@ -154,7 +172,8 @@ export const movies = [
         "genre": "Sci-Fi",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/kOVEVeg59E0wsnXmF9nrh6OmWII.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Django Unchained",
@@ -162,7 +181,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/bV0rWoiRo7pHUTQkh6Oio6irlXO.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Guardians of the Galaxy Vol. 2",
@@ -170,7 +190,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/y4MBh0EjBlMuOzv9axM4qJlmhzz.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Avengers",
@@ -178,7 +199,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/RYMX2wcKCBAr24UyPD7xwmjaTn.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Captain America: Civil War",
@@ -186,7 +208,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/rAGiXaUfPzY7CDEyNKUofk3Kw2e.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Inside Out",
@@ -194,7 +217,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/2H1TmgdfNtsKlU9jKdeNyYL5y8T.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "It",
@@ -202,7 +226,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/9E2y5Q7WlCVNEhP5GiVTjhEhx1o.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Ex Machina",
@@ -210,7 +235,8 @@ export const movies = [
         "genre": "Sci-Fi",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/dmJW8IAKHKxFNiUnoDR7JfsK7Rp.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Silence of the Lambs",
@@ -219,6 +245,7 @@ export const movies = [
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/uS9m8OBk1A8eM9I042bx8XXpqAq.jpg",
         "review": "Coming Soon.",
+        "trailerUrl": "",
         "favourite": true
     },
     {
@@ -227,7 +254,8 @@ export const movies = [
         "genre": "Sci-Fi",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/63N9uy8nd9j7Eog2axPQ8lbr3Wj.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Wonder Woman",
@@ -235,7 +263,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/v4ncgZjG2Zu8ZW5al1vIZTsSjqX.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Social Network",
@@ -243,7 +272,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/n0ybibhJtQ5icDqTp8eRytcIHJx.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Captain Marvel",
@@ -251,7 +281,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/AtsgWhDnHTq68L0lLsUrCnM7TjG.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Captain America: The Winter Soldier",
@@ -259,7 +290,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/tVFRpFw3xTedgPGqxW0AOI8Qhh0.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Rogue One: A Star Wars Story",
@@ -267,7 +299,8 @@ export const movies = [
         "genre": "Sci-Fi",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/i0yw1mFbB7sNGHCs7EXZPzFkdA1.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Annihilation",
@@ -275,7 +308,8 @@ export const movies = [
         "genre": "Sci-Fi",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/z19tTNd8YxJnaDwQiNC7yCUkgbr.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Se7en",
@@ -284,6 +318,7 @@ export const movies = [
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/191nKfP0ehp3uIvWqgPbFmI4lv9.jpg",
         "review": "Coming Soon.",
+        "trailerUrl": "",
         "favourite": true
     },
     {
@@ -292,7 +327,8 @@ export const movies = [
         "genre": "Sci-Fi",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/3ndAx3weG6KDkJIRMCi5vXX6Dyb.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Doctor Strange",
@@ -300,7 +336,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/uGBVj3bEbCoZbDjjl9wTxcygko1.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Lord of the Rings: The Fellowship of the Ring",
@@ -308,7 +345,8 @@ export const movies = [
         "genre": "Fantasy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/6oom5QYQ2yQTMJIbnvbkBL9cHo6.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Bohemian Rhapsody",
@@ -316,7 +354,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/lHu1wtNaczFPGFDTrjCSzeLPTKN.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Incredibles 2",
@@ -324,7 +363,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/9lFKBtaVIhP7E2Pk0IY1CwTKTMZ.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Forrest Gump",
@@ -332,7 +372,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/arw2vcBveWOVZr6pxd9XTd1TdQa.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Avengers: Age of Ultron",
@@ -340,7 +381,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/4ssDuvEDkSArWEdyBl2X5EHvYKU.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Back to the Future",
@@ -348,7 +390,8 @@ export const movies = [
         "genre": "Sci-Fi",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/vN5B5WgYscRGcQpVhHl6p9DDTP0.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "A Star Is Born",
@@ -356,7 +399,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://www.themoviedb.org/t/p/w1280/wrFpXMNBRj2PBiN4Z5kix51XaIZ.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Iron Man",
@@ -364,7 +408,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/78lPtwv72eTNqFW9COBYI0dWDJa.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Spider-Man: Far From Home",
@@ -372,7 +417,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/4q2NNj4S5dG2RLF9CpXsej7yXl.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Incredibles",
@@ -380,7 +426,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/2LqaLgk4Z226KkgPJuiOQ58wvrm.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Ant-Man",
@@ -388,7 +435,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/rQRnQfUl3kfp78nCWq8Ks04vnq1.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Toy Story",
@@ -396,7 +444,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/uXDfjJbdP4ijW5hWSBrPrlKpxab.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "WALL-'E",
@@ -404,7 +453,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/hbhFnRzzg6ZDmm8YAmxBnQpQIPh.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Lord of the Rings: The Return of the King",
@@ -412,7 +462,8 @@ export const movies = [
         "genre": "Fantasy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/rCzpDGLbOoPwLjy3OAm5NUPOTrC.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Up",
@@ -420,7 +471,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/mFvoEwSfLqbcWwFsDjQebn9bzFe.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Split",
@@ -428,7 +480,8 @@ export const movies = [
         "genre": "Thriller",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/lli31lYTFpvxVBeFHWoe5PMfW5s.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Zootopia",
@@ -436,7 +489,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/hlK0e0wAQ3VLuJcsfIYPvb4JVud.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Kingsman: The Secret Service",
@@ -444,7 +498,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/r6q9wZK5a2K51KFj4LWVID6Ja1r.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "I, Tonya",
@@ -452,7 +507,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/6gNXwSHxaksR1PjVZRqNapmkgj3.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Ant-Man and the Wasp",
@@ -460,7 +516,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/cFQEO687n1K6umXbInzocxcnAQz.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Lion King",
@@ -468,7 +525,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/sKCr78MXSLixwmZ8DyJLrpMsd15.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Lord of the Rings: The Two Towers",
@@ -476,7 +534,8 @@ export const movies = [
         "genre": "Fantasy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/5VTN0pR8gcqV3EPUHHfMGnJYN9L.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Captain America: The First Avenger",
@@ -484,7 +543,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/vSNxAJTlD0r02V9sPYpOjqDZXUK.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Finding Nemo",
@@ -492,7 +552,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/eHuGQ10FUzK1mdOY69wF5pGgEf5.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Ready Player One",
@@ -500,7 +561,8 @@ export const movies = [
         "genre": "Sci-Fi",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/pU1ULUq8D3iRxl1fdX2lZIzdHuI.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Suicide Squad",
@@ -508,7 +570,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/sk3FZgh3sRrmr8vyhaitNobMcfh.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Iron Man 3",
@@ -516,7 +579,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/qhPtAc1TKbMPqNvcdXSOn9Bn7hZ.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Toy Story 3",
@@ -524,7 +588,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/AbbXspMOwdvwWZgVN0nabZq03Ec.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Breakfast Club",
@@ -532,7 +597,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/wM9ErA8UVdcce5P4oefQinN8VVV.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Harry Potter and the Prisoner of Azkaban",
@@ -540,7 +606,8 @@ export const movies = [
         "genre": "Fantasy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/aWxwnYoe8p2d2fcxOqtvAtJ72Rw.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Ratatouille",
@@ -548,7 +615,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/t3vaWRPSf6WjDSamIkKDs1iQWna.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Shaun of the Dead",
@@ -556,7 +624,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/dgXPhzNJH8HFTBjXPB177yNx6RI.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Moana",
@@ -564,7 +633,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/9tzN8sPbyod2dsa0lwuvrwBDWra.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Inception",
@@ -573,6 +643,7 @@ export const movies = [
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/ljsZTbVsrQSqZgWeep2B1QiDKuh.jpg",
         "review": "Coming Soon.",
+        "trailerUrl": "",
         "favourite": true
     },
     {
@@ -581,7 +652,8 @@ export const movies = [
         "genre": "Fantasy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/wuMc08IPKEatf9rnMNXvIDxqP4W.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Jurassic World",
@@ -589,7 +661,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/rhr4y79GpxQF9IsfJItRXVaoGs4.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Fantastic Beasts and Where to Find Them",
@@ -597,7 +670,8 @@ export const movies = [
         "genre": "Fantasy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/fLsaFKExQt05yqjoAvKsmOMYvJR.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Thor",
@@ -605,7 +679,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/prSfAi1xGrhLQNxVSUFh61xQ4Qy.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Monsters, Inc.",
@@ -613,7 +688,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/qjlbN6aK1qgeg3SspFVovT2D1Me.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Batman v Superman: Dawn of Justice",
@@ -621,7 +697,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/5UsK3grJvtQrtzEgqNlDljJW96w.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "It Follows",
@@ -629,7 +706,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/iwnQ1JH1wdWrGYkgWySptJ5284A.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Avatar",
@@ -637,7 +715,8 @@ export const movies = [
         "genre": "Sci-Fi",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/kyeqWdyUXW608qlYkRqosgbbJyK.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Good Will Hunting",
@@ -646,6 +725,7 @@ export const movies = [
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/z2FnLKpFi1HPO7BEJxdkv6hpJSU.jpg",
         "review": "Coming Soon.",
+        "trailerUrl": "",
         "favourite": true
     },
     {
@@ -654,7 +734,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/w9kR8qbmQ01HwnvK4alvnQ2ca0L.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Prisoners",
@@ -663,6 +744,7 @@ export const movies = [
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/uhviyknTT5cEQXbn6vWIqfM4vGm.jpg",
         "review": "Coming Soon.",
+        "trailerUrl": "",
         "favourite": true
     },
     {
@@ -671,7 +753,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/6WBeq4fCfn7AN0o21W9qNcRF2l9.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Harry Potter and the Deathly Hallows: Part 2",
@@ -679,7 +762,8 @@ export const movies = [
         "genre": "Fantasy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/c54HpQmuwXjHq2C9wmoACjxoom3.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "X-Men: Days of Future Past",
@@ -687,7 +771,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/tYfijzolzgoMOtegh1Y7j2Enorg.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Big Hero 6",
@@ -695,7 +780,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/2mxS4wUimwlLmI1xp6QW6NSU361.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Lego Movie",
@@ -703,7 +789,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/lbctonEnewCYZ4FYoTZhs8cidAl.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Perks of Being a Wallflower",
@@ -711,7 +798,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/aKCvdFFF5n80P2VdS7d8YBwbCjh.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Thor: The Dark World",
@@ -719,7 +807,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/wD6g4EcmR6R3VNbuBmNOVq2qWrM.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Toy Story 2",
@@ -727,7 +816,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/yFWQkz2ynjwsazT6xQiIXEUsyuh.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Skyfall",
@@ -735,7 +825,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/d0IVecFQvsGdSbnMAHqiYsNYaJT.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Venom",
@@ -743,7 +834,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/2uNW4WbgBXL25BAbXGLnLqX71Sw.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Hunger Games",
@@ -751,7 +843,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/yXCbOiVDCxO71zI7cuwBRXdftq8.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Spider-Man 2",
@@ -759,7 +852,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/aGuvNAaaZuWXYQQ6N2v7DeuP6mB.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Harry Potter and the Chamber of Secrets",
@@ -767,7 +861,8 @@ export const movies = [
         "genre": "Fantasy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/sdEOH0992YZ0QSxgXNIGLq1ToUi.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Spider-Man",
@@ -775,7 +870,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/gh4cZbhZxyTbgxQPxD0dOudNPTn.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Frozen",
@@ -783,7 +879,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/m4uhSpErBKprhsclr0zynTYdupb.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Bird Box",
@@ -791,7 +888,8 @@ export const movies = [
         "genre": "Thriller",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/rGfGfgL2pEPCfhIvqHXieXFn7gp.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Harry Potter and the Goblet of Fire",
@@ -799,7 +897,8 @@ export const movies = [
         "genre": "Fantasy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/fECBtHlr0RB3foNHDiCBXeg9Bv9.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Ferris Bueller's Day Off",
@@ -807,7 +906,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/9LTQNCvoLsKXP0LtaKAaYVtRaQL.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Harry Potter and the Deathly Hallows: Part 1",
@@ -815,7 +915,8 @@ export const movies = [
         "genre": "Fantasy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/iGoXIpQb7Pot00EEdwpwPajheZ5.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Zombieland",
@@ -823,7 +924,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/dUkAmAyPVqubSBNRjRqCgHggZcK.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Harry Potter and the Order of the Phoenix",
@@ -831,7 +933,8 @@ export const movies = [
         "genre": "Fantasy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/5aOyriWkPec0zUDxmHFP9qMmBaj.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "It Chapter Two",
@@ -839,7 +942,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/zfE0R94v1E8cuKAerbskfD3VfUt.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Justice League",
@@ -847,7 +951,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/eifGNCSDuxJeS1loAXil5bIGgvC.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Harry Potter and the Half-Blood Prince",
@@ -855,7 +960,8 @@ export const movies = [
         "genre": "Fantasy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/z7uo9zmQdQwU5ZJHFpv2Upl30i1.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Great Gatsby",
@@ -863,7 +969,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/nimh1rrDDLhgpG8XAYoUZXHYwb6.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Man of Steel",
@@ -871,7 +978,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/dksTL9NXc3GqPBRHYHcy1aIwjS.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Shrek",
@@ -879,7 +987,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/EKERKucZeBrkrR8xLDTkr5FeDc.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Hobbit: An Unexpected Journey",
@@ -887,7 +996,8 @@ export const movies = [
         "genre": "Fantasy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/yHA9Fc37VmpUA5UncTxxo3rTGVA.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Home Alone",
@@ -895,7 +1005,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/onTSipZ8R3bliBdKfPtsDuHTdlL.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Juno",
@@ -903,7 +1014,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/jNIn2tVhpvFD6P9IojldI3mNYcn.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Pirates of the Caribbean: The Curse of the Black Pearl",
@@ -911,7 +1023,8 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/z8onk7LV9Mmw6zKz4hT6pzzvmvl.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Ghostbusters",
@@ -919,7 +1032,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/7E8nLijS9AwwUEPu2oFYOVKhdFA.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Hunger Games: Catching Fire",
@@ -927,7 +1041,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/qdXXEFGuLLfMWa1DGEkWFUo8Zwd.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Wreck-It Ralph",
@@ -935,7 +1050,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/zWoIgZ7mgmPkaZjG0102BSKFIqQ.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Life of Pi",
@@ -943,7 +1059,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/iLgRu4hhSr6V1uManX6ukDriiSc.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Pacific Rim",
@@ -951,7 +1068,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/mmznhaQDwlHWpUwKuNxtQiubbmM.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Crazy Rich Asians",
@@ -959,7 +1077,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/1XxL4LJ5WHdrcYcihEZUCgNCpAW.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Looper",
@@ -967,7 +1086,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/sNjL6SqErDBE8OUZlrDLkexfsCj.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Mean Girls",
@@ -975,7 +1095,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/alKvY5LuVcXraRBfi5UtVV8Ii6Y.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "X-Men: First Class",
@@ -983,7 +1104,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/hNEokmUke0dazoBhttFN0o3L7Xv.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Conjuring",
@@ -991,7 +1113,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/wVYREutTvI2tmxr6ujrHT704wGF.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "21 Jump Street",
@@ -999,7 +1122,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/8v3Sqv9UcIUC4ebmpKWROqPBINZ.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Beauty and the Beast",
@@ -1007,7 +1131,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/hKegSKIDep2ewJWPUQD7u0KqFIp.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "X-Men: Apocalypse",
@@ -1015,7 +1140,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/ikA8UhYdTGpqbatFa93nIf6noSr.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Amazing Spider-Man",
@@ -1023,7 +1149,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/jexoNYnPd6vVrmygwF6QZmWPFdu.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "How to Train Your Dragon",
@@ -1031,7 +1158,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/5MfK01Jpx6at2Q0bIxtwE6Cigmh.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Greatest Showman",
@@ -1039,7 +1167,8 @@ export const movies = [
         "genre": "Musical",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/b9CeobiihCx1uG1tpw8hXmpi7nm.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Edge of Seventeen",
@@ -1047,7 +1176,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/1LyFay8CGf8mhPRDrMe0ljWw9GK.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Princess Bride",
@@ -1055,7 +1185,8 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/eOp2XmQpH6QYPfOVSQTSGoYABMc.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Scream",
@@ -1063,7 +1194,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/lr9ZIrmuwVmZhpZuTCW8D9g0ZJe.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Hobbit: The Desolation of Smaug",
@@ -1071,7 +1203,8 @@ export const movies = [
         "genre": "Fantasy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/xQYiXsheRCDBA39DOrmaw1aSpbk.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Theory of Everything",
@@ -1079,7 +1212,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/kJuL37NTE51zVP3eG5aGMyKAIlh.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The World's End",
@@ -1087,7 +1221,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/kpglnOBYmKn0AkkWDzGxzKHDbds.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Black Mirror: Bandersnatch",
@@ -1095,7 +1230,8 @@ export const movies = [
         "genre": "Thriller",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/fR0VZ0VE598zl1lrYf7IfBqEwQ2.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Aladdin",
@@ -1103,7 +1239,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/eLFfl7vS8dkeG1hKp5mwbm37V83.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Back to the Future Part II",
@@ -1111,7 +1248,8 @@ export const movies = [
         "genre": "Sci-Fi",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/YBawEsTkUZBDajKbd5LiHkmMGf.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Casino Royale",
@@ -1119,7 +1257,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/lMrxYKKhd4lqRzwUHAy5gcx9PSO.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Hangover",
@@ -1127,7 +1266,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/A0uS9rHR56FeBtpjVki16M5xxSW.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Kick-Ass",
@@ -1135,7 +1275,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/iHMbrTHJwocsNvo5murCBw0CwTo.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Coraline",
@@ -1143,7 +1284,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/4jeFXQYytChdZYE9JYO7Un87IlW.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Brave",
@@ -1151,7 +1293,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/1XAuDtMWpL0sYSFK0R6EZate2Ux.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Mulan",
@@ -1159,7 +1302,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/bj3iSjLlkwHtJrPmvHXa8P7edI9.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Tangled",
@@ -1167,7 +1311,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/ym7Kst6a4uodryxqbGOxmewF235.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Fantastic Beasts: The Crimes of Grindelwald",
@@ -1175,7 +1320,8 @@ export const movies = [
         "genre": "Fantasy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/fMMrl8fD9gRCFJvsx0SuFwkEOop.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Spider-Man 3",
@@ -1183,7 +1329,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/qFmwhVUoUSXjkKRmca5yGDEXBIj.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Hobbit: The Battle of the Five Armies",
@@ -1191,7 +1338,8 @@ export const movies = [
         "genre": "Fantasy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/xT98tLqatZPQApyRmlPL12LtiWp.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Now You See Me",
@@ -1199,7 +1347,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/tWsNYbrqy1p1w6K9zRk0mSchztT.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Amazing Spider-Man 2",
@@ -1207,7 +1356,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/dGjoPttcbKR5VWg1jQuNFB247KL.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Beauty and the Beast",
@@ -1215,7 +1365,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/hUJ0UvQ5tgE2Z9WpfuduVSdiCiU.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Lion",
@@ -1223,7 +1374,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/iBGRbLvg6kVc7wbS8wDdVHq6otm.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "This Is the End",
@@ -1231,7 +1383,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/7Wdc3etyBJA4432TYtz6n9GQd1c.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "World War Z",
@@ -1239,7 +1392,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/aCnVdvExw6UWSeQfr0tUH3jr4qG.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "To All the Boys I've Loved Before",
@@ -1247,7 +1401,8 @@ export const movies = [
         "genre": "Romance",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/hKHZhUbIyUAjcSrqJThFGYIR6kI.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "22 Jump Street",
@@ -1255,7 +1410,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/850chzYHYbT3IISl6Q7dbBuFP2B.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Hunger Games: Mockingjay - Part 1",
@@ -1263,7 +1419,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/2hTPkBiXoMmrdtYgHtB9WU5dg80.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Jungle Book",
@@ -1271,7 +1428,8 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://www.themoviedb.org/t/p/w1280/2Epx7F9X7DrFptn4seqn4mzBVks.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Monsters University",
@@ -1279,7 +1437,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/y7thwJ7z5Bplv6vwl6RI0yteaDD.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Godzilla",
@@ -1287,7 +1446,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/zokD6uxR2iWfYM3Y84yGJvnNTK7.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Shrek 2",
@@ -1295,7 +1455,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/2yYP0PQjG8zVqturh1BAqu2Tixl.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Charlie and the Chocolate Factory",
@@ -1303,7 +1464,8 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/iKP6wg3c6COUe8gYutoGG7qcPnO.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Men in Black",
@@ -1311,7 +1473,8 @@ export const movies = [
         "genre": "Sci-Fi",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/uLOmOF5IzWoyrgIF5MfUnh5pa1X.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Clueless",
@@ -1319,7 +1482,8 @@ export const movies = [
         "genre": "Romance",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/8AwVTcgpTnmeOs4TdTWqcFDXEsA.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Pianist",
@@ -1327,7 +1491,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/2hFvxCCWrTmCYwfy7yum0GKRi3Y.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Easy A",
@@ -1335,7 +1500,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/v5f1qO6NJnxWgONgkYg21TW39DT.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Les Miserables",
@@ -1343,7 +1509,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/6CuzBs2Lb8At7qQr64mLXg2RYRb.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "X-Men",
@@ -1351,7 +1518,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/vF02RqXLgtmpJM5CRLSuvN3fVHi.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Lion King",
@@ -1359,7 +1527,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://www.themoviedb.org/t/p/w1280/dzBtMocZuJbjLOXvrl4zGYigDzh.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "It's a Wonderful Life",
@@ -1367,7 +1536,8 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/bSqt9rhDZx1Q7UZ86dBPKdNomp2.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Devil Wears Prada",
@@ -1375,7 +1545,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/OfFMqWQDZ4SlLtHiofyRoLjXdX.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Hugo",
@@ -1383,7 +1554,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/1dxRq3o3l3bVWNRvvSb7rRf68qp.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "About Time",
@@ -1391,7 +1563,8 @@ export const movies = [
         "genre": "Romance",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/iR1bVfURbN7r1C46WHFbwCkVve.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Lucy",
@@ -1399,7 +1572,8 @@ export const movies = [
         "genre": "Sci-Fi",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/kRbpUTRNm6QbLQFPFWUcNC4czEm.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Me and Earl and the Dying Girl",
@@ -1407,7 +1581,8 @@ export const movies = [
         "genre": "Romance",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/eLjS2bLMjln2n2I73Xu6TaANPDZ.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "A Simple Favor",
@@ -1415,7 +1590,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/5EJWZQ8dh99hfgXP9zAD5Ak5Hrn.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Wizard of Oz",
@@ -1423,7 +1599,8 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/pfAZFD7I2hxW9HCChTuAzsdE6UX.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Mamma Mia!",
@@ -1431,7 +1608,8 @@ export const movies = [
         "genre": "Musical",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/zdUA4FNHbXPadzVOJiU0Rgn6cHR.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Pirates of the Caribbean: Dead Man's Chest",
@@ -1439,7 +1617,8 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/lAhcKRt0ggTFkeFL95jrGQYaRXs.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Hunger Games: Mockingjay - Part 2",
@@ -1447,7 +1626,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/7uLJCuK0ufoDklUdOORC8XanOKw.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Crazy, Stupid, Love.",
@@ -1455,7 +1635,8 @@ export const movies = [
         "genre": "Romance",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/p4RafgAPk558muOjnBMHhMArjS2.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "A Beautiful Mind",
@@ -1463,7 +1644,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/rEIg5yJdNOt9fmX4P8gU9LeNoTQ.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Aladdin",
@@ -1471,7 +1653,8 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/ykUEbfpkf8d0w49pHh0AD2KrT52.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Passengers",
@@ -1479,7 +1662,8 @@ export const movies = [
         "genre": "Sci-Fi",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/oZpdONg32luHu0g8HcysuPgSlIK.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Cars",
@@ -1487,7 +1671,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/2Touk3m5gzsqr1VsvxypdyHY5ci.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Ted",
@@ -1495,7 +1680,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/1QVZXQQHCEIj8lyUhdBYd2qOYtq.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Ghostbusters",
@@ -1503,7 +1689,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/wJmWliwXIgZOCCVOcGRBhce7xPS.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Mamma Mia! Here We Go Again",
@@ -1511,7 +1698,8 @@ export const movies = [
         "genre": "Musical",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/aWicerX4Y7n7tUwRAVHsVcBBpj2.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Despicable Me",
@@ -1519,7 +1707,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/9lOloREsAhBu0pEtU0BgeR1rHyo.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Paddington",
@@ -1527,7 +1716,8 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/wpchRGhRhvhtU083PfX2yixXtiw.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Alice in Wonderland",
@@ -1535,7 +1725,8 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/o0kre9wRCZz3jjSjaru7QU0UtFz.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Back to the Future Part III",
@@ -1543,7 +1734,8 @@ export const movies = [
         "genre": "Sci-Fi",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/crzoVQnMzIrRfHtQw0tLBirNfVg.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Love Actually",
@@ -1551,7 +1743,8 @@ export const movies = [
         "genre": "Romance",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/7QPeVsr9rcFU9Gl90yg0gTOTpVv.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "A Bug's Life",
@@ -1559,7 +1752,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/Ah3J9OJVc2CNCuH2zMydXy9fmIC.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Pitch Perfect",
@@ -1567,7 +1761,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/cUjjK6tTrugybsBbIQlV6VTd0aK.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Sausage Party",
@@ -1575,7 +1770,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/vNgdPJQ5CI60oEiiHLKRNrsDhMy.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Kung Fu Panda",
@@ -1583,7 +1779,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/wWt4JYXTg5Wr3xBW2phBrMKgp3x.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Maleficent",
@@ -1591,7 +1788,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/bDG3yei6AJlEAK3A5wN7RwFXQ7V.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Happy Death Day",
@@ -1600,6 +1798,7 @@ export const movies = [
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/hcCX4zqu5b8v7DuDCJGcmI3MmlA.jpg",
         "review": "Coming Soon.",
+        "trailerUrl": "",
         "favourite": true
     },
     {
@@ -1608,7 +1807,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/d13Uj86LdbDLrfDoHR5aDOFYyJC.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Captain Phillips",
@@ -1616,7 +1816,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/gAH73mMU7rgGZrpYkFYgFgSNHs5.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Grease",
@@ -1624,7 +1825,8 @@ export const movies = [
         "genre": "Musical",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/czVhhAaSBFpakur7U8pOIDV9NUG.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Elf",
@@ -1632,7 +1834,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/oOleziEempUPu96jkGs0Pj6tKxj.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Bridesmaids",
@@ -1640,7 +1843,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/gJtA7hYsBMQ7EM3sPBMUdBfU7a0.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Little Mermaid",
@@ -1648,7 +1852,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/plcZXvI310FkbwIptvd6rqk63LP.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Emperor's New Groove",
@@ -1656,7 +1861,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/xU635vn1lMD9DWDloeuKmuhxxnQ.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Help",
@@ -1664,7 +1870,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/3kmfoWWEc9Vtyuaf9v5VipRgdjx.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Fault in Our Stars",
@@ -1672,7 +1879,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/ep7dF4QR4Mm39LI958V0XbwE0hK.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Virgin Suicides",
@@ -1680,7 +1888,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/1NCQtXPQnaHRjOZVmktA9BSM35F.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Hercules",
@@ -1688,7 +1897,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/dK9rNoC97tgX3xXg5zdxFisdfcp.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Lilo & Stitch",
@@ -1696,7 +1906,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/d73UqZWyw3MUMpeaFcENgLZ2kWS.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Intouchables",
@@ -1704,7 +1915,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/1QU7HKgsQbGpzsJbJK4pAVQV9F5.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Conjuring 2",
@@ -1712,7 +1924,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/zEqyD0SBt6HL7W9JQoWwtd5Do1T.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Tomb Raider",
@@ -1720,7 +1933,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/s4Qn5LF6OwK4rIifmthIDtbqDSs.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Independence Day",
@@ -1728,7 +1942,8 @@ export const movies = [
         "genre": "Sci-Fi",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/p0BPQGSPoSa8Ml0DAf2mB2kCU0R.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Dark Phoenix",
@@ -1736,7 +1951,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/cCTJPelKGLhALq3r51A9uMonxKj.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Ice Age",
@@ -1744,7 +1960,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/gLhHHZUzeseRXShoDyC4VqLgsNv.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Transformers",
@@ -1752,7 +1969,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/lkZ9gqCEjzX85lKR6Jjd1uGAXNp.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Twilight",
@@ -1760,7 +1978,8 @@ export const movies = [
         "genre": "Romance",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/3Gkb6jm6962ADUPaCBqzz9CTbn9.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Maze Runner",
@@ -1768,7 +1987,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/ode14q7WtDugFDp78fo9lCsmay9.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Pride & Prejudice",
@@ -1776,7 +1996,8 @@ export const movies = [
         "genre": "Romance",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/sGjIvtVvTlWnia2zfJfHz81pZ9Q.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Interview",
@@ -1784,7 +2005,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/tIDC4xT65l7a8qbgg8GvwD5g8c5.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Chronicles of Narnia: The Lion, the Witch and the Wardrobe",
@@ -1792,7 +2014,8 @@ export const movies = [
         "genre": "Fantasy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/iREd0rNCjYdf5Ar0vfaW32yrkm.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Notebook",
@@ -1800,7 +2023,8 @@ export const movies = [
         "genre": "Romance",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/rNzQyW4f8B8cQeg7Dgj3n6eT5k9.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Simpsons Movie",
@@ -1808,7 +2032,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/gzb6P78zeFTnv9eoFYnaJ2YrZ5q.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Home Alone 2: Lost in New York",
@@ -1816,7 +2041,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/uuitWHpJwxD1wruFl2nZHIb4UGN.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "X-Men Origins: Wolverine",
@@ -1824,7 +2050,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/yj8LbTju1p7CUJg7US2unSBk33s.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Atonement",
@@ -1833,6 +2060,7 @@ export const movies = [
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/hMRIyBjPzxaSXWM06se3OcNjIQa.jpg",
         "review": "Coming Soon.",
+        "trailerUrl": "",
         "favourite": true
     },
     {
@@ -1841,7 +2069,8 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/xL2GISX0MODJfpHrMdLdZF6xWgW.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Neighbors",
@@ -1849,7 +2078,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/sN1RU08CMi8xkRIibremh3AOdgw.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Sound of Music",
@@ -1857,7 +2087,8 @@ export const movies = [
         "genre": "Musical",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/5qQTu2iGTiQ2UvyGp0beQAZ2rKx.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Night at the Museum",
@@ -1865,7 +2096,8 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/pDsAAYf6Zn0yiAGJ6lYGs6hoZ4E.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Romeo + Juliet",
@@ -1873,7 +2105,8 @@ export const movies = [
         "genre": "Romance",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/eLf4jclPijOqfEp6bDAmezRFxk5.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "How to Train Your Dragon: The Hidden World",
@@ -1881,7 +2114,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/xvx4Yhf0DVH8G4LzNISpMfFBDy2.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Hush",
@@ -1889,7 +2123,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/zHzBTd502IZf60x8n2g0TB01vPF.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Snow White and the Seven Dwarfs",
@@ -1897,7 +2132,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/3VAHfuNb6Z7UiW12iYKANSPBl8m.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Valerian and the City of a Thousand Planets",
@@ -1905,7 +2141,8 @@ export const movies = [
         "genre": "Sci-Fi",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/vlc95gl3PtrjxSEuM8RhTtSm2xU.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Total Recall",
@@ -1913,7 +2150,8 @@ export const movies = [
         "genre": "Sci-Fi",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/wVbeL6fkbTKSmNfalj4VoAUUqJv.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Taken",
@@ -1921,7 +2159,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/y5Va1WXDX6nZElVirPrGxf6w99B.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Girl on the Train",
@@ -1929,7 +2168,8 @@ export const movies = [
         "genre": "Thriller",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/fuegX3vfvthTiI6GDDuXrwOT5XN.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Madagascar",
@@ -1937,7 +2177,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/zMpJY5CJKUufG9OTw0In4eAFqPX.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Wonder",
@@ -1945,7 +2186,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/sONh3LYGFcVDTy8pm1tbSOB13Li.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Elysium",
@@ -1953,7 +2195,8 @@ export const movies = [
         "genre": "Sci-Fi",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/uiiXHBd9oUrtUa4YqZiAoy05cRz.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Tarzan",
@@ -1961,7 +2204,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/bTvHlcqiOjGa3lFtbrTLTM3zasY.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Purge",
@@ -1969,7 +2213,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/46X1ei9uf13nkkr0OhWldGyr5Uh.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Mr. & Mrs. Smith",
@@ -1977,7 +2222,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/kjD700RtyhveN3ZbOnSvUSne0Qj.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Rango",
@@ -1985,7 +2231,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/A5MP1guV8pbruieG0tnpPIbaJtt.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Zoolander",
@@ -1993,7 +2240,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/1IOLMlNKSoo3FToVGYV1PjE3ehn.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Mary Poppins",
@@ -2001,7 +2249,8 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/ei8hhYCMfURfPOXKBnyl61be2iV.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Despicable Me 2",
@@ -2009,7 +2258,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/oyMPJJZoOpLHgJoFPUOn6DgkbWJ.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "We're the Millers",
@@ -2017,7 +2267,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/yNJreiR2PuiGwsWWJC7cWpgXwCL.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Legally Blonde",
@@ -2025,7 +2276,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/9ohlMrJHQqKhfUKh7Zr3JQqHNLZ.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Now You See Me 2",
@@ -2033,7 +2285,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/A81kDB6a1K86YLlcOtZB27jriJh.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Secret Life of Pets",
@@ -2041,7 +2294,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/5f8rTQq42nQVGGes9SCV9AnD0II.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Pocahontas",
@@ -2049,7 +2303,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/wpwFGXyvNAWrM6LCHUb2VUgkopw.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "How the Grinch Stole Christmas",
@@ -2057,7 +2312,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/52EpMoLTTbKAkM6rSrnNHV2mpLF.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Panic Room",
@@ -2065,7 +2321,8 @@ export const movies = [
         "genre": "Thriller",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/7BabiNfuSycl58M9Cgl3Nf97n1F.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Adventures of Tintin",
@@ -2073,7 +2330,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/fQZ3sLR1Fi63NMsNRbjm9q5qODJ.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Divergent",
@@ -2081,7 +2339,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/aNh4Q3iuPKDMPi2SL7GgOpiLukX.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Men in Black 3",
@@ -2089,7 +2348,8 @@ export const movies = [
         "genre": "Sci-Fi",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/90DdoEStzeObs96fsYf4GG544iN.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Pinocchio",
@@ -2097,7 +2357,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/bnZJrLRnoQHpzEJdka1KYfsAF3N.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Pretty Woman",
@@ -2105,7 +2366,8 @@ export const movies = [
         "genre": "Romance",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/hVHUfT801LQATGd26VPzhorIYza.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Blockers",
@@ -2113,7 +2375,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/uvlUQXg0AlpGzKukO11K7QtW3Yu.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Lolita",
@@ -2121,7 +2384,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/8Puqbeh0D95DpXFWep1rmH78btu.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Fantasia",
@@ -2129,7 +2393,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/5m9njnidjR0syG2gpVPVgcEMB2X.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Nerve",
@@ -2137,7 +2402,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/qmSpHC0CSNyNll9WhlwWYuwoQ28.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Pursuit of Happyness",
@@ -2145,7 +2411,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/lBYOKAMcxIvuk9s9hMuecB9dPBV.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Polar Express",
@@ -2153,7 +2420,8 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/e2UJ2Y67txlNVGSRU04emZ3GDQw.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Megamind",
@@ -2161,7 +2429,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/uZ9ytt3sPTx62XTfN56ILSuYWRe.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Girl, Interrupted",
@@ -2169,7 +2438,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/dOBdatHIVppvmRFw2z7bf9VKJr9.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Shrek the Third",
@@ -2177,7 +2447,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/n4SexGGQzI26E269tfpa80MZaGV.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Cinderella",
@@ -2185,7 +2456,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/j91LJmcWo16CArFOoapsz84bwxb.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Matilda",
@@ -2193,7 +2465,8 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/wYoDpWInsBEVSmWStnRH06ddoyk.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Horrible Bosses",
@@ -2201,7 +2474,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/uQkUwgyFHAm0jGQERPG6Z9o9Zbj.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Fantastic Four",
@@ -2209,7 +2483,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/4YMcYEFS8sFuW3soP1HVmgR3cSm.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Alice in Wonderland",
@@ -2217,7 +2492,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/20cvfwfaFqNbe9Fc3VEHJuPRxmn.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Cloudy with a Chance of Meatballs",
@@ -2225,7 +2501,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/qhOhIKf7QEyQ5dMrRUqs5eTX1Oq.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Mrs. Doubtfire",
@@ -2233,7 +2510,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/shHrSmXS5140o6sQzgzXxn3KqSm.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Shallows",
@@ -2241,7 +2519,8 @@ export const movies = [
         "genre": "Thriller",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/bnBV7hZmLuA0Si5Aop481sPF2RY.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Step Brothers",
@@ -2249,7 +2528,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/wRR6U3K3v2iQsG3uw7ehz1ctRyT.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Bambi",
@@ -2257,7 +2537,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/wV9e2y4myJ4KMFsyFfWYcUOawyK.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Jungle Book",
@@ -2265,7 +2546,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/7a6VJd4TXNrTlY6MDvZL1kqPVg7.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Hangover Part II",
@@ -2273,7 +2555,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/7sGkjqorTHkaHTz8Q4WWHj8JL9t.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Chicken Run",
@@ -2281,7 +2564,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/8XgmIsbpVamdhwcNVsYzohFZTtT.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Miss Peregrine's Home for Peculiar Children",
@@ -2289,7 +2573,8 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/CIlbMFOfYDj0MP23hsIYhFGrL6.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Men in Black II",
@@ -2297,7 +2582,8 @@ export const movies = [
         "genre": "Sci-Fi",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/enA22EPyzc2WQ1VVyY7zxresQQr.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Princess and the Frog",
@@ -2305,7 +2591,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/v6nAUs62OJ4DXmnnmPFeVmMz8H9.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Good Dinosaur",
@@ -2313,7 +2600,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/8RSkxOO80btfKjyiC5ZiTaCHIT8.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Warm Bodies",
@@ -2321,7 +2609,8 @@ export const movies = [
         "genre": "Romance",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/8XAX6KaqNGcLXcwoDwxyU0bxhxm.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Kick-Ass 2",
@@ -2329,7 +2618,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/1go2A3gdQjaMuHWquybgoJlQRcX.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Hancock",
@@ -2337,7 +2627,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/7DyuV2G0hLEqHeueDfOqhZ2DVut.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Into the Woods",
@@ -2345,7 +2636,8 @@ export const movies = [
         "genre": "Musical",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/pf0TdnITu380Zp8DMQx0jcwDsAS.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "13 Going on 30",
@@ -2353,7 +2645,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/iNZdSIfhSCMtRILDNyhLn8UKeSG.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Dumbo",
@@ -2361,7 +2654,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/hKDdllslMtsU9JixAv5HR9biXlp.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "National Treasure",
@@ -2369,7 +2663,8 @@ export const movies = [
         "genre": "Mystery",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/pxL6E4GBOPUG6CdkO9cUQN5VMwI.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Princess Diaries",
@@ -2377,7 +2672,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/wA4lgl8gmoICSShviCkEB61nIBB.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "50 First Dates",
@@ -2385,7 +2681,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/5NxTW4SS6aUKZYnbQzh7UYNivd.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Pitch Perfect 2",
@@ -2393,7 +2690,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/fQaEGzFmvTYu3G641WV0Tg9auAt.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Nun",
@@ -2401,7 +2699,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/sFC1ElvoKGdHJIWRpNB3xWJ9lJA.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Bright",
@@ -2409,7 +2708,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/whkT53Sv2vKAUiknQ13pqcWaPXB.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Hunchback of Notre Dame",
@@ -2417,7 +2717,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/7k0fr2xLCTChjN8MnGNThTP9uEB.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "A Monster Calls",
@@ -2425,7 +2726,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/vNzWJwVqjszWwXrA7ZfsrJmhgV9.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "2012",
@@ -2433,7 +2735,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/zaqam2RNscH5ooYFWInV6hjx6y5.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Me Before You",
@@ -2441,7 +2744,8 @@ export const movies = [
         "genre": "Romance",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/Ia3dzj5LnCj1ZBdlVeJrbKJQxG.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Blind Side",
@@ -2449,7 +2753,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/bMgq7VBriuBFknXEe9E9pVBYGZq.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Peter Pan",
@@ -2457,7 +2762,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/fJJOs1iyrhKfZceANxoPxPwNGF1.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Minions",
@@ -2465,7 +2771,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/dr02BdCNAUPVU07aOodwPYv6HCf.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Enchanted",
@@ -2473,7 +2780,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/8KCNzCArLlvLdQoHx6npua2VSVc.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Parent Trap",
@@ -2481,7 +2789,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/dNqgjqxHIdfsQRQL5XTujNfX9pj.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Forgetting Sarah Marshall",
@@ -2489,7 +2798,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/d4elOzyhNWVlxpG7BwigrumkFTe.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "One Hundred and One Dalmatians",
@@ -2497,7 +2807,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/mRY84MJeWKnp9joev82QtslJFvk.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Tomorrowland",
@@ -2505,7 +2816,8 @@ export const movies = [
         "genre": "Sci-Fi",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/kziYpr5Nfw60P0My8aj1sgCEqed.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Sixteen Candles",
@@ -2513,7 +2825,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/hgIDeDxu21fxoqfvBKMN0K7pLmU.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Bridget Jones's Diary",
@@ -2521,7 +2834,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/dkauRl9TosBFikftrC3OVcKWDoz.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Notting Hill",
@@ -2529,7 +2843,8 @@ export const movies = [
         "genre": "Romance",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/hHRIf2XHeQMbyRb3HUx19SF5Ujw.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Dumbo",
@@ -2537,7 +2852,8 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/kTF2omZq1izOeplnnSACxhs4NLF.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Hocus Pocus",
@@ -2545,7 +2861,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/by4D4Q9NlUjFSEUA1yrxq6ksXmk.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Baywatch",
@@ -2553,7 +2870,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/6HE4xd8zloDqmjMZuhUCCw2UcY1.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Power Rangers",
@@ -2561,7 +2879,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/bKYKyyIv5YnisxjZtDreWtYA386.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Jupiter Ascending",
@@ -2569,7 +2888,8 @@ export const movies = [
         "genre": "Sci-Fi",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/z8dXSSadzpfTF2wHQlREkuB4d5y.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Sing",
@@ -2577,7 +2897,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/zZTlF2eVVUkbdmccd3bNUU9T9sD.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Knocked Up",
@@ -2585,7 +2906,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/b4OaXw2MW97VvIiZE0Sbn1NfxSh.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Boy in the Striped Pyjamas",
@@ -2593,7 +2915,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/sLwYSEVVV3r047cjrpRAbGgNsfL.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Lemony Snicket's A Series of Unfortunate Events",
@@ -2601,7 +2924,8 @@ export const movies = [
         "genre": "Mystery",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/76Xi8z7Whv5WFIdfzzvC5tKSicd.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Transformers: Revenge of the Fallen",
@@ -2609,7 +2933,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/pLBb0whOzVDtJvyD4DPeQyQNOqp.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Cinderella",
@@ -2617,7 +2942,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/4nssBcQUBadCTBjrAkX46mVEKts.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Fifty Shades of Grey",
@@ -2625,7 +2951,8 @@ export const movies = [
         "genre": "Romance",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/63kGofUkt1Mx0SIL4XI4Z5AoSgt.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Bee Movie",
@@ -2633,7 +2960,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/rYBaXgvTKFS8iZC7Wr8SMomSauQ.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Scary Movie",
@@ -2641,7 +2969,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/fVQFPRuw3yWXojYDJvA5EoFjUOY.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Scooby-Doo",
@@ -2649,7 +2978,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/mTAiBJGg8mqEfnYHHbi37ZoRSZm.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Meet the Parents",
@@ -2657,7 +2987,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/5tXJ9ctuyEOMUFLaeqRisbXowWs.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Kung Fu Panda 2",
@@ -2665,7 +2996,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/mtqqD00vB4PGRt20gWtGqFhrkd0.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Babysitter",
@@ -2673,7 +3005,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/86a7GRVRCwfl7wdI4QadyvKa6Zu.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Other Guys",
@@ -2681,7 +3014,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/wNEHNqo3MgHmj3BUiPSqqq5czcm.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Isn't It Romantic",
@@ -2689,7 +3023,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/5xNBYXuv8wqiLVDhsfqCOr75DL7.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "High School Musical",
@@ -2697,7 +3032,8 @@ export const movies = [
         "genre": "Musical",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/bg1eLo2OjySRYKaTO89ZDsqUcJ4.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Big Eyes",
@@ -2705,7 +3041,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/203HAjJcLMl7xThcTqZx4zmEGcV.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Sleeping Beauty",
@@ -2713,7 +3050,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/dK4OZwFFxnfK7MvqfVqw94mavL7.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Hotel Transylvania",
@@ -2721,7 +3059,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/3sKT6vtydJ4DkTJtdP5pvfpPa0n.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Cars 2",
@@ -2729,7 +3068,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/okIz1HyxeVOMzYwwHUjH2pHi74I.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Friends with Benefits",
@@ -2737,7 +3077,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/nKhhDFCdzxeJ3GUunQ570LDpUkz.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Transformers: Dark of the Moon",
@@ -2745,7 +3086,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/28YlCLrFhONteYSs9hKjD1Km0Cj.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "War Dogs",
@@ -2753,7 +3095,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/mDcPRjZC1bb6LavFU3gwsWdVfCM.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Bao",
@@ -2761,7 +3104,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/tKz7XRXvdy1i7pW4eotaWZSrAx2.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Shark Tale",
@@ -2769,7 +3113,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/r08DpyPyhXcJTfNZAICNGMzcQ8l.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Fantastic Four",
@@ -2777,7 +3122,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/4QIPHyUjmNKOdNn9W8MfsPrp7xr.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Lady and the Tramp",
@@ -2785,7 +3131,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/340NcWz9SQXWQyf4oicMxjbrLOb.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Dark Shadows",
@@ -2793,7 +3140,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/fd9Ck4cxVlmtXsbeGtQW7WFuUFI.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Gone Baby Gone",
@@ -2801,7 +3149,8 @@ export const movies = [
         "genre": "Mystery",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/wZR1dvctqODqNGv6LJBEj6DQ2zK.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Bolt",
@@ -2809,7 +3158,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/v5aC4nrzXFGJDWY4JO1eengXzqk.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Liar Liar",
@@ -2817,7 +3167,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/p1habYSdC7oD3WygQ5lynU5G5rV.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Death Note",
@@ -2825,7 +3176,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/8xRQ0KG9ZZzjEiFa5fgEaTKhc0d.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Palo Alto",
@@ -2833,7 +3185,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/yjcwwYP3eSigxLKKVBoVVz85ZWv.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Neighbors 2: Sorority Rising",
@@ -2841,7 +3194,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/gu3PEiV2uEUXYWbmg1Oiw21Waa.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Oz the Great and Powerful",
@@ -2849,7 +3203,8 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/tkzfAUEKoUp4YFNbZV9hfpZOz0z.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Transformers: Age of Extinction",
@@ -2857,7 +3212,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/jyzrfx2WaeY60kYZpPYepSjGz4S.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Hangover Part III",
@@ -2865,7 +3221,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/vtxuPWkdllLNLVyGjKYa267ntuH.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Impossible",
@@ -2873,7 +3230,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/k0DLCiDbnYywOHiISALbl2EH2NE.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Krampus",
@@ -2881,7 +3239,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/mzPCU6xQ2XQmD76cDVZPm5PZAaS.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Boss Baby",
@@ -2889,7 +3248,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/unPB1iyEeTBcKiLg8W083rlViFH.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Set It Up",
@@ -2897,7 +3257,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/7omfwqiiMld9EnUps3Uk9YZLy6g.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Maniac",
@@ -2905,7 +3266,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/7DFKFA7EkBNZAR6fpkvxdroAwle.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Everest",
@@ -2913,7 +3275,8 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/4xmndWnTYTE4bDdlWrkZyaGcZlo.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Gifted",
@@ -2921,7 +3284,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/7YB2YrMwIm1g8FyZtlvmVDfRnAT.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Paul",
@@ -2929,7 +3293,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/e57pNjhWbRos9BTvgeUYUzB8VfO.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Shrek Forever After",
@@ -2937,7 +3302,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/6HrfPZtKcGmX2tUWW3cnciZTaSD.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Cars 3",
@@ -2945,7 +3311,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/fyy1nDC8wm553FCiBDojkJmKLCs.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Independence Day: Resurgence",
@@ -2953,7 +3320,8 @@ export const movies = [
         "genre": "Sci-Fi",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/9S50foUIYGwiNPWOxi1WJF6IPwI.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Maze Runner: The Scorch Trials",
@@ -2961,7 +3329,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/mYw7ZyejqSCPFlrT2jHZOESZDU3.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Murder Mystery",
@@ -2969,7 +3338,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/bSMSO9xupd4R4vwTPqigHn2quLN.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Muppets",
@@ -2977,7 +3347,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/3bV4esUPbEbT5RydgHRXBSwXW44.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Purge: Anarchy",
@@ -2985,7 +3356,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/qwqHHZLZSUvMkAMQ47ymtfjEifY.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Snow White and the Huntsman",
@@ -2993,7 +3365,8 @@ export const movies = [
         "genre": "Fantasy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/8yKdQHaqOo1lkaErmqMuYFespYI.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Central Intelligence",
@@ -3001,7 +3374,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/7Ou0TRJLi72AwLEUlo7Kym4XuNB.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Dictator",
@@ -3009,7 +3383,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/n0W7kajF4GFMRk2c0wWwMQqTaDM.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Purge: Election Year",
@@ -3017,7 +3392,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/gg7tlp45xqGWMra0sqQVPvybje2.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Circle",
@@ -3025,7 +3401,8 @@ export const movies = [
         "genre": "Sci-Fi",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/bQVqd5rWrx5GbXhJNuvKy4Viz6j.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Twilight Saga: Breaking Dawn - Part 2",
@@ -3033,7 +3410,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/7IGdPaKujv0BjI0Zd0m0a4CzEjJ.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Maze Runner: The Death Cure",
@@ -3041,7 +3419,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/drbERzlA4cuRWhsTXfFOY4mRR4f.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Paper Towns",
@@ -3049,7 +3428,8 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/eoF6wYVj1vbrCWjL0rBkdZpgrxS.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Love, Rosie",
@@ -3057,7 +3437,8 @@ export const movies = [
         "genre": "Romance",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/rpD0t7DhzJVadnzgxSYrqljQTL2.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Carrie",
@@ -3065,7 +3446,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/kloXz9qwO23z9Kbt3z3MgnjF4xO.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Ender's Game",
@@ -3073,7 +3455,8 @@ export const movies = [
         "genre": "Sci-Fi",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/vmd3CNeG2B9FXsit61oc7oxabej.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Sierra Burgess Is a Loser",
@@ -3081,7 +3464,8 @@ export const movies = [
         "genre": "Romance",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/vjnHRySiVM4YcBYzjCxw344y9g.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Rise of the Guardians",
@@ -3089,7 +3473,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/sW4qOa9yF0Ikg7lppncQ0n5UhKX.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "San Andreas",
@@ -3097,7 +3482,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/2Gfjn962aaFSD6eST6QU3oLDZTo.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Spy Who Dumped Me",
@@ -3105,7 +3491,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/szEKivKPOdRyogROoQIldwbMl.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Kung Fu Panda 3",
@@ -3113,7 +3500,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/oajNi4Su39WAByHI6EONu8G8HYn.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Dumplin'",
@@ -3121,7 +3509,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/xJAB1HrFUuOf2VkWPaZ4N2DACCo.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Percy Jackson & the Olympians: The Lightning Thief",
@@ -3129,7 +3518,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/brzpTyZ5bnM7s53C1KSk1TmrMO6.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Twilight Saga: Breaking Dawn - Part 1",
@@ -3137,7 +3527,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/qs8LsHKYlVRmJbFUiSUhhRAygwj.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Woman in Black",
@@ -3145,7 +3536,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/nghQnDZE4EsQJ4J4zxR3UqItTpO.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Despicable Me 3",
@@ -3153,7 +3545,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/6t3YWl7hrr88lCEFlGVqW5yV99R.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Love & Other Drugs",
@@ -3161,7 +3554,8 @@ export const movies = [
         "genre": "Romance",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/wZLM2uKJRYNchLmiCIjosX0rXy8.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Bad Moms",
@@ -3169,7 +3563,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/u9q10ljhkLj0tNCjlVqe3DCjoU4.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "War Horse",
@@ -3177,7 +3572,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/3aRHhvvngFPJFy5uAjo7GVr3PhL.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Pitch Perfect 3",
@@ -3185,7 +3581,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/v4tbRRX0OSOHcgz2869rEjcBwOJ.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Focus",
@@ -3193,7 +3590,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/lOzGWjceYTd0kd5HyX7Ch46O9kh.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Insurgent",
@@ -3201,7 +3599,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/dP5Fb6YRfzmCQtRbHOr2kO7tJW9.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Fundamentals of Caring",
@@ -3209,7 +3608,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/zZ0eda1GyHILNSoq9KF5u0hcq6O.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Ted 2",
@@ -3217,7 +3617,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/38C91I7Xft0gyY7BITm8i4yvuRb.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Project X",
@@ -3225,7 +3626,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/lUPDGT3lyRrq8SvWuNWG2DP64bR.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Age of Adaline",
@@ -3233,7 +3635,8 @@ export const movies = [
         "genre": "Romance",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/MbILysGhjAbnZi1Okae9wYqLMx.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Transformers: The Last Knight",
@@ -3241,7 +3644,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/s5HQf2Gb3lIO2cRcFwNL9sn1o1o.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Secret World of Arrietty",
@@ -3249,7 +3653,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/3lSRaSjDp2nkXMQkzzjpRi3035O.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Eddie the Eagle",
@@ -3257,7 +3662,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/r562gvTRVHnDSvG7MrKHEECSn1V.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Croods",
@@ -3265,7 +3671,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/27zvjVOtOi5ped1HSlJKNsKXkFH.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Grown Ups",
@@ -3273,7 +3680,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/ys0LscDFAuZxfUcpH5moiPeFfXs.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Kissing Booth",
@@ -3281,7 +3689,8 @@ export const movies = [
         "genre": "Romance",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/7Dktk2ST6aL8h9Oe5rpk903VLhx.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Teenage Mutant Ninja Turtles",
@@ -3289,7 +3698,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/azL2ThbJMIkts3ZMt3j1YgBUeDB.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "John Carter",
@@ -3297,7 +3707,8 @@ export const movies = [
         "genre": "Sci-Fi",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/lCxz1Yus07QCQQCb6I0Dr3Lmqpx.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Prince of Persia: The Sands of Time",
@@ -3305,7 +3716,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/34Vbk8VNMtETTOSG3jCHWwlWr1m.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Pixels",
@@ -3313,7 +3725,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/d26S5EfVXLNxRXqyFy1yyl3qRq3.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Last Airbender",
@@ -3321,7 +3734,8 @@ export const movies = [
         "genre": "Fantasy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/kl9JJ8288bNsY8oqT1SpQh1w2mb.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Real Steel",
@@ -3329,7 +3743,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/4GIeI5K5YdDUkR3mNQBoScpSFEf.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "To the Bone",
@@ -3337,7 +3752,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/pkdxhdB3dRUqazqoy9lzUvhayjc.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Olympus Has Fallen",
@@ -3345,7 +3761,8 @@ export const movies = [
         "genre": "Fantasy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/gKnx04MxnKcf5uOdhHhAAkqcCg.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Alice Through the Looking Glass",
@@ -3353,7 +3770,8 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/4g043PWVXkjHkxEEsEfwuAxlM8i.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "A Million Ways to Die in the West",
@@ -3361,7 +3779,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/n9SicwnoNGWBwE75le27sUhCLMm.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Taken 2",
@@ -3369,7 +3788,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/mGRtQS39DYIu6gXu5mXQsXFGZPO.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Rio",
@@ -3377,7 +3797,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/4nJxhUknKV8Gqdhov8pU1YWDYfb.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Stanford Prison Experiment",
@@ -3385,7 +3806,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/orMkBkPqu7szuBRdMLUB4TWKiVV.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "What Happened to Monday",
@@ -3393,7 +3815,8 @@ export const movies = [
         "genre": "Sci-Fi",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/atOgZMJpMrTdpqvPiHVPfBhR61l.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "After Earth",
@@ -3401,7 +3824,8 @@ export const movies = [
         "genre": "Sci-Fi",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/iXMvYIlzzJBs352CfeiQcBvovZt.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Goosebumps",
@@ -3409,7 +3833,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/aeZT9pqEgrmXOGdESFkAuVjX6kw.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "It's Kind of a Funny Story",
@@ -3417,7 +3842,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/hQE4q8Szeaae4davgB7o8MTLmwr.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Horns",
@@ -3425,7 +3851,8 @@ export const movies = [
         "genre": "Mystery",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/tjTy6W05mPXXw87IqpjeGNhIcM4.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The DUFF",
@@ -3433,7 +3860,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/aHzdMSKwq9ucnP2yXl5zYIfKgGl.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Why Him?",
@@ -3441,7 +3869,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/eezFoKz7bXgdbjeieeCYJFXPKSu.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Horrible Bosses 2",
@@ -3449,7 +3878,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/boBOkwIqgrs8noxBUSDkkicKa4K.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "White House Down",
@@ -3457,7 +3887,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/6TeIVKPw7nXXWy2zKmDmlnSwzb7.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Madagascar 3: Europe's Most Wanted",
@@ -3465,7 +3896,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/ekraj4ksvIKeuvQVEevEJkuybZd.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Pete's Dragon",
@@ -3473,7 +3905,8 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/A9x4Ogk8KUXTfU649NS6lS9TCmu.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Bad Teacher",
@@ -3481,7 +3914,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/zpIY4qUSX91J9XpPgr0hFrk1eKr.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Internship",
@@ -3489,7 +3923,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/hIh3ZgsZ31nbUAGn5SKIZGKiKCX.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Night Before",
@@ -3497,7 +3932,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/rfeNBaiMBg0UQsBQFv1qsjTjZWn.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Lorax",
@@ -3505,7 +3941,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/tePFnZFw5JvjwjQjaKkqDPNMLPU.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Someone Great",
@@ -3513,7 +3950,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/h0nz5lIBXeUZChBNfwL08bLWQaU.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Boy",
@@ -3521,7 +3959,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/kW2vgzhyWXQu5UxNzebPokipBqH.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Perfect Date",
@@ -3529,7 +3968,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/rrAYdezO3h1mjdYTaQyTXoj8IZ4.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Hotel Transylvania 2",
@@ -3537,7 +3977,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/3nFnrivNgipSKZ8LZJJbRSlAcTR.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Sisters",
@@ -3545,7 +3986,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/hpvHqAiusQtGNDx48dA3z5ejjon.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Jane Eyre",
@@ -3553,7 +3995,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/1j3MacXlWOJg0nrzmBfmlqPoWZp.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "In a Heartbeat",
@@ -3561,7 +4004,8 @@ export const movies = [
         "genre": "Romance",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/wJUJROdLOtOzMixkjkx1aaZGSLl.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Piper",
@@ -3569,7 +4013,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/rfEkkVzmrMYqGezNLl02mVyJCP2.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Just Go with It",
@@ -3577,7 +4022,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/ez1EDULOCUUCySHOZU6tz97qbtM.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Book of Life",
@@ -3585,7 +4031,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/aotTZos5KswgCryEzx2rlOjFsm1.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "How to Be Single",
@@ -3593,7 +4040,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/a4Ce3qHqIyHM3QfGsiVTAu3YADJ.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Light Between Oceans",
@@ -3602,6 +4050,7 @@ export const movies = [
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/c9S6VKZPllNgdxBUuI3GYJiqcKO.jpg",
         "review": "Coming Soon.",
+        "trailerUrl": "",
         "favourite": true
     },
     {
@@ -3610,7 +4059,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/5hHomngoPZrNoXOPlyaHV6eXaQW.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Rough Night",
@@ -3618,7 +4068,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/ttC00xcQ5UIO04kU8y0h5OAIYYJ.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Puss in Boots",
@@ -3626,7 +4077,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/eufJ36oQCauDc427ewaEvQrhZ6i.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Boxtrolls",
@@ -3634,7 +4086,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/npBf0yc5Gt7aAyyVOcYtFyT2IPa.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Dirty Grandpa",
@@ -3642,7 +4095,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/k0Lz1TfSlbcQthQKYGwE7blDfwN.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Fifty Shades Darker",
@@ -3650,7 +4104,8 @@ export const movies = [
         "genre": "Romance",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/w3qa274gvca9t8pkUoG8nfQgTU3.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Ice Age: Continental Drift",
@@ -3658,7 +4113,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/dfp1BZF7FxbBUyzHvMOI9t8NWDD.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "I Feel Pretty",
@@ -3666,7 +4122,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/iuPs45XIxfARKPLEkCGXWUrBrTR.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Chronicles of Narnia: The Voyage of the Dawn Treader",
@@ -3674,7 +4131,8 @@ export const movies = [
         "genre": "Fantasy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/pP27zlm9yeKrCeDZLFLP2HKELot.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Taken 3",
@@ -3682,7 +4140,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/vzvMXMypMq7ieDofKThsxjHj9hn.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Before I Fall",
@@ -3690,7 +4149,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/eowzonDJMCuNXoJGVkP9Z7oCmiM.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Pride and Prejudice and Zombies",
@@ -3698,7 +4158,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/jsJlOhVHiz1xXr36616EI8tJ4b2.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Allegiant",
@@ -3706,7 +4167,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/aSsOFs0O84HKmYtgGGbmzjLOBrJ.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Huntsman: Winter's War",
@@ -3714,7 +4176,8 @@ export const movies = [
         "genre": "Fantasy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/ci1QXfBSUBVpLuzxi9A208uwUVi.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Cloudy with a Chance of Meatballs 2",
@@ -3722,7 +4185,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/ss5NcK2NWFg2YcKKYXLrk8q1myS.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Suffragette",
@@ -3730,7 +4194,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/y706qec117bN2S7XgCs2Yz8jEfv.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The 5th Wave",
@@ -3738,7 +4203,8 @@ export const movies = [
         "genre": "Sci-Fi",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/ja34BV577dtjWl2S5G1tB93IjYb.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Movie 43",
@@ -3746,7 +4212,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/uYa06GxHsCsELx9vOQ11vsT0Aa6.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Giver",
@@ -3754,7 +4221,8 @@ export const movies = [
         "genre": "Sci-Fi",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/dul62Av4pgi5x8LP7ELHzNyka9Z.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "We Bought a Zoo",
@@ -3762,7 +4230,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/dcOvIqdsojUdAtWt1nPT9xS76Su.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Percy Jackson: Sea of Monsters",
@@ -3770,7 +4239,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/tAu90qEpLqwqiZLsMqpaMVr55oN.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Home",
@@ -3778,7 +4248,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/usFenYnk6mr8C62dB1MoAfSWMGR.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Grown Ups 2",
@@ -3786,7 +4257,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/hT6ijOtjtYrnyDhN7VA2QWyGFAm.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Christmas Chronicles",
@@ -3794,7 +4266,8 @@ export const movies = [
         "genre": "Fantasy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/5Il2EMSF2KecrUKZPuen6BZmaCP.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Teenage Mutant Ninja Turtles: Out of the Shadows",
@@ -3802,7 +4275,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/euVaCiCWz3AALcQXHT6aUqdGUo6.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Abducted in Plain Sight",
@@ -3810,7 +4284,8 @@ export const movies = [
         "genre": "Thriller",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/licfKJMCnGFgFDATHeUZuy047RB.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Fifty Shades Freed",
@@ -3818,7 +4293,8 @@ export const movies = [
         "genre": "Romance",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/jjPJ4s3DWZZvI4vw8Xfi4Vqa1Q8.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "If I Stay",
@@ -3826,7 +4302,8 @@ export const movies = [
         "genre": "Romance",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/7Twh8h3Wh7GC9npTAEUThgkxkWL.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Paperman",
@@ -3834,7 +4311,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/9tvF744hwTm2Bn9hkDjMfEsysKz.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Vacation",
@@ -3842,7 +4320,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/fYDALvoCt3DBlSWN6pSAnGQ9ld7.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "When We First Met",
@@ -3850,7 +4329,8 @@ export const movies = [
         "genre": "Romance",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/pscQKoikkSJxAu8O5LKtjgGJEt1.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Dracula Untold",
@@ -3858,7 +4338,8 @@ export const movies = [
         "genre": "Fantasy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/xJJFZ7tYASyQ7rNOLTrb2JpDc7A.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Other Woman",
@@ -3866,7 +4347,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/kKzKxip6Qezdw5pSR9ozib0RB2F.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Adrift",
@@ -3875,6 +4357,7 @@ export const movies = [
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/5gLDeADaETvwQlQow5szlyuhLbj.jpg",
         "review": "Coming Soon.",
+        "trailerUrl": "",
         "favourite": true
     },
     {
@@ -3883,7 +4366,8 @@ export const movies = [
         "genre": "Romance",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/qOTcfD2DdnOTmhH0r1TOE09VvNh.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Jackass Presents: Bad Grandpa",
@@ -3891,7 +4375,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/dDSMzBEaM0LYSy9Muo0zsCo77Vh.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "R.I.P.D.",
@@ -3899,7 +4384,8 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/rS0kByPD4YF8pQ85KjzMdGiu7Xf.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "When They See Us",
@@ -3907,7 +4393,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/SttcgfmWLYTKUV7xd34d6l36CO.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "I Am Number Four",
@@ -3915,7 +4402,8 @@ export const movies = [
         "genre": "Sci-Fi",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/2NrP3h3GEsrPXX60bmjKuYWAvl9.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "That Awkward Moment",
@@ -3923,7 +4411,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/tjDAdesZNYFyRNnZvLT0osc7S2t.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Sorcerer's Apprentice",
@@ -3931,7 +4420,8 @@ export const movies = [
         "genre": "Fantasy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/kffWPQfYLkjsoYEBlFpzqVoTfCV.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Remember Me",
@@ -3939,7 +4429,8 @@ export const movies = [
         "genre": "Romance",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/j7umuMiLCHvWT7wYhFKJOTFSokF.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Daddy's Home 2",
@@ -3947,7 +4438,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/rF2IoKL0IFmumEXQFUuB8LajTYP.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Mirror Mirror",
@@ -3955,7 +4447,8 @@ export const movies = [
         "genre": "Fantasy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/pys6zIJN8Sxlk2Ss2GZuYuXPbtw.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Jack and Jill",
@@ -3963,7 +4456,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/kFeAxmZvu0TE4iuLRHQD6Cej8Wf.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Far from the Madding Crowd",
@@ -3971,7 +4465,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/r6ixYhWrBwtEQzdOo1TkPaF0C77.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "American Assassin",
@@ -3979,7 +4474,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/w6vjeHx3UEaBXIyc8VFqyZYKznD.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Princess Switch",
@@ -3987,7 +4483,8 @@ export const movies = [
         "genre": "Romance",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/yDQftfpTEppAvdgLDDil56W1VWS.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Pan",
@@ -3995,7 +4492,8 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/w8i0mZR7MEL7c3bXSsuYg7VJsew.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Vow",
@@ -4003,7 +4501,8 @@ export const movies = [
         "genre": "Romance",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/y5GUXzTvt7kSQbdQrSvbYNoa8HB.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Dear John",
@@ -4011,7 +4510,8 @@ export const movies = [
         "genre": "Romance",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/2lAPv2jQ5eh54l4EttA9wjDljED.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Flatliners",
@@ -4019,7 +4519,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/wda3j7p7YHXKpFIlSzoTCtP7myF.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Stardust",
@@ -4028,6 +4529,7 @@ export const movies = [
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/7zbFmxy3DqKYL2M8Hop6uylp2Uy.jpg",
         "review": "Coming Soon.",
+        "trailerUrl": "",
         "favourite": true
     },
     {
@@ -4036,7 +4538,8 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/gLhYg9NIvIPKVRTtvzCWnp1qJWG.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Twilight Saga: Eclipse",
@@ -4044,7 +4547,8 @@ export const movies = [
         "genre": "Romance",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/3mFM80dPzSqoXXuC2UMvLIRWX32.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Cloud Atlas",
@@ -4052,7 +4556,8 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/8naVv2Xu3rWI5JKHz0vCujx6GaJ.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Freaky Friday",
@@ -4060,7 +4565,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/ipKcZ4Up7dp18XpsfYUc9NKZy3g.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Prince of Egypt",
@@ -4068,7 +4574,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/2xUjYwL6Ol7TLJPPKs7sYW5PWLX.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Star Wars: The Rise of Skywalker",
@@ -4076,7 +4583,8 @@ export const movies = [
         "genre": "Sci-Fi",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/db32LaOibwEliAmSL2jjDF6oDdj.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Glass",
@@ -4084,7 +4592,8 @@ export const movies = [
         "genre": "Thriller",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/svIDTNUoajS8dLEo7EosxvyAsgJ.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "To All the Boys: P.S. I Still Love You",
@@ -4092,7 +4601,8 @@ export const movies = [
         "genre": "Romance",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/maib5VlmEqp5xlN8lptnBSftp2o.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Maleficent: Mistress of Evil",
@@ -4100,7 +4610,8 @@ export const movies = [
         "genre": "Fantasy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/vloNTScJ3w7jwNwtNGoG8DbTThv.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The House with a Clock in Its Walls",
@@ -4108,7 +4619,8 @@ export const movies = [
         "genre": "Fantasy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/qM66Hv4ByAxnilr0jaqCA9uOD4Y.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Nutcracker and the Four Realms",
@@ -4116,7 +4628,8 @@ export const movies = [
         "genre": "Fantasy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/9vPDY8e7YxLwgVum7YZIUJbr4qc.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Gemini Man",
@@ -4124,7 +4637,8 @@ export const movies = [
         "genre": "Sci-Fi",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/uTALxjQU8e1lhmNjP9nnJ3t2pRU.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "A Wrinkle in Time",
@@ -4132,7 +4646,8 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/yAcb58vipewa1BfNit2RjE6boXA.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Hustlers",
@@ -4140,7 +4655,8 @@ export const movies = [
         "genre": "Crime",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/zBhv8rsLOfpFW2M5b6wW78Uoojs.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Yesterday",
@@ -4148,7 +4664,8 @@ export const movies = [
         "genre": "Musical",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/9fYka5CQt9nrb6LOtKicysUf9NA.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Star Wars: Episode II - Attack of the Clones",
@@ -4156,7 +4673,8 @@ export const movies = [
         "genre": "Sci-Fi",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/oZNPzxqM2s5DyVWab09NTQScDQt.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Star Wars: Episode III - Revenge of the Sith",
@@ -4164,7 +4682,8 @@ export const movies = [
         "genre": "Sci-Fi",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/xfSAoBEm9MNBjmlNcDYLvLSMlnq.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Return of the Jedi",
@@ -4172,7 +4691,8 @@ export const movies = [
         "genre": "Sci-Fi",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/jQYlydvHm3kUix1f8prMucrplhm.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Empire Strikes Back",
@@ -4180,7 +4700,8 @@ export const movies = [
         "genre": "Sci-Fi",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/nNAeTmF4CtdSgMDplXTDPOpYzsX.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Solo: A Star Wars Story",
@@ -4188,7 +4709,8 @@ export const movies = [
         "genre": "Sci-Fi",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/4oD6VEccFkorEBTEDXtpLAaz0Rl.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Men in Black: International",
@@ -4196,7 +4718,8 @@ export const movies = [
         "genre": "Sci-Fi",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/dPrUPFcgLfNbmDL8V69vcrTyEfb.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Downsizing",
@@ -4204,7 +4727,8 @@ export const movies = [
         "genre": "Sci-Fi",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/5bNzInSSAXfr0MFlHfb4IoQePVx.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "London Has Fallen",
@@ -4212,7 +4736,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/iEbLkYzyiUdOKNK4WNBFyGH7r2Y.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Ralph Breaks the Internet",
@@ -4220,7 +4745,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/iVCrhBcpDaHGvv7CLYbK6PuXZo1.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Deadpool 2",
@@ -4228,7 +4754,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/to0spRl1CMDvyUbOnbb4fTk3VAd.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Jojo Rabbit",
@@ -4236,7 +4763,8 @@ export const movies = [
         "genre": "War",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/7GsM4mtM0worCtIVeiQt28HieeN.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Knives Out",
@@ -4244,7 +4772,8 @@ export const movies = [
         "genre": "Mystery",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/pThyQovXQrw2m0s9x82twj48Jq4.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Frozen II",
@@ -4252,7 +4781,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/mINJaa34MtknCYl5AjtNJzWj8cD.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Treasure Planet",
@@ -4260,7 +4790,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/zMKatZ0c0NCoKzfizaCzVUcbKMf.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "10 Things I Hate About You",
@@ -4268,7 +4799,8 @@ export const movies = [
         "genre": "Romance",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/ujERk3aKABXU3NDXOAxEQYTHe9A.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "National Treasure: Book of Secrets",
@@ -4276,7 +4808,8 @@ export const movies = [
         "genre": "Mystery",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/xxoIBbvmTj1ZttzV439jAvoovTw.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Spider-Man: Into the Spider-Verse",
@@ -4284,7 +4817,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/iiZZdoQBEYBv6id8su7ImL0oCbD.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Midsommar",
@@ -4292,7 +4826,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/7LEI8ulZzO5gy9Ww2NVCrKmHeDZ.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Joker",
@@ -4300,7 +4835,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Grand Budapest Hotel",
@@ -4309,6 +4845,7 @@ export const movies = [
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/eWdyYQreja6JGCzqHWXpWHDrrPo.jpg",
         "review": "Coming Soon.",
+        "trailerUrl": "",
         "favourite": true
     },
     {
@@ -4317,7 +4854,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/vs4vieNstSEfbgLFEelXXOPvr6h.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Logan",
@@ -4325,7 +4863,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/fnbjcRDYn6YviCcePDnGdyAkYsB.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Room",
@@ -4333,7 +4872,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/pCURNjeomWbMSdiP64gj8NVVHTQ.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Whiplash",
@@ -4342,6 +4882,7 @@ export const movies = [
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/7fn624j5lj3xTme2SgiLCeuedmO.jpg",
         "review": "Coming Soon.",
+        "trailerUrl": "",
         "favourite": true
     },
     {
@@ -4350,7 +4891,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Dune",
@@ -4358,7 +4900,8 @@ export const movies = [
         "genre": "Sci-Fi",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/d5NXSklXo0qyIYkgV94XAgMIckC.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Once Upon a Time... in Hollywood",
@@ -4366,7 +4909,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/8j58iEBw9pOXFD2L0nt0ZXeHviB.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Shining",
@@ -4375,6 +4919,7 @@ export const movies = [
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/xazWoLealQwEgqZ89MLZklLZD3k.jpg",
         "review": "Coming Soon.",
+        "trailerUrl": "",
         "favourite": true
     },
     {
@@ -4383,7 +4928,8 @@ export const movies = [
         "genre": "War",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/7sfbEnaARXDDhKm0CZ7D7uc2sbo.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Baby Driver",
@@ -4391,7 +4937,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/rmnQ9jKW72bHu8uKlMjPIb2VLMI.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Truman Show",
@@ -4399,7 +4946,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/vuza0WqY239yBXOadKlGwJsZJFE.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Matrix",
@@ -4407,7 +4955,8 @@ export const movies = [
         "genre": "Sci-Fi",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/dXNAPwY7VrqMAo51EKhhCJfaGb5.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "American Psycho",
@@ -4415,7 +4964,8 @@ export const movies = [
         "genre": "Thriller",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/9uGHEgsiUXjCNq8wdq4r49YL8A1.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Little Women",
@@ -4423,7 +4973,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/yn5ihODtZ7ofn8pDYfxCmxh8AXI.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Don't Look Up",
@@ -4431,7 +4982,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/th4E1yqsE8DGpAseLiUrI60Hf8V.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Hereditary",
@@ -4440,6 +4992,7 @@ export const movies = [
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/4GFPuL14eXi66V96xBWY73Y9PfR.jpg",
         "review": "Coming Soon.",
+        "trailerUrl": "",
         "favourite": true
     },
     {
@@ -4448,7 +5001,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/viWheBd44bouiLCHgNMvahLThqx.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "1917",
@@ -4456,7 +5010,8 @@ export const movies = [
         "genre": "War",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/iZf0KyrE25z1sage4SYFLCCrMi9.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Soul",
@@ -4464,7 +5019,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/pEz5aROvfy5FBW1OTlrDO3VryWO.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Coco",
@@ -4472,7 +5028,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/gGEsBPAijhVUFoiNpgZXqRVWJt2.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Star Wars",
@@ -4480,7 +5037,8 @@ export const movies = [
         "genre": "Sci-Fi",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/6FfCtAuVAW8XJjZ7eWeLibRLWTw.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Shutter Island",
@@ -4488,7 +5046,8 @@ export const movies = [
         "genre": "Mystery",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/nrmXQ0zcZUL8jFLrakWc90IR8z9.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Shawshank Redemption",
@@ -4496,7 +5055,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/9cqNxx0GxF0bflZmeSMuL5tnGzr.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "A Quiet Place",
@@ -4504,7 +5064,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/nAU74GmpUk7t5iklEp3bufwDq4n.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Tenet",
@@ -4512,7 +5073,8 @@ export const movies = [
         "genre": "Sci-Fi",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/aCIFMriQh8rvhxpN1IWGgvH0Tlg.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Nightcrawler",
@@ -4520,7 +5082,8 @@ export const movies = [
         "genre": "Thriller",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/j9HrX8f7GbZQm1BrBiR40uFQZSb.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The French Dispatch",
@@ -4528,7 +5091,8 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/6JXR3KJH5roiBCjWFt09xfgxHZc.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Fantastic Mr. Fox",
@@ -4537,6 +5101,7 @@ export const movies = [
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/njbTizADSZg4PqeyJdDzZGooikv.jpg",
         "review": "Coming Soon.",
+        "trailerUrl": "",
         "favourite": true
     },
     {
@@ -4545,7 +5110,8 @@ export const movies = [
         "genre": "Mystery",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/6YmeO4pB7XTh8P8F960O1uA14JO.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Shape of Water",
@@ -4553,7 +5119,8 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/9zfwPffUXpBrEP26yp0q1ckXDcj.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Black Widow",
@@ -4561,7 +5128,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/kwB7d51AIcyzPOBOHLCEZJkmPhQ.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Shang-Chi and the Legend of the Ten Rings",
@@ -4569,7 +5137,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/d08HqqeBQSwN8i8MEvpsZ8Cb438.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Suicide Squad",
@@ -4577,7 +5146,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/q61qEyssk2ku3okWICKArlAdhBn.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Booksmart",
@@ -4585,7 +5155,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/2aSxRDmisJP90H3S0aocyuQIe4z.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Encanto",
@@ -4593,7 +5164,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/4j0PNHkMr5ax3IA8tjtxcmPU3QT.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "My Neighbor Totoro",
@@ -4601,7 +5173,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/rtGDOeG9LzoerkDGZF9dnVeLppL.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Where the Crawdads Sing",
@@ -4610,6 +5183,7 @@ export const movies = [
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/n1el846gLDXfhOvrRCsyvaAOQWv.jpg",
         "review": "Coming Soon.",
+        "trailerUrl": "",
         "favourite": true
     },
     {
@@ -4618,7 +5192,8 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/iuFNMS8U5cb6xfzi51Dbkovj7vM.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Fight Club",
@@ -4626,7 +5201,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/pB8BM7pdSp6B6Ih7QZ4DrQ3PmJK.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Substance",
@@ -4634,7 +5210,8 @@ export const movies = [
         "genre": "Thriller",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/cGm2qnmXx9tFabmzEIkJZjCJdQd.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Eternal Sunshine of the Spotless Mind",
@@ -4642,7 +5219,8 @@ export const movies = [
         "genre": "Romance",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/5MwkWH9tYHv3mV9OdYTMR5qreIz.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Batman",
@@ -4650,7 +5228,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/74xTEgt7R36Fpooo50r9T25onhq.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Dune: Part Two",
@@ -4658,7 +5237,8 @@ export const movies = [
         "genre": "Sci-Fi",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/6izwz7rsy95ARzTR3poZ8H6c5pp.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Saltburn",
@@ -4666,7 +5246,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/zGTfMwG112BC66mpaveVxoWPOaB.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Spider-Man: Across the Spider-Verse",
@@ -4674,7 +5255,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Poor Things",
@@ -4682,7 +5264,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/kCGlIMHnOm8JPXq3rXM6c5wMxcT.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Challengers",
@@ -4690,7 +5273,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/H6vke7zGiuLsz4v4RPeReb9rsv.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Lady Bird",
@@ -4698,7 +5282,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/gl66K7zRdtNYGrxyS2YDUP5ASZd.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Spirited Away",
@@ -4706,7 +5291,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/39wmItIWsg5sZMyRUHLkWBcuVCM.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Nosferatu",
@@ -4714,7 +5300,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/5qGIxdEO841C0tdY8vOdLoRVrr0.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "(500) Days of Summer",
@@ -4722,7 +5309,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/qXAuQ9hF30sQRsXf40OfRVl0MJZ.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Deadpool & Wolverine",
@@ -4730,7 +5318,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/8cdWjvZQUExUUTzyp4t6EDMubfO.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Inside Out 2",
@@ -4738,7 +5327,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/vpnVM9B6NMmQpWeZvzLvDESb2QY.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Glass Onion",
@@ -4746,7 +5336,8 @@ export const movies = [
         "genre": "Mystery",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/vDGr1YdrlfbU9wxTOdpf3zChmv9.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Titanic",
@@ -4754,7 +5345,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/9xjZS2rlVxm8SFx8kPC3aIGCOYQ.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Pearl",
@@ -4762,7 +5354,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/z5uIG81pXyHKg7cUFIu84Wjn4NS.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Howl's Moving Castle",
@@ -4770,7 +5363,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/23hUJh7JdO23SpgUB5oiFDQk2wX.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Us",
@@ -4778,7 +5372,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/ux2dU1jQ2ACIMShzB3yP93Udpzc.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Longlegs",
@@ -4786,7 +5381,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/1EwNyiiNFd863H4e8nWEzutnZD7.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Avatar: The Way of Water",
@@ -4794,7 +5390,8 @@ export const movies = [
         "genre": "Sci-Fi",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Guardians of the Galaxy Vol. 3",
@@ -4802,7 +5399,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/r2J02Z2OpNTctfOSN1Ydgii51I3.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Anyone But You",
@@ -4810,7 +5408,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/5qHoazZiaLe7oFBok7XlUhg96f2.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Gladiator",
@@ -4818,7 +5417,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/w0YjBWVfu689txEXZG3xa4Aev3i.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Superbad",
@@ -4826,7 +5426,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/ek8e8txUyUwd2BNqj6lFEerJfbq.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Doctor Strange in the Multiverse of Madness",
@@ -4834,7 +5435,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/ddJcSKbcp4rKZTmuyWaMhuwcfMz.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Hunger Games: The Ballad of Songbirds & Snakes",
@@ -4842,7 +5444,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/lrkOYL5GBTFW9cgs9RlojxAcZZF.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Witch",
@@ -4850,7 +5453,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/zap5hpFCWSvdWSuPGAQyjUv2wAC.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "How to Lose a Guy in 10 Days",
@@ -4858,7 +5462,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/2dlftyPz7mTYbrsPvTogyFmYd7d.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Nightmare Before Christmas",
@@ -4866,7 +5471,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/oQffRNjK8e19rF7xVYEN8ew0j7b.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Beautiful Boy",
@@ -4874,7 +5480,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/u2Gfv0mz3xePsgyCPHovrnFL1sB.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Priscilla",
@@ -4882,7 +5489,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/uDCeELWWpsNq7ErM61Yuq70WAE9.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Barbarian",
@@ -4890,7 +5498,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/idT5mnqPcJgSkvpDX7pJffBzdVH.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "We Live in Time",
@@ -4899,6 +5508,7 @@ export const movies = [
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/oeDNBgnlGF6rnyX1P1K8Vl2f3lW.jpg",
         "review": "Coming Soon.",
+        "trailerUrl": "",
         "favourite": true
     },
     {
@@ -4907,7 +5517,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/gD72DhJ7NbfxvtxGiAzLaa0xaoj.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Star Wars: Episode I - The Phantom Menace",
@@ -4915,7 +5526,8 @@ export const movies = [
         "genre": "Sci-Fi",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/6wkfovpn7Eq8dYNKaG5PY3q2oq6.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Thor: Love and Thunder",
@@ -4923,7 +5535,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/pIkRyD18kl4FhoCNQuWxWu5cBLM.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Moonrise Kingdom",
@@ -4931,7 +5544,8 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/y4SXcbNl6CEF2t36icuzuBioj7K.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Last Night in Soho",
@@ -4939,7 +5553,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/n1ZRmjlk1BJTY7aASqACfPAaLn2.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Five Nights at Freddy's",
@@ -4947,7 +5562,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/4dKRTUylqwXQ4VJz0BS84fqW2wa.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Smile",
@@ -4955,7 +5571,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/aPqcQwu4VGEewPhagWNncDbJ9Xp.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Luca",
@@ -4963,7 +5580,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/9x4i9uKGXt8IiiIF5Ey0DIoY738.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Sixth Sense",
@@ -4971,7 +5589,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/vOyfUXNFSnaTk7Vk5AjpsKTUWsu.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Die Hard",
@@ -4979,7 +5598,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/1NnCbaFaWgHczKjH5Eii46VmpPp.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Black Panther: Wakanda Forever",
@@ -4987,7 +5607,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/sv1xJUazXeYqALzczSZ3O6nkH75.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Turning Red",
@@ -4995,7 +5616,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/qsdjk9oAKSQMWs0Vt5Pyfh6O4GZ.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Ready or Not",
@@ -5003,7 +5625,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/oJD9KQFoObZmxAS1je56SIFVNJt.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Cruella",
@@ -5011,7 +5634,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/wToO8opxkGwKgSfJ1JK8tGvkG6U.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Eternals",
@@ -5019,7 +5643,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/lFByFSLV5WDJEv3KabbdAF959F2.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Imitation Game",
@@ -5027,7 +5652,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/zSqJ1qFq8NXFfi7JeIYMlzyR0dx.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Carry-On",
@@ -5035,7 +5661,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/sjMN7DRi4sGiledsmllEw5HJjPy.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "School of Rock",
@@ -5043,7 +5670,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/zXLXaepIBvFVLU25DH3wv4IPSbe.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Palm Springs",
@@ -5051,7 +5679,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/yf5IuMW6GHghu39kxA0oFx7Bxmj.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Elemental",
@@ -5059,7 +5688,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/4Y1WNkd88JXmGfhtWR7dmDAo1T2.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Scream VI",
@@ -5067,7 +5697,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/wDWwtvkRRlgTiUr6TyLSMX8FCuZ.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Scream",
@@ -5075,7 +5706,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/1m3W6cpgwuIyjtg5nSnPx7yFkXW.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Hot Fuzz",
@@ -5083,7 +5715,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/zPib4ukTSdXvHP9pxGkFCe34f3y.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "A Quiet Place Part II",
@@ -5091,7 +5724,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/4q2hz2m8hubgvijz8Ez0T2Os2Yv.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Holiday",
@@ -5099,7 +5733,8 @@ export const movies = [
         "genre": "Romance",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/h1ITOpvJN3Tw4Sy60w2QTfYMvdd.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Snowpiercer",
@@ -5107,7 +5742,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/nzccOvhrLGI0nvAknCEAk8bchD9.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Leave the World Behind",
@@ -5115,7 +5751,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/29rhl1xopxA7JlGVVsf1UHfYPvN.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Birds of Prey (and the Fantabulous Emancipation of One Harley Quinn)",
@@ -5123,7 +5760,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/h4VB6m0RwcicVEZvzftYZyKXs6K.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Blink Twice",
@@ -5131,7 +5769,8 @@ export const movies = [
         "genre": "Thriller",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/lZGOK0I2DJSRlEPNOAFTSNxSjDD.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Blair Witch Project",
@@ -5139,7 +5778,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/9050VGrYjYrEjpOvDZVAngLbg1f.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Ant-Man and the Wasp: Quantumania",
@@ -5147,7 +5787,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/qnqGbB22YJ7dSs4o6M7exTpNxPz.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "White Chicks",
@@ -5155,7 +5796,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/aHTUpo45qy9QYIOnVITGGqLoVcA.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Ocean's Eight",
@@ -5163,7 +5805,8 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/MvYpKlpFukTivnlBhizGbkAe3v.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Idea of You",
@@ -5171,7 +5814,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/Y5P4Q3q8nrruZ9aD3wXeJS2Plg.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "No Time to Die",
@@ -5179,7 +5823,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/iUgygt3fscRoKWCV1d0C7FbM9TP.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Finding Dory",
@@ -5187,7 +5832,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/3UVe8NL1E2ZdUZ9EDlKGJY5UzE.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Fresh",
@@ -5195,7 +5841,8 @@ export const movies = [
         "genre": "Thriller",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/tlu71AgaL3EQBBCNGsAwZLPbV5D.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "12 Years a Slave",
@@ -5203,7 +5850,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/xdANQijuNrJaw1HA61rDccME4Tm.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Twilight Saga: New Moon",
@@ -5211,7 +5859,8 @@ export const movies = [
         "genre": "Romance",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/k2qTooPlHffgNABNWxeJdGMglPK.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Hit Man",
@@ -5219,7 +5868,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/oil3EZwKFp3CWxZnfGfGglesvm9.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "I'm Thinking of Ending Things",
@@ -5227,7 +5877,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/5ynWWapdl45hJXUh0KIevxSG9JQ.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Secret Life of Walter Mitty",
@@ -5236,6 +5887,7 @@ export const movies = [
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/tY6ypjKOOtujhxiSwTmvA4OZ5IE.jpg",
         "review": "Coming Soon.",
+        "trailerUrl": "",
         "favourite": true
     },
     {
@@ -5244,7 +5896,8 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/pSgXKPU5h6U89ipF7HBYajvYt7j.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Talented Mr. Ripley",
@@ -5252,7 +5905,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/6ojHgqtIR41O2qLKa7LFUVj0cZa.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Scream 2",
@@ -5260,7 +5914,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/dORlVasiaDkJXTqt9bdH7nFNs6C.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Pirates of the Caribbean: At World's End",
@@ -5268,7 +5923,8 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/jGWpG4YhpQwVmjyHEGkxEkeRf0S.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Napoleon",
@@ -5276,7 +5932,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/ytFOXyghxLzAM4KZyazDdEkM66q.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Borat: Cultural Learnings of America for Make Benefit Glorious Nation of Kazakhstan",
@@ -5284,7 +5941,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/kfkyALfD4G1mlBJI1lOt2QCra4i.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Little Mermaid",
@@ -5292,7 +5950,8 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/cJbKUdbWcIFDuHhs6uvOfacemc4.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Aquaman",
@@ -5300,7 +5959,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/oIDpaHSnTMYK0Cf5RkEoQzXPpBE.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Old",
@@ -5308,7 +5968,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/vclShucpUmPhdAOmKgf3B3Z4POD.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "She's the Man",
@@ -5316,7 +5977,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/ms9vdHyBLgAj0txnMWI9djGpDGp.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Emma.",
@@ -5324,7 +5986,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/uHpHzbHLSsVmAuuGuQSpyVDZmDc.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Rocketman",
@@ -5332,7 +5995,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/f4FF18ia7yTvHf2izNrHqBmgH8U.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Kingsman: The Golden Circle",
@@ -5340,7 +6004,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/34xBL6BXNYFqtHO9zhcgoakS4aP.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Enola Holmes",
@@ -5348,7 +6013,8 @@ export const movies = [
         "genre": "Mystery",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/riYInlsq2kf1AWoGm80JQW5dLKp.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Moana 2",
@@ -5356,7 +6022,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/aLVkiINlIeCkcZIzb7XHzPYgO6L.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Hidden Figures",
@@ -5364,7 +6031,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/9lfz2W2uGjyow3am00rsPJ8iOyq.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Gentlemen",
@@ -5372,7 +6040,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/jtrhTYB7xSrJxR1vusu99nvnZ1g.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "House of Gucci",
@@ -5380,7 +6049,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/oJCQjD2byiVF1EG408F9dBn9ndU.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Matrix Reloaded",
@@ -5388,7 +6058,8 @@ export const movies = [
         "genre": "Sci-Fi",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/9TGHDvWrqKBzwDxDodHYXEmOE6J.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Insidious",
@@ -5396,7 +6067,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/1egpmVXuXed58TH2UOnX1nATTrf.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Sinister",
@@ -5404,7 +6076,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/nzx10sca3arCeYBAomHan4Q6wa1.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Do Revenge",
@@ -5412,7 +6085,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/akIjKJDHcVN4bzifcEarKVPNpoa.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Onward",
@@ -5420,7 +6094,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/f4aul3FyD3jv3v4bul1IrkWZvzq.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Fear Street: 1994",
@@ -5428,7 +6103,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/9J9Wy39ZjrVmfk7yMkulpcI5sy0.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Scream 4",
@@ -5436,7 +6112,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/tcrI37K98TVopLbcZBa55mWhLT1.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Love, Simon",
@@ -5444,7 +6121,8 @@ export const movies = [
         "genre": "Romance",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/snIsqVPmlu4LPjvToHpDotxa7Eh.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The 40 Year Old Virgin",
@@ -5452,7 +6130,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/jBoRAWYOv7tBtfXbNJMAojGj0Xf.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Matrix Resurrections",
@@ -5460,7 +6139,8 @@ export const movies = [
         "genre": "Sci-Fi",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/8c4a8kE7PizaGQQnditMmI1xbRp.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Doctor Sleep",
@@ -5468,7 +6148,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/p69QzIBbN06aTYqRRiCOY1emNBh.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Jurassic World: Fallen Kingdom",
@@ -5476,7 +6157,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/270MrJNqJovumHXGE6SSt0zwUIF.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Scream 3",
@@ -5484,7 +6166,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/qpH8ToZVlFD1bakL04LkEKodyDI.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "X2",
@@ -5492,7 +6175,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/rtrd4qieMAhoUshu83Vi1GazM1O.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Wonder Woman 1984",
@@ -5500,7 +6184,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/8UlWHLMpgZm9bx6QYh0NFoq67TZ.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Monster House",
@@ -5508,7 +6193,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/zCRPr4bkO3ae0U1134vJ39xZnAG.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Bridge to Terabithia",
@@ -5516,7 +6202,8 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/3xFxGodKPMFLheS8rujFSmLfcq4.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Uptown Girls",
@@ -5524,7 +6211,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/liazMoopc2fhWq1YlfwasQcvWu.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Jurassic World Dominion",
@@ -5532,7 +6220,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/jbAvCACjLf1ZG0unB2tdmx5HAf1.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Raya and the Last Dragon",
@@ -5540,7 +6229,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/5nVhgCzxKbK47OLIKxCR1syulOn.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Captain Fantastic",
@@ -5548,7 +6238,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/2sFME73GaD8UsUxPUKe60cPdLif.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Ponyo",
@@ -5556,7 +6247,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/yp8vEZflGynlEylxEesbYasc06i.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Royal Tenenbaums",
@@ -5565,6 +6257,7 @@ export const movies = [
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/syaECBy6irxSgeF0m5ltGPNTWXL.jpg",
         "review": "Coming Soon.",
+        "trailerUrl": "",
         "favourite": true
     },
     {
@@ -5573,7 +6266,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/o9VXYOuaJxCEKOxbA86xqtwmqYn.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Black Phone",
@@ -5581,7 +6275,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/p9ZUzCyy9wRTDuuQexkQ78R2BgF.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "M3GAN",
@@ -5589,7 +6284,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/d9nBoowhjiiYc4FBNtQkPY7c11H.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Invisible Man",
@@ -5597,7 +6293,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/5EufsDwXdY2CVttYOk2WtYhgKpa.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Platform",
@@ -5605,7 +6302,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/iXvQnzy6JCAx1PiQEKXuTY04ZHl.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Venom: Let There Be Carnage",
@@ -5613,7 +6311,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/pzKsRuKLFmYrW5Q0q8E8G78Tcgo.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Sweeney Todd: The Demon Barber of Fleet Street",
@@ -5621,7 +6320,8 @@ export const movies = [
         "genre": "Musical",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/gAW4J1bkRjZKmFsJsIiOBASeoAp.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Place Beyond the Pines",
@@ -5629,7 +6329,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/vY5j2xQzMGWmxBuhQo0HfA4Lxqb.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Spectre",
@@ -5637,7 +6338,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/aD8fQF2WFAvMMxmMHHj2RXz2hwP.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Addams Family",
@@ -5645,7 +6347,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/qFf8anju5f2epI0my8RdwwIXFIP.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Venom: The Last Dance",
@@ -5653,7 +6356,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/vGXptEdgZIhPg3cGlc7e8sNPC2e.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Conjuring: The Devil Made Me Do It",
@@ -5661,7 +6365,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/xbSuFiJbbBWCkyCCKIMfuDCA4yV.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Fear Street: 1978",
@@ -5669,7 +6374,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/cQywpstS8m9VyU0ho5E0KTNqd50.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Orphan",
@@ -5677,7 +6383,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/lCGpOgoTOGLtZnBiGY9HRg5Xnjd.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Pirates of the Caribbean: On Stranger Tides",
@@ -5685,7 +6392,8 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/keGfSvCmYj7CvdRx36OdVrAEibE.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "As Above, So Below",
@@ -5693,7 +6401,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/oJZSajKLJkoTOzSZQN2ZwRnPwHZ.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The King",
@@ -5701,7 +6410,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/8u0QBGUbZcBW59VEAdmeFl9g98N.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Wolverine",
@@ -5709,7 +6419,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/8lzmovtARDXnE7kTDOum02i6fXv.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Pirates of the Caribbean: Dead Men Tell No Tales",
@@ -5717,7 +6428,8 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/qwoGfcg6YUS55nUweKGujHE54Wy.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Are You There God? It's Me, Margaret.",
@@ -5725,7 +6437,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/yb6UB4WC3znlwU0L4AqMnjR9G9S.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Borat Subsequent Moviefilm",
@@ -5733,7 +6446,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/3L1Ml5RWjFVfVq3rQENvgFymT0U.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Totally Killer",
@@ -5741,7 +6455,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/52YBwGJ3cJs54fpBzwnT1lnqgTo.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Mufasa: The Lion King",
@@ -5749,7 +6464,8 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/lurEK87kukWNaHd0zYnsi3yzJrs.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "High School Musical 2",
@@ -5757,7 +6473,8 @@ export const movies = [
         "genre": "Musical",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/la2kiVWDm2vuB4APZDgCCmuBh4K.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Intern",
@@ -5765,7 +6482,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/9UoAC9tu8kIyRy8AcJnGhnH0gOH.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Lightyear",
@@ -5773,7 +6491,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/b9t3w1loraDh7hjdWmpc9ZsaYns.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Adam Project",
@@ -5781,7 +6500,8 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/wFjboE0aFZNbVOF05fzrka9Fqyx.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Jumanji: The Next Level",
@@ -5789,7 +6509,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/4kh9dxAiClS2GMUpkRyzGwpNWWX.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Morbius",
@@ -5797,7 +6518,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/6JjfSchsU6daXk2AKX8EEBjO3Fm.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Fear Street: 1666",
@@ -5805,7 +6527,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/rmEPtz3Ufzol2VWUAZYzOFaBio3.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Damsel",
@@ -5813,7 +6536,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/290Lsuy4GJF3VEVqMbJqHs7xFdv.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Miss Congeniality",
@@ -5821,7 +6545,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/pat3vKaRlB70he4ghwTMydR4TvP.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Vivarium",
@@ -5829,7 +6554,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/myf3qzpeN0JbuFRPwSpJcz7rmAT.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Red Notice",
@@ -5837,7 +6563,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/lAXONuqg41NwUMuzMiFvicDET9Y.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Robots",
@@ -5845,7 +6572,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/fnKCh67l2DDG9NxxIlk9IpsXQ99.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Brother Bear",
@@ -5853,7 +6581,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/otptPbEY0vBostmo95xwiiumMJm.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Erin Brockovich",
@@ -5861,7 +6590,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/jEMvWBWVjndZT0vJnLrRWi9ajea.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Alita: Battle Angel",
@@ -5869,7 +6599,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/xRWht48C2V8XNfzvPehyClOvDni.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Hairspray",
@@ -5877,7 +6608,8 @@ export const movies = [
         "genre": "Musical",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/fgMka3HtFvI5OgW1eYdR9XpySxH.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "In Time",
@@ -5885,7 +6617,8 @@ export const movies = [
         "genre": "Sci-Fi",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/3Mwj2sIONQckOZP3YwsUXF7U5I4.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Madagascar: Escape 2 Africa",
@@ -5893,7 +6626,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/agRbLOHgN46TQO4YdKR462iR7To.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Chicken Little",
@@ -5901,7 +6635,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/vkhMtzwmAEglnilVNsL3IE6kU0B.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Candyman",
@@ -5909,7 +6644,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/qeV15PpR8jFJA9TF9JPXIoqEgp1.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Princess Diaries 2: Royal Engagement",
@@ -5917,7 +6653,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/5XToqGcE4qdfOSaCPWI7kAb1bm7.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Child's Play",
@@ -5925,7 +6662,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/wvpgvcWNkF2HLuTEMIM7K83MvZ.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Ice Age: The Meltdown",
@@ -5933,7 +6671,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/zDduhCHasKQ9YOTvlOreHem7Wbi.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Cruel Intentions",
@@ -5941,7 +6680,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/76cCsRtQ5MJBAqoigojXsLXLJwh.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Charlie's Angels",
@@ -5949,7 +6689,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/llwGYMS9UyPyKRusQVM4qTOQHMT.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Anastasia",
@@ -5957,7 +6698,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/yjLkrpnVCkdP7m3ZDkwsGSqylb4.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Quantum of Solace",
@@ -5965,7 +6707,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/e3DXXLJHGqMx9yYpXsql1XNljmM.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "A Cinderella Story",
@@ -5973,7 +6716,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/ukwP7gDPWxj1R1dW5iN3mnxkL3D.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Surf's Up",
@@ -5981,7 +6725,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/lenJ0hOmlks0dyxzNJoNVQlR3qR.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Billy Elliot",
@@ -5989,7 +6734,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/nOr5diUZxphmAD3li9aiILyI28F.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Flipped",
@@ -5997,7 +6743,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/6zDYFigohwncqFL00MKbFV01dWb.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Atlantis: The Lost Empire",
@@ -6005,7 +6752,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/8fUEFPUTF7kBMuKPiSQHxPvd8EZ.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Five Feet Apart",
@@ -6013,7 +6761,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/kreTuJBkUjVWePRfhHZuYfhNE1T.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Alvin and the Chipmunks",
@@ -6021,7 +6770,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/vRiB9uvcD0WYp7k2pAeWz9ukpuN.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Happy Feet",
@@ -6029,7 +6779,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/za41IHkj6LnkilfTzv5B2qmthKD.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Enola Holmes 2",
@@ -6037,7 +6788,8 @@ export const movies = [
         "genre": "Mystery",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/tegBpjM5ODoYoM1NjaiHVLEA0QM.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Happy Gilmore",
@@ -6045,7 +6797,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/4RnCeRzvI1xk5tuNWjpDKzSnJDk.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Over the Hedge",
@@ -6053,7 +6806,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/aVhsK1wynxXszCRjvw7RAkjxxHv.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Nun II",
@@ -6061,7 +6815,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/nt5U1MgFcyxCYA6cssNKtnn2FsF.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Violent Night",
@@ -6069,7 +6824,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/e8CpMgdyihz9Td7amQDqubPuzfN.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Austin Powers: International Man of Mystery",
@@ -6077,7 +6833,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/cCrwSLofFvxIKxiM7m0l2s1uKt2.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Run",
@@ -6085,7 +6842,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/ilHG4EayOVoYeKqslspY3pR4wzC.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Wallace & Gromit: The Curse of the Were-Rabbit",
@@ -6093,7 +6851,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/cMQ2lNd7sBe6PCf6zF5QxrKzbRG.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Ma",
@@ -6101,7 +6860,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/6n7ASmQ1wY2cxTubFFGlcvPpyk7.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Spectacular Now",
@@ -6109,7 +6869,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/tYDbDuZ3K4Xwp3cwtmZM6k53bwq.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Diary of a Wimpy Kid",
@@ -6117,7 +6878,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/iLAGiPnSuODt9cn332bkFElrRig.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Strangers",
@@ -6125,7 +6887,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/gwsg4qFmLOvlhwXj4OZuxfFUdP0.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Wild Child",
@@ -6133,7 +6896,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/qzlzWqPyC0LV5KaW2r6GvMwWihr.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Love and Monsters",
@@ -6141,7 +6905,8 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/718NnyxyQuBQcGWt9sdelA1Zc3h.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Flushed Away",
@@ -6149,7 +6914,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/o4JlinGGDwxfmtvyUotZQdDdLA2.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "She's All That",
@@ -6157,7 +6923,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/a0pepZNFCjggc7Na9gEwbTI1f46.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Gerald's Game",
@@ -6165,7 +6932,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/32dippiypDdaKv7XFEfUlQ7kPup.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Aristocats",
@@ -6173,7 +6941,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/1BVOSmQUhphMgnTxnXyfQ9tL1Sc.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Cat in the Hat",
@@ -6181,7 +6950,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/uYYLz67e5xEQMsY858VSSCDsLU6.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Ghost",
@@ -6189,7 +6959,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/w9RaPHov8oM5cnzeE27isnFMsvS.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Grinch",
@@ -6197,7 +6968,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/1Bc9VNd9CIHIyJtPKFqSQzrXWru.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Molly's Game",
@@ -6205,7 +6977,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/tUYapLlLBB1FtDbU79JjhP8LE1a.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Ella Enchanted",
@@ -6213,7 +6986,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/7AyNzwSEpJEG1gBdgwRfXi1cjs8.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Chronicles of Narnia: Prince Caspian",
@@ -6221,7 +6995,8 @@ export const movies = [
         "genre": "Fantasy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/qxz3WIyjZiSKUhaTIEJ3c1GcC9z.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Stuart Little",
@@ -6229,7 +7004,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/362lcwTJlNyAhitTlp2UraECISR.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Bride Wars",
@@ -6237,7 +7013,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/eyXT8tmUoyHrg7YX1UVjmecHCWP.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Scooby-Doo 2: Monsters Unleashed",
@@ -6245,7 +7022,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/5BrXCJrs22bR5KR6mLHluYo6y4m.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Wedding Crashers",
@@ -6253,7 +7031,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/lFM3lk2zVzC1YFnKm0r6LbFPyRu.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Aquaman and the Lost Kingdom",
@@ -6261,7 +7040,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/oEyIhY1WzoFHUDE7U3p1AWwyoSN.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Miller's Girl",
@@ -6269,7 +7049,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/ieU0zUj7WhE0GrgpgofRH0sNjbI.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Diary of a Wimpy Kid: Rodrick Rules",
@@ -6277,7 +7058,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/k54R3ag1sLu93Wbfo4quw9sSFyj.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Fantastic Four: Rise of the Silver Surfer",
@@ -6285,7 +7067,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/f3ldtPF7SESMcyAIyIJHBLlBBkr.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Freaky",
@@ -6293,7 +7076,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/8xC6QSyxrpm0D5A6iyHNemEWBVe.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "All the Bright Places",
@@ -6301,7 +7085,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/4SafxuMKQiw4reBiWKVZJpJn80I.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Thoroughbreds",
@@ -6309,7 +7094,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/dBhskn3zQZu1DKy1ZjjmJRxJUxm.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "My Girl",
@@ -6317,7 +7103,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/qyJJNHteA7BUwQSey05t7qP4vRV.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Extraction",
@@ -6325,7 +7112,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/nygOUcBKPHFTbxsYRFZVePqgPK6.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Phantom of the Opera",
@@ -6333,7 +7121,8 @@ export const movies = [
         "genre": "Musical",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/pFf1Xxzgxo6ffxAJeSkAb5b0P4S.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Mulan",
@@ -6341,7 +7130,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/aKx1ARwG55zZ0GpRvU2WrGrCG9o.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Addams Family Values",
@@ -6349,7 +7139,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/sdxT2VjVSx9DRicwnuECUdBHeE7.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Uglies",
@@ -6357,7 +7148,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/jaUu9zHtbcFwrB5Y1DNYE09HMex.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Monsters vs Aliens",
@@ -6365,7 +7157,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/hpHarddVj34j53T7NsoUGdKj4mP.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Escape Room",
@@ -6373,7 +7166,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/bq3wmW5ZJsnOHM6NLGsjDvX7CxB.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Sully",
@@ -6381,7 +7175,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/4vs83YcJ8TsabADDtaeCJ6ZTjYY.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Confessions of a Shopaholic",
@@ -6389,7 +7184,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/r17R9OIC0pKDqqsNore6atYLCVZ.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Oblivion",
@@ -6397,7 +7193,8 @@ export const movies = [
         "genre": "Sci-Fi",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/eO3r38fwnhb58M1YgcjQBd3VNcp.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Obi-Wan Kenobi",
@@ -6405,7 +7202,8 @@ export const movies = [
         "genre": "Sci-Fi",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/vQGgvXjoMZf8x1m3BHsMxVXPyck.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Insidious: The Red Door",
@@ -6413,7 +7211,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/d07phJqCx6z5wILDYqkyraorDPi.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "To All the Boys: Always and Forever",
@@ -6421,7 +7220,8 @@ export const movies = [
         "genre": "Romance",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/iepqdM52f4w75fNcvgRF5QoIAjm.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "A Streetcar Named Desire",
@@ -6429,7 +7229,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/aicdlO5vt7z2ARm279eGzJeYCLQ.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The New Mutants",
@@ -6437,7 +7238,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/xiDGcXJTvu1lazFRYip6g1eLt9c.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Santa Clause",
@@ -6445,7 +7247,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/hvV2rI60qOYELT7tHHLpxtafnBZ.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Footloose",
@@ -6453,7 +7256,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/9JEDjBCXCx3eKTSkXwispf0UN3O.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Scary Movie 2",
@@ -6461,7 +7265,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/7Eb1JWK0Cb0rbfsYjwfc9g0PbQH.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Insidious: Chapter 2",
@@ -6469,7 +7274,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/w5JjiB3O1CLDXbTJe1QpU5RHmlU.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Annabelle: Creation",
@@ -6477,7 +7283,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/tb86j8jVCVsdZnzf8I6cIi65IeM.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Holidate",
@@ -6485,7 +7292,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/oXCLSlCRWWHsSSwLJSVIC0DDWsE.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Murder Mystery 2",
@@ -6493,7 +7301,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/s1VzVhXlqsevi8zeCMG9A16nEUf.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Zathura: A Space Adventure",
@@ -6501,7 +7310,8 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/shUtIadbOk8BAWk4FR0LinbBUmR.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Big Daddy",
@@ -6509,7 +7319,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/m0KrgL5uGJRGyGG7LBkyKrqxB8q.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Christopher Robin",
@@ -6517,7 +7328,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/i6Ytex4d3CdfIKJFxB5v5vh24vb.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Band of Brothers",
@@ -6525,7 +7337,8 @@ export const movies = [
         "genre": "War",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/u9C6q5DXJRxmkEt81FaRVuhgzfF.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Adventureland",
@@ -6533,7 +7346,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/eeSJNAR1aWcgANq26KWIHm3cbyB.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Hannah Montana: The Movie",
@@ -6541,7 +7355,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/kytL0AIWjvxsEQ2YgIZHvmIm24k.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "A Goofy Movie",
@@ -6549,7 +7364,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/bycmMhO3iIoEDzP768sUjq2RV4T.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Letters to Juliet",
@@ -6557,7 +7373,8 @@ export const movies = [
         "genre": "Romance",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/y9DdvY1IRNS2hWLq161hmP2gXn.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Fractured",
@@ -6565,7 +7382,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/paZNRffT3kUckuRFKbeDBuX1YcZ.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Casper",
@@ -6573,7 +7391,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/vCaVCizHfxuoczd9Dlcz7et61eJ.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Monte Carlo",
@@ -6581,7 +7400,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/dcbqyycrWA56HXq5lm41HYuED8Y.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The House Bunny",
@@ -6589,7 +7409,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/4oGGJ824vqIqDtyMvMuK44pDEmx.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Good Boys",
@@ -6597,7 +7418,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/tximyCXMEnWIIyOy9STkOduUprG.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Not Another Teen Movie",
@@ -6605,7 +7427,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/9ZaGxvj1mqdKVLpSloq4mzS7SK6.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Sky High",
@@ -6613,7 +7436,8 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/nBB0XNMwvYvWpo67EcxQqKMoMKf.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "John Tucker Must Die",
@@ -6621,7 +7445,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/l8B01BFBpIyycO2DopROessWzQU.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Purple Hearts",
@@ -6629,7 +7454,8 @@ export const movies = [
         "genre": "Romance",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/4JyNWkryifWbWXJyxcWh3pVya6N.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Extremely Wicked, Shockingly Evil and Vile",
@@ -6637,7 +7463,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/a7dVwEBU3vupg3hZQMeyL6ksz0F.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Marley & Me",
@@ -6645,7 +7472,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/pnB6hjTKylb0Ve2nUWt16gzkErr.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "No Strings Attached",
@@ -6653,7 +7481,8 @@ export const movies = [
         "genre": "Romance",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/9C09L1U9S13J4Ut029Qhu0oLcTQ.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Lolita",
@@ -6661,7 +7490,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/6F4bV1DsCHjYCXRwIA6NZY7dcnD.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Happy Death Day 2U",
@@ -6669,7 +7499,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/4tdnePOkOOzwuGPEOAHp8UA4vqx.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Lemonade Mouth",
@@ -6677,7 +7508,8 @@ export const movies = [
         "genre": "Musical",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/5Tbbxf38c16kbfezmXkPYS2tYRN.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Hubie Halloween",
@@ -6685,7 +7517,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/dbhC6qRydXyRmpUdcl9bL9rARya.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Meet the Fockers",
@@ -6693,7 +7526,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/59fXm6N2x7QSbvt6BaBxTNBXGL8.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Horton Hears a Who!",
@@ -6701,7 +7535,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/6k47Z3A5zI2rxubTMwiLyIqQLLr.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Instant Family",
@@ -6709,7 +7544,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/xYV1mODz99w7AjKDSQ7h2mzZhVe.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Drop Dead Gorgeous",
@@ -6717,7 +7553,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/44eTdzCnb27urFheuhBdJxBhrwg.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Mary Poppins Returns",
@@ -6725,7 +7562,8 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/uTVGku4LibMGyKgQvjBtv3OYfAX.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Meet the Robinsons",
@@ -6733,7 +7571,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/naya0zF4kT401Sx15AtwB9vpcJr.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "17 Again",
@@ -6741,7 +7580,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/yEcfFXEWpuXcfsR9nKESVCFneqV.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "High School Musical 3: Senior Year",
@@ -6749,7 +7589,8 @@ export const movies = [
         "genre": "Musical",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/aq2o1wT0crBOTxof36O6KTyjpgE.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Annabelle",
@@ -6757,7 +7598,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/yLsuU2P2SpDYFwtZQ7dtfVAf6TE.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Spy Kids",
@@ -6765,7 +7607,8 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/j3rUkHIAAoKr6jU30q3Db4fcIF9.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Bring It On",
@@ -6773,7 +7616,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/bnVby0qI0dS7YunbShP7mw68HY3.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Holes",
@@ -6781,7 +7625,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/o2Dm2mcE1qW8vT0bpsJO5OMBbqa.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Night at the Museum: Battle of the Smithsonian",
@@ -6789,7 +7634,8 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/l9yAQn6TyrA3gv5xZZkiMMoZsiw.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Camp Rock",
@@ -6797,7 +7643,8 @@ export const movies = [
         "genre": "Musical",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/7IXMqZnwccogptThay3togKIFWw.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Wish",
@@ -6805,7 +7652,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/m9ckCVKU9vW3Dxc8hbodx7mjJbe.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Aquamarine",
@@ -6813,7 +7661,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/g2Hvucs1Q1nir3pyIXuIwo66uFV.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Burlesque",
@@ -6821,7 +7670,8 @@ export const movies = [
         "genre": "Musical",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/3U9zBIibERQZqYKM3N1a4MYgBsN.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Pope's Exorcist",
@@ -6829,7 +7679,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/jFC4LS5qTAT3PinzdEzINfu1CV9.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "After",
@@ -6837,7 +7688,8 @@ export const movies = [
         "genre": "Romance",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/u3B2YKUjWABcxXZ6Nm9h10hLUbh.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Blended",
@@ -6845,7 +7697,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/o2YrH9jS7CAfWjETHFeL0tth79E.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Roald Dahl's Matilda the Musical",
@@ -6853,7 +7706,8 @@ export const movies = [
         "genre": "Musical",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/ga8R3OiOMMgSvZ4cOj8x7prUNYZ.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Annabelle Comes Home",
@@ -6861,7 +7715,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/qWsHMrbg9DsBY3bCMk9jyYCRVRs.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Ticket to Paradise",
@@ -6869,7 +7724,8 @@ export const movies = [
         "genre": "Romance",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/1tzERH50P5c2mFWtLbgixzLZS1L.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Time Cut",
@@ -6877,7 +7733,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/sfhHfqGk7EoqKiORw4tqjgStkbW.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Kissing Booth 2",
@@ -6885,7 +7742,8 @@ export const movies = [
         "genre": "Romance",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/mb7wQv0adK3kjOUr9n93mANHhPJ.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "9",
@@ -6893,7 +7751,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/3uqXGOH4BQ2CLJWkDJZ0PzbUzOn.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Our Little Secret",
@@ -6901,7 +7760,8 @@ export const movies = [
         "genre": "Romance",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/u8knKeMHNsKnZqRsTplFPBez0yQ.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Pet Sematary",
@@ -6909,7 +7769,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/7SPhr7Qj39vbnfF9O2qHRYaKHAL.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Scary Movie 3",
@@ -6917,7 +7778,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/9hxL94pzuix9GWwba8dr4luINyo.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Fox and the Hound",
@@ -6925,7 +7787,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/aC3k6XBaYnulGSkK8263ABjU3Md.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Babysitter: Killer Queen",
@@ -6933,7 +7796,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/imy1OoT1xddt2kqw6hhc4v01e8i.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Descendants",
@@ -6941,7 +7805,8 @@ export const movies = [
         "genre": "Musical",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/65DkgHPSLVjgr6IYkpY9Aqqqid5.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Don't Move",
@@ -6949,7 +7814,8 @@ export const movies = [
         "genre": "Thriller",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/cRDJxdnRb7ikKd6fVJTrGeaL34v.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Love at First Sight",
@@ -6957,7 +7823,8 @@ export const movies = [
         "genre": "Romance",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/vCMGlarDrcmhclBmnYoH7JUCDuA.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Eurovision Song Contest: The Story of Fire Saga",
@@ -6965,7 +7832,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/9zrbgYyFvwH8sy5mv9eT25xsAzL.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Teen Beach Movie",
@@ -6973,7 +7841,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/sKrGe5EmDSyVaWM0uj7rJDQHRjB.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Garfield",
@@ -6981,7 +7850,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/vqwTSWNLyH55g8kBT61s2DgNYEp.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Night at the Museum: Secret of the Tomb",
@@ -6989,7 +7859,8 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/xwgy305K6qDs3D20xUO4OZu1HPY.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Babe",
@@ -6997,7 +7868,8 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/zKuQMtnbVTz9DsOnOJmlW71v4qH.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Gnomeo & Juliet",
@@ -7005,7 +7877,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/vVQwgfS9gSFviVT4gS7tZAmhRFc.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Paul Blart: Mall Cop",
@@ -7013,7 +7886,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/A4zZv0Q1VKURFZFEl2vwjaE2q0g.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Cheaper by the Dozen",
@@ -7021,7 +7895,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/hetmSdWARqU5ljQVKWYpAoupXST.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Smurfs",
@@ -7029,7 +7904,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/vRhnslP2gW0QDym7BsMeSuioUfK.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "6 Underground",
@@ -7037,7 +7913,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/lnWkyG3LLgbbrIEeyl5mK5VRFe4.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "She-Hulk: Attorney at Law",
@@ -7045,7 +7922,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/yhFN7yvskzm1Tsknkg46eQbQr9w.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Angus, Thongs and Perfect Snogging",
@@ -7053,7 +7931,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/3WLMr49X84qGiFn1pkCyhS5SEBZ.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Alvin and the Chipmunks: The Squeakquel",
@@ -7061,7 +7940,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/8mdPqOga5fty15nXmaNcK1fsNMa.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Legally Blonde 2: Red, White & Blonde",
@@ -7069,7 +7949,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/4kC0UGTuJgFnlZq2ZM6OiY7nuY8.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "You Don't Mess with the Zohan",
@@ -7077,7 +7958,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/gBhLQmpCPoKFMCGsulMbIFzrBID.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "101 Dalmatians",
@@ -7085,7 +7967,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/8o2ADoAyG796UwTjwBFjPyBz0yG.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Blades of Glory",
@@ -7093,7 +7976,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/xmwxSvRAi6ojxk1snwHSUogmDsv.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Love Hard",
@@ -7101,7 +7985,8 @@ export const movies = [
         "genre": "Romance",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/oTkAFDZRLnqrXOrOwuy3Tvul0v5.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Tall Girl",
@@ -7109,7 +7994,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/m0clsFEXidLVJ0TueqWOvvImOMh.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Fighting with My Family",
@@ -7117,7 +8003,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/cVhe15rJLRjolunSWLBN6xQLyGU.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Ms. Marvel",
@@ -7125,7 +8012,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/aolMYjs6QWonQFlnRGvU3o5zeQH.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Sword in the Stone",
@@ -7133,7 +8021,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/7lyeeuhGAJSNXYEW34S8mJ1bwI8.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "That's My Boy",
@@ -7141,7 +8030,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/wRpDLQWQgKaos1ZG7XPaUttGwhD.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Senior Year",
@@ -7149,7 +8039,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/6UqbcDQhCYpxboK58Z0eVfdeHcT.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Spy Kids 3-D: Game Over",
@@ -7157,7 +8048,8 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/buA8dN4zLNr0dYBeKfHfMnEfdLE.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Child's Play 2",
@@ -7165,7 +8057,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/2tPQbPQeHEYAGoXFSW61IWNmoce.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Charlie's Angels",
@@ -7173,7 +8066,8 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/1DPUFG6QnGqzpvEaDEv7TaepycM.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Peter Pan",
@@ -7181,7 +8075,8 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/6QdU3TZZrIvXFzoHOwafZAynFjB.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Disenchanted",
@@ -7189,7 +8084,8 @@ export const movies = [
         "genre": "Fantasy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/uyNLq2Dc3s4IOdcYTU8ZtM2lTjb.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Yes, God, Yes",
@@ -7197,7 +8093,8 @@ export const movies = [
         "genre": "Romance",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/69SYznq2mSbgKyQF3QHYwblmqAk.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Insidious: Chapter 3",
@@ -7205,7 +8102,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/iDdGfdNvY1EX0uDdA4Ru77fwMfc.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Lizzie McGuire Movie",
@@ -7213,7 +8111,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/jGN9PS4JKmxp7oyMqmW8G6HKcG6.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Fear",
@@ -7221,7 +8120,8 @@ export const movies = [
         "genre": "Thriller",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/ut8snuINzOibbKnvpTnsGWQr4Nl.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Daddy's Home",
@@ -7229,7 +8129,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/fB9lALk9zKsMYWvf0bJSkJN219Z.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Bedtime Stories",
@@ -7237,7 +8138,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/rSOnWm8ahvgThYp8TKGRUTcvsyw.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Nanny McPhee",
@@ -7245,7 +8147,8 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/j9zWPwaHDWE3K1Mb5RNahzwd3KY.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Spy Kids 2: The Island of Lost Dreams",
@@ -7253,7 +8156,8 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/z8pfWCk6SlxxDLXXQdUHdxF5dwJ.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Tinker Bell",
@@ -7261,7 +8165,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/3Ma0r1n8kfH7UaQMS7bJ9KsYUjT.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Rio 2",
@@ -7269,7 +8174,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/gVNTBrjxh2YRmQFjlaqrNbHVvrd.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "What's Your Number?",
@@ -7277,7 +8183,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/eqn3UeXMY9W1Ow3jIZ6COqbjUWX.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "I See You",
@@ -7285,7 +8192,8 @@ export const movies = [
         "genre": "Thriller",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/2LwamrHAmxqEHsT9JViFJxT08Ek.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Just My Luck",
@@ -7293,7 +8201,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/A3Axi7gWVdkD1i7ScqMCN1fhyGc.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Kissing Booth 3",
@@ -7301,7 +8210,8 @@ export const movies = [
         "genre": "Romance",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/c7xcqnMDVQ5v1hJBm3AZ5YikNe6.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "This Is 40",
@@ -7309,7 +8219,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/qoK8bMRM9qBObxLSkW9nQ5P9XhE.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Plus One",
@@ -7317,7 +8228,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/4w3bCp5UkLeemdq8MBNlyA3Zl2J.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Saving Mr. Banks",
@@ -7325,7 +8237,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/4RkcUe5PKnYvrCwMjk8giUAoID7.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Princess Protection Program",
@@ -7333,7 +8246,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/tPKD9hmuYxclAQnfup47qLx8a5T.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Child's Play",
@@ -7341,7 +8255,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/rpS7ROczWulqfaXG2klYapULXKm.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Shallow Hal",
@@ -7349,7 +8264,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/gtcsIu8yBlfONaOENj78UFJLbjQ.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Land Before Time",
@@ -7357,7 +8273,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/7phV1ETZnQrLsEeuk4hNeceEl25.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Open Season",
@@ -7365,7 +8282,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/w5Lctmkc1yah215Luxmci4djaiW.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "What a Girl Wants",
@@ -7373,7 +8291,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/gGpMruX59KWNuAXgHpiAm8hiChw.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Scary Movie 4",
@@ -7381,7 +8300,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/sEqFdw1wLtY94RKCSPolsHWzn6r.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The School for Good and Evil",
@@ -7389,7 +8309,8 @@ export const movies = [
         "genre": "Fantasy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/6oZeEu1GDILdwezmZ5e2xWISf1C.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Family Switch",
@@ -7397,7 +8318,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/g8Gwitm4CtZBSYhLeSY4Z3Xwwcg.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Golden Compass",
@@ -7405,7 +8327,8 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/6DTH9poR8RAw859L6OuokT7z993.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Starstruck",
@@ -7413,7 +8336,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/kuyJuNiiZvu5iNr8Dgv5y75v1uc.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Hustle",
@@ -7421,7 +8345,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/qZniBGQRESLIfxw6GeZLZ2G1osa.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Descendants 2",
@@ -7429,7 +8354,8 @@ export const movies = [
         "genre": "Musical",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/qoNlGfQmFZ37Gf5fRBaCTLlOZtx.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Norbit",
@@ -7437,7 +8363,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/XcZ5NzygPp54csxCnzvQKuxFL2.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "A Dog's Purpose",
@@ -7445,7 +8372,8 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/3jcNvhtVQe5Neoffdic39fRactM.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "Scooby-Doo on Zombie Island",
@@ -7453,7 +8381,8 @@ export const movies = [
         "genre": "Animation",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/7EdvFUGvT5Pn8rUFRKCrdUzNthf.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "P.S. I Love You",
@@ -7461,7 +8390,8 @@ export const movies = [
         "genre": "Romance",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/x6M9nlTpgpI4AOw0tMkOAVbhL5z.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     },
     {
         "title": "The Secret Garden",
@@ -7469,6 +8399,7 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/zf6h5dJ7wVG7LqMO9dhHGHVejzj.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "trailerUrl": ""
     }
 ];
