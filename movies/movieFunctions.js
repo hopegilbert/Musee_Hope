@@ -50,29 +50,6 @@ function createMovieCard(movie) {
     const title = document.createElement('h3');
     title.textContent = movie.title;
 
-    // Create star rating
-    const starRating = document.createElement('div');
-    starRating.className = 'star-rating';
-    
-    const fullStars = Math.floor(movie.rating);
-    const decimal = movie.rating % 1;
-    
-    for (let i = 0; i < 5; i++) {
-        const star = document.createElement('i');
-        star.className = 'fas fa-star fa-solid';
-        
-        if (i < fullStars) {
-            star.classList.add('filled');
-        } else if (i === fullStars && decimal > 0) {
-            star.classList.add('partial');
-            star.style.setProperty('--percent', `${decimal * 100}%`);
-        } else {
-            star.classList.add('empty');
-        }
-        
-        starRating.appendChild(star);
-    }
-
     const dateGenreRow = document.createElement('div');
     dateGenreRow.className = 'date-genre-row';
 
@@ -93,7 +70,6 @@ function createMovieCard(movie) {
     dateGenreRow.appendChild(genreBadges);
 
     movieInfo.appendChild(title);
-    movieInfo.appendChild(starRating);
     movieInfo.appendChild(dateGenreRow);
     
     cardFront.appendChild(poster);
@@ -108,6 +84,11 @@ function createMovieCard(movie) {
 
     const backTitle = document.createElement('h3');
     backTitle.textContent = movie.title;
+
+    const ratingNumber = document.createElement('span');
+    ratingNumber.className = 'rating-number';
+    ratingNumber.textContent = movie.rating.toFixed(1);
+    backTitle.appendChild(ratingNumber);
 
     const backDateGenreRow = document.createElement('div');
     backDateGenreRow.className = 'back-date-genre-row';
@@ -178,7 +159,6 @@ async function filterMovies() {
     const genreFilter = document.getElementById('genre-filter').value;
     const yearFilter = document.getElementById('year-filter').value;
     const sortFilter = document.getElementById('sort-filter').value;
-    const ratingFilter = document.getElementById('rating-filter').value;
     const searchTerm = searchInput ? searchInput.value.toLowerCase().trim() : '';
     const moviesGrid = document.querySelector('.movies-grid');
     const showFavorites = document.getElementById('favorites-button').classList.contains('active');
@@ -201,21 +181,10 @@ async function filterMovies() {
             
         const matchesYear = yearFilter === 'all' || 
             Math.floor(movie.year / 10) * 10 === parseInt(yearFilter);
-            
-        let matchesRating = true;
-        if (ratingFilter !== '0') {
-            const rating = parseInt(ratingFilter);
-            const movieRating = parseFloat(movie.rating);
-            if (rating === 5) {
-                matchesRating = movieRating >= 4.5;
-            } else {
-                matchesRating = movieRating >= rating && movieRating < (rating + 1);
-            }
-        }
 
         const matchesFavorites = !showFavorites || movie.favourite === true;
         
-        return matchesSearch && matchesGenre && matchesYear && matchesRating && matchesFavorites;
+        return matchesSearch && matchesGenre && matchesYear && matchesFavorites;
     });
 
     // Sort movies if needed

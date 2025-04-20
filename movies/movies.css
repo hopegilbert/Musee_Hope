@@ -19,8 +19,7 @@
     --blue-gradient: linear-gradient(135deg, #4169E1 0%, #000033 100%);
     --vintage-border: 1px solid rgba(65, 105, 225, 0.2);
     --header-gradient: linear-gradient(45deg, var(--accent-yellow) 0%, var(--accent-color) 30%, var(--primary-color) 60%, #FFFFFF 100%);
-    --star-color: #FFD700;
-    --star-empty: rgba(255, 255, 255, 0.5);
+    --star-color: #ffd700;
     
     /* Genre Colors */
     --genre-action: #FF4136;
@@ -508,43 +507,12 @@ h1 {
 }
 
 /* Star Rating Styles */
-.star-rating {
-    display: flex;
-    gap: 4px;
-    margin: 0.5rem 0;
-}
-
-.star-rating i {
-    font-size: 1.2rem;
-    color: var(--star-empty);
-    position: relative;
-}
-
-.star-rating i.filled {
-    color: var(--star-color);
-}
-
-.star-rating i.partial {
-    position: relative;
-    color: var(--star-empty);
-    overflow: hidden;
-}
-
-.star-rating i.partial::before {
-    content: '\f005';
-    font-family: 'Font Awesome 6 Free';
-    font-weight: 900;
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: var(--percent);
-    color: var(--star-color);
-    overflow: hidden;
-    z-index: 1;
-}
-
-.star-rating i.empty {
-    color: var(--star-empty);
+.star-rating,
+.star-rating i,
+.star-rating i.partial,
+.star-rating i.partial::before,
+.rating-number {
+    display: none;
 }
 
 .back-content {
@@ -561,13 +529,21 @@ h1 {
 }
 
 .back-content h3 {
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
     color: white;
     text-shadow: var(--text-shadow);
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.rating-number {
+    color: var(--accent-yellow);
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-left: auto;
 }
 
 .back-date-genre-row {
@@ -1043,6 +1019,30 @@ h1 {
 
 .trailer-button span {
     display: none;
+}
+
+.star-rating {
+    display: flex;
+    gap: 2px;
+}
+
+.star-rating i {
+    font-size: 1.2em;
+    position: relative;
+}
+
+.star-rating i.partial {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.star-rating i.partial::before {
+    content: '\f005';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: var(--percent);
+    color: #ffd700;
+    overflow: hidden;
 }
 
 /* Stats Panel Styles */
