@@ -330,50 +330,19 @@ select:focus {
 }
 
 @keyframes projectorFlicker {
-    0% {
-        opacity: 0;
-        transform: scale(1);
-    }
-    10% {
-        opacity: 0.1;
-        transform: scale(1.01);
-    }
-    20% {
-        opacity: 0;
-        transform: scale(1);
-    }
-    30% {
-        opacity: 0.15;
-        transform: scale(1.02);
-    }
-    40% {
-        opacity: 0;
-        transform: scale(1);
-    }
-    50% {
-        opacity: 0.1;
-        transform: scale(1.01);
-    }
-    60% {
-        opacity: 0;
-        transform: scale(1);
-    }
-    70% {
-        opacity: 0.15;
-        transform: scale(1.02);
-    }
-    80% {
-        opacity: 0;
-        transform: scale(1);
-    }
-    90% {
-        opacity: 0.1;
-        transform: scale(1.01);
-    }
-    100% {
-        opacity: 0;
-        transform: scale(1);
-    }
+    0% { opacity: 1; }
+    7% { opacity: 0.9; }
+    10% { opacity: 1; }
+    27% { opacity: 0.95; }
+    30% { opacity: 1; }
+    37% { opacity: 0.93; }
+    40% { opacity: 1; }
+    47% { opacity: 0.98; }
+    50% { opacity: 1; }
+    77% { opacity: 0.92; }
+    80% { opacity: 1; }
+    87% { opacity: 0.96; }
+    90% { opacity: 1; }
 }
 
 .movie-card-front,
@@ -1376,4 +1345,24 @@ select:focus {
 
 .lucky-button:hover::after {
     transform: translateX(100%);
+}
+
+.movie-card:hover .movie-poster {
+    animation: projectorFlicker 2s infinite;
+}
+
+.movie-card:hover .movie-card-front::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(255, 255, 255, 0.05) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    pointer-events: none;
 }
