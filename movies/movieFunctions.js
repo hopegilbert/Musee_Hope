@@ -212,10 +212,10 @@ function updateResultsCount(count) {
 // Function to filter movies based on selected criteria
 async function filterMovies() {
     const searchInput = document.getElementById('search-input');
-    const genreFilter = document.getElementById('genre-filter');
-    const yearFilter = document.getElementById('year-filter');
+    const genreFilter = document.getElementById('genre-filter').value;
+    const yearFilter = document.getElementById('year-filter').value;
     const ratingFilter = document.getElementById('rating-filter');
-    const sortFilter = document.getElementById('sort-filter');
+    const sortFilter = document.getElementById('sort-filter').value;
     const moviesGrid = document.querySelector('.movies-grid');
     const searchTerm = searchInput ? searchInput.value.toLowerCase().trim() : '';
 
