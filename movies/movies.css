@@ -5,7 +5,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lora:ital@0;1&display=swap');
 
 :root {
-    --primary-color: #2c3e50;
+    --primary-color: #000033;
     --secondary-color: #e74c3c;
     --accent-color: #3498db;
     --accent-yellow: #FFD700; /* Bright yellow */
@@ -83,7 +83,7 @@ body {
     padding: 3rem 2rem;
     position: relative;
     overflow: hidden;
-    border-bottom: 2px solid var(--accent-color);
+    border-bottom: 2px solid var(--secondary-color);
     min-height: var(--header-height);
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
 }
@@ -130,7 +130,7 @@ body {
     box-shadow: 0 4px 20px var(--shadow-color);
     transform: perspective(1000px) rotateX(5deg);
     transition: transform 0.3s ease;
-    border: 2px solid var(--accent-color);
+    border: 2px solid var(--secondary-color);
     background-color: var(--primary-color);
 }
 
@@ -207,7 +207,7 @@ h1 {
 
 .ticket-stub p {
     font-family: 'Cormorant', serif;
-    color: var(--primary-color);
+    color: var(--card-background);
     font-style: italic;
 }
 
@@ -529,6 +529,7 @@ h1 {
 .star-rating i.partial {
     color: #ccc;
     position: relative;
+    overflow: hidden;
 }
 
 .star-rating i.partial::before {
@@ -537,8 +538,8 @@ h1 {
     left: 0;
     top: 0;
     width: var(--percent);
-    overflow: hidden;
     color: var(--accent-yellow);
+    overflow: hidden;
 }
 
 .star-rating i.empty {
