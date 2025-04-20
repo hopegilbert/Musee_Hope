@@ -374,7 +374,7 @@ document.getElementById('lucky-button').addEventListener('click', function() {
 
 // Add recommendations functionality
 document.getElementById('recommendations-button').addEventListener('click', function() {
-    const recommendationsPanel = document.querySelector('.recommendations-panel');
+    const recommendationsPanel = document.getElementById('recommendations-panel');
     recommendationsPanel.classList.toggle('hidden');
     recommendationsPanel.classList.toggle('active');
     
@@ -427,7 +427,7 @@ document.getElementById('generate-recommendations').addEventListener('click', ge
 
 // Add close button functionality for recommendations panel
 document.querySelector('.close-recommendations').addEventListener('click', function() {
-    const recommendationsPanel = document.querySelector('.recommendations-panel');
+    const recommendationsPanel = document.getElementById('recommendations-panel');
     recommendationsPanel.classList.remove('active');
 });
 
