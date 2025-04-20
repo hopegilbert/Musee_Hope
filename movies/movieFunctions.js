@@ -158,30 +158,26 @@ function createMovieCard(movie) {
 }
 
 function createStarRating(rating) {
-    const starContainer = document.createElement('div');
-    starContainer.className = 'star-rating';
+    const starRating = document.createElement('div');
+    starRating.className = 'star-rating';
     
-    const fullStars = Math.floor(rating);
-    const decimal = rating % 1;
-    
-    // Create all 5 stars
-    for (let i = 0; i < 5; i++) {
+    for (let i = 1; i <= 5; i++) {
         const star = document.createElement('i');
         star.className = 'fas fa-star';
         
-        if (i < fullStars) {
-            // Full star
+        if (i <= Math.floor(rating)) {
             star.classList.add('star');
-        } else if (i === fullStars && decimal > 0) {
-            // Partial star
+        } else if (i === Math.ceil(rating) && rating % 1 !== 0) {
             star.classList.add('partial');
-            star.style.setProperty('--percent', `${decimal * 100}%`);
+            star.style.setProperty('--percent', `${(rating % 1) * 100}%`);
+        } else {
+            star.classList.add('empty');
         }
         
-        starContainer.appendChild(star);
+        starRating.appendChild(star);
     }
     
-    return starContainer;
+    return starRating;
 }
 
 // Function to update results count
@@ -213,8 +209,7 @@ async function filterMovies() {
         const movieGenre = movie.genre.toLowerCase();
         const meetsSearchCriteria = !searchTerm || 
             movie.title.toLowerCase().includes(searchTerm) ||
-            movieGenre.includes(searchTerm) ||
-            movie.year.toString().includes(searchTerm);
+            movieGenre.includes(searchTerm);
             
         const meetsGenreCriteria = genreFilter === 'all' || 
             movieGenre === genreFilter.toLowerCase();
@@ -222,13 +217,20 @@ async function filterMovies() {
         const meetsYearCriteria = yearFilter === 'all' || 
             Math.floor(movie.year / 10) * 10 === parseInt(yearFilter);
             
-        const meetsRatingCriteria = ratingFilter === '0' || 
-            movie.rating >= parseFloat(ratingFilter);
+        let matchesRating = true;
+        if (ratingFilter !== '0') {
+            const rating = parseFloat(ratingFilter);
+            if (rating === 5) {
+                matchesRating = movie.rating === 5;
+            } else {
+                matchesRating = movie.rating >= rating && movie.rating < rating + 1;
+            }
+        }
         
         return meetsSearchCriteria && 
                meetsGenreCriteria && 
                meetsYearCriteria && 
-               meetsRatingCriteria;
+               matchesRating;
     });
 
     // Update results count

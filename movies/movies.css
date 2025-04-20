@@ -498,6 +498,7 @@ h1 {
 
 .star-rating i.partial {
     color: rgba(255, 255, 255, 0.3);
+    position: relative;
 }
 
 .star-rating i.partial::before {
@@ -508,6 +509,10 @@ h1 {
     width: var(--percent);
     color: #ffd700;
     overflow: hidden;
+}
+
+.star-rating i.empty {
+    color: rgba(255, 255, 255, 0.3);
 }
 
 .star-rating .star.empty {
