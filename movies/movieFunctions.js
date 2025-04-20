@@ -212,9 +212,10 @@ function updateResultsCount(count) {
 // Function to filter movies based on selected criteria
 async function filterMovies() {
     const searchInput = document.getElementById('search-input');
-    const genreFilter = document.getElementById('genre-filter').value;
-    const yearFilter = document.getElementById('year-filter').value;
-    const sortFilter = document.getElementById('sort-filter').value;
+    const genreFilter = document.getElementById('genre-filter');
+    const yearFilter = document.getElementById('year-filter');
+    const ratingFilter = document.getElementById('rating-filter');
+    const sortFilter = document.getElementById('sort-filter');
     const moviesGrid = document.querySelector('.movies-grid');
     const searchTerm = searchInput ? searchInput.value.toLowerCase().trim() : '';
 
@@ -225,6 +226,8 @@ async function filterMovies() {
     // Filter and sort movies
     let filteredMovies = movies.filter(movie => {
         const movieGenre = movie.genre.toLowerCase();
+        const selectedRating = ratingFilter ? parseInt(ratingFilter.value) : 0;
+        const movieRating = Math.floor(movie.rating);
         
         return (!searchTerm || 
             movie.title.toLowerCase().includes(searchTerm) ||
@@ -233,6 +236,7 @@ async function filterMovies() {
             (genreFilter === 'all' || 
             movieGenre === genreFilter.toLowerCase()) &&
             (yearFilter === 'all' || Math.floor(movie.year / 10) * 10 === parseInt(yearFilter)) &&
+            (selectedRating === 0 || movieRating === selectedRating) &&
             (!showFavoritesOnly || movie.favourite);
     });
 
@@ -291,6 +295,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('search-input');
     const genreFilter = document.getElementById('genre-filter');
     const yearFilter = document.getElementById('year-filter');
+    const ratingFilter = document.getElementById('rating-filter');
     const sortFilter = document.getElementById('sort-filter');
 
     if (searchInput) {
@@ -301,6 +306,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     if (yearFilter) {
         yearFilter.addEventListener('change', filterMovies);
+    }
+    if (ratingFilter) {
+        ratingFilter.addEventListener('change', filterMovies);
     }
     if (sortFilter) {
         sortFilter.addEventListener('change', filterMovies);
@@ -385,6 +393,28 @@ document.addEventListener('DOMContentLoaded', () => {
             behavior: 'smooth'
         });
     });
+
+    // Create rating filter select element
+    const ratingFilterSelect = document.createElement('select');
+    ratingFilterSelect.id = 'rating-filter';
+    ratingFilterSelect.innerHTML = `
+        <option value="0">All Ratings</option>
+        <option value="1">1 Star</option>
+        <option value="2">2 Stars</option>
+        <option value="3">3 Stars</option>
+        <option value="4">4 Stars</option>
+        <option value="5">5 Stars</option>
+    `;
+
+    // Find the filter bar and insert the rating filter before the sort filter
+    const filterBar = document.querySelector('.filter-bar');
+    const sortFilterSelect = document.getElementById('sort-filter');
+    if (filterBar && sortFilterSelect) {
+        filterBar.insertBefore(ratingFilterSelect, sortFilterSelect);
+    }
+
+    // Add event listener for rating filter
+    ratingFilterSelect.addEventListener('change', filterMovies);
 });
 
 // Add animation styles to head
@@ -429,11 +459,13 @@ showAllButton.addEventListener('click', () => {
     const searchInput = document.getElementById('search-input');
     const genreFilter = document.getElementById('genre-filter');
     const yearFilter = document.getElementById('year-filter');
+    const ratingFilter = document.getElementById('rating-filter');
     const sortFilter = document.getElementById('sort-filter');
     
     if (searchInput) searchInput.value = '';
     if (genreFilter) genreFilter.value = 'all';
     if (yearFilter) yearFilter.value = 'all';
+    if (ratingFilter) ratingFilter.value = '0';
     if (sortFilter) sortFilter.value = 'none';
     
     // Reset favorites if active
