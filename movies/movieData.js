@@ -1261,7 +1261,7 @@ export const movies = [
         "year": 2016,
         "genre": "Adventure",
         "rating": 3.5,
-        "poster": "",
+        "poster": "https://www.themoviedb.org/t/p/w1280/2Epx7F9X7DrFptn4seqn4mzBVks.jpg",
         "review": "Coming Soon."
     },
     {
@@ -1349,7 +1349,7 @@ export const movies = [
         "year": 2019,
         "genre": "Action",
         "rating": 3.5,
-        "poster": "",
+        "poster": "https://www.themoviedb.org/t/p/w1280/dzBtMocZuJbjLOXvrl4zGYigDzh.jpg",
         "review": "Coming Soon."
     },
     {
@@ -7150,14 +7150,6 @@ export const movies = [
         "genre": "Action",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/1DPUFG6QnGqzpvEaDEv7TaepycM.jpg",
-        "review": "Coming Soon."
-    },
-    {
-        "title": "Agatha All Along",
-        "year": 2024,
-        "genre": "Fantasy",
-        "rating": 3.5,
-        "poster": "https://image.tmdb.org/t/p/w500/8gJ4SkWVzFDcUfYVJDTWl85HnNU.jpg",
         "review": "Coming Soon."
     },
     {
