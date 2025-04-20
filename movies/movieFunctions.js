@@ -58,6 +58,28 @@ function createMovieCard(movie) {
     yearDisplay.className = `year-display decade-${decade}s`;
     yearDisplay.textContent = movie.year;
 
+    // Add star rating
+    const starRating = document.createElement('div');
+    starRating.className = 'star-rating';
+    
+    // Create 5 stars
+    for (let i = 1; i <= 5; i++) {
+        const star = document.createElement('i');
+        star.className = 'fas fa-star';
+        
+        if (movie.rating >= i) {
+            star.style.color = '#ffd700'; // Full star
+        } else if (movie.rating > i - 1) {
+            star.className += ' partial';
+            const percentage = (movie.rating - (i - 1)) * 100;
+            star.style.setProperty('--percent', `${percentage}%`);
+        } else {
+            star.style.color = 'rgba(255, 255, 255, 0.3)'; // Empty star
+        }
+        
+        starRating.appendChild(star);
+    }
+
     const genreBadges = document.createElement('div');
     genreBadges.className = 'genre-badges';
     
@@ -67,6 +89,7 @@ function createMovieCard(movie) {
     genreBadges.appendChild(badge);
 
     dateGenreRow.appendChild(yearDisplay);
+    dateGenreRow.appendChild(starRating);
     dateGenreRow.appendChild(genreBadges);
 
     movieInfo.appendChild(title);
@@ -270,12 +293,27 @@ document.getElementById('lucky-button').addEventListener('click', function() {
         // Get random movie
         const randomMovie = movies[Math.floor(Math.random() * movies.length)];
         
+        // Create container for random movie and show all button
+        const container = document.createElement('div');
+        container.className = 'random-movie-container';
+        
         // Create and display the card
         const card = createMovieCard(randomMovie);
-        moviesGrid.appendChild(card);
+        container.appendChild(card);
+        
+        // Create and add Show All Movies button
+        const showAllButton = document.createElement('button');
+        showAllButton.className = 'show-all-button';
+        showAllButton.innerHTML = '<i class="fas fa-film"></i> Show All Movies';
+        showAllButton.addEventListener('click', () => {
+            filterMovies();
+        });
+        container.appendChild(showAllButton);
+        
+        moviesGrid.appendChild(container);
         
         // Scroll to the card
-        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        container.scrollIntoView({ behavior: 'smooth', block: 'center' });
         
         // Add highlight animation
         card.style.animation = 'highlight 2s ease-in-out';

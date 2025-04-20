@@ -473,21 +473,19 @@ h1 {
 .star-rating {
     display: flex;
     gap: 2px;
+    align-items: center;
 }
 
-.star {
+.star-rating i {
     font-size: 1.2em;
-    color: #ffd700;
     position: relative;
 }
 
-.star.partial {
-    --percent: 0;
-    position: relative;
-    color: #e0e0e0;
+.star-rating i.partial {
+    color: rgba(255, 255, 255, 0.3);
 }
 
-.star.partial::before {
+.star-rating i.partial::before {
     content: '\f005';
     position: absolute;
     left: 0;
@@ -1091,19 +1089,16 @@ h1 {
     gap: 2px;
 }
 
-.star {
+.star-rating i {
     font-size: 1.2em;
-    color: #ffd700;
     position: relative;
 }
 
-.star.partial {
-    --percent: 0;
-    position: relative;
-    color: #e0e0e0;
+.star-rating i.partial {
+    color: rgba(255, 255, 255, 0.3);
 }
 
-.star.partial::before {
+.star-rating i.partial::before {
     content: '\f005';
     position: absolute;
     left: 0;
