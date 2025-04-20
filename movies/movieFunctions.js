@@ -117,12 +117,19 @@ function createMovieCard(movie) {
         
         // Only flip if not clicking review text
         if (!e.target.classList.contains('review-text')) {
-            card.classList.toggle('flipped');
+            // Check if click is on front or back of card
+            const isClickOnFront = e.target.closest('.movie-card-front');
+            const isClickOnBack = e.target.closest('.movie-card-back');
+            
+            if (isClickOnFront || isClickOnBack) {
+                card.classList.toggle('flipped');
+            }
         }
     }
 
-    // Add click handlers to both front and back with capture phase
-    card.addEventListener('click', handleClick, true);
+    // Add click handlers to both front and back
+    cardFront.addEventListener('click', handleClick);
+    cardBack.addEventListener('click', handleClick);
 
     return card;
 }
