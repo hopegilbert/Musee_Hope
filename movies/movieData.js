@@ -70,7 +70,8 @@ export const movies = [
         "genre": "Sci-Fi",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "favourite": true
     },
     {
         "title": "Star Wars: The Force Awakens",
@@ -94,7 +95,8 @@ export const movies = [
         "genre": "Thriller",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/ts996lKsxvjkO2yiYG0ht4qAicO.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "favourite": true
     },
     {
         "title": "Dunkirk",
@@ -102,7 +104,8 @@ export const movies = [
         "genre": "War",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/b4Oe15CGLL61Ped0RAS9JpqdmCt.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "favourite": true
     },
     {
         "title": "Blade Runner 2049",
@@ -118,7 +121,8 @@ export const movies = [
         "genre": "Romance",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/gXiE0WveDnT0n5J4sW9TMxXF4oT.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "favourite": true
     },
     {
         "title": "Spider-Man: Homecoming",
@@ -214,7 +218,8 @@ export const movies = [
         "genre": "Thriller",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/uS9m8OBk1A8eM9I042bx8XXpqAq.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "favourite": true
     },
     {
         "title": "Blade Runner",
@@ -278,7 +283,8 @@ export const movies = [
         "genre": "Thriller",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/191nKfP0ehp3uIvWqgPbFmI4lv9.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "favourite": true
     },
     {
         "title": "The Martian",
@@ -566,7 +572,8 @@ export const movies = [
         "genre": "Sci-Fi",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/ljsZTbVsrQSqZgWeep2B1QiDKuh.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "favourite": true
     },
     {
         "title": "Harry Potter and the Philosopher's Stone",
@@ -638,7 +645,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/z2FnLKpFi1HPO7BEJxdkv6hpJSU.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "favourite": true
     },
     {
         "title": "Toy Story 4",
@@ -654,7 +662,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/uhviyknTT5cEQXbn6vWIqfM4vGm.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "favourite": true
     },
     {
         "title": "Iron Man 2",
@@ -1590,7 +1599,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/hcCX4zqu5b8v7DuDCJGcmI3MmlA.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "favourite": true
     },
     {
         "title": "How to Train Your Dragon 2",
@@ -1822,7 +1832,8 @@ export const movies = [
         "genre": "Romance",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/hMRIyBjPzxaSXWM06se3OcNjIQa.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "favourite": true
     },
     {
         "title": "Willy Wonka & the Chocolate Factory",
@@ -3590,7 +3601,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/c9S6VKZPllNgdxBUuI3GYJiqcKO.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "favourite": true
     },
     {
         "title": "Bridget Jones's Baby",
@@ -3862,7 +3874,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/5gLDeADaETvwQlQow5szlyuhLbj.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "favourite": true
     },
     {
         "title": "Valentine's Day",
@@ -4014,7 +4027,8 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/7zbFmxy3DqKYL2M8Hop6uylp2Uy.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "favourite": true
     },
     {
         "title": "Mortal Engines",
@@ -4294,7 +4308,8 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/eWdyYQreja6JGCzqHWXpWHDrrPo.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "favourite": true
     },
     {
         "title": "Django",
@@ -4326,7 +4341,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/7fn624j5lj3xTme2SgiLCeuedmO.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "favourite": true
     },
     {
         "title": "Spider-Man: No Way Home",
@@ -4358,7 +4374,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/xazWoLealQwEgqZ89MLZklLZD3k.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "favourite": true
     },
     {
         "title": "Inglourious Basterds",
@@ -4422,7 +4439,8 @@ export const movies = [
         "genre": "Horror",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/4GFPuL14eXi66V96xBWY73Y9PfR.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "favourite": true
     },
     {
         "title": "Black Swan",
@@ -4518,7 +4536,8 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/njbTizADSZg4PqeyJdDzZGooikv.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "favourite": true
     },
     {
         "title": "Zodiac",
@@ -4590,7 +4609,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/n1el846gLDXfhOvrRCsyvaAOQWv.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "favourite": true
     },
     {
         "title": "Barbie",
@@ -4878,7 +4898,8 @@ export const movies = [
         "genre": "Drama",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/oeDNBgnlGF6rnyX1P1K8Vl2f3lW.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "favourite": true
     },
     {
         "title": "No Hard Feelings",
@@ -5214,7 +5235,8 @@ export const movies = [
         "genre": "Adventure",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/tY6ypjKOOtujhxiSwTmvA4OZ5IE.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "favourite": true
     },
     {
         "title": "Jumanji: Welcome to the Jungle",
@@ -5542,7 +5564,8 @@ export const movies = [
         "genre": "Comedy",
         "rating": 3.5,
         "poster": "https://image.tmdb.org/t/p/w500/syaECBy6irxSgeF0m5ltGPNTWXL.jpg",
-        "review": "Coming Soon."
+        "review": "Coming Soon.",
+        "favourite": true
     },
     {
         "title": "Manchester by the Sea",

@@ -18,6 +18,9 @@ const imageObserver = new IntersectionObserver((entries, observer) => {
     threshold: 0.1
 });
 
+// Add favorites filter state
+let showFavoritesOnly = false;
+
 function createMovieCard(movie) {
     const card = document.createElement('div');
     card.className = 'movie-card';
@@ -152,7 +155,8 @@ async function filterMovies() {
             movie.year.toString().includes(searchTerm)) &&
             (genreFilter === 'all' || 
             movieGenre === genreFilter.toLowerCase()) &&
-            (yearFilter === 'all' || Math.floor(movie.year / 10) * 10 === parseInt(yearFilter));
+            (yearFilter === 'all' || Math.floor(movie.year / 10) * 10 === parseInt(yearFilter)) &&
+            (!showFavoritesOnly || movie.favourite);
     });
 
     // Update results count
@@ -224,4 +228,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (sortFilter) {
         sortFilter.addEventListener('change', filterMovies);
     }
+
+    // Add event listener for favorites button
+    document.getElementById('favorites-filter').addEventListener('click', () => {
+        showFavoritesOnly = !showFavoritesOnly;
+        const favoritesButton = document.getElementById('favorites-filter');
+        favoritesButton.classList.toggle('active');
+        filterMovies();
+    });
 }); 
