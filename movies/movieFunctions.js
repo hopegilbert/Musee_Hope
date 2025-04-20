@@ -335,53 +335,82 @@ document.addEventListener('DOMContentLoaded', () => {
     const luckyButton = document.getElementById('lucky-button');
     const moviesGrid = document.querySelector('.movies-grid');
 
-    luckyButton.addEventListener('click', () => {
-        // Add spinning animation
-        luckyButton.classList.add('spinning');
-
-        // Clear the grid
+    luckyButton.addEventListener('click', async () => {
+        const icon = document.querySelector('.lucky-button i');
+        icon.classList.add('fa-spin');
+        
+        // Clear the movie grid
         moviesGrid.innerHTML = '';
-
-        // Simulate a spinning delay
-        setTimeout(() => {
-            // Get a random movie
-            const randomMovie = movies[Math.floor(Math.random() * movies.length)];
-            
-            // Create and append the card
-            const card = createMovieCard(randomMovie);
-            moviesGrid.appendChild(card);
-
-            // Remove spinning animation
-            luckyButton.classList.remove('spinning');
-
-            // Scroll to the movie
-            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-            // Add a highlight effect
-            card.style.animation = 'highlight 1s ease';
-        }, 1500); // 1.5 second delay for the spinning effect
+        
+        // Wait for the spinning animation
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        
+        // Select a random movie
+        const randomMovie = movies[Math.floor(Math.random() * movies.length)];
+        
+        // Create and append the movie card
+        const card = createMovieCard(randomMovie);
+        moviesGrid.appendChild(card);
+        
+        // Stop the spinning animation
+        icon.classList.remove('fa-spin');
+        
+        // Add highlight effect to the card
+        card.classList.add('highlight');
+        
+        // Show the Show All Movies button
+        showAllButton.classList.add('visible');
+        
+        // Scroll to the movie card
+        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
 });
 
-// Add highlight animation
+// Add animation styles to head
 const style = document.createElement('style');
 style.textContent = `
     @keyframes highlight {
-        0% {
-            transform: scale(1);
-            box-shadow: 0 0 0 rgba(255, 215, 0, 0);
-        }
-        50% {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
-        }
-        100% {
-            transform: scale(1);
-            box-shadow: 0 0 0 rgba(255, 215, 0, 0);
-        }
+        0% { transform: scale(1); box-shadow: none; }
+        50% { transform: scale(1.05); box-shadow: 0 0 20px rgba(255, 215, 0, 0.6); }
+        100% { transform: scale(1); box-shadow: none; }
+    }
+    .highlight {
+        animation: highlight 1.5s ease-in-out;
+    }
+    .show-all-button {
+        display: none;
+        margin: 10px auto;
+        padding: 10px 20px;
+        background-color: var(--accent-color);
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-family: var(--main-font);
+        transition: all 0.3s ease;
+    }
+    .show-all-button:hover {
+        background-color: var(--accent-color-hover);
+        transform: translateY(-2px);
+    }
+    .show-all-button.visible {
+        display: block;
     }
 `;
 document.head.appendChild(style);
+
+// Create Show All Movies button
+const showAllButton = document.createElement('button');
+showAllButton.textContent = 'Show All Movies';
+showAllButton.className = 'show-all-button';
+showAllButton.addEventListener('click', () => {
+    filterMovies(); // This will reset to showing all movies
+    showAllButton.classList.remove('visible');
+});
+
+// Add the button after the movie grid
+const movieGrid = document.querySelector('.movies-grid');
+movieGrid.parentNode.insertBefore(showAllButton, movieGrid.nextSibling);
 
 // Statistics functions
 function calculateMovieStats() {
