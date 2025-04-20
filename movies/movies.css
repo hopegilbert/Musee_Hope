@@ -278,9 +278,9 @@ select:focus {
     margin: 0 auto;
     opacity: 1;
     transition: opacity 0.3s ease;
-    background: rgba(0, 0, 51, 0.7);
-    backdrop-filter: blur(5px);
-    border-radius: 8px;
+    background: transparent;
+    backdrop-filter: none;
+    border-radius: 0;
 }
 
 /* Movie Card Styles */
