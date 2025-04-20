@@ -374,10 +374,11 @@ document.getElementById('lucky-button').addEventListener('click', function() {
 
 // Add recommendations functionality
 document.getElementById('recommendations-button').addEventListener('click', function() {
-    const panel = document.getElementById('recommendations-panel');
-    panel.classList.toggle('active');
+    const recommendationsPanel = document.querySelector('.recommendations-panel');
+    recommendationsPanel.classList.toggle('hidden');
+    recommendationsPanel.classList.toggle('active');
     
-    if (panel.classList.contains('active')) {
+    if (recommendationsPanel.classList.contains('active')) {
         generateRecommendations();
     }
 });
@@ -426,8 +427,8 @@ document.getElementById('generate-recommendations').addEventListener('click', ge
 
 // Add close button functionality for recommendations panel
 document.querySelector('.close-recommendations').addEventListener('click', function() {
-    const panel = document.getElementById('recommendations-panel');
-    panel.classList.remove('active');
+    const recommendationsPanel = document.querySelector('.recommendations-panel');
+    recommendationsPanel.classList.remove('active');
 });
 
 // Add event listeners for filters
