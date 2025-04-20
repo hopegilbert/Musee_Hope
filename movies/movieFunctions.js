@@ -115,15 +115,12 @@ function createMovieCard(movie) {
         // Stop event from bubbling up
         e.stopPropagation();
         
-        // Only flip if not clicking review text
-        if (!e.target.classList.contains('review-text')) {
-            // Check if click is on front or back of card
-            const isClickOnFront = e.target.closest('.movie-card-front');
-            const isClickOnBack = e.target.closest('.movie-card-back');
-            
-            if (isClickOnFront || isClickOnBack) {
-                card.classList.toggle('flipped');
-            }
+        // Check if click is on front or back of card
+        const isClickOnFront = e.target.closest('.movie-card-front');
+        const isClickOnBack = e.target.closest('.movie-card-back');
+        
+        if (isClickOnFront || isClickOnBack) {
+            card.classList.toggle('flipped');
         }
     }
 
