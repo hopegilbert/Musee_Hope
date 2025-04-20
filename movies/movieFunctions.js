@@ -88,7 +88,39 @@ function createMovieCard(movie) {
     const backTitle = document.createElement('h3');
     backTitle.textContent = movie.title;
 
-    const backDateGenreRow = dateGenreRow.cloneNode(true);
+    const backDateGenreRow = document.createElement('div');
+    backDateGenreRow.className = 'back-date-genre-row';
+
+    const backYearDisplay = document.createElement('span');
+    const backDecade = Math.floor(movie.year / 10) * 10;
+    backYearDisplay.className = `year-display decade-${backDecade}s`;
+    backYearDisplay.textContent = movie.year;
+
+    const backGenreBadges = document.createElement('div');
+    backGenreBadges.className = 'genre-badges';
+    
+    const backBadge = document.createElement('span');
+    backBadge.className = `genre-badge genre-${movie.genre.toLowerCase()}`;
+    backBadge.textContent = movie.genre;
+    backGenreBadges.appendChild(backBadge);
+
+    backDateGenreRow.appendChild(backYearDisplay);
+    backDateGenreRow.appendChild(backGenreBadges);
+
+    if (movie.trailerUrl) {
+        const trailerButton = document.createElement('a');
+        trailerButton.href = movie.trailerUrl;
+        trailerButton.className = 'trailer-button';
+        trailerButton.target = '_blank';
+        trailerButton.onclick = (e) => e.stopPropagation();
+        
+        const trailerIcon = document.createElement('img');
+        trailerIcon.src = 'images/trailer-icon.png';
+        trailerIcon.alt = 'Watch Trailer';
+        
+        trailerButton.appendChild(trailerIcon);
+        backDateGenreRow.appendChild(trailerButton);
+    }
 
     const reviewSection = document.createElement('div');
     reviewSection.className = 'review-section';
@@ -108,22 +140,6 @@ function createMovieCard(movie) {
     backContent.appendChild(backDateGenreRow);
     backContent.appendChild(reviewSection);
 
-    // Add trailer button
-    if (movie.trailerUrl) {
-        const trailerButton = document.createElement('a');
-        trailerButton.href = movie.trailerUrl;
-        trailerButton.className = 'trailer-button';
-        trailerButton.target = '_blank';
-        trailerButton.onclick = (e) => e.stopPropagation();
-        
-        const trailerIcon = document.createElement('img');
-        trailerIcon.src = 'images/trailer-icon.png';
-        trailerIcon.alt = 'Watch Trailer';
-        
-        trailerButton.appendChild(trailerIcon);
-        backContent.appendChild(trailerButton);
-    }
-    
     cardBack.appendChild(backContent);
 
     card.appendChild(cardFront);

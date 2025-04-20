@@ -438,7 +438,8 @@ select:focus {
 
 .back-date-genre-row {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
     gap: 0.5rem;
     margin-top: 0.25rem;
 }
@@ -938,15 +939,15 @@ select:focus {
 }
 
 .trailer-button {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: transform 0.2s ease;
-    margin-top: auto;
     padding: 0;
     background: none;
     border: none;
+    margin-left: 0.5rem;
 }
 
 .trailer-button:hover {
@@ -954,8 +955,8 @@ select:focus {
 }
 
 .trailer-button img {
-    width: 30px;
-    height: 30px;
+    width: 24px;
+    height: 24px;
     object-fit: contain;
 }
 
