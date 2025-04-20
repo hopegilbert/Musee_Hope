@@ -4513,7 +4513,7 @@ export const movies = [
         year: 2017,
         genre: "Drama",
         rating: 2.5,
-        poster: "https://image.tmdb.org/t/p/w500/wda3j7p7YHXKpFIlSzoTCtP7myF.jpg",
+        poster: "https://www.themoviedb.org/t/p/w1280/e9NHATN0TJW6ZZPLLWFsKdilVl1.jpg",
         review: "The remake missed what made the original cool. Pretty dull overall."
     },
     {
