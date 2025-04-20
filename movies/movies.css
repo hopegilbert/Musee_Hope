@@ -226,6 +226,15 @@ h1 {
     position: relative;
 }
 
+.filter-group {
+    display: flex;
+    align-items: center;
+}
+
+.filter-group:last-child {
+    margin-left: auto;
+}
+
 .results-count {
     color: var(--text-color);
     margin-right: 20px;
