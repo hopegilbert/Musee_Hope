@@ -349,7 +349,7 @@ export const movies = [
         "year": 2018,
         "genre": "Drama",
         "rating": 3.5,
-        "poster": "https://image.tmdb.org/t/p/w500/3Hr63lBDhvYGpSd8HxDpWvowZpY.jpg",
+        "poster": "https://www.themoviedb.org/t/p/w1280/wrFpXMNBRj2PBiN4Z5kix51XaIZ.jpg",
         "review": "Coming Soon."
     },
     {
