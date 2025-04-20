@@ -294,12 +294,6 @@ select:focus {
     aspect-ratio: 27/40;
     perspective: 1000px;
     cursor: pointer;
-    transform-style: preserve-3d;
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.movie-card.flipped {
-    transform: rotateY(180deg);
 }
 
 .movie-card-front,
@@ -313,13 +307,12 @@ select:focus {
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     background: var(--card-background);
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     transform-style: preserve-3d;
-    cursor: pointer;
 }
 
 .movie-card-front {
     transform: rotateY(0deg);
-    z-index: 2;
 }
 
 .movie-card-back {
@@ -329,7 +322,14 @@ select:focus {
     padding: 1rem;
     background: var(--card-background);
     color: var(--text-color);
-    z-index: 1;
+}
+
+.movie-card.flipped .movie-card-front {
+    transform: rotateY(180deg);
+}
+
+.movie-card.flipped .movie-card-back {
+    transform: rotateY(360deg);
 }
 
 .movie-poster {

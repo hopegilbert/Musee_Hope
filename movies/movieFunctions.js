@@ -110,23 +110,13 @@ function createMovieCard(movie) {
     card.appendChild(cardFront);
     card.appendChild(cardBack);
 
-    // Improved click handling
-    function handleClick(e) {
-        // Stop event from bubbling up
-        e.stopPropagation();
-        
-        // Check if click is on front or back of card
-        const isClickOnFront = e.target.closest('.movie-card-front');
-        const isClickOnBack = e.target.closest('.movie-card-back');
-        
-        if (isClickOnFront || isClickOnBack) {
-            card.classList.toggle('flipped');
-        }
+    // Simplified click handling
+    function handleClick() {
+        card.classList.toggle('flipped');
     }
 
-    // Add click handlers to both front and back
-    cardFront.addEventListener('click', handleClick);
-    cardBack.addEventListener('click', handleClick);
+    // Add click handler to the entire card
+    card.addEventListener('click', handleClick);
 
     return card;
 }
