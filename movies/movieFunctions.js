@@ -347,7 +347,6 @@ document.addEventListener('DOMContentLoaded', () => {
             align-items: center;
             min-height: 60vh;
             padding: 2rem;
-            grid-template-columns: none;
         `;
         
         // Wait for the spinning animation
@@ -370,8 +369,13 @@ document.addEventListener('DOMContentLoaded', () => {
         // Add highlight effect to the card
         card.classList.add('highlight');
         
-        // Show the Show All Movies button
+        // Show the Show All Movies button and position it below the card
         showAllButton.classList.add('visible');
+        showAllButton.style.cssText = `
+            display: block;
+            margin: 2rem auto 0;
+            width: fit-content;
+        `;
         
         // Ensure the card is in view
         window.scrollTo({
@@ -419,15 +423,35 @@ const showAllButton = document.createElement('button');
 showAllButton.textContent = 'Show All Movies';
 showAllButton.className = 'show-all-button';
 showAllButton.addEventListener('click', () => {
+    // Reset all filters
+    const searchInput = document.getElementById('search-input');
+    const genreFilter = document.getElementById('genre-filter');
+    const yearFilter = document.getElementById('year-filter');
+    const sortFilter = document.getElementById('sort-filter');
+    
+    if (searchInput) searchInput.value = '';
+    if (genreFilter) genreFilter.value = 'all';
+    if (yearFilter) yearFilter.value = 'all';
+    if (sortFilter) sortFilter.value = 'none';
+    
+    // Reset favorites if active
+    const favoritesButton = document.getElementById('favorites-filter');
+    if (favoritesButton && favoritesButton.classList.contains('active')) {
+        favoritesButton.classList.remove('active');
+        showFavoritesOnly = false;
+    }
+    
     // Reset the movies grid styles
+    const moviesGrid = document.querySelector('.movies-grid');
     moviesGrid.style.cssText = `
         display: grid;
-        grid-template-columns: repeat(7, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         gap: 1.5rem;
         padding: 1.5rem;
     `;
     
-    filterMovies(); // This will reset to showing all movies
+    // Show all movies
+    filterMovies();
     showAllButton.classList.remove('visible');
 });
 
