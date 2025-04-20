@@ -431,39 +431,40 @@ footer p {
         font-size: 0.8rem;
     }
 }
+
 .license-footer {
-    text-align: center;
-    padding: 1rem;
-    margin-top: 2rem;
-    background: rgba(0, 0, 0, 0.7);
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 1rem;
+  text-align: center;
+  backdrop-filter: blur(9px);
+  background-color: rgba(245, 232, 199, 0.2);
+  border-radius: 8px;
 }
 
 .license-footer p {
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-    flex-wrap: wrap;
-    justify-content: center;
+  margin: 0;
+  color: #821818;
+  font-family: 'Lora', serif;
+  font-size: 0.9rem;
+  line-height: 1.5;
 }
 
 .license-footer a {
-    color: white;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.3rem;
+  color: #821818;
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
 .license-footer a:hover {
-    text-decoration: underline;
+  color: #5a0f0f;
+  text-decoration: underline;
 }
 
 .license-footer img {
-    display: inline;
-    width: auto;
-    margin: 0 2px;
+  vertical-align: middle;
+  margin: 0 3px;
 }
