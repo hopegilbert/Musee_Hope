@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Monoton&family=Poetsen+One&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Special+Elite&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="movies.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="icon" href="images/movie-icon.ico" type="image/x-icon">
 </head>
 <body>
@@ -69,6 +70,31 @@
                 <button id="favorites-filter" class="favorites-button">
                     <span class="favorites-icon">★</span> Favorites
                 </button>
+            </div>
+            <div class="filter-group">
+                <button id="stats-toggle" class="stats-button">
+                    <i class="fas fa-chart-bar"></i> Stats
+                </button>
+            </div>
+        </div>
+
+        <div id="stats-panel" class="stats-panel hidden">
+            <div class="stats-content">
+                <h3>Movie Statistics</h3>
+                <div class="stats-grid">
+                    <div class="stats-section">
+                        <h4>Movies by Genre</h4>
+                        <div id="genre-stats" class="stats-chart"></div>
+                    </div>
+                    <div class="stats-section">
+                        <h4>Movies by Decade</h4>
+                        <div id="decade-stats" class="stats-chart"></div>
+                    </div>
+                    <div class="stats-section">
+                        <h4>Top 5 Genres</h4>
+                        <div id="top-genres" class="stats-list"></div>
+                    </div>
+                </div>
             </div>
         </div>
 

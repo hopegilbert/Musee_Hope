@@ -21,6 +21,31 @@ const imageObserver = new IntersectionObserver((entries, observer) => {
 // Add favorites filter state
 let showFavoritesOnly = false;
 
+function createStarRating(rating) {
+    const starsContainer = document.createElement('div');
+    starsContainer.className = 'star-rating';
+    
+    const fullStars = Math.floor(rating);
+    const hasHalfStar = rating % 1 >= 0.5;
+    
+    for (let i = 0; i < 5; i++) {
+        const star = document.createElement('span');
+        if (i < fullStars) {
+            star.textContent = '★';
+            star.className = 'star full';
+        } else if (i === fullStars && hasHalfStar) {
+            star.textContent = '½';
+            star.className = 'star half';
+        } else {
+            star.textContent = '☆';
+            star.className = 'star empty';
+        }
+        starsContainer.appendChild(star);
+    }
+    
+    return starsContainer;
+}
+
 function createMovieCard(movie) {
     const card = document.createElement('div');
     card.className = 'movie-card';
@@ -53,6 +78,23 @@ function createMovieCard(movie) {
     const title = document.createElement('h3');
     title.textContent = movie.title;
     
+    const rating = document.createElement('div');
+    rating.className = 'star-rating';
+    const fullStars = Math.floor(movie.rating);
+    const hasHalfStar = movie.rating % 1 >= 0.5;
+    
+    for (let i = 0; i < 5; i++) {
+        const star = document.createElement('i');
+        if (i < fullStars) {
+            star.className = 'fas fa-star star';
+        } else if (i === fullStars && hasHalfStar) {
+            star.className = 'fas fa-star-half-alt star half';
+        } else {
+            star.className = 'far fa-star star empty';
+        }
+        rating.appendChild(star);
+    }
+    
     const dateGenreRow = document.createElement('div');
     dateGenreRow.className = 'date-genre-row';
 
@@ -73,6 +115,7 @@ function createMovieCard(movie) {
     dateGenreRow.appendChild(genreBadges);
 
     movieInfo.appendChild(title);
+    movieInfo.appendChild(rating);
     movieInfo.appendChild(dateGenreRow);
     
     cardFront.appendChild(poster);
@@ -268,4 +311,110 @@ document.addEventListener('DOMContentLoaded', () => {
         favoritesButton.classList.toggle('active');
         filterMovies();
     });
-}); 
+
+    const statsToggle = document.getElementById('stats-toggle');
+    const statsPanel = document.getElementById('stats-panel');
+    const overlay = document.createElement('div');
+    overlay.className = 'stats-overlay';
+    document.body.appendChild(overlay);
+
+    statsToggle.addEventListener('click', () => {
+        statsPanel.classList.toggle('hidden');
+        overlay.classList.toggle('visible');
+        if (!statsPanel.classList.contains('hidden')) {
+            updateStatsPanel();
+        }
+    });
+
+    overlay.addEventListener('click', () => {
+        statsPanel.classList.add('hidden');
+        overlay.classList.remove('visible');
+    });
+});
+
+// Statistics functions
+function calculateMovieStats() {
+    const genreCount = {};
+    const decadeCount = {};
+    let totalMovies = 0;
+
+    movies.forEach(movie => {
+        // Count by genre
+        const genre = movie.genre;
+        genreCount[genre] = (genreCount[genre] || 0) + 1;
+
+        // Count by decade
+        const decade = Math.floor(movie.year / 10) * 10;
+        decadeCount[decade] = (decadeCount[decade] || 0) + 1;
+
+        totalMovies++;
+    });
+
+    return { genreCount, decadeCount, totalMovies };
+}
+
+function createBarChart(data, containerId, maxValue) {
+    const container = document.getElementById(containerId);
+    container.innerHTML = '';
+
+    Object.entries(data).forEach(([key, value]) => {
+        const barContainer = document.createElement('div');
+        barContainer.className = 'stats-bar';
+
+        const label = document.createElement('span');
+        label.className = 'stats-label';
+        label.textContent = key;
+
+        const barFill = document.createElement('div');
+        barFill.className = 'stats-bar-fill';
+        const percentage = (value / maxValue) * 100;
+        barFill.style.width = `${percentage}%`;
+
+        const count = document.createElement('span');
+        count.className = 'stats-count';
+        count.textContent = value;
+
+        barContainer.appendChild(label);
+        barContainer.appendChild(barFill);
+        barContainer.appendChild(count);
+        container.appendChild(barContainer);
+    });
+}
+
+function createTopGenresList(genreCount, containerId) {
+    const container = document.getElementById(containerId);
+    container.innerHTML = '';
+
+    const sortedGenres = Object.entries(genreCount)
+        .sort(([, a], [, b]) => b - a)
+        .slice(0, 5);
+
+    sortedGenres.forEach(([genre, count]) => {
+        const item = document.createElement('div');
+        item.className = 'stats-list-item';
+
+        const name = document.createElement('span');
+        name.className = 'genre-name';
+        name.textContent = genre;
+
+        const countSpan = document.createElement('span');
+        countSpan.className = 'genre-count';
+        countSpan.textContent = count;
+
+        item.appendChild(name);
+        item.appendChild(countSpan);
+        container.appendChild(item);
+    });
+}
+
+function updateStatsPanel() {
+    const { genreCount, decadeCount, totalMovies } = calculateMovieStats();
+    
+    // Find max values for scaling
+    const maxGenreCount = Math.max(...Object.values(genreCount));
+    const maxDecadeCount = Math.max(...Object.values(decadeCount));
+
+    createBarChart(genreCount, 'genre-stats', maxGenreCount);
+    createBarChart(decadeCount, 'decade-stats', maxDecadeCount);
+    createTopGenresList(genreCount, 'top-genres');
+} 

@@ -1007,3 +1007,148 @@ select:focus {
 .star-rating .star.half {
     color: var(--accent-color);
 }
+
+/* Stats Panel Styles */
+.stats-button {
+    font-family: var(--main-font);
+    padding: 8px 16px;
+    background-color: rgba(0, 0, 51, 0.5);
+    color: var(--text-color);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+    height: 40px;
+    min-width: 100px;
+    justify-content: center;
+}
+
+.stats-button:hover {
+    background-color: rgba(0, 0, 51, 0.8);
+    border-color: var(--accent-yellow);
+    color: var(--accent-yellow);
+    transform: scale(1.02);
+}
+
+.stats-panel {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 51, 0.95);
+    border: 2px solid var(--accent-yellow);
+    border-radius: 8px;
+    padding: 20px;
+    width: 80%;
+    max-width: 800px;
+    max-height: 80vh;
+    overflow-y: auto;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+}
+
+.stats-panel.hidden {
+    display: none;
+}
+
+.stats-content h3 {
+    color: var(--accent-yellow);
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: var(--title-font);
+    font-size: 1.8em;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.stats-section {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 15px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stats-section h4 {
+    color: var(--text-color);
+    margin-bottom: 15px;
+    font-family: var(--main-font);
+    text-align: center;
+}
+
+.stats-chart {
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.stats-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.stats-label {
+    min-width: 100px;
+    color: var(--text-color);
+    font-size: 0.9em;
+}
+
+.stats-bar-fill {
+    height: 20px;
+    background: var(--accent-yellow);
+    border-radius: 4px;
+    transition: width 0.5s ease;
+}
+
+.stats-count {
+    color: var(--text-color);
+    font-size: 0.9em;
+}
+
+.stats-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.stats-list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+.stats-list-item .genre-name {
+    color: var(--text-color);
+}
+
+.stats-list-item .genre-count {
+    color: var(--accent-yellow);
+    font-weight: bold;
+}
+
+/* Overlay for when stats panel is open */
+.stats-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 999;
+    display: none;
+}
+
+.stats-overlay.visible {
+    display: block;
+}
