@@ -280,7 +280,34 @@ h1 {
 }
 
 .action-buttons button {
-    min-width: 150px;
+    font-family: var(--main-font);
+    padding: 8px 16px;
+    background-color: rgba(0, 0, 51, 0.5);
+    color: var(--text-color);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+    height: 40px;
+    min-width: 120px;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.action-buttons button:hover {
+    background-color: rgba(0, 0, 51, 0.8);
+    border-color: var(--accent-yellow);
+    color: var(--accent-yellow);
+    transform: scale(1.02);
+}
+
+.action-buttons button i {
+    font-size: 1.2em;
+    flex-shrink: 0;
 }
 
 /* Rename Feeling Lucky to Random Movie */
@@ -497,12 +524,14 @@ h1 {
 }
 
 .star-rating i.partial {
-    color: rgba(255, 255, 255, 0.3);
     position: relative;
+    color: rgba(255, 255, 255, 0.3);
 }
 
 .star-rating i.partial::before {
     content: '\f005';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
     position: absolute;
     left: 0;
     top: 0;

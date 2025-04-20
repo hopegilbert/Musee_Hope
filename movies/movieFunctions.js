@@ -169,7 +169,8 @@ function createStarRating(rating) {
             star.classList.add('star');
         } else if (i === Math.ceil(rating) && rating % 1 !== 0) {
             star.classList.add('partial');
-            star.style.setProperty('--percent', `${(rating % 1) * 100}%`);
+            const percent = (rating % 1) * 100;
+            star.style.setProperty('--percent', `${percent}%`);
         } else {
             star.classList.add('empty');
         }
@@ -195,78 +196,72 @@ async function filterMovies() {
     const ratingFilter = document.getElementById('rating-filter').value;
     const searchTerm = searchInput ? searchInput.value.toLowerCase().trim() : '';
     const moviesGrid = document.querySelector('.movies-grid');
+    const showFavorites = document.getElementById('favorites-button').classList.contains('active');
 
     // Clear existing movies and show loading state
     moviesGrid.classList.add('loading');
+    moviesGrid.innerHTML = '';
     
     // Small delay to ensure loading state is visible
     await new Promise(resolve => setTimeout(resolve, 100));
-    
-    moviesGrid.innerHTML = '';
 
-    // Filter and sort movies
+    // Filter movies
     let filteredMovies = movies.filter(movie => {
-        const movieGenre = movie.genre.toLowerCase();
-        const meetsSearchCriteria = !searchTerm || 
+        const matchesSearch = !searchTerm || 
             movie.title.toLowerCase().includes(searchTerm) ||
-            movieGenre.includes(searchTerm);
+            movie.genre.toLowerCase().includes(searchTerm);
             
-        const meetsGenreCriteria = genreFilter === 'all' || 
-            movieGenre === genreFilter.toLowerCase();
+        const matchesGenre = genreFilter === 'all' || 
+            movie.genre.toLowerCase() === genreFilter.toLowerCase();
             
-        const meetsYearCriteria = yearFilter === 'all' || 
+        const matchesYear = yearFilter === 'all' || 
             Math.floor(movie.year / 10) * 10 === parseInt(yearFilter);
             
         let matchesRating = true;
         if (ratingFilter !== '0') {
             const rating = parseFloat(ratingFilter);
             if (rating === 5) {
-                matchesRating = movie.rating === 5;
+                matchesRating = movie.rating >= 4.5;
             } else {
-                matchesRating = movie.rating >= rating && movie.rating < rating + 1;
+                matchesRating = movie.rating >= rating && movie.rating < (rating + 1);
             }
         }
-        
-        return meetsSearchCriteria && 
-               meetsGenreCriteria && 
-               meetsYearCriteria && 
-               matchesRating;
-    });
 
-    // Update results count
-    updateResultsCount(filteredMovies.length);
+        const matchesFavorites = !showFavorites || movie.favorite;
+        
+        return matchesSearch && matchesGenre && matchesYear && matchesRating && matchesFavorites;
+    });
 
     // Sort movies if needed
     if (sortFilter !== 'none') {
         const sortFunctions = {
             'year': (a, b) => b.year - a.year,
-            'title': (a, b) => a.title.localeCompare(b.title)
+            'title': (a, b) => a.title.localeCompare(b.title),
+            'rating': (a, b) => b.rating - a.rating
         };
         filteredMovies.sort(sortFunctions[sortFilter] || (() => 0));
     }
 
-    try {
-        const fragment = document.createDocumentFragment();
-        filteredMovies.forEach(movie => {
-            fragment.appendChild(createMovieCard(movie));
-        });
-        
-        moviesGrid.appendChild(fragment);
+    // Update results count
+    updateResultsCount(filteredMovies.length);
 
-        if (filteredMovies.length === 0) {
-            const noResults = document.createElement('div');
-            noResults.className = 'no-results';
-            noResults.textContent = 'No movies found matching your criteria';
-            moviesGrid.appendChild(noResults);
-        }
+    // Display filtered movies
+    const fragment = document.createDocumentFragment();
+    filteredMovies.forEach(movie => {
+        fragment.appendChild(createMovieCard(movie));
+    });
+    
+    moviesGrid.appendChild(fragment);
 
-        // Small delay before removing loading state to ensure smooth transition
-        await new Promise(resolve => setTimeout(resolve, 100));
-        moviesGrid.classList.remove('loading');
-    } catch (error) {
-        console.error('Error displaying movies:', error);
-        moviesGrid.classList.remove('loading');
+    if (filteredMovies.length === 0) {
+        const noResults = document.createElement('div');
+        noResults.className = 'no-results';
+        noResults.textContent = 'No movies found matching your criteria';
+        moviesGrid.appendChild(noResults);
     }
+
+    // Remove loading state
+    moviesGrid.classList.remove('loading');
 }
 
 // Debounce function for search input
@@ -505,3 +500,9 @@ function resetFilters() {
     // Trigger the filter function to update the display
     filterMovies();
 }
+
+// Add favorites button functionality
+document.getElementById('favorites-button').addEventListener('click', function() {
+    this.classList.toggle('active');
+    filterMovies();
+});
