@@ -96,28 +96,50 @@ function createRecommendationCard(movie) {
     year.className = 'year-display';
     year.textContent = movie.release_date ? movie.release_date.split('-')[0] : 'N/A';
     
-    const rating = document.createElement('div');
-    rating.className = 'star-rating';
-    const ratingValue = Math.round(movie.vote_average / 2);
-    
-    for (let i = 0; i < 5; i++) {
-        const star = document.createElement('i');
-        if (i < ratingValue) {
-            star.className = 'fas fa-star star';
-        } else {
-            star.className = 'far fa-star star empty';
-        }
-        rating.appendChild(star);
-    }
+    // Convert TMDB rating (0-10) to our scale (0-5)
+    const rating = movie.vote_average / 2;
+    const starRating = createStarRating(rating);
     
     info.appendChild(title);
     info.appendChild(year);
-    info.appendChild(rating);
+    info.appendChild(starRating);
     
     card.appendChild(poster);
     card.appendChild(info);
     
     return card;
+}
+
+// Helper function to create star rating (same as in movieFunctions.js)
+function createStarRating(rating) {
+    const starContainer = document.createElement('div');
+    starContainer.className = 'star-rating';
+    
+    const fullStars = Math.floor(rating);
+    const decimal = rating % 1;
+    
+    // Create all 5 stars
+    for (let i = 0; i < 5; i++) {
+        const star = document.createElement('i');
+        star.className = 'fas fa-star star';
+        
+        if (i < fullStars) {
+            // Full star
+            star.style.color = '#ffd700';
+        } else if (i === fullStars && decimal > 0) {
+            // Partial star
+            star.className = 'fas fa-star star partial';
+            star.style.setProperty('--percent', `${decimal * 100}%`);
+            star.style.color = 'rgba(255, 255, 255, 0.3)';
+        } else {
+            // Empty star
+            star.style.color = 'rgba(255, 255, 255, 0.3)';
+        }
+        
+        starContainer.appendChild(star);
+    }
+    
+    return starContainer;
 }
 
 // Function to display recommendations

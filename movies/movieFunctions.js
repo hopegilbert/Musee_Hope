@@ -51,26 +51,7 @@ function createMovieCard(movie) {
     title.textContent = movie.title;
     
     // Create star rating
-    const starRating = document.createElement('div');
-    starRating.className = 'star-rating';
-    
-    // Create 5 stars
-    for (let i = 1; i <= 5; i++) {
-        const star = document.createElement('i');
-        star.className = 'fas fa-star';
-        
-        if (movie.rating >= i) {
-            star.style.color = '#ffd700'; // Full star
-        } else if (movie.rating > i - 1) {
-            star.className += ' partial';
-            const percentage = (movie.rating - (i - 1)) * 100;
-            star.style.setProperty('--percent', `${percentage}%`);
-        } else {
-            star.style.color = 'rgba(255, 255, 255, 0.3)'; // Empty star
-        }
-        
-        starRating.appendChild(star);
-    }
+    const starRating = createStarRating(movie.rating);
 
     const dateGenreRow = document.createElement('div');
     dateGenreRow.className = 'date-genre-row';
@@ -158,6 +139,37 @@ function createMovieCard(movie) {
     cardBack.addEventListener('click', handleClick);
 
     return card;
+}
+
+function createStarRating(rating) {
+    const starContainer = document.createElement('div');
+    starContainer.className = 'star-rating';
+    
+    const fullStars = Math.floor(rating);
+    const decimal = rating % 1;
+    
+    // Create all 5 stars
+    for (let i = 0; i < 5; i++) {
+        const star = document.createElement('i');
+        star.className = 'fas fa-star star';
+        
+        if (i < fullStars) {
+            // Full star
+            star.style.color = '#ffd700';
+        } else if (i === fullStars && decimal > 0) {
+            // Partial star
+            star.className = 'fas fa-star star partial';
+            star.style.setProperty('--percent', `${decimal * 100}%`);
+            star.style.color = 'rgba(255, 255, 255, 0.3)';
+        } else {
+            // Empty star
+            star.style.color = 'rgba(255, 255, 255, 0.3)';
+        }
+        
+        starContainer.appendChild(star);
+    }
+    
+    return starContainer;
 }
 
 // Function to update results count
