@@ -218,13 +218,9 @@ async function filterMovies() {
             
         let matchesRating = true;
         if (ratingFilter !== '0') {
-            const rating = parseFloat(ratingFilter);
-            const movieRating = parseFloat(movie.rating);
-            if (rating === 5) {
-                matchesRating = movieRating >= 4.5;
-            } else {
-                matchesRating = movieRating >= rating && movieRating < (rating + 1);
-            }
+            const rating = parseInt(ratingFilter);
+            const movieRating = Math.floor(parseFloat(movie.rating));
+            matchesRating = movieRating === rating;
         }
 
         const matchesFavorites = !showFavorites || movie.favorite;
