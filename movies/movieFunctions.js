@@ -223,7 +223,7 @@ async function filterMovies() {
             matchesRating = movieRating === rating;
         }
 
-        const matchesFavorites = !showFavorites || movie.favorite;
+        const matchesFavorites = !showFavorites || movie.favorite === true;
         
         return matchesSearch && matchesGenre && matchesYear && matchesRating && matchesFavorites;
     });
