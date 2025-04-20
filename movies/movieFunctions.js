@@ -114,18 +114,13 @@ function createMovieCard(movie) {
         trailerButton.href = movie.trailerUrl;
         trailerButton.className = 'trailer-button';
         trailerButton.target = '_blank';
-        trailerButton.rel = 'noopener noreferrer';
-        trailerButton.onclick = (e) => e.stopPropagation(); // Prevent card flip when clicking the button
-
+        trailerButton.onclick = (e) => e.stopPropagation();
+        
         const trailerIcon = document.createElement('img');
         trailerIcon.src = 'images/trailer-icon.png';
-        trailerIcon.alt = 'Trailer';
-
-        const trailerText = document.createElement('span');
-        trailerText.textContent = 'Watch Trailer';
-
+        trailerIcon.alt = 'Watch Trailer';
+        
         trailerButton.appendChild(trailerIcon);
-        trailerButton.appendChild(trailerText);
         backContent.appendChild(trailerButton);
     }
     
