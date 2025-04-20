@@ -22,28 +22,30 @@ const imageObserver = new IntersectionObserver((entries, observer) => {
 let showFavoritesOnly = false;
 
 function createStarRating(rating) {
-    const starsContainer = document.createElement('div');
-    starsContainer.className = 'star-rating';
-    
-    const fullStars = Math.floor(rating);
-    const hasHalfStar = rating % 1 >= 0.5;
-    
-    for (let i = 0; i < 5; i++) {
-        const star = document.createElement('span');
-        if (i < fullStars) {
-            star.textContent = '★';
-            star.className = 'star full';
-        } else if (i === fullStars && hasHalfStar) {
-            star.textContent = '½';
-            star.className = 'star half';
+    const container = document.createElement('div');
+    container.className = 'star-rating';
+
+    for (let i = 1; i <= 5; i++) {
+        const star = document.createElement('i');
+        star.className = 'fas fa-star star';
+
+        if (i <= Math.floor(rating)) {
+            // Full star
+            star.style.color = '#ffd700';
+        } else if (i === Math.ceil(rating) && rating % 1 !== 0) {
+            // Partial star
+            star.className = 'fas fa-star star partial';
+            const percent = (rating % 1) * 100;
+            star.style.setProperty('--percent', `${percent}%`);
         } else {
-            star.textContent = '☆';
-            star.className = 'star empty';
+            // Empty star
+            star.style.color = '#e0e0e0';
         }
-        starsContainer.appendChild(star);
+
+        container.appendChild(star);
     }
-    
-    return starsContainer;
+
+    return container;
 }
 
 function createMovieCard(movie) {
