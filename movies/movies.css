@@ -512,50 +512,39 @@ h1 {
 .star-rating {
     display: flex;
     gap: 2px;
-    margin-bottom: 0.25rem;
+    margin: 0.5rem 0;
 }
 
 .star-rating i {
-    font-size: 1.2em;
+    color: #ccc;
+    font-size: 1.2rem;
     position: relative;
-    color: rgba(255, 255, 255, 0.3);
 }
 
 .star-rating i.star {
-    color: #ffd700;
+    color: var(--accent-yellow);
 }
 
 .star-rating i.partial {
+    color: #ccc;
     position: relative;
-    color: rgba(255, 255, 255, 0.3);
 }
 
 .star-rating i.partial::before {
     content: '\f005';
-    font-family: 'Font Awesome 5 Free';
-    font-weight: 900;
     position: absolute;
     left: 0;
     top: 0;
     width: var(--percent);
-    color: #ffd700;
     overflow: hidden;
-}
-
-.star-rating i.empty {
-    color: rgba(255, 255, 255, 0.3);
-}
-
-.star-rating .star.empty {
-    color: rgba(255, 255, 255, 0.3);
-}
-
-.star-rating .star.half {
     color: var(--accent-yellow);
 }
 
+.star-rating i.empty {
+    color: #ccc;
+}
+
 .rating-number {
-    font-size: 1rem;
     color: var(--accent-yellow);
     font-weight: bold;
     margin-left: 0.5rem;
