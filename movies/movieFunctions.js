@@ -184,8 +184,9 @@ async function filterMovies() {
     const genreFilter = document.getElementById('genre-filter').value;
     const yearFilter = document.getElementById('year-filter').value;
     const sortFilter = document.getElementById('sort-filter').value;
-    const moviesGrid = document.querySelector('.movies-grid');
+    const ratingFilter = document.getElementById('rating-filter').value;
     const searchTerm = searchInput ? searchInput.value.toLowerCase().trim() : '';
+    const moviesGrid = document.querySelector('.movies-grid');
 
     // Clear existing movies and show loading state
     moviesGrid.classList.add('loading');
@@ -198,16 +199,24 @@ async function filterMovies() {
     // Filter and sort movies
     let filteredMovies = movies.filter(movie => {
         const movieGenre = movie.genre.toLowerCase();
-        const ratingFilter = document.getElementById('rating-filter').value;
-        
-        return (!searchTerm || 
+        const meetsSearchCriteria = !searchTerm || 
             movie.title.toLowerCase().includes(searchTerm) ||
             movieGenre.includes(searchTerm) ||
-            movie.year.toString().includes(searchTerm)) &&
-            (genreFilter === 'all' || 
-            movieGenre === genreFilter.toLowerCase()) &&
-            (yearFilter === 'all' || Math.floor(movie.year / 10) * 10 === parseInt(yearFilter)) &&
-            (ratingFilter === '0' || movie.rating >= parseFloat(ratingFilter));
+            movie.year.toString().includes(searchTerm);
+            
+        const meetsGenreCriteria = genreFilter === 'all' || 
+            movieGenre === genreFilter.toLowerCase();
+            
+        const meetsYearCriteria = yearFilter === 'all' || 
+            Math.floor(movie.year / 10) * 10 === parseInt(yearFilter);
+            
+        const meetsRatingCriteria = ratingFilter === '0' || 
+            movie.rating >= parseFloat(ratingFilter);
+        
+        return meetsSearchCriteria && 
+               meetsGenreCriteria && 
+               meetsYearCriteria && 
+               meetsRatingCriteria;
     });
 
     // Update results count
