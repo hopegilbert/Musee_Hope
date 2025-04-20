@@ -171,7 +171,7 @@ function createStarRating(rating) {
 // Function to update results count
 function updateResultsCount(count) {
     const resultsCount = document.getElementById('results-count');
-    resultsCount.textContent = `${count} movies found`;
+    resultsCount.textContent = `${count} movies`;
 }
 
 // Function to filter movies based on selected criteria
