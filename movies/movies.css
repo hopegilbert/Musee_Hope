@@ -237,10 +237,14 @@ h1 {
     color: var(--accent-yellow);
     font-weight: 500;
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 100%;
+    overflow: visible;
+    text-overflow: clip;
+    max-width: none;
     display: inline-block;
+    padding: 0.5rem 1rem;
+    background: rgba(0, 0, 51, 0.5);
+    border-radius: 4px;
+    border: 1px solid var(--accent-yellow);
 }
 
 /* Filter Bar Styles */
