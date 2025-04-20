@@ -151,19 +151,15 @@ function createStarRating(rating) {
     // Create all 5 stars
     for (let i = 0; i < 5; i++) {
         const star = document.createElement('i');
-        star.className = 'fas fa-star star';
+        star.className = 'fas fa-star';
         
         if (i < fullStars) {
             // Full star
-            star.style.color = '#ffd700';
+            star.classList.add('star');
         } else if (i === fullStars && decimal > 0) {
             // Partial star
-            star.className = 'fas fa-star star partial';
+            star.classList.add('partial');
             star.style.setProperty('--percent', `${decimal * 100}%`);
-            star.style.color = 'rgba(255, 255, 255, 0.3)';
-        } else {
-            // Empty star
-            star.style.color = 'rgba(255, 255, 255, 0.3)';
         }
         
         starContainer.appendChild(star);

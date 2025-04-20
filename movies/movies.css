@@ -485,6 +485,11 @@ h1 {
 .star-rating i {
     font-size: 1.2em;
     position: relative;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.star-rating i.star {
+    color: #ffd700;
 }
 
 .star-rating i.partial {
