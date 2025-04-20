@@ -339,19 +339,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const icon = document.querySelector('.lucky-button i');
         icon.classList.add('fa-spin');
         
-        // Clear the movie grid
+        // Clear the movie grid and reset its styles
         moviesGrid.innerHTML = '';
-        
-        // Add a container for centering
-        const centerContainer = document.createElement('div');
-        centerContainer.style.cssText = `
+        moviesGrid.style.cssText = `
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 80vh;
-            width: 100%;
+            min-height: 60vh;
+            padding: 2rem;
+            grid-template-columns: none;
         `;
-        moviesGrid.appendChild(centerContainer);
         
         // Wait for the spinning animation
         await new Promise(resolve => setTimeout(resolve, 1500));
@@ -361,8 +358,11 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Create and append the movie card
         const card = createMovieCard(randomMovie);
-        card.style.width = '300px'; // Set a fixed width for the centered card
-        centerContainer.appendChild(card);
+        card.style.cssText = `
+            width: 300px;
+            margin: 0 auto;
+        `;
+        moviesGrid.appendChild(card);
         
         // Stop the spinning animation
         icon.classList.remove('fa-spin');
@@ -373,8 +373,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // Show the Show All Movies button
         showAllButton.classList.add('visible');
         
-        // Scroll to the movie card
-        centerContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        // Ensure the card is in view
+        window.scrollTo({
+            top: moviesGrid.offsetTop - (window.innerHeight - card.offsetHeight) / 2,
+            behavior: 'smooth'
+        });
     });
 });
 
@@ -416,6 +419,14 @@ const showAllButton = document.createElement('button');
 showAllButton.textContent = 'Show All Movies';
 showAllButton.className = 'show-all-button';
 showAllButton.addEventListener('click', () => {
+    // Reset the movies grid styles
+    moviesGrid.style.cssText = `
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 1.5rem;
+        padding: 1.5rem;
+    `;
+    
     filterMovies(); // This will reset to showing all movies
     showAllButton.classList.remove('visible');
 });
