@@ -330,7 +330,58 @@ document.addEventListener('DOMContentLoaded', () => {
         statsPanel.classList.add('hidden');
         overlay.classList.remove('visible');
     });
+
+    // Add event listener for lucky button
+    const luckyButton = document.getElementById('lucky-button');
+    const moviesGrid = document.querySelector('.movies-grid');
+
+    luckyButton.addEventListener('click', () => {
+        // Add spinning animation
+        luckyButton.classList.add('spinning');
+
+        // Clear the grid
+        moviesGrid.innerHTML = '';
+
+        // Simulate a spinning delay
+        setTimeout(() => {
+            // Get a random movie
+            const randomMovie = movies[Math.floor(Math.random() * movies.length)];
+            
+            // Create and append the card
+            const card = createMovieCard(randomMovie);
+            moviesGrid.appendChild(card);
+
+            // Remove spinning animation
+            luckyButton.classList.remove('spinning');
+
+            // Scroll to the movie
+            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            // Add a highlight effect
+            card.style.animation = 'highlight 1s ease';
+        }, 1500); // 1.5 second delay for the spinning effect
+    });
 });
+
+// Add highlight animation
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes highlight {
+        0% {
+            transform: scale(1);
+            box-shadow: 0 0 0 rgba(255, 215, 0, 0);
+        }
+        50% {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+        100% {
+            transform: scale(1);
+            box-shadow: 0 0 0 rgba(255, 215, 0, 0);
+        }
+    }
+`;
+document.head.appendChild(style);
 
 // Statistics functions
 function calculateMovieStats() {
