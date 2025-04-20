@@ -174,25 +174,38 @@ function createMovieCard(movie) {
 
 function createStarRating(rating) {
     const starContainer = document.createElement('div');
-    starContainer.className = 'star-rating';
+    starContainer.classList.add('star-rating');
     
     const fullStars = Math.floor(rating);
-    const decimal = rating % 1;
-    const decimalPercent = Math.round(decimal * 100);
+    const decimal = rating - fullStars;
     
-    for (let i = 0; i < 5; i++) {
-        const star = document.createElement('i');
-        star.className = 'fas fa-star';
-        
-        if (i < fullStars) {
-            star.classList.add('star');
-        } else if (i === fullStars && decimal > 0) {
-            star.classList.add('partial');
-            star.style.setProperty('--percent', `${decimalPercent}%`);
-        } else {
-            star.classList.add('empty');
-        }
-        
+    // Create full stars
+    for (let i = 0; i < fullStars; i++) {
+        const star = document.createElement('span');
+        star.classList.add('star', 'filled');
+        star.innerHTML = '★';
+        starContainer.appendChild(star);
+    }
+    
+    // Create partial star if needed
+    if (decimal > 0) {
+        const star = document.createElement('span');
+        star.classList.add('star', 'partial');
+        star.innerHTML = '★';
+        const percentage = Math.round(decimal * 100);
+        star.style.background = `linear-gradient(90deg, var(--star-color) ${percentage}%, transparent ${percentage}%)`;
+        star.style.webkitBackgroundClip = 'text';
+        star.style.backgroundClip = 'text';
+        star.style.color = 'transparent';
+        starContainer.appendChild(star);
+    }
+    
+    // Add empty stars to complete 5 stars
+    const remainingStars = 5 - Math.ceil(rating);
+    for (let i = 0; i < remainingStars; i++) {
+        const star = document.createElement('span');
+        star.classList.add('star');
+        star.innerHTML = '★';
         starContainer.appendChild(star);
     }
     
@@ -238,8 +251,12 @@ async function filterMovies() {
         let matchesRating = true;
         if (ratingFilter !== '0') {
             const rating = parseInt(ratingFilter);
-            const movieRating = Math.floor(parseFloat(movie.rating));
-            matchesRating = movieRating === rating;
+            const movieRating = parseFloat(movie.rating);
+            if (rating === 5) {
+                matchesRating = movieRating >= 4.5;
+            } else {
+                matchesRating = movieRating >= rating && movieRating < (rating + 1);
+            }
         }
 
         const matchesFavorites = !showFavorites || movie.favourite === true;
