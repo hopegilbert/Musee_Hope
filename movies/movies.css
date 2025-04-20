@@ -1546,8 +1546,10 @@ h1 {
     border-radius: 12px;
     box-shadow: 0 0 20px var(--accent-yellow);
     animation: highlight 2s ease-in-out infinite;
-    left: 50%;
-    transform: translateX(-50%);
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .random-movie-container .movie-card {
