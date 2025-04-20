@@ -510,9 +510,16 @@ h1 {
 .star-rating,
 .star-rating i,
 .star-rating i.partial,
-.star-rating i.partial::before,
-.rating-number {
+.star-rating i.partial::before {
     display: none;
+}
+
+.rating-number {
+    display: inline-block;
+    color: var(--accent-yellow);
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-left: 0.5rem;
 }
 
 .back-content {
@@ -537,13 +544,6 @@ h1 {
     align-items: center;
     justify-content: space-between;
     gap: 0.5rem;
-}
-
-.rating-number {
-    color: var(--accent-yellow);
-    font-weight: bold;
-    font-size: 1.2rem;
-    margin-left: auto;
 }
 
 .back-date-genre-row {
