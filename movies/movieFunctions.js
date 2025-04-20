@@ -450,6 +450,16 @@ function updateStats() {
     // Calculate average rating
     const avgRating = movies.reduce((sum, movie) => sum + movie.rating, 0) / movies.length;
 
+    // Get top rated movies
+    const topRatedMovies = [...movies]
+        .sort((a, b) => b.rating - a.rating)
+        .slice(0, 5);
+
+    // Get newest movies
+    const newestMovies = [...movies]
+        .sort((a, b) => b.year - a.year)
+        .slice(0, 5);
+
     // Update genre stats
     const genreStats = document.querySelector('.genre-stats .stats-chart');
     genreStats.innerHTML = '';
@@ -481,7 +491,63 @@ function updateStats() {
             `;
             decadeStats.appendChild(bar);
         });
+
+    // Update top rated movies
+    const topRatedSection = document.querySelector('.top-rated .top-movies');
+    topRatedSection.innerHTML = '';
+    topRatedMovies.forEach(movie => {
+        const movieItem = document.createElement('div');
+        movieItem.className = 'top-movie-item';
+        movieItem.innerHTML = `
+            <h4>${movie.title}</h4>
+            <div class="movie-stats">
+                <div>Rating: ${movie.rating.toFixed(1)}</div>
+                <div>${movie.year} • ${movie.genre}</div>
+            </div>
+        `;
+        topRatedSection.appendChild(movieItem);
+    });
+
+    // Update newest movies
+    const newestSection = document.querySelector('.newest .top-movies');
+    newestSection.innerHTML = '';
+    newestMovies.forEach(movie => {
+        const movieItem = document.createElement('div');
+        movieItem.className = 'top-movie-item';
+        movieItem.innerHTML = `
+            <h4>${movie.title}</h4>
+            <div class="movie-stats">
+                <div>Year: ${movie.year}</div>
+                <div>Rating: ${movie.rating.toFixed(1)} • ${movie.genre}</div>
+            </div>
+        `;
+        newestSection.appendChild(movieItem);
+    });
+
+    // Update average rating
+    const avgRatingElement = document.querySelector('.average-rating');
+    if (avgRatingElement) {
+        avgRatingElement.textContent = avgRating.toFixed(1);
+    }
 }
+
+// Add close button functionality for stats panel
+document.querySelector('.close-stats').addEventListener('click', function() {
+    const statsPanel = document.querySelector('.stats-panel');
+    const statsOverlay = document.querySelector('.stats-overlay');
+    statsPanel.classList.add('hidden');
+    statsOverlay.classList.remove('visible');
+});
+
+// Close stats panel when clicking overlay
+document.querySelector('.stats-overlay').addEventListener('click', function(e) {
+    if (e.target === this) {
+        const statsPanel = document.querySelector('.stats-panel');
+        const statsOverlay = document.querySelector('.stats-overlay');
+        statsPanel.classList.add('hidden');
+        statsOverlay.classList.remove('visible');
+    }
+});
 
 function resetFilters() {
     // Reset all filter dropdowns to their default values
