@@ -85,17 +85,7 @@ function createMovieCard(movie) {
     const backTitle = document.createElement('h3');
     backTitle.textContent = movie.title;
 
-    const backDateGenreRow = document.createElement('div');
-    backDateGenreRow.className = 'back-date-genre-row';
-
-    const backYearDisplay = document.createElement('span');
-    backYearDisplay.className = `year-display decade-${decade}s`;
-    backYearDisplay.textContent = movie.year;
-
-    const backGenreBadges = genreBadges.cloneNode(true);
-
-    backDateGenreRow.appendChild(backYearDisplay);
-    backDateGenreRow.appendChild(backGenreBadges);
+    const backDateGenreRow = dateGenreRow.cloneNode(true);
 
     const reviewSection = document.createElement('div');
     reviewSection.className = 'review-section';
@@ -154,10 +144,6 @@ async function filterMovies() {
 
     // Clear existing movies and show loading state
     moviesGrid.classList.add('loading');
-    
-    // Small delay to ensure loading state is visible
-    await new Promise(resolve => setTimeout(resolve, 100));
-    
     moviesGrid.innerHTML = '';
 
     // Filter and sort movies
@@ -199,12 +185,9 @@ async function filterMovies() {
             noResults.textContent = 'No movies found matching your criteria';
             moviesGrid.appendChild(noResults);
         }
-
-        // Small delay before removing loading state to ensure smooth transition
-        await new Promise(resolve => setTimeout(resolve, 100));
-        moviesGrid.classList.remove('loading');
     } catch (error) {
         console.error('Error displaying movies:', error);
+    } finally {
         moviesGrid.classList.remove('loading');
     }
 }
@@ -245,9 +228,4 @@ document.addEventListener('DOMContentLoaded', () => {
     if (sortFilter) {
         sortFilter.addEventListener('change', filterMovies);
     }
-
-    // Preload all movie images
-    preloadImages(movies).catch(error => {
-        console.error('Error preloading images:', error);
-    });
 }); 
