@@ -371,6 +371,7 @@ h1 {
     padding: 1rem;
     background: var(--card-background);
     color: var(--text-color);
+    cursor: pointer;
 }
 
 .movie-card.flipped .movie-card-front {
@@ -473,7 +474,7 @@ h1 {
 .star-rating {
     display: flex;
     gap: 2px;
-    align-items: center;
+    margin-bottom: 0.25rem;
 }
 
 .star-rating i {
@@ -503,7 +504,16 @@ h1 {
     color: var(--accent-yellow);
 }
 
+.rating-number {
+    font-size: 1rem;
+    color: var(--accent-yellow);
+    font-weight: bold;
+    margin-left: 0.5rem;
+}
+
 .back-content {
+    cursor: pointer;
+    height: 100%;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -523,13 +533,6 @@ h1 {
     align-items: center;
 }
 
-.rating-number {
-    font-size: 1rem;
-    color: var(--accent-color);
-    font-weight: bold;
-    margin-left: 0.5rem;
-}
-
 .back-date-genre-row {
     display: flex;
     flex-direction: row;
@@ -539,6 +542,7 @@ h1 {
 }
 
 .review-section {
+    cursor: pointer;
     flex: 1;
     display: flex;
     flex-direction: column;

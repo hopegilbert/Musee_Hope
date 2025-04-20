@@ -50,15 +50,7 @@ function createMovieCard(movie) {
     const title = document.createElement('h3');
     title.textContent = movie.title;
     
-    const dateGenreRow = document.createElement('div');
-    dateGenreRow.className = 'date-genre-row';
-
-    const yearDisplay = document.createElement('span');
-    const decade = Math.floor(movie.year / 10) * 10;
-    yearDisplay.className = `year-display decade-${decade}s`;
-    yearDisplay.textContent = movie.year;
-
-    // Add star rating
+    // Create star rating
     const starRating = document.createElement('div');
     starRating.className = 'star-rating';
     
@@ -80,6 +72,14 @@ function createMovieCard(movie) {
         starRating.appendChild(star);
     }
 
+    const dateGenreRow = document.createElement('div');
+    dateGenreRow.className = 'date-genre-row';
+
+    const yearDisplay = document.createElement('span');
+    const decade = Math.floor(movie.year / 10) * 10;
+    yearDisplay.className = `year-display decade-${decade}s`;
+    yearDisplay.textContent = movie.year;
+
     const genreBadges = document.createElement('div');
     genreBadges.className = 'genre-badges';
     
@@ -89,10 +89,10 @@ function createMovieCard(movie) {
     genreBadges.appendChild(badge);
 
     dateGenreRow.appendChild(yearDisplay);
-    dateGenreRow.appendChild(starRating);
     dateGenreRow.appendChild(genreBadges);
 
     movieInfo.appendChild(title);
+    movieInfo.appendChild(starRating);
     movieInfo.appendChild(dateGenreRow);
     
     cardFront.appendChild(poster);
@@ -150,10 +150,7 @@ function createMovieCard(movie) {
 
     // Simplified click handling
     function handleClick(e) {
-        // Only flip if not clicking review text
-        if (!e.target.classList.contains('review-text')) {
-            card.classList.toggle('flipped');
-        }
+        card.classList.toggle('flipped');
     }
 
     // Add click handlers to both front and back
