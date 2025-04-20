@@ -119,6 +119,16 @@ function createMovieCard(movie) {
 
     const backGenreBadges = genreBadges.cloneNode(true);
 
+    // Create trailer button
+    if (movie.trailerUrl) {
+        const trailerButton = document.createElement('a');
+        trailerButton.href = movie.trailerUrl;
+        trailerButton.target = '_blank';
+        trailerButton.className = 'trailer-button';
+        trailerButton.innerHTML = '<img src="images/trailer-icon.png" alt="Watch Trailer">';
+        backDateGenreRow.appendChild(trailerButton);
+    }
+
     backDateGenreRow.appendChild(backYearDisplay);
     backDateGenreRow.appendChild(backGenreBadges);
 
