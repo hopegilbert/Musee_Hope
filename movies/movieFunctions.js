@@ -53,15 +53,20 @@ function createMovieCard(movie) {
     // Create star rating
     const starRating = document.createElement('div');
     starRating.className = 'star-rating';
-    for (let i = 1; i <= 5; i++) {
+    
+    const fullStars = Math.floor(movie.rating);
+    const decimal = movie.rating % 1;
+    const decimalPercent = Math.round(decimal * 100);
+    
+    for (let i = 0; i < 5; i++) {
         const star = document.createElement('i');
         star.className = 'fas fa-star';
         
-        if (i <= Math.floor(movie.rating)) {
+        if (i < fullStars) {
             star.classList.add('star');
-        } else if (i === Math.ceil(movie.rating) && movie.rating % 1 !== 0) {
+        } else if (i === fullStars && decimal > 0) {
             star.classList.add('partial');
-            star.style.setProperty('--percent', `${(movie.rating % 1) * 100}%`);
+            star.style.setProperty('--percent', `${decimalPercent}%`);
         } else {
             star.classList.add('empty');
         }
