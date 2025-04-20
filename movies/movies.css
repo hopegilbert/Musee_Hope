@@ -372,7 +372,8 @@ select:focus {
 
 .date-genre-row {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
     gap: 0.5rem;
     margin-top: 0.5rem;
 }
@@ -391,6 +392,7 @@ select:focus {
     display: flex;
     gap: 0.5rem;
     flex-wrap: wrap;
+    align-items: center;
 }
 
 .genre-badge {
