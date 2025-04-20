@@ -850,20 +850,20 @@ select:focus {
 
 .license-footer p {
     margin: 0;
-    color: #821818;
+    color: var(--text-color);
     font-family: 'Lora', serif;
     font-size: 0.9rem;
     line-height: 1.5;
 }
 
 .license-footer a {
-    color: #821818;
+    color: var(--text-color);
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 .license-footer a:hover {
-    color: #5a0f0f;
+    color: var(--accent-yellow);
     text-decoration: underline;
 }
 
