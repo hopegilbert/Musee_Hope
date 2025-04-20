@@ -1089,7 +1089,7 @@ h1 {
 }
 
 .back-to-gallery {
-    position: fixed;
+    position: absolute;
     top: 20px;
     left: 20px;
     padding: 10px 20px;
