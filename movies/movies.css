@@ -1621,12 +1621,18 @@ h1 {
     max-width: 800px;
     margin: 2rem auto;
     min-height: 500px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 51, 0.3);
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
 
 .random-movie-container .movie-card {
     width: 300px;
     height: 450px;
-    margin: 0 auto;
+    margin: 0;
     transform: scale(1);
 }
 
