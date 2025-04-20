@@ -19,6 +19,7 @@
     --blue-gradient: linear-gradient(135deg, #4169E1 0%, #000033 100%);
     --vintage-border: 1px solid rgba(65, 105, 225, 0.2);
     --header-gradient: linear-gradient(45deg, var(--accent-yellow) 0%, var(--accent-color) 30%, var(--primary-color) 60%, #FFFFFF 100%);
+    --star-color: #FFD700; /* Added star color */
     
     /* Genre Colors */
     --genre-action: #FF4136;
@@ -758,8 +759,9 @@ h1 {
 
 /* Cinema Navigation Styles */
 .cinema-nav {
+    padding: 1rem;
+    text-align: left;
     background: linear-gradient(to right, var(--primary-color), var(--accent-color), var(--accent-yellow));
-    padding: 1rem 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     margin-bottom: 2rem;
 }
@@ -776,10 +778,10 @@ h1 {
 }
 
 .nav-item {
-    color: var(--text-color);
+    font-size: 1rem;
+    color: var(--accent-yellow);
     text-decoration: none;
     font-family: 'Special Elite', cursive;
-    font-size: 1.1rem;
     padding: 0.5rem 1rem;
     border-radius: 4px;
     transition: all 0.3s ease;
@@ -790,6 +792,7 @@ h1 {
 .nav-item:hover {
     background: rgba(255, 255, 255, 0.2);
     transform: translateY(-2px);
+    text-decoration: none;
 }
 
 /* Dropdown Styles */
@@ -1611,19 +1614,16 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    gap: 1rem;
+    padding: 2rem;
     width: 100%;
     max-width: 800px;
-    margin: 2rem auto;
-    padding: 2rem;
-    position: relative;
+    margin: 0 auto;
 }
 
 .random-movie-container .movie-card {
-    width: 100%;
     max-width: 300px;
-    aspect-ratio: 27/40;
-    margin: 0 auto;
+    width: 100%;
     transform: scale(1.1);
 }
 
@@ -1794,23 +1794,27 @@ h1 {
 
 /* Reset Filters Button */
 .reset-filters-button {
-    background: var(--card-back-color);
+    font-family: var(--main-font);
+    padding: 8px 16px;
+    background-color: rgba(0, 0, 51, 0.5);
     color: var(--text-color);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 0.5rem 1rem;
     border-radius: 4px;
     cursor: pointer;
-    transition: all 0.3s ease;
-    font-family: 'Special Elite', cursive;
-    font-size: 0.9rem;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 8px;
+    transition: all 0.2s ease;
+    height: 40px;
+    min-width: 120px;
+    justify-content: center;
 }
 
 .reset-filters-button:hover {
-    background: rgba(255, 255, 255, 0.1);
-    transform: translateY(-2px);
+    background-color: rgba(0, 0, 51, 0.8);
+    border-color: var(--accent-yellow);
+    color: var(--accent-yellow);
+    transform: scale(1.02);
 }
 
 .reset-filters-button i {
