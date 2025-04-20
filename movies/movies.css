@@ -407,8 +407,8 @@ h1 {
     display: flex;
     flex-direction: column;
     padding: 1rem;
-    background: var(--card-background);
-    color: var(--text-color);
+    background: var(--card-back-color);
+    color: white;
     cursor: pointer;
 }
 
@@ -469,6 +469,7 @@ h1 {
     font-size: 1rem;
     font-weight: 600;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    color: white;
 }
 
 .date-genre-row {
@@ -566,7 +567,7 @@ h1 {
 .back-content h3 {
     margin: 0;
     font-size: 1.2rem;
-    color: var(--text-color);
+    color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -604,7 +605,7 @@ h1 {
     margin: 0;
     font-size: 0.875rem;
     line-height: 1.5;
-    color: var(--text-color);
+    color: white;
     overflow-y: auto;
 }
 
