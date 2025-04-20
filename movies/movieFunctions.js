@@ -169,8 +169,7 @@ function createStarRating(rating) {
             star.classList.add('star');
         } else if (i === Math.ceil(rating) && rating % 1 !== 0) {
             star.classList.add('partial');
-            const percent = (rating % 1) * 100;
-            star.style.setProperty('--percent', `${percent}%`);
+            star.style.setProperty('--percent', `${(rating % 1) * 100}%`);
         } else {
             star.classList.add('empty');
         }
@@ -220,10 +219,11 @@ async function filterMovies() {
         let matchesRating = true;
         if (ratingFilter !== '0') {
             const rating = parseFloat(ratingFilter);
+            const movieRating = parseFloat(movie.rating);
             if (rating === 5) {
-                matchesRating = movie.rating >= 4.5;
+                matchesRating = movieRating >= 4.5;
             } else {
-                matchesRating = movie.rating >= rating && movie.rating < (rating + 1);
+                matchesRating = movieRating >= rating && movieRating < (rating + 1);
             }
         }
 
