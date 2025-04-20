@@ -158,6 +158,7 @@ async function filterMovies() {
     const searchInput = document.getElementById('search-input');
     const genreFilter = document.getElementById('genre-filter').value;
     const yearFilter = document.getElementById('year-filter').value;
+    const ratingFilter = document.getElementById('rating-filter').value;
     const sortFilter = document.getElementById('sort-filter').value;
     const searchTerm = searchInput ? searchInput.value.toLowerCase().trim() : '';
     const moviesGrid = document.querySelector('.movies-grid');
@@ -182,9 +183,12 @@ async function filterMovies() {
         const matchesYear = yearFilter === 'all' || 
             Math.floor(movie.year / 10) * 10 === parseInt(yearFilter);
 
+        const matchesRating = ratingFilter === 'all' || 
+            Math.floor(movie.rating) === parseInt(ratingFilter);
+
         const matchesFavorites = !showFavorites || movie.favourite === true;
         
-        return matchesSearch && matchesGenre && matchesYear && matchesFavorites;
+        return matchesSearch && matchesGenre && matchesYear && matchesRating && matchesFavorites;
     });
 
     // Sort movies if needed
@@ -510,16 +514,11 @@ document.querySelector('.stats-overlay').addEventListener('click', function(e) {
 });
 
 function resetFilters() {
-    // Reset all filter dropdowns to their default values
+    document.getElementById('search-input').value = '';
     document.getElementById('genre-filter').value = 'all';
     document.getElementById('year-filter').value = 'all';
-    document.getElementById('rating-filter').value = '0';
+    document.getElementById('rating-filter').value = 'all';
     document.getElementById('sort-filter').value = 'none';
-    
-    // Clear the search input
-    document.getElementById('search-input').value = '';
-    
-    // Trigger the filter function to update the display
     filterMovies();
 }
 
