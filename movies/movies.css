@@ -19,7 +19,8 @@
     --blue-gradient: linear-gradient(135deg, #4169E1 0%, #000033 100%);
     --vintage-border: 1px solid rgba(65, 105, 225, 0.2);
     --header-gradient: linear-gradient(45deg, var(--accent-yellow) 0%, var(--accent-color) 30%, var(--primary-color) 60%, #FFFFFF 100%);
-    --star-color: #ffd700;
+    --star-color: #FFD700;
+    --star-empty: rgba(255, 255, 255, 0.3);
     
     /* Genre Colors */
     --genre-action: #FF4136;
@@ -1015,16 +1016,22 @@ h1 {
 
 .star-rating {
     display: flex;
-    gap: 2px;
+    gap: 4px;
+    margin: 0.5rem 0;
 }
 
 .star-rating i {
-    font-size: 1.2em;
-    position: relative;
+    font-size: 1rem;
+    color: var(--star-empty);
+}
+
+.star-rating i.filled {
+    color: var(--star-color);
 }
 
 .star-rating i.partial {
-    color: rgba(255, 255, 255, 0.3);
+    position: relative;
+    color: var(--star-empty);
 }
 
 .star-rating i.partial::before {
@@ -1033,8 +1040,12 @@ h1 {
     left: 0;
     top: 0;
     width: var(--percent);
-    color: #ffd700;
+    color: var(--star-color);
     overflow: hidden;
+}
+
+.star-rating i.empty {
+    color: var(--star-empty);
 }
 
 /* Stats Panel Styles */
