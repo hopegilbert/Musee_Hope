@@ -963,3 +963,26 @@ select:focus {
 .trailer-button span {
     display: none;
 }
+
+.back-to-gallery {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 51, 0.8);
+    color: var(--text-color);
+    text-decoration: none;
+    border: 1px solid var(--accent-yellow);
+    border-radius: 4px;
+    font-family: var(--main-font);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.back-to-gallery:hover {
+    background-color: var(--accent-yellow);
+    color: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
