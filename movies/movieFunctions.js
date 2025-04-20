@@ -331,3 +331,26 @@ function generateRecommendations() {
 
 // Add event listener for recommendations generation
 document.getElementById('generate-recommendations').addEventListener('click', generateRecommendations);
+
+// Add event listeners for filters
+document.getElementById('genre-filter').addEventListener('change', filterMovies);
+document.getElementById('year-filter').addEventListener('change', filterMovies);
+document.getElementById('rating-filter').addEventListener('change', filterMovies);
+document.getElementById('sort-filter').addEventListener('change', filterMovies);
+
+// Add event listener for reset filters button
+document.getElementById('reset-filters').addEventListener('click', resetFilters);
+
+function resetFilters() {
+    // Reset all filter dropdowns to their default values
+    document.getElementById('genre-filter').value = 'all';
+    document.getElementById('year-filter').value = 'all';
+    document.getElementById('rating-filter').value = '0';
+    document.getElementById('sort-filter').value = 'none';
+    
+    // Clear the search input
+    document.getElementById('search-input').value = '';
+    
+    // Trigger the filter function to update the display
+    filterMovies();
+}
