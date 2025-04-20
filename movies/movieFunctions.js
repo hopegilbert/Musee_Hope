@@ -56,17 +56,16 @@ function createMovieCard(movie) {
     
     const fullStars = Math.floor(movie.rating);
     const decimal = movie.rating % 1;
-    const decimalPercent = Math.round(decimal * 100);
     
     for (let i = 0; i < 5; i++) {
         const star = document.createElement('i');
-        star.className = 'fas fa-star';
+        star.className = 'fas fa-star fa-solid';
         
         if (i < fullStars) {
             star.classList.add('filled');
         } else if (i === fullStars && decimal > 0) {
             star.classList.add('partial');
-            star.style.setProperty('--percent', `${decimalPercent}%`);
+            star.style.setProperty('--percent', `${decimal * 100}%`);
         } else {
             star.classList.add('empty');
         }
