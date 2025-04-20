@@ -4846,7 +4846,7 @@ export const movies = [
         year: 1966,
         genre: "Action",
         rating: 4.8,
-        poster: "https://image.tmdb.org/t/p/w500/vs4vieNstSEfbgLFEelXXOPvr6h.jpg",
+        poster: "https://www.themoviedb.org/t/p/w1280/bV0rWoiRo7pHUTQkh6Oio6irlXO.jpg",
         review: "Wild and entertaining with a brutal edge. Tarantino never holds back."
     },
     {
@@ -5409,7 +5409,7 @@ export const movies = [
         year: 2000,
         genre: "Action",
         rating: 5.0,
-        poster: "https://image.tmdb.org/t/p/w500/w0YjBWVfu689txEXZG3xa4Aev3i.jpg",
+        poster: "https://www.themoviedb.org/t/p/w1280/ty8TGRuvJLPUmAR1H1nRIsgwvim.jpg",
         review: "Epic and powerful. That score alone gives me chills."
     },
     {

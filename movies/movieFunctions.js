@@ -365,9 +365,9 @@ document.getElementById('lucky-button').addEventListener('click', function() {
 // Add recommendations functionality
 document.getElementById('recommendations-button').addEventListener('click', function() {
     const panel = document.getElementById('recommendations-panel');
-    panel.classList.toggle('hidden');
+    panel.classList.toggle('active');
     
-    if (!panel.classList.contains('hidden')) {
+    if (panel.classList.contains('active')) {
         generateRecommendations();
     }
 });
@@ -380,13 +380,13 @@ function generateRecommendations() {
     
     // Apply filters
     if (genreFilter !== 'all') {
-        filteredMovies = filteredMovies.filter(movie => movie.genre === genreFilter);
+        filteredMovies = filteredMovies.filter(movie => movie.genre.toLowerCase() === genreFilter.toLowerCase());
     }
     
     if (decadeFilter !== 'all') {
         const decade = parseInt(decadeFilter);
         filteredMovies = filteredMovies.filter(movie => 
-            movie.year >= decade && movie.year < decade + 10
+            Math.floor(movie.year / 10) * 10 === decade
         );
     }
     
@@ -400,6 +400,11 @@ function generateRecommendations() {
     const grid = document.querySelector('.recommendations-grid');
     grid.innerHTML = '';
     
+    if (recommendations.length === 0) {
+        grid.innerHTML = '<p class="no-results">No movies found matching your criteria</p>';
+        return;
+    }
+    
     recommendations.forEach(movie => {
         const card = createMovieCard(movie);
         grid.appendChild(card);
@@ -409,6 +414,12 @@ function generateRecommendations() {
 // Add event listener for recommendations generation
 document.getElementById('generate-recommendations').addEventListener('click', generateRecommendations);
 
+// Add close button functionality for recommendations panel
+document.querySelector('.close-recommendations').addEventListener('click', function() {
+    const panel = document.getElementById('recommendations-panel');
+    panel.classList.remove('active');
+});
+
 // Add event listeners for filters
 document.getElementById('genre-filter').addEventListener('change', filterMovies);
 document.getElementById('year-filter').addEventListener('change', filterMovies);
@@ -417,6 +428,69 @@ document.getElementById('sort-filter').addEventListener('change', filterMovies);
 
 // Add event listener for reset filters button
 document.getElementById('reset-filters').addEventListener('click', resetFilters);
+
+// Add event listener for stats button
+document.getElementById('stats-button').addEventListener('click', function() {
+    const statsPanel = document.querySelector('.stats-panel');
+    const statsOverlay = document.querySelector('.stats-overlay');
+    
+    statsPanel.classList.toggle('hidden');
+    statsOverlay.classList.toggle('visible');
+    
+    if (!statsPanel.classList.contains('hidden')) {
+        updateStats();
+    }
+});
+
+function updateStats() {
+    // Calculate genre distribution
+    const genreCounts = movies.reduce((acc, movie) => {
+        acc[movie.genre] = (acc[movie.genre] || 0) + 1;
+        return acc;
+    }, {});
+
+    // Calculate decade distribution
+    const decadeCounts = movies.reduce((acc, movie) => {
+        const decade = Math.floor(movie.year / 10) * 10;
+        acc[decade] = (acc[decade] || 0) + 1;
+        return acc;
+    }, {});
+
+    // Calculate average rating
+    const avgRating = movies.reduce((sum, movie) => sum + movie.rating, 0) / movies.length;
+
+    // Update genre stats
+    const genreStats = document.querySelector('.genre-stats .stats-chart');
+    genreStats.innerHTML = '';
+    Object.entries(genreCounts)
+        .sort((a, b) => b[1] - a[1])
+        .forEach(([genre, count]) => {
+            const bar = document.createElement('div');
+            bar.className = 'stats-bar';
+            bar.innerHTML = `
+                <span class="stats-label">${genre}</span>
+                <div class="stats-bar-fill genre-${genre.toLowerCase()}" style="width: ${(count / movies.length) * 100}%"></div>
+                <span class="stats-count">${count}</span>
+            `;
+            genreStats.appendChild(bar);
+        });
+
+    // Update decade stats
+    const decadeStats = document.querySelector('.decade-stats .stats-chart');
+    decadeStats.innerHTML = '';
+    Object.entries(decadeCounts)
+        .sort((a, b) => a[0] - b[0])
+        .forEach(([decade, count]) => {
+            const bar = document.createElement('div');
+            bar.className = 'stats-bar';
+            bar.innerHTML = `
+                <span class="stats-label">${decade}s</span>
+                <div class="stats-bar-fill decade-${decade}s" style="width: ${(count / movies.length) * 100}%"></div>
+                <span class="stats-count">${count}</span>
+            `;
+            decadeStats.appendChild(bar);
+        });
+}
 
 function resetFilters() {
     // Reset all filter dropdowns to their default values
