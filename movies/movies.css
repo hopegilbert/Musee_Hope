@@ -262,30 +262,40 @@ h1 {
 }
 
 select {
-    font-family: var(--main-font);
-    padding: 8px 16px;
-    background-color: rgba(0, 0, 51, 0.5);
-    color: var(--text-color);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 0.5rem 1rem;
+    border: 2px solid var(--accent-color);
     border-radius: 4px;
+    background-color: rgba(0, 0, 51, 0.85);
+    color: var(--text-color);
+    font-family: var(--main-font);
+    font-size: 1rem;
     cursor: pointer;
-    width: 100%;
-    max-width: 150px;
+    transition: all 0.3s ease;
+    min-width: 120px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem top 50%;
+    background-size: 1rem auto;
+    padding-right: 2.5rem;
 }
 
 select:focus {
     outline: none;
-    border-color: rgba(255, 255, 255, 0.4);
+    border-color: var(--accent-yellow);
+    box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.2);
 }
 
-/* Rating filter specific styles */
 #rating-filter {
-    min-width: 120px;
+    min-width: 140px;
 }
 
 #rating-filter option {
     background-color: var(--secondary-color);
     color: var(--text-color);
+    padding: 0.5rem;
 }
 
 #rating-filter option:hover {
