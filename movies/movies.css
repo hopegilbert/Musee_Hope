@@ -64,7 +64,7 @@ body {
     color: var(--text-color);
     line-height: 1.6;
     position: relative;
-    background-image: url('images/background.png');
+    background-image: url('images/background.jpg');
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
