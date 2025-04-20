@@ -64,7 +64,11 @@ body {
     color: var(--text-color);
     line-height: 1.6;
     position: relative;
-    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxsaW5lIHgxPSIwIiB5PSIwIiB4Mj0iMCIgeTI9IjQwIiBzdHJva2U9IiMyYjJiMmIiIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==');
+    background-image: url('images/background.png');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 /* Film Grain Effect - adjusted to match new colors */
@@ -226,10 +230,14 @@ h1 {
     align-items: center;
     gap: 20px;
     padding: 20px;
-    background: var(--background-color);
+    background: rgba(0, 0, 51, 0.8);
     margin: 20px auto;
     max-width: 1200px;
-    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    flex-wrap: wrap;
+    border: 2px solid var(--accent-yellow);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+    backdrop-filter: blur(5px);
 }
 
 .results-count {
@@ -285,6 +293,9 @@ select:focus {
     margin: 0 auto;
     opacity: 1;
     transition: opacity 0.3s ease;
+    background: rgba(0, 0, 51, 0.7);
+    backdrop-filter: blur(5px);
+    border-radius: 8px;
 }
 
 /* Movie Card Styles */
