@@ -209,97 +209,74 @@ h1 {
     font-style: italic;
 }
 
-/* Filter Bar Styles */
-.filter-bar {
+/* Search and Results Count Styles */
+.search-container {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 20px;
-    padding: 20px;
+    gap: 1rem;
+    padding: 1.5rem;
     background: rgba(0, 0, 51, 0.8);
-    margin: 20px auto;
+    margin: 1rem auto;
     max-width: 1200px;
-    flex-wrap: wrap;
     border: 2px solid var(--accent-yellow);
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
-    backdrop-filter: blur(5px);
-    position: relative;
 }
 
-.filter-group {
+.search-wrapper {
     display: flex;
     align-items: center;
-}
-
-.filter-group:last-child {
-    margin-left: auto;
+    gap: 1rem;
+    width: 100%;
+    max-width: 600px;
 }
 
 .results-count {
-    color: var(--text-color);
-    margin-right: 20px;
-    font-family: var(--main-font);
+    font-size: 1.2rem;
+    color: var(--accent-yellow);
+    font-weight: 500;
 }
 
-.search-input {
-    font-family: var(--main-font);
-    padding: 8px 16px;
-    background-color: rgba(0, 0, 51, 0.5);
-    color: var(--text-color);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 4px;
-    width: 100%;
-    max-width: 300px;
+/* Filter Bar Styles */
+.filter-bar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    background: rgba(0, 0, 51, 0.8);
+    margin: 1rem auto;
+    max-width: 1200px;
+    border: 2px solid var(--accent-yellow);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
 }
 
-.search-input:focus {
-    outline: none;
-    border-color: rgba(255, 255, 255, 0.4);
+.filter-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
 }
 
-.search-input::placeholder {
-    color: rgba(255, 255, 255, 0.5);
+/* Action Buttons Styles */
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem;
+    margin: 1rem auto;
+    max-width: 1200px;
 }
 
-select {
-    padding: 0.5rem 1rem;
-    border: 2px solid var(--accent-color);
-    border-radius: 4px;
-    background-color: rgba(0, 0, 51, 0.85);
-    color: var(--text-color);
-    font-family: var(--main-font);
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    min-width: 120px;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-    background-repeat: no-repeat;
-    background-position: right 0.7rem top 50%;
-    background-size: 1rem auto;
-    padding-right: 2.5rem;
+.action-buttons button {
+    min-width: 150px;
 }
 
-select:focus {
-    outline: none;
-    border-color: var(--accent-yellow);
-    box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.2);
-}
-
-#rating-filter {
-    min-width: 140px;
-}
-
-#rating-filter option {
-    background-color: var(--secondary-color);
-    color: var(--text-color);
-    padding: 0.5rem;
-}
-
-#rating-filter option:hover {
-    background-color: var(--accent-color);
+/* Rename Feeling Lucky to Random Movie */
+.lucky-button::before {
+    content: "Random Movie";
 }
 
 /* Movies Grid Styles */
@@ -543,6 +520,19 @@ select:focus {
     margin: 0;
     font-size: 1rem;
     font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.rating-number {
+    font-size: 0.9rem;
+    color: var(--accent-yellow);
+    font-weight: 500;
+    padding: 0.2rem 0.4rem;
+    background: rgba(255, 215, 0, 0.1);
+    border-radius: 4px;
+    border: 1px solid var(--accent-yellow);
 }
 
 .back-date-genre-row {

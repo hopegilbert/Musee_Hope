@@ -133,6 +133,11 @@ function createMovieCard(movie) {
     const backTitle = document.createElement('h3');
     backTitle.textContent = movie.title;
 
+    const ratingNumber = document.createElement('span');
+    ratingNumber.className = 'rating-number';
+    ratingNumber.textContent = movie.rating.toFixed(1);
+    backTitle.appendChild(ratingNumber);
+
     const backDateGenreRow = document.createElement('div');
     backDateGenreRow.className = 'back-date-genre-row';
 
