@@ -168,26 +168,30 @@ function createMovieCard(movie) {
 }
 
 function createStarRating(rating) {
-    const starRating = document.createElement('div');
-    starRating.className = 'star-rating';
+    const starContainer = document.createElement('div');
+    starContainer.className = 'star-rating';
     
-    for (let i = 1; i <= 5; i++) {
+    const fullStars = Math.floor(rating);
+    const decimal = rating % 1;
+    const decimalPercent = Math.round(decimal * 100);
+    
+    for (let i = 0; i < 5; i++) {
         const star = document.createElement('i');
         star.className = 'fas fa-star';
         
-        if (i <= Math.floor(rating)) {
+        if (i < fullStars) {
             star.classList.add('star');
-        } else if (i === Math.ceil(rating) && rating % 1 !== 0) {
+        } else if (i === fullStars && decimal > 0) {
             star.classList.add('partial');
-            star.style.setProperty('--percent', `${(rating % 1) * 100}%`);
+            star.style.setProperty('--percent', `${decimalPercent}%`);
         } else {
             star.classList.add('empty');
         }
         
-        starRating.appendChild(star);
+        starContainer.appendChild(star);
     }
     
-    return starRating;
+    return starContainer;
 }
 
 // Function to update results count
