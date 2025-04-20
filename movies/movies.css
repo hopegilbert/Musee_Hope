@@ -1115,10 +1115,10 @@ select:focus {
     background: rgba(0, 0, 51, 0.95);
     border: 2px solid var(--accent-yellow);
     border-radius: 8px;
-    padding: 20px;
-    width: 80%;
-    max-width: 800px;
-    max-height: 80vh;
+    padding: 30px;
+    width: 90%;
+    max-width: 1200px;
+    max-height: 90vh;
     overflow-y: auto;
     z-index: 1000;
     backdrop-filter: blur(10px);
@@ -1131,84 +1131,145 @@ select:focus {
 .stats-content h3 {
     color: var(--accent-yellow);
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     font-family: var(--title-font);
-    font-size: 1.8em;
+    font-size: 2.5em;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
 }
 
 .stats-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin-bottom: 30px;
 }
 
 .stats-section {
     background: rgba(0, 0, 0, 0.3);
-    padding: 15px;
-    border-radius: 6px;
+    padding: 20px;
+    border-radius: 8px;
     border: 1px solid rgba(255, 255, 255, 0.1);
+    height: auto;
+    min-height: 400px;
 }
 
 .stats-section h4 {
     color: var(--text-color);
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     font-family: var(--main-font);
     text-align: center;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .stats-chart {
-    height: 200px;
+    height: auto;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 12px;
+    margin-top: 20px;
 }
 
 .stats-bar {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 15px;
+    height: 30px;
+    margin-bottom: 5px;
 }
 
 .stats-label {
-    min-width: 100px;
+    min-width: 120px;
     color: var(--text-color);
-    font-size: 0.9em;
+    font-size: 1em;
+    text-align: right;
+    white-space: nowrap;
 }
 
 .stats-bar-fill {
-    height: 20px;
+    height: 25px;
     background: var(--accent-yellow);
     border-radius: 4px;
     transition: width 0.5s ease;
+    flex-grow: 1;
+    position: relative;
 }
 
 .stats-count {
     color: var(--text-color);
-    font-size: 0.9em;
+    font-size: 1em;
+    min-width: 50px;
+    text-align: left;
+    margin-left: 10px;
+}
+
+.top-genres {
+    margin-top: 30px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+
+.top-genres h4 {
+    margin-bottom: 20px;
 }
 
 .stats-list {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
 }
 
 .stats-list-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 8px;
+    padding: 12px 15px;
     background: rgba(255, 255, 255, 0.1);
-    border-radius: 4px;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+}
+
+.stats-list-item:hover {
+    background: rgba(255, 255, 255, 0.15);
 }
 
 .stats-list-item .genre-name {
     color: var(--text-color);
+    font-size: 1.1em;
+    font-weight: 500;
 }
 
 .stats-list-item .genre-count {
     color: var(--accent-yellow);
     font-weight: bold;
+    font-size: 1.1em;
+}
+
+@media (max-width: 768px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .stats-panel {
+        width: 95%;
+        padding: 20px;
+    }
+    
+    .stats-content h3 {
+        font-size: 2em;
+        margin-bottom: 20px;
+    }
+    
+    .stats-section {
+        min-height: 300px;
+    }
+    
+    .stats-label {
+        min-width: 100px;
+        font-size: 0.9em;
+    }
 }
 
 /* Overlay for when stats panel is open */
