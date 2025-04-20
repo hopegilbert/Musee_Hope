@@ -276,7 +276,7 @@ h1 {
 
 /* Rename Feeling Lucky to Random Movie */
 .lucky-button::before {
-    content: "Random Movie";
+    content: "";
 }
 
 /* Movies Grid Styles */
@@ -1646,9 +1646,30 @@ h1 {
     align-items: center;
     gap: 2rem;
     width: 100%;
-    max-width: 300px;
-    margin: 0 auto;
+    max-width: 400px;
+    margin: 2rem auto;
     padding: 2rem;
+}
+
+.random-movie-container .movie-card {
+    width: 120%;
+    max-width: 400px;
+    margin: 0 auto;
+    transform: scale(1.2);
+    transform-origin: center;
+}
+
+.random-movie-container .movie-card-front,
+.random-movie-container .movie-card-back {
+    transform-style: preserve-3d;
+}
+
+.random-movie-container .movie-card.flipped .movie-card-front {
+    transform: rotateY(180deg) scale(1.2);
+}
+
+.random-movie-container .movie-card.flipped .movie-card-back {
+    transform: rotateY(360deg) scale(1.2);
 }
 
 .show-all-button {
@@ -1664,6 +1685,7 @@ h1 {
     font-family: var(--main-font);
     font-size: 1rem;
     transition: all 0.3s ease;
+    margin-top: 1rem;
 }
 
 .show-all-button:hover {
