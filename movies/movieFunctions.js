@@ -108,6 +108,11 @@ function createMovieCard(movie) {
     const backTitle = document.createElement('h3');
     backTitle.textContent = movie.title;
 
+    const ratingNumber = document.createElement('span');
+    ratingNumber.className = 'rating-number';
+    ratingNumber.textContent = movie.rating.toFixed(1);
+    backTitle.appendChild(ratingNumber);
+
     const backDateGenreRow = document.createElement('div');
     backDateGenreRow.className = 'back-date-genre-row';
 
@@ -184,6 +189,7 @@ async function filterMovies() {
     // Filter and sort movies
     let filteredMovies = movies.filter(movie => {
         const movieGenre = movie.genre.toLowerCase();
+        const ratingFilter = document.getElementById('rating-filter').value;
         
         return (!searchTerm || 
             movie.title.toLowerCase().includes(searchTerm) ||
@@ -191,7 +197,8 @@ async function filterMovies() {
             movie.year.toString().includes(searchTerm)) &&
             (genreFilter === 'all' || 
             movieGenre === genreFilter.toLowerCase()) &&
-            (yearFilter === 'all' || Math.floor(movie.year / 10) * 10 === parseInt(yearFilter));
+            (yearFilter === 'all' || Math.floor(movie.year / 10) * 10 === parseInt(yearFilter)) &&
+            (ratingFilter === '0' || movie.rating >= parseFloat(ratingFilter));
     });
 
     // Update results count
