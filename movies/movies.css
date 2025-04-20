@@ -1,6 +1,8 @@
 /* Base Styles */
 /* Updated with film reel color scheme - April 2024 */
 @import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital@0;1&display=swap');
 
 :root {
     --primary-color: #FFFFFF;
@@ -40,8 +42,10 @@
     --decade-2010: #008080;  /* Teal */
     --decade-2020: #DAA520;  /* Goldenrod */
     
-    --main-font: 'Poetsen One', sans-serif;
-    --title-font: 'Monoton', sans-serif;
+    /* Font families */
+    --main-font: 'Poetsen One', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    --title-font: 'Monoton', cursive;
+    --body-font: 'Lora', serif;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Monoton&family=Rubik+Mono+One&family=VT323&family=IBM+Plex+Mono:wght@400;500&family=Cormorant:wght@400;500;600&display=swap');
@@ -50,6 +54,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 body {
@@ -864,4 +870,24 @@ select:focus {
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
+}
+
+/* Force font loading for mobile */
+@media screen and (max-width: 768px) {
+    body {
+        font-family: var(--main-font);
+    }
+    h1 {
+        font-family: var(--title-font);
+    }
+    .subtitle {
+        font-family: var(--main-font);
+    }
+    .movie-info h3,
+    .back-content h3 {
+        font-family: var(--main-font);
+    }
+    .review-text {
+        font-family: var(--body-font);
+    }
 }
