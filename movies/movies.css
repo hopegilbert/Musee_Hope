@@ -300,6 +300,80 @@ select:focus {
     aspect-ratio: 27/40;
     perspective: 1000px;
     cursor: pointer;
+    overflow: hidden;
+}
+
+.movie-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.05) 0%,
+        rgba(255, 255, 255, 0) 50%,
+        rgba(255, 255, 255, 0.05) 100%
+    );
+    opacity: 0;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.movie-card:hover::before {
+    animation: projectorFlicker 0.5s ease-in-out;
+}
+
+.movie-card.flipped::before {
+    animation: projectorFlicker 0.3s ease-in-out;
+}
+
+@keyframes projectorFlicker {
+    0% {
+        opacity: 0;
+        transform: scale(1);
+    }
+    10% {
+        opacity: 0.1;
+        transform: scale(1.01);
+    }
+    20% {
+        opacity: 0;
+        transform: scale(1);
+    }
+    30% {
+        opacity: 0.15;
+        transform: scale(1.02);
+    }
+    40% {
+        opacity: 0;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.1;
+        transform: scale(1.01);
+    }
+    60% {
+        opacity: 0;
+        transform: scale(1);
+    }
+    70% {
+        opacity: 0.15;
+        transform: scale(1.02);
+    }
+    80% {
+        opacity: 0;
+        transform: scale(1);
+    }
+    90% {
+        opacity: 0.1;
+        transform: scale(1.01);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1);
+    }
 }
 
 .movie-card-front,
@@ -1151,4 +1225,69 @@ select:focus {
 
 .stats-overlay.visible {
     display: block;
+}
+
+/* Lucky Button Styles */
+.lucky-button {
+    font-family: var(--main-font);
+    padding: 8px 16px;
+    background-color: rgba(0, 0, 51, 0.5);
+    color: var(--text-color);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+    height: 40px;
+    min-width: 120px;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.lucky-button:hover {
+    background-color: rgba(0, 0, 51, 0.8);
+    border-color: var(--accent-yellow);
+    color: var(--accent-yellow);
+    transform: scale(1.02);
+}
+
+.lucky-button .fa-film {
+    transition: transform 0.3s ease;
+}
+
+.lucky-button.spinning .fa-film {
+    animation: spinFilm 1s linear infinite;
+}
+
+@keyframes spinFilm {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.lucky-button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(255, 215, 0, 0.1),
+        transparent
+    );
+    transform: translateX(-100%);
+    transition: transform 0.5s ease;
+}
+
+.lucky-button:hover::after {
+    transform: translateX(100%);
 }
