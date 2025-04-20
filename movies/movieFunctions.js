@@ -107,6 +107,27 @@ function createMovieCard(movie) {
     backContent.appendChild(backTitle);
     backContent.appendChild(backDateGenreRow);
     backContent.appendChild(reviewSection);
+
+    // Add trailer button
+    if (movie.trailerUrl) {
+        const trailerButton = document.createElement('a');
+        trailerButton.href = movie.trailerUrl;
+        trailerButton.className = 'trailer-button';
+        trailerButton.target = '_blank';
+        trailerButton.rel = 'noopener noreferrer';
+        trailerButton.onclick = (e) => e.stopPropagation(); // Prevent card flip when clicking the button
+
+        const trailerIcon = document.createElement('img');
+        trailerIcon.src = 'images/trailer-icon.png';
+        trailerIcon.alt = 'Trailer';
+
+        const trailerText = document.createElement('span');
+        trailerText.textContent = 'Watch Trailer';
+
+        trailerButton.appendChild(trailerIcon);
+        trailerButton.appendChild(trailerText);
+        backContent.appendChild(trailerButton);
+    }
     
     cardBack.appendChild(backContent);
 
