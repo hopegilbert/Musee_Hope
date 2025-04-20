@@ -451,9 +451,9 @@ export const movies = [
         title: "WALL-'E",
         year: 2008,
         genre: "Animation",
-        rating: 3.5,
+        rating: 4.4,
         poster: "https://image.tmdb.org/t/p/w500/hbhFnRzzg6ZDmm8YAmxBnQpQIPh.jpg",
-        review: "Coming Soon."
+        review: "Quiet, emotional, and beautifully made. Such a unique and bold film from Pixar."
     },
     {
         title: "The Lord of the Rings: The Return of the King",
@@ -1416,9 +1416,9 @@ export const movies = [
         title: "The Hunger Games: Mockingjay - Part 1",
         year: 2014,
         genre: "Action",
-        rating: 3.5,
+        rating: 3.3,
         poster: "https://image.tmdb.org/t/p/w500/2hTPkBiXoMmrdtYgHtB9WU5dg80.jpg",
-        review: "Coming Soon."
+        review: "Mostly setup for the finale. A bit slow but necessary to build tension."
     },
     {
         title: "The Jungle Book",
@@ -1505,9 +1505,9 @@ export const movies = [
         title: "Les Miserables",
         year: 2012,
         genre: "Drama",
-        rating: 3.5,
+        rating: 4.1,
         poster: "https://image.tmdb.org/t/p/w500/6CuzBs2Lb8At7qQr64mLXg2RYRb.jpg",
-        review: "Coming Soon."
+        review: "Epic and emotional. Some beautiful singing, it really pulls at you."
     },
     {
         title: "X-Men",
@@ -1621,9 +1621,9 @@ export const movies = [
         title: "The Hunger Games: Mockingjay - Part 2",
         year: 2015,
         genre: "Action",
-        rating: 3.5,
+        rating: 4.6,
         poster: "https://image.tmdb.org/t/p/w500/7uLJCuK0ufoDklUdOORC8XanOKw.jpg",
-        review: "Coming Soon."
+        review: "Dark and heavy. Wrapped things up well."
     },
     {
         title: "Crazy, Stupid, Love.",
@@ -3406,7 +3406,7 @@ export const movies = [
         genre: "Drama",
         rating: 3.5,
         poster: "https://image.tmdb.org/t/p/w500/7IGdPaKujv0BjI0Zd0m0a4CzEjJ.jpg",
-        review: "Coming Soon."
+        review: "Campy and dramatic with a wild twist ending. Fans got what they wanted."
     },
     {
         title: "Maze Runner: The Death Cure",
@@ -3520,9 +3520,9 @@ export const movies = [
         title: "The Twilight Saga: Breaking Dawn - Part 1",
         year: 2011,
         genre: "Drama",
-        rating: 3.5,
+        rating: 3.1,
         poster: "https://image.tmdb.org/t/p/w500/qs8LsHKYlVRmJbFUiSUhhRAygwj.jpg",
-        review: "Coming Soon."
+        review: "Mostly buildup with some wild moments. Not much actually happens."
     },
     {
         title: "The Woman in Black",
@@ -4665,17 +4665,17 @@ export const movies = [
         title: "Star Wars: Episode II - Attack of the Clones",
         year: 2002,
         genre: "Sci-Fi",
-        rating: 3.5,
+        rating: 2.6,
         poster: "https://image.tmdb.org/t/p/w500/oZNPzxqM2s5DyVWab09NTQScDQt.jpg",
-        review: "Coming Soon."
+        review: "Kind of rough. Some cool visuals, but the dialogue was painful."
     },
     {
         title: "Star Wars: Episode III - Revenge of the Sith",
         year: 2005,
         genre: "Sci-Fi",
-        rating: 3.5,
+        rating: 4.2,
         poster: "https://image.tmdb.org/t/p/w500/xfSAoBEm9MNBjmlNcDYLvLSMlnq.jpg",
-        review: "Coming Soon."
+        review: "Darker, emotional, and easily the best of the prequels."
     },
     {
         title: "Return of the Jedi",
@@ -5516,9 +5516,9 @@ export const movies = [
         title: "Star Wars: Episode I - The Phantom Menace",
         year: 1999,
         genre: "Sci-Fi",
-        rating: 3.5,
+        rating: 2.9,
         poster: "https://image.tmdb.org/t/p/w500/6wkfovpn7Eq8dYNKaG5PY3q2oq6.jpg",
-        review: "Coming Soon."
+        review: "Nostalgic, but kind of dull. Great music though — Duel of the Fates still slaps."
     },
     {
         title: "Thor: Love and Thunder",
@@ -7186,14 +7186,6 @@ export const movies = [
         rating: 2.9,
         poster: "https://image.tmdb.org/t/p/w500/eO3r38fwnhb58M1YgcjQBd3VNcp.jpg",
         review: "Slick visuals and a cool vibe. Story was a bit meh."
-    },
-    {
-        title: "Obi-Wan Kenobi",
-        year: 2022,
-        genre: "Sci-Fi",
-        rating: 3.5,
-        poster: "https://image.tmdb.org/t/p/w500/vQGgvXjoMZf8x1m3BHsMxVXPyck.jpg",
-        review: "Coming Soon."
     },
     {
         title: "Insidious: The Red Door",
