@@ -342,6 +342,17 @@ document.addEventListener('DOMContentLoaded', () => {
         // Clear the movie grid
         moviesGrid.innerHTML = '';
         
+        // Add a container for centering
+        const centerContainer = document.createElement('div');
+        centerContainer.style.cssText = `
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh;
+            width: 100%;
+        `;
+        moviesGrid.appendChild(centerContainer);
+        
         // Wait for the spinning animation
         await new Promise(resolve => setTimeout(resolve, 1500));
         
@@ -350,7 +361,8 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Create and append the movie card
         const card = createMovieCard(randomMovie);
-        moviesGrid.appendChild(card);
+        card.style.width = '300px'; // Set a fixed width for the centered card
+        centerContainer.appendChild(card);
         
         // Stop the spinning animation
         icon.classList.remove('fa-spin');
@@ -362,7 +374,7 @@ document.addEventListener('DOMContentLoaded', () => {
         showAllButton.classList.add('visible');
         
         // Scroll to the movie card
-        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        centerContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
 });
 
