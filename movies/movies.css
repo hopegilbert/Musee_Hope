@@ -1355,10 +1355,10 @@ h1 {
 }
 
 @keyframes spinFilm {
-    0% {
+    from {
         transform: rotate(0deg);
     }
-    100% {
+    to {
         transform: rotate(360deg);
     }
 }
@@ -1575,5 +1575,71 @@ h1 {
 @keyframes spin {
     to {
         transform: rotate(360deg);
+    }
+}
+
+.search-input {
+    padding: 8px 16px;
+    width: 100%;
+    border: 1px solid var(--accent-yellow);
+    border-radius: 4px;
+    background-color: rgba(0, 0, 51, 0.5);
+    color: var(--text-color);
+    font-family: var(--main-font);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 5px rgba(255, 69, 0, 0.3);
+}
+
+.search-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.filter-select {
+    padding: 8px 16px;
+    border: 1px solid var(--accent-yellow);
+    border-radius: 4px;
+    background-color: rgba(0, 0, 51, 0.5);
+    color: var(--text-color);
+    font-family: var(--main-font);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 150px;
+}
+
+.filter-select:hover {
+    border-color: var(--accent-color);
+}
+
+.filter-select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 5px rgba(255, 69, 0, 0.3);
+}
+
+.filter-select option {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    padding: 8px;
+}
+
+@keyframes highlight {
+    0% {
+        transform: scale(1);
+        box-shadow: none;
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px var(--accent-yellow);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: none;
     }
 }

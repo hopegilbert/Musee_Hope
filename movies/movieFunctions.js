@@ -18,36 +18,6 @@ const imageObserver = new IntersectionObserver((entries, observer) => {
     threshold: 0.1
 });
 
-// Add favorites filter state
-let showFavoritesOnly = false;
-
-function createStarRating(rating) {
-    const container = document.createElement('div');
-    container.className = 'star-rating';
-
-    for (let i = 1; i <= 5; i++) {
-        const star = document.createElement('i');
-        star.className = 'fas fa-star star';
-
-        if (i <= Math.floor(rating)) {
-            // Full star
-            star.style.color = '#ffd700';
-        } else if (i === Math.ceil(rating) && rating % 1 !== 0) {
-            // Partial star
-            star.className = 'fas fa-star star partial';
-            const percent = (rating % 1) * 100;
-            star.style.setProperty('--percent', `${percent}%`);
-        } else {
-            // Empty star
-            star.style.color = '#e0e0e0';
-        }
-
-        container.appendChild(star);
-    }
-
-    return container;
-}
-
 function createMovieCard(movie) {
     const card = document.createElement('div');
     card.className = 'movie-card';
@@ -80,23 +50,6 @@ function createMovieCard(movie) {
     const title = document.createElement('h3');
     title.textContent = movie.title;
     
-    const rating = document.createElement('div');
-    rating.className = 'star-rating';
-    const fullStars = Math.floor(movie.rating);
-    const hasHalfStar = movie.rating % 1 >= 0.5;
-    
-    for (let i = 0; i < 5; i++) {
-        const star = document.createElement('i');
-        if (i < fullStars) {
-            star.className = 'fas fa-star star';
-        } else if (i === fullStars && hasHalfStar) {
-            star.className = 'fas fa-star-half-alt star half';
-        } else {
-            star.className = 'far fa-star star empty';
-        }
-        rating.appendChild(star);
-    }
-    
     const dateGenreRow = document.createElement('div');
     dateGenreRow.className = 'date-genre-row';
 
@@ -117,7 +70,6 @@ function createMovieCard(movie) {
     dateGenreRow.appendChild(genreBadges);
 
     movieInfo.appendChild(title);
-    movieInfo.appendChild(rating);
     movieInfo.appendChild(dateGenreRow);
     
     cardFront.appendChild(poster);
@@ -133,44 +85,17 @@ function createMovieCard(movie) {
     const backTitle = document.createElement('h3');
     backTitle.textContent = movie.title;
 
-    const ratingNumber = document.createElement('span');
-    ratingNumber.className = 'rating-number';
-    ratingNumber.textContent = movie.rating.toFixed(1);
-    backTitle.appendChild(ratingNumber);
-
     const backDateGenreRow = document.createElement('div');
     backDateGenreRow.className = 'back-date-genre-row';
 
     const backYearDisplay = document.createElement('span');
-    const backDecade = Math.floor(movie.year / 10) * 10;
-    backYearDisplay.className = `year-display decade-${backDecade}s`;
+    backYearDisplay.className = `year-display decade-${decade}s`;
     backYearDisplay.textContent = movie.year;
 
-    const backGenreBadges = document.createElement('div');
-    backGenreBadges.className = 'genre-badges';
-    
-    const backBadge = document.createElement('span');
-    backBadge.className = `genre-badge genre-${movie.genre.toLowerCase()}`;
-    backBadge.textContent = movie.genre;
-    backGenreBadges.appendChild(backBadge);
+    const backGenreBadges = genreBadges.cloneNode(true);
 
     backDateGenreRow.appendChild(backYearDisplay);
     backDateGenreRow.appendChild(backGenreBadges);
-
-    if (movie.trailerUrl) {
-        const trailerButton = document.createElement('a');
-        trailerButton.href = movie.trailerUrl;
-        trailerButton.className = 'trailer-button';
-        trailerButton.target = '_blank';
-        trailerButton.onclick = (e) => e.stopPropagation();
-        
-        const trailerIcon = document.createElement('img');
-        trailerIcon.src = 'images/trailer-icon.png';
-        trailerIcon.alt = 'Watch Trailer';
-        
-        trailerButton.appendChild(trailerIcon);
-        backDateGenreRow.appendChild(trailerButton);
-    }
 
     const reviewSection = document.createElement('div');
     reviewSection.className = 'review-section';
@@ -189,19 +114,23 @@ function createMovieCard(movie) {
     backContent.appendChild(backTitle);
     backContent.appendChild(backDateGenreRow);
     backContent.appendChild(reviewSection);
-
+    
     cardBack.appendChild(backContent);
 
     card.appendChild(cardFront);
     card.appendChild(cardBack);
 
     // Simplified click handling
-    function handleClick() {
-        card.classList.toggle('flipped');
+    function handleClick(e) {
+        // Only flip if not clicking review text
+        if (!e.target.classList.contains('review-text')) {
+            card.classList.toggle('flipped');
+        }
     }
 
-    // Add click handler to the entire card
-    card.addEventListener('click', handleClick);
+    // Add click handlers to both front and back
+    cardFront.addEventListener('click', handleClick);
+    cardBack.addEventListener('click', handleClick);
 
     return card;
 }
@@ -209,9 +138,7 @@ function createMovieCard(movie) {
 // Function to update results count
 function updateResultsCount(count) {
     const resultsCount = document.getElementById('results-count');
-    if (resultsCount) {
-        resultsCount.textContent = count;
-    }
+    resultsCount.textContent = `${count} movies found`;
 }
 
 // Function to filter movies based on selected criteria
@@ -219,20 +146,21 @@ async function filterMovies() {
     const searchInput = document.getElementById('search-input');
     const genreFilter = document.getElementById('genre-filter').value;
     const yearFilter = document.getElementById('year-filter').value;
-    const ratingFilter = document.getElementById('rating-filter');
     const sortFilter = document.getElementById('sort-filter').value;
     const moviesGrid = document.querySelector('.movies-grid');
     const searchTerm = searchInput ? searchInput.value.toLowerCase().trim() : '';
 
     // Clear existing movies and show loading state
     moviesGrid.classList.add('loading');
+    
+    // Small delay to ensure loading state is visible
+    await new Promise(resolve => setTimeout(resolve, 100));
+    
     moviesGrid.innerHTML = '';
 
     // Filter and sort movies
     let filteredMovies = movies.filter(movie => {
         const movieGenre = movie.genre.toLowerCase();
-        const selectedRating = ratingFilter ? parseInt(ratingFilter.value) : 0;
-        const movieRating = Math.floor(movie.rating);
         
         return (!searchTerm || 
             movie.title.toLowerCase().includes(searchTerm) ||
@@ -240,9 +168,7 @@ async function filterMovies() {
             movie.year.toString().includes(searchTerm)) &&
             (genreFilter === 'all' || 
             movieGenre === genreFilter.toLowerCase()) &&
-            (yearFilter === 'all' || Math.floor(movie.year / 10) * 10 === parseInt(yearFilter)) &&
-            (selectedRating === 0 || movieRating === selectedRating) &&
-            (!showFavoritesOnly || movie.favourite);
+            (yearFilter === 'all' || Math.floor(movie.year / 10) * 10 === parseInt(yearFilter));
     });
 
     // Update results count
@@ -271,9 +197,12 @@ async function filterMovies() {
             noResults.textContent = 'No movies found matching your criteria';
             moviesGrid.appendChild(noResults);
         }
+
+        // Small delay before removing loading state to ensure smooth transition
+        await new Promise(resolve => setTimeout(resolve, 100));
+        moviesGrid.classList.remove('loading');
     } catch (error) {
         console.error('Error displaying movies:', error);
-    } finally {
         moviesGrid.classList.remove('loading');
     }
 }
@@ -300,7 +229,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('search-input');
     const genreFilter = document.getElementById('genre-filter');
     const yearFilter = document.getElementById('year-filter');
-    const ratingFilter = document.getElementById('rating-filter');
     const sortFilter = document.getElementById('sort-filter');
 
     if (searchInput) {
@@ -312,275 +240,94 @@ document.addEventListener('DOMContentLoaded', () => {
     if (yearFilter) {
         yearFilter.addEventListener('change', filterMovies);
     }
-    if (ratingFilter) {
-        ratingFilter.addEventListener('change', filterMovies);
-    }
     if (sortFilter) {
         sortFilter.addEventListener('change', filterMovies);
     }
 
-    // Add event listener for favorites button
-    document.getElementById('favorites-filter').addEventListener('click', () => {
-        showFavoritesOnly = !showFavoritesOnly;
-        const favoritesButton = document.getElementById('favorites-filter');
-        favoritesButton.classList.toggle('active');
-        filterMovies();
+    // Preload all movie images
+    preloadImages(movies).catch(error => {
+        console.error('Error preloading images:', error);
     });
+}); 
 
-    const statsToggle = document.getElementById('stats-toggle');
-    const statsPanel = document.getElementById('stats-panel');
-    const overlay = document.createElement('div');
-    overlay.className = 'stats-overlay';
-    document.body.appendChild(overlay);
-
-    statsToggle.addEventListener('click', () => {
-        statsPanel.classList.toggle('hidden');
-        overlay.classList.toggle('visible');
-        if (!statsPanel.classList.contains('hidden')) {
-            updateStatsPanel();
-        }
-    });
-
-    overlay.addEventListener('click', () => {
-        statsPanel.classList.add('hidden');
-        overlay.classList.remove('visible');
-    });
-
-    // Add event listener for lucky button
-    const luckyButton = document.getElementById('lucky-button');
+// Add random movie functionality
+document.getElementById('lucky-button').addEventListener('click', function() {
+    const button = this;
+    const icon = button.querySelector('.fa-film');
+    
+    // Add spinning animation
+    icon.style.animation = 'spinFilm 1s linear infinite';
+    
+    // Clear current grid
     const moviesGrid = document.querySelector('.movies-grid');
-
-    luckyButton.addEventListener('click', async () => {
-        const icon = document.querySelector('.lucky-button i');
-        icon.classList.add('fa-spin');
+    moviesGrid.innerHTML = '';
+    
+    // Select random movie after delay
+    setTimeout(() => {
+        // Stop spinning animation
+        icon.style.animation = '';
         
-        // Clear the movie grid and reset its styles
-        moviesGrid.innerHTML = '';
-        moviesGrid.style.cssText = `
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 60vh;
-            padding: 2rem;
-        `;
-        
-        // Wait for the spinning animation
-        await new Promise(resolve => setTimeout(resolve, 1500));
-        
-        // Select a random movie
+        // Get random movie
         const randomMovie = movies[Math.floor(Math.random() * movies.length)];
         
-        // Create and append the movie card
+        // Create and display the card
         const card = createMovieCard(randomMovie);
-        card.style.cssText = `
-            width: 300px;
-            margin: 0 auto;
-        `;
         moviesGrid.appendChild(card);
         
-        // Stop the spinning animation
-        icon.classList.remove('fa-spin');
+        // Scroll to the card
+        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
         
-        // Add highlight effect to the card
-        card.classList.add('highlight');
+        // Add highlight animation
+        card.style.animation = 'highlight 2s ease-in-out';
         
-        // Show the Show All Movies button and position it below the card
-        showAllButton.classList.add('visible');
-        showAllButton.style.cssText = `
-            display: block;
-            margin: 2rem auto 0;
-            width: fit-content;
-        `;
-        
-        // Ensure the card is in view
-        window.scrollTo({
-            top: moviesGrid.offsetTop - (window.innerHeight - card.offsetHeight) / 2,
-            behavior: 'smooth'
-        });
-    });
-
-    // Create rating filter select element
-    const ratingFilterSelect = document.createElement('select');
-    ratingFilterSelect.id = 'rating-filter';
-    ratingFilterSelect.innerHTML = `
-        <option value="0">All Ratings</option>
-        <option value="1">1 Star</option>
-        <option value="2">2 Stars</option>
-        <option value="3">3 Stars</option>
-        <option value="4">4 Stars</option>
-        <option value="5">5 Stars</option>
-    `;
-
-    // Find the filter bar and insert the rating filter before the sort filter
-    const filterBar = document.querySelector('.filter-bar');
-    const sortFilterSelect = document.getElementById('sort-filter');
-    if (filterBar && sortFilterSelect) {
-        filterBar.insertBefore(ratingFilterSelect, sortFilterSelect);
-    }
-
-    // Add event listener for rating filter
-    ratingFilterSelect.addEventListener('change', filterMovies);
+        // Update results count
+        updateResultsCount(1);
+    }, 1500);
 });
 
-// Add animation styles to head
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes highlight {
-        0% { transform: scale(1); box-shadow: none; }
-        50% { transform: scale(1.05); box-shadow: 0 0 20px rgba(255, 215, 0, 0.6); }
-        100% { transform: scale(1); box-shadow: none; }
-    }
-    .highlight {
-        animation: highlight 1.5s ease-in-out;
-    }
-    .show-all-button {
-        display: none;
-        margin: 10px auto;
-        padding: 10px 20px;
-        background-color: var(--accent-color);
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        font-family: var(--main-font);
-        transition: all 0.3s ease;
-    }
-    .show-all-button:hover {
-        background-color: var(--accent-color-hover);
-        transform: translateY(-2px);
-    }
-    .show-all-button.visible {
-        display: block;
-    }
-`;
-document.head.appendChild(style);
-
-// Create Show All Movies button
-const showAllButton = document.createElement('button');
-showAllButton.textContent = 'Show All Movies';
-showAllButton.className = 'show-all-button';
-showAllButton.addEventListener('click', () => {
-    // Reset all filters
-    const searchInput = document.getElementById('search-input');
-    const genreFilter = document.getElementById('genre-filter');
-    const yearFilter = document.getElementById('year-filter');
-    const ratingFilter = document.getElementById('rating-filter');
-    const sortFilter = document.getElementById('sort-filter');
+// Add recommendations functionality
+document.getElementById('recommendations-button').addEventListener('click', function() {
+    const panel = document.getElementById('recommendations-panel');
+    panel.classList.toggle('hidden');
     
-    if (searchInput) searchInput.value = '';
-    if (genreFilter) genreFilter.value = 'all';
-    if (yearFilter) yearFilter.value = 'all';
-    if (ratingFilter) ratingFilter.value = '0';
-    if (sortFilter) sortFilter.value = 'none';
-    
-    // Reset favorites if active
-    const favoritesButton = document.getElementById('favorites-filter');
-    if (favoritesButton && favoritesButton.classList.contains('active')) {
-        favoritesButton.classList.remove('active');
-        showFavoritesOnly = false;
+    if (!panel.classList.contains('hidden')) {
+        generateRecommendations();
     }
-    
-    // Reset the movies grid styles
-    const moviesGrid = document.querySelector('.movies-grid');
-    moviesGrid.style.cssText = `
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 1.5rem;
-        padding: 1.5rem;
-    `;
-    
-    // Show all movies
-    filterMovies();
-    showAllButton.classList.remove('visible');
 });
 
-// Add the button after the movie grid
-const movieGrid = document.querySelector('.movies-grid');
-movieGrid.parentNode.insertBefore(showAllButton, movieGrid.nextSibling);
-
-// Statistics functions
-function calculateMovieStats() {
-    const genreCount = {};
-    const decadeCount = {};
-    let totalMovies = 0;
-
-    movies.forEach(movie => {
-        // Count by genre
-        const genre = movie.genre;
-        genreCount[genre] = (genreCount[genre] || 0) + 1;
-
-        // Count by decade
-        const decade = Math.floor(movie.year / 10) * 10;
-        decadeCount[decade] = (decadeCount[decade] || 0) + 1;
-
-        totalMovies++;
-    });
-
-    return { genreCount, decadeCount, totalMovies };
-}
-
-function createBarChart(data, containerId, maxValue) {
-    const container = document.getElementById(containerId);
-    container.innerHTML = '';
-
-    Object.entries(data).forEach(([key, value]) => {
-        const barContainer = document.createElement('div');
-        barContainer.className = 'stats-bar';
-
-        const label = document.createElement('span');
-        label.className = 'stats-label';
-        label.textContent = key;
-
-        const barFill = document.createElement('div');
-        barFill.className = 'stats-bar-fill';
-        const percentage = (value / maxValue) * 100;
-        barFill.style.width = `${percentage}%`;
-
-        const count = document.createElement('span');
-        count.className = 'stats-count';
-        count.textContent = value;
-
-        barContainer.appendChild(label);
-        barContainer.appendChild(barFill);
-        barContainer.appendChild(count);
-        container.appendChild(barContainer);
-    });
-}
-
-function createTopGenresList(genreCount, containerId) {
-    const container = document.getElementById(containerId);
-    container.innerHTML = '';
-
-    const sortedGenres = Object.entries(genreCount)
-        .sort(([, a], [, b]) => b - a)
-        .slice(0, 5);
-
-    sortedGenres.forEach(([genre, count]) => {
-        const item = document.createElement('div');
-        item.className = 'stats-list-item';
-
-        const name = document.createElement('span');
-        name.className = 'genre-name';
-        name.textContent = genre;
-
-        const countSpan = document.createElement('span');
-        countSpan.className = 'genre-count';
-        countSpan.textContent = count;
-
-        item.appendChild(name);
-        item.appendChild(countSpan);
-        container.appendChild(item);
-    });
-}
-
-function updateStatsPanel() {
-    const { genreCount, decadeCount, totalMovies } = calculateMovieStats();
+function generateRecommendations() {
+    const genreFilter = document.getElementById('rec-genre-filter').value;
+    const decadeFilter = document.getElementById('rec-decade-filter').value;
     
-    // Find max values for scaling
-    const maxGenreCount = Math.max(...Object.values(genreCount));
-    const maxDecadeCount = Math.max(...Object.values(decadeCount));
+    let filteredMovies = [...movies];
+    
+    // Apply filters
+    if (genreFilter !== 'all') {
+        filteredMovies = filteredMovies.filter(movie => movie.genre === genreFilter);
+    }
+    
+    if (decadeFilter !== 'all') {
+        const decade = parseInt(decadeFilter);
+        filteredMovies = filteredMovies.filter(movie => 
+            movie.year >= decade && movie.year < decade + 10
+        );
+    }
+    
+    // Sort by rating
+    filteredMovies.sort((a, b) => b.rating - a.rating);
+    
+    // Take top 5 recommendations
+    const recommendations = filteredMovies.slice(0, 5);
+    
+    // Display recommendations
+    const grid = document.querySelector('.recommendations-grid');
+    grid.innerHTML = '';
+    
+    recommendations.forEach(movie => {
+        const card = createMovieCard(movie);
+        grid.appendChild(card);
+    });
+}
 
-    createBarChart(genreCount, 'genre-stats', maxGenreCount);
-    createBarChart(decadeCount, 'decade-stats', maxDecadeCount);
-    createTopGenresList(genreCount, 'top-genres');
-} 
+// Add event listener for recommendations generation
+document.getElementById('generate-recommendations').addEventListener('click', generateRecommendations);
