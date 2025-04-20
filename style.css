@@ -75,8 +75,8 @@ html {
   column-gap: 1rem;
   max-width: 100%;
   margin: 0 auto;
-  padding: 0 1rem;
 }
+
 
 .grid-item {
   break-inside: avoid;
@@ -267,29 +267,100 @@ footer p {
   line-height: 1;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1024px) {
   .masonry-grid {
-    column-count: 3;
+    column-count: 2;
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 768px) {
   .masonry-grid {
     column-count: 2;
-    column-gap: 0.75rem;
-    padding: 0 0.75rem;
+    column-gap: 0.5rem;
+    padding: 0 1rem;
+  }
+
+  .title-frame img {
+    max-width: 250vw;
+    height: auto;
+  }
+
+  .title-image-frame {
+    width: 250vw;
+    height: auto;
+    aspect-ratio: 4 / 1;
+    background-size: contain;
+    background-position: center;
+  }
+
+  .title-image-frame h1 {
+    font-size: 1rem;
+    padding: 0 1rem;
+    line-height: 1.2;
+  }
+
+  .overlay-content h2 {
+    font-size: 0.6rem;
+  }
+
+  .overlay-content p,
+  .overlay-content ul,
+  .overlay-content li,
+  .overlay-content a {
+    font-size: 0.4rem;
+    line-height: 1.4;
+  }
+
+  .overlay-content .body-text {
+    font-size: 0.4rem;
+    padding: 0 0.5rem;
+    line-height: 1.5;
+  }
+
+  .subtitle-frame {
+    padding: 0.2rem;
+    font-size: 1.1rem;
+  }
+
+  .subtitle {
+    font-size: 0.8rem;
+    line-height: 1.5;
+    padding: 0 0.5rem;
+  }
+
+  .footer-frame {
+    font-size: 0.8rem;
+    padding: 1rem 0.2rem;
+  }
+
+  .dropdown-toggle {
+    font-size: 0.6rem;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .dropdown-menu div {
+    font-size: 0.6rem;
+    padding: 0.6rem 0.75rem;
+  }
+
+  .hover-button {
+    padding: 6px 12px;
+    font-size: 0.6rem;
+  }
+  
+  .hover-button:active {
+    padding: 7px 11px 5px 13px;
+  }
+
+  .hover-text {
+    padding: 0.5rem;
+    line-height: 1.2;
   }
 }
 
 @media (max-width: 480px) {
-  .masonry-grid {
-    column-count: 1;
-    column-gap: 0.5rem;
-    padding: 0 0.5rem;
-  }
-  
-  .grid-item {
-    margin-bottom: 0.5rem;
+  .hover-text {
+    padding: 0.3rem;
   }
 }
 
@@ -352,39 +423,11 @@ footer p {
     filter: brightness(50%);
 }
 
-.license-footer {
-    text-align: center;
-    padding: 1rem;
-    margin-top: 2rem;
-    background: rgba(0, 0, 0, 0.7);
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.license-footer p {
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.license-footer a {
-    color: white;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.3rem;
-}
-
-.license-footer a:hover {
-    text-decoration: underline;
-}
-
-.license-footer img {
-    display: inline;
-    width: auto;
-    margin: 0 2px;
+@media (max-width: 768px) {
+    .fashionistaframe .hover-button,
+    .samframe .hover-button,
+    .paintingframe .hover-button {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+    }
 }
