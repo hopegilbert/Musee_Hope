@@ -206,5 +206,12 @@
 
         <script type="module" src="./movieFunctions.js"></script>
         <script type="module" src="./recommendations.js"></script>
+        <script type="module">
+            import { displayRecommendations } from './recommendations.js';
+
+            document.getElementById('generate-recommendations').addEventListener('click', () => {
+                displayRecommendations();
+            });
+        </script>
     </body>
 </html> 

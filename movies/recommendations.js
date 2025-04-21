@@ -372,16 +372,8 @@ async function displayRecommendations() {
     });
 }
 
-// Make displayRecommendations available globally
-window.displayRecommendations = displayRecommendations;
-
-// Add event listener for the generate recommendations button
-document.getElementById('generate-recommendations').addEventListener('click', displayRecommendations);
-
-// Add event listeners for filter changes to automatically update recommendations
-document.getElementById('rec-genre-filter').addEventListener('change', displayRecommendations);
-document.getElementById('rec-decade-filter').addEventListener('change', displayRecommendations);
-document.getElementById('rec-rating-filter').addEventListener('change', displayRecommendations);
+// Export the displayRecommendations function
+export { displayRecommendations };
 
 // Add close button functionality
 document.querySelector('.close-recommendations').addEventListener('click', function() {
@@ -390,5 +382,10 @@ document.querySelector('.close-recommendations').addEventListener('click', funct
     recommendationsPanel.classList.remove('active');
 });
 
-// Remove direct event listeners since they'll be handled by movieFunctions.js
-// This prevents duplicate listeners and ensures we use the correct function 
+// Add event listeners for filter changes to automatically update recommendations
+document.getElementById('rec-genre-filter').addEventListener('change', displayRecommendations);
+document.getElementById('rec-decade-filter').addEventListener('change', displayRecommendations);
+document.getElementById('rec-rating-filter').addEventListener('change', displayRecommendations);
+
+// Add event listener for the generate recommendations button
+document.getElementById('generate-recommendations').addEventListener('click', displayRecommendations); 
