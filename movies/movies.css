@@ -1133,11 +1133,14 @@ h1 {
     overflow-y: auto;
     z-index: 1001;
     color: white;
-    display: none;
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0s, opacity 0.3s ease;
 }
 
-.stats-panel:not(.hidden) {
-    display: block;
+.stats-panel.hidden {
+    visibility: hidden;
+    opacity: 0;
 }
 
 .stats-header {
@@ -1243,12 +1246,15 @@ h1 {
     bottom: 0;
     background: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(5px);
-    display: none;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.3s ease;
     z-index: 1000;
 }
 
 .stats-overlay.visible {
-    display: block;
+    visibility: visible;
+    opacity: 1;
 }
 
 /* Lucky Button Styles */
