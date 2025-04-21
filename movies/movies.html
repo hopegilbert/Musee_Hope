@@ -55,6 +55,11 @@
 
                 <select id="year-filter" class="filter-select">
                     <option value="all">All Decades</option>
+                    <option value="1930">1930s</option>
+                    <option value="1940">1940s</option>
+                    <option value="1950">1950s</option>
+                    <option value="1960">1960s</option>
+                    <option value="1970">1970s</option>
                     <option value="1980">1980s</option>
                     <option value="1990">1990s</option>
                     <option value="2000">2000s</option>
@@ -147,15 +152,15 @@
 
         <!-- Recommendations Panel -->
         <div class="recommendations-overlay"></div>
-        <div id="recommendations-panel" class="recommendations-panel hidden">
+        <div class="recommendations-panel hidden" id="recommendations-panel">
             <div class="recommendations-header">
                 <h2>Movie Recommendations</h2>
-                <button class="close-recommendations">×</button>
+                <button class="close-recommendations"><i class="fas fa-times"></i></button>
             </div>
-            <div class="recommendations-filters">
-                <div class="filter-group">
-                    <label for="rec-genre-filter">Genre:</label>
-                    <select id="rec-genre-filter">
+            
+            <div class="recommendation-filters">
+                <div class="filter-row">
+                    <select id="rec-genre-filter" class="filter-select">
                         <option value="all">All Genres</option>
                         <option value="Action">Action</option>
                         <option value="Adventure">Adventure</option>
@@ -171,24 +176,17 @@
                         <option value="Thriller">Thriller</option>
                         <option value="War">War</option>
                     </select>
-                </div>
-                <div class="filter-group">
-                    <label for="rec-decade-filter">Decade:</label>
-                    <select id="rec-decade-filter">
+                    
+                    <select id="rec-decade-filter" class="filter-select">
                         <option value="all">All Decades</option>
-                        <option value="2020">2020s</option>
-                        <option value="2010">2010s</option>
-                        <option value="2000">2000s</option>
-                        <option value="1990">1990s</option>
                         <option value="1980">1980s</option>
-                        <option value="1970">1970s</option>
-                        <option value="1960">1960s</option>
-                        <option value="1950">1950s</option>
+                        <option value="1990">1990s</option>
+                        <option value="2000">2000s</option>
+                        <option value="2010">2010s</option>
+                        <option value="2020">2020s</option>
                     </select>
-                </div>
-                <div class="filter-group">
-                    <label for="rec-rating-filter">Rating:</label>
-                    <select id="rec-rating-filter">
+
+                    <select id="rec-rating-filter" class="filter-select">
                         <option value="all">All Ratings</option>
                         <option value="5">★★★★★</option>
                         <option value="4">★★★★☆</option>
@@ -197,15 +195,19 @@
                         <option value="1">★☆☆☆☆</option>
                     </select>
                 </div>
-                <button id="generate-recommendations" class="generate-button">Generate Recommendations</button>
+                
+                <button id="generate-recommendations" class="generate-recommendations">
+                    <i class="fas fa-magic"></i> Generate
+                </button>
             </div>
+            
             <div class="recommendations-grid"></div>
         </div>
+    </div>
 
-        <!-- Scripts -->
-        <script src="movieData.js"></script>
-        <script src="stats.js"></script>
-        <script src="movieFunctions.js"></script>
-        <script type="module" src="recommendations.js"></script>
+    <script type="module" src="./movieFunctions.js"></script>
+    <script type="module" src="./movieData.js"></script>
+    <script type="module" src="./stats.js"></script>
+    <script type="module" src="./recommendations.js"></script>
 </body>
 </html> 
