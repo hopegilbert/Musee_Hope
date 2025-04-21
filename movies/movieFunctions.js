@@ -30,7 +30,7 @@ async function getWatchProviders(movieId) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        return data.results?.US || null;
+        return data.results?.GB || null;
     } catch (error) {
         console.error('Error fetching watch providers:', error);
         return null;

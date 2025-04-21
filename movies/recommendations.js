@@ -61,7 +61,7 @@ async function fetchRecommendations(genre, year, rating, page = 1, allResults = 
         include_adult: false,
         with_original_language: 'en',
         'vote_count.gte': '100', // Ensure quality results
-        region: 'US'
+        region: 'GB'
     });
 
     // Add genre filter if specified
@@ -183,7 +183,7 @@ async function getWatchProviders(movieId) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        return data.results?.US || null;
+        return data.results?.GB || null;
     } catch (error) {
         console.error('Error fetching watch providers:', error);
         return null;
