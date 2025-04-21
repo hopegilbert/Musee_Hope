@@ -1398,24 +1398,6 @@ h1 {
 }
 
 /* Recommendations Panel Styles */
-.recommendations-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.6);
-    display: none;
-    z-index: 999;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.recommendations-overlay.active {
-    opacity: 1;
-    pointer-events: auto;
-}
-
 .recommendations-panel {
     position: fixed;
     top: 0;
@@ -1425,12 +1407,11 @@ h1 {
     max-width: 90%;
     background-color: var(--modal-background);
     color: white;
-    display: none;
     z-index: 1000;
     overflow-y: auto;
-    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.5);
     transform: translateX(100%);
     transition: transform 0.3s ease-in-out;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .recommendations-panel.active {
@@ -1439,6 +1420,24 @@ h1 {
 
 .recommendations-panel.hidden {
     display: none;
+}
+
+.recommendations-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.recommendations-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
 }
 
 .recommendations-filters {

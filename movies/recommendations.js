@@ -355,30 +355,30 @@ function hideRecommendations() {
 
 // Event Listeners
 document.addEventListener('DOMContentLoaded', () => {
-    const recommendationsBtn = document.querySelector('.recommendations-button');
-    const closeBtn = document.querySelector('.close-recommendations');
-    const overlay = document.querySelector('.recommendations-overlay');
-    const panel = document.querySelector('.recommendations-panel');
+    const recommendationsButton = document.getElementById('recommendations-button');
+    const recommendationsPanel = document.querySelector('.recommendations-panel');
+    const recommendationsOverlay = document.querySelector('.recommendations-overlay');
+    const closeButton = document.querySelector('.close-recommendations');
 
-    if (recommendationsBtn) {
-        recommendationsBtn.addEventListener('click', () => {
-            console.log('Recommendations button clicked');
-            showRecommendations();
-        });
-    }
+    recommendationsButton.addEventListener('click', () => {
+        recommendationsOverlay.classList.add('active');
+        recommendationsPanel.classList.remove('hidden');
+        setTimeout(() => {
+            recommendationsPanel.classList.add('active');
+        }, 10);
+    });
 
-    if (closeBtn) {
-        closeBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            hideRecommendations();
-        });
-    }
+    closeButton.addEventListener('click', () => {
+        recommendationsPanel.classList.remove('active');
+        setTimeout(() => {
+            recommendationsPanel.classList.add('hidden');
+            recommendationsOverlay.classList.remove('active');
+        }, 300);
+    });
 
-    if (overlay) {
-        overlay.addEventListener('click', (e) => {
-            if (e.target === overlay) {
-                hideRecommendations();
-            }
-        });
-    }
+    recommendationsOverlay.addEventListener('click', (e) => {
+        if (e.target === recommendationsOverlay) {
+            closeButton.click();
+        }
+    });
 });
