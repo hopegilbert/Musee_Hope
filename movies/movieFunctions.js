@@ -125,99 +125,81 @@ function createMovieCard(movie) {
     const backContent = document.createElement('div');
     backContent.className = 'back-content';
 
-    const backTitle = document.createElement('h3');
-    backTitle.textContent = movie.title;
-
-    const ratingNumber = document.createElement('span');
-    ratingNumber.className = 'rating-number';
-    ratingNumber.textContent = movie.rating.toFixed(1);
-    backTitle.appendChild(ratingNumber);
-
-    const backDateGenreRow = document.createElement('div');
-    backDateGenreRow.className = 'back-date-genre-row';
-
-    const backYearDisplay = document.createElement('span');
-    backYearDisplay.className = `year-display decade-${decade}s`;
-    backYearDisplay.textContent = movie.year;
-
-    const backGenreBadges = genreBadges.cloneNode(true);
-
-    // Create trailer button
-    if (movie.trailerUrl) {
-        const trailerButton = document.createElement('a');
-        trailerButton.href = movie.trailerUrl;
-        trailerButton.target = '_blank';
-        trailerButton.className = 'trailer-button';
-        trailerButton.innerHTML = '<img src="images/trailer-icon.png" alt="Watch Trailer">';
-        backDateGenreRow.appendChild(trailerButton);
+    // Title and rating row
+    const titleRow = document.createElement('h3');
+    titleRow.textContent = movie.title;
+    if (movie.rating) {
+        const ratingSpan = document.createElement('span');
+        ratingSpan.className = 'rating-number';
+        ratingSpan.textContent = `${movie.rating}/10`;
+        titleRow.appendChild(ratingSpan);
     }
+    backContent.appendChild(titleRow);
 
-    backDateGenreRow.appendChild(backYearDisplay);
-    backDateGenreRow.appendChild(backGenreBadges);
+    // Date and genre row
+    const dateGenreRowBack = document.createElement('div');
+    dateGenreRowBack.className = 'back-date-genre-row';
+    
+    const yearSpanBack = document.createElement('span');
+    yearSpanBack.textContent = movie.year;
+    dateGenreRowBack.appendChild(yearSpanBack);
 
+    const genreBadgesBack = genreBadges.cloneNode(true);
+    dateGenreRowBack.appendChild(genreBadgesBack);
+    backContent.appendChild(dateGenreRowBack);
+
+    // Scrollable content container
+    const scrollableContent = document.createElement('div');
+    scrollableContent.className = 'scrollable-content';
+
+    // Review section
     const reviewSection = document.createElement('div');
     reviewSection.className = 'review-section';
-
+    
     const reviewHeading = document.createElement('h4');
-    reviewHeading.textContent = 'Review';
     reviewHeading.className = 'review-heading';
+    reviewHeading.textContent = 'Review';
+    reviewSection.appendChild(reviewHeading);
 
     const reviewText = document.createElement('p');
     reviewText.className = 'review-text';
     reviewText.textContent = movie.review || 'No review available.';
-
-    reviewSection.appendChild(reviewHeading);
     reviewSection.appendChild(reviewText);
+    
+    scrollableContent.appendChild(reviewSection);
 
-    // Add watch providers section
+    // Watch providers section
     const watchProvidersSection = document.createElement('div');
     watchProvidersSection.className = 'watch-providers';
-
-    const watchProvidersHeading = document.createElement('h4');
-    watchProvidersHeading.textContent = 'Where to Watch';
-    watchProvidersHeading.className = 'watch-providers-heading';
+    
+    const providersHeading = document.createElement('h4');
+    providersHeading.className = 'watch-providers-heading';
+    providersHeading.textContent = 'Watch On';
+    watchProvidersSection.appendChild(providersHeading);
 
     const providersGrid = document.createElement('div');
     providersGrid.className = 'providers-grid';
 
-    // Fetch and add watch providers
-    if (movie.watchProviders) {
-        const allProviders = [...(movie.watchProviders.flatrate || []), ...(movie.watchProviders.free || []), ...(movie.watchProviders.ads || [])];
-        if (allProviders.length > 0) {
-            allProviders.forEach(provider => {
-                const providerLink = document.createElement('a');
-                providerLink.href = movie.watchProviders.link;
-                providerLink.target = '_blank';
-                providerLink.title = provider.provider_name;
-
-                const providerLogo = document.createElement('img');
-                providerLogo.src = `https://image.tmdb.org/t/p/original${provider.logo_path}`;
-                providerLogo.alt = provider.provider_name;
-                providerLogo.className = 'provider-logo';
-
-                providerLink.appendChild(providerLogo);
-                providersGrid.appendChild(providerLink);
-            });
-        } else {
-            const noProviders = document.createElement('p');
-            noProviders.className = 'no-providers';
-            noProviders.textContent = 'No streaming providers available';
-            providersGrid.appendChild(noProviders);
-        }
+    if (movie.watchProviders && movie.watchProviders.length > 0) {
+        movie.watchProviders.forEach(provider => {
+            const providerImg = document.createElement('img');
+            providerImg.className = 'provider-logo';
+            providerImg.src = provider.logo_path;
+            providerImg.alt = provider.provider_name;
+            providerImg.title = provider.provider_name;
+            providersGrid.appendChild(providerImg);
+        });
     } else {
         const noProviders = document.createElement('p');
         noProviders.className = 'no-providers';
-        noProviders.textContent = 'No streaming providers available';
+        noProviders.textContent = 'No streaming information available';
         providersGrid.appendChild(noProviders);
     }
 
-    watchProvidersSection.appendChild(watchProvidersHeading);
     watchProvidersSection.appendChild(providersGrid);
+    scrollableContent.appendChild(watchProvidersSection);
 
-    backContent.appendChild(backTitle);
-    backContent.appendChild(backDateGenreRow);
-    backContent.appendChild(reviewSection);
-    backContent.appendChild(watchProvidersSection);
+    backContent.appendChild(scrollableContent);
     
     cardBack.appendChild(backContent);
 
@@ -615,127 +597,4 @@ function resetFilters() {
 document.getElementById('favorites-button').addEventListener('click', function() {
     this.classList.toggle('active');
     filterMovies();
-});
-
-// Function to display recommendations
-function displayRecommendations(recommendations) {
-    const recommendationsGrid = document.querySelector('.recommendations-grid');
-    recommendationsGrid.innerHTML = '';
-    
-    if (recommendations.length === 0) {
-        const noResults = document.createElement('p');
-        noResults.className = 'no-results';
-        noResults.textContent = 'No recommendations found. Try adjusting your filters.';
-        recommendationsGrid.appendChild(noResults);
-        return;
-    }
-    
-    recommendations.forEach(movie => {
-        const card = createMovieCard(movie);
-        recommendationsGrid.appendChild(card);
-    });
-}
-
-// Function to generate recommendations
-async function generateRecommendations() {
-    const recGenreFilter = document.getElementById('rec-genre-filter').value;
-    const recYearFilter = document.getElementById('rec-year-filter').value;
-    const recRatingFilter = document.getElementById('rec-rating-filter').value;
-    
-    // Show loading state
-    const recommendationsGrid = document.querySelector('.recommendations-grid');
-    recommendationsGrid.innerHTML = '<div class="loading">Loading recommendations...</div>';
-    
-    try {
-        // Fetch recommendations from TMDB API
-        const response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${TMDB_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${recGenreFilter}&primary_release_year=${recYearFilter}&vote_average.gte=${recRatingFilter}`);
-        const data = await response.json();
-        
-        if (data.results && data.results.length > 0) {
-            const recommendations = await Promise.all(
-                data.results.slice(0, 10).map(async movie => ({
-                    title: movie.title,
-                    year: new Date(movie.release_date).getFullYear(),
-                    genre: movie.genre_ids[0] ? getGenreName(movie.genre_ids[0]) : 'Unknown',
-                    rating: movie.vote_average / 2,
-                    poster: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
-                    review: movie.overview,
-                    watchProviders: await fetchWatchProviders(movie.id)
-                }))
-            );
-            
-            displayRecommendations(recommendations);
-        } else {
-            displayRecommendations([]);
-        }
-    } catch (error) {
-        console.error('Error fetching recommendations:', error);
-        recommendationsGrid.innerHTML = '<div class="error">Error loading recommendations. Please try again.</div>';
-    }
-}
-
-// Function to fetch watch providers for a movie
-async function fetchWatchProviders(movieId) {
-    try {
-        const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/watch/providers?api_key=${TMDB_API_KEY}`);
-        const data = await response.json();
-        
-        if (data.results && data.results.US) {
-            return {
-                link: data.results.US.link,
-                flatrate: data.results.US.flatrate || [],
-                free: data.results.US.free || [],
-                ads: data.results.US.ads || []
-            };
-        }
-        return null;
-    } catch (error) {
-        console.error('Error fetching watch providers:', error);
-        return null;
-    }
-}
-
-// Function to get genre name from ID
-function getGenreName(genreId) {
-    const genreMap = {
-        28: 'Action',
-        12: 'Adventure',
-        16: 'Animation',
-        35: 'Comedy',
-        80: 'Crime',
-        99: 'Documentary',
-        18: 'Drama',
-        10751: 'Family',
-        14: 'Fantasy',
-        36: 'History',
-        27: 'Horror',
-        10402: 'Music',
-        9648: 'Mystery',
-        10749: 'Romance',
-        878: 'Science Fiction',
-        10770: 'TV Movie',
-        53: 'Thriller',
-        10752: 'War',
-        37: 'Western'
-    };
-    return genreMap[genreId] || 'Unknown';
-}
-
-// Add event listeners
-document.addEventListener('DOMContentLoaded', () => {
-    // ... existing event listeners ...
-    
-    // Recommendations panel event listeners
-    const generateRecsButton = document.getElementById('generate-recommendations');
-    if (generateRecsButton) {
-        generateRecsButton.addEventListener('click', generateRecommendations);
-    }
-    
-    const recFilters = ['rec-genre-filter', 'rec-year-filter', 'rec-rating-filter'];
-    recFilters.forEach(filterId => {
-        const filter = document.getElementById(filterId);
-        if (filter) {
-            filter.addEventListener('change', generateRecommendations);
-        }
-    });
 });
