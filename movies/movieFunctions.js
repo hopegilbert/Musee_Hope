@@ -1,6 +1,8 @@
 // Import movies data
 import { movies } from './movieData.js';
 
+console.log('Movies data loaded:', movies);
+
 // Create a single IntersectionObserver instance for all cards
 const imageObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
@@ -198,6 +200,7 @@ function updateResultsCount(count) {
 
 // Function to filter movies based on selected criteria
 async function filterMovies() {
+    console.log('filterMovies called');
     const searchInput = document.getElementById('search-input');
     const genreFilter = document.getElementById('genre-filter').value;
     const yearFilter = document.getElementById('year-filter').value;
@@ -206,6 +209,15 @@ async function filterMovies() {
     const searchTerm = searchInput ? searchInput.value.toLowerCase().trim() : '';
     const moviesGrid = document.querySelector('.movies-grid');
     const showFavorites = document.getElementById('favorites-button').classList.contains('active');
+
+    console.log('Current filters:', {
+        searchTerm,
+        genreFilter,
+        yearFilter,
+        ratingFilter,
+        sortFilter,
+        showFavorites
+    });
 
     // Clear existing movies and show loading state
     moviesGrid.classList.add('loading');
@@ -240,6 +252,8 @@ async function filterMovies() {
         return matchesSearch && matchesGenre && matchesYear && matchesRating && matchesFavorites;
     });
 
+    console.log('Filtered movies:', filteredMovies);
+
     // Sort movies if needed
     if (sortFilter !== 'none') {
         const sortFunctions = {
@@ -268,6 +282,8 @@ async function filterMovies() {
         moviesGrid.appendChild(noResults);
     }
 
+    console.log('Movies displayed:', filteredMovies.length);
+
     // Remove loading state
     moviesGrid.classList.remove('loading');
 }
@@ -285,10 +301,27 @@ function debounce(func, wait) {
     };
 }
 
+// Function to preload movie images
+async function preloadImages(movies) {
+    console.log('Preloading images for', movies.length, 'movies');
+    const imagePromises = movies.map(movie => {
+        return new Promise((resolve, reject) => {
+            const img = new Image();
+            img.onload = () => resolve(movie.poster);
+            img.onerror = () => {
+                console.warn(`Failed to load image for ${movie.title}`);
+                resolve(null);
+            };
+            img.src = movie.poster;
+        });
+    });
+    return Promise.all(imagePromises);
+}
+
 // Set up event listeners
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize movie grid
-    const movieGrid = document.getElementById('movie-grid');
+    const movieGrid = document.querySelector('.movies-grid');
     if (!movieGrid) return;
 
     // Set up event listeners for filters
@@ -332,6 +365,9 @@ document.addEventListener('DOMContentLoaded', () => {
     preloadImages(movies).catch(error => {
         console.error('Error preloading images:', error);
     });
+
+    // Display initial set of movies
+    filterMovies();
 });
 
 // Add random movie functionality
