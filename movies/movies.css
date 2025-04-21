@@ -1544,6 +1544,24 @@ h1 {
 }
 
 /* Recommendations Panel Styles */
+.recommendations-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.recommendations-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
 .recommendations-panel {
     position: fixed;
     top: 0;
@@ -1551,12 +1569,17 @@ h1 {
     height: 100vh;
     width: 400px;
     background-color: var(--primary-color);
-    border-left: 1px solid var(--accent-yellow);
+    border-left: 2px solid var(--accent-yellow);
     padding: 1.5rem;
     z-index: 1000;
+    transform: translateX(100%);
     transition: transform 0.3s ease;
     display: flex;
     flex-direction: column;
+}
+
+.recommendations-panel.active {
+    transform: translateX(0);
 }
 
 .recommendations-panel.hidden {

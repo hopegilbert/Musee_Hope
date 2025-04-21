@@ -15,23 +15,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Add recommendations panel functionality
     const recommendationsButton = document.getElementById('recommendations-button');
+    const recommendationsPanel = document.getElementById('recommendations-panel');
+    const recommendationsOverlay = document.querySelector('.recommendations-overlay');
     console.log('Recommendations button:', recommendationsButton);
     
     recommendationsButton.addEventListener('click', function () {
         console.log('Recommendations button clicked');
-        const recommendationsPanel = document.getElementById('recommendations-panel');
-        recommendationsPanel.classList.toggle('hidden');
-        recommendationsPanel.classList.toggle('active');
+        recommendationsPanel.classList.remove('hidden');
+        recommendationsOverlay.classList.add('active');
+        setTimeout(() => {
+            recommendationsPanel.classList.add('active');
+        }, 10);
     });
 
     // Add close button functionality
     const closeButton = document.querySelector('.close-recommendations');
-    closeButton.addEventListener('click', function() {
-        console.log('Close button clicked');
-        const recommendationsPanel = document.getElementById('recommendations-panel');
-        recommendationsPanel.classList.add('hidden');
-        recommendationsPanel.classList.remove('active');
+    closeButton.addEventListener('click', closeRecommendations);
+
+    // Close when clicking overlay
+    recommendationsOverlay.addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeRecommendations();
+        }
     });
+
+    function closeRecommendations() {
+        console.log('Closing recommendations panel');
+        recommendationsPanel.classList.remove('active');
+        recommendationsOverlay.classList.remove('active');
+        setTimeout(() => {
+            recommendationsPanel.classList.add('hidden');
+        }, 300);
+    }
 
     // Add event listeners for filter changes
     document.getElementById('rec-genre-filter').addEventListener('change', displayRecommendations);
