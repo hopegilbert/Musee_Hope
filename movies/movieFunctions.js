@@ -226,8 +226,14 @@ async function filterMovies() {
         const matchesYear = yearFilter === 'all' || 
             Math.floor(movie.year / 10) * 10 === parseInt(yearFilter);
 
-        const matchesRating = ratingFilter === 'all' || 
-            Math.floor(movie.rating) === parseInt(ratingFilter);
+        // Rating filter logic with exact ranges
+        let matchesRating = true;
+        if (ratingFilter !== 'all') {
+            const ratingValue = parseInt(ratingFilter);
+            const minRating = ratingValue;
+            const maxRating = ratingValue + 0.9;
+            matchesRating = movie.rating >= minRating && movie.rating < maxRating;
+        }
 
         const matchesFavorites = !showFavorites || movie.favourite === true;
         
@@ -288,6 +294,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('search-input');
     const genreFilter = document.getElementById('genre-filter');
     const yearFilter = document.getElementById('year-filter');
+    const ratingFilter = document.getElementById('rating-filter');
     const sortFilter = document.getElementById('sort-filter');
 
     if (searchInput) {
@@ -298,6 +305,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     if (yearFilter) {
         yearFilter.addEventListener('change', filterMovies);
+    }
+    if (ratingFilter) {
+        ratingFilter.addEventListener('change', filterMovies);
     }
     if (sortFilter) {
         sortFilter.addEventListener('change', filterMovies);
@@ -316,20 +326,36 @@ document.addEventListener('DOMContentLoaded', () => {
     recommendationsOverlay.className = 'recommendations-overlay hidden';
     document.body.appendChild(recommendationsOverlay);
 
-    recommendationsButton.addEventListener('click', () => {
-        recommendationsPanel.classList.remove('hidden');
-        recommendationsOverlay.classList.remove('hidden');
-    });
+    if (recommendationsButton && recommendationsPanel) {
+        recommendationsButton.addEventListener('click', () => {
+            recommendationsPanel.classList.remove('hidden');
+            recommendationsOverlay.classList.remove('hidden');
+            recommendationsOverlay.classList.add('visible');
+            // Generate initial recommendations
+            displayRecommendations();
+        });
 
-    closeRecommendations.addEventListener('click', () => {
-        recommendationsPanel.classList.add('hidden');
-        recommendationsOverlay.classList.add('hidden');
-    });
+        closeRecommendations.addEventListener('click', () => {
+            recommendationsPanel.classList.add('hidden');
+            recommendationsOverlay.classList.add('hidden');
+            recommendationsOverlay.classList.remove('visible');
+        });
 
-    recommendationsOverlay.addEventListener('click', () => {
-        recommendationsPanel.classList.add('hidden');
-        recommendationsOverlay.classList.add('hidden');
-    });
+        recommendationsOverlay.addEventListener('click', () => {
+            recommendationsPanel.classList.add('hidden');
+            recommendationsOverlay.classList.add('hidden');
+            recommendationsOverlay.classList.remove('visible');
+        });
+
+        // Close panel when pressing Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                recommendationsPanel.classList.add('hidden');
+                recommendationsOverlay.classList.add('hidden');
+                recommendationsOverlay.classList.remove('visible');
+            }
+        });
+    }
 });
 
 // Add random movie functionality
@@ -382,25 +408,8 @@ document.getElementById('lucky-button').addEventListener('click', function() {
     }, 1500);
 });
 
-// Add recommendations functionality
-document.getElementById('recommendations-button').addEventListener('click', function() {
-    const recommendationsPanel = document.getElementById('recommendations-panel');
-    recommendationsPanel.classList.toggle('hidden');
-    recommendationsPanel.classList.toggle('active');
-    
-    if (recommendationsPanel.classList.contains('active')) {
-        // This function is now handled in recommendations.js
-    }
-});
-
 // Add event listener for recommendations generation
 document.getElementById('generate-recommendations').addEventListener('click', generateRecommendations);
-
-// Add event listener for filters
-document.getElementById('genre-filter').addEventListener('change', filterMovies);
-document.getElementById('year-filter').addEventListener('change', filterMovies);
-document.getElementById('rating-filter').addEventListener('change', filterMovies);
-document.getElementById('sort-filter').addEventListener('change', filterMovies);
 
 // Add event listener for reset filters button
 document.getElementById('reset-filters').addEventListener('click', resetFilters);

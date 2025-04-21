@@ -1407,6 +1407,8 @@ h1 {
     background: rgba(0, 0, 0, 0.8);
     z-index: 999;
     display: none;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
 }
 
 .recommendations-overlay.visible {
@@ -1422,14 +1424,10 @@ h1 {
     background: var(--primary-color);
     box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
     padding: 1.5rem;
-    transform: translateX(100%);
-    transition: transform 0.3s ease-in-out;
     z-index: 1000;
     overflow-y: auto;
-}
-
-.recommendations-panel.hidden {
-    display: none;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
 }
 
 .recommendations-panel:not(.hidden) {
@@ -2088,6 +2086,10 @@ h1 {
         width: 100%;
         height: 100vh;
         padding: 1rem;
+    }
+
+    .recommendations-overlay {
+        background: rgba(0, 0, 0, 0.9);
     }
 
     .recommendations-header h2 {
