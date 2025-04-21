@@ -148,8 +148,23 @@ const imageObserver = new IntersectionObserver((entries, observer) => {
     threshold: 0.1
 });
 
+// Function to get watch providers for a movie
+async function getWatchProviders(movieId) {
+    try {
+        const response = await fetch(`${TMDB_BASE_URL}/movie/${movieId}/watch/providers?api_key=${TMDB_API_KEY}`);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        return data.results?.US || null;
+    } catch (error) {
+        console.error('Error fetching watch providers:', error);
+        return null;
+    }
+}
+
 // Function to create a recommendation card
-function createRecommendationCard(movie) {
+async function createRecommendationCard(movie) {
     const card = document.createElement('div');
     card.className = 'movie-card';
 
@@ -254,7 +269,7 @@ function createRecommendationCard(movie) {
         53: 'Thriller',
         10752: 'War'
     };
-    
+
     if (movie.genre_ids && movie.genre_ids.length > 0) {
         const genreName = genreMap[movie.genre_ids[0]] || 'Other';
         const badge = document.createElement('span');
@@ -291,10 +306,7 @@ function createRecommendationCard(movie) {
     const backDateGenreRow = document.createElement('div');
     backDateGenreRow.className = 'back-date-genre-row';
 
-    const backYearDisplay = document.createElement('span');
-    backYearDisplay.className = `year-display decade-${Math.floor(year / 10) * 10}s`;
-    backYearDisplay.textContent = year;
-
+    const backYearDisplay = yearDisplay.cloneNode(true);
     const backGenreBadges = genreBadges.cloneNode(true);
 
     backDateGenreRow.appendChild(backYearDisplay);
@@ -314,21 +326,67 @@ function createRecommendationCard(movie) {
     reviewSection.appendChild(reviewHeading);
     reviewSection.appendChild(reviewText);
 
+    // Add watch providers section
+    const watchProvidersSection = document.createElement('div');
+    watchProvidersSection.className = 'watch-providers';
+
+    const watchProvidersHeading = document.createElement('h4');
+    watchProvidersHeading.textContent = 'Where to Watch';
+    watchProvidersHeading.className = 'watch-providers-heading';
+
+    const providersGrid = document.createElement('div');
+    providersGrid.className = 'providers-grid';
+
+    // Fetch and add watch providers
+    const watchProviders = await getWatchProviders(movie.id);
+    if (watchProviders) {
+        const allProviders = [...(watchProviders.flatrate || []), ...(watchProviders.free || []), ...(watchProviders.ads || [])];
+        if (allProviders.length > 0) {
+            allProviders.forEach(provider => {
+                const providerLink = document.createElement('a');
+                providerLink.href = watchProviders.link;
+                providerLink.target = '_blank';
+                providerLink.title = provider.provider_name;
+
+                const providerLogo = document.createElement('img');
+                providerLogo.src = `https://image.tmdb.org/t/p/original${provider.logo_path}`;
+                providerLogo.alt = provider.provider_name;
+                providerLogo.className = 'provider-logo';
+
+                providerLink.appendChild(providerLogo);
+                providersGrid.appendChild(providerLink);
+            });
+        } else {
+            const noProviders = document.createElement('p');
+            noProviders.className = 'no-providers';
+            noProviders.textContent = 'No streaming providers available';
+            providersGrid.appendChild(noProviders);
+        }
+    } else {
+        const noProviders = document.createElement('p');
+        noProviders.className = 'no-providers';
+        noProviders.textContent = 'No streaming providers available';
+        providersGrid.appendChild(noProviders);
+    }
+
+    watchProvidersSection.appendChild(watchProvidersHeading);
+    watchProvidersSection.appendChild(providersGrid);
+
     backContent.appendChild(backTitle);
     backContent.appendChild(backDateGenreRow);
     backContent.appendChild(reviewSection);
+    backContent.appendChild(watchProvidersSection);
     
     cardBack.appendChild(backContent);
 
     card.appendChild(cardFront);
     card.appendChild(cardBack);
 
-    // Simplified click handling
+    // Add click handlers
     function handleClick(e) {
         card.classList.toggle('flipped');
     }
 
-    // Add click handlers to both front and back
     cardFront.addEventListener('click', handleClick);
     cardBack.addEventListener('click', handleClick);
 
@@ -341,34 +399,36 @@ async function displayRecommendations() {
     const year = document.getElementById('rec-year-filter').value;
     const rating = document.getElementById('rec-rating-filter').value;
     
-    console.log('Filters:', { genre, year, rating }); // Debug log
+    const grid = document.querySelector('.recommendations-grid');
+    grid.innerHTML = '';
     
-    const recommendationsGrid = document.querySelector('.recommendations-grid');
-    recommendationsGrid.innerHTML = '<p>Loading recommendations...</p>';
+    // Show loading state
+    const loading = document.createElement('div');
+    loading.className = 'loading';
+    grid.appendChild(loading);
     
-    let allRecommendations = [];
-    let page = 1;
-    let maxPages = 5;
-    
-    while (page <= maxPages && allRecommendations.length < 20) {
-        const recommendations = await fetchRecommendations(genre, year, rating, page);
-        allRecommendations = [...allRecommendations, ...recommendations];
-        if (recommendations.length === 0) break;
-        page++;
+    try {
+        const recommendations = await fetchRecommendations(genre, year, rating);
+        
+        grid.innerHTML = '';
+        
+        if (recommendations.length === 0) {
+            grid.innerHTML = '<p class="no-results">No movies found matching your criteria</p>';
+            return;
+        }
+        
+        // Take top 5 recommendations
+        const topRecommendations = recommendations.slice(0, 5);
+        
+        // Create and append cards
+        for (const movie of topRecommendations) {
+            const card = await createRecommendationCard(movie);
+            grid.appendChild(card);
+        }
+    } catch (error) {
+        console.error('Error displaying recommendations:', error);
+        grid.innerHTML = '<p class="no-results">Error loading recommendations. Please try again.</p>';
     }
-    
-    console.log('Final recommendations count:', allRecommendations.length); // Debug log
-    
-    if (allRecommendations.length === 0) {
-        recommendationsGrid.innerHTML = '<p>No recommendations found. Try different filters.</p>';
-        return;
-    }
-    
-    recommendationsGrid.innerHTML = '';
-    allRecommendations.slice(0, 20).forEach(movie => {
-        const card = createRecommendationCard(movie);
-        recommendationsGrid.appendChild(card);
-    });
 }
 
 // Export the displayRecommendations function
