@@ -1,10 +1,9 @@
 # API Keys and sensitive data
-config.js
 .env
 .env.local
 .env.*.local
 movies/.env
-movies/config.js
+!movies/config.js
 
 # OS generated files
 .DS_Store
@@ -23,4 +22,3 @@ Thumbs.db
 
 # Node modules
 node_modules/
-
