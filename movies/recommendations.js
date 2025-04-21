@@ -229,7 +229,8 @@ async function createRecommendationCard(movie) {
     const filledStars = document.createElement('div');
     filledStars.className = 'filled-stars';
     const rating = movie.vote_average; // Keep the 10-point scale
-    const starCount = rating / 2; // Convert to 5-star scale for display
+    const fivePointRating = rating / 2; // Convert to 5-point scale for display
+    const starCount = fivePointRating; // Use for star display
     const fullStars = Math.floor(starCount);
     const decimalPart = starCount % 1;
     
@@ -310,10 +311,10 @@ async function createRecommendationCard(movie) {
     const backTitle = document.createElement('h3');
     backTitle.textContent = movie.title;
 
-    // Update rating number to show 10-point scale
+    // Update rating number to show 5-point scale
     const ratingNumber = document.createElement('span');
     ratingNumber.className = 'rating-number';
-    ratingNumber.textContent = `${rating.toFixed(1)}/10`;
+    ratingNumber.textContent = `${fivePointRating.toFixed(1)}/5`;
     backTitle.appendChild(ratingNumber);
 
     const backDateGenreRow = document.createElement('div');
