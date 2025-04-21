@@ -1,6 +1,10 @@
 // Import movies data
 import { movies } from './movieData.js';
 
+// Import TMDB configuration at the top of the file
+import { TMDB_API_KEY } from './config.js';
+const TMDB_BASE_URL = 'https://api.themoviedb.org/3';
+
 // Create a single IntersectionObserver instance for all cards
 const imageObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
@@ -17,6 +21,37 @@ const imageObserver = new IntersectionObserver((entries, observer) => {
     rootMargin: '100px 0px',
     threshold: 0.1
 });
+
+// Add getWatchProviders function
+async function getWatchProviders(movieId) {
+    try {
+        const response = await fetch(`${TMDB_BASE_URL}/movie/${movieId}/watch/providers?api_key=${TMDB_API_KEY}`);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        return data.results?.US || null;
+    } catch (error) {
+        console.error('Error fetching watch providers:', error);
+        return null;
+    }
+}
+
+// Add searchMovieId function
+async function searchMovieId(title, year) {
+    try {
+        const response = await fetch(`${TMDB_BASE_URL}/search/movie?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(title)}&year=${year}`);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        // Return the first result's ID if we have a match
+        return data.results?.[0]?.id || null;
+    } catch (error) {
+        console.error('Error searching for movie ID:', error);
+        return null;
+    }
+}
 
 function createMovieCard(movie) {
     const card = document.createElement('div');
@@ -131,7 +166,7 @@ function createMovieCard(movie) {
     if (movie.rating) {
         const ratingSpan = document.createElement('span');
         ratingSpan.className = 'rating-number';
-        ratingSpan.textContent = `${movie.rating}/10`;
+        ratingSpan.textContent = movie.rating;
         titleRow.appendChild(ratingSpan);
     }
     backContent.appendChild(titleRow);
@@ -174,27 +209,53 @@ function createMovieCard(movie) {
     
     const providersHeading = document.createElement('h4');
     providersHeading.className = 'watch-providers-heading';
-    providersHeading.textContent = 'Watch On';
+    providersHeading.textContent = 'Where to Watch';
     watchProvidersSection.appendChild(providersHeading);
 
     const providersGrid = document.createElement('div');
     providersGrid.className = 'providers-grid';
 
-    if (movie.watchProviders && movie.watchProviders.length > 0) {
-        movie.watchProviders.forEach(provider => {
-            const providerImg = document.createElement('img');
-            providerImg.className = 'provider-logo';
-            providerImg.src = provider.logo_path;
-            providerImg.alt = provider.provider_name;
-            providerImg.title = provider.provider_name;
-            providersGrid.appendChild(providerImg);
-        });
-    } else {
-        const noProviders = document.createElement('p');
-        noProviders.className = 'no-providers';
-        noProviders.textContent = 'No streaming information available';
-        providersGrid.appendChild(noProviders);
-    }
+    // Search for movie ID using title and year
+    searchMovieId(movie.title, movie.year).then(tmdbId => {
+        if (tmdbId) {
+            getWatchProviders(tmdbId).then(watchProviders => {
+                if (watchProviders) {
+                    const allProviders = [...(watchProviders.flatrate || []), ...(watchProviders.free || []), ...(watchProviders.ads || [])];
+                    if (allProviders.length > 0) {
+                        allProviders.forEach(provider => {
+                            const providerLink = document.createElement('a');
+                            providerLink.href = watchProviders.link;
+                            providerLink.target = '_blank';
+                            providerLink.title = provider.provider_name;
+
+                            const providerLogo = document.createElement('img');
+                            providerLogo.src = `https://image.tmdb.org/t/p/original${provider.logo_path}`;
+                            providerLogo.alt = provider.provider_name;
+                            providerLogo.className = 'provider-logo';
+
+                            providerLink.appendChild(providerLogo);
+                            providersGrid.appendChild(providerLink);
+                        });
+                    } else {
+                        const noProviders = document.createElement('p');
+                        noProviders.className = 'no-providers';
+                        noProviders.textContent = 'No streaming providers available';
+                        providersGrid.appendChild(noProviders);
+                    }
+                } else {
+                    const noProviders = document.createElement('p');
+                    noProviders.className = 'no-providers';
+                    noProviders.textContent = 'No streaming providers available';
+                    providersGrid.appendChild(noProviders);
+                }
+            });
+        } else {
+            const noProviders = document.createElement('p');
+            noProviders.className = 'no-providers';
+            noProviders.textContent = 'No streaming information available';
+            providersGrid.appendChild(noProviders);
+        }
+    });
 
     watchProvidersSection.appendChild(providersGrid);
     scrollableContent.appendChild(watchProvidersSection);
