@@ -141,33 +141,43 @@ function normalizeTitle(title) {
         .trim();
 }
 
-// Function to check if a title is a duplicate using fuzzy matching
+// Function to check if a title is a duplicate using strict matching
 function isDuplicate(normalizedTitle, libraryTitles) {
-    // If the title is very short, require a more exact match
-    if (normalizedTitle.length < 4) {
-        return [...libraryTitles].some(title => title === normalizedTitle);
-    }
-    
-    return [...libraryTitles].some(title => {
-        // Check if either title contains the other
-        if (normalizedTitle.includes(title) || title.includes(normalizedTitle)) {
+    return [...libraryTitles].some(libraryTitle => {
+        // Direct match
+        if (normalizedTitle === libraryTitle) {
             return true;
         }
         
-        // Check for significant word overlap
-        const titleWords = new Set(normalizedTitle.split(' '));
-        const libraryWords = new Set(title.split(' '));
-        const commonWords = [...titleWords].filter(word => libraryWords.has(word));
+        // Check if the titles are substrings of each other
+        if (normalizedTitle.includes(libraryTitle) || libraryTitle.includes(normalizedTitle)) {
+            return true;
+        }
         
-        // If more than 50% of words match, consider it a duplicate
+        // Check for word similarity
+        const titleWords = new Set(normalizedTitle.split(' '));
+        const libraryWords = new Set(libraryTitle.split(' '));
+        
+        // If either title has less than 2 words, require exact match (already checked above)
+        if (titleWords.size < 2 || libraryWords.size < 2) {
+            return false;
+        }
+        
+        // Count matching words
+        const commonWords = [...titleWords].filter(word => libraryWords.has(word));
         const matchRatio = commonWords.length / Math.min(titleWords.size, libraryWords.size);
-        return matchRatio > 0.5;
+        
+        // Consider it a match if 80% or more words match
+        return matchRatio >= 0.8;
     });
 }
 
 // Function to fetch recommendations from TMDB
 async function fetchRecommendations(genre, decade, rating) {
     try {
+        // Get list of normalized library movie titles first
+        const libraryTitles = new Set(movies.map(movie => normalizeTitle(movie.title)));
+
         // Construct URL for discovering movies
         let url = `${TMDB_BASE_URL}/discover/movie?api_key=${TMDB_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1`;
 
@@ -201,9 +211,6 @@ async function fetchRecommendations(genre, decade, rating) {
             url += `&vote_average.gte=${minRating}&vote_average.lte=${maxRating}`;
         }
 
-        // Get list of normalized library movie titles
-        const libraryTitles = new Set(movies.map(movie => normalizeTitle(movie.title)));
-
         // Fetch movies from TMDB
         const response = await fetch(url);
         const data = await response.json();
@@ -213,11 +220,26 @@ async function fetchRecommendations(genre, decade, rating) {
             return [];
         }
 
-        // Filter out movies that are in the library using fuzzy matching
-        const recommendations = data.results.filter(movie => {
+        // Filter out movies that are in the library using strict matching
+        let recommendations = data.results.filter(movie => {
             const normalizedTitle = normalizeTitle(movie.title);
-            return !isDuplicate(normalizedTitle, libraryTitles);
+            // Double check to make sure the movie is not in the library
+            return !libraryTitles.has(normalizedTitle) && !isDuplicate(normalizedTitle, libraryTitles);
         });
+
+        // If we don't have enough recommendations, fetch the next page
+        if (recommendations.length < 10) {
+            url += '&page=2';
+            const response2 = await fetch(url);
+            const data2 = await response2.json();
+            if (data2.results) {
+                const page2Recommendations = data2.results.filter(movie => {
+                    const normalizedTitle = normalizeTitle(movie.title);
+                    return !libraryTitles.has(normalizedTitle) && !isDuplicate(normalizedTitle, libraryTitles);
+                });
+                recommendations = [...recommendations, ...page2Recommendations];
+            }
+        }
 
         // Sort by vote average and return top 10
         return recommendations
@@ -457,6 +479,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const generateButton = document.getElementById('generate-recommendations');
     const closeButton = document.querySelector('.close-recommendations');
     const overlay = document.querySelector('.recommendations-overlay');
+    const grid = document.querySelector('.recommendations-grid');
 
     if (!overlay) {
         // Create overlay if it doesn't exist
@@ -465,15 +488,24 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.appendChild(newOverlay);
     }
 
+    // Function to reset panel to initial state
+    function resetPanel() {
+        // Reset all filters to 'all'
+        document.getElementById('rec-genre-filter').value = 'all';
+        document.getElementById('rec-decade-filter').value = 'all';
+        document.getElementById('rec-rating-filter').value = 'all';
+        // Clear the grid and show welcome message
+        grid.innerHTML = '<div class="no-results">Welcome to Movie Recommendations!<br><br>Use the filters above and click Generate to discover new movies.</div>';
+    }
+
     // Show recommendations panel
     recommendationsButton.addEventListener('click', () => {
         recommendationsPanel.classList.remove('hidden');
         overlay.classList.add('visible');
-        // Generate initial recommendations
-        displayRecommendations();
+        resetPanel(); // Reset panel to initial state when opening
     });
 
-    // Generate new recommendations
+    // Generate new recommendations only when button is clicked
     generateButton.addEventListener('click', displayRecommendations);
 
     // Close panel when clicking close button
