@@ -46,13 +46,8 @@ function isInLibrary(tmdbMovie) {
     const normalizedTitle = normalizeTitle(tmdbMovie.title);
     console.log('Checking movie:', tmdbMovie.title, 'Normalized:', normalizedTitle); // Debug log
     
-    // Only do exact matches - no substring matching to avoid false positives
-    const isMatch = libraryTitles.has(normalizedTitle);
-    if (isMatch) {
-        console.log('Found exact match in library for:', tmdbMovie.title); // Debug log
-    }
-    
-    return isMatch;
+    // Only filter out exact matches
+    return libraryTitles.has(normalizedTitle);
 }
 
 // Function to fetch recommendations from TMDB
@@ -61,13 +56,13 @@ async function fetchRecommendations(genre, year, rating, page = 1) {
     const params = new URLSearchParams({
         api_key: TMDB_API_KEY,
         language: 'en-US',
-        page: page.toString(),
-        sort_by: 'vote_count.desc',
-        'vote_count.gte': '1000', // Ensure at least 1000 votes
-        include_adult: false,     // Exclude adult content
-        with_original_language: 'en', // Only English language movies
-        certification_country: 'US',  // Use US certification for content rating consistency
-        watch_region: 'US|GB|CA|AU|NZ|IE' // English-speaking Western countries
+        page: '1', // Always fetch first page only
+        sort_by: 'popularity.desc',
+        include_adult: false,
+        with_original_language: 'en',
+        certification_country: 'US',
+        watch_region: 'US|GB|CA|AU|NZ|IE',
+        'vote_count.gte': '100' // Add minimum vote count to ensure quality
     });
 
     // Add genre filter if specified
@@ -84,17 +79,12 @@ async function fetchRecommendations(genre, year, rating, page = 1) {
     // Add rating filter if specified
     if (rating !== 'all') {
         // Convert our 1-5 star rating to TMDB's 0-10 scale
-        // Create ranges for each star rating:
-        // 1 star = 2-3.9 on TMDB (1-1.9 in our scale)
-        // 2 stars = 4-5.9 on TMDB (2-2.9 in our scale)
-        // 3 stars = 6-7.9 on TMDB (3-3.9 in our scale)
-        // 4 stars = 8-9.9 on TMDB (4-4.9 in our scale)
-        // 5 stars = 10 on TMDB (5 in our scale)
         const minRating = parseInt(rating) * 2;
         const maxRating = rating === '5' ? 10 : (parseInt(rating) + 1) * 2 - 0.1;
         
-        params.append('vote_average.gte', minRating.toString());
-        params.append('vote_average.lte', maxRating.toString());
+        // Widen the rating range even more
+        params.append('vote_average.gte', (minRating - 2).toString());
+        params.append('vote_average.lte', (maxRating + 2).toString());
     }
 
     const url = `${TMDB_BASE_URL}/discover/movie?${params.toString()}`;
@@ -400,7 +390,11 @@ async function displayRecommendations() {
     const rating = document.getElementById('rec-rating-filter').value;
     
     const grid = document.querySelector('.recommendations-grid');
-    grid.innerHTML = '';
+    
+    // Clear the grid and remove any existing cards
+    while (grid.firstChild) {
+        grid.removeChild(grid.firstChild);
+    }
     
     // Show loading state
     const loading = document.createElement('div');
@@ -410,21 +404,34 @@ async function displayRecommendations() {
     try {
         const recommendations = await fetchRecommendations(genre, year, rating);
         
-        grid.innerHTML = '';
+        // Remove loading state
+        grid.removeChild(loading);
         
         if (recommendations.length === 0) {
-            grid.innerHTML = '<p class="no-results">No movies found matching your criteria</p>';
+            const noResults = document.createElement('p');
+            noResults.className = 'no-results';
+            noResults.textContent = 'No movies found matching your criteria';
+            grid.appendChild(noResults);
             return;
         }
         
-        // Take top 5 recommendations
-        const topRecommendations = recommendations.slice(0, 5);
+        // Take top 20 unique recommendations
+        const uniqueMovies = Array.from(
+            new Map(recommendations.map(movie => [movie.id, movie])).values()
+        ).slice(0, 20);
         
-        // Create and append cards
-        for (const movie of topRecommendations) {
+        // Create a document fragment to batch append cards
+        const fragment = document.createDocumentFragment();
+        
+        // Create and append cards to fragment
+        for (const movie of uniqueMovies) {
             const card = await createRecommendationCard(movie);
-            grid.appendChild(card);
+            fragment.appendChild(card);
         }
+        
+        // Add all cards to grid at once
+        grid.appendChild(fragment);
+        
     } catch (error) {
         console.error('Error displaying recommendations:', error);
         grid.innerHTML = '<p class="no-results">Error loading recommendations. Please try again.</p>';
