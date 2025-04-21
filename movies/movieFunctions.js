@@ -616,3 +616,126 @@ document.getElementById('favorites-button').addEventListener('click', function()
     this.classList.toggle('active');
     filterMovies();
 });
+
+// Function to display recommendations
+function displayRecommendations(recommendations) {
+    const recommendationsGrid = document.querySelector('.recommendations-grid');
+    recommendationsGrid.innerHTML = '';
+    
+    if (recommendations.length === 0) {
+        const noResults = document.createElement('p');
+        noResults.className = 'no-results';
+        noResults.textContent = 'No recommendations found. Try adjusting your filters.';
+        recommendationsGrid.appendChild(noResults);
+        return;
+    }
+    
+    recommendations.forEach(movie => {
+        const card = createMovieCard(movie);
+        recommendationsGrid.appendChild(card);
+    });
+}
+
+// Function to generate recommendations
+async function generateRecommendations() {
+    const recGenreFilter = document.getElementById('rec-genre-filter').value;
+    const recYearFilter = document.getElementById('rec-year-filter').value;
+    const recRatingFilter = document.getElementById('rec-rating-filter').value;
+    
+    // Show loading state
+    const recommendationsGrid = document.querySelector('.recommendations-grid');
+    recommendationsGrid.innerHTML = '<div class="loading">Loading recommendations...</div>';
+    
+    try {
+        // Fetch recommendations from TMDB API
+        const response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${TMDB_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${recGenreFilter}&primary_release_year=${recYearFilter}&vote_average.gte=${recRatingFilter}`);
+        const data = await response.json();
+        
+        if (data.results && data.results.length > 0) {
+            const recommendations = await Promise.all(
+                data.results.slice(0, 10).map(async movie => ({
+                    title: movie.title,
+                    year: new Date(movie.release_date).getFullYear(),
+                    genre: movie.genre_ids[0] ? getGenreName(movie.genre_ids[0]) : 'Unknown',
+                    rating: movie.vote_average / 2,
+                    poster: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+                    review: movie.overview,
+                    watchProviders: await fetchWatchProviders(movie.id)
+                }))
+            );
+            
+            displayRecommendations(recommendations);
+        } else {
+            displayRecommendations([]);
+        }
+    } catch (error) {
+        console.error('Error fetching recommendations:', error);
+        recommendationsGrid.innerHTML = '<div class="error">Error loading recommendations. Please try again.</div>';
+    }
+}
+
+// Function to fetch watch providers for a movie
+async function fetchWatchProviders(movieId) {
+    try {
+        const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/watch/providers?api_key=${TMDB_API_KEY}`);
+        const data = await response.json();
+        
+        if (data.results && data.results.US) {
+            return {
+                link: data.results.US.link,
+                flatrate: data.results.US.flatrate || [],
+                free: data.results.US.free || [],
+                ads: data.results.US.ads || []
+            };
+        }
+        return null;
+    } catch (error) {
+        console.error('Error fetching watch providers:', error);
+        return null;
+    }
+}
+
+// Function to get genre name from ID
+function getGenreName(genreId) {
+    const genreMap = {
+        28: 'Action',
+        12: 'Adventure',
+        16: 'Animation',
+        35: 'Comedy',
+        80: 'Crime',
+        99: 'Documentary',
+        18: 'Drama',
+        10751: 'Family',
+        14: 'Fantasy',
+        36: 'History',
+        27: 'Horror',
+        10402: 'Music',
+        9648: 'Mystery',
+        10749: 'Romance',
+        878: 'Science Fiction',
+        10770: 'TV Movie',
+        53: 'Thriller',
+        10752: 'War',
+        37: 'Western'
+    };
+    return genreMap[genreId] || 'Unknown';
+}
+
+// Add event listeners
+document.addEventListener('DOMContentLoaded', () => {
+    // ... existing event listeners ...
+    
+    // Recommendations panel event listeners
+    const generateRecsButton = document.getElementById('generate-recommendations');
+    if (generateRecsButton) {
+        generateRecsButton.addEventListener('click', generateRecommendations);
+    }
+    
+    const recFilters = ['rec-genre-filter', 'rec-year-filter', 'rec-rating-filter'];
+    recFilters.forEach(filterId => {
+        const filter = document.getElementById(filterId);
+        if (filter) {
+            filter.addEventListener('change', generateRecommendations);
+        }
+    });
+});
