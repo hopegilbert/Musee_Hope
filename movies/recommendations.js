@@ -78,13 +78,34 @@ async function fetchRecommendations(genre, year, rating, page = 1) {
 
     // Add rating filter if specified
     if (rating !== 'all') {
-        // Convert our 1-5 star rating to TMDB's 0-10 scale
-        const minRating = parseInt(rating) * 2;
-        const maxRating = rating === '5' ? 10 : (parseInt(rating) + 1) * 2 - 0.1;
+        const ratingNum = parseInt(rating);
+        let minRating, maxRating;
         
-        // Widen the rating range even more
-        params.append('vote_average.gte', (minRating - 2).toString());
-        params.append('vote_average.lte', (maxRating + 2).toString());
+        switch(ratingNum) {
+            case 1:
+                minRating = 0;
+                maxRating = 2;
+                break;
+            case 2:
+                minRating = 2.1;
+                maxRating = 4;
+                break;
+            case 3:
+                minRating = 4.1;
+                maxRating = 6;
+                break;
+            case 4:
+                minRating = 6.1;
+                maxRating = 8;
+                break;
+            case 5:
+                minRating = 8.1;
+                maxRating = 10;
+                break;
+        }
+        
+        params.append('vote_average.gte', minRating.toString());
+        params.append('vote_average.lte', maxRating.toString());
     }
 
     const url = `${TMDB_BASE_URL}/discover/movie?${params.toString()}`;
@@ -207,9 +228,10 @@ async function createRecommendationCard(movie) {
     // Create filled stars container
     const filledStars = document.createElement('div');
     filledStars.className = 'filled-stars';
-    const rating = movie.vote_average / 2; // Convert TMDB's 10-point scale to 5-point
-    const fullStars = Math.floor(rating);
-    const decimalPart = rating % 1;
+    const rating = movie.vote_average; // Keep the 10-point scale
+    const starCount = rating / 2; // Convert to 5-star scale for display
+    const fullStars = Math.floor(starCount);
+    const decimalPart = starCount % 1;
     
     // Add full stars
     for (let i = 0; i < fullStars; i++) {
@@ -288,9 +310,10 @@ async function createRecommendationCard(movie) {
     const backTitle = document.createElement('h3');
     backTitle.textContent = movie.title;
 
+    // Update rating number to show 10-point scale
     const ratingNumber = document.createElement('span');
     ratingNumber.className = 'rating-number';
-    ratingNumber.textContent = (movie.vote_average / 2).toFixed(1);
+    ratingNumber.textContent = `${rating.toFixed(1)}/10`;
     backTitle.appendChild(ratingNumber);
 
     const backDateGenreRow = document.createElement('div');
