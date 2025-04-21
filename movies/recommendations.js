@@ -84,22 +84,22 @@ async function fetchRecommendations(genre, year, rating, page = 1) {
         switch(ratingNum) {
             case 1:
                 minRating = 0;
-                maxRating = 2.9;
+                maxRating = 2.4;
                 break;
             case 2:
-                minRating = 3;
+                minRating = 2.5;
                 maxRating = 4.9;
                 break;
             case 3:
                 minRating = 5;
-                maxRating = 6.9;
+                maxRating = 7.4;
                 break;
             case 4:
-                minRating = 7;
-                maxRating = 8.9;
+                minRating = 7.5;
+                maxRating = 9.9;
                 break;
             case 5:
-                minRating = 9;
+                minRating = 10;
                 maxRating = 10;
                 break;
         }
