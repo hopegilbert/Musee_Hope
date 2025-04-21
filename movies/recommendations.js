@@ -375,20 +375,30 @@ async function displayRecommendations() {
     });
 }
 
-// Export the displayRecommendations function
-export { displayRecommendations };
+// Initialize recommendations panel functionality
+document.addEventListener('DOMContentLoaded', () => {
+    // Add recommendations button functionality
+    document.getElementById('recommendations-button').addEventListener('click', function () {
+        const recommendationsPanel = document.getElementById('recommendations-panel');
+        recommendationsPanel.classList.toggle('hidden');
+        recommendationsPanel.classList.toggle('active');
+    });
 
-// Add close button functionality
-document.querySelector('.close-recommendations').addEventListener('click', function() {
-    const recommendationsPanel = document.getElementById('recommendations-panel');
-    recommendationsPanel.classList.add('hidden');
-    recommendationsPanel.classList.remove('active');
+    // Add close button functionality
+    document.querySelector('.close-recommendations').addEventListener('click', function() {
+        const recommendationsPanel = document.getElementById('recommendations-panel');
+        recommendationsPanel.classList.add('hidden');
+        recommendationsPanel.classList.remove('active');
+    });
+
+    // Add event listeners for filter changes
+    document.getElementById('rec-genre-filter').addEventListener('change', displayRecommendations);
+    document.getElementById('rec-decade-filter').addEventListener('change', displayRecommendations);
+    document.getElementById('rec-rating-filter').addEventListener('change', displayRecommendations);
+
+    // Add event listener for the generate recommendations button
+    document.getElementById('generate-recommendations').addEventListener('click', displayRecommendations);
 });
 
-// Add event listeners for filter changes to automatically update recommendations
-document.getElementById('rec-genre-filter').addEventListener('change', displayRecommendations);
-document.getElementById('rec-decade-filter').addEventListener('change', displayRecommendations);
-document.getElementById('rec-rating-filter').addEventListener('change', displayRecommendations);
-
-// Add event listener for the generate recommendations button
-document.getElementById('generate-recommendations').addEventListener('click', displayRecommendations); 
+// Export the displayRecommendations function
+export { displayRecommendations }; 

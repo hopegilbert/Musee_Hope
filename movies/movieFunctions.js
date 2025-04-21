@@ -347,24 +347,6 @@ document.getElementById('lucky-button').addEventListener('click', function() {
     }, 1500);
 });
 
-// Add recommendations functionality
-document.getElementById('recommendations-button').addEventListener('click', function () {
-    const recommendationsPanel = document.getElementById('recommendations-panel');
-    recommendationsPanel.classList.toggle('hidden');
-    recommendationsPanel.classList.toggle('active');
-});
-    
-   
-
-
-
-
-// Add close button functionality for recommendations panel
-document.querySelector('.close-recommendations').addEventListener('click', function() {
-    const recommendationsPanel = document.getElementById('recommendations-panel');
-    recommendationsPanel.classList.remove('active');
-});
-
 // Add event listeners for filters
 document.getElementById('genre-filter').addEventListener('change', filterMovies);
 document.getElementById('year-filter').addEventListener('change', filterMovies);
