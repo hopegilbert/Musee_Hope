@@ -1899,3 +1899,51 @@ h1 {
     text-align: center;
     grid-column: 1 / -1;
 }
+
+.movie-card-back .back-content {
+    padding: 15px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.movie-card-back .scrollable-content {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 8px; /* Space for scrollbar */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.movie-card-back .review-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.movie-card-back .watch-providers {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Custom scrollbar styling */
+.scrollable-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.scrollable-content::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+}
+
+.scrollable-content::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+}
+
+.scrollable-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
