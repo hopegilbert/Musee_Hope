@@ -122,6 +122,34 @@ body {
     z-index: 0;
 }
 
+.back-to-gallery {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background-color: rgba(0, 0, 51, 0.8);
+    color: var(--text-color);
+    border: 1px solid var(--accent-yellow);
+    border-radius: 4px;
+    text-decoration: none;
+    font-family: var(--main-font);
+    transition: all 0.2s ease;
+}
+
+.back-to-gallery:hover {
+    background-color: var(--accent-yellow);
+    color: var(--primary-color);
+    transform: scale(1.02);
+}
+
+.back-to-gallery i {
+    font-size: 0.9rem;
+}
+
 .ticket-stub {
     position: relative;
     z-index: 2;
@@ -1751,21 +1779,20 @@ h1 {
 
 .back-to-gallery {
     position: absolute;
-    top: 10px;
-    left: 10px;
-    z-index: 10;
-    font-family: var(--main-font);
+    top: 20px;
+    left: 20px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 8px;
     padding: 8px 16px;
     background-color: rgba(0, 0, 51, 0.8);
     color: var(--text-color);
     border: 1px solid var(--accent-yellow);
     border-radius: 4px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: all 0.2s ease;
     text-decoration: none;
+    font-family: var(--main-font);
+    transition: all 0.2s ease;
 }
 
 .back-to-gallery:hover {
