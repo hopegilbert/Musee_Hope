@@ -353,26 +353,31 @@ h1 {
     position: relative;
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 1.5rem;
     padding: 1.5rem;
-    max-width: 100%;
+    max-width: 1600px;
     margin: 0 auto;
     opacity: 1;
     transition: opacity 0.3s ease;
-    background: transparent;
-    backdrop-filter: none;
-    border-radius: 0;
+    min-height: 200px;
+    z-index: 1;
 }
 
 /* Movie Card Styles */
 .movie-card {
     position: relative;
     width: 100%;
-    aspect-ratio: 27/40;
+    height: 0;
+    padding-bottom: 150%;
     perspective: 1000px;
     cursor: pointer;
     overflow: hidden;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transform: translateZ(0);
+    will-change: transform;
 }
 
 .movie-card::before {
@@ -429,6 +434,7 @@ h1 {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     transform-style: preserve-3d;
+    background: var(--primary-color);
 }
 
 .movie-card-front {
@@ -439,7 +445,7 @@ h1 {
     transform: rotateY(180deg);
     display: flex;
     flex-direction: column;
-    padding: 0.5rem;
+    padding: 1rem;
     background: var(--primary-color);
     color: white;
     cursor: pointer;
@@ -484,6 +490,7 @@ h1 {
         opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
         transform 0.8s cubic-bezier(0.4, 0, 0.2, 1),
         filter 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: opacity, transform, filter;
 }
 
 .movie-poster.loaded {
@@ -655,6 +662,30 @@ h1 {
     overflow-y: auto;
 }
 
+@media (max-width: 1200px) {
+    .review-text {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .review-text {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .review-text {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .review-text {
+        font-size: 0.7rem;
+    }
+}
+
 @keyframes loading {
     0% {
         opacity: 0;
@@ -699,81 +730,20 @@ h1 {
 .decade-2010s { background-color: var(--decade-2010); }
 .decade-2020s { background-color: var(--decade-2020); }
 
-/* Responsive Styles */
-@media (max-width: 1600px) {
-    .movies-grid {
-        grid-template-columns: repeat(6, 1fr);
-    }
-}
-
-@media (max-width: 1400px) {
-    .movies-grid {
-        grid-template-columns: repeat(5, 1fr);
-    }
-}
-
-@media (max-width: 1200px) {
-    .movies-grid {
-        grid-template-columns: repeat(4, 1fr);
-    }
-}
-
-@media (max-width: 900px) {
-    .movies-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-    h1 {
-        font-size: 3.5rem;
-    }
-}
-
+/* Mobile Responsive Styles */
 @media (max-width: 768px) {
     .movies-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
         gap: 1rem;
         padding: 1rem;
-    }
-    h1 {
-        font-size: 3rem;
-        letter-spacing: 3px;
-    }
-    .subtitle {
-        font-size: 1.4rem;
-    }
-    .cinema-header {
-        padding: 2rem 1rem;
-        min-height: 250px;
     }
 }
 
 @media (max-width: 480px) {
-    h1 {
-        font-size: 2.5rem;
-        letter-spacing: 2px;
-        padding: 0.5rem;
-        word-wrap: break-word;
-    }
-    .subtitle {
-        font-size: 1.2rem;
-        padding: 0 1rem;
-    }
-    .cinema-header {
-        padding: 1.5rem 1rem;
-        min-height: 200px;
-    }
     .movies-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
         gap: 0.75rem;
         padding: 0.75rem;
-    }
-}
-
-@media (max-width: 360px) {
-    h1 {
-        font-size: 2rem;
-    }
-    .subtitle {
-        font-size: 1rem;
     }
 }
 
@@ -916,8 +886,10 @@ h1 {
 
 /* Update the loading animation for the grid */
 .movies-grid.loading {
-    opacity: 0;
+    opacity: 0.5;
     transition: opacity 0.3s ease;
+    position: relative;
+    min-height: 300px;
 }
 
 .movies-grid.loading::after {
@@ -925,13 +897,14 @@ h1 {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 50px;
-    height: 50px;
-    border: 3px solid var(--primary-color);
-    border-top-color: var(--accent-color);
+    width: 60px;
+    height: 60px;
+    border: 4px solid var(--primary-color);
+    border-top-color: var(--accent-yellow);
     border-radius: 50%;
     animation: spin 1s linear infinite;
     transform: translate(-50%, -50%);
+    z-index: 2;
 }
 
 @keyframes spin {
@@ -1982,8 +1955,10 @@ h1 {
 
 /* Remove any space above GIF */
 .main-content {
-    margin: 0;
-    padding: 0;
+    margin: 2rem auto;
+    padding: 0 2rem;
+    max-width: 1600px;
+    width: 100%;
 }
 
 /* Reset Filters Button */
