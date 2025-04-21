@@ -55,6 +55,11 @@
 
                 <select id="year-filter" class="filter-select">
                     <option value="all">All Decades</option>
+                    <option value="1930">1930s</option>
+                    <option value="1940">1940s</option>
+                    <option value="1950">1950s</option>
+                    <option value="1960">1960s</option>
+                    <option value="1970">1970s</option>
                     <option value="1980">1980s</option>
                     <option value="1990">1990s</option>
                     <option value="2000">2000s</option>
@@ -146,6 +151,7 @@
         </div>
 
         <!-- Recommendations Panel -->
+        <div class="recommendations-overlay"></div>
         <div class="recommendations-panel hidden" id="recommendations-panel">
             <div class="recommendations-header">
                 <h2>Movie Recommendations</h2>
@@ -182,29 +188,23 @@
 
                     <select id="rec-rating-filter" class="filter-select">
                         <option value="all">All Ratings</option>
-                        <option value="5">5 Stars</option>
-                        <option value="4">4 Stars</option>
-                        <option value="3">3 Stars</option>
-                        <option value="2">2 Stars</option>
-                        <option value="1">1 Star</option>
+                        <option value="5">★★★★★</option>
+                        <option value="4">★★★★☆</option>
+                        <option value="3">★★★☆☆</option>
+                        <option value="2">★★☆☆☆</option>
+                        <option value="1">★☆☆☆☆</option>
                     </select>
-                    
-                    <button id="generate-recommendations" class="generate-recommendations">
-                        <i class="fas fa-magic"></i> Generate
-                    </button>
                 </div>
+                
+                <button id="generate-recommendations" class="generate-recommendations">
+                    <i class="fas fa-magic"></i> Generate
+                </button>
             </div>
             
             <div class="recommendations-grid"></div>
         </div>
-    </div>
 
-    <div class="license-footer">
-        <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a property="dct:title" rel="cc:attributionURL" href="https://hopegilbert.github.io/Musee_Hope/index.html">Hope Gilbert's Musings and Research</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://hopegilbert.github.io/Musee_Hope/index.html">Hope Gilbert</a> is licensed under <a href="https://creativecommons.org/licenses/by-nd/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-ND 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/nd.svg?ref=chooser-v1" alt=""></a></p>
-    </div>
-
-    <script type="module" src="./movieData.js"></script>
-    <script type="module" src="./movieFunctions.js"></script>
-    <script type="module" src="./recommendations.js"></script>
-</body>
+        <script type="module" src="./movieFunctions.js"></script>
+        <script type="module" src="./recommendations.js"></script>
+    </body>
 </html> 

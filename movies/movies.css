@@ -265,6 +265,28 @@ h1 {
     max-width: 600px;
 }
 
+.search-input {
+    padding: 8px 16px;
+    width: 100%;
+    border: 1px solid var(--accent-yellow);
+    border-radius: 4px;
+    background-color: rgba(0, 0, 51, 0.5);
+    color: var(--text-color);
+    font-family: var(--main-font);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 5px rgba(255, 69, 0, 0.3);
+}
+
+.search-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
 .results-count {
     font-size: 1.2rem;
     color: var(--accent-yellow);
@@ -300,6 +322,65 @@ h1 {
     align-items: center;
     gap: 1rem;
     flex-wrap: wrap;
+}
+
+.filter-select {
+    padding: 8px 16px;
+    border: 1px solid var(--accent-yellow);
+    border-radius: 4px;
+    background-color: rgba(0, 0, 51, 0.5);
+    color: white;
+    font-family: var(--main-font);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 150px;
+}
+
+.filter-select:hover {
+    border-color: var(--accent-color);
+    color: var(--accent-yellow);
+}
+
+.filter-select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 5px rgba(255, 69, 0, 0.3);
+    color: white;
+}
+
+.filter-select option {
+    background-color: var(--card-back-color);
+    color: white;
+    padding: 8px;
+}
+
+.reset-filters-button {
+    font-family: var(--main-font);
+    padding: 8px 16px;
+    background-color: rgba(0, 0, 51, 0.5);
+    color: var(--text-color);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+    height: 40px;
+    min-width: 120px;
+    justify-content: center;
+}
+
+.reset-filters-button:hover {
+    background-color: rgba(0, 0, 51, 0.8);
+    border-color: var(--accent-yellow);
+    color: var(--accent-yellow);
+    transform: scale(1.02);
+}
+
+.reset-filters-button i {
+    font-size: 0.9rem;
 }
 
 /* Action Buttons Styles */
@@ -452,6 +533,7 @@ h1 {
     background: var(--primary-color);
     color: white;
     cursor: pointer;
+    overflow-y: auto;
 }
 
 .movie-card.flipped .movie-card-front {
@@ -665,38 +747,66 @@ h1 {
     overflow-y: auto;
 }
 
-@media (max-width: 1200px) {
-    .review-text {
-        font-size: 0.85rem;
-    }
+/* Customize scrollbar for review text */
+.review-text::-webkit-scrollbar {
+    width: 4px;
 }
 
-@media (max-width: 992px) {
-    .review-text {
-        font-size: 0.8rem;
+.review-text::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+}
+
+.review-text::-webkit-scrollbar-thumb {
+    background: var(--accent-yellow);
+    border-radius: 2px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .back-content {
+        gap: 0.5rem;
+    }
+    
+    .review-section {
+        padding: 0.5rem;
     }
 }
 
 @media (max-width: 768px) {
-    .review-text {
-        font-size: 0.75rem;
+    .movie-card-back {
+        padding: 0.75rem;
+    }
+    
+    .back-content {
+        padding: 0.25rem;
+    }
+    
+    .review-section {
+        margin: 0.15rem 0;
     }
 }
 
 @media (max-width: 480px) {
-    .review-text {
-        font-size: 0.7rem;
+    .movie-card-back {
+        padding: 0.5rem;
+    }
+    
+    .back-content {
+        gap: 0.25rem;
+    }
+    
+    .review-section {
+        padding: 0.5rem;
     }
 }
 
-@keyframes loading {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
+/* Add decade colors for new decades */
+.decade-1930s { background-color: #8B4513; }  /* Saddle Brown */
+.decade-1940s { background-color: #556B2F; }  /* Dark Olive Green */
+.decade-1950s { background-color: #483D8B; }  /* Dark Slate Blue */
+.decade-1960s { background-color: #8B008B; }  /* Dark Magenta */
+.decade-1970s { background-color: #CD853F; }  /* Peru */
 
 /* Genre colors */
 .genre-horror { background-color: var(--genre-horror); }
@@ -733,8 +843,22 @@ h1 {
 .decade-2010s { background-color: var(--decade-2010); }
 .decade-2020s { background-color: var(--decade-2020); }
 
-/* Mobile Responsive Styles */
+/* Mobile adjustments */
 @media (max-width: 768px) {
+    .filter-row {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .filter-select {
+        width: 100%;
+        min-width: unset;
+    }
+
+    .reset-filters-button {
+        width: 100%;
+    }
+
     .action-buttons {
         flex-direction: column;
         align-items: stretch;
@@ -745,13 +869,7 @@ h1 {
     .action-buttons button {
         width: 100%;
         max-width: none;
-        height: 44px; /* Slightly taller on mobile for better touch targets */
-    }
-
-    .movies-grid {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-        gap: 1rem;
-        padding: 1rem;
+        height: 44px;
     }
 }
 
@@ -1425,7 +1543,7 @@ h1 {
     right: 0;
     transform: translateY(-50%);
     width: 400px;
-    height: 90vh; /* Set height to 90% of viewport height */
+    height: 90vh;
     background-color: var(--primary-color);
     border-left: 1px solid var(--accent-yellow);
     padding: 1.5rem;
@@ -1435,68 +1553,16 @@ h1 {
     flex-direction: column;
 }
 
-.recommendations-header {
-    flex-shrink: 0; /* Prevent header from shrinking */
-    margin-bottom: 1rem;
-}
-
-.recommendation-filters {
-    flex-shrink: 0; /* Prevent filters from shrinking */
-    margin-bottom: 1rem;
-}
-
-.recommendations-grid {
-    flex: 1; /* Take remaining space */
-    overflow-y: auto; /* Enable vertical scrolling */
-    padding-right: 0.5rem; /* Space for scrollbar */
-    margin-right: -0.5rem; /* Compensate for padding */
-}
-
-/* Customize scrollbar */
-.recommendations-grid::-webkit-scrollbar {
-    width: 8px;
-}
-
-.recommendations-grid::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 4px;
-}
-
-.recommendations-grid::-webkit-scrollbar-thumb {
-    background: var(--accent-yellow);
-    border-radius: 4px;
-}
-
-.recommendations-grid::-webkit-scrollbar-thumb:hover {
-    background: var(--accent-color);
-}
-
-/* Adjust recommendation cards for better fit */
-.recommendation-card {
-    margin-bottom: 1rem;
-    height: 400px; /* Fixed height for consistency */
-}
-
-/* Mobile adjustments */
-@media (max-width: 768px) {
-    .recommendations-panel {
-        width: 100%;
-        height: 100vh;
-        top: 0;
-        transform: none;
-        padding: 1rem;
-    }
-
-    .recommendation-card {
-        height: 350px; /* Slightly smaller on mobile */
-    }
+.recommendations-panel.hidden {
+    transform: translateX(100%);
 }
 
 .recommendations-header {
+    flex-shrink: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 .recommendations-header h2 {
@@ -1519,91 +1585,113 @@ h1 {
     transform: scale(1.1);
 }
 
+.recommendation-filters {
+    flex-shrink: 0;
+    margin-bottom: 1.5rem;
+}
+
+.recommendation-filters .filter-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.recommendation-filters .filter-select {
+    width: 100%;
+    padding: 8px 12px;
+    background-color: rgba(0, 0, 51, 0.5);
+    color: white;
+    border: 1px solid var(--accent-yellow);
+    border-radius: 4px;
+    font-family: var(--main-font);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.recommendation-filters .filter-select:hover {
+    border-color: var(--accent-color);
+    color: var(--accent-yellow);
+}
+
+.generate-recommendations {
+    width: 100%;
+    padding: 8px 12px;
+    background-color: var(--primary-color);
+    color: white;
+    border: 1px solid var(--accent-yellow);
+    border-radius: 4px;
+    font-family: var(--main-font);
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+    margin-top: 1rem;
+}
+
+.generate-recommendations:hover {
+    background-color: var(--accent-yellow);
+    color: var(--primary-color);
+    transform: scale(1.02);
+}
+
+.generate-recommendations .fa-magic {
+    font-size: 0.9rem;
+    transition: transform 0.3s ease;
+}
+
+.generate-recommendations:hover .fa-magic {
+    transform: rotate(360deg);
+}
+
 .recommendations-grid {
+    flex: 1;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 1rem;
-    margin-top: 1rem;
     padding: 0.5rem;
+    overflow-y: auto;
+    margin-right: -0.5rem;
+}
+
+.recommendations-grid::-webkit-scrollbar {
+    width: 8px;
+}
+
+.recommendations-grid::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+.recommendations-grid::-webkit-scrollbar-thumb {
+    background: var(--accent-yellow);
+    border-radius: 4px;
+}
+
+.recommendations-grid::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-color);
 }
 
 .recommendation-card {
     position: relative;
     width: 100%;
-    aspect-ratio: 27/40;
+    height: 400px;
     perspective: 1000px;
     cursor: pointer;
     overflow: hidden;
-    background: var(--card-back-color);
+    background: rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    box-shadow: var(--box-shadow);
-    transition: transform 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    margin-bottom: 1rem;
 }
 
-.recommendation-card:hover {
-    transform: translateY(-5px);
-}
-
-.recommendation-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(
-        45deg,
-        rgba(255, 255, 255, 0.05) 0%,
-        rgba(255, 255, 255, 0) 50%,
-        rgba(255, 255, 255, 0.05) 100%
-    );
-    opacity: 0;
-    pointer-events: none;
-    z-index: 2;
-}
-
-.recommendation-card:hover::before {
-    animation: projectorFlicker 0.5s ease-in-out;
-}
-
-.recommendation-card.flipped::before {
-    animation: projectorFlicker 0.3s ease-in-out;
-}
-
-.recommendation-card-front,
-.recommendation-card-back {
-    position: absolute;
+.recommendation-card .movie-poster {
     width: 100%;
     height: 100%;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    transform-style: preserve-3d;
-}
-
-.recommendation-card-front {
-    transform: rotateY(0deg);
-}
-
-.recommendation-card-back {
-    transform: rotateY(180deg);
-    display: flex;
-    flex-direction: column;
-    padding: 0.5rem;
-    background: var(--primary-color);
-    color: white;
-    cursor: pointer;
-}
-
-.recommendation-card.flipped .recommendation-card-front {
-    transform: rotateY(180deg);
-}
-
-.recommendation-card.flipped .recommendation-card-back {
-    transform: rotateY(360deg);
+    object-fit: cover;
 }
 
 .recommendation-card .movie-info {
@@ -1611,212 +1699,85 @@ h1 {
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 0.5rem;
+    padding: 0.75rem;
     background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7), transparent);
     color: white;
-    transform: translateY(100%);
-    transition: transform 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
 }
 
-.recommendation-card:hover .movie-info {
-    transform: translateY(0);
-}
-
-.recommendation-card .movie-poster {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    aspect-ratio: 27/40;
-    opacity: 0;
-    transform: scale(1.02);
-    filter: brightness(0.8);
-    transition: 
-        opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
-        transform 0.8s cubic-bezier(0.4, 0, 0.2, 1),
-        filter 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.recommendation-card .movie-poster.loaded {
-    opacity: 1;
-    transform: scale(1);
-    filter: brightness(1);
-}
-
-.recommendation-card .back-content {
-    padding: 0.5rem;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    color: white;
-}
-
-.recommendation-card .back-content * {
-    pointer-events: auto;
-}
-
-.recommendation-card .back-content h3 {
-    font-size: 1.2rem;
-    margin: 0;
-    color: white;
-    text-shadow: var(--text-shadow);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.5rem;
-}
-
-.recommendation-card .back-date-genre-row {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 0.5rem;
-    margin-top: 0.25rem;
-}
-
-.recommendation-card .back-content .year-display {
-    font-size: 0.8rem;
-    padding: 0.25rem 0.5rem;
-}
-
-.recommendation-card .back-content .genre-badge {
-    padding: 0.25rem 0.5rem;
-    border-radius: 4px;
-    font-size: 0.8rem;
-    color: white;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-    display: inline-block;
-    margin-right: 0.5rem;
-}
-
-.recommendation-card .review-section {
-    cursor: pointer;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    background: rgba(0, 0, 0, 0.2);
-    padding: 0.75rem;
-    border-radius: 8px;
-    margin-top: 0.25rem;
-    margin-bottom: 0.75rem;
-}
-
-.recommendation-card .review-heading {
-    margin: 0;
+.recommendation-card .movie-info h3 {
     font-size: 1rem;
-    font-weight: 600;
+    margin: 0 0 0.5rem 0;
     color: white;
 }
 
-.recommendation-card .review-text {
-    margin: 0;
-    font-size: 0.875rem;
-    line-height: 1.5;
-    color: white;
-    overflow-y: auto;
-}
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .recommendations-panel {
+        width: 100%;
+        height: 100vh;
+        top: 0;
+        transform: none;
+        padding: 1rem;
+    }
 
-.loading, .no-results, .error {
-    color: white;
-    text-align: center;
-    padding: 2rem;
-    font-size: 1.1rem;
-}
+    .recommendations-panel.hidden {
+        transform: translateX(100%);
+    }
 
-.error {
-    color: #ff6b6b;
-}
+    .recommendations-header h2 {
+        font-size: 1.3rem;
+    }
 
-/* Loading Animation */
-.loading {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100px;
-}
+    .recommendation-filters .filter-row {
+        gap: 0.5rem;
+    }
 
-.loading::after {
-    content: "";
-    width: 30px;
-    height: 30px;
-    border: 3px solid var(--border-color);
-    border-top-color: var(--accent-color);
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-}
+    .filter-select, .generate-recommendations {
+        font-size: 1rem;
+        padding: 10px;
+    }
 
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
+    .recommendations-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+    }
+
+    .recommendation-card {
+        height: 350px;
+    }
+
+    .recommendation-card .movie-info {
+        padding: 0.5rem;
     }
 }
 
-.search-input {
-    padding: 8px 16px;
-    width: 100%;
-    border: 1px solid var(--accent-yellow);
-    border-radius: 4px;
-    background-color: rgba(0, 0, 51, 0.5);
-    color: var(--text-color);
-    font-family: var(--main-font);
-    font-size: 1rem;
-    transition: all 0.3s ease;
-}
-
-.search-input:focus {
-    outline: none;
-    border-color: var(--accent-color);
-    box-shadow: 0 0 5px rgba(255, 69, 0, 0.3);
-}
-
-.search-input::placeholder {
-    color: rgba(255, 255, 255, 0.5);
-}
-
-.filter-select {
-    padding: 8px 16px;
-    border: 1px solid var(--accent-yellow);
-    border-radius: 4px;
-    background-color: rgba(0, 0, 51, 0.5);
-    color: white;
-    font-family: var(--main-font);
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    min-width: 150px;
-}
-
-.filter-select:hover {
-    border-color: var(--accent-color);
-    color: var(--accent-yellow);
-}
-
-.filter-select:focus {
-    outline: none;
-    border-color: var(--accent-color);
-    box-shadow: 0 0 5px rgba(255, 69, 0, 0.3);
-    color: white;
-}
-
-.filter-select option {
-    background-color: var(--card-back-color);
-    color: white;
-    padding: 8px;
-}
-
-@keyframes highlight {
-    0% {
-        box-shadow: 0 0 20px var(--accent-yellow);
+@media (max-width: 480px) {
+    .recommendations-panel {
+        padding: 0.75rem;
     }
-    50% {
-        box-shadow: 0 0 40px var(--accent-yellow);
+
+    .recommendations-header h2 {
+        font-size: 1.2rem;
     }
-    100% {
-        box-shadow: 0 0 20px var(--accent-yellow);
+
+    .recommendations-grid {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+
+    .filter-select, .generate-recommendations {
+        font-size: 0.9rem;
+        padding: 8px;
+    }
+}
+
+/* Safe area insets for modern mobile browsers */
+@supports (padding: max(0px)) {
+    .recommendations-panel {
+        padding-top: max(1.5rem, env(safe-area-inset-top));
+        padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
+        padding-left: max(1.5rem, env(safe-area-inset-left));
+        padding-right: max(1.5rem, env(safe-area-inset-right));
     }
 }
 
@@ -1938,341 +1899,14 @@ h1 {
     transform: translateY(-2px);
 }
 
-/* Animations */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
+@keyframes highlight {
+    0% {
+        box-shadow: 0 0 20px var(--accent-yellow);
     }
-    to {
-        opacity: 1;
+    50% {
+        box-shadow: 0 0 40px var(--accent-yellow);
     }
-}
-
-.fade-in {
-    animation: fadeIn 0.3s ease-in-out;
-}
-
-/* Utility Classes */
-.hidden {
-    display: none !important;
-}
-
-.show {
-    display: block !important;
-}
-
-.reset-filters {
-    background: var(--primary-color);
-    color: white;
-    border: 2px solid var(--accent-yellow);
-    padding: 8px 16px;
-    border-radius: 4px;
-    font-family: var(--main-font);
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.reset-filters:hover {
-    background: var(--accent-yellow);
-    color: var(--primary-color);
-    transform: translateY(-2px);
-}
-
-.reset-filters i {
-    font-size: 1.1rem;
-}
-
-/* GIF Container */
-.gif-container {
-    position: relative;
-    width: 200px;
-    height: 300px;
-    overflow: hidden;
-    border-radius: 8px;
-    margin-bottom: 1rem;
-}
-
-.gif-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-}
-
-.gif-container:hover img {
-    transform: scale(1.05);
-}
-
-.back-to-gallery {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 16px;
-    background-color: rgba(0, 0, 51, 0.8);
-    color: var(--text-color);
-    border: 1px solid var(--accent-yellow);
-    border-radius: 4px;
-    text-decoration: none;
-    font-family: var(--main-font);
-    transition: all 0.2s ease;
-}
-
-.back-to-gallery:hover {
-    background-color: var(--accent-yellow);
-    color: var(--primary-color);
-    transform: scale(1.02);
-}
-
-.back-to-gallery i {
-    font-size: 0.9rem;
-}
-
-/* Remove any space above GIF */
-.main-content {
-    margin: 2rem auto;
-    padding: 0 2rem;
-    max-width: 1600px;
-    width: 100%;
-}
-
-/* Reset Filters Button */
-.reset-filters-button {
-    font-family: var(--main-font);
-    padding: 8px 16px;
-    background-color: rgba(0, 0, 51, 0.5);
-    color: var(--text-color);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 4px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: all 0.2s ease;
-    height: 40px;
-    min-width: 120px;
-    justify-content: center;
-}
-
-.reset-filters-button:hover {
-    background-color: rgba(0, 0, 51, 0.8);
-    border-color: var(--accent-yellow);
-    color: var(--accent-yellow);
-    transform: scale(1.02);
-}
-
-.reset-filters-button i {
-    font-size: 0.9rem;
-}
-
-.generate-recommendations {
-    width: 100%;
-    padding: 8px 12px;
-    background-color: var(--primary-color);
-    color: white;
-    border: 1px solid var(--accent-yellow);
-    border-radius: 4px;
-    font-family: var(--main-font);
-    font-size: 0.9rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    transition: all 0.2s ease;
-    margin: 0;
-}
-
-.generate-recommendations:hover {
-    background-color: var(--accent-yellow);
-    color: var(--primary-color);
-    transform: scale(1.02);
-}
-
-.generate-recommendations .fa-magic {
-    font-size: 0.9rem;
-    transition: transform 0.3s ease;
-}
-
-.generate-recommendations:hover .fa-magic {
-    transform: rotate(360deg);
-}
-
-.recommendation-filters {
-    margin-bottom: 1.5rem;
-}
-
-.recommendation-filters .filter-row {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-}
-
-.recommendation-filters .filter-select {
-    width: 100%;
-    padding: 8px 12px;
-    background-color: rgba(0, 0, 51, 0.5);
-    color: white;
-    border: 1px solid var(--accent-yellow);
-    border-radius: 4px;
-    font-family: var(--main-font);
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.recommendation-filters .filter-select:hover {
-    border-color: var(--accent-color);
-    color: var(--accent-yellow);
-}
-
-.recommendation-filters .filter-select:focus {
-    outline: none;
-    border-color: var(--accent-color);
-    box-shadow: 0 0 5px rgba(255, 69, 0, 0.3);
-}
-
-/* Mobile Styles for Recommendations Panel */
-@media (max-width: 768px) {
-    .recommendations-panel {
-        width: 100%;
-        height: 100vh;
-        top: 0;
-        transform: none;
-        padding: 1rem;
-    }
-
-    .recommendations-overlay {
-        background: rgba(0, 0, 0, 0.9);
-    }
-
-    .recommendations-header h2 {
-        font-size: 1.3rem;
-    }
-
-    .recommendation-filters .filter-row {
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-
-    .filter-select, .generate-recommendations {
-        font-size: 1rem;
-        padding: 10px;
-        height: auto;
-    }
-
-    .recommendations-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0.75rem;
-        padding: 0.5rem;
-    }
-
-    .recommendation-card .movie-info {
-        padding: 0.5rem;
-    }
-
-    .recommendation-card .movie-info h3 {
-        font-size: 1rem;
-    }
-
-    .recommendation-card .star-rating img {
-        width: 16px;
-        height: 16px;
-    }
-
-    .recommendation-card .genre-badge {
-        font-size: 0.7rem;
-        padding: 0.2rem 0.4rem;
-    }
-
-    .recommendation-card .year-display {
-        font-size: 0.7rem;
-        padding: 0.2rem 0.4rem;
-    }
-
-    .recommendation-card .review-text {
-        font-size: 0.8rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .recommendations-panel {
-        padding: 0.75rem;
-    }
-
-    .recommendations-header h2 {
-        font-size: 1.2rem;
-    }
-
-    .recommendations-grid {
-        grid-template-columns: 1fr;
-        gap: 0.5rem;
-    }
-
-    .filter-select, .generate-recommendations {
-        font-size: 0.9rem;
-        padding: 8px;
-    }
-
-    .loading, .no-results, .error {
-        font-size: 1rem;
-        padding: 1.5rem;
-    }
-}
-
-/* Safe area insets for modern mobile browsers */
-@supports (padding: max(0px)) {
-    .recommendations-panel {
-        padding-top: max(1.5rem, env(safe-area-inset-top));
-        padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
-        padding-left: max(1.5rem, env(safe-area-inset-left));
-        padding-right: max(1.5rem, env(safe-area-inset-right));
-        height: 100vh;
-        height: -webkit-fill-available;
-    }
-}
-
-/* Mobile touch interactions */
-@media (hover: none) {
-    .recommendation-card .movie-info {
-        transform: translateY(0);
-        background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7), transparent);
-    }
-
-    .recommendation-card:active {
-        transform: scale(0.98);
-    }
-
-    .close-recommendations {
-        padding: 0.75rem;
-        font-size: 1.8rem;
-    }
-
-    .close-recommendations:active {
-        transform: scale(0.95);
-    }
-
-    .filter-select:active, .generate-recommendations:active {
-        transform: scale(0.98);
-    }
-}
-
-/* Improved overlay for mobile */
-@media (max-width: 768px) {
-    .recommendations-overlay {
-        background: rgba(0, 0, 0, 0.9);
-        -webkit-backdrop-filter: blur(10px);
-        backdrop-filter: blur(10px);
-    }
-
-    .recommendations-panel {
-        box-shadow: none;
+    100% {
+        box-shadow: 0 0 20px var(--accent-yellow);
     }
 }

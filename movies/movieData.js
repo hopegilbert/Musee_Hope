@@ -2375,15 +2375,6 @@ export const movies = [
         review: "Surprisingly heartfelt and really funny. Way better than expected."
     },
     {
-        title: "Lolita",
-        trailerUrl: "https://www.youtube.com/watch?v=vaO_L0n0zhc",
-        year: 1962,
-        genre: "Drama",
-        rating: 4.2,
-        poster: "https://image.tmdb.org/t/p/w500/8Puqbeh0D95DpXFWep1rmH78btu.jpg",
-        review: "Controversial and uncomfortable by design. Beautifully shot but very heavy."
-    },
-    {
         title: "Fantasia",
         trailerUrl: "https://www.youtube.com/watch?v=XqjMIapchzQ",
         year: 1940,
@@ -4839,15 +4830,6 @@ export const movies = [
         poster: "https://image.tmdb.org/t/p/w500/eWdyYQreja6JGCzqHWXpWHDrrPo.jpg",
         review: "Quirky, stylish, and super rewatchable. Wes Anderson at his best.",
         favourite: true
-    },
-    {
-        title: "Django",
-        trailerUrl: "https://www.youtube.com/watch?v=HA0xG8ThyE4",
-        year: 1966,
-        genre: "Action",
-        rating: 4.8,
-        poster: "https://www.themoviedb.org/t/p/w1280/bV0rWoiRo7pHUTQkh6Oio6irlXO.jpg",
-        review: "Wild and entertaining with a brutal edge. Tarantino never holds back."
     },
     {
         title: "Logan",
