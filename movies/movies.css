@@ -737,6 +737,7 @@ h1 {
     font-size: 1rem;
     font-weight: 600;
     color: white;
+    font-family: var(--main-font);
 }
 
 .review-text {
@@ -745,6 +746,7 @@ h1 {
     line-height: 1.5;
     color: white;
     overflow-y: auto;
+    font-family: var(--main-font);
 }
 
 /* Customize scrollbar for review text */
