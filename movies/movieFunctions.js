@@ -362,7 +362,7 @@ document.getElementById('recommendations-button').addEventListener('click', func
 // Add close button functionality for recommendations panel
 document.querySelector('.close-recommendations').addEventListener('click', function() {
     const recommendationsPanel = document.getElementById('recommendations-panel');
-    recommendationsPanel.classList.remove('active');
+    recommendationsPanel.classList.add('hidden');
 });
 
 // Add event listeners for filters

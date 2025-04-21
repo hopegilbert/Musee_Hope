@@ -56,7 +56,7 @@ function isInLibrary(tmdbMovie) {
 }
 
 // Function to fetch recommendations from TMDB
-async function fetchRecommendations(genre, decade, rating, page = 1) {
+async function fetchRecommendations(genre, year, rating, page = 1) {
     // Build query parameters
     const params = new URLSearchParams({
         api_key: TMDB_API_KEY,
@@ -77,11 +77,8 @@ async function fetchRecommendations(genre, decade, rating, page = 1) {
     }
 
     // Add year filter if specified
-    if (decade !== 'all') {
-        const startYear = parseInt(decade);
-        const endYear = startYear + 9;
-        params.append('primary_release_date.gte', `${startYear}-01-01`);
-        params.append('primary_release_date.lte', `${endYear}-12-31`);
+    if (year !== 'all') {
+        params.append('primary_release_year', year);
     }
 
     // Add rating filter if specified
@@ -101,7 +98,7 @@ async function fetchRecommendations(genre, decade, rating, page = 1) {
     }
 
     const url = `${TMDB_BASE_URL}/discover/movie?${params.toString()}`;
-    console.log('Fetching from TMDB:', url); // Debug log
+    console.log('Fetching from TMDB:', url);
 
     try {
         const response = await fetch(url);
@@ -235,8 +232,7 @@ function createRecommendationCard(movie) {
 
     const yearDisplay = document.createElement('span');
     const year = movie.release_date ? new Date(movie.release_date).getFullYear() : 'N/A';
-    const decade = Math.floor(year / 10) * 10;
-    yearDisplay.className = `year-display decade-${decade}s`;
+    yearDisplay.className = `year-display decade-${Math.floor(year / 10) * 10}s`;
     yearDisplay.textContent = year;
 
     const genreBadges = document.createElement('div');
@@ -296,7 +292,7 @@ function createRecommendationCard(movie) {
     backDateGenreRow.className = 'back-date-genre-row';
 
     const backYearDisplay = document.createElement('span');
-    backYearDisplay.className = `year-display decade-${decade}s`;
+    backYearDisplay.className = `year-display decade-${Math.floor(year / 10) * 10}s`;
     backYearDisplay.textContent = year;
 
     const backGenreBadges = genreBadges.cloneNode(true);
@@ -342,10 +338,10 @@ function createRecommendationCard(movie) {
 // Function to display recommendations
 async function displayRecommendations() {
     const genre = document.getElementById('rec-genre-filter').value;
-    const decade = document.getElementById('rec-decade-filter').value;
+    const year = document.getElementById('rec-year-filter').value;
     const rating = document.getElementById('rec-rating-filter').value;
     
-    console.log('Filters:', { genre, decade, rating }); // Debug log
+    console.log('Filters:', { genre, year, rating }); // Debug log
     
     const recommendationsGrid = document.querySelector('.recommendations-grid');
     recommendationsGrid.innerHTML = '<p>Loading recommendations...</p>';
@@ -355,7 +351,7 @@ async function displayRecommendations() {
     let maxPages = 5;
     
     while (page <= maxPages && allRecommendations.length < 20) {
-        const recommendations = await fetchRecommendations(genre, decade, rating, page);
+        const recommendations = await fetchRecommendations(genre, year, rating, page);
         allRecommendations = [...allRecommendations, ...recommendations];
         if (recommendations.length === 0) break;
         page++;
@@ -387,7 +383,7 @@ document.querySelector('.close-recommendations').addEventListener('click', funct
 
 // Add event listeners for filter changes to automatically update recommendations
 document.getElementById('rec-genre-filter').addEventListener('change', displayRecommendations);
-document.getElementById('rec-decade-filter').addEventListener('change', displayRecommendations);
+document.getElementById('rec-year-filter').addEventListener('change', displayRecommendations);
 document.getElementById('rec-rating-filter').addEventListener('change', displayRecommendations);
 
 // Add event listener for the generate recommendations button
