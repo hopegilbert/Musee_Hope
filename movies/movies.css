@@ -1935,3 +1935,72 @@ h1 {
 .scrollable-content::-webkit-scrollbar-thumb:hover {
     background: rgba(255, 255, 255, 0.5);
 }
+
+.recommendations-grid .movie-card .trailer-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 2;
+}
+
+.recommendations-grid .movie-card .trailer-button i {
+    color: var(--theme-gold);
+    font-size: 16px;
+}
+
+.recommendations-grid .movie-card .trailer-button:hover {
+    background-color: var(--theme-gold);
+    transform: scale(1.1);
+}
+
+.recommendations-grid .movie-card .trailer-button:hover i {
+    color: black;
+}
+
+.recommendations-grid .movie-card .trailer-button.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.recommendations-grid .movie-card .trailer-button.disabled:hover {
+    transform: none;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.recommendations-grid .movie-card .trailer-button.disabled i {
+    color: #666;
+}
+
+/* Position the trailer button on the back of the card */
+.recommendations-grid .movie-card-back .trailer-button {
+    position: static;
+    margin: 10px 0;
+    background-color: var(--theme-gold);
+}
+
+.recommendations-grid .movie-card-back .trailer-button i {
+    color: black;
+}
+
+.recommendations-grid .movie-card-back .trailer-button:hover {
+    background-color: var(--theme-dark-gold);
+}
+
+.recommendations-grid .movie-card-back .trailer-button.disabled {
+    background-color: #444;
+}
+
+.recommendations-grid .movie-card-back .trailer-button.disabled:hover {
+    background-color: #444;
+}

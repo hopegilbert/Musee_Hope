@@ -185,6 +185,29 @@ async function getWatchProviders(movieId) {
     }
 }
 
+// Function to get movie trailer
+async function getMovieTrailer(movieId) {
+    try {
+        const response = await fetch(`${TMDB_BASE_URL}/movie/${movieId}/videos?api_key=${TMDB_API_KEY}`);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        
+        // Filter for YouTube trailers
+        const trailers = data.results.filter(video => 
+            video.site === 'YouTube' && 
+            (video.type === 'Trailer' || video.type === 'Teaser')
+        );
+        
+        // Return the first trailer, or null if none found
+        return trailers.length > 0 ? trailers[0] : null;
+    } catch (error) {
+        console.error('Error fetching trailer:', error);
+        return null;
+    }
+}
+
 // Function to create a recommendation card
 async function createRecommendationCard(movie) {
     const card = document.createElement('div');
@@ -220,6 +243,28 @@ async function createRecommendationCard(movie) {
     
     const title = document.createElement('h3');
     title.textContent = movie.title;
+
+    // Add trailer button
+    const trailerButton = document.createElement('button');
+    trailerButton.className = 'trailer-button';
+    trailerButton.innerHTML = '<i class="fas fa-play"></i>';
+    
+    // Fetch and set up trailer
+    const trailer = await getMovieTrailer(movie.id);
+    if (trailer) {
+        trailerButton.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent card flip
+            window.open(`https://www.youtube.com/watch?v=${trailer.key}`, '_blank');
+        });
+        trailerButton.title = 'Watch Trailer';
+    } else {
+        trailerButton.disabled = true;
+        trailerButton.title = 'No Trailer Available';
+        trailerButton.classList.add('disabled');
+    }
+    
+    movieInfo.appendChild(title);
+    movieInfo.appendChild(trailerButton);
 
     // Add star rating row
     const starRating = document.createElement('div');
@@ -305,7 +350,6 @@ async function createRecommendationCard(movie) {
     dateGenreRow.appendChild(yearDisplay);
     dateGenreRow.appendChild(genreBadges);
 
-    movieInfo.appendChild(title);
     movieInfo.appendChild(starRating);
     movieInfo.appendChild(dateGenreRow);
     
@@ -402,6 +446,18 @@ async function createRecommendationCard(movie) {
     backContent.appendChild(reviewSection);
     backContent.appendChild(watchProvidersSection);
     
+    // Add trailer button to back of card as well
+    const backTrailerButton = trailerButton.cloneNode(true);
+    if (trailer) {
+        backTrailerButton.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent card flip
+            window.open(`https://www.youtube.com/watch?v=${trailer.key}`, '_blank');
+        });
+    }
+    
+    // Add trailer button to the back content
+    backContent.insertBefore(backTrailerButton, backContent.firstChild);
+
     cardBack.appendChild(backContent);
 
     card.appendChild(cardFront);
