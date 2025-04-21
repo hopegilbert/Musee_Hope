@@ -1,26 +1,9 @@
-// Import API key from config
-import { TMDB_API_KEY } from './config.js';
-import { movies } from './movieData.js';
-
-// TMDB API Configuration
+// TMDB API configuration
 const TMDB_BASE_URL = 'https://api.themoviedb.org/3';
+const TMDB_API_KEY = 'YOUR_API_KEY'; // You'll need to replace this with your actual TMDB API key
 
-// Test API connection
-async function testAPI() {
-    try {
-        const response = await fetch(`${TMDB_BASE_URL}/configuration?api_key=${TMDB_API_KEY}`);
-        if (response.ok) {
-            console.log('API connection successful!');
-        } else {
-            console.error('API connection failed:', response.status);
-        }
-    } catch (error) {
-        console.error('Error testing API:', error);
-    }
-}
-
-// Run the test when the page loads
-document.addEventListener('DOMContentLoaded', testAPI);
+// Import movies array from movieData.js
+import { movies } from './movieData.js';
 
 // Function to get TMDB genre ID from our genre name
 function getTMDBGenreId(genre) {
@@ -40,94 +23,6 @@ function getTMDBGenreId(genre) {
         'War': 10752
     };
     return genreMap[genre] || null;
-}
-
-// Function to get decade range for TMDB
-function getDecadeRange(decade) {
-    if (decade === 'all') return null;
-    const startYear = parseInt(decade);
-    return {
-        start: `${startYear}-01-01`,
-        end: `${startYear + 9}-12-31`
-    };
-}
-
-// Function to analyze user's library
-function analyzeLibrary() {
-    const genreCounts = {};
-    const yearCounts = {};
-    const ratingCounts = {};
-    let totalMovies = movies.length;
-
-    movies.forEach(movie => {
-        // Count genres
-        movie.genres.forEach(genre => {
-            genreCounts[genre] = (genreCounts[genre] || 0) + 1;
-        });
-
-        // Count years
-        const year = movie.year;
-        yearCounts[year] = (yearCounts[year] || 0) + 1;
-
-        // Count ratings
-        const rating = Math.floor(movie.rating);
-        ratingCounts[rating] = (ratingCounts[rating] || 0) + 1;
-    });
-
-    // Find most common genres
-    const topGenres = Object.entries(genreCounts)
-        .sort((a, b) => b[1] - a[1])
-        .slice(0, 3)
-        .map(([genre]) => genre);
-
-    // Find most common decade
-    const decades = {};
-    Object.keys(yearCounts).forEach(year => {
-        const decade = Math.floor(year / 10) * 10;
-        decades[decade] = (decades[decade] || 0) + yearCounts[year];
-    });
-    const topDecade = Object.entries(decades)
-        .sort((a, b) => b[1] - a[1])[0][0];
-
-    // Find average rating
-    const totalRating = Object.entries(ratingCounts)
-        .reduce((sum, [rating, count]) => sum + (parseInt(rating) * count), 0);
-    const avgRating = totalRating / totalMovies;
-
-    return {
-        topGenres,
-        topDecade,
-        avgRating
-    };
-}
-
-// Function to get TMDB movie ID from title
-async function getTMDBMovieId(movieTitle) {
-    const url = `${TMDB_BASE_URL}/search/movie?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(movieTitle)}`;
-    try {
-        const response = await fetch(url);
-        const data = await response.json();
-        if (data.results && data.results.length > 0) {
-            return data.results[0].id;
-        }
-        return null;
-    } catch (error) {
-        console.error('Error getting TMDB movie ID:', error);
-        return null;
-    }
-}
-
-// Function to get recommendations for a specific movie
-async function getMovieRecommendations(movieId) {
-    const url = `${TMDB_BASE_URL}/movie/${movieId}/recommendations?api_key=${TMDB_API_KEY}`;
-    try {
-        const response = await fetch(url);
-        const data = await response.json();
-        return data.results || [];
-    } catch (error) {
-        console.error('Error getting movie recommendations:', error);
-        return [];
-    }
 }
 
 // Function to normalize movie titles for comparison
@@ -512,19 +407,5 @@ document.addEventListener('DOMContentLoaded', () => {
     closeButton.addEventListener('click', () => {
         recommendationsPanel.classList.add('hidden');
         overlay.classList.remove('visible');
-    });
-
-    // Close panel when clicking overlay
-    overlay.addEventListener('click', () => {
-        recommendationsPanel.classList.add('hidden');
-        overlay.classList.remove('visible');
-    });
-
-    // Close panel when pressing Escape key
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            recommendationsPanel.classList.add('hidden');
-            overlay.classList.remove('visible');
-        }
     });
 }); 
