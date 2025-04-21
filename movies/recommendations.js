@@ -219,8 +219,11 @@ async function fetchRecommendations(genre, decade) {
 function createRecommendationCard(movie) {
     const card = document.createElement('div');
     card.className = 'movie-card recommendation-card';
-    
-    // Create poster image using TMDB image URL
+
+    // Create front of card
+    const cardFront = document.createElement('div');
+    cardFront.className = 'movie-card-front recommendation-card-front loading';
+
     const poster = document.createElement('img');
     poster.className = 'movie-poster';
     poster.alt = `${movie.title} Poster`;
@@ -228,66 +231,176 @@ function createRecommendationCard(movie) {
         ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
         : 'images/placeholder.jpg';
     
-    const info = document.createElement('div');
-    info.className = 'movie-info';
+    poster.onload = () => {
+        cardFront.classList.remove('loading');
+        poster.classList.add('loaded');
+    };
+
+    poster.onerror = () => {
+        cardFront.classList.remove('loading');
+        cardFront.classList.add('error');
+        poster.src = 'images/placeholder.jpg';
+    };
+
+    const movieInfo = document.createElement('div');
+    movieInfo.className = 'movie-info';
     
     const title = document.createElement('h3');
     title.textContent = movie.title;
+
+    // Add star rating row
+    const starRating = document.createElement('div');
+    starRating.className = 'star-rating';
     
-    const year = document.createElement('span');
-    year.className = 'year-display';
-    year.textContent = movie.release_date ? movie.release_date.split('-')[0] : 'N/A';
+    // Create empty stars container
+    const emptyStars = document.createElement('div');
+    emptyStars.className = 'empty-stars';
+    for (let i = 0; i < 5; i++) {
+        const star = document.createElement('img');
+        star.src = 'images/empty-star.png';
+        star.alt = 'Empty Star';
+        star.className = 'star';
+        emptyStars.appendChild(star);
+    }
     
-    // Convert TMDB rating (0-10) to our scale (0-5)
-    const rating = movie.vote_average / 2;
-    const starRating = createStarRating(rating);
+    // Create filled stars container
+    const filledStars = document.createElement('div');
+    filledStars.className = 'filled-stars';
+    const rating = movie.vote_average / 2; // Convert from 10 to 5 star scale
+    const fullStars = Math.floor(rating);
+    const decimalPart = rating % 1;
     
-    // Add TMDB rating as text
-    const ratingText = document.createElement('span');
-    ratingText.className = 'tmdb-rating';
-    ratingText.textContent = `TMDB Rating: ${movie.vote_average.toFixed(1)}/10`;
+    // Add full stars
+    for (let i = 0; i < fullStars; i++) {
+        const star = document.createElement('img');
+        star.src = 'images/yellow-star.png';
+        star.alt = 'Full Star';
+        star.className = 'star';
+        filledStars.appendChild(star);
+    }
     
-    info.appendChild(title);
-    info.appendChild(year);
-    info.appendChild(starRating);
-    info.appendChild(ratingText);
+    // Add decimal star if needed
+    if (decimalPart > 0) {
+        const star = document.createElement('img');
+        star.src = `images/0.${Math.round(decimalPart * 10)}.png`;
+        star.alt = 'Decimal Star';
+        star.className = 'star';
+        filledStars.appendChild(star);
+    }
     
-    card.appendChild(poster);
-    card.appendChild(info);
+    starRating.appendChild(emptyStars);
+    starRating.appendChild(filledStars);
+
+    const dateGenreRow = document.createElement('div');
+    dateGenreRow.className = 'date-genre-row';
+
+    const yearDisplay = document.createElement('span');
+    const year = movie.release_date ? movie.release_date.split('-')[0] : 'N/A';
+    const decade = Math.floor(parseInt(year) / 10) * 10;
+    yearDisplay.className = `year-display decade-${decade}s`;
+    yearDisplay.textContent = year;
+
+    const genreBadges = document.createElement('div');
+    genreBadges.className = 'genre-badges';
     
+    // Add first genre as badge
+    if (movie.genre_ids && movie.genre_ids.length > 0) {
+        const genre = getGenreName(movie.genre_ids[0]);
+        const badge = document.createElement('span');
+        badge.className = `genre-badge genre-${genre.toLowerCase()}`;
+        badge.textContent = genre;
+        genreBadges.appendChild(badge);
+    }
+
+    dateGenreRow.appendChild(yearDisplay);
+    dateGenreRow.appendChild(genreBadges);
+
+    movieInfo.appendChild(title);
+    movieInfo.appendChild(starRating);
+    movieInfo.appendChild(dateGenreRow);
+    
+    cardFront.appendChild(poster);
+    cardFront.appendChild(movieInfo);
+
+    // Create back of card
+    const cardBack = document.createElement('div');
+    cardBack.className = 'movie-card-back recommendation-card-back';
+
+    const backContent = document.createElement('div');
+    backContent.className = 'back-content';
+
+    const backTitle = document.createElement('h3');
+    backTitle.textContent = movie.title;
+
+    const ratingNumber = document.createElement('span');
+    ratingNumber.className = 'rating-number';
+    ratingNumber.textContent = rating.toFixed(1);
+    backTitle.appendChild(ratingNumber);
+
+    const backDateGenreRow = document.createElement('div');
+    backDateGenreRow.className = 'back-date-genre-row';
+
+    const backYearDisplay = document.createElement('span');
+    backYearDisplay.className = `year-display decade-${decade}s`;
+    backYearDisplay.textContent = year;
+
+    const backGenreBadges = genreBadges.cloneNode(true);
+
+    backDateGenreRow.appendChild(backYearDisplay);
+    backDateGenreRow.appendChild(backGenreBadges);
+
+    const reviewSection = document.createElement('div');
+    reviewSection.className = 'review-section';
+
+    const reviewHeading = document.createElement('h4');
+    reviewHeading.textContent = 'Overview';
+    reviewHeading.className = 'review-heading';
+
+    const reviewText = document.createElement('p');
+    reviewText.className = 'review-text';
+    reviewText.textContent = movie.overview || 'No overview available.';
+
+    reviewSection.appendChild(reviewHeading);
+    reviewSection.appendChild(reviewText);
+
+    backContent.appendChild(backTitle);
+    backContent.appendChild(backDateGenreRow);
+    backContent.appendChild(reviewSection);
+    
+    cardBack.appendChild(backContent);
+
+    card.appendChild(cardFront);
+    card.appendChild(cardBack);
+
+    // Add click handlers for flip functionality
+    function handleClick(e) {
+        card.classList.toggle('flipped');
+    }
+
+    cardFront.addEventListener('click', handleClick);
+    cardBack.addEventListener('click', handleClick);
+
     return card;
 }
 
-// Helper function to create star rating (same as in movieFunctions.js)
-function createStarRating(rating) {
-    const starContainer = document.createElement('div');
-    starContainer.className = 'star-rating';
-    
-    const fullStars = Math.floor(rating);
-    const decimal = rating % 1;
-    
-    // Create all 5 stars
-    for (let i = 0; i < 5; i++) {
-        const star = document.createElement('i');
-        star.className = 'fas fa-star star';
-        
-        if (i < fullStars) {
-            // Full star
-            star.style.color = '#ffd700';
-        } else if (i === fullStars && decimal > 0) {
-            // Partial star
-            star.className = 'fas fa-star star partial';
-            star.style.setProperty('--percent', `${decimal * 100}%`);
-            star.style.color = 'rgba(255, 255, 255, 0.3)';
-        } else {
-            // Empty star
-            star.style.color = 'rgba(255, 255, 255, 0.3)';
-        }
-        
-        starContainer.appendChild(star);
-    }
-    
-    return starContainer;
+// Helper function to get genre name from TMDB ID
+function getGenreName(genreId) {
+    const genreMap = {
+        28: 'Action',
+        12: 'Adventure',
+        16: 'Animation',
+        35: 'Comedy',
+        80: 'Crime',
+        18: 'Drama',
+        14: 'Fantasy',
+        27: 'Horror',
+        10402: 'Musical',
+        10749: 'Romance',
+        878: 'Sci-Fi',
+        53: 'Thriller',
+        10752: 'War'
+    };
+    return genreMap[genreId] || 'Unknown';
 }
 
 // Function to display recommendations
@@ -327,12 +440,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const recommendationsPanel = document.getElementById('recommendations-panel');
     const generateButton = document.getElementById('generate-recommendations');
     const closeButton = document.querySelector('.close-recommendations');
-    
-    // Create overlay
-    const overlay = document.createElement('div');
-    overlay.id = 'recommendations-overlay';
-    overlay.className = 'recommendations-overlay';
-    document.body.appendChild(overlay);
+    const overlay = document.querySelector('.recommendations-overlay');
+
+    if (!overlay) {
+        // Create overlay if it doesn't exist
+        const newOverlay = document.createElement('div');
+        newOverlay.className = 'recommendations-overlay';
+        document.body.appendChild(newOverlay);
+    }
 
     // Show recommendations panel
     recommendationsButton.addEventListener('click', () => {
@@ -345,7 +460,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Generate new recommendations
     generateButton.addEventListener('click', displayRecommendations);
 
-    // Close panel
+    // Close panel when clicking close button
     closeButton.addEventListener('click', () => {
         recommendationsPanel.classList.add('hidden');
         overlay.classList.remove('visible');
@@ -355,5 +470,13 @@ document.addEventListener('DOMContentLoaded', () => {
     overlay.addEventListener('click', () => {
         recommendationsPanel.classList.add('hidden');
         overlay.classList.remove('visible');
+    });
+
+    // Close panel when pressing Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            recommendationsPanel.classList.add('hidden');
+            overlay.classList.remove('visible');
+        }
     });
 }); 
