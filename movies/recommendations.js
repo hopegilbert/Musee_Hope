@@ -171,6 +171,9 @@ async function fetchRecommendations(genre, decade, rating) {
         // Construct URL for discovering movies
         let url = `${TMDB_BASE_URL}/discover/movie?api_key=${TMDB_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1`;
 
+        // Add minimum vote count filter (1000+ ratings)
+        url += '&vote_count.gte=1000';
+
         // Add Western regions filter (US, CA, GB, IE, AU, NZ)
         url += '&region=US&with_origin_country=US|CA|GB|IE|AU|NZ';
 
