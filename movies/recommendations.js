@@ -56,13 +56,12 @@ async function fetchRecommendations(genre, year, rating, page = 1) {
     const params = new URLSearchParams({
         api_key: TMDB_API_KEY,
         language: 'en-US',
-        page: '1', // Always fetch first page only
+        page: page.toString(),
         sort_by: 'popularity.desc',
         include_adult: false,
         with_original_language: 'en',
-        certification_country: 'US',
-        watch_region: 'US|GB|CA|AU|NZ|IE',
-        'vote_count.gte': '100' // Add minimum vote count to ensure quality
+        'vote_count.gte': '100', // Ensure quality results
+        region: 'US'
     });
 
     // Add genre filter if specified
@@ -73,7 +72,8 @@ async function fetchRecommendations(genre, year, rating, page = 1) {
 
     // Add year filter if specified
     if (year !== 'all') {
-        params.append('primary_release_year', year);
+        const yearNum = parseInt(year);
+        params.append('primary_release_year', yearNum.toString());
     }
 
     // Add rating filter if specified
@@ -82,26 +82,29 @@ async function fetchRecommendations(genre, year, rating, page = 1) {
         let minRating, maxRating;
         
         switch(ratingNum) {
-            case 1: // 0-1.2 stars (0-2.4/10)
-                minRating = 0;
-                maxRating = 2.4;
+            case 1: // 1-1.9 stars
+                minRating = 2.0;
+                maxRating = 3.8;
                 break;
-            case 2: // 1.3-2.4 stars (2.5-4.9/10)
-                minRating = 2.5;
-                maxRating = 4.9;
+            case 2: // 2-2.9 stars
+                minRating = 4.0;
+                maxRating = 5.8;
                 break;
-            case 3: // 2.5-3.7 stars (5.0-7.4/10)
-                minRating = 5.0;
-                maxRating = 7.4;
+            case 3: // 3-3.9 stars
+                minRating = 6.0;
+                maxRating = 7.8;
                 break;
-            case 4: // 3.8-4.9 stars (7.5-9.9/10)
-                minRating = 7.5;
-                maxRating = 9.9;
+            case 4: // 4-4.9 stars
+                minRating = 8.0;
+                maxRating = 9.8;
                 break;
-            case 5: // 5.0 stars (10/10)
-                minRating = 10;
+            case 5: // 5 stars
+                minRating = 9.9;
                 maxRating = 10;
                 break;
+            default:
+                minRating = 0;
+                maxRating = 10;
         }
         
         params.append('vote_average.gte', minRating.toString());
@@ -109,36 +112,44 @@ async function fetchRecommendations(genre, year, rating, page = 1) {
     }
 
     const url = `${TMDB_BASE_URL}/discover/movie?${params.toString()}`;
-    console.log('Fetching from TMDB:', url);
+    console.log('TMDB API URL:', url);
 
     try {
         const response = await fetch(url);
         if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            throw new Error(`TMDB API error: ${response.status} - ${response.statusText}`);
         }
         const data = await response.json();
         
         if (!data.results) {
             console.error('Invalid TMDB response:', data);
-            return [];
+            throw new Error('Invalid response from TMDB API');
         }
 
-        console.log('TMDB returned', data.results.length, 'movies before filtering'); // Debug log
+        console.log('TMDB returned', data.results.length, 'movies before filtering');
         
         // Filter out library movies and movies without posters
         const filtered = data.results.filter(movie => 
             !isInLibrary(movie) && 
             movie.poster_path && 
             movie.title && 
-            movie.release_date
+            movie.release_date &&
+            movie.vote_average >= 0 // Ensure valid rating
         );
         
-        console.log('After filtering library movies:', filtered.length, 'movies remain'); // Debug log
+        console.log('After filtering:', filtered.length, 'movies remain');
+        
+        // If we don't have enough results and there are more pages, fetch the next page
+        if (filtered.length < 10 && data.page < data.total_pages && page < 3) {
+            console.log('Fetching additional page for more results...');
+            const nextPageResults = await fetchRecommendations(genre, year, rating, page + 1);
+            return [...filtered, ...nextPageResults];
+        }
         
         return filtered;
     } catch (error) {
-        console.error('Error fetching recommendations:', error);
-        return [];
+        console.error('Error fetching from TMDB:', error);
+        throw new Error('Unable to fetch recommendations from TMDB. Please try again.');
     }
 }
 
@@ -413,28 +424,36 @@ async function displayRecommendations() {
     const year = document.getElementById('rec-year-filter').value;
     const rating = document.getElementById('rec-rating-filter').value;
     
+    console.log('Filters selected:', { genre, year, rating });
+    
     const grid = document.querySelector('.recommendations-grid');
     
-    // Clear the grid and remove any existing cards
-    while (grid.firstChild) {
-        grid.removeChild(grid.firstChild);
-    }
+    // Clear the grid safely
+    grid.innerHTML = '';
     
     // Show loading state
     const loading = document.createElement('div');
     loading.className = 'loading';
+    loading.textContent = 'Finding movies for you...';
     grid.appendChild(loading);
     
     try {
+        console.log('Fetching recommendations with filters:', { genre, year, rating });
         const recommendations = await fetchRecommendations(genre, year, rating);
+        console.log('Received recommendations:', recommendations.length);
         
-        // Remove loading state
-        grid.removeChild(loading);
+        // Remove loading state safely
+        if (grid.contains(loading)) {
+            grid.removeChild(loading);
+        }
         
-        if (recommendations.length === 0) {
-            const noResults = document.createElement('p');
+        if (!recommendations || recommendations.length === 0) {
+            const noResults = document.createElement('div');
             noResults.className = 'no-results';
-            noResults.textContent = 'No movies found matching your criteria';
+            noResults.innerHTML = `
+                <p>No movies found matching your criteria.</p>
+                <p class="suggestion">Try adjusting your filters or selecting "All" for more results.</p>
+            `;
             grid.appendChild(noResults);
             return;
         }
@@ -444,21 +463,43 @@ async function displayRecommendations() {
             new Map(recommendations.map(movie => [movie.id, movie])).values()
         ).slice(0, 20);
         
+        console.log('Unique movies to display:', uniqueMovies.length);
+        
         // Create a document fragment to batch append cards
         const fragment = document.createDocumentFragment();
         
         // Create and append cards to fragment
         for (const movie of uniqueMovies) {
-            const card = await createRecommendationCard(movie);
-            fragment.appendChild(card);
+            try {
+                const card = await createRecommendationCard(movie);
+                fragment.appendChild(card);
+            } catch (cardError) {
+                console.error('Error creating card for movie:', movie.title, cardError);
+                // Continue with other cards if one fails
+                continue;
+            }
         }
         
         // Add all cards to grid at once
         grid.appendChild(fragment);
         
     } catch (error) {
-        console.error('Error displaying recommendations:', error);
-        grid.innerHTML = '<p class="no-results">Error loading recommendations. Please try again.</p>';
+        console.error('Error in displayRecommendations:', error);
+        
+        // Remove loading state if it exists
+        const loadingElement = grid.querySelector('.loading');
+        if (loadingElement) {
+            grid.removeChild(loadingElement);
+        }
+        
+        // Show a more specific error message
+        const errorMessage = document.createElement('div');
+        errorMessage.className = 'error-message';
+        errorMessage.innerHTML = `
+            <p>Sorry, we encountered an error while loading recommendations.</p>
+            <p class="error-details">${error.message || 'Please try again or adjust your filters.'}</p>
+        `;
+        grid.appendChild(errorMessage);
     }
 }
 
