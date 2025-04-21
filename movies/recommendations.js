@@ -63,8 +63,11 @@ async function fetchRecommendations(genre, decade, rating, page = 1) {
         language: 'en-US',
         page: page.toString(),
         sort_by: 'vote_count.desc',
-        'vote_count.gte': '100', // Ensure some minimum number of votes
-        include_adult: false     // Exclude adult content
+        'vote_count.gte': '1000', // Ensure at least 1000 votes
+        include_adult: false,     // Exclude adult content
+        with_original_language: 'en', // Only English language movies
+        certification_country: 'US',  // Use US certification for content rating consistency
+        watch_region: 'US|GB|CA|AU|NZ|IE' // English-speaking Western countries
     });
 
     // Add genre filter if specified
