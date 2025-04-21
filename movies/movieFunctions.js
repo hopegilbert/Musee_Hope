@@ -50,6 +50,48 @@ function createMovieCard(movie) {
     const title = document.createElement('h3');
     title.textContent = movie.title;
 
+    // Add star rating row
+    const starRating = document.createElement('div');
+    starRating.className = 'star-rating';
+    
+    // Create empty stars container
+    const emptyStars = document.createElement('div');
+    emptyStars.className = 'empty-stars';
+    for (let i = 0; i < 5; i++) {
+        const star = document.createElement('img');
+        star.src = 'images/empty-star.png';
+        star.alt = 'Empty Star';
+        star.className = 'star';
+        emptyStars.appendChild(star);
+    }
+    
+    // Create filled stars container
+    const filledStars = document.createElement('div');
+    filledStars.className = 'filled-stars';
+    const fullStars = Math.floor(movie.rating);
+    const decimalPart = movie.rating % 1;
+    
+    // Add full stars
+    for (let i = 0; i < fullStars; i++) {
+        const star = document.createElement('img');
+        star.src = 'images/yellow-star.png';
+        star.alt = 'Full Star';
+        star.className = 'star';
+        filledStars.appendChild(star);
+    }
+    
+    // Add decimal star if needed
+    if (decimalPart > 0) {
+        const star = document.createElement('img');
+        star.src = `images/0.${Math.round(decimalPart * 10)}.png`;
+        star.alt = 'Decimal Star';
+        star.className = 'star';
+        filledStars.appendChild(star);
+    }
+    
+    starRating.appendChild(emptyStars);
+    starRating.appendChild(filledStars);
+
     const dateGenreRow = document.createElement('div');
     dateGenreRow.className = 'date-genre-row';
 
@@ -70,6 +112,7 @@ function createMovieCard(movie) {
     dateGenreRow.appendChild(genreBadges);
 
     movieInfo.appendChild(title);
+    movieInfo.appendChild(starRating);
     movieInfo.appendChild(dateGenreRow);
     
     cardFront.appendChild(poster);
