@@ -1428,9 +1428,11 @@ h1 {
     overflow-y: auto;
     transform: translateX(100%);
     transition: transform 0.3s ease-in-out;
+    display: none;
 }
 
 .recommendations-panel:not(.hidden) {
+    display: block;
     transform: translateX(0);
 }
 

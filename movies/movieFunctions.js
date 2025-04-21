@@ -287,8 +287,9 @@ function debounce(func, wait) {
 
 // Set up event listeners
 document.addEventListener('DOMContentLoaded', () => {
-    // Initial load of movies
-    filterMovies();
+    // Initialize movie grid
+    const movieGrid = document.getElementById('movie-grid');
+    if (!movieGrid) return;
 
     // Set up event listeners for filters
     const searchInput = document.getElementById('search-input');
@@ -298,64 +299,39 @@ document.addEventListener('DOMContentLoaded', () => {
     const sortFilter = document.getElementById('sort-filter');
 
     if (searchInput) {
-        searchInput.addEventListener('input', debounce(filterMovies, 300));
+        searchInput.addEventListener('input', () => {
+            filterMovies();
+        });
     }
+
     if (genreFilter) {
-        genreFilter.addEventListener('change', filterMovies);
+        genreFilter.addEventListener('change', () => {
+            filterMovies();
+        });
     }
+
     if (yearFilter) {
-        yearFilter.addEventListener('change', filterMovies);
+        yearFilter.addEventListener('change', () => {
+            filterMovies();
+        });
     }
+
     if (ratingFilter) {
-        ratingFilter.addEventListener('change', filterMovies);
+        ratingFilter.addEventListener('change', () => {
+            filterMovies();
+        });
     }
+
     if (sortFilter) {
-        sortFilter.addEventListener('change', filterMovies);
+        sortFilter.addEventListener('change', () => {
+            filterMovies();
+        });
     }
 
     // Preload all movie images
     preloadImages(movies).catch(error => {
         console.error('Error preloading images:', error);
     });
-
-    // Add event listeners for recommendations panel
-    const recommendationsButton = document.getElementById('recommendations-button');
-    const recommendationsPanel = document.getElementById('recommendations-panel');
-    const closeRecommendations = document.querySelector('.close-recommendations');
-    const recommendationsOverlay = document.createElement('div');
-    recommendationsOverlay.className = 'recommendations-overlay hidden';
-    document.body.appendChild(recommendationsOverlay);
-
-    if (recommendationsButton && recommendationsPanel) {
-        recommendationsButton.addEventListener('click', () => {
-            recommendationsPanel.classList.remove('hidden');
-            recommendationsOverlay.classList.remove('hidden');
-            recommendationsOverlay.classList.add('visible');
-            // Generate initial recommendations
-            displayRecommendations();
-        });
-
-        closeRecommendations.addEventListener('click', () => {
-            recommendationsPanel.classList.add('hidden');
-            recommendationsOverlay.classList.add('hidden');
-            recommendationsOverlay.classList.remove('visible');
-        });
-
-        recommendationsOverlay.addEventListener('click', () => {
-            recommendationsPanel.classList.add('hidden');
-            recommendationsOverlay.classList.add('hidden');
-            recommendationsOverlay.classList.remove('visible');
-        });
-
-        // Close panel when pressing Escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                recommendationsPanel.classList.add('hidden');
-                recommendationsOverlay.classList.add('hidden');
-                recommendationsOverlay.classList.remove('visible');
-            }
-        });
-    }
 });
 
 // Add random movie functionality
