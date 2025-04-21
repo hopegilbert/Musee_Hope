@@ -310,6 +310,7 @@ h1 {
     padding: 1rem;
     margin: 1rem auto;
     max-width: 1200px;
+    flex-wrap: wrap;
 }
 
 .action-buttons button {
@@ -329,6 +330,8 @@ h1 {
     justify-content: center;
     position: relative;
     overflow: hidden;
+    flex: 1;
+    max-width: 200px;
 }
 
 .action-buttons button:hover {
@@ -732,6 +735,19 @@ h1 {
 
 /* Mobile Responsive Styles */
 @media (max-width: 768px) {
+    .action-buttons {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
+        padding: 1rem;
+    }
+
+    .action-buttons button {
+        width: 100%;
+        max-width: none;
+        height: 44px; /* Slightly taller on mobile for better touch targets */
+    }
+
     .movies-grid {
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
         gap: 1rem;
