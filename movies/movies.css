@@ -1398,30 +1398,6 @@ h1 {
 }
 
 /* Recommendations Panel Styles */
-.recommendations-panel {
-    position: fixed;
-    top: 0;
-    right: 0;
-    height: 100vh;
-    width: 400px;
-    max-width: 90%;
-    background-color: var(--modal-background);
-    color: white;
-    z-index: 1000;
-    overflow-y: auto;
-    transform: translateX(100%);
-    transition: transform 0.3s ease-in-out;
-    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.5);
-}
-
-.recommendations-panel.active {
-    transform: translateX(0);
-}
-
-.recommendations-panel.hidden {
-    display: none;
-}
-
 .recommendations-overlay {
     position: fixed;
     top: 0;
@@ -1438,6 +1414,31 @@ h1 {
 .recommendations-overlay.active {
     opacity: 1;
     pointer-events: auto;
+}
+
+.recommendations-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 400px;
+    max-width: 90%;
+    background-color: var(--modal-background);
+    color: white;
+    z-index: 1000;
+    overflow-y: auto;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.5);
+    display: block;
+}
+
+.recommendations-panel.active {
+    transform: translateX(0);
+}
+
+.recommendations-panel.hidden {
+    display: none;
 }
 
 .recommendations-filters {
