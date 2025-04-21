@@ -453,6 +453,25 @@ h1 {
     transform: rotateY(360deg);
 }
 
+.movie-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0.5rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7), transparent);
+    color: white;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.movie-card:hover .movie-info {
+    transform: translateY(0);
+}
+
 .movie-poster {
     width: 100%;
     height: 100%;
@@ -471,25 +490,6 @@ h1 {
     opacity: 1;
     transform: scale(1);
     filter: brightness(1);
-}
-
-.movie-info {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 0.5rem;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7), transparent);
-    color: white;
-    transform: translateY(100%);
-    transition: transform 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-}
-
-.movie-card:hover .movie-info {
-    transform: translateY(0);
 }
 
 .movie-info h3 {
@@ -1417,11 +1417,11 @@ h1 {
     position: fixed;
     right: 0;
     top: 0;
-    width: 400px;
+    width: 350px;
     height: 100vh;
     background: var(--primary-color);
     box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
-    padding: 2rem;
+    padding: 1.5rem;
     transform: translateX(100%);
     transition: transform 0.3s ease-in-out;
     z-index: 1000;
@@ -1464,34 +1464,204 @@ h1 {
 }
 
 .recommendations-grid {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 1rem;
     margin-top: 1rem;
+    padding: 0.5rem;
 }
 
 .recommendation-card {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 27/40;
+    perspective: 1000px;
+    cursor: pointer;
     overflow: hidden;
-    transition: transform 0.2s ease;
+    background: var(--card-back-color);
+    border-radius: 8px;
+    box-shadow: var(--box-shadow);
+    transition: transform 0.3s ease;
 }
 
 .recommendation-card:hover {
-    transform: translateY(-2px);
+    transform: translateY(-5px);
+}
+
+.recommendation-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.05) 0%,
+        rgba(255, 255, 255, 0) 50%,
+        rgba(255, 255, 255, 0.05) 100%
+    );
+    opacity: 0;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.recommendation-card:hover::before {
+    animation: projectorFlicker 0.5s ease-in-out;
+}
+
+.recommendation-card.flipped::before {
+    animation: projectorFlicker 0.3s ease-in-out;
+}
+
+.recommendation-card-front,
+.recommendation-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+}
+
+.recommendation-card-front {
+    transform: rotateY(0deg);
+}
+
+.recommendation-card-back {
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+    background: var(--primary-color);
+    color: white;
+    cursor: pointer;
+}
+
+.recommendation-card.flipped .recommendation-card-front {
+    transform: rotateY(180deg);
+}
+
+.recommendation-card.flipped .recommendation-card-back {
+    transform: rotateY(360deg);
 }
 
 .recommendation-card .movie-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0.5rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7), transparent);
+    color: white;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.recommendation-card:hover .movie-info {
     transform: translateY(0);
-    background: rgba(0, 0, 0, 0.8);
-    position: relative;
 }
 
 .recommendation-card .movie-poster {
     width: 100%;
-    height: auto;
-    aspect-ratio: 2/3;
+    height: 100%;
     object-fit: cover;
+    aspect-ratio: 27/40;
+    opacity: 0;
+    transform: scale(1.02);
+    filter: brightness(0.8);
+    transition: 
+        opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+        filter 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.recommendation-card .movie-poster.loaded {
+    opacity: 1;
+    transform: scale(1);
+    filter: brightness(1);
+}
+
+.recommendation-card .back-content {
+    padding: 0.5rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    color: white;
+}
+
+.recommendation-card .back-content * {
+    pointer-events: auto;
+}
+
+.recommendation-card .back-content h3 {
+    font-size: 1.2rem;
+    margin: 0;
+    color: white;
+    text-shadow: var(--text-shadow);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.recommendation-card .back-date-genre-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.25rem;
+}
+
+.recommendation-card .back-content .year-display {
+    font-size: 0.8rem;
+    padding: 0.25rem 0.5rem;
+}
+
+.recommendation-card .back-content .genre-badge {
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    display: inline-block;
+    margin-right: 0.5rem;
+}
+
+.recommendation-card .review-section {
+    cursor: pointer;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 0.75rem;
+    border-radius: 8px;
+    margin-top: 0.25rem;
+    margin-bottom: 0.75rem;
+}
+
+.recommendation-card .review-heading {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+}
+
+.recommendation-card .review-text {
+    margin: 0;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: white;
+    overflow-y: auto;
 }
 
 .loading, .no-results, .error {
@@ -1843,4 +2013,71 @@ h1 {
 
 .reset-filters-button i {
     font-size: 0.9rem;
+}
+
+.generate-recommendations {
+    width: 100%;
+    padding: 8px 12px;
+    background-color: var(--primary-color);
+    color: white;
+    border: 1px solid var(--accent-yellow);
+    border-radius: 4px;
+    font-family: var(--main-font);
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+    margin: 0;
+}
+
+.generate-recommendations:hover {
+    background-color: var(--accent-yellow);
+    color: var(--primary-color);
+    transform: scale(1.02);
+}
+
+.generate-recommendations .fa-magic {
+    font-size: 0.9rem;
+    transition: transform 0.3s ease;
+}
+
+.generate-recommendations:hover .fa-magic {
+    transform: rotate(360deg);
+}
+
+.recommendation-filters {
+    margin-bottom: 1.5rem;
+}
+
+.recommendation-filters .filter-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.recommendation-filters .filter-select {
+    width: 100%;
+    padding: 8px 12px;
+    background-color: rgba(0, 0, 51, 0.5);
+    color: white;
+    border: 1px solid var(--accent-yellow);
+    border-radius: 4px;
+    font-family: var(--main-font);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.recommendation-filters .filter-select:hover {
+    border-color: var(--accent-color);
+    color: var(--accent-yellow);
+}
+
+.recommendation-filters .filter-select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 5px rgba(255, 69, 0, 0.3);
 }

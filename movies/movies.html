@@ -153,35 +153,46 @@
             </div>
             
             <div class="recommendation-filters">
-                <select id="rec-genre-filter" class="filter-select">
-                    <option value="all">All Genres</option>
-                    <option value="Action">Action</option>
-                    <option value="Adventure">Adventure</option>
-                    <option value="Animation">Animation</option>
-                    <option value="Comedy">Comedy</option>
-                    <option value="Crime">Crime</option>
-                    <option value="Drama">Drama</option>
-                    <option value="Fantasy">Fantasy</option>
-                    <option value="Horror">Horror</option>
-                    <option value="Musical">Musical</option>
-                    <option value="Romance">Romance</option>
-                    <option value="Sci-Fi">Sci-Fi</option>
-                    <option value="Thriller">Thriller</option>
-                    <option value="War">War</option>
-                </select>
-                
-                <select id="rec-decade-filter" class="filter-select">
-                    <option value="all">All Decades</option>
-                    <option value="1980">1980s</option>
-                    <option value="1990">1990s</option>
-                    <option value="2000">2000s</option>
-                    <option value="2010">2010s</option>
-                    <option value="2020">2020s</option>
-                </select>
-                
-                <button id="generate-recommendations" class="generate-recommendations">
-                    <i class="fas fa-magic"></i> Generate
-                </button>
+                <div class="filter-row">
+                    <select id="rec-genre-filter" class="filter-select">
+                        <option value="all">All Genres</option>
+                        <option value="Action">Action</option>
+                        <option value="Adventure">Adventure</option>
+                        <option value="Animation">Animation</option>
+                        <option value="Comedy">Comedy</option>
+                        <option value="Crime">Crime</option>
+                        <option value="Drama">Drama</option>
+                        <option value="Fantasy">Fantasy</option>
+                        <option value="Horror">Horror</option>
+                        <option value="Musical">Musical</option>
+                        <option value="Romance">Romance</option>
+                        <option value="Sci-Fi">Sci-Fi</option>
+                        <option value="Thriller">Thriller</option>
+                        <option value="War">War</option>
+                    </select>
+                    
+                    <select id="rec-decade-filter" class="filter-select">
+                        <option value="all">All Decades</option>
+                        <option value="1980">1980s</option>
+                        <option value="1990">1990s</option>
+                        <option value="2000">2000s</option>
+                        <option value="2010">2010s</option>
+                        <option value="2020">2020s</option>
+                    </select>
+
+                    <select id="rec-rating-filter" class="filter-select">
+                        <option value="all">All Ratings</option>
+                        <option value="5">5 Stars</option>
+                        <option value="4">4 Stars</option>
+                        <option value="3">3 Stars</option>
+                        <option value="2">2 Stars</option>
+                        <option value="1">1 Star</option>
+                    </select>
+                    
+                    <button id="generate-recommendations" class="generate-recommendations">
+                        <i class="fas fa-magic"></i> Generate
+                    </button>
+                </div>
             </div>
             
             <div class="recommendations-grid"></div>

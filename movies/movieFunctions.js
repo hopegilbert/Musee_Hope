@@ -307,7 +307,30 @@ document.addEventListener('DOMContentLoaded', () => {
     preloadImages(movies).catch(error => {
         console.error('Error preloading images:', error);
     });
-}); 
+
+    // Add event listeners for recommendations panel
+    const recommendationsButton = document.getElementById('recommendations-button');
+    const recommendationsPanel = document.getElementById('recommendations-panel');
+    const closeRecommendations = document.querySelector('.close-recommendations');
+    const recommendationsOverlay = document.createElement('div');
+    recommendationsOverlay.className = 'recommendations-overlay hidden';
+    document.body.appendChild(recommendationsOverlay);
+
+    recommendationsButton.addEventListener('click', () => {
+        recommendationsPanel.classList.remove('hidden');
+        recommendationsOverlay.classList.remove('hidden');
+    });
+
+    closeRecommendations.addEventListener('click', () => {
+        recommendationsPanel.classList.add('hidden');
+        recommendationsOverlay.classList.add('hidden');
+    });
+
+    recommendationsOverlay.addEventListener('click', () => {
+        recommendationsPanel.classList.add('hidden');
+        recommendationsOverlay.classList.add('hidden');
+    });
+});
 
 // Add random movie functionality
 document.getElementById('lucky-button').addEventListener('click', function() {
@@ -373,13 +396,7 @@ document.getElementById('recommendations-button').addEventListener('click', func
 // Add event listener for recommendations generation
 document.getElementById('generate-recommendations').addEventListener('click', generateRecommendations);
 
-// Add close button functionality for recommendations panel
-document.querySelector('.close-recommendations').addEventListener('click', function() {
-    const recommendationsPanel = document.getElementById('recommendations-panel');
-    recommendationsPanel.classList.remove('active');
-});
-
-// Add event listeners for filters
+// Add event listener for filters
 document.getElementById('genre-filter').addEventListener('change', filterMovies);
 document.getElementById('year-filter').addEventListener('change', filterMovies);
 document.getElementById('rating-filter').addEventListener('change', filterMovies);
