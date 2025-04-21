@@ -51,7 +51,7 @@ function isInLibrary(tmdbMovie) {
 }
 
 // Function to fetch recommendations from TMDB
-async function fetchRecommendations(genre, year, rating, page = 1) {
+async function fetchRecommendations(genre, year, rating, page = 1, allResults = new Map()) {
     // Build query parameters
     const params = new URLSearchParams({
         api_key: TMDB_API_KEY,
@@ -134,19 +134,24 @@ async function fetchRecommendations(genre, year, rating, page = 1) {
             movie.poster_path && 
             movie.title && 
             movie.release_date &&
-            movie.vote_average >= 0 // Ensure valid rating
+            movie.vote_average >= 0 && // Ensure valid rating
+            !allResults.has(movie.id) // Filter out duplicates
         );
         
-        console.log('After filtering:', filtered.length, 'movies remain');
+        // Add filtered results to our Map
+        filtered.forEach(movie => allResults.set(movie.id, movie));
+        
+        console.log('Total unique movies after filtering:', allResults.size);
         
         // If we don't have enough results and there are more pages, fetch the next page
-        if (filtered.length < 10 && data.page < data.total_pages && page < 3) {
+        if (allResults.size < 20 && data.page < data.total_pages && page < 3) {
             console.log('Fetching additional page for more results...');
-            const nextPageResults = await fetchRecommendations(genre, year, rating, page + 1);
-            return [...filtered, ...nextPageResults];
+            await fetchRecommendations(genre, year, rating, page + 1, allResults);
         }
         
-        return filtered;
+        // Return array of unique movies, sorted by popularity
+        return Array.from(allResults.values())
+            .sort((a, b) => b.popularity - a.popularity);
     } catch (error) {
         console.error('Error fetching from TMDB:', error);
         throw new Error('Unable to fetch recommendations from TMDB. Please try again.');
@@ -369,7 +374,7 @@ async function createRecommendationCard(movie) {
     // Update rating number to show 5-point scale
     const ratingNumber = document.createElement('span');
     ratingNumber.className = 'rating-number';
-    ratingNumber.textContent = `${fivePointRating.toFixed(1)}/5`;
+    ratingNumber.textContent = `${fivePointRating.toFixed(1)}`;
     backTitle.appendChild(ratingNumber);
 
     const backDateGenreRow = document.createElement('div');
@@ -384,15 +389,41 @@ async function createRecommendationCard(movie) {
     const reviewSection = document.createElement('div');
     reviewSection.className = 'review-section';
 
+    const reviewHeadingContainer = document.createElement('div');
+    reviewHeadingContainer.className = 'review-heading-container';
+
     const reviewHeading = document.createElement('h4');
     reviewHeading.textContent = 'Overview';
     reviewHeading.className = 'review-heading';
+
+    // Create trailer button with the image
+    const backTrailerButton = document.createElement('button');
+    backTrailerButton.className = 'trailer-button';
+    const trailerIcon = document.createElement('img');
+    trailerIcon.src = 'images/trailer-icon.png';
+    trailerIcon.alt = 'Play Trailer';
+    backTrailerButton.appendChild(trailerIcon);
+
+    if (trailer) {
+        backTrailerButton.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent card flip
+            window.open(`https://www.youtube.com/watch?v=${trailer.key}`, '_blank');
+        });
+        backTrailerButton.title = 'Watch Trailer';
+    } else {
+        backTrailerButton.disabled = true;
+        backTrailerButton.title = 'No Trailer Available';
+        backTrailerButton.classList.add('disabled');
+    }
+
+    reviewHeadingContainer.appendChild(reviewHeading);
+    reviewHeadingContainer.appendChild(backTrailerButton);
 
     const reviewText = document.createElement('p');
     reviewText.className = 'review-text';
     reviewText.textContent = movie.overview || 'No overview available.';
 
-    reviewSection.appendChild(reviewHeading);
+    reviewSection.appendChild(reviewHeadingContainer);
     reviewSection.appendChild(reviewText);
 
     // Add watch providers section
@@ -447,16 +478,16 @@ async function createRecommendationCard(movie) {
     backContent.appendChild(watchProvidersSection);
     
     // Add trailer button to back of card as well
-    const backTrailerButton = trailerButton.cloneNode(true);
-    if (trailer) {
-        backTrailerButton.addEventListener('click', (e) => {
-            e.stopPropagation(); // Prevent card flip
-            window.open(`https://www.youtube.com/watch?v=${trailer.key}`, '_blank');
-        });
-    }
+    const recommendationTrailerButton = document.createElement('button');
+    recommendationTrailerButton.className = 'trailer-button';
+    recommendationTrailerButton.textContent = 'Watch Trailer';
+    recommendationTrailerButton.addEventListener('click', async (event) => {
+        event.stopPropagation();
+        await showTrailer(movie);
+    });
     
     // Add trailer button to the back content
-    backContent.insertBefore(backTrailerButton, backContent.firstChild);
+    backContent.insertBefore(recommendationTrailerButton, backContent.firstChild);
 
     cardBack.appendChild(backContent);
 
