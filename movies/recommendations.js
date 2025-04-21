@@ -84,6 +84,7 @@ async function fetchRecommendations(genre, decade, rating, page = 1) {
     // Add rating filter if specified
     if (rating !== 'all') {
         // Convert our 1-5 star rating to TMDB's 0-10 scale
+        // For a selected rating of X stars, we want movies with X stars or higher
         const minRating = parseInt(rating) * 2;
         params.append('vote_average.gte', minRating.toString());
     }
