@@ -4,6 +4,7 @@ config.js
 .env.local
 .env.*.local
 movies/.env
+movies/config.js
 
 # OS generated files
 .DS_Store
