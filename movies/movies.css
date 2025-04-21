@@ -81,7 +81,7 @@ body {
 /* Cinema Header Styles */
 .cinema-header {
     text-align: center;
-    padding: 2rem;
+    padding: 6rem 2rem 2rem;
     position: relative;
     overflow: hidden;
     border-bottom: 2px solid var(--secondary-color);
@@ -154,7 +154,7 @@ body {
     position: relative;
     z-index: 2;
     display: inline-block;
-    padding: 3rem;
+    padding: 2rem;
     color: var(--text-color);
     border-radius: 8px 8px 0 0;
     box-shadow: 0 4px 20px var(--shadow-color);
@@ -162,6 +162,7 @@ body {
     transition: transform 0.3s ease;
     border: 2px solid var(--secondary-color);
     background-color: var(--primary-color);
+    margin-top: 0;
 }
 
 .ticket-stub:hover {
@@ -185,13 +186,13 @@ body {
     bottom: 0;
     left: 0;
     right: 0;
-    height: 8px;
+    height: 4px;
     background: repeating-linear-gradient(
         45deg,
         transparent,
-        transparent 10px,
-        var(--background-color) 10px,
-        var(--background-color) 20px
+        transparent 8px,
+        var(--background-color) 8px,
+        var(--background-color) 16px
     );
 }
 
@@ -1760,7 +1761,7 @@ h1 {
 .gif-container {
     position: relative;
     width: 200px;
-    height: auto;
+    height: 300px;
     overflow: hidden;
     border-radius: 8px;
     margin-bottom: 1rem;
@@ -1768,8 +1769,8 @@ h1 {
 
 .gif-container img {
     width: 100%;
-    height: auto;
-    object-fit: contain;
+    height: 100%;
+    object-fit: cover;
     transition: transform 0.3s ease;
 }
 
