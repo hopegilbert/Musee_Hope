@@ -1658,31 +1658,6 @@ h1 {
 }
 
 /* Recommendations Panel Styles */
-.recommendations-panel {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 400px;
-    height: 100vh;
-    background-color: var(--primary-color);
-    padding: 20px;
-    transform: translateX(100%);
-    transition: transform 0.3s ease;
-    z-index: 1000;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.recommendations-panel.active {
-    transform: translateX(0);
-}
-
-.recommendations-panel.hidden {
-    display: none;
-}
-
 .recommendations-overlay {
     position: fixed;
     top: 0;
@@ -1690,16 +1665,34 @@ h1 {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(3px);
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+    backdrop-filter: blur(5px);
     z-index: 999;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .recommendations-overlay.active {
     opacity: 1;
-    visibility: visible;
+}
+
+.recommendations-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 400px;
+    height: 100%;
+    background-color: var(--primary-color);
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    display: none;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+}
+
+.recommendations-panel:not(.hidden) {
+    transform: translateX(0);
 }
 
 .recommendations-header {
