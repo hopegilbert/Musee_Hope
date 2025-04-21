@@ -1544,39 +1544,20 @@ h1 {
 }
 
 /* Recommendations Panel Styles */
-.recommendations-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 999;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-
-.recommendations-overlay.active {
-    opacity: 1;
-    visibility: visible;
-}
-
 .recommendations-panel {
     position: fixed;
     top: 0;
     right: 0;
     width: 400px;
-    height: 100vh;
-    background-color: var(--primary-color);
-    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+    max-width: 90%;
+    height: 100%;
+    background-color: var(--modal-background);
+    color: white;
     z-index: 1000;
-    transform: translateX(100%);
-    transition: transform 0.3s ease;
     overflow-y: auto;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .recommendations-panel.active {
@@ -1585,6 +1566,24 @@ h1 {
 
 .recommendations-panel.hidden {
     display: none;
+}
+
+.recommendations-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.recommendations-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
 }
 
 .recommendations-header {
