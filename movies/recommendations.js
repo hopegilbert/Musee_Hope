@@ -321,64 +321,45 @@ async function displayRecommendations() {
     }
 }
 
-function showRecommendations() {
-    const overlay = document.querySelector('.recommendations-overlay');
-    const panel = document.querySelector('.recommendations-panel');
-    
-    // Show overlay and panel
-    overlay.style.display = 'block';
-    panel.style.display = 'block';
-    
-    // Trigger reflow
-    void overlay.offsetWidth;
-    void panel.offsetWidth;
-    
-    // Add active classes for animations
-    overlay.classList.add('active');
-    panel.classList.remove('hidden');
-}
-
-function hideRecommendations() {
-    const overlay = document.querySelector('.recommendations-overlay');
-    const panel = document.querySelector('.recommendations-panel');
-    
-    // Remove active classes for animations
-    overlay.classList.remove('active');
-    panel.classList.add('hidden');
-    
-    // Hide elements after animation completes
-    setTimeout(() => {
-        overlay.style.display = 'none';
-        panel.style.display = 'none';
-    }, 300); // Match this with your CSS transition duration
-}
-
 // Event Listeners
 document.addEventListener('DOMContentLoaded', () => {
     const recommendationsButton = document.getElementById('recommendations-button');
     const recommendationsPanel = document.querySelector('.recommendations-panel');
     const recommendationsOverlay = document.querySelector('.recommendations-overlay');
     const closeButton = document.querySelector('.close-recommendations');
+    const generateButton = document.getElementById('generate-recommendations');
 
-    recommendationsButton.addEventListener('click', () => {
-        recommendationsOverlay.classList.add('active');
-        recommendationsPanel.classList.remove('hidden');
-        setTimeout(() => {
-            recommendationsPanel.classList.add('active');
-        }, 10);
-    });
+    if (recommendationsButton && recommendationsPanel && recommendationsOverlay && closeButton) {
+        recommendationsButton.addEventListener('click', () => {
+            recommendationsOverlay.classList.add('active');
+            recommendationsPanel.classList.remove('hidden');
+            setTimeout(() => {
+                recommendationsPanel.classList.add('active');
+            }, 10);
+        });
 
-    closeButton.addEventListener('click', () => {
-        recommendationsPanel.classList.remove('active');
-        setTimeout(() => {
-            recommendationsPanel.classList.add('hidden');
-            recommendationsOverlay.classList.remove('active');
-        }, 300);
-    });
+        closeButton.addEventListener('click', () => {
+            recommendationsPanel.classList.remove('active');
+            setTimeout(() => {
+                recommendationsPanel.classList.add('hidden');
+                recommendationsOverlay.classList.remove('active');
+            }, 300);
+        });
 
-    recommendationsOverlay.addEventListener('click', (e) => {
-        if (e.target === recommendationsOverlay) {
-            closeButton.click();
+        recommendationsOverlay.addEventListener('click', (e) => {
+            if (e.target === recommendationsOverlay) {
+                closeButton.click();
+            }
+        });
+
+        if (generateButton) {
+            generateButton.addEventListener('click', async () => {
+                const genre = document.getElementById('rec-genre-filter').value;
+                const decade = document.getElementById('rec-decade-filter').value;
+                await displayRecommendations(genre, decade);
+            });
         }
-    });
+    } else {
+        console.error('Missing required elements for recommendations panel');
+    }
 });
