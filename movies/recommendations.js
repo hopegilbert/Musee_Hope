@@ -249,28 +249,6 @@ async function createRecommendationCard(movie) {
     const title = document.createElement('h3');
     title.textContent = movie.title;
 
-    // Add trailer button
-    const trailerButton = document.createElement('button');
-    trailerButton.className = 'trailer-button';
-    trailerButton.innerHTML = '<i class="fas fa-play"></i>';
-    
-    // Fetch and set up trailer
-    const trailer = await getMovieTrailer(movie.id);
-    if (trailer) {
-        trailerButton.addEventListener('click', (e) => {
-            e.stopPropagation(); // Prevent card flip
-            window.open(`https://www.youtube.com/watch?v=${trailer.key}`, '_blank');
-        });
-        trailerButton.title = 'Watch Trailer';
-    } else {
-        trailerButton.disabled = true;
-        trailerButton.title = 'No Trailer Available';
-        trailerButton.classList.add('disabled');
-    }
-    
-    movieInfo.appendChild(title);
-    movieInfo.appendChild(trailerButton);
-
     // Add star rating row
     const starRating = document.createElement('div');
     starRating.className = 'star-rating';
@@ -289,9 +267,9 @@ async function createRecommendationCard(movie) {
     // Create filled stars container
     const filledStars = document.createElement('div');
     filledStars.className = 'filled-stars';
-    const rating = movie.vote_average; // Keep the 10-point scale
-    const fivePointRating = rating / 2; // Convert to 5-point scale for display
-    const starCount = fivePointRating; // Use for star display
+    const rating = movie.vote_average;
+    const fivePointRating = rating / 2;
+    const starCount = fivePointRating;
     const fullStars = Math.floor(starCount);
     const decimalPart = starCount % 1;
     
@@ -355,6 +333,7 @@ async function createRecommendationCard(movie) {
     dateGenreRow.appendChild(yearDisplay);
     dateGenreRow.appendChild(genreBadges);
 
+    movieInfo.appendChild(title);
     movieInfo.appendChild(starRating);
     movieInfo.appendChild(dateGenreRow);
     
@@ -396,28 +375,31 @@ async function createRecommendationCard(movie) {
     reviewHeading.textContent = 'Overview';
     reviewHeading.className = 'review-heading';
 
-    // Create trailer button with the image
-    const backTrailerButton = document.createElement('button');
-    backTrailerButton.className = 'trailer-button';
+    // Add trailer button next to Overview
+    const trailerButton = document.createElement('button');
+    trailerButton.className = 'trailer-button';
     const trailerIcon = document.createElement('img');
     trailerIcon.src = 'images/trailer-icon.png';
     trailerIcon.alt = 'Play Trailer';
-    backTrailerButton.appendChild(trailerIcon);
-
-    if (trailer) {
-        backTrailerButton.addEventListener('click', (e) => {
-            e.stopPropagation(); // Prevent card flip
-            window.open(`https://www.youtube.com/watch?v=${trailer.key}`, '_blank');
-        });
-        backTrailerButton.title = 'Watch Trailer';
-    } else {
-        backTrailerButton.disabled = true;
-        backTrailerButton.title = 'No Trailer Available';
-        backTrailerButton.classList.add('disabled');
-    }
+    trailerButton.appendChild(trailerIcon);
+    
+    // Fetch trailer in background
+    getMovieTrailer(movie.id).then(trailer => {
+        if (trailer) {
+            trailerButton.addEventListener('click', (e) => {
+                e.stopPropagation();
+                window.open(`https://www.youtube.com/watch?v=${trailer.key}`, '_blank');
+            });
+            trailerButton.title = 'Watch Trailer';
+        } else {
+            trailerButton.disabled = true;
+            trailerButton.title = 'No Trailer Available';
+            trailerButton.classList.add('disabled');
+        }
+    });
 
     reviewHeadingContainer.appendChild(reviewHeading);
-    reviewHeadingContainer.appendChild(backTrailerButton);
+    reviewHeadingContainer.appendChild(trailerButton);
 
     const reviewText = document.createElement('p');
     reviewText.className = 'review-text';
@@ -437,37 +419,38 @@ async function createRecommendationCard(movie) {
     const providersGrid = document.createElement('div');
     providersGrid.className = 'providers-grid';
 
-    // Fetch and add watch providers
-    const watchProviders = await getWatchProviders(movie.id);
-    if (watchProviders) {
-        const allProviders = [...(watchProviders.flatrate || []), ...(watchProviders.free || []), ...(watchProviders.ads || [])];
-        if (allProviders.length > 0) {
-            allProviders.forEach(provider => {
-                const providerLink = document.createElement('a');
-                providerLink.href = watchProviders.link;
-                providerLink.target = '_blank';
-                providerLink.title = provider.provider_name;
+    // Fetch watch providers in background
+    getWatchProviders(movie.id).then(watchProviders => {
+        if (watchProviders) {
+            const allProviders = [...(watchProviders.flatrate || []), ...(watchProviders.free || []), ...(watchProviders.ads || [])];
+            if (allProviders.length > 0) {
+                allProviders.forEach(provider => {
+                    const providerLink = document.createElement('a');
+                    providerLink.href = watchProviders.link;
+                    providerLink.target = '_blank';
+                    providerLink.title = provider.provider_name;
 
-                const providerLogo = document.createElement('img');
-                providerLogo.src = `https://image.tmdb.org/t/p/original${provider.logo_path}`;
-                providerLogo.alt = provider.provider_name;
-                providerLogo.className = 'provider-logo';
+                    const providerLogo = document.createElement('img');
+                    providerLogo.src = `https://image.tmdb.org/t/p/original${provider.logo_path}`;
+                    providerLogo.alt = provider.provider_name;
+                    providerLogo.className = 'provider-logo';
 
-                providerLink.appendChild(providerLogo);
-                providersGrid.appendChild(providerLink);
-            });
+                    providerLink.appendChild(providerLogo);
+                    providersGrid.appendChild(providerLink);
+                });
+            } else {
+                const noProviders = document.createElement('p');
+                noProviders.className = 'no-providers';
+                noProviders.textContent = 'No streaming providers available';
+                providersGrid.appendChild(noProviders);
+            }
         } else {
             const noProviders = document.createElement('p');
             noProviders.className = 'no-providers';
             noProviders.textContent = 'No streaming providers available';
             providersGrid.appendChild(noProviders);
         }
-    } else {
-        const noProviders = document.createElement('p');
-        noProviders.className = 'no-providers';
-        noProviders.textContent = 'No streaming providers available';
-        providersGrid.appendChild(noProviders);
-    }
+    });
 
     watchProvidersSection.appendChild(watchProvidersHeading);
     watchProvidersSection.appendChild(providersGrid);
@@ -477,18 +460,6 @@ async function createRecommendationCard(movie) {
     backContent.appendChild(reviewSection);
     backContent.appendChild(watchProvidersSection);
     
-    // Add trailer button to back of card as well
-    const recommendationTrailerButton = document.createElement('button');
-    recommendationTrailerButton.className = 'trailer-button';
-    recommendationTrailerButton.textContent = 'Watch Trailer';
-    recommendationTrailerButton.addEventListener('click', async (event) => {
-        event.stopPropagation();
-        await showTrailer(movie);
-    });
-    
-    // Add trailer button to the back content
-    backContent.insertBefore(recommendationTrailerButton, backContent.firstChild);
-
     cardBack.appendChild(backContent);
 
     card.appendChild(cardFront);
@@ -507,29 +478,34 @@ async function createRecommendationCard(movie) {
 
 // Function to display recommendations
 async function displayRecommendations() {
-    const genre = document.getElementById('rec-genre-filter').value;
-    const year = document.getElementById('rec-year-filter').value;
-    const rating = document.getElementById('rec-rating-filter').value;
-    
-    console.log('Filters selected:', { genre, year, rating });
-    
     const grid = document.querySelector('.recommendations-grid');
+    const generateButton = document.getElementById('generate-recommendations');
     
-    // Clear the grid safely
+    // Prevent multiple clicks while loading
+    if (grid.classList.contains('loading')) {
+        return;
+    }
+    
+    // Clear the grid and show loading state
     grid.innerHTML = '';
+    grid.classList.add('loading');
+    generateButton.disabled = true;
     
-    // Show loading state
     const loading = document.createElement('div');
     loading.className = 'loading';
     loading.textContent = 'Finding movies for you...';
     grid.appendChild(loading);
     
     try {
-        console.log('Fetching recommendations with filters:', { genre, year, rating });
-        const recommendations = await fetchRecommendations(genre, year, rating);
-        console.log('Received recommendations:', recommendations.length);
+        const genre = document.getElementById('rec-genre-filter').value;
+        const year = document.getElementById('rec-year-filter').value;
+        const rating = document.getElementById('rec-rating-filter').value;
         
-        // Remove loading state safely
+        const recommendations = await fetchRecommendations(genre, year, rating);
+        
+        // Remove loading state
+        grid.classList.remove('loading');
+        generateButton.disabled = false;
         if (grid.contains(loading)) {
             grid.removeChild(loading);
         }
@@ -545,24 +521,16 @@ async function displayRecommendations() {
             return;
         }
         
-        // Take top 20 unique recommendations
-        const uniqueMovies = Array.from(
-            new Map(recommendations.map(movie => [movie.id, movie])).values()
-        ).slice(0, 20);
-        
-        console.log('Unique movies to display:', uniqueMovies.length);
-        
         // Create a document fragment to batch append cards
         const fragment = document.createDocumentFragment();
         
         // Create and append cards to fragment
-        for (const movie of uniqueMovies) {
+        for (const movie of recommendations) {
             try {
                 const card = await createRecommendationCard(movie);
                 fragment.appendChild(card);
             } catch (cardError) {
                 console.error('Error creating card for movie:', movie.title, cardError);
-                // Continue with other cards if one fails
                 continue;
             }
         }
@@ -572,14 +540,13 @@ async function displayRecommendations() {
         
     } catch (error) {
         console.error('Error in displayRecommendations:', error);
+        grid.classList.remove('loading');
+        generateButton.disabled = false;
         
-        // Remove loading state if it exists
-        const loadingElement = grid.querySelector('.loading');
-        if (loadingElement) {
-            grid.removeChild(loadingElement);
+        if (grid.contains(loading)) {
+            grid.removeChild(loading);
         }
         
-        // Show a more specific error message
         const errorMessage = document.createElement('div');
         errorMessage.className = 'error-message';
         errorMessage.innerHTML = `
