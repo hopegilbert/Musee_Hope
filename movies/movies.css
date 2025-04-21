@@ -1524,11 +1524,10 @@ h1 {
 /* Recommendations Panel Styles */
 .recommendations-panel {
     position: fixed;
-    top: 50%;
+    top: 0;
     right: 0;
-    transform: translateY(-50%);
+    height: 100vh;
     width: 400px;
-    height: 90vh;
     background-color: var(--primary-color);
     border-left: 1px solid var(--accent-yellow);
     padding: 1.5rem;
