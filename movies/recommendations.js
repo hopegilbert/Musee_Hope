@@ -1,60 +1,75 @@
 // TMDB API configuration
 const TMDB_BASE_URL = 'https://api.themoviedb.org/3';
-import { TMDB_API_KEY } from './config.js';
-
-// Import movies array from movieData.js
-import { movies } from './movieData.js';
-
-// Create a Set of normalized library titles for faster lookup
-const libraryTitles = new Set(movies.map(movie => normalizeTitle(movie.title)));
-console.log('Library titles:', Array.from(libraryTitles)); // Debug log
 
 // Initialize recommendations functionality when DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     console.log('Setting up recommendations panel...');
 
-    // Add recommendations panel functionality
-    const recommendationsButton = document.getElementById('recommendations-button');
-    const recommendationsPanel = document.getElementById('recommendations-panel');
-    const recommendationsOverlay = document.querySelector('.recommendations-overlay');
-    console.log('Recommendations button:', recommendationsButton);
-    
-    recommendationsButton.addEventListener('click', function () {
-        console.log('Recommendations button clicked');
-        recommendationsPanel.classList.remove('hidden');
-        recommendationsOverlay.classList.add('active');
-        setTimeout(() => {
-            recommendationsPanel.classList.add('active');
-        }, 10);
-    });
+    try {
+        // Import required modules
+        const { TMDB_API_KEY } = await import('./config.js');
+        const { movies } = await import('./movieData.js');
 
-    // Add close button functionality
-    const closeButton = document.querySelector('.close-recommendations');
-    closeButton.addEventListener('click', closeRecommendations);
+        // Create a Set of normalized library titles for faster lookup
+        const libraryTitles = new Set(movies.map(movie => normalizeTitle(movie.title)));
+        console.log('Library titles:', Array.from(libraryTitles)); // Debug log
 
-    // Close when clicking overlay
-    recommendationsOverlay.addEventListener('click', function(e) {
-        if (e.target === this) {
-            closeRecommendations();
+        // Add recommendations panel functionality
+        const recommendationsButton = document.getElementById('recommendations-button');
+        const recommendationsPanel = document.getElementById('recommendations-panel');
+        const recommendationsOverlay = document.querySelector('.recommendations-overlay');
+        console.log('Recommendations button:', recommendationsButton);
+        
+        if (!recommendationsButton || !recommendationsPanel || !recommendationsOverlay) {
+            console.error('Required elements not found in the DOM');
+            return;
         }
-    });
 
-    function closeRecommendations() {
-        console.log('Closing recommendations panel');
-        recommendationsPanel.classList.remove('active');
-        recommendationsOverlay.classList.remove('active');
-        setTimeout(() => {
-            recommendationsPanel.classList.add('hidden');
-        }, 300);
+        recommendationsButton.addEventListener('click', function () {
+            console.log('Recommendations button clicked');
+            recommendationsPanel.classList.remove('hidden');
+            recommendationsOverlay.classList.add('active');
+            setTimeout(() => {
+                recommendationsPanel.classList.add('active');
+            }, 10);
+        });
+
+        // Add close button functionality
+        const closeButton = document.querySelector('.close-recommendations');
+        if (closeButton) {
+            closeButton.addEventListener('click', closeRecommendations);
+        }
+
+        // Close when clicking overlay
+        recommendationsOverlay.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeRecommendations();
+            }
+        });
+
+        function closeRecommendations() {
+            console.log('Closing recommendations panel');
+            recommendationsPanel.classList.remove('active');
+            recommendationsOverlay.classList.remove('active');
+            setTimeout(() => {
+                recommendationsPanel.classList.add('hidden');
+            }, 300);
+        }
+
+        // Add event listeners for filter changes
+        const genreFilter = document.getElementById('rec-genre-filter');
+        const decadeFilter = document.getElementById('rec-decade-filter');
+        const ratingFilter = document.getElementById('rec-rating-filter');
+        const generateButton = document.getElementById('generate-recommendations');
+
+        if (genreFilter) genreFilter.addEventListener('change', displayRecommendations);
+        if (decadeFilter) decadeFilter.addEventListener('change', displayRecommendations);
+        if (ratingFilter) ratingFilter.addEventListener('change', displayRecommendations);
+        if (generateButton) generateButton.addEventListener('click', displayRecommendations);
+
+    } catch (error) {
+        console.error('Error initializing recommendations:', error);
     }
-
-    // Add event listeners for filter changes
-    document.getElementById('rec-genre-filter').addEventListener('change', displayRecommendations);
-    document.getElementById('rec-decade-filter').addEventListener('change', displayRecommendations);
-    document.getElementById('rec-rating-filter').addEventListener('change', displayRecommendations);
-
-    // Add event listener for the generate recommendations button
-    document.getElementById('generate-recommendations').addEventListener('click', displayRecommendations);
 });
 
 // Function to get TMDB genre ID from our genre name
