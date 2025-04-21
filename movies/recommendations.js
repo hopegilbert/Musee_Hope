@@ -1,6 +1,18 @@
 // TMDB API configuration
 const TMDB_BASE_URL = 'https://api.themoviedb.org/3';
 
+// Function to close recommendations panel
+function closeRecommendations() {
+    console.log('Closing recommendations panel');
+    const recommendationsPanel = document.getElementById('recommendations-panel');
+    const recommendationsOverlay = document.querySelector('.recommendations-overlay');
+    recommendationsPanel.classList.remove('active');
+    recommendationsOverlay.classList.remove('active');
+    setTimeout(() => {
+        recommendationsPanel.classList.add('hidden');
+    }, 300);
+}
+
 // Initialize recommendations functionality when DOM is ready
 document.addEventListener('DOMContentLoaded', async () => {
     console.log('Setting up recommendations panel...');
@@ -46,15 +58,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                 closeRecommendations();
             }
         });
-
-        function closeRecommendations() {
-            console.log('Closing recommendations panel');
-            recommendationsPanel.classList.remove('active');
-            recommendationsOverlay.classList.remove('active');
-            setTimeout(() => {
-                recommendationsPanel.classList.add('hidden');
-            }, 300);
-        }
 
         // Add event listeners for filter changes
         const genreFilter = document.getElementById('rec-genre-filter');
