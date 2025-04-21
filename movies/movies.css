@@ -1860,3 +1860,42 @@ h1 {
         box-shadow: 0 0 20px var(--accent-yellow);
     }
 }
+
+/* Watch Providers Styles */
+.watch-providers {
+    margin-top: 1rem;
+    padding: 0.5rem;
+}
+
+.watch-providers-heading {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.providers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+    gap: 0.5rem;
+    justify-items: center;
+    align-items: center;
+}
+
+.provider-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    transition: transform 0.2s ease;
+}
+
+.provider-logo:hover {
+    transform: scale(1.1);
+}
+
+.no-providers {
+    font-size: 0.9rem;
+    color: var(--text-color);
+    opacity: 0.8;
+    text-align: center;
+    grid-column: 1 / -1;
+}

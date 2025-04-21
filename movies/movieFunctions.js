@@ -169,9 +169,55 @@ function createMovieCard(movie) {
     reviewSection.appendChild(reviewHeading);
     reviewSection.appendChild(reviewText);
 
+    // Add watch providers section
+    const watchProvidersSection = document.createElement('div');
+    watchProvidersSection.className = 'watch-providers';
+
+    const watchProvidersHeading = document.createElement('h4');
+    watchProvidersHeading.textContent = 'Where to Watch';
+    watchProvidersHeading.className = 'watch-providers-heading';
+
+    const providersGrid = document.createElement('div');
+    providersGrid.className = 'providers-grid';
+
+    // Fetch and add watch providers
+    if (movie.watchProviders) {
+        const allProviders = [...(movie.watchProviders.flatrate || []), ...(movie.watchProviders.free || []), ...(movie.watchProviders.ads || [])];
+        if (allProviders.length > 0) {
+            allProviders.forEach(provider => {
+                const providerLink = document.createElement('a');
+                providerLink.href = movie.watchProviders.link;
+                providerLink.target = '_blank';
+                providerLink.title = provider.provider_name;
+
+                const providerLogo = document.createElement('img');
+                providerLogo.src = `https://image.tmdb.org/t/p/original${provider.logo_path}`;
+                providerLogo.alt = provider.provider_name;
+                providerLogo.className = 'provider-logo';
+
+                providerLink.appendChild(providerLogo);
+                providersGrid.appendChild(providerLink);
+            });
+        } else {
+            const noProviders = document.createElement('p');
+            noProviders.className = 'no-providers';
+            noProviders.textContent = 'No streaming providers available';
+            providersGrid.appendChild(noProviders);
+        }
+    } else {
+        const noProviders = document.createElement('p');
+        noProviders.className = 'no-providers';
+        noProviders.textContent = 'No streaming providers available';
+        providersGrid.appendChild(noProviders);
+    }
+
+    watchProvidersSection.appendChild(watchProvidersHeading);
+    watchProvidersSection.appendChild(providersGrid);
+
     backContent.appendChild(backTitle);
     backContent.appendChild(backDateGenreRow);
     backContent.appendChild(reviewSection);
+    backContent.appendChild(watchProvidersSection);
     
     cardBack.appendChild(backContent);
 
@@ -197,66 +243,73 @@ function updateResultsCount(count) {
 }
 
 // Function to filter movies based on selected criteria
-function filterMovies() {
-    const searchTerm = document.getElementById('search-input').value.toLowerCase();
-    const selectedGenre = document.getElementById('genre-filter').value;
-    const selectedDecade = document.getElementById('year-filter').value;
-    const selectedRating = document.getElementById('rating-filter').value;
-    const sortBy = document.getElementById('sort-filter').value;
+async function filterMovies() {
+    const searchInput = document.getElementById('search-input');
+    const genreFilter = document.getElementById('genre-filter').value;
+    const yearFilter = document.getElementById('year-filter').value;
+    const ratingFilter = document.getElementById('rating-filter').value;
+    const sortFilter = document.getElementById('sort-filter').value;
+    const searchTerm = searchInput ? searchInput.value.toLowerCase().trim() : '';
+    const moviesGrid = document.querySelector('.movies-grid');
     const showFavorites = document.getElementById('favorites-button').classList.contains('active');
 
-    // Show loading state
-    const moviesGrid = document.querySelector('.movies-grid');
-    moviesGrid.innerHTML = '<div class="loading">Loading...</div>';
+    // Clear existing movies and show loading state
+    moviesGrid.classList.add('loading');
+    moviesGrid.innerHTML = '';
+    
+    // Small delay to ensure loading state is visible
+    await new Promise(resolve => setTimeout(resolve, 100));
 
+    // Filter movies
     let filteredMovies = movies.filter(movie => {
-        const matchesSearch = movie.title.toLowerCase().includes(searchTerm);
-        const matchesGenre = selectedGenre === 'all' || movie.genre === selectedGenre;
-        const matchesDecade = selectedDecade === 'all' || Math.floor(movie.year / 10) * 10 === parseInt(selectedDecade);
+        const matchesSearch = !searchTerm || 
+            movie.title.toLowerCase().includes(searchTerm) ||
+            movie.genre.toLowerCase().includes(searchTerm);
+            
+        const matchesGenre = genreFilter === 'all' || 
+            movie.genre.toLowerCase() === genreFilter.toLowerCase();
+            
+        const matchesYear = yearFilter === 'all' || 
+            Math.floor(movie.year / 10) * 10 === parseInt(yearFilter);
+
+        const matchesRating = ratingFilter === 'all' || 
+            Math.floor(movie.rating) === parseInt(ratingFilter);
+
+        const matchesFavorites = !showFavorites || movie.favourite === true;
         
-        // Rating filter logic
-        let matchesRating = true;
-        if (selectedRating !== 'all') {
-            const rating = parseInt(selectedRating);
-            matchesRating = movie.rating >= rating && movie.rating < (rating + 1);
-        }
-
-        // Favorites filter (using British spelling 'favourite')
-        const matchesFavorites = !showFavorites || (showFavorites && movie.favourite === true);
-
-        return matchesSearch && matchesGenre && matchesDecade && matchesRating && matchesFavorites;
+        return matchesSearch && matchesGenre && matchesYear && matchesRating && matchesFavorites;
     });
 
-    // Sort movies
-    if (sortBy !== 'none') {
-        filteredMovies.sort((a, b) => {
-            switch (sortBy) {
-                case 'rating':
-                    return b.rating - a.rating;
-                case 'year':
-                    return b.year - a.year;
-                case 'title':
-                    return a.title.localeCompare(b.title);
-                default:
-                    return 0;
-            }
-        });
+    // Sort movies if needed
+    if (sortFilter !== 'none') {
+        const sortFunctions = {
+            'year': (a, b) => b.year - a.year,
+            'title': (a, b) => a.title.localeCompare(b.title),
+            'rating': (a, b) => b.rating - a.rating
+        };
+        filteredMovies.sort(sortFunctions[sortFilter] || (() => 0));
     }
 
     // Update results count
     updateResultsCount(filteredMovies.length);
 
-    // Clear loading state and display movies
-    moviesGrid.innerHTML = '';
+    // Display filtered movies
+    const fragment = document.createDocumentFragment();
     filteredMovies.forEach(movie => {
-        const movieCard = createMovieCard(movie);
-        moviesGrid.appendChild(movieCard);
+        fragment.appendChild(createMovieCard(movie));
     });
+    
+    moviesGrid.appendChild(fragment);
 
-    // Show message if no results
     if (filteredMovies.length === 0) {
-        moviesGrid.innerHTML = '<div class="no-results">No movies found matching your criteria</div>';
+        const noResults = document.createElement('div');
+        noResults.className = 'no-results';
+        noResults.textContent = 'No movies found matching your criteria';
+        moviesGrid.appendChild(noResults);
     }
+
+    // Remove loading state
+    moviesGrid.classList.remove('loading');
 }
 
 // Debounce function for search input
@@ -295,7 +348,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (sortFilter) {
         sortFilter.addEventListener('change', filterMovies);
     }
-});
+
+    // Preload all movie images
+    preloadImages(movies).catch(error => {
+        console.error('Error preloading images:', error);
+    });
+}); 
 
 // Add random movie functionality
 document.getElementById('lucky-button').addEventListener('click', function() {
@@ -348,21 +406,62 @@ document.getElementById('lucky-button').addEventListener('click', function() {
 });
 
 // Add recommendations functionality
-document.getElementById('recommendations-button').addEventListener('click', function () {
+document.getElementById('recommendations-button').addEventListener('click', function() {
     const recommendationsPanel = document.getElementById('recommendations-panel');
     recommendationsPanel.classList.toggle('hidden');
     recommendationsPanel.classList.toggle('active');
-});
     
-   
+    if (recommendationsPanel.classList.contains('active')) {
+        generateRecommendations();
+    }
+});
 
+function generateRecommendations() {
+    const genreFilter = document.getElementById('rec-genre-filter').value;
+    const decadeFilter = document.getElementById('rec-decade-filter').value;
+    
+    let filteredMovies = [...movies];
+    
+    // Apply filters
+    if (genreFilter !== 'all') {
+        filteredMovies = filteredMovies.filter(movie => movie.genre.toLowerCase() === genreFilter.toLowerCase());
+    }
+    
+    if (decadeFilter !== 'all') {
+        const decade = parseInt(decadeFilter);
+        filteredMovies = filteredMovies.filter(movie => 
+            Math.floor(movie.year / 10) * 10 === decade
+        );
+    }
+    
+    // Sort by rating
+    filteredMovies.sort((a, b) => b.rating - a.rating);
+    
+    // Take top 5 recommendations
+    const recommendations = filteredMovies.slice(0, 5);
+    
+    // Display recommendations
+    const grid = document.querySelector('.recommendations-grid');
+    grid.innerHTML = '';
+    
+    if (recommendations.length === 0) {
+        grid.innerHTML = '<p class="no-results">No movies found matching your criteria</p>';
+        return;
+    }
+    
+    recommendations.forEach(movie => {
+        const card = createMovieCard(movie);
+        grid.appendChild(card);
+    });
+}
 
-
+// Add event listener for recommendations generation
+document.getElementById('generate-recommendations').addEventListener('click', generateRecommendations);
 
 // Add close button functionality for recommendations panel
 document.querySelector('.close-recommendations').addEventListener('click', function() {
     const recommendationsPanel = document.getElementById('recommendations-panel');
-    recommendationsPanel.classList.add('hidden');
+    recommendationsPanel.classList.remove('active');
 });
 
 // Add event listeners for filters
