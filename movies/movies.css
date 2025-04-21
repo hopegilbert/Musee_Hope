@@ -2081,3 +2081,135 @@ h1 {
     border-color: var(--accent-color);
     box-shadow: 0 0 5px rgba(255, 69, 0, 0.3);
 }
+
+/* Mobile Styles for Recommendations Panel */
+@media (max-width: 768px) {
+    .recommendations-panel {
+        width: 100%;
+        height: 100vh;
+        padding: 1rem;
+    }
+
+    .recommendations-header h2 {
+        font-size: 1.3rem;
+    }
+
+    .recommendation-filters .filter-row {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .filter-select, .generate-recommendations {
+        font-size: 1rem;
+        padding: 10px;
+        height: auto;
+    }
+
+    .recommendations-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+        padding: 0.5rem;
+    }
+
+    .recommendation-card .movie-info {
+        padding: 0.5rem;
+    }
+
+    .recommendation-card .movie-info h3 {
+        font-size: 1rem;
+    }
+
+    .recommendation-card .star-rating img {
+        width: 16px;
+        height: 16px;
+    }
+
+    .recommendation-card .genre-badge {
+        font-size: 0.7rem;
+        padding: 0.2rem 0.4rem;
+    }
+
+    .recommendation-card .year-display {
+        font-size: 0.7rem;
+        padding: 0.2rem 0.4rem;
+    }
+
+    .recommendation-card .review-text {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .recommendations-panel {
+        padding: 0.75rem;
+    }
+
+    .recommendations-header h2 {
+        font-size: 1.2rem;
+    }
+
+    .recommendations-grid {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+
+    .filter-select, .generate-recommendations {
+        font-size: 0.9rem;
+        padding: 8px;
+    }
+
+    .loading, .no-results, .error {
+        font-size: 1rem;
+        padding: 1.5rem;
+    }
+}
+
+/* Safe area insets for modern mobile browsers */
+@supports (padding: max(0px)) {
+    .recommendations-panel {
+        padding-top: max(1.5rem, env(safe-area-inset-top));
+        padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
+        padding-left: max(1.5rem, env(safe-area-inset-left));
+        padding-right: max(1.5rem, env(safe-area-inset-right));
+        height: 100vh;
+        height: -webkit-fill-available;
+    }
+}
+
+/* Mobile touch interactions */
+@media (hover: none) {
+    .recommendation-card .movie-info {
+        transform: translateY(0);
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7), transparent);
+    }
+
+    .recommendation-card:active {
+        transform: scale(0.98);
+    }
+
+    .close-recommendations {
+        padding: 0.75rem;
+        font-size: 1.8rem;
+    }
+
+    .close-recommendations:active {
+        transform: scale(0.95);
+    }
+
+    .filter-select:active, .generate-recommendations:active {
+        transform: scale(0.98);
+    }
+}
+
+/* Improved overlay for mobile */
+@media (max-width: 768px) {
+    .recommendations-overlay {
+        background: rgba(0, 0, 0, 0.9);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+    }
+
+    .recommendations-panel {
+        box-shadow: none;
+    }
+}
