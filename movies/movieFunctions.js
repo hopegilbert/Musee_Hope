@@ -535,6 +535,12 @@ function updateStats() {
     if (avgRatingElement) {
         avgRatingElement.textContent = avgRating.toFixed(1);
     }
+
+    // Update total movies count
+    const totalMoviesElement = document.querySelector('.total-movies');
+    if (totalMoviesElement) {
+        totalMoviesElement.textContent = movies.length;
+    }
 }
 
 // Add close button functionality for stats panel
