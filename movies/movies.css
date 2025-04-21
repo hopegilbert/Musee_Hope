@@ -1545,10 +1545,7 @@ h1 {
 
 /* Random Movie Card Styles */
 .random-movie-container {
-    position: absolute;
-    top: calc(var(--header-height) + 200px);
-    left: 50%;
-    transform: translateX(-50%);
+    position: relative;
     width: 300px;
     height: 450px;
     perspective: 1000px;
@@ -1563,8 +1560,7 @@ h1 {
     border-radius: 12px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
     animation: highlight 2s infinite;
-    margin: 2rem auto;
-    margin-bottom: 8rem;
+    margin: 2rem auto 8rem auto;
 }
 
 @keyframes highlight {
@@ -1642,9 +1638,9 @@ h1 {
 .show-all-movies {
     padding: 10px 20px;
     background: transparent;
-    border: 2px solid var(--accent-yellow);
-    color: var(--accent-yellow);
-    border-radius: 6px;
+    border: 1px solid var(--text-color);
+    color: var(--text-color);
+    border-radius: 4px;
     cursor: pointer;
     font-family: var(--main-font);
     font-size: 1rem;
@@ -1653,9 +1649,9 @@ h1 {
 }
 
 .show-all-movies:hover {
-    background: var(--accent-yellow);
-    color: var(--primary-color);
-    transform: scale(1.05);
+    background: transparent;
+    border-color: var(--accent-yellow);
+    color: var(--accent-yellow);
 }
 
 /* Recommendations Panel Styles */
