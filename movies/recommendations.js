@@ -9,27 +9,38 @@ import { movies } from './movieData.js';
 const libraryTitles = new Set(movies.map(movie => normalizeTitle(movie.title)));
 console.log('Library titles:', Array.from(libraryTitles)); // Debug log
 
-// Add recommendations panel functionality
-document.getElementById('recommendations-button').addEventListener('click', function () {
-    const recommendationsPanel = document.getElementById('recommendations-panel');
-    recommendationsPanel.classList.toggle('hidden');
-    recommendationsPanel.classList.toggle('active');
+// Initialize recommendations functionality when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('Setting up recommendations panel...');
+
+    // Add recommendations panel functionality
+    const recommendationsButton = document.getElementById('recommendations-button');
+    console.log('Recommendations button:', recommendationsButton);
+    
+    recommendationsButton.addEventListener('click', function () {
+        console.log('Recommendations button clicked');
+        const recommendationsPanel = document.getElementById('recommendations-panel');
+        recommendationsPanel.classList.toggle('hidden');
+        recommendationsPanel.classList.toggle('active');
+    });
+
+    // Add close button functionality
+    const closeButton = document.querySelector('.close-recommendations');
+    closeButton.addEventListener('click', function() {
+        console.log('Close button clicked');
+        const recommendationsPanel = document.getElementById('recommendations-panel');
+        recommendationsPanel.classList.add('hidden');
+        recommendationsPanel.classList.remove('active');
+    });
+
+    // Add event listeners for filter changes
+    document.getElementById('rec-genre-filter').addEventListener('change', displayRecommendations);
+    document.getElementById('rec-decade-filter').addEventListener('change', displayRecommendations);
+    document.getElementById('rec-rating-filter').addEventListener('change', displayRecommendations);
+
+    // Add event listener for the generate recommendations button
+    document.getElementById('generate-recommendations').addEventListener('click', displayRecommendations);
 });
-
-// Add close button functionality
-document.querySelector('.close-recommendations').addEventListener('click', function() {
-    const recommendationsPanel = document.getElementById('recommendations-panel');
-    recommendationsPanel.classList.add('hidden');
-    recommendationsPanel.classList.remove('active');
-});
-
-// Add event listeners for filter changes
-document.getElementById('rec-genre-filter').addEventListener('change', displayRecommendations);
-document.getElementById('rec-decade-filter').addEventListener('change', displayRecommendations);
-document.getElementById('rec-rating-filter').addEventListener('change', displayRecommendations);
-
-// Add event listener for the generate recommendations button
-document.getElementById('generate-recommendations').addEventListener('click', displayRecommendations);
 
 // Function to get TMDB genre ID from our genre name
 function getTMDBGenreId(genre) {
@@ -396,31 +407,6 @@ async function displayRecommendations() {
         recommendationsGrid.appendChild(card);
     });
 }
-
-// Initialize recommendations panel functionality
-document.addEventListener('DOMContentLoaded', () => {
-    // Add recommendations button functionality
-    document.getElementById('recommendations-button').addEventListener('click', function () {
-        const recommendationsPanel = document.getElementById('recommendations-panel');
-        recommendationsPanel.classList.toggle('hidden');
-        recommendationsPanel.classList.toggle('active');
-    });
-
-    // Add close button functionality
-    document.querySelector('.close-recommendations').addEventListener('click', function() {
-        const recommendationsPanel = document.getElementById('recommendations-panel');
-        recommendationsPanel.classList.add('hidden');
-        recommendationsPanel.classList.remove('active');
-    });
-
-    // Add event listeners for filter changes
-    document.getElementById('rec-genre-filter').addEventListener('change', displayRecommendations);
-    document.getElementById('rec-decade-filter').addEventListener('change', displayRecommendations);
-    document.getElementById('rec-rating-filter').addEventListener('change', displayRecommendations);
-
-    // Add event listener for the generate recommendations button
-    document.getElementById('generate-recommendations').addEventListener('click', displayRecommendations);
-});
 
 // Export the displayRecommendations function
 export { displayRecommendations }; 
