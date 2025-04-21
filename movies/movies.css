@@ -529,11 +529,12 @@ h1 {
     transform: rotateY(180deg);
     display: flex;
     flex-direction: column;
-    padding: 1rem;
+    padding: 0.75rem;
     background: var(--primary-color);
     color: white;
     cursor: pointer;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .movie-card.flipped .movie-card-front {
@@ -673,12 +674,10 @@ h1 {
 }
 
 .back-content {
-    padding: 0.5rem;
-    height: 100%;
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
-    color: white;
+    gap: 0.5rem;
+    height: 100%;
 }
 
 .back-content * {
@@ -686,22 +685,20 @@ h1 {
 }
 
 .back-content h3 {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     margin: 0;
-    color: white;
-    text-shadow: var(--text-shadow);
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    gap: 0.5rem;
+    align-items: center;
+    line-height: 1.2;
 }
 
 .back-date-genre-row {
     display: flex;
-    flex-direction: row;
     align-items: center;
     gap: 0.5rem;
-    margin-top: 0.25rem;
+    flex-wrap: wrap;
+    margin: 0.25rem 0;
 }
 
 .back-content .year-display {
@@ -720,33 +717,26 @@ h1 {
 }
 
 .review-section {
-    cursor: pointer;
     flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    background: rgba(0, 0, 0, 0.2);
-    padding: 0.75rem;
-    border-radius: 8px;
-    margin-top: 0.25rem;
-    margin-bottom: 0.75rem;
+    overflow-y: auto;
+    padding: 0.25rem;
+    margin: 0.25rem 0;
 }
 
 .review-heading {
-    margin: 0;
-    font-size: 1rem;
-    font-weight: 600;
-    color: white;
     font-family: var(--main-font);
+    font-size: 1rem;
+    margin: 0 0 0.5rem 0;
+    color: var(--accent-yellow);
 }
 
 .review-text {
-    margin: 0;
-    font-size: 0.875rem;
-    line-height: 1.5;
-    color: white;
-    overflow-y: auto;
     font-family: var(--main-font);
+    font-size: 0.85rem;
+    line-height: 1.4;
+    margin: 0;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 /* Customize scrollbar for review text */
@@ -765,33 +755,58 @@ h1 {
 }
 
 /* Responsive adjustments */
-@media (max-width: 1200px) {
-    .back-content {
-        gap: 0.5rem;
-    }
-    
-    .review-section {
-        padding: 0.5rem;
-    }
-}
-
 @media (max-width: 768px) {
     .movie-card-back {
-        padding: 0.75rem;
+        padding: 0.5rem;
     }
     
-    .back-content {
-        padding: 0.25rem;
+    .back-content h3 {
+        font-size: 1rem;
     }
     
-    .review-section {
+    .review-heading {
+        font-size: 0.9rem;
+        margin-bottom: 0.25rem;
+    }
+    
+    .review-text {
+        font-size: 0.8rem;
+        line-height: 1.3;
+    }
+    
+    .back-date-genre-row {
+        gap: 0.25rem;
         margin: 0.15rem 0;
     }
 }
 
 @media (max-width: 480px) {
     .movie-card-back {
-        padding: 0.5rem;
+        padding: 0.4rem;
+    }
+    
+    .back-content {
+        gap: 0.25rem;
+    }
+    
+    .back-content h3 {
+        font-size: 0.9rem;
+    }
+    
+    .review-heading {
+        font-size: 0.85rem;
+    }
+    
+    .review-text {
+        font-size: 0.75rem;
+        line-height: 1.2;
+    }
+}
+
+/* Adjustments for smaller card heights */
+@media (max-height: 400px) {
+    .movie-card-back {
+        padding: 0.4rem;
     }
     
     .back-content {
@@ -799,7 +814,14 @@ h1 {
     }
     
     .review-section {
-        padding: 0.5rem;
+        margin: 0.15rem 0;
+    }
+    
+    .review-text {
+        font-size: 0.75rem;
+        line-height: 1.2;
+        max-height: 150px;
+        overflow-y: auto;
     }
 }
 
