@@ -84,9 +84,17 @@ async function fetchRecommendations(genre, decade, rating, page = 1) {
     // Add rating filter if specified
     if (rating !== 'all') {
         // Convert our 1-5 star rating to TMDB's 0-10 scale
-        // For a selected rating of X stars, we want movies with X stars or higher
+        // Create ranges for each star rating:
+        // 1 star = 2-3.9 on TMDB (1-1.9 in our scale)
+        // 2 stars = 4-5.9 on TMDB (2-2.9 in our scale)
+        // 3 stars = 6-7.9 on TMDB (3-3.9 in our scale)
+        // 4 stars = 8-9.9 on TMDB (4-4.9 in our scale)
+        // 5 stars = 10 on TMDB (5 in our scale)
         const minRating = parseInt(rating) * 2;
+        const maxRating = rating === '5' ? 10 : (parseInt(rating) + 1) * 2 - 0.1;
+        
         params.append('vote_average.gte', minRating.toString());
+        params.append('vote_average.lte', maxRating.toString());
     }
 
     const url = `${TMDB_BASE_URL}/discover/movie?${params.toString()}`;
