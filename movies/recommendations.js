@@ -166,10 +166,16 @@ function isDuplicate(normalizedTitle, libraryTitles) {
 }
 
 // Function to fetch recommendations from TMDB
-async function fetchRecommendations(genre, decade) {
+async function fetchRecommendations(genre, decade, rating) {
     try {
         // Construct URL for discovering movies
         let url = `${TMDB_BASE_URL}/discover/movie?api_key=${TMDB_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1`;
+
+        // Add minimum vote count filter (1000+ ratings)
+        url += '&vote_count.gte=1000';
+
+        // Add Western regions filter (US, CA, GB, IE, AU, NZ)
+        url += '&region=US&with_origin_country=US|CA|GB|IE|AU|NZ';
 
         // Add genre filter if specified
         if (genre !== 'all') {
@@ -184,6 +190,15 @@ async function fetchRecommendations(genre, decade) {
             const startYear = parseInt(decade);
             const endYear = startYear + 9;
             url += `&primary_release_date.gte=${startYear}-01-01&primary_release_date.lte=${endYear}-12-31`;
+        }
+
+        // Add vote average filter if specified
+        if (rating !== 'all') {
+            const ratingValue = parseInt(rating);
+            // TMDB uses a 10-point scale
+            const minRating = ratingValue * 2;  // e.g., 4 stars = exactly 8.0
+            const maxRating = (ratingValue * 2) + 1.9;  // e.g., 4 stars = up to 9.9
+            url += `&vote_average.gte=${minRating}&vote_average.lte=${maxRating}`;
         }
 
         // Get list of normalized library movie titles
@@ -407,13 +422,14 @@ function getGenreName(genreId) {
 async function displayRecommendations() {
     const genre = document.getElementById('rec-genre-filter').value;
     const decade = document.getElementById('rec-decade-filter').value;
+    const rating = document.getElementById('rec-rating-filter').value;
     const grid = document.querySelector('.recommendations-grid');
     
     // Show loading state
     grid.innerHTML = '<div class="loading">Finding movies you might like...</div>';
     
     try {
-        const recommendations = await fetchRecommendations(genre, decade);
+        const recommendations = await fetchRecommendations(genre, decade, rating);
         
         // Clear the grid
         grid.innerHTML = '';
