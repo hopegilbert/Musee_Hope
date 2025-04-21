@@ -366,48 +366,9 @@ document.getElementById('recommendations-button').addEventListener('click', func
     recommendationsPanel.classList.toggle('active');
     
     if (recommendationsPanel.classList.contains('active')) {
-        generateRecommendations();
+        // This function is now handled in recommendations.js
     }
 });
-
-function generateRecommendations() {
-    const genreFilter = document.getElementById('rec-genre-filter').value;
-    const decadeFilter = document.getElementById('rec-decade-filter').value;
-    
-    let filteredMovies = [...movies];
-    
-    // Apply filters
-    if (genreFilter !== 'all') {
-        filteredMovies = filteredMovies.filter(movie => movie.genre.toLowerCase() === genreFilter.toLowerCase());
-    }
-    
-    if (decadeFilter !== 'all') {
-        const decade = parseInt(decadeFilter);
-        filteredMovies = filteredMovies.filter(movie => 
-            Math.floor(movie.year / 10) * 10 === decade
-        );
-    }
-    
-    // Sort by rating
-    filteredMovies.sort((a, b) => b.rating - a.rating);
-    
-    // Take top 5 recommendations
-    const recommendations = filteredMovies.slice(0, 5);
-    
-    // Display recommendations
-    const grid = document.querySelector('.recommendations-grid');
-    grid.innerHTML = '';
-    
-    if (recommendations.length === 0) {
-        grid.innerHTML = '<p class="no-results">No movies found matching your criteria</p>';
-        return;
-    }
-    
-    recommendations.forEach(movie => {
-        const card = createMovieCard(movie);
-        grid.appendChild(card);
-    });
-}
 
 // Add event listener for recommendations generation
 document.getElementById('generate-recommendations').addEventListener('click', generateRecommendations);
