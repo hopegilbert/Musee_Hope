@@ -35,7 +35,7 @@ function getTMDBGenreId(genre) {
 function normalizeTitle(title) {
     if (!title) return '';
     return title.toLowerCase()
-        .replace(/[^a-z0-9]/g, '')
+        .replace(/[^a-z0-9]/g, '')  // Remove all non-alphanumeric characters
         .trim();
 }
 
@@ -46,22 +46,13 @@ function isInLibrary(tmdbMovie) {
     const normalizedTitle = normalizeTitle(tmdbMovie.title);
     console.log('Checking movie:', tmdbMovie.title, 'Normalized:', normalizedTitle); // Debug log
     
-    // First check exact match
-    if (libraryTitles.has(normalizedTitle)) {
-        console.log('Found exact match in library'); // Debug log
-        return true;
+    // Only do exact matches - no substring matching to avoid false positives
+    const isMatch = libraryTitles.has(normalizedTitle);
+    if (isMatch) {
+        console.log('Found exact match in library for:', tmdbMovie.title); // Debug log
     }
     
-    // Then check for substring matches
-    const isSubstring = Array.from(libraryTitles).some(libraryTitle => {
-        const isMatch = libraryTitle.includes(normalizedTitle) || normalizedTitle.includes(libraryTitle);
-        if (isMatch) {
-            console.log('Found substring match with library title:', libraryTitle); // Debug log
-        }
-        return isMatch;
-    });
-    
-    return isSubstring;
+    return isMatch;
 }
 
 // Function to fetch recommendations from TMDB
@@ -72,7 +63,8 @@ async function fetchRecommendations(genre, decade, rating, page = 1) {
         language: 'en-US',
         page: page.toString(),
         sort_by: 'vote_count.desc',
-        'vote_count.gte': '100' // Ensure some minimum number of votes
+        'vote_count.gte': '100', // Ensure some minimum number of votes
+        include_adult: false     // Exclude adult content
     });
 
     // Add genre filter if specified
@@ -91,7 +83,8 @@ async function fetchRecommendations(genre, decade, rating, page = 1) {
 
     // Add rating filter if specified
     if (rating !== 'all') {
-        params.append('vote_average.gte', (parseFloat(rating) * 2).toString());
+        const minRating = parseFloat(rating) * 2; // Convert 5-star to 10-point scale
+        params.append('vote_average.gte', minRating.toString());
     }
 
     const url = `${TMDB_BASE_URL}/discover/movie?${params.toString()}`;
@@ -99,15 +92,26 @@ async function fetchRecommendations(genre, decade, rating, page = 1) {
 
     try {
         const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
         const data = await response.json();
         
         if (!data.results) {
-            console.error('Invalid TMDB response:', data); // Debug log
+            console.error('Invalid TMDB response:', data);
             return [];
         }
 
         console.log('TMDB returned', data.results.length, 'movies before filtering'); // Debug log
-        const filtered = data.results.filter(movie => !isInLibrary(movie));
+        
+        // Filter out library movies and movies without posters
+        const filtered = data.results.filter(movie => 
+            !isInLibrary(movie) && 
+            movie.poster_path && 
+            movie.title && 
+            movie.release_date
+        );
+        
         console.log('After filtering library movies:', filtered.length, 'movies remain'); // Debug log
         
         return filtered;
