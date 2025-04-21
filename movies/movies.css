@@ -1522,23 +1522,6 @@ h1 {
 }
 
 /* Recommendations Panel Styles */
-.recommendations-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.8);
-    z-index: 999;
-    display: none;
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-}
-
-.recommendations-overlay.visible {
-    display: block;
-}
-
 .recommendations-panel {
     position: fixed;
     top: 50%;
@@ -1659,24 +1642,6 @@ h1 {
     margin-right: -0.5rem;
 }
 
-.recommendations-grid::-webkit-scrollbar {
-    width: 8px;
-}
-
-.recommendations-grid::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 4px;
-}
-
-.recommendations-grid::-webkit-scrollbar-thumb {
-    background: var(--accent-yellow);
-    border-radius: 4px;
-}
-
-.recommendations-grid::-webkit-scrollbar-thumb:hover {
-    background: var(--accent-color);
-}
-
 .recommendation-card {
     position: relative;
     width: 100%;
@@ -1704,12 +1669,6 @@ h1 {
     padding: 0.75rem;
     background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7), transparent);
     color: white;
-    transform: translateY(100%);
-    transition: transform 0.3s ease;
-}
-
-.recommendation-card:hover .movie-info {
-    transform: translateY(0);
 }
 
 .recommendation-card .movie-info h3 {
@@ -1718,26 +1677,13 @@ h1 {
     color: white;
 }
 
-.recommendation-card .star-rating {
-    margin-top: 0.25rem;
-}
-
-.recommendation-card .genre-badge {
-    font-size: 0.8rem;
-    padding: 0.25rem 0.5rem;
-    margin: 0.25rem;
-    border-radius: 4px;
-    display: inline-block;
-}
-
 /* Mobile adjustments */
 @media (max-width: 768px) {
     .recommendations-panel {
         width: 100%;
         height: 100vh;
         top: 0;
-        right: 0;
-        transform: translateX(100%);
+        transform: none;
         padding: 1rem;
     }
 
@@ -1769,8 +1715,6 @@ h1 {
 
     .recommendation-card .movie-info {
         padding: 0.5rem;
-        transform: translateY(0);
-        background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7), transparent);
     }
 }
 
@@ -1791,11 +1735,6 @@ h1 {
     .filter-select, .generate-recommendations {
         font-size: 0.9rem;
         padding: 8px;
-    }
-
-    .close-recommendations {
-        padding: 0.75rem;
-        font-size: 1.8rem;
     }
 }
 
