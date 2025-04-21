@@ -82,23 +82,23 @@ async function fetchRecommendations(genre, year, rating, page = 1) {
         let minRating, maxRating;
         
         switch(ratingNum) {
-            case 1:
+            case 1: // 0-1.2 stars (0-2.4/10)
                 minRating = 0;
                 maxRating = 2.4;
                 break;
-            case 2:
+            case 2: // 1.3-2.4 stars (2.5-4.9/10)
                 minRating = 2.5;
                 maxRating = 4.9;
                 break;
-            case 3:
-                minRating = 5;
+            case 3: // 2.5-3.7 stars (5.0-7.4/10)
+                minRating = 5.0;
                 maxRating = 7.4;
                 break;
-            case 4:
+            case 4: // 3.8-4.9 stars (7.5-9.9/10)
                 minRating = 7.5;
                 maxRating = 9.9;
                 break;
-            case 5:
+            case 5: // 5.0 stars (10/10)
                 minRating = 10;
                 maxRating = 10;
                 break;
