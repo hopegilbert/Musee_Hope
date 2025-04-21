@@ -1545,10 +1545,7 @@ h1 {
 
 /* Random Movie Card Styles */
 .random-movie-container {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    position: relative;
     width: 300px;
     height: 450px;
     perspective: 1000px;
@@ -1563,6 +1560,7 @@ h1 {
     border-radius: 12px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
     animation: highlight 2s infinite;
+    margin: 4rem auto;
 }
 
 @keyframes highlight {
