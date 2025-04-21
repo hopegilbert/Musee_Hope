@@ -83,7 +83,8 @@ async function fetchRecommendations(genre, decade, rating, page = 1) {
 
     // Add rating filter if specified
     if (rating !== 'all') {
-        const minRating = parseFloat(rating) * 2; // Convert 5-star to 10-point scale
+        // Convert our 1-5 star rating to TMDB's 0-10 scale
+        const minRating = parseInt(rating) * 2;
         params.append('vote_average.gte', minRating.toString());
     }
 
@@ -372,6 +373,13 @@ document.getElementById('generate-recommendations').addEventListener('click', di
 document.getElementById('rec-genre-filter').addEventListener('change', displayRecommendations);
 document.getElementById('rec-decade-filter').addEventListener('change', displayRecommendations);
 document.getElementById('rec-rating-filter').addEventListener('change', displayRecommendations);
+
+// Add close button functionality
+document.querySelector('.close-recommendations').addEventListener('click', function() {
+    const recommendationsPanel = document.getElementById('recommendations-panel');
+    recommendationsPanel.classList.add('hidden');
+    recommendationsPanel.classList.remove('active');
+});
 
 // Remove direct event listeners since they'll be handled by movieFunctions.js
 // This prevents duplicate listeners and ensures we use the correct function 
