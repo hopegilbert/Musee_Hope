@@ -1543,67 +1543,190 @@ h1 {
     100% { transform: scale(1) rotate(0deg); }
 }
 
-/* Remove all recommendations panel styles */
-.recommendations-panel,
-.recommendations-overlay,
-.recommendations-header,
-.recommendation-filters,
-.recommendation-filters .filter-row,
-.recommendation-filters .filter-select,
-.generate-recommendations,
-.recommendations-grid,
-.recommendation-card,
-.recommendation-card .movie-poster,
-.recommendation-card .movie-info,
-.recommendation-card .movie-info h3 {
-    display: none;
+/* Random Movie Card Styles */
+.random-movie-container {
+    position: absolute;
+    top: calc(var(--header-height) + 200px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    height: 450px;
+    perspective: 1000px;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    background: var(--primary-color);
+    border: 2px solid var(--accent-yellow);
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    animation: highlight 2s infinite;
+    margin: 2rem auto;
 }
 
-/* New Recommendations Panel Styles */
-#recommendations-panel {
+@keyframes highlight {
+    0% { box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); }
+    50% { box-shadow: 0 0 30px var(--accent-yellow); }
+    100% { box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); }
+}
+
+.random-movie-card {
+    width: 100%;
+    height: 0;
+    padding-bottom: 150%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+    cursor: pointer;
+}
+
+.random-movie-card.flipped {
+    transform: rotateY(180deg);
+}
+
+.random-movie-card-front,
+.random-movie-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.random-movie-card-front {
+    background: var(--primary-color);
+}
+
+.random-movie-card-back {
+    background: var(--primary-color);
+    transform: rotateY(180deg);
+    padding: 15px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.random-movie-poster {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.random-movie-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.random-movie-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--accent-yellow);
+}
+
+.random-movie-year {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.random-movie-genre {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.show-all-movies {
+    padding: 10px 20px;
+    background: transparent;
+    border: 2px solid var(--accent-yellow);
+    color: var(--accent-yellow);
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: var(--main-font);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    margin-top: auto;
+}
+
+.show-all-movies:hover {
+    background: var(--accent-yellow);
+    color: var(--primary-color);
+    transform: scale(1.05);
+}
+
+/* Recommendations Panel Styles */
+.recommendations-panel {
     position: fixed;
     top: 0;
-    right: -100%;
+    right: 0;
     width: 400px;
     height: 100vh;
     background-color: var(--primary-color);
     padding: 20px;
-    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
-    transition: right 0.3s ease-in-out;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
     z-index: 1000;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
     gap: 20px;
-    border-left: 1px solid var(--accent-color);
-    overflow-y: auto;
 }
 
-#recommendations-panel.active {
-    right: 0;
+.recommendations-panel.active {
+    transform: translateX(0);
 }
 
-#recommendations-panel.hidden {
+.recommendations-panel.hidden {
     display: none;
+}
+
+.recommendations-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 999;
+}
+
+.recommendations-overlay.active {
+    opacity: 1;
+    visibility: visible;
 }
 
 .recommendations-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--accent-yellow);
 }
 
 .recommendations-header h2 {
     margin: 0;
-    color: var(--text-color);
+    color: var(--accent-yellow);
+    font-size: 1.5rem;
 }
 
 .close-recommendations {
     background: none;
     border: none;
-    color: var(--text-color);
+    color: var(--accent-yellow);
     cursor: pointer;
     font-size: 24px;
+    padding: 5px;
+}
+
+.close-recommendations:hover {
+    transform: scale(1.1);
 }
 
 .recommendations-filters {
@@ -1613,40 +1736,47 @@ h1 {
     padding: 15px;
     background-color: rgba(255, 255, 255, 0.05);
     border-radius: 8px;
+    border: 1px solid var(--accent-yellow);
 }
 
 .filter-group {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 8px;
 }
 
 .filter-group label {
-    color: var(--text-color);
+    color: var(--accent-yellow);
     font-size: 14px;
+    font-weight: bold;
 }
 
 .filter-group select {
     padding: 8px;
-    background-color: var(--primary-color);
-    color: var(--text-color);
-    border: 1px solid var(--accent-color);
+    background-color: rgba(0, 0, 51, 0.5);
+    color: white;
+    border: 1px solid var(--accent-yellow);
     border-radius: 4px;
+    font-family: var(--main-font);
 }
 
 #generate-recommendations {
     padding: 10px 20px;
     background-color: var(--accent-color);
-    color: var(--text-color);
+    color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.2s;
+    transition: all 0.3s ease;
     margin-top: 10px;
+    font-family: var(--main-font);
+    border: 1px solid var(--accent-yellow);
 }
 
 #generate-recommendations:hover {
-    background-color: var(--hover-color);
+    background-color: var(--accent-yellow);
+    color: var(--primary-color);
+    transform: scale(1.02);
 }
 
 .recommendations-grid {
@@ -1654,12 +1784,12 @@ h1 {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 20px;
     padding: 10px;
+    margin-top: 20px;
 }
 
 @media (max-width: 768px) {
-    #recommendations-panel {
+    .recommendations-panel {
         width: 100%;
-        padding: 15px;
     }
     
     .recommendations-grid {
