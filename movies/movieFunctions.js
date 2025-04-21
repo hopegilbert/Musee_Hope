@@ -295,12 +295,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (sortFilter) {
         sortFilter.addEventListener('change', filterMovies);
     }
-
-    // Preload all movie images
-    preloadImages(movies).catch(error => {
-        console.error('Error preloading images:', error);
-    });
-}); 
+});
 
 // Add random movie functionality
 document.getElementById('lucky-button').addEventListener('click', function() {
