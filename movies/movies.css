@@ -1564,7 +1564,7 @@ h1 {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
     animation: highlight 2s infinite;
     margin: 2rem auto;
-    margin-bottom: 4rem;
+    margin-bottom: 8rem;
 }
 
 @keyframes highlight {
@@ -1650,35 +1650,12 @@ h1 {
     font-size: 1rem;
     transition: all 0.3s ease;
     margin-top: auto;
-    position: relative;
-    overflow: hidden;
 }
 
 .show-all-movies:hover {
     background: var(--accent-yellow);
     color: var(--primary-color);
     transform: scale(1.05);
-}
-
-.show-all-movies::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(
-        45deg,
-        transparent,
-        rgba(255, 215, 0, 0.1),
-        transparent
-    );
-    transform: translateX(-100%);
-    transition: transform 0.5s ease;
-}
-
-.show-all-movies:hover::after {
-    transform: translateX(100%);
 }
 
 /* Recommendations Panel Styles */
