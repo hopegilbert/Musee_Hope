@@ -5,6 +5,9 @@ import { TMDB_API_KEY } from './config.js';
 // Import movies array from movieData.js
 import { movies } from './movieData.js';
 
+// Create a Set of normalized library titles for faster lookup
+const libraryTitles = new Set(movies.map(movie => normalizeTitle(movie.title)));
+
 // Function to get TMDB genre ID from our genre name
 function getTMDBGenreId(genre) {
     const genreMap = {
@@ -28,35 +31,22 @@ function getTMDBGenreId(genre) {
 // Function to normalize movie titles for comparison
 function normalizeTitle(title) {
     return title.toLowerCase()
-        .replace(/[^a-z0-9\s]/g, '')
-        .replace(/\s+/g, ' ')
+        .replace(/[^a-z0-9]/g, '') // Remove all non-alphanumeric characters
         .trim();
-}
-
-// Function to check if two titles are similar
-function areTitlesSimilar(title1, title2) {
-    const normalized1 = normalizeTitle(title1);
-    const normalized2 = normalizeTitle(title2);
-
-    // Check for exact match
-    if (normalized1 === normalized2) return true;
-
-    // Check if one is a substring of the other
-    if (normalized1.includes(normalized2) || normalized2.includes(normalized1)) return true;
-
-    // Calculate word similarity
-    const words1 = normalized1.split(' ');
-    const words2 = normalized2.split(' ');
-    const commonWords = words1.filter(word => words2.includes(word));
-    const similarity = commonWords.length / Math.max(words1.length, words2.length);
-
-    return similarity >= 0.8; // 80% similarity threshold
 }
 
 // Function to check if a movie is in our library
 function isInLibrary(tmdbMovie) {
-    return movies.some(libraryMovie => 
-        areTitlesSimilar(tmdbMovie.title, libraryMovie.title)
+    const normalizedTitle = normalizeTitle(tmdbMovie.title);
+    
+    // First check exact match
+    if (libraryTitles.has(normalizedTitle)) {
+        return true;
+    }
+    
+    // Then check for substring matches (for movies that might have subtitles or extended names)
+    return Array.from(libraryTitles).some(libraryTitle => 
+        libraryTitle.includes(normalizedTitle) || normalizedTitle.includes(libraryTitle)
     );
 }
 
@@ -68,7 +58,7 @@ async function fetchRecommendations(genre, decade, rating, page = 1) {
     const startYear = decade;
     const endYear = parseInt(decade) + 9;
     
-    const url = `${TMDB_BASE_URL}/discover/movie?api_key=${TMDB_API_KEY}&with_genres=${genreId}&primary_release_date.gte=${startYear}-01-01&primary_release_date.lte=${endYear}-12-31&vote_average.gte=${rating * 2}&page=${page}&language=en-US`;
+    const url = `${TMDB_BASE_URL}/discover/movie?api_key=${TMDB_API_KEY}&with_genres=${genreId}&primary_release_date.gte=${startYear}-01-01&primary_release_date.lte=${endYear}-12-31&vote_average.gte=${rating * 2}&page=${page}&language=en-US&sort_by=vote_count.desc`;
 
     try {
         const response = await fetch(url);
@@ -112,9 +102,10 @@ async function displayRecommendations() {
     
     let allRecommendations = [];
     let page = 1;
+    let maxPages = 5; // Increase max pages to ensure we get enough unique recommendations
     
-    // Fetch first 3 pages to get more variety
-    while (page <= 3) {
+    // Keep fetching until we have enough unique recommendations or hit max pages
+    while (page <= maxPages && allRecommendations.length < 20) {
         const recommendations = await fetchRecommendations(genre, decade, rating, page);
         allRecommendations = [...allRecommendations, ...recommendations];
         if (recommendations.length === 0) break;
@@ -127,7 +118,8 @@ async function displayRecommendations() {
     }
     
     recommendationsGrid.innerHTML = '';
-    allRecommendations.forEach(movie => {
+    // Only show first 20 recommendations to avoid overwhelming the user
+    allRecommendations.slice(0, 20).forEach(movie => {
         const card = createRecommendationCard(movie);
         recommendationsGrid.appendChild(card);
     });
