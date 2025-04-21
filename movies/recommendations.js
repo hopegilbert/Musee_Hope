@@ -329,7 +329,7 @@ function createRecommendationCard(movie) {
 // Function to display recommendations
 async function displayRecommendations() {
     const genre = document.getElementById('rec-genre-filter').value;
-    const decade = document.getElementById('rec-decade-filter').value; // Fixed ID
+    const decade = document.getElementById('rec-decade-filter').value;
     const rating = document.getElementById('rec-rating-filter').value;
     
     console.log('Filters:', { genre, decade, rating }); // Debug log
@@ -362,10 +362,8 @@ async function displayRecommendations() {
     });
 }
 
-// Event listener for the generate recommendations button
-document.getElementById('generate-recommendations').addEventListener('click', displayRecommendations);
+// Make displayRecommendations available globally
+window.displayRecommendations = displayRecommendations;
 
-// Event listeners for filter changes
-document.getElementById('rec-genre-filter').addEventListener('change', displayRecommendations);
-document.getElementById('rec-decade-filter').addEventListener('change', displayRecommendations); // Fixed ID
-document.getElementById('rec-rating-filter').addEventListener('change', displayRecommendations); 
+// Remove direct event listeners since they'll be handled by movieFunctions.js
+// This prevents duplicate listeners and ensures we use the correct function 
