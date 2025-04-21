@@ -11,3 +11,5 @@ export default config;
 // 2. Copy this file to config.js
 // 3. Replace the placeholder with your actual API key
 export const TMDB_API_KEY = 'YOUR_TMDB_API_KEY_HERE'; 
+ 
+ 
