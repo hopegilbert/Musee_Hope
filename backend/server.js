@@ -99,6 +99,86 @@ app.get('/api/profile', (req, res) => {
     });
 });
 
+// Update profile
+app.put('/api/profile', (req, res) => {
+    const { name, subtitle } = req.body;
+    db.run(
+        `UPDATE users SET name = ?, subtitle = ? WHERE id = 1`,
+        [name, subtitle],
+        function(err) {
+            if (err) {
+                res.status(500).json({ error: err.message });
+                return;
+            }
+            res.json({ success: true });
+        }
+    );
+});
+
+// Upload profile photo
+app.post('/api/profile/photo', upload.single('photo'), (req, res) => {
+    if (!req.file) {
+        res.status(400).json({ error: 'No file uploaded' });
+        return;
+    }
+    
+    const photoPath = `/uploads/${req.file.filename}`;
+    db.run(
+        `UPDATE users SET profile_photo = ? WHERE id = 1`,
+        [photoPath],
+        function(err) {
+            if (err) {
+                res.status(500).json({ error: err.message });
+                return;
+            }
+            res.json({ success: true, photoPath });
+        }
+    );
+});
+
+// Create new fragment
+app.post('/api/fragments', upload.single('media'), (req, res) => {
+    const { content } = req.body;
+    const mediaUrl = req.file ? `/uploads/${req.file.filename}` : null;
+    
+    db.run(
+        `INSERT INTO fragments (user_id, content, media_url) VALUES (?, ?, ?)`,
+        [1, content, mediaUrl],
+        function(err) {
+            if (err) {
+                res.status(500).json({ error: err.message });
+                return;
+            }
+            res.json({ 
+                success: true, 
+                fragment: {
+                    id: this.lastID,
+                    content,
+                    media_url: mediaUrl,
+                    created_at: new Date().toISOString()
+                }
+            });
+        }
+    );
+});
+
+// Update currently section
+app.put('/api/currently', (req, res) => {
+    const { reading, listening } = req.body;
+    
+    db.run(
+        `INSERT OR REPLACE INTO currently (user_id, reading, listening) VALUES (?, ?, ?)`,
+        [1, reading, listening],
+        function(err) {
+            if (err) {
+                res.status(500).json({ error: err.message });
+                return;
+            }
+            res.json({ success: true });
+        }
+    );
+});
+
 // Start server
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
