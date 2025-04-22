@@ -241,13 +241,14 @@ footer {
 
 /* Masonry Grid Styles */
 .masonry-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px;
+  columns: 4;
+  column-gap: 8px;
   padding: 20px;
 }
 
 .grid-item {
+  break-inside: avoid;
+  margin-bottom: 8px;
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.5s ease, transform 0.5s ease;
@@ -324,7 +325,8 @@ footer {
   }
 
   .masonry-grid {
-    column-count: 2;
+    columns: 2;
+    column-gap: 8px;
   }
 
   .hero-title {
@@ -343,7 +345,8 @@ footer {
 
 @media (max-width: 480px) {
   .masonry-grid {
-    column-count: 1;
+    columns: 1;
+    column-gap: 8px;
   }
 
   .hero-title {

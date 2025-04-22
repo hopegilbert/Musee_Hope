@@ -121,20 +121,19 @@
             margin: 0 auto;
             padding: 0;
             max-width: 1600px;
-            width: 100%;
-            position: relative;
-            left: 50%;
-            transform: translateX(-50%);
+            width: calc(100% - 40px);
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .grid-sizer,
         .grid-item {
-            width: 25%; /* 4 columns */
+            width: 32.5%; /* Slightly less than 33.333% to account for gutters */
             padding: 0;
         }
 
         .grid-item {
-            margin-bottom: 1px;
+            margin-bottom: 4px;  /* Consistent spacing */
             position: relative;
             line-height: 0;
             opacity: 0;
@@ -184,7 +183,7 @@
             color: var(--beige);
             padding: 1.2rem;
             text-align: center;
-            font-family: 'Lora', serif;
+            font-family: 'Inter', sans-serif;
             opacity: 0;
             transition: opacity 0.3s ease;
             display: flex;
@@ -192,7 +191,7 @@
             align-items: center;
             justify-content: center;
             pointer-events: none;
-            line-height: 1.5; /* Reset line height for text */
+            line-height: 1.5;
         }
 
         .hover-text .date {
@@ -200,6 +199,7 @@
             margin-bottom: 0.3rem;
             font-size: 0.95rem;
             color: var(--cream);
+            font-family: 'Inter', sans-serif;
         }
 
         .hover-text .description {
@@ -207,6 +207,7 @@
             font-size: 0.85rem;
             line-height: 1.5;
             padding: 0 0.5rem;
+            font-family: 'Inter', sans-serif;
         }
 
         .image-wrapper:hover .hover-text {
@@ -228,8 +229,7 @@
             
             .grid-sizer,
             .grid-item {
-                width: 50%; /* 2 columns */
-                padding: 0;
+                width: 48.5%; /* Slightly less than 49% to account for gutters */
             }
         }
 
@@ -240,7 +240,7 @@
             
             .grid-sizer,
             .grid-item {
-                width: 50%; /* Maintain 2 columns */
+                width: 48.5%; /* Keep consistent with tablet view */
             }
         }
 
@@ -466,8 +466,8 @@
                         itemSelector: '.grid-item',
                         columnWidth: '.grid-sizer',
                         percentPosition: true,
-                        gutter: 0, // Remove gutter completely
-                        fitWidth: false, // Change to false to fill container
+                        gutter: 4,  /* Consistent 4px gutter */
+                        fitWidth: true,
                         horizontalOrder: true
                     });
 
@@ -484,8 +484,8 @@
                         itemSelector: '.grid-item',
                         columnWidth: '.grid-sizer',
                         percentPosition: true,
-                        gutter: 0, // Remove gutter completely
-                        fitWidth: false, // Change to false to fill container
+                        gutter: 4,  /* Keep consistent 4px gutter */
+                        fitWidth: true,
                         horizontalOrder: true
                     });
                     msnry.layout();
