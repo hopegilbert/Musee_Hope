@@ -492,13 +492,16 @@ function setupPhotoUpload(container) {
 
 function setupCurrentlySection(type) {
     const input = document.querySelector(`.currently-${type} input`);
+    if (!input) {
+        console.warn(`Currently ${type} input not found`);
+        return;
+    }
+
     const statusSpan = document.createElement('span');
     statusSpan.className = 'status-message';
     statusSpan.style.marginLeft = '10px';
     statusSpan.style.fontSize = '0.8em';
     input.parentNode.appendChild(statusSpan);
-    
-    if (!input) return;
     
     let timeout;
     input.addEventListener('input', () => {
