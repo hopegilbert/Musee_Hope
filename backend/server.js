@@ -121,7 +121,7 @@ app.get('/api/profile', (req, res) => {
                COUNT(DISTINCT f.id) as fragment_count
         FROM users u
         LEFT JOIN currently c ON u.id = c.user_id
-        LEFT JOIN fragments f ON u.id = f.user_id
+        LEFT JOIN fragments f ON u.id = f.user_id AND f.is_draft = 0
         WHERE u.id = 1
         GROUP BY u.id
     `, [], (err, profile) => {
@@ -172,12 +172,12 @@ app.post('/api/profile/photo', upload.single('profile_photo'), (req, res) => {
 
 // Create new fragment
 app.post('/api/fragments', upload.single('media'), (req, res) => {
-    const { content } = req.body;
+    const { content, is_draft } = req.body;
     const mediaUrl = req.file ? `/uploads/${req.file.filename}` : null;
     
     db.run(
-        `INSERT INTO fragments (user_id, content, media_url) VALUES (?, ?, ?)`,
-        [1, content, mediaUrl],
+        `INSERT INTO fragments (user_id, content, media_url, is_draft) VALUES (?, ?, ?, ?)`,
+        [1, content, mediaUrl, is_draft || 0],
         function(err) {
             if (err) {
                 res.status(500).json({ error: err.message });
@@ -189,6 +189,7 @@ app.post('/api/fragments', upload.single('media'), (req, res) => {
                     id: this.lastID,
                     content,
                     media_url: mediaUrl,
+                    is_draft: is_draft || 0,
                     created_at: new Date().toISOString()
                 }
             });
@@ -217,7 +218,7 @@ app.put('/api/currently', (req, res) => {
 app.get('/api/fragments', (req, res) => {
     db.all(`
         SELECT * FROM fragments 
-        WHERE user_id = 1 
+        WHERE user_id = 1 AND is_draft = 0
         ORDER BY created_at DESC
     `, [], (err, fragments) => {
         if (err) {

@@ -205,6 +205,7 @@ function showAddFragmentModal() {
                 <input type="file" accept="image/*">
                 <div class="modal-actions">
                     <button type="button" class="cancel-btn">Cancel</button>
+                    <button type="button" class="draft-btn">Save as Draft</button>
                     <button type="submit" class="submit-btn">Post</button>
                 </div>
             </form>
@@ -217,6 +218,27 @@ function showAddFragmentModal() {
     modal.querySelector('.cancel-btn').addEventListener('click', () => {
         modal.remove();
     });
+
+    modal.querySelector('.draft-btn').addEventListener('click', async () => {
+        const formData = new FormData();
+        const text = modal.querySelector('textarea').value;
+        const file = modal.querySelector('input[type="file"]').files[0];
+        
+        formData.append('content', text);
+        formData.append('is_draft', '1');
+        if (file) {
+            formData.append('media', file);
+        }
+        
+        try {
+            await createFragment(formData);
+            modal.remove();
+            await loadFragments();
+            await loadProfile();
+        } catch (error) {
+            console.error('Error creating draft:', error);
+        }
+    });
     
     modal.querySelector('#fragmentForm').addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -226,15 +248,16 @@ function showAddFragmentModal() {
         const file = modal.querySelector('input[type="file"]').files[0];
         
         formData.append('content', text);
+        formData.append('is_draft', '0');
         if (file) {
             formData.append('media', file);
         }
         
         try {
-            const response = await createFragment(formData);
+            await createFragment(formData);
             modal.remove();
-            await loadFragments(); // Reload fragments after adding new one
-            await loadProfile(); // Refresh profile to update fragment count
+            await loadFragments();
+            await loadProfile();
         } catch (error) {
             console.error('Error creating fragment:', error);
         }
