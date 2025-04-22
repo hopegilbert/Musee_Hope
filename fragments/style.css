@@ -47,7 +47,7 @@
   .nav-menu .logo {
     font-family: var(--font-serif);
     font-size: 2rem;
-    margin: 2rem;
+    margin: 0rem;
   }
   
   .page-header {
@@ -63,8 +63,7 @@
     color: var(--text);
   }
 
-  .profile-btn,
-  .random-moment {
+  .profile-btn {
     background: none;
     border: 1px solid var(--text);
     padding: 0.4rem 0.8rem;
@@ -74,8 +73,7 @@
     font-family: var(--font-sans);
   }
   
-  .profile-btn:hover,
-  .random-moment:hover {
+  .profile-btn:hover {
     background: var(--highlight);
   }
   
@@ -334,50 +332,46 @@
     gap: 1rem;
     margin-bottom: 2rem;
     text-align: center;
-    padding: 0 1rem;
+    padding: 0;
+  }
+
+  .stat-card {
+    background: none;
+    padding: 0.5rem;
+    border: none;
+    box-shadow: none;
+  }
+
+  .stat-card .stat-number {
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    color: var(--text);
+    margin: 0 0 0.25rem 0;
+    line-height: 1;
+  }
+
+  .stat-card h3 {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    color: var(--text);
+    margin: 0;
+    font-weight: 400;
+    opacity: 0.8;
   }
 
   @media (min-width: 768px) {
     .stats-section {
       gap: 2rem;
-      margin-bottom: 4rem;
+      margin-bottom: 3rem;
     }
-  }
 
-  .stat-card {
-    background: white;
-    padding: 1rem;
-    border-radius: 12px;
-    border: var(--post-border);
-    box-shadow: var(--shadow);
-  }
-
-  @media (min-width: 768px) {
-    .stat-card {
-      padding: 2rem;
-    }
-  }
-
-  .stat-card .stat-number {
-    font-family: var(--font-serif);
-    font-size: 2.5rem;
-    color: var(--text);
-    margin: 0 0 0.5rem 0;
-    line-height: 1;
-  }
-
-  @media (min-width: 768px) {
     .stat-card .stat-number {
-      font-size: 3.5rem;
+      font-size: 2.2rem;
     }
-  }
 
-  .stat-card h3 {
-    font-family: var(--font-sans);
-    font-size: 1.2rem;
-    color: var(--text);
-    margin: 0;
-    font-weight: 400;
+    .stat-card h3 {
+      font-size: 1rem;
+    }
   }
 
   /* Update collections section */
