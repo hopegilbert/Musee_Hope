@@ -242,7 +242,6 @@
     background: var(--highlight-yellow);
   }
   
-  /* Optional if you still use mood tags */
   .post-header .tag {
     font-family: var(--font-serif);
     font-weight: bold;

@@ -11,26 +11,26 @@
 <body>
     <div class="page-header">
         <nav class="nav-menu">
-            <h1><a href="fragments.html" class="logo">Fragments</a></h1>            <div class="nav-actions">
-              <a href="#" class="add-fragment-btn">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="12" y1="5" x2="12" y2="19"></line>
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                </svg>
-                Add Fragment
-              </a>
-                  </div>
-        </nav>
+            <h1><a href="fragments.html" class="logo">Fragments</a></h1>
+            <div class="nav-actions">
+                <a href="#" class="add-fragment-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                    Add Fragment
+                </a>
+            </div>
         </nav>
 
         <div class="profile-section">
             <div class="profile-header">
                 <div class="profile-info">
-                    <h1>Hope Gilbert</h1>
-                    <p class="subtitle">girly girl</p>
+                    <h1 class="editable">Hope Gilbert</h1>
+                    <p class="subtitle editable">girly girl</p>
                 </div>
-                <div class="profile-image">
-                    <img src="./images/post.jpg" alt="Emma Johnson" />
+                <div class="profile-image" title="Click to change profile photo">
+                    <img src="./images/post.jpg" alt="Profile Photo" />
                 </div>
             </div>
 
@@ -40,10 +40,6 @@
                     <h3>Fragments</h3>
                 </div>
                 <div class="stat-card">
-                    <p class="stat-number">28</p>
-                    <h3>Mood Board</h3>
-                </div>
-                <div class="stat-card">
                     <p class="stat-number">318</p>
                     <h3>Following</h3>
                 </div>
@@ -51,47 +47,20 @@
 
             <div class="currently-section">
                 <span class="currently-label">Currently</span>
-                
-                <span>Reading</span> <strong><span class="tag blue">The Midnight Library</span></strong></span>
-                
-                <span>Listening</span> <strong><span class="tag pink">Lana Del Rey</span></strong></span>
-              </div>
+                <span>Reading</span> <strong><span class="tag blue editable">The Midnight Library</span></strong>
+                <span>Listening</span> <strong><span class="tag pink editable">Lana Del Rey</span></strong>
+            </div>
 
             <div class="posts-section">
                 <h2>Posts</h2>
                 <div class="profile-gallery">
-                    <div class="post">
-                        <img src="./images/post.jpg" alt="A moment captured" />
-                        <div class="post-body">
-                            <p class="caption">That morning glow that makes you believe again.</p>
-                            <span class="timestamp">April 2025</span>
-                            <div class="reactions">
-                                <button class="reaction-btn resonates">Resonates</button>
-                                <button class="reaction-btn saved">Saved</button>
-                                <button class="reaction-btn thought">Made me think</button>
-                            </div>
-                            <button class="collection">+ Add to Collection</button>
-                        </div>
-                    </div>
-
-                    <div class="post text-only">
-                        <div class="post-body">
-                            <span class="tag lilac">Thought</span>
-                            <p class="text">Sometimes the quietest moments speak the loudest.</p>
-                            <span class="timestamp">April 2025</span>
-                            <div class="reactions">
-                                <button class="reaction-btn resonates">Resonates</button>
-                                <button class="reaction-btn saved">Saved</button>
-                                <button class="reaction-btn thought">Made me think</button>
-                            </div>
-                            <button class="collection">+ Add to Collection</button>
-                        </div>
-                    </div>
+                    <!-- Posts will be dynamically loaded here -->
                 </div>
             </div>
         </div>
     </div>
-    <script src="scripts.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/ui.js"></script>
 </body>
 </html> 
  
