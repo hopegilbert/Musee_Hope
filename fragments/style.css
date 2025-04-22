@@ -4,12 +4,14 @@
     --block-bg: #fffbf2;
     --text: #2C2C2C;
     --primary: #FFE8A3;
-    --secondary: #F5A6A6;
+    --secondary: #f0c0c0;
     --accent: #C4DDEA;
     --lilac: #EBD7F2;
+    --soft-pink: #f0c0c0;
+    --sky-blue: #C4DDEA;
     --highlight-yellow: #FFF1C1;
     --highlight-blue: #C4DDEA;
-    --highlight-pink: #F5A6A6;
+    --highlight-pink: #f0c0c0;
     --highlight-lilac: #EBD7F2;
     --post-border: 1px solid rgba(0, 0, 0, 0.06);
   
@@ -54,6 +56,13 @@
     padding-bottom: 0.5rem;
   }
 
+  .feed-title {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    margin: 2rem;
+    color: var(--text);
+  }
+
   .profile-btn,
   .random-moment {
     background: none;
@@ -72,14 +81,28 @@
   
   .currently-section {
     display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
+    gap: 1.5rem;
     font-size: 0.95rem;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
     font-family: var(--font-serif);
-    margin: 2rem;
     justify-content: center;
     align-items: center;
+    padding: 1rem;
+    background: white;
+    border-radius: 12px;
+    border: var(--post-border);
+    box-shadow: var(--shadow);
+  }
+  
+  .currently-section span {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .currently-section strong {
+    color: var(--text);
+    font-weight: 600;
   }
   
   .gallery {
@@ -193,5 +216,168 @@
   
   .text-only {
     background: white;
+    width: fit-content;
+    min-width: 320px;
+    margin: 2rem;
+  }
+  
+  .text-only .post-body {
+    padding: 1.5rem;
+  }
+
+  .text-only .text {
+    margin-bottom: 0.5rem;
+  }
+
+  /* Ensure the reactions and collection button stay within the post width */
+  .text-only .reactions,
+  .text-only .collection {
+    width: 100%;
+    justify-content: flex-start;
+  }
+  
+  /* Profile Button Fix */
+  .profile-btn {
+    background: none;
+    border: 1px solid var(--text);
+    padding: 0.4rem 0.8rem;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    font-family: var(--font-sans);
+    text-decoration: none;
+    color: var(--text);
+    display: inline-block;
+  }
+
+  .profile-btn:hover {
+    background: var(--highlight);
+  }
+
+  /* Profile Page Styles */
+  .profile-section {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 0;
+  }
+
+  .profile-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .profile-header h1 {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .profile-header .bio {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    color: var(--text);
+    opacity: 0.8;
+  }
+
+  .stats-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .stat-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-align: center;
+    border: var(--post-border);
+    box-shadow: var(--shadow);
+  }
+
+  .stat-card h3 {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--text);
+  }
+
+  .stat-card p {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    color: var(--text);
+    margin: 0;
+  }
+
+  .collections-section {
+    margin-bottom: 3rem;
+  }
+
+  .collections-section h2 {
+    font-family: var(--font-serif);
+    margin-bottom: 1.5rem;
+  }
+
+  .collections-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .collection-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: var(--post-border);
+    box-shadow: var(--shadow);
+  }
+
+  .collection-card h3 {
+    font-family: var(--font-serif);
+    margin-bottom: 0.5rem;
+  }
+
+  .collection-card p {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    color: var(--text);
+    opacity: 0.8;
+    margin: 0;
+  }
+
+  .recent-activity {
+    margin-top: 3rem;
+  }
+
+  .recent-activity h2 {
+    font-family: var(--font-serif);
+    margin-bottom: 1.5rem;
+  }
+
+  .activity-feed {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .activity-item {
+    background: white;
+    padding: 1rem;
+    border-radius: 12px;
+    border: var(--post-border);
+    box-shadow: var(--shadow);
+  }
+
+  .activity-item p {
+    margin: 0;
+    font-family: var(--font-sans);
+  }
+
+  .activity-item .timestamp {
+    font-size: 0.8rem;
+    color: var(--text);
+    opacity: 0.6;
+    margin-top: 0.5rem;
+    display: block;
   }
   
