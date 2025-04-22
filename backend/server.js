@@ -235,19 +235,53 @@ app.post('/api/fragments', upload.single('media'), (req, res) => {
     );
 });
 
-// Update currently section
-app.put('/api/currently', (req, res) => {
-    const { reading, listening } = req.body;
+// Update currently reading/listening
+app.put('/api/currently/:type', (req, res) => {
+    const { type } = req.params;
+    const { value } = req.body;
     
-    db.run(
-        `INSERT OR REPLACE INTO currently (user_id, reading, listening) VALUES (?, ?, ?)`,
-        [1, reading, listening],
-        function(err) {
+    if (!['reading', 'listening'].includes(type)) {
+        res.status(400).json({ success: false, error: 'Invalid type' });
+        return;
+    }
+
+    // First, check if currently record exists
+    db.get(
+        'SELECT id FROM currently WHERE user_id = 1',
+        [],
+        (err, row) => {
             if (err) {
-                res.status(500).json({ error: err.message });
+                res.status(500).json({ success: false, error: err.message });
                 return;
             }
-            res.json({ success: true });
+
+            if (row) {
+                // Update existing record
+                db.run(
+                    `UPDATE currently SET ${type} = ?, updated_at = CURRENT_TIMESTAMP WHERE user_id = 1`,
+                    [value],
+                    function(err) {
+                        if (err) {
+                            res.status(500).json({ success: false, error: err.message });
+                            return;
+                        }
+                        res.json({ success: true });
+                    }
+                );
+            } else {
+                // Create new record
+                db.run(
+                    `INSERT INTO currently (user_id, ${type}) VALUES (1, ?)`,
+                    [value],
+                    function(err) {
+                        if (err) {
+                            res.status(500).json({ success: false, error: err.message });
+                            return;
+                        }
+                        res.json({ success: true });
+                    }
+                );
+            }
         }
     );
 });
