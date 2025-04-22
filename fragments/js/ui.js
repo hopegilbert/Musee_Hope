@@ -6,15 +6,24 @@ import {
     removeReaction,
     getDrafts,
     createDraft,
-    publishDraft
+    publishDraft,
+    getProfile,
+    updateProfile,
+    createFragment,
+    getFragments,
+    updateCurrently
 } from './api.js';
 
-document.addEventListener('DOMContentLoaded', () => {
-    // Load initial data
-    loadFragments();
-    
-    // Set up event listeners
-    setupEventListeners();
+document.addEventListener('DOMContentLoaded', async () => {
+    try {
+        // Load initial data
+        await loadFragments();
+        
+        // Set up event listeners
+        setupEventListeners();
+    } catch (error) {
+        console.error('Error initializing app:', error);
+    }
 });
 
 async function loadFragments() {
@@ -29,12 +38,20 @@ async function loadFragments() {
         }
     } catch (error) {
         console.error('Error loading data:', error);
+        alert('Failed to load data. Please try again.');
     }
 }
 
 function displayFragments(fragments) {
     const gallery = document.querySelector('.gallery');
+    if (!gallery) return;
+    
     gallery.innerHTML = ''; // Clear existing fragments
+    
+    if (!fragments || fragments.length === 0) {
+        gallery.innerHTML = '<p class="no-fragments">No fragments yet. Create your first one!</p>';
+        return;
+    }
     
     fragments.forEach(fragment => {
         const post = createFragmentElement(fragment);
@@ -76,24 +93,32 @@ function createFragmentElement(fragment) {
 }
 
 function updateProfileUI(profile) {
+    if (!profile) return;
+    
     // Update profile information
-    document.querySelector('.profile-info h1').textContent = profile.name;
-    document.querySelector('.profile-info .subtitle').textContent = profile.subtitle;
+    const nameElement = document.querySelector('.profile-info h1');
+    const subtitleElement = document.querySelector('.profile-info .subtitle');
+    const fragmentCountElement = document.querySelector('.stat-number');
+    
+    if (nameElement) nameElement.textContent = profile.name || '';
+    if (subtitleElement) subtitleElement.textContent = profile.subtitle || '';
+    if (fragmentCountElement) fragmentCountElement.textContent = profile.fragment_count || 0;
     
     // Update profile photo if exists
-    if (profile.profile_photo) {
-        document.querySelector('.profile-image img').src = profile.profile_photo;
+    const profileImage = document.querySelector('.profile-image img');
+    if (profileImage && profile.profile_photo) {
+        profileImage.src = profile.profile_photo;
     }
-    
-    // Update stats
-    document.querySelector('.stat-number').textContent = profile.fragment_count;
     
     // Update currently section
-    if (profile.reading) {
-        document.querySelector('.tag.blue').textContent = profile.reading;
+    const readingElement = document.querySelector('.tag.blue');
+    const listeningElement = document.querySelector('.tag.pink');
+    
+    if (readingElement && profile.reading) {
+        readingElement.textContent = profile.reading;
     }
-    if (profile.listening) {
-        document.querySelector('.tag.pink').textContent = profile.listening;
+    if (listeningElement && profile.listening) {
+        listeningElement.textContent = profile.listening;
     }
 }
 
@@ -239,6 +264,11 @@ function showAddFragmentModal() {
         const text = modal.querySelector('textarea').value;
         const file = modal.querySelector('input[type="file"]').files[0];
         
+        if (!text.trim()) {
+            alert('Please enter some content for your fragment.');
+            return;
+        }
+        
         formData.append('content', text);
         if (file) {
             formData.append('media', file);
@@ -247,8 +277,7 @@ function showAddFragmentModal() {
         try {
             await createFragment(formData);
             modal.remove();
-            await loadFragments();
-            await loadProfile();
+            await loadFragments(); // Refresh the fragments list
         } catch (error) {
             console.error('Error creating fragment:', error);
             alert('Failed to create fragment. Please try again.');

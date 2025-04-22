@@ -4,7 +4,11 @@ const API_URL = 'http://localhost:3003/api';
 async function getProfile() {
     try {
         const response = await fetch(`${API_URL}/profile`);
-        return await response.json();
+        const data = await response.json();
+        if (!data.success) {
+            throw new Error(data.error || 'Failed to fetch profile');
+        }
+        return data;
     } catch (error) {
         console.error('Error fetching profile:', error);
         throw error;
@@ -20,7 +24,11 @@ async function updateProfile(data) {
             },
             body: JSON.stringify(data)
         });
-        return await response.json();
+        const result = await response.json();
+        if (!result.success) {
+            throw new Error(result.error || 'Failed to update profile');
+        }
+        return result;
     } catch (error) {
         console.error('Error updating profile:', error);
         throw error;
@@ -32,9 +40,13 @@ async function createFragment(formData) {
     try {
         const response = await fetch(`${API_URL}/fragments`, {
             method: 'POST',
-            body: formData // FormData for file uploads
+            body: formData
         });
-        return await response.json();
+        const data = await response.json();
+        if (!data.success) {
+            throw new Error(data.error || 'Failed to create fragment');
+        }
+        return data;
     } catch (error) {
         console.error('Error creating fragment:', error);
         throw error;
@@ -44,7 +56,11 @@ async function createFragment(formData) {
 async function getFragments() {
     try {
         const response = await fetch(`${API_URL}/fragments`);
-        return await response.json();
+        const data = await response.json();
+        if (!data.success) {
+            throw new Error(data.error || 'Failed to fetch fragments');
+        }
+        return data.fragments;
     } catch (error) {
         console.error('Error fetching fragments:', error);
         throw error;
@@ -61,7 +77,11 @@ async function updateCurrently(data) {
             },
             body: JSON.stringify(data)
         });
-        return await response.json();
+        const result = await response.json();
+        if (!result.success) {
+            throw new Error(result.error || 'Failed to update currently section');
+        }
+        return result;
     } catch (error) {
         console.error('Error updating currently section:', error);
         throw error;
@@ -127,4 +147,13 @@ export const publishDraft = async (fragmentId) => {
         method: 'PUT'
     });
     return response.json();
+};
+
+// Export all functions
+export {
+    getProfile,
+    updateProfile,
+    createFragment,
+    getFragments,
+    updateCurrently
 }; 

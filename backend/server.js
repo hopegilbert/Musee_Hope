@@ -118,18 +118,17 @@ app.get('/api/profile', (req, res) => {
         SELECT u.*, 
                c.reading, 
                c.listening,
-               COUNT(DISTINCT f.id) as fragment_count
+               (SELECT COUNT(*) FROM fragments f WHERE f.user_id = u.id AND f.is_draft = 0) as fragment_count
         FROM users u
         LEFT JOIN currently c ON u.id = c.user_id
-        LEFT JOIN fragments f ON u.id = f.user_id AND f.is_draft = 0
         WHERE u.id = 1
-        GROUP BY u.id
     `, [], (err, profile) => {
         if (err) {
-            res.status(500).json({ error: err.message });
+            console.error('Error fetching profile:', err);
+            res.status(500).json({ success: false, error: err.message });
             return;
         }
-        res.json(profile);
+        res.json({ success: true, ...profile });
     });
 });
 
@@ -192,6 +191,7 @@ app.post('/api/profile/photo', upload.single('profile_photo'), (req, res) => {
 
 // Create new fragment
 app.post('/api/fragments', upload.single('media'), (req, res) => {
+    console.log('Creating fragment:', req.body);
     const { content } = req.body;
     
     if (!content) {
@@ -255,15 +255,20 @@ app.put('/api/currently', (req, res) => {
 // Get all fragments for a user
 app.get('/api/fragments', (req, res) => {
     db.all(`
-        SELECT * FROM fragments 
-        WHERE user_id = 1 AND is_draft = 0
-        ORDER BY created_at DESC
+        SELECT f.*, 
+               COUNT(r.id) as reaction_count 
+        FROM fragments f 
+        LEFT JOIN reactions r ON f.id = r.fragment_id
+        WHERE f.user_id = 1 AND f.is_draft = 0
+        GROUP BY f.id
+        ORDER BY f.created_at DESC
     `, [], (err, fragments) => {
         if (err) {
-            res.status(500).json({ error: err.message });
+            console.error('Error fetching fragments:', err);
+            res.status(500).json({ success: false, error: err.message });
             return;
         }
-        res.json(fragments);
+        res.json({ success: true, fragments: fragments || [] });
     });
 });
 
