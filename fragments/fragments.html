@@ -5,113 +5,72 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fragments</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Plus+Jakarta+Sans:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="page-wrapper">
-    <nav class="nav-menu">
-      <div class="left-nav">
-        <a href="#" class="active">Timeline</a>
-        <a href="#">Mood Board</a>
-        <a href="#">Discover</a>
+    <div class="page-header">
+        <nav class="nav-menu">
+          <h1 class="logo">Fragments</h1>
+          <div class="right-nav">
+            <button class="random-moment">Random Moment</button>
+            <a href="#" class="profile-btn">Profile</a>
+          </div>
+        </nav>
       </div>
-      <div class="right-nav">
-        <button class="random-moment">Random Moment</button>
-        <div class="user-mood">
-          <span class="mood-indicator">🌞</span>
-          <span class="mood-text">Sunny</span>
-        </div>
-        <a href="profile.html" class="profile-btn">
-          <span class="profile-icon">👤</span>
-          <span class="profile-text">Profile</span>
-        </a>
-      </div>
-    </nav>
 
     <div class="currently-section">
-      <div class="currently-item">
-        <span class="label">Reading</span>
-        <span class="content">The Midnight Library</span>
-      </div>
-      <div class="currently-item">
-        <span class="label">Listening</span>
-        <span class="content">Lana Del Rey</span>
-      </div>
-      <div class="currently-item">
-        <span class="label">Feeling</span>
-        <span class="content">Inspired</span>
-      </div>
+      <span>Currently</span>
+      <span>Reading <strong>The Midnight Library</strong></span>
+      <span>Listening <strong>Lana Del Rey</strong></span>
     </div>
 
     <main class="gallery">
       <div class="post">
-        <div class="post-header">
-          <div class="mood-tag">Quiet Morning</div>
-          <div class="vibe-indicator" style="--vibe-color: #E6B3B3">🌸</div>
-        </div>
-        <img src="media/photo1.jpg" alt="Sunlight on books">
-        <div class="post-content">
-          <div class="caption">
-            That morning glow that makes you believe again.
-            <span class="timestamp">April 2025</span>
-          </div>
+        <img src="./images/post.jpg" alt="..." />
+        <div class="post-body">
+          <p class="caption">That morning glow that makes you believe again.</p>
+          <span class="timestamp">April 2025</span>
           <div class="reactions">
-            <button class="reaction-btn" data-reaction="resonates">💫 Resonates</button>
-            <button class="reaction-btn" data-reaction="saved">🔖 Saved</button>
-            <button class="reaction-btn" data-reaction="thought">💭 Made me think</button>
+            <button>Resonates</button>
+            <button>Saved</button>
+            <button>Made me think</button>
           </div>
-          <div class="collections">
-            <button class="collection-btn">+ Add to Collection</button>
-          </div>
+          <button class="collection">+ Add to Collection</button>
         </div>
       </div>
 
       <div class="post">
-        <div class="post-header">
-          <div class="mood-tag">Adventure</div>
-          <div class="vibe-indicator" style="--vibe-color: #B3D9E6">🌊</div>
-        </div>
-        <img src="media/photo2.jpg" alt="Feet in the ocean">
-        <div class="post-content">
-          <div class="caption">
-            Saltwater therapy. No words needed.
-            <span class="timestamp">March 2025</span>
-          </div>
+        <img src="./images/post2.jpg" alt="..." />
+        <div class="post-body">
+          <p class="caption">That morning glow that makes you believe again.</p>
+          <span class="timestamp">April 2025</span>
           <div class="reactions">
-            <button class="reaction-btn" data-reaction="resonates">💫 Resonates</button>
-            <button class="reaction-btn" data-reaction="saved">🔖 Saved</button>
-            <button class="reaction-btn" data-reaction="thought">💭 Made me think</button>
+            <button>Resonates</button>
+            <button>Saved</button>
+            <button>Made me think</button>
           </div>
-          <div class="collections">
-            <button class="collection-btn">+ Add to Collection</button>
-          </div>
+          <button class="collection">+ Add to Collection</button>
         </div>
       </div>
 
-      <!-- Text-only post example -->
-      <div class="post text-post">
-        <div class="post-header">
-          <div class="mood-tag">Thought</div>
-          <div class="vibe-indicator" style="--vibe-color: #E6B3E6">💭</div>
-        </div>
-        <div class="post-content">
-          <div class="text-content">
-            Sometimes the quietest moments speak the loudest.
-          </div>
-          <div class="caption">
-            <span class="timestamp">April 2025</span>
-          </div>
+      <div class="post text-only">
+        <div class="post-body">
+            <span class="tag lilac">Thought</span>
+          <p class="text">Sometimes the quietest moments speak the loudest.</p>
+          <span class="timestamp">April 2025</span>
           <div class="reactions">
-            <button class="reaction-btn" data-reaction="resonates">💫 Resonates</button>
-            <button class="reaction-btn" data-reaction="saved">🔖 Saved</button>
-            <button class="reaction-btn" data-reaction="thought">💭 Made me think</button>
+            <button>Resonates</button>
+            <button>Saved</button>
+            <button>Made me think</button>
           </div>
+          <button class="collection">+ Add to Collection</button>
         </div>
       </div>
+          </div>
+        </div>
+      </section>
     </main>
-
-    <div class="focus-mode-overlay"></div>
   </div>
   <script src="scripts.js"></script>
 </body>
