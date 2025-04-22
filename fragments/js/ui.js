@@ -154,11 +154,20 @@ function setupEditableElements() {
                         if (field === 'reading' || field === 'listening') {
                             await updateCurrently({[field]: newText});
                         } else {
-                            await updateProfile({[field]: newText});
+                            const response = await updateProfile({[field]: newText});
+                            if (!response.success) {
+                                throw new Error('Failed to update profile');
+                            }
                         }
                         element.textContent = newText;
+                        // Update fragment count if needed
+                        if (field === 'name' || field === 'subtitle') {
+                            const profile = await getProfile();
+                            updateProfileUI(profile);
+                        }
                     } catch (error) {
                         console.error('Error updating:', error);
+                        alert('Failed to save changes. Please try again.');
                         element.textContent = currentText;
                     }
                 }
@@ -201,7 +210,6 @@ async function handleProfilePhotoUpload(event) {
 }
 
 function showAddFragmentModal() {
-    // Create modal HTML
     const modal = document.createElement('div');
     modal.className = 'modal';
     modal.innerHTML = `
@@ -212,7 +220,6 @@ function showAddFragmentModal() {
                 <input type="file" accept="image/*">
                 <div class="modal-actions">
                     <button type="button" class="cancel-btn">Cancel</button>
-                    <button type="button" class="draft-btn">Save as Draft</button>
                     <button type="submit" class="submit-btn">Post</button>
                 </div>
             </form>
@@ -221,32 +228,10 @@ function showAddFragmentModal() {
     
     document.body.appendChild(modal);
     
-    // Add event listeners
     modal.querySelector('.cancel-btn').addEventListener('click', () => {
         modal.remove();
     });
 
-    modal.querySelector('.draft-btn').addEventListener('click', async () => {
-        const formData = new FormData();
-        const text = modal.querySelector('textarea').value;
-        const file = modal.querySelector('input[type="file"]').files[0];
-        
-        formData.append('content', text);
-        formData.append('is_draft', '1');
-        if (file) {
-            formData.append('media', file);
-        }
-        
-        try {
-            await createFragment(formData);
-            modal.remove();
-            await loadFragments();
-            await loadProfile();
-        } catch (error) {
-            console.error('Error creating draft:', error);
-        }
-    });
-    
     modal.querySelector('#fragmentForm').addEventListener('submit', async (e) => {
         e.preventDefault();
         
@@ -255,7 +240,6 @@ function showAddFragmentModal() {
         const file = modal.querySelector('input[type="file"]').files[0];
         
         formData.append('content', text);
-        formData.append('is_draft', '0');
         if (file) {
             formData.append('media', file);
         }
@@ -267,6 +251,7 @@ function showAddFragmentModal() {
             await loadProfile();
         } catch (error) {
             console.error('Error creating fragment:', error);
+            alert('Failed to create fragment. Please try again.');
         }
     });
 }
@@ -453,5 +438,23 @@ async function handleReaction(fragmentId, type) {
         }
     } catch (error) {
         console.error('Error handling reaction:', error);
+    }
+}
+
+// Update the createFragment function to properly handle form data
+async function createFragment(formData) {
+    try {
+        const response = await fetch(`${API_URL}/fragments`, {
+            method: 'POST',
+            body: formData
+        });
+        const data = await response.json();
+        if (!data.success) {
+            throw new Error('Failed to create fragment');
+        }
+        return data;
+    } catch (error) {
+        console.error('Error creating fragment:', error);
+        throw error;
     }
 } 

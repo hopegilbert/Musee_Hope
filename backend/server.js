@@ -136,12 +136,32 @@ app.get('/api/profile', (req, res) => {
 // Update profile
 app.put('/api/profile', (req, res) => {
     const { name, subtitle } = req.body;
+    if (!name && !subtitle) {
+        res.status(400).json({ success: false, error: 'No data provided for update' });
+        return;
+    }
+
+    const updates = [];
+    const values = [];
+    
+    if (name) {
+        updates.push('name = ?');
+        values.push(name);
+    }
+    if (subtitle) {
+        updates.push('subtitle = ?');
+        values.push(subtitle);
+    }
+    
+    values.push(1); // user_id
+    
     db.run(
-        `UPDATE users SET name = ?, subtitle = ? WHERE id = 1`,
-        [name, subtitle],
+        `UPDATE users SET ${updates.join(', ')} WHERE id = ?`,
+        values,
         function(err) {
             if (err) {
-                res.status(500).json({ error: err.message });
+                console.error('Error updating profile:', err);
+                res.status(500).json({ success: false, error: err.message });
                 return;
             }
             res.json({ success: true });
@@ -172,27 +192,45 @@ app.post('/api/profile/photo', upload.single('profile_photo'), (req, res) => {
 
 // Create new fragment
 app.post('/api/fragments', upload.single('media'), (req, res) => {
-    const { content, is_draft } = req.body;
+    const { content } = req.body;
+    
+    if (!content) {
+        res.status(400).json({ success: false, error: 'Content is required' });
+        return;
+    }
+    
     const mediaUrl = req.file ? `/uploads/${req.file.filename}` : null;
     
     db.run(
-        `INSERT INTO fragments (user_id, content, media_url, is_draft) VALUES (?, ?, ?, ?)`,
-        [1, content, mediaUrl, is_draft || 0],
+        `INSERT INTO fragments (user_id, content, media_url, is_draft) VALUES (?, ?, ?, 0)`,
+        [1, content, mediaUrl],
         function(err) {
             if (err) {
-                res.status(500).json({ error: err.message });
+                console.error('Error creating fragment:', err);
+                res.status(500).json({ success: false, error: err.message });
                 return;
             }
-            res.json({ 
-                success: true, 
-                fragment: {
-                    id: this.lastID,
-                    content,
-                    media_url: mediaUrl,
-                    is_draft: is_draft || 0,
-                    created_at: new Date().toISOString()
+            
+            // Get the newly created fragment
+            db.get(
+                `SELECT * FROM fragments WHERE id = ?`,
+                [this.lastID],
+                (err, fragment) => {
+                    if (err) {
+                        console.error('Error fetching new fragment:', err);
+                        res.status(500).json({ success: false, error: err.message });
+                        return;
+                    }
+                    
+                    res.json({ 
+                        success: true, 
+                        fragment: {
+                            ...fragment,
+                            created_at: new Date(fragment.created_at).toISOString()
+                        }
+                    });
                 }
-            });
+            );
         }
     );
 });
