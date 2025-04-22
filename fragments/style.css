@@ -40,14 +40,24 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 2rem;
-    margin: 2rem;
+    margin-bottom: 1rem;
+    margin: 1rem;
+  }
+  
+  .nav-menu h1 {
+    margin: 0;
+    padding: 0;
   }
   
   .nav-menu .logo {
     font-family: var(--font-serif);
     font-size: 2rem;
-    margin: 0rem;
+    margin: 0;
+    padding-left: 1rem;
+    text-decoration: none;
+    color: var(--text);
+    display: inline-block;
+    font-weight: normal;
   }
   
   .page-header {
@@ -95,7 +105,7 @@
   .currently-section span {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 1rem;
   }
   
   .currently-section strong {
@@ -268,7 +278,7 @@
     justify-content: space-between;
     align-items: center;
     text-align: left;
-    margin-bottom: 2rem;
+    margin-bottom: 0rem;
     padding: 1rem;
     gap: 1rem;
   }
@@ -344,7 +354,7 @@
 
   .stat-card .stat-number {
     font-family: var(--font-serif);
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     color: var(--text);
     margin: 0 0 0.25rem 0;
     line-height: 1;
@@ -352,7 +362,7 @@
 
   .stat-card h3 {
     font-family: var(--font-sans);
-    font-size: 0.9rem;
+    font-size: 0.7rem;
     color: var(--text);
     margin: 0;
     font-weight: 400;
