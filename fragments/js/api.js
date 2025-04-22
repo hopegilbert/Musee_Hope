@@ -57,4 +57,57 @@ export async function updateCurrently(type, value) {
         console.error(`Error in updateCurrently ${type}:`, error);
         throw error;
     }
+}
+
+// Fragments Management
+export async function getFragments() {
+    try {
+        const response = await fetch(`${API_URL}/fragments`);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const fragments = await response.json();
+        return {
+            success: true,
+            fragments: fragments
+        };
+    } catch (error) {
+        console.error('Error fetching fragments:', error);
+        return {
+            success: false,
+            error: error.message
+        };
+    }
+}
+
+export async function createFragment(content, mediaUrl = null) {
+    try {
+        const response = await fetch(`${API_URL}/fragments`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                content,
+                media_url: mediaUrl,
+                user_id: 1  // Using default user
+            })
+        });
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const fragment = await response.json();
+        return {
+            success: true,
+            fragment: fragment
+        };
+    } catch (error) {
+        console.error('Error creating fragment:', error);
+        return {
+            success: false,
+            error: error.message
+        };
+    }
 } 

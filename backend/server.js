@@ -118,7 +118,7 @@ app.get('/api/profile', (req, res) => {
         SELECT u.*, 
                c.reading, 
                c.listening,
-               (SELECT COUNT(*) FROM fragments f WHERE f.user_id = u.id AND f.is_draft = 0) as fragment_count
+               (SELECT COUNT(*) FROM fragments f WHERE f.user_id = u.id) as fragment_count
         FROM users u
         LEFT JOIN currently c ON u.id = c.user_id
         WHERE u.id = 1
