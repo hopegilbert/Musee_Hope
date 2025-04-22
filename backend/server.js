@@ -6,7 +6,7 @@ const sqlite3 = require('sqlite3').verbose();
 require('dotenv').config();
 
 const app = express();
-const port = process.env.PORT || 3002;
+const port = process.env.PORT || 3003;
 
 // Middleware
 app.use(cors());
@@ -54,7 +54,9 @@ function initializeDatabase() {
             user_id INTEGER,
             content TEXT,
             media_url TEXT,
+            is_draft BOOLEAN DEFAULT 0,
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+            updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
             FOREIGN KEY (user_id) REFERENCES users (id)
         )`);
 
@@ -66,6 +68,38 @@ function initializeDatabase() {
             listening TEXT,
             updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
             FOREIGN KEY (user_id) REFERENCES users (id)
+        )`);
+
+        // Collections table
+        db.run(`CREATE TABLE IF NOT EXISTS collections (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_id INTEGER,
+            name TEXT NOT NULL,
+            description TEXT,
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (user_id) REFERENCES users (id)
+        )`);
+
+        // Collection items table
+        db.run(`CREATE TABLE IF NOT EXISTS collection_items (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            collection_id INTEGER,
+            fragment_id INTEGER,
+            added_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (collection_id) REFERENCES collections (id),
+            FOREIGN KEY (fragment_id) REFERENCES fragments (id)
+        )`);
+
+        // Reactions table
+        db.run(`CREATE TABLE IF NOT EXISTS reactions (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_id INTEGER,
+            fragment_id INTEGER,
+            type TEXT NOT NULL,
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (user_id) REFERENCES users (id),
+            FOREIGN KEY (fragment_id) REFERENCES fragments (id),
+            UNIQUE(user_id, fragment_id, type)
         )`);
 
         // Insert default user if not exists
@@ -192,6 +226,108 @@ app.get('/api/fragments', (req, res) => {
         }
         res.json(fragments);
     });
+});
+
+// Collections endpoints
+app.get('/api/collections', (req, res) => {
+    db.all('SELECT * FROM collections WHERE user_id = 1', [], (err, rows) => {
+        if (err) {
+            res.status(500).json({ error: err.message });
+            return;
+        }
+        res.json(rows);
+    });
+});
+
+app.post('/api/collections', (req, res) => {
+    const { name, description } = req.body;
+    db.run('INSERT INTO collections (user_id, name, description) VALUES (?, ?, ?)',
+        [1, name, description],
+        function(err) {
+            if (err) {
+                res.status(500).json({ error: err.message });
+                return;
+            }
+            res.json({ id: this.lastID });
+        });
+});
+
+app.post('/api/collections/:collectionId/fragments/:fragmentId', (req, res) => {
+    const { collectionId, fragmentId } = req.params;
+    db.run('INSERT INTO collection_items (collection_id, fragment_id) VALUES (?, ?)',
+        [collectionId, fragmentId],
+        function(err) {
+            if (err) {
+                res.status(500).json({ error: err.message });
+                return;
+            }
+            res.json({ id: this.lastID });
+        });
+});
+
+// Reactions endpoints
+app.post('/api/fragments/:id/reactions', (req, res) => {
+    const { id } = req.params;
+    const { type } = req.body;
+    db.run('INSERT INTO reactions (user_id, fragment_id, type) VALUES (?, ?, ?)',
+        [1, id, type],
+        function(err) {
+            if (err) {
+                res.status(500).json({ error: err.message });
+                return;
+            }
+            res.json({ id: this.lastID });
+        });
+});
+
+app.delete('/api/fragments/:id/reactions/:type', (req, res) => {
+    const { id, type } = req.params;
+    db.run('DELETE FROM reactions WHERE user_id = ? AND fragment_id = ? AND type = ?',
+        [1, id, type],
+        function(err) {
+            if (err) {
+                res.status(500).json({ error: err.message });
+                return;
+            }
+            res.json({ success: true });
+        });
+});
+
+// Drafts endpoints
+app.get('/api/fragments/drafts', (req, res) => {
+    db.all('SELECT * FROM fragments WHERE user_id = 1 AND is_draft = 1', [], (err, rows) => {
+        if (err) {
+            res.status(500).json({ error: err.message });
+            return;
+        }
+        res.json(rows);
+    });
+});
+
+app.post('/api/fragments/drafts', (req, res) => {
+    const { content, media_url } = req.body;
+    db.run('INSERT INTO fragments (user_id, content, media_url, is_draft) VALUES (?, ?, ?, 1)',
+        [1, content, media_url],
+        function(err) {
+            if (err) {
+                res.status(500).json({ error: err.message });
+                return;
+            }
+            res.json({ id: this.lastID });
+        });
+});
+
+app.put('/api/fragments/:id/publish', (req, res) => {
+    const { id } = req.params;
+    db.run('UPDATE fragments SET is_draft = 0, updated_at = CURRENT_TIMESTAMP WHERE id = ? AND user_id = 1',
+        [id],
+        function(err) {
+            if (err) {
+                res.status(500).json({ error: err.message });
+                return;
+            }
+            res.json({ success: true });
+        });
 });
 
 // Start server
