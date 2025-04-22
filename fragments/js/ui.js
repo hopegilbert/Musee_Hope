@@ -1,3 +1,14 @@
+import { 
+    getCollections, 
+    createCollection, 
+    addToCollection as addToCollectionAPI,
+    addReaction,
+    removeReaction,
+    getDrafts,
+    createDraft,
+    publishDraft
+} from './api.js';
+
 document.addEventListener('DOMContentLoaded', () => {
     // Load initial data
     loadFragments();
@@ -52,9 +63,9 @@ function createFragmentElement(fragment) {
                 <span class="post-date">${new Date(fragment.created_at).toLocaleDateString()}</span>
             </div>
             <div class="post-actions">
-                <button class="reaction-btn resonates">Resonates</button>
-                <button class="reaction-btn saved">Saved</button>
-                <button class="reaction-btn thought">Made me think</button>
+                <button class="reaction-btn resonates" onclick="handleReaction(${fragment.id}, 'resonates')">Resonates</button>
+                <button class="reaction-btn saved" onclick="handleReaction(${fragment.id}, 'saved')">Saved</button>
+                <button class="reaction-btn thought" onclick="handleReaction(${fragment.id}, 'thought')">Made me think</button>
                 <button class="save-draft-btn" onclick="saveToDrafts(${fragment.id})">Save to Drafts</button>
                 <button class="add-to-collection-btn" onclick="showAddToCollectionModal(${fragment.id})">Add to Collection</button>
             </div>
@@ -118,6 +129,14 @@ function setupEditableElements() {
         {
             element: document.querySelector('.profile-info .subtitle'),
             field: 'subtitle'
+        },
+        {
+            element: document.querySelector('.tag.blue'),
+            field: 'reading'
+        },
+        {
+            element: document.querySelector('.tag.pink'),
+            field: 'listening'
         }
     ];
     
@@ -132,10 +151,14 @@ function setupEditableElements() {
                 const newText = this.value.trim();
                 if (newText !== currentText) {
                     try {
-                        await updateProfile({[field]: newText});
+                        if (field === 'reading' || field === 'listening') {
+                            await updateCurrently({[field]: newText});
+                        } else {
+                            await updateProfile({[field]: newText});
+                        }
                         element.textContent = newText;
                     } catch (error) {
-                        console.error('Error updating profile:', error);
+                        console.error('Error updating:', error);
                         element.textContent = currentText;
                     }
                 }
@@ -385,5 +408,20 @@ async function addToCollection(collectionId, fragmentId) {
     } catch (error) {
         console.error('Error adding to collection:', error);
         alert('Failed to add to collection');
+    }
+}
+
+async function handleReaction(fragmentId, type) {
+    try {
+        const button = document.querySelector(`.reaction-btn.${type}[onclick*="${fragmentId}"]`);
+        if (button.classList.contains('active')) {
+            await removeReaction(fragmentId, type);
+            button.classList.remove('active');
+        } else {
+            await addReaction(fragmentId, type);
+            button.classList.add('active');
+        }
+    } catch (error) {
+        console.error('Error handling reaction:', error);
     }
 } 
