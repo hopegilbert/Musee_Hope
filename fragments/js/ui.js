@@ -21,50 +21,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function initializeUI() {
     console.log('Initializing UI...');
-    await loadProfile();
-    await loadFragments();
+    await loadInitialData();
 }
 
-async function loadProfile() {
+async function loadInitialData() {
     try {
         const profile = await getProfile();
-        if (profile) {
-            updateProfileDisplay(profile);
-        }
+        const fragments = await getFragments();
+        
+        // Display data
+        updateProfileDisplay(profile);
+        displayFragments(fragments);
     } catch (error) {
-        console.error('Error loading profile:', error);
+        console.error('Error loading initial data:', error);
     }
 }
 
 function updateProfileDisplay(profile) {
+    if (!profile) return;
+    
     const nameElement = document.querySelector('.profile-info h1');
     const subtitleElement = document.querySelector('.profile-info .subtitle');
     
-    if (nameElement && profile.name) {
-        nameElement.textContent = profile.name;
-    }
-    if (subtitleElement && profile.subtitle) {
-        subtitleElement.textContent = profile.subtitle;
-    }
-}
-
-async function loadFragments() {
-    try {
-        const fragments = await getFragments();
-        displayFragments(fragments);
-    } catch (error) {
-        console.error('Error loading fragments:', error);
-    }
+    if (nameElement) nameElement.textContent = profile.name || '';
+    if (subtitleElement) subtitleElement.textContent = profile.subtitle || '';
 }
 
 function displayFragments(fragments) {
+    if (!fragments) return;
+    
     const container = document.querySelector('.fragments-container');
     if (!container) return;
     
     container.innerHTML = '';
     fragments.forEach(fragment => {
-        const fragmentElement = createFragmentElement(fragment);
-        container.appendChild(fragmentElement);
+        container.appendChild(createFragmentElement(fragment));
     });
 }
 
@@ -73,7 +64,7 @@ function createFragmentElement(fragment) {
     div.className = 'fragment';
     div.innerHTML = `
         <div class="fragment-content">
-            ${fragment.content}
+            ${fragment.content || ''}
             ${fragment.media_url ? `<img src="${fragment.media_url}" alt="Fragment media">` : ''}
         </div>
     `;
@@ -168,33 +159,6 @@ style.textContent = `
 document.head.appendChild(style);
 
 // Core functions
-async function loadInitialData() {
-    try {
-        const profile = await getProfile();
-        if (profile) {
-            updateProfileUI(profile);
-        }
-    } catch (error) {
-        console.error('Error loading profile:', error);
-    }
-}
-
-function updateProfileUI(profile) {
-    // Update name and subtitle
-    const nameElement = document.querySelector('.profile-info h1');
-    const subtitleElement = document.querySelector('.profile-info .subtitle');
-    
-    if (nameElement && profile.name) {
-        nameElement.textContent = profile.name;
-    }
-    if (subtitleElement && profile.subtitle) {
-        subtitleElement.textContent = profile.subtitle;
-    }
-    
-    // Update fragment count
-    updateFragmentCount();
-}
-
 function setupEventListeners() {
     // Make name editable
     const nameElement = document.querySelector('.profile-info h1');
