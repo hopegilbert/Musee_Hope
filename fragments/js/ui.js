@@ -14,6 +14,72 @@ import {
     updateCurrently
 } from './api.js';
 
+// Initialize UI when the DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    initializeUI();
+});
+
+async function initializeUI() {
+    console.log('Initializing UI...');
+    await loadProfile();
+    await loadFragments();
+}
+
+async function loadProfile() {
+    try {
+        const profile = await getProfile();
+        if (profile) {
+            updateProfileDisplay(profile);
+        }
+    } catch (error) {
+        console.error('Error loading profile:', error);
+    }
+}
+
+function updateProfileDisplay(profile) {
+    const nameElement = document.querySelector('.profile-info h1');
+    const subtitleElement = document.querySelector('.profile-info .subtitle');
+    
+    if (nameElement && profile.name) {
+        nameElement.textContent = profile.name;
+    }
+    if (subtitleElement && profile.subtitle) {
+        subtitleElement.textContent = profile.subtitle;
+    }
+}
+
+async function loadFragments() {
+    try {
+        const fragments = await getFragments();
+        displayFragments(fragments);
+    } catch (error) {
+        console.error('Error loading fragments:', error);
+    }
+}
+
+function displayFragments(fragments) {
+    const container = document.querySelector('.fragments-container');
+    if (!container) return;
+    
+    container.innerHTML = '';
+    fragments.forEach(fragment => {
+        const fragmentElement = createFragmentElement(fragment);
+        container.appendChild(fragmentElement);
+    });
+}
+
+function createFragmentElement(fragment) {
+    const div = document.createElement('div');
+    div.className = 'fragment';
+    div.innerHTML = `
+        <div class="fragment-content">
+            ${fragment.content}
+            ${fragment.media_url ? `<img src="${fragment.media_url}" alt="Fragment media">` : ''}
+        </div>
+    `;
+    return div;
+}
+
 // Basic UI functionality
 document.addEventListener('DOMContentLoaded', () => {
     setupBasicUI();
@@ -208,45 +274,16 @@ function setupCurrentlySection(type) {
     }
 }
 
-async function loadFragments() {
+async function updateFragmentCount() {
     try {
         const fragments = await getFragments();
-        const container = document.querySelector('.fragments-container');
-        if (container) {
-            container.innerHTML = '';
-            fragments.forEach(fragment => {
-                container.appendChild(createFragmentElement(fragment));
-            });
+        const countElement = document.querySelector('.stat-number');
+        if (countElement) {
+            countElement.textContent = fragments.length;
         }
     } catch (error) {
-        console.error('Error loading fragments:', error);
+        console.error('Error updating fragment count:', error);
     }
-}
-
-function createFragmentElement(fragment) {
-    const div = document.createElement('div');
-    div.className = 'fragment';
-    div.innerHTML = `
-        <div class="fragment-content">
-            ${fragment.content}
-            ${fragment.media_url ? `<img src="${fragment.media_url}" alt="Fragment media">` : ''}
-        </div>
-        <div class="fragment-actions">
-            <button onclick="handleReaction(${fragment.id}, 'like')" class="reaction-btn ${fragment.reactions?.like ? 'active' : ''}">
-                Like (${fragment.reactions?.like || 0})
-            </button>
-            <button onclick="handleReaction(${fragment.id}, 'bookmark')" class="reaction-btn ${fragment.reactions?.bookmark ? 'active' : ''}">
-                Bookmark (${fragment.reactions?.bookmark || 0})
-            </button>
-            <button onclick="saveToDrafts(${fragment.id})" class="save-draft-btn">
-                Save to Drafts
-            </button>
-            <button onclick="showAddToCollectionModal(${fragment.id})" class="add-collection-btn">
-                Add to Collection
-            </button>
-        </div>
-    `;
-    return div;
 }
 
 function showAddFragmentModal() {
@@ -289,18 +326,6 @@ function showAddFragmentModal() {
     });
     
     cancelBtn.addEventListener('click', () => modal.remove());
-}
-
-async function updateFragmentCount() {
-    try {
-        const fragments = await getFragments();
-        const countElement = document.querySelector('.stat-number');
-        if (countElement) {
-            countElement.textContent = fragments.length;
-        }
-    } catch (error) {
-        console.error('Error updating fragment count:', error);
-    }
 }
 
 function showAddToCollectionModal(fragmentId) {
