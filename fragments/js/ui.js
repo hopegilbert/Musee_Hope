@@ -1,7 +1,7 @@
 import { 
     getCollections, 
     createCollection, 
-    addToCollection as addToCollectionAPI,
+    addToCollectionAPI,
     addReaction,
     removeReaction,
     getDrafts,
@@ -17,11 +17,17 @@ import {
 // Basic UI functionality
 document.addEventListener('DOMContentLoaded', () => {
     setupBasicUI();
+    loadInitialData();
+    setupEventListeners();
 });
 
 function setupBasicUI() {
-    // We'll add our UI setup code here
     console.log('Setting up UI...');
+    // Initialize the fragments container
+    const fragmentsContainer = document.querySelector('.fragments-container');
+    if (fragmentsContainer) {
+        loadFragments();
+    }
 }
 
 // Basic styles
@@ -74,6 +80,23 @@ style.textContent = `
         padding: 0.2rem;
         width: 100%;
     }
+
+    .fragment-actions {
+        display: flex;
+        gap: 0.5rem;
+        margin-top: 1rem;
+    }
+
+    .reaction-btn {
+        padding: 0.5rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .reaction-btn.active {
+        background: #e0e0e0;
+    }
 `;
 
 document.head.appendChild(style);
@@ -81,8 +104,7 @@ document.head.appendChild(style);
 // Core functions
 async function loadInitialData() {
     try {
-        const response = await fetch('http://localhost:3003/api/profile');
-        const profile = await response.json();
+        const profile = await getProfile();
         if (profile) {
             updateProfileUI(profile);
         }
@@ -104,10 +126,7 @@ function updateProfileUI(profile) {
     }
     
     // Update fragment count
-    const countElement = document.querySelector('.stat-number');
-    if (countElement) {
-        countElement.textContent = profile.fragment_count || 0;
-    }
+    updateFragmentCount();
 }
 
 function setupEventListeners() {
@@ -128,6 +147,10 @@ function setupEventListeners() {
     if (addButton) {
         addButton.addEventListener('click', showAddFragmentModal);
     }
+
+    // Currently reading/listening sections
+    setupCurrentlySection('reading');
+    setupCurrentlySection('listening');
 }
 
 function makeEditable(element, field) {
@@ -141,15 +164,7 @@ function makeEditable(element, field) {
         const newText = input.value.trim();
         if (newText !== currentText) {
             try {
-                const response = await fetch('http://localhost:3003/api/profile', {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ [field]: newText })
-                });
-                
-                const result = await response.json();
+                const result = await updateProfile({ [field]: newText });
                 if (result.success) {
                     element.textContent = newText;
                 } else {
@@ -176,6 +191,64 @@ function makeEditable(element, field) {
     input.focus();
 }
 
+function setupCurrentlySection(type) {
+    const section = document.querySelector(`.currently-${type}`);
+    if (!section) return;
+
+    const input = section.querySelector('input');
+    if (input) {
+        input.addEventListener('change', async () => {
+            try {
+                await updateCurrently(type, input.value);
+            } catch (error) {
+                console.error(`Error updating currently ${type}:`, error);
+                alert(`Failed to update currently ${type}`);
+            }
+        });
+    }
+}
+
+async function loadFragments() {
+    try {
+        const fragments = await getFragments();
+        const container = document.querySelector('.fragments-container');
+        if (container) {
+            container.innerHTML = '';
+            fragments.forEach(fragment => {
+                container.appendChild(createFragmentElement(fragment));
+            });
+        }
+    } catch (error) {
+        console.error('Error loading fragments:', error);
+    }
+}
+
+function createFragmentElement(fragment) {
+    const div = document.createElement('div');
+    div.className = 'fragment';
+    div.innerHTML = `
+        <div class="fragment-content">
+            ${fragment.content}
+            ${fragment.media_url ? `<img src="${fragment.media_url}" alt="Fragment media">` : ''}
+        </div>
+        <div class="fragment-actions">
+            <button onclick="handleReaction(${fragment.id}, 'like')" class="reaction-btn ${fragment.reactions?.like ? 'active' : ''}">
+                Like (${fragment.reactions?.like || 0})
+            </button>
+            <button onclick="handleReaction(${fragment.id}, 'bookmark')" class="reaction-btn ${fragment.reactions?.bookmark ? 'active' : ''}">
+                Bookmark (${fragment.reactions?.bookmark || 0})
+            </button>
+            <button onclick="saveToDrafts(${fragment.id})" class="save-draft-btn">
+                Save to Drafts
+            </button>
+            <button onclick="showAddToCollectionModal(${fragment.id})" class="add-collection-btn">
+                Add to Collection
+            </button>
+        </div>
+    `;
+    return div;
+}
+
 function showAddFragmentModal() {
     const modal = document.createElement('div');
     modal.className = 'modal';
@@ -188,6 +261,7 @@ function showAddFragmentModal() {
                 <div class="modal-actions">
                     <button type="button" class="cancel-btn">Cancel</button>
                     <button type="submit" class="submit-btn">Post</button>
+                    <button type="button" class="save-draft-btn">Save as Draft</button>
                 </div>
             </form>
         </div>
@@ -197,135 +271,92 @@ function showAddFragmentModal() {
     
     const form = modal.querySelector('#fragmentForm');
     const cancelBtn = modal.querySelector('.cancel-btn');
-    
-    cancelBtn.addEventListener('click', () => modal.remove());
+    const saveDraftBtn = modal.querySelector('.save-draft-btn');
     
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        
-        const formData = new FormData();
-        const content = form.querySelector('textarea').value;
-        const file = form.querySelector('input[type="file"]').files[0];
-        
-        if (!content.trim()) {
-            alert('Please enter some content');
-            return;
-        }
-        
-        formData.append('content', content);
-        if (file) {
-            formData.append('media', file);
-        }
-        
-        try {
-            const response = await fetch('http://localhost:3003/api/fragments', {
-                method: 'POST',
-                body: formData
-            });
-            
-            const result = await response.json();
-            if (result.success) {
-                modal.remove();
-                loadInitialData(); // Refresh the data
-            } else {
-                alert('Failed to create fragment');
-            }
-        } catch (error) {
-            console.error('Error creating fragment:', error);
-            alert('Failed to create fragment');
-        }
+        const formData = new FormData(form);
+        await createFragment(formData);
+        modal.remove();
+        loadFragments();
     });
+
+    saveDraftBtn.addEventListener('click', async () => {
+        const formData = new FormData(form);
+        await createDraft(formData);
+        modal.remove();
+        alert('Fragment saved as draft');
+    });
+    
+    cancelBtn.addEventListener('click', () => modal.remove());
 }
 
-// Update fragment count
 async function updateFragmentCount() {
     try {
         const fragments = await getFragments();
-        const fragmentCount = fragments.length;
-        document.querySelector('.stat-number').textContent = fragmentCount;
+        const countElement = document.querySelector('.stat-number');
+        if (countElement) {
+            countElement.textContent = fragments.length;
+        }
     } catch (error) {
         console.error('Error updating fragment count:', error);
     }
 }
 
-// Handle name change
-async function handleNameChange(event) {
-    event.preventDefault();
-    const newName = event.target.value;
-    try {
-        await updateProfile({ name: newName });
-        event.target.blur();
-    } catch (error) {
-        console.error('Error updating name:', error);
-    }
-}
-
-// Handle subtitle change
-async function handleSubtitleChange(event) {
-    event.preventDefault();
-    const newSubtitle = event.target.value;
-    try {
-        await updateProfile({ subtitle: newSubtitle });
-        event.target.blur();
-    } catch (error) {
-        console.error('Error updating subtitle:', error);
-    }
-}
-
-// Initialize UI
-document.addEventListener('DOMContentLoaded', () => {
-    // Add event listeners for editable fields
-    const nameField = document.querySelector('.profile-info h1.editable');
-    const subtitleField = document.querySelector('.profile-info .subtitle.editable');
-    
-    if (nameField) {
-        nameField.addEventListener('blur', handleNameChange);
-    }
-    
-    if (subtitleField) {
-        subtitleField.addEventListener('blur', handleSubtitleChange);
-    }
-
-    // Update fragment count
-    updateFragmentCount();
-
-    // Load fragments
-    loadFragments();
-});
-
-// Add to Collection Modal
 function showAddToCollectionModal(fragmentId) {
     const modal = document.createElement('div');
     modal.className = 'modal';
     modal.innerHTML = `
         <div class="modal-content">
-            <span class="close" onclick="this.parentElement.parentElement.remove()">&times;</span>
-            <h3>Add to Collection</h3>
+            <h2>Add to Collection</h2>
             <div id="collections-list"></div>
+            <form id="newCollectionForm">
+                <input type="text" placeholder="New Collection Name" required>
+                <textarea placeholder="Collection Description"></textarea>
+                <button type="submit">Create New Collection</button>
+            </form>
+            <button class="close-btn">Close</button>
         </div>
     `;
     
     document.body.appendChild(modal);
-    
-    // Load collections and display them
     loadCollectionsForModal(fragmentId);
+    
+    const closeBtn = modal.querySelector('.close-btn');
+    closeBtn.addEventListener('click', () => modal.remove());
+    
+    const newCollectionForm = modal.querySelector('#newCollectionForm');
+    newCollectionForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const name = newCollectionForm.querySelector('input').value;
+        const description = newCollectionForm.querySelector('textarea').value;
+        
+        try {
+            const collection = await createCollection({ name, description });
+            await addToCollection(collection.id, fragmentId);
+            modal.remove();
+            alert('Fragment added to new collection');
+        } catch (error) {
+            console.error('Error creating collection:', error);
+            alert('Failed to create collection');
+        }
+    });
 }
 
 async function loadCollectionsForModal(fragmentId) {
     try {
         const collections = await getCollections();
-        const collectionsList = document.getElementById('collections-list');
-        collectionsList.innerHTML = '';
+        const listElement = document.querySelector('#collections-list');
         
         collections.forEach(collection => {
-            const collectionItem = document.createElement('div');
-            collectionItem.className = 'collection-item';
-            collectionItem.innerHTML = `
-                <h4>${collection.name}</h4>
+            const div = document.createElement('div');
+            div.className = 'collection-item';
+            div.innerHTML = `
+                <h3>${collection.name}</h3>
                 <p>${collection.description || ''}</p>
-                <button onclick="addToCollection(${collection.id}, ${fragmentId})">Add</button>
+                <button onclick="addToCollection(${collection.id}, ${fragmentId})">Add to this collection</button>
             `;
-            collectionsList.appendChild(collectionItem);
+            listElement.appendChild(div);
         });
     } catch (error) {
         console.error('Error loading collections:', error);
@@ -334,8 +365,8 @@ async function loadCollectionsForModal(fragmentId) {
 
 async function saveToDrafts(fragmentId) {
     try {
-        await updateFragmentStatus(fragmentId, 'draft');
-        alert('Fragment saved to drafts!');
+        await createDraft({ fragment_id: fragmentId });
+        alert('Fragment saved to drafts');
     } catch (error) {
         console.error('Error saving to drafts:', error);
         alert('Failed to save to drafts');
@@ -344,9 +375,8 @@ async function saveToDrafts(fragmentId) {
 
 async function addToCollection(collectionId, fragmentId) {
     try {
-        await addFragmentToCollection(collectionId, fragmentId);
-        alert('Added to collection!');
-        document.querySelector('.modal').remove();
+        await addToCollectionAPI(collectionId, fragmentId);
+        alert('Fragment added to collection');
     } catch (error) {
         console.error('Error adding to collection:', error);
         alert('Failed to add to collection');
@@ -355,33 +385,27 @@ async function addToCollection(collectionId, fragmentId) {
 
 async function handleReaction(fragmentId, type) {
     try {
-        const button = document.querySelector(`.reaction-btn.${type}[onclick*="${fragmentId}"]`);
-        if (button.classList.contains('active')) {
+        const button = event.target;
+        const isActive = button.classList.contains('active');
+        
+        if (isActive) {
             await removeReaction(fragmentId, type);
             button.classList.remove('active');
         } else {
             await addReaction(fragmentId, type);
             button.classList.add('active');
         }
+        
+        // Reload fragments to update reaction counts
+        loadFragments();
     } catch (error) {
         console.error('Error handling reaction:', error);
+        alert('Failed to update reaction');
     }
 }
 
-// Update the createFragment function to properly handle form data
-async function createFragment(formData) {
-    try {
-        const response = await fetch(`${API_URL}/fragments`, {
-            method: 'POST',
-            body: formData
-        });
-        const data = await response.json();
-        if (!data.success) {
-            throw new Error('Failed to create fragment');
-        }
-        return data;
-    } catch (error) {
-        console.error('Error creating fragment:', error);
-        throw error;
-    }
-} 
+// Export functions that need to be globally available
+window.handleReaction = handleReaction;
+window.saveToDrafts = saveToDrafts;
+window.addToCollection = addToCollection;
+window.showAddToCollectionModal = showAddToCollectionModal; 
