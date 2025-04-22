@@ -7,7 +7,10 @@
     --secondary: #F5A6A6;
     --accent: #C4DDEA;
     --lilac: #EBD7F2;
-    --highlight: #FFF1C1;
+    --highlight-yellow: #FFF1C1;
+    --highlight-blue: #C4DDEA;
+    --highlight-pink: #F5A6A6;
+    --highlight-lilac: #EBD7F2;
     --post-border: 1px solid rgba(0, 0, 0, 0.06);
   
     --font-serif: 'EB Garamond', serif;
@@ -36,6 +39,7 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 2rem;
+    margin: 2rem;
   }
   
   .nav-menu .logo {
@@ -73,6 +77,9 @@
     font-size: 0.95rem;
     margin-bottom: 2rem;
     font-family: var(--font-serif);
+    margin: 2rem;
+    justify-content: center;
+    align-items: center;
   }
   
   .gallery {
@@ -91,6 +98,7 @@
     display: flex;
     flex-direction: column;
     border: 1px solid var(--text);
+    margin: 2rem;
   }
   
   .post img {
@@ -140,9 +148,21 @@
     font-family: var(--font-sans);
   }
   
-  .reactions button:hover,
+ /* Hover styles based on type */
+.reaction-btn.resonates:hover {
+    background: var(--highlight-blue);
+  }
+  
+  .reaction-btn.saved:hover {
+    background: var(--highlight-pink);
+  }
+  
+  .reaction-btn.thought:hover {
+    background: var(--highlight-lilac);
+  }
+  
   .collection:hover {
-    background: var(--highlight);
+    background: var(--highlight-yellow);
   }
   
   /* Optional if you still use mood tags */
