@@ -1,14 +1,14 @@
 /* style.css */
 :root {
     --bg: #F4F4ED;
-    --block-bg: #E2FDFF;
-    --text: #2C2A4A;
-    --primary: #788BFF;
-    --secondary: #9BB1FF;
-    --accent: #BFD7FF;
+    --block-bg: #F8FFE5;
+    --text: #2E4756;
+    --primary: #EDD9A3;
+    --secondary: #3FA7D6;
+    --accent: #FF4F79;
     --shadow: 0 4px 12px rgba(11, 32, 39, 0.1);
     --transition: all 0.3s ease;
-    --font: 'Be Vietnam Pro', sans-serif;
+    --font: 'Bree Serif', serif;
     --letter-spacing: 0.01em;
 }
 
@@ -190,7 +190,7 @@ body {
 
 .caption {
     margin-bottom: 1rem;
-    font-family: var(--font-body);
+    font-family: var(--font);
     font-weight: 400;
     font-size: 0.95rem;
     line-height: 1.6;
@@ -201,7 +201,7 @@ body {
 
 .timestamp {
     display: block;
-    font-family: var(--font-body);
+    font-family: var(--font);
     font-weight: 400;
     font-size: 0.8rem;
     color: var(--secondary);
@@ -230,7 +230,7 @@ body {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-family: var(--font-heading);
+    font-family: var(--font);
     font-weight: 500;
     letter-spacing: var(--letter-spacing);
 }
@@ -259,7 +259,7 @@ body {
     font-size: 0.9rem;
     cursor: pointer;
     transition: var(--transition);
-    font-family: var(--font-heading);
+    font-family: var(--font);
     font-weight: 500;
     letter-spacing: var(--letter-spacing);
 }
@@ -271,11 +271,11 @@ body {
 
 /* Text post */
 .text-post {
-    background: var(--bg);
+    background: var(--block-bg);
 }
 
 .text-content {
-    font-family: var(--font-heading);
+    font-family: var(--font);
     font-weight: 600;
     font-size: 1.1rem;
     line-height: 1.6;
@@ -307,7 +307,7 @@ body {
     font-size: 0.9rem;
     cursor: pointer;
     transition: var(--transition);
-    font-family: var(--font-heading);
+    font-family: var(--font);
     font-weight: 500;
     letter-spacing: var(--letter-spacing);
 }
@@ -327,7 +327,7 @@ body {
     background: var(--accent);
     border-radius: 12px;
     color: var(--text);
-    font-family: var(--font-heading);
+    font-family: var(--font);
     font-weight: 500;
     letter-spacing: var(--letter-spacing);
 }
