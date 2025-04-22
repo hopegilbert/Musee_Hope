@@ -4,14 +4,14 @@
     --block-bg: #fffbf2;
     --text: #2C2C2C;
     --primary: #FFE8A3;
-    --secondary: #f0c0c0;
+    --secondary: #f6c5e1;
     --accent: #C4DDEA;
     --lilac: #EBD7F2;
-    --soft-pink: #f0c0c0;
+    --soft-pink: #f6c5e1;
     --sky-blue: #C4DDEA;
     --highlight-yellow: #FFF1C1;
     --highlight-blue: #C4DDEA;
-    --highlight-pink: #f0c0c0;
+    --highlight-pink: #f6c5e1;
     --highlight-lilac: #EBD7F2;
     --post-border: 1px solid rgba(0, 0, 0, 0.06);
   
@@ -108,20 +108,20 @@
   .gallery {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 2rem;
+    gap: 1rem;
+    padding: 0 2rem;
   }
   
   .post {
     background: white;
     border-radius: 12px;
-    border: 1px solid rgba(0, 0, 0, 0.06);
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--text);
+    box-shadow: var(--shadow);
     overflow: hidden;
     padding: 0;
     display: flex;
     flex-direction: column;
-    border: 1px solid var(--text);
-    margin: 2rem;
+    margin: 0;
   }
   
   .post img {
@@ -200,14 +200,14 @@
   
   .tag {
     display: inline-block;
-    font-size: 0.85rem;
+    font-size: 0.6rem;
     padding: 0.3rem 0.8rem;
     font-family: var(--font-sans);
     font-weight: 600;
     border-radius: 999px;
     background-color: var(--lilac);
     color: var(--text);
-    margin-bottom: 0.8rem;
+    text-align: center;
   }
 
   .tag.pink { background-color: var(--soft-pink); }
@@ -216,26 +216,29 @@
   
   .text-only {
     background: white;
-    width: fit-content;
-    min-width: 320px;
-    margin: 2rem;
+    width: 100%;
+    height: fit-content;
   }
   
   .text-only .post-body {
     padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
   }
 
   .text-only .text {
-    margin-bottom: 0.5rem;
+    margin: 0;
   }
 
-  /* Ensure the reactions and collection button stay within the post width */
-  .text-only .reactions,
-  .text-only .collection {
-    width: 100%;
-    justify-content: flex-start;
+  .text-only .reactions {
+    margin-top: 0.5rem;
   }
-  
+
+  .text-only .collection {
+    margin-top: 0.5rem;
+  }
+
   /* Profile Button Fix */
   .profile-btn {
     background: none;
@@ -258,78 +261,174 @@
   .profile-section {
     max-width: 800px;
     margin: 0 auto;
-    padding: 2rem 0;
+    padding: 1rem;
   }
 
   .profile-header {
-    text-align: center;
-    margin-bottom: 3rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    gap: 1rem;
   }
 
-  .profile-header h1 {
+  .profile-info {
+    flex: 1;
+  }
+
+  .profile-info h1 {
     font-family: var(--font-serif);
-    font-size: 2.5rem;
+    font-size: 1.8rem;
     margin-bottom: 0.5rem;
+    color: var(--text);
   }
 
-  .profile-header .bio {
+  .profile-info .subtitle {
     font-family: var(--font-serif);
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: var(--text);
     opacity: 0.8;
+    margin: 0;
+  }
+
+  .profile-image {
+    width: 100px;
+    height: 100px;
+    margin: 0;
+    flex-shrink: 0;
+  }
+
+  @media (min-width: 768px) {
+    .profile-header {
+      margin-bottom: 4rem;
+      padding: 2rem;
+    }
+
+    .profile-info h1 {
+      font-size: 3.5rem;
+    }
+
+    .profile-info .subtitle {
+      font-size: 1.5rem;
+    }
+
+    .profile-image {
+      width: 200px;
+      height: 200px;
+    }
+  }
+
+  .profile-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
   }
 
   .stats-section {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 3rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    padding: 0 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .stats-section {
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
   }
 
   .stat-card {
     background: white;
-    padding: 1.5rem;
+    padding: 1rem;
     border-radius: 12px;
-    text-align: center;
     border: var(--post-border);
     box-shadow: var(--shadow);
   }
 
+  @media (min-width: 768px) {
+    .stat-card {
+      padding: 2rem;
+    }
+  }
+
+  .stat-card .stat-number {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    color: var(--text);
+    margin: 0 0 0.5rem 0;
+    line-height: 1;
+  }
+
+  @media (min-width: 768px) {
+    .stat-card .stat-number {
+      font-size: 3.5rem;
+    }
+  }
+
   .stat-card h3 {
     font-family: var(--font-sans);
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-    color: var(--text);
-  }
-
-  .stat-card p {
-    font-family: var(--font-serif);
-    font-size: 2rem;
+    font-size: 1.2rem;
     color: var(--text);
     margin: 0;
+    font-weight: 400;
   }
 
+  /* Update collections section */
   .collections-section {
-    margin-bottom: 3rem;
+    margin: 2rem 0;
+    padding: 0 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .collections-section {
+      margin: 4rem 0;
+    }
   }
 
   .collections-section h2 {
     font-family: var(--font-serif);
+    font-size: 1.5rem;
     margin-bottom: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .collections-section h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
   }
 
   .collections-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
+    gap: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .collections-grid {
+      gap: 1.5rem;
+    }
   }
 
   .collection-card {
     background: white;
-    padding: 1.5rem;
+    padding: 1rem;
     border-radius: 12px;
     border: var(--post-border);
     box-shadow: var(--shadow);
+  }
+
+  @media (min-width: 768px) {
+    .collection-card {
+      padding: 1.5rem;
+    }
   }
 
   .collection-card h3 {
@@ -345,13 +444,29 @@
     margin: 0;
   }
 
+  /* Update recent activity section */
   .recent-activity {
-    margin-top: 3rem;
+    margin: 2rem 0;
+    padding: 0 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .recent-activity {
+      margin: 4rem 0;
+    }
   }
 
   .recent-activity h2 {
     font-family: var(--font-serif);
+    font-size: 1.5rem;
     margin-bottom: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .recent-activity h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
   }
 
   .activity-feed {
