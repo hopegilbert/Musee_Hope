@@ -111,17 +111,16 @@
     margin-top: 0rem;
     font-family: var(--font-serif);
     color: var(--grey-line);
-    justify-content: left;
-    align-items: left;
+    justify-content: center;
+    align-items: center;
     padding: 1rem;
     background: white;
     border-radius: 12px;
     border: var(--post-border);
     box-shadow: var(--shadow);
     max-width: 1600px;
-    margin: 2rem auto;
-    margin-left: 1rem;
-  }
+    margin: auto; 
+}
   
   .currently-section span {
     display: flex;
