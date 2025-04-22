@@ -269,4 +269,60 @@ style.textContent = `
     }
 `;
 
-document.head.appendChild(style); 
+document.head.appendChild(style);
+
+// Update fragment count
+async function updateFragmentCount() {
+    try {
+        const fragments = await getFragments();
+        const fragmentCount = fragments.length;
+        document.querySelector('.stat-number').textContent = fragmentCount;
+    } catch (error) {
+        console.error('Error updating fragment count:', error);
+    }
+}
+
+// Handle name change
+async function handleNameChange(event) {
+    event.preventDefault();
+    const newName = event.target.value;
+    try {
+        await updateProfile({ name: newName });
+        event.target.blur();
+    } catch (error) {
+        console.error('Error updating name:', error);
+    }
+}
+
+// Handle subtitle change
+async function handleSubtitleChange(event) {
+    event.preventDefault();
+    const newSubtitle = event.target.value;
+    try {
+        await updateProfile({ subtitle: newSubtitle });
+        event.target.blur();
+    } catch (error) {
+        console.error('Error updating subtitle:', error);
+    }
+}
+
+// Initialize UI
+document.addEventListener('DOMContentLoaded', () => {
+    // Add event listeners for editable fields
+    const nameField = document.querySelector('.profile-info h1.editable');
+    const subtitleField = document.querySelector('.profile-info .subtitle.editable');
+    
+    if (nameField) {
+        nameField.addEventListener('blur', handleNameChange);
+    }
+    
+    if (subtitleField) {
+        subtitleField.addEventListener('blur', handleSubtitleChange);
+    }
+
+    // Update fragment count
+    updateFragmentCount();
+
+    // Load fragments
+    loadFragments();
+}); 

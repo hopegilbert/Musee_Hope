@@ -866,5 +866,159 @@
     }
   }
   
+  /* Posts Section */
+  .posts-section {
+    margin: 2rem 0;
+    padding: 0 1rem;
+  }
+
+  .profile-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .post {
+    background: var(--card-bg);
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .post img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+  }
+
+  .post-content {
+    margin-top: 1rem;
+  }
+
+  /* Collections Section */
+  .collections-section {
+    margin: 2rem 0;
+    padding: 0 1rem;
+  }
+
+  .collections-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .collection-card {
+    background: var(--card-bg);
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .collection-card h3 {
+    margin: 0 0 0.5rem 0;
+    color: var(--text-primary);
+    font-family: var(--font-serif);
+  }
+
+  .collection-card p {
+    color: var(--text-secondary);
+    margin: 0 0 1rem 0;
+    font-family: var(--font-sans);
+  }
+
+  /* Drafts Section */
+  .drafts-section {
+    margin: 2rem 0;
+    padding: 0 1rem;
+  }
+
+  .drafts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .draft-card {
+    background: var(--card-bg);
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .draft-content {
+    margin-bottom: 1rem;
+  }
+
+  .draft-content img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+  }
+
+  .draft-content p {
+    color: var(--text-primary);
+    margin: 0;
+    font-family: var(--font-sans);
+  }
+
+  /* Stats Section */
+  .stats-section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin: 2rem 0;
+    padding: 0 1rem;
+  }
+
+  .stat-card {
+    background: var(--card-bg);
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .stat-number {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--text-primary);
+    margin: 0 0 0.5rem 0;
+    font-family: var(--font-serif);
+  }
+
+  .stat-card h3 {
+    margin: 0;
+    color: var(--text-secondary);
+    font-family: var(--font-sans);
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .posts-section,
+    .collections-section,
+    .drafts-section,
+    .stats-section {
+        padding: 0 0.5rem;
+    }
+
+    .profile-gallery,
+    .collections-grid,
+    .drafts-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .stats-section {
+        grid-template-columns: 1fr;
+    }
+  }
+  
  
  
