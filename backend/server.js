@@ -116,7 +116,7 @@ app.put('/api/profile', (req, res) => {
 });
 
 // Upload profile photo
-app.post('/api/profile/photo', upload.single('photo'), (req, res) => {
+app.post('/api/profile/photo', upload.single('profile_photo'), (req, res) => {
     if (!req.file) {
         res.status(400).json({ error: 'No file uploaded' });
         return;
@@ -131,7 +131,7 @@ app.post('/api/profile/photo', upload.single('photo'), (req, res) => {
                 res.status(500).json({ error: err.message });
                 return;
             }
-            res.json({ success: true, photoPath });
+            res.json({ success: true, photo_url: photoPath });
         }
     );
 });
