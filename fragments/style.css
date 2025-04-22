@@ -160,7 +160,7 @@
   .reaction-btn.thought:hover {
     background: var(--highlight-lilac);
   }
-  
+
   .collection:hover {
     background: var(--highlight-yellow);
   }
@@ -192,6 +192,6 @@
   .tag.lilac { background-color: var(--lilac); }
   
   .text-only {
-    background: var(--lemon-cream);
+    background: white;
   }
   
