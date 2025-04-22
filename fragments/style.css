@@ -58,7 +58,7 @@
     text-decoration: none;
     color: var(--text);
     display: inline-block;
-    font-weight: bold;
+    font-weight: 600;
   }
   
   .page-header {
@@ -89,11 +89,12 @@
   
   .currently-section {
     display: flex;
-    gap: 1.5rem;
-    font-size: 0.95rem;
+    gap: 1rem;
+    font-size: 1rem;
     margin-bottom: 1rem;
     margin-top: 0rem;
     font-family: var(--font-serif);
+    color: var(--grey-line);
     justify-content: center;
     align-items: center;
     padding: 1rem;
@@ -108,7 +109,14 @@
     align-items: center;
     gap: 1rem;
   }
-  
+  .currently-label {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--text);
+    opacity: 0.7;
+    margin-right: 0.5rem;
+  }
   .currently-section strong {
     color: var(--text);
     font-weight: 600;
@@ -303,8 +311,8 @@
   .profile-info .subtitle {
     font-family: var(--font-serif);
     font-size: 1rem;
-    color: var(--text);
-    opacity: 0.8;
+    color: var(--grey-line);
+    opacity: 1;
     margin: 0.5rem;
     margin-bottom: 1rem;
   }
@@ -529,3 +537,4 @@
     }
   }
   
+ 
