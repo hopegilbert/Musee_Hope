@@ -1,23 +1,25 @@
 /* style.css */
 :root {
-    --text: #2D3047;
-    --background: #F7F7F7;
-    --primary: #93B7BE;
-    --secondary: #E0A458;
-    --accent: #D4A5A5;
-    --light: #F1F7ED;
-    --dark: #1B1B1E;
-    --shadow: 0 4px 12px rgba(0,0,0,0.08);
+    --bg: #F4F4ED;
+    --block-bg: #E2FDFF;
+    --text: #2C2A4A;
+    --primary: #788BFF;
+    --secondary: #9BB1FF;
+    --accent: #BFD7FF;
+    --shadow: 0 4px 12px rgba(11, 32, 39, 0.1);
     --transition: all 0.3s ease;
+    --font: 'Be Vietnam Pro', sans-serif;
+    --letter-spacing: 0.01em;
 }
 
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Inter', sans-serif;
-    background-color: var(--background);
+    font-family: var(--font);
+    background-color: var(--bg);
     color: var(--text);
     line-height: 1.6;
+    letter-spacing: var(--letter-spacing);
 }
 
 .page-wrapper {
@@ -32,7 +34,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
-    background-color: var(--light);
+    background-color: var(--block-bg);
     border-radius: 16px;
     margin-bottom: 2rem;
     box-shadow: var(--shadow);
@@ -47,7 +49,9 @@ body {
 .nav-menu a {
     color: var(--text);
     text-decoration: none;
+    font-family: var(--font);
     font-weight: 500;
+    letter-spacing: var(--letter-spacing);
     transition: var(--transition);
     padding: 0.5rem 1rem;
     border-radius: 12px;
@@ -55,7 +59,7 @@ body {
 
 .nav-menu a:hover, .nav-menu a.active {
     background-color: var(--primary);
-    color: var(--light);
+    color: var(--bg);
 }
 
 /* Profile button */
@@ -64,15 +68,19 @@ body {
     align-items: center;
     gap: 0.5rem;
     padding: 0.5rem 1rem;
-    background-color: var(--primary);
-    color: var(--light);
+    background-color: var(--secondary);
+    color: var(--text);
     border-radius: 12px;
     transition: var(--transition);
+    font-family: var(--font);
+    font-weight: 500;
+    letter-spacing: var(--letter-spacing);
 }
 
 .profile-btn:hover {
-    background-color: var(--secondary);
+    background-color: var(--primary);
     transform: translateY(-2px);
+    color: var(--bg);
 }
 
 .profile-icon {
@@ -85,9 +93,12 @@ body {
     justify-content: space-around;
     padding: 1.5rem;
     margin-bottom: 2rem;
-    background-color: var(--light);
+    background-color: var(--block-bg);
+    border: 2px solid var(--accent);
     border-radius: 16px;
     box-shadow: var(--shadow);
+    font-family: var(--font);
+    letter-spacing: var(--letter-spacing);
 }
 
 .currently-item {
@@ -98,14 +109,18 @@ body {
 }
 
 .currently-item .label {
+    font-family: var(--font);
+    font-weight: 500;
     font-size: 0.9rem;
-    color: var(--text);
-    opacity: 0.7;
+    color: var(--secondary);
+    letter-spacing: var(--letter-spacing);
 }
 
 .currently-item .content {
-    font-weight: 500;
-    color: var(--primary);
+    font-family: var(--font);
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: var(--letter-spacing);
 }
 
 /* Post styles */
@@ -117,17 +132,18 @@ body {
 }
 
 .post {
-    background: var(--light);
+    background: var(--block-bg);
     border-radius: 16px;
     overflow: hidden;
     box-shadow: var(--shadow);
     transition: var(--transition);
     position: relative;
+    border: 1px solid var(--accent);
 }
 
 .post:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    box-shadow: 0 8px 24px rgba(11, 32, 39, 0.15);
 }
 
 .post-header {
@@ -136,12 +152,17 @@ body {
     align-items: center;
     padding: 1rem;
     background: var(--primary);
-    color: var(--light);
+    color: var(--bg);
+    font-family: var(--font);
+    letter-spacing: var(--letter-spacing);
 }
 
 .mood-tag {
+    font-family: var(--font);
+    font-weight: 600;
     font-size: 0.9rem;
-    font-weight: 500;
+    letter-spacing: var(--letter-spacing);
+    color: var(--bg);
 }
 
 .vibe-indicator {
@@ -152,9 +173,9 @@ body {
     align-items: center;
     justify-content: center;
     background-color: var(--vibe-color);
-    color: var(--light);
+    color: var(--bg);
     font-size: 1.2rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(11, 32, 39, 0.1);
 }
 
 .post img {
@@ -169,17 +190,25 @@ body {
 
 .caption {
     margin-bottom: 1rem;
+    font-family: var(--font-body);
+    font-weight: 400;
     font-size: 0.95rem;
-    line-height: 1.5;
+    line-height: 1.6;
     color: var(--text);
+    opacity: 0.9;
+    letter-spacing: var(--letter-spacing);
 }
 
 .timestamp {
     display: block;
+    font-family: var(--font-body);
+    font-weight: 400;
     font-size: 0.8rem;
-    color: var(--text);
+    color: var(--secondary);
+    color: var(--gray);
     opacity: 0.7;
     margin-top: 0.5rem;
+    letter-spacing: var(--letter-spacing);
 }
 
 /* Reactions */
@@ -192,7 +221,7 @@ body {
 .reaction-btn {
     background: none;
     border: 1px solid var(--primary);
-    color: var(--primary);
+    color: var(--text);
     padding: 0.5rem 1rem;
     border-radius: 20px;
     font-size: 0.9rem;
@@ -201,16 +230,19 @@ body {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    font-family: var(--font-heading);
+    font-weight: 500;
+    letter-spacing: var(--letter-spacing);
 }
 
 .reaction-btn:hover {
     background-color: var(--primary);
-    color: var(--light);
+    color: var(--bg);
 }
 
 .reaction-btn.active {
     background-color: var(--primary);
-    color: var(--light);
+    color: var(--bg);
 }
 
 /* Collections */
@@ -221,30 +253,36 @@ body {
 .collection-btn {
     background: none;
     border: 1px solid var(--secondary);
-    color: var(--secondary);
+    color: var(--text);
     padding: 0.5rem 1rem;
     border-radius: 20px;
     font-size: 0.9rem;
     cursor: pointer;
     transition: var(--transition);
+    font-family: var(--font-heading);
+    font-weight: 500;
+    letter-spacing: var(--letter-spacing);
 }
 
 .collection-btn:hover {
     background-color: var(--secondary);
-    color: var(--light);
+    color: var(--bg);
 }
 
 /* Text post */
 .text-post {
-    background: var(--light);
+    background: var(--bg);
 }
 
 .text-content {
+    font-family: var(--font-heading);
+    font-weight: 600;
     font-size: 1.1rem;
     line-height: 1.6;
     margin-bottom: 1rem;
     font-style: italic;
     color: var(--text);
+    letter-spacing: var(--letter-spacing);
 }
 
 /* Focus mode overlay */
@@ -254,26 +292,30 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(45, 48, 71, 0.9);
+    background: rgba(11, 32, 39, 0.9);
     z-index: 100;
     display: none;
 }
 
 /* Random moment button */
 .random-moment {
-    background: var(--secondary);
-    color: var(--light);
+    background: var(--primary);
+    color: var(--bg);
     border: none;
     padding: 0.5rem 1rem;
     border-radius: 12px;
     font-size: 0.9rem;
     cursor: pointer;
     transition: var(--transition);
+    font-family: var(--font-heading);
+    font-weight: 500;
+    letter-spacing: var(--letter-spacing);
 }
 
 .random-moment:hover {
     transform: scale(1.05);
-    background-color: var(--primary);
+    background-color: var(--secondary);
+    color: var(--text);
 }
 
 /* User mood */
@@ -282,9 +324,12 @@ body {
     align-items: center;
     gap: 0.5rem;
     padding: 0.5rem 1rem;
-    background: var(--light);
+    background: var(--accent);
     border-radius: 12px;
     color: var(--text);
+    font-family: var(--font-heading);
+    font-weight: 500;
+    letter-spacing: var(--letter-spacing);
 }
 
 .mood-indicator {
@@ -309,5 +354,17 @@ body {
 
     .gallery {
         grid-template-columns: 1fr;
+    }
+
+    .caption {
+        font-size: 0.9rem;
+    }
+    
+    .text-content {
+        font-size: 1rem;
+    }
+    
+    .mood-tag {
+        font-size: 0.8rem;
     }
 }
