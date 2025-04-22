@@ -1,27 +1,23 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Load initial profile data
-    loadProfile();
+    // Load initial data
+    loadFragments();
     
     // Set up event listeners
     setupEventListeners();
 });
 
-async function loadProfile() {
-    try {
-        const profile = await getProfile();
-        updateProfileUI(profile);
-        await loadFragments(); // Load fragments after profile
-    } catch (error) {
-        console.error('Error loading profile:', error);
-    }
-}
-
 async function loadFragments() {
     try {
         const fragments = await getFragments();
         displayFragments(fragments);
+        
+        // If we're on the profile page, also load profile data
+        if (window.location.pathname.includes('profile.html')) {
+            const profile = await getProfile();
+            updateProfileUI(profile);
+        }
     } catch (error) {
-        console.error('Error loading fragments:', error);
+        console.error('Error loading data:', error);
     }
 }
 
@@ -55,6 +51,12 @@ function createFragmentElement(fragment) {
             <div class="post-meta">
                 <span class="post-date">${new Date(fragment.created_at).toLocaleDateString()}</span>
             </div>
+            <div class="reactions">
+                <button class="reaction-btn resonates">Resonates</button>
+                <button class="reaction-btn saved">Saved</button>
+                <button class="reaction-btn thought">Made me think</button>
+            </div>
+            <button class="collection">+ Add to Collection</button>
         </div>
     `;
     
