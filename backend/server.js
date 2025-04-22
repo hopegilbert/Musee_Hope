@@ -179,6 +179,21 @@ app.put('/api/currently', (req, res) => {
     );
 });
 
+// Get all fragments for a user
+app.get('/api/fragments', (req, res) => {
+    db.all(`
+        SELECT * FROM fragments 
+        WHERE user_id = 1 
+        ORDER BY created_at DESC
+    `, [], (err, fragments) => {
+        if (err) {
+            res.status(500).json({ error: err.message });
+            return;
+        }
+        res.json(fragments);
+    });
+});
+
 // Start server
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);

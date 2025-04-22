@@ -10,9 +10,55 @@ async function loadProfile() {
     try {
         const profile = await getProfile();
         updateProfileUI(profile);
+        await loadFragments(); // Load fragments after profile
     } catch (error) {
         console.error('Error loading profile:', error);
     }
+}
+
+async function loadFragments() {
+    try {
+        const fragments = await getFragments();
+        displayFragments(fragments);
+    } catch (error) {
+        console.error('Error loading fragments:', error);
+    }
+}
+
+function displayFragments(fragments) {
+    const gallery = document.querySelector('.gallery');
+    gallery.innerHTML = ''; // Clear existing fragments
+    
+    fragments.forEach(fragment => {
+        const post = createFragmentElement(fragment);
+        gallery.appendChild(post);
+    });
+}
+
+function createFragmentElement(fragment) {
+    const post = document.createElement('div');
+    post.className = 'post';
+    
+    let mediaHtml = '';
+    if (fragment.media_url) {
+        mediaHtml = `
+            <div class="post-media">
+                <img src="${fragment.media_url}" alt="Fragment media">
+            </div>
+        `;
+    }
+    
+    post.innerHTML = `
+        <div class="post-body">
+            <p>${fragment.content}</p>
+            ${mediaHtml}
+            <div class="post-meta">
+                <span class="post-date">${new Date(fragment.created_at).toLocaleDateString()}</span>
+            </div>
+        </div>
+    `;
+    
+    return post;
 }
 
 function updateProfileUI(profile) {
@@ -159,10 +205,10 @@ function showAddFragmentModal() {
         }
         
         try {
-            await createFragment(formData);
+            const response = await createFragment(formData);
             modal.remove();
-            loadProfile(); // Refresh profile to update fragment count
-            // TODO: Add the new fragment to the UI without full reload
+            await loadFragments(); // Reload fragments after adding new one
+            await loadProfile(); // Refresh profile to update fragment count
         } catch (error) {
             console.error('Error creating fragment:', error);
         }
