@@ -5,45 +5,114 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fragments</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>Fragments</h1>
-    <p>A visual archive of small things that feel like everything.</p>
-  </header>
+  <div class="page-wrapper">
+    <nav class="nav-menu">
+      <div class="left-nav">
+        <a href="#" class="active">Timeline</a>
+        <a href="#">Mood Board</a>
+        <a href="#">Discover</a>
+      </div>
+      <div class="right-nav">
+        <button class="random-moment">Random Moment</button>
+        <div class="user-mood">
+          <span class="mood-indicator">🌞</span>
+          <span class="mood-text">Sunny</span>
+        </div>
+        <a href="profile.html" class="profile-btn">
+          <span class="profile-icon">👤</span>
+          <span class="profile-text">Profile</span>
+        </a>
+      </div>
+    </nav>
 
-  <nav class="navbar">
-    <div class="left-nav">
-      <a href="#">Home</a>
-      <a href="#">Archive</a>
-      <a href="#">Tags</a>
-    </div>
-    <div class="right-nav">
-      <a href="#">Upload</a>
-      <a href="#">Profile</a>
-    </div>
-  </nav>
-
-  <main class="gallery">
-    <div class="photo">
-      <img src="media/photo1.jpg" alt="Sunlight on books">
-      <div class="caption">
-        That morning glow that makes you believe again.
-        <span class="timestamp">April 2025</span>
+    <div class="currently-section">
+      <div class="currently-item">
+        <span class="label">Reading</span>
+        <span class="content">The Midnight Library</span>
+      </div>
+      <div class="currently-item">
+        <span class="label">Listening</span>
+        <span class="content">Lana Del Rey</span>
+      </div>
+      <div class="currently-item">
+        <span class="label">Feeling</span>
+        <span class="content">Inspired</span>
       </div>
     </div>
-    <div class="photo">
-      <img src="media/photo2.jpg" alt="Feet in the ocean">
-      <div class="caption">
-        Saltwater therapy. No words needed.
-        <span class="timestamp">March 2025</span>
-      </div>
-    </div>
-    <!-- Add more photo blocks as needed -->
-  </main>
 
-  <script src="script.js"></script>
+    <main class="gallery">
+      <div class="post">
+        <div class="post-header">
+          <div class="mood-tag">Quiet Morning</div>
+          <div class="vibe-indicator" style="--vibe-color: #E6B3B3">🌸</div>
+        </div>
+        <img src="media/photo1.jpg" alt="Sunlight on books">
+        <div class="post-content">
+          <div class="caption">
+            That morning glow that makes you believe again.
+            <span class="timestamp">April 2025</span>
+          </div>
+          <div class="reactions">
+            <button class="reaction-btn" data-reaction="resonates">💫 Resonates</button>
+            <button class="reaction-btn" data-reaction="saved">🔖 Saved</button>
+            <button class="reaction-btn" data-reaction="thought">💭 Made me think</button>
+          </div>
+          <div class="collections">
+            <button class="collection-btn">+ Add to Collection</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="post">
+        <div class="post-header">
+          <div class="mood-tag">Adventure</div>
+          <div class="vibe-indicator" style="--vibe-color: #B3D9E6">🌊</div>
+        </div>
+        <img src="media/photo2.jpg" alt="Feet in the ocean">
+        <div class="post-content">
+          <div class="caption">
+            Saltwater therapy. No words needed.
+            <span class="timestamp">March 2025</span>
+          </div>
+          <div class="reactions">
+            <button class="reaction-btn" data-reaction="resonates">💫 Resonates</button>
+            <button class="reaction-btn" data-reaction="saved">🔖 Saved</button>
+            <button class="reaction-btn" data-reaction="thought">💭 Made me think</button>
+          </div>
+          <div class="collections">
+            <button class="collection-btn">+ Add to Collection</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Text-only post example -->
+      <div class="post text-post">
+        <div class="post-header">
+          <div class="mood-tag">Thought</div>
+          <div class="vibe-indicator" style="--vibe-color: #E6B3E6">💭</div>
+        </div>
+        <div class="post-content">
+          <div class="text-content">
+            Sometimes the quietest moments speak the loudest.
+          </div>
+          <div class="caption">
+            <span class="timestamp">April 2025</span>
+          </div>
+          <div class="reactions">
+            <button class="reaction-btn" data-reaction="resonates">💫 Resonates</button>
+            <button class="reaction-btn" data-reaction="saved">🔖 Saved</button>
+            <button class="reaction-btn" data-reaction="thought">💭 Made me think</button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div class="focus-mode-overlay"></div>
+  </div>
+  <script src="scripts.js"></script>
 </body>
 </html>
