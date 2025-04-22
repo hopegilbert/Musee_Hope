@@ -165,6 +165,13 @@ function setupEditableElements() {
                 this.replaceWith(element);
             });
             
+            input.addEventListener('keydown', async function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    this.blur();
+                }
+            });
+            
             this.replaceWith(input);
             input.focus();
         });
