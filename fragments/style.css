@@ -6,6 +6,7 @@
     --primary: #FFE8A3;
     --secondary: #f6c5e1;
     --accent: #C4DDEA;
+    --grey-line: #D9D9D9;
     --lilac: #EBD7F2;
     --soft-pink: #f6c5e1;
     --sky-blue: #C4DDEA;
@@ -57,13 +58,12 @@
     text-decoration: none;
     color: var(--text);
     display: inline-block;
-    font-weight: normal;
+    font-weight: bold;
   }
   
   .page-header {
-    border-bottom: 1px solid var(--text);
-    margin-bottom: 2rem;
-    padding-bottom: 0.5rem;
+    margin-bottom: 0rem;
+    padding-bottom: 0rem;
   }
 
   .feed-title {
@@ -91,7 +91,8 @@
     display: flex;
     gap: 1.5rem;
     font-size: 0.95rem;
-    margin-bottom: 3rem;
+    margin-bottom: 1rem;
+    margin-top: 0rem;
     font-family: var(--font-serif);
     justify-content: center;
     align-items: center;
@@ -278,19 +279,24 @@
     justify-content: space-between;
     align-items: center;
     text-align: left;
-    margin-bottom: 0rem;
-    padding: 1rem;
+    margin-bottom: 0;
+    margin-top: 0;
+    padding: 0.5rem 1rem;
     gap: 1rem;
   }
 
   .profile-info {
     flex: 1;
+    border-top: 1px solid var(--text);
+    border-bottom: 1px solid var(--text);
   }
 
   .profile-info h1 {
     font-family: var(--font-serif);
     font-size: 1.8rem;
+    font-weight: 500;
     margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
     color: var(--text);
   }
 
@@ -299,7 +305,8 @@
     font-size: 1rem;
     color: var(--text);
     opacity: 0.8;
-    margin: 0;
+    margin: 0.5rem;
+    margin-bottom: 1rem;
   }
 
   .profile-image {
@@ -311,8 +318,8 @@
 
   @media (min-width: 768px) {
     .profile-header {
-      margin-bottom: 4rem;
-      padding: 2rem;
+      margin-bottom: 2rem;
+      padding: 1rem 2rem;
     }
 
     .profile-info h1 {
@@ -340,9 +347,9 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
-    margin-bottom: 2rem;
+    margin-bottom: 0rem;
     text-align: center;
-    padding: 0;
+    padding: 1rem;
   }
 
   .stat-card {
@@ -498,5 +505,27 @@
     opacity: 0.6;
     margin-top: 0.5rem;
     display: block;
+  }
+
+  .posts-section {
+    margin: 2rem 0;
+    padding: 0 1rem;
+  }
+
+  .posts-section h2 {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .posts-section {
+      margin: 3rem 0;
+    }
+
+    .posts-section h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
   }
   
