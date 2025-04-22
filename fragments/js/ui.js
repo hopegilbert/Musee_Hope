@@ -14,224 +14,108 @@ import {
     updateCurrently
 } from './api.js';
 
-document.addEventListener('DOMContentLoaded', async () => {
-    try {
-        // Load initial data
-        await loadFragments();
-        
-        // Set up event listeners
-        setupEventListeners();
-    } catch (error) {
-        console.error('Error initializing app:', error);
-    }
+// Basic UI functionality
+document.addEventListener('DOMContentLoaded', () => {
+    setupEventListeners();
+    loadInitialData();
 });
 
-async function loadFragments() {
+// Core functions
+async function loadInitialData() {
     try {
-        const fragments = await getFragments();
-        displayFragments(fragments);
-        
-        // If we're on the profile page, also load profile data
-        if (window.location.pathname.includes('profile.html')) {
-            const profile = await getProfile();
+        const response = await fetch('http://localhost:3003/api/profile');
+        const profile = await response.json();
+        if (profile) {
             updateProfileUI(profile);
         }
     } catch (error) {
-        console.error('Error loading data:', error);
-        alert('Failed to load data. Please try again.');
+        console.error('Error loading profile:', error);
     }
-}
-
-function displayFragments(fragments) {
-    const gallery = document.querySelector('.gallery');
-    if (!gallery) return;
-    
-    gallery.innerHTML = ''; // Clear existing fragments
-    
-    if (!fragments || fragments.length === 0) {
-        gallery.innerHTML = '<p class="no-fragments">No fragments yet. Create your first one!</p>';
-        return;
-    }
-    
-    fragments.forEach(fragment => {
-        const post = createFragmentElement(fragment);
-        gallery.appendChild(post);
-    });
-}
-
-function createFragmentElement(fragment) {
-    const post = document.createElement('div');
-    post.className = 'post';
-    
-    let mediaHtml = '';
-    if (fragment.media_url) {
-        mediaHtml = `
-            <div class="post-media">
-                <img src="${fragment.media_url}" alt="Fragment media">
-            </div>
-        `;
-    }
-    
-    post.innerHTML = `
-        <div class="post-body">
-            <p>${fragment.content}</p>
-            ${mediaHtml}
-            <div class="post-meta">
-                <span class="post-date">${new Date(fragment.created_at).toLocaleDateString()}</span>
-            </div>
-            <div class="post-actions">
-                <button class="reaction-btn resonates" onclick="handleReaction(${fragment.id}, 'resonates')">Resonates</button>
-                <button class="reaction-btn saved" onclick="handleReaction(${fragment.id}, 'saved')">Saved</button>
-                <button class="reaction-btn thought" onclick="handleReaction(${fragment.id}, 'thought')">Made me think</button>
-                <button class="save-draft-btn" onclick="saveToDrafts(${fragment.id})">Save to Drafts</button>
-                <button class="add-to-collection-btn" onclick="showAddToCollectionModal(${fragment.id})">Add to Collection</button>
-            </div>
-        </div>
-    `;
-    
-    return post;
 }
 
 function updateProfileUI(profile) {
-    if (!profile) return;
-    
-    // Update profile information
+    // Update name and subtitle
     const nameElement = document.querySelector('.profile-info h1');
     const subtitleElement = document.querySelector('.profile-info .subtitle');
-    const fragmentCountElement = document.querySelector('.stat-number');
     
-    if (nameElement) nameElement.textContent = profile.name || '';
-    if (subtitleElement) subtitleElement.textContent = profile.subtitle || '';
-    if (fragmentCountElement) fragmentCountElement.textContent = profile.fragment_count || 0;
-    
-    // Update profile photo if exists
-    const profileImage = document.querySelector('.profile-image img');
-    if (profileImage && profile.profile_photo) {
-        profileImage.src = profile.profile_photo;
+    if (nameElement && profile.name) {
+        nameElement.textContent = profile.name;
+    }
+    if (subtitleElement && profile.subtitle) {
+        subtitleElement.textContent = profile.subtitle;
     }
     
-    // Update currently section
-    const readingElement = document.querySelector('.tag.blue');
-    const listeningElement = document.querySelector('.tag.pink');
-    
-    if (readingElement && profile.reading) {
-        readingElement.textContent = profile.reading;
-    }
-    if (listeningElement && profile.listening) {
-        listeningElement.textContent = profile.listening;
+    // Update fragment count
+    const countElement = document.querySelector('.stat-number');
+    if (countElement) {
+        countElement.textContent = profile.fragment_count || 0;
     }
 }
 
 function setupEventListeners() {
-    // Add Fragment button
-    const addFragmentBtn = document.querySelector('.add-fragment-btn');
-    addFragmentBtn.addEventListener('click', showAddFragmentModal);
-    
-    // Profile photo upload
-    const profilePhotoInput = document.createElement('input');
-    profilePhotoInput.type = 'file';
-    profilePhotoInput.accept = 'image/*';
-    profilePhotoInput.style.display = 'none';
-    document.body.appendChild(profilePhotoInput);
-    
-    document.querySelector('.profile-image').addEventListener('click', () => {
-        profilePhotoInput.click();
-    });
-    
-    profilePhotoInput.addEventListener('change', handleProfilePhotoUpload);
-    
-    // Make profile elements editable
-    setupEditableElements();
-}
-
-function setupEditableElements() {
-    // Make name and subtitle editable
-    const editableElements = [
-        {
-            element: document.querySelector('.profile-info h1'),
-            field: 'name'
-        },
-        {
-            element: document.querySelector('.profile-info .subtitle'),
-            field: 'subtitle'
-        },
-        {
-            element: document.querySelector('.tag.blue'),
-            field: 'reading'
-        },
-        {
-            element: document.querySelector('.tag.pink'),
-            field: 'listening'
-        }
-    ];
-    
-    editableElements.forEach(({element, field}) => {
-        element.addEventListener('click', function() {
-            const currentText = this.textContent;
-            const input = document.createElement('input');
-            input.value = currentText;
-            input.className = 'editable-input';
-            
-            input.addEventListener('blur', async function() {
-                const newText = this.value.trim();
-                if (newText !== currentText) {
-                    try {
-                        if (field === 'reading' || field === 'listening') {
-                            await updateCurrently({[field]: newText});
-                        } else {
-                            const response = await updateProfile({[field]: newText});
-                            if (!response.success) {
-                                throw new Error('Failed to update profile');
-                            }
-                        }
-                        element.textContent = newText;
-                        // Update fragment count if needed
-                        if (field === 'name' || field === 'subtitle') {
-                            const profile = await getProfile();
-                            updateProfileUI(profile);
-                        }
-                    } catch (error) {
-                        console.error('Error updating:', error);
-                        alert('Failed to save changes. Please try again.');
-                        element.textContent = currentText;
-                    }
-                }
-                this.replaceWith(element);
-            });
-            
-            input.addEventListener('keydown', async function(e) {
-                if (e.key === 'Enter') {
-                    e.preventDefault();
-                    this.blur();
-                }
-            });
-            
-            this.replaceWith(input);
-            input.focus();
-        });
-    });
-}
-
-async function handleProfilePhotoUpload(event) {
-    const file = event.target.files[0];
-    if (!file) return;
-    
-    const formData = new FormData();
-    formData.append('profile_photo', file);
-    
-    try {
-        const response = await fetch('/api/profile/photo', {
-            method: 'POST',
-            body: formData
-        });
-        
-        const data = await response.json();
-        if (data.photo_url) {
-            document.querySelector('.profile-image img').src = data.photo_url;
-        }
-    } catch (error) {
-        console.error('Error uploading profile photo:', error);
+    // Make name editable
+    const nameElement = document.querySelector('.profile-info h1');
+    if (nameElement) {
+        nameElement.addEventListener('click', () => makeEditable(nameElement, 'name'));
     }
+    
+    // Make subtitle editable
+    const subtitleElement = document.querySelector('.profile-info .subtitle');
+    if (subtitleElement) {
+        subtitleElement.addEventListener('click', () => makeEditable(subtitleElement, 'subtitle'));
+    }
+    
+    // Add Fragment button
+    const addButton = document.querySelector('.add-fragment-btn');
+    if (addButton) {
+        addButton.addEventListener('click', showAddFragmentModal);
+    }
+}
+
+function makeEditable(element, field) {
+    const currentText = element.textContent;
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.value = currentText;
+    input.className = 'editable-input';
+    
+    input.addEventListener('blur', async () => {
+        const newText = input.value.trim();
+        if (newText !== currentText) {
+            try {
+                const response = await fetch('http://localhost:3003/api/profile', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ [field]: newText })
+                });
+                
+                const result = await response.json();
+                if (result.success) {
+                    element.textContent = newText;
+                } else {
+                    element.textContent = currentText;
+                    alert('Failed to save changes');
+                }
+            } catch (error) {
+                console.error('Error updating profile:', error);
+                element.textContent = currentText;
+                alert('Failed to save changes');
+            }
+        } else {
+            element.textContent = currentText;
+        }
+    });
+    
+    input.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            input.blur();
+        }
+    });
+    
+    element.replaceWith(input);
+    input.focus();
 }
 
 function showAddFragmentModal() {
@@ -253,39 +137,49 @@ function showAddFragmentModal() {
     
     document.body.appendChild(modal);
     
-    modal.querySelector('.cancel-btn').addEventListener('click', () => {
-        modal.remove();
-    });
-
-    modal.querySelector('#fragmentForm').addEventListener('submit', async (e) => {
+    const form = modal.querySelector('#fragmentForm');
+    const cancelBtn = modal.querySelector('.cancel-btn');
+    
+    cancelBtn.addEventListener('click', () => modal.remove());
+    
+    form.addEventListener('submit', async (e) => {
         e.preventDefault();
         
         const formData = new FormData();
-        const text = modal.querySelector('textarea').value;
-        const file = modal.querySelector('input[type="file"]').files[0];
+        const content = form.querySelector('textarea').value;
+        const file = form.querySelector('input[type="file"]').files[0];
         
-        if (!text.trim()) {
-            alert('Please enter some content for your fragment.');
+        if (!content.trim()) {
+            alert('Please enter some content');
             return;
         }
         
-        formData.append('content', text);
+        formData.append('content', content);
         if (file) {
             formData.append('media', file);
         }
         
         try {
-            await createFragment(formData);
-            modal.remove();
-            await loadFragments(); // Refresh the fragments list
+            const response = await fetch('http://localhost:3003/api/fragments', {
+                method: 'POST',
+                body: formData
+            });
+            
+            const result = await response.json();
+            if (result.success) {
+                modal.remove();
+                loadInitialData(); // Refresh the data
+            } else {
+                alert('Failed to create fragment');
+            }
         } catch (error) {
             console.error('Error creating fragment:', error);
-            alert('Failed to create fragment. Please try again.');
+            alert('Failed to create fragment');
         }
     });
 }
 
-// Add necessary styles
+// Basic styles
 const style = document.createElement('style');
 style.textContent = `
     .modal {
@@ -314,9 +208,9 @@ style.textContent = `
         min-height: 100px;
         margin: 1rem 0;
         padding: 0.5rem;
-        border: 1px solid var(--grey-line);
+        border: 1px solid #ccc;
         border-radius: 8px;
-        font-family: var(--font-serif);
+        font-family: inherit;
     }
     
     .modal-actions {
@@ -330,7 +224,7 @@ style.textContent = `
         font-family: inherit;
         font-size: inherit;
         border: none;
-        border-bottom: 2px solid var(--text);
+        border-bottom: 2px solid #000;
         background: transparent;
         padding: 0.2rem;
         width: 100%;
