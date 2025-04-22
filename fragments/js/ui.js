@@ -51,12 +51,13 @@ function createFragmentElement(fragment) {
             <div class="post-meta">
                 <span class="post-date">${new Date(fragment.created_at).toLocaleDateString()}</span>
             </div>
-            <div class="reactions">
+            <div class="post-actions">
                 <button class="reaction-btn resonates">Resonates</button>
                 <button class="reaction-btn saved">Saved</button>
                 <button class="reaction-btn thought">Made me think</button>
+                <button class="save-draft-btn" onclick="saveToDrafts(${fragment.id})">Save to Drafts</button>
+                <button class="add-to-collection-btn" onclick="showAddToCollectionModal(${fragment.id})">Add to Collection</button>
             </div>
-            <button class="collection">+ Add to Collection</button>
         </div>
     `;
     
@@ -325,4 +326,64 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Load fragments
     loadFragments();
-}); 
+});
+
+// Add to Collection Modal
+function showAddToCollectionModal(fragmentId) {
+    const modal = document.createElement('div');
+    modal.className = 'modal';
+    modal.innerHTML = `
+        <div class="modal-content">
+            <span class="close" onclick="this.parentElement.parentElement.remove()">&times;</span>
+            <h3>Add to Collection</h3>
+            <div id="collections-list"></div>
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+    
+    // Load collections and display them
+    loadCollectionsForModal(fragmentId);
+}
+
+async function loadCollectionsForModal(fragmentId) {
+    try {
+        const collections = await getCollections();
+        const collectionsList = document.getElementById('collections-list');
+        collectionsList.innerHTML = '';
+        
+        collections.forEach(collection => {
+            const collectionItem = document.createElement('div');
+            collectionItem.className = 'collection-item';
+            collectionItem.innerHTML = `
+                <h4>${collection.name}</h4>
+                <p>${collection.description || ''}</p>
+                <button onclick="addToCollection(${collection.id}, ${fragmentId})">Add</button>
+            `;
+            collectionsList.appendChild(collectionItem);
+        });
+    } catch (error) {
+        console.error('Error loading collections:', error);
+    }
+}
+
+async function saveToDrafts(fragmentId) {
+    try {
+        await updateFragmentStatus(fragmentId, 'draft');
+        alert('Fragment saved to drafts!');
+    } catch (error) {
+        console.error('Error saving to drafts:', error);
+        alert('Failed to save to drafts');
+    }
+}
+
+async function addToCollection(collectionId, fragmentId) {
+    try {
+        await addFragmentToCollection(collectionId, fragmentId);
+        alert('Added to collection!');
+        document.querySelector('.modal').remove();
+    } catch (error) {
+        console.error('Error adding to collection:', error);
+        alert('Failed to add to collection');
+    }
+} 

@@ -72,13 +72,6 @@
             <div id="collections-container" class="collections-grid"></div>
         </section>
 
-        <!-- Drafts Section -->
-        <section class="drafts-section">
-            <h2>Drafts</h2>
-            <button class="btn-new" onclick="document.getElementById('draft-modal').style.display='block'">New Draft</button>
-            <div id="drafts-container" class="drafts-grid"></div>
-        </section>
-
         <!-- Modals -->
         <div id="collection-modal" class="modal" style="display: none;">
             <div class="modal-content">
@@ -88,18 +81,6 @@
                     <input type="text" name="name" placeholder="Collection Name" required>
                     <textarea name="description" placeholder="Description (optional)"></textarea>
                     <button type="submit" class="btn-primary">Create Collection</button>
-                </form>
-            </div>
-        </div>
-
-        <div id="draft-modal" class="modal" style="display: none;">
-            <div class="modal-content">
-                <span class="close" onclick="this.parentElement.parentElement.style.display='none'">&times;</span>
-                <h3>Create New Draft</h3>
-                <form id="new-draft-form">
-                    <textarea name="content" placeholder="What's on your mind?" required></textarea>
-                    <input type="file" name="media" accept="image/*">
-                    <button type="submit" class="btn-primary">Save Draft</button>
                 </form>
             </div>
         </div>
