@@ -16,9 +16,67 @@ import {
 
 // Basic UI functionality
 document.addEventListener('DOMContentLoaded', () => {
-    setupEventListeners();
-    loadInitialData();
+    setupBasicUI();
 });
+
+function setupBasicUI() {
+    // We'll add our UI setup code here
+    console.log('Setting up UI...');
+}
+
+// Basic styles
+const style = document.createElement('style');
+style.textContent = `
+    .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    }
+    
+    .modal-content {
+        background: white;
+        padding: 2rem;
+        border-radius: 12px;
+        width: 90%;
+        max-width: 500px;
+    }
+    
+    .modal-content textarea {
+        width: 100%;
+        min-height: 100px;
+        margin: 1rem 0;
+        padding: 0.5rem;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-family: inherit;
+    }
+    
+    .modal-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+    
+    .editable-input {
+        font-family: inherit;
+        font-size: inherit;
+        border: none;
+        border-bottom: 2px solid #000;
+        background: transparent;
+        padding: 0.2rem;
+        width: 100%;
+    }
+`;
+
+document.head.appendChild(style);
 
 // Core functions
 async function loadInitialData() {
@@ -178,60 +236,6 @@ function showAddFragmentModal() {
         }
     });
 }
-
-// Basic styles
-const style = document.createElement('style');
-style.textContent = `
-    .modal {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.5);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 1000;
-    }
-    
-    .modal-content {
-        background: white;
-        padding: 2rem;
-        border-radius: 12px;
-        width: 90%;
-        max-width: 500px;
-    }
-    
-    .modal-content textarea {
-        width: 100%;
-        min-height: 100px;
-        margin: 1rem 0;
-        padding: 0.5rem;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        font-family: inherit;
-    }
-    
-    .modal-actions {
-        display: flex;
-        justify-content: flex-end;
-        gap: 1rem;
-        margin-top: 1rem;
-    }
-    
-    .editable-input {
-        font-family: inherit;
-        font-size: inherit;
-        border: none;
-        border-bottom: 2px solid #000;
-        background: transparent;
-        padding: 0.2rem;
-        width: 100%;
-    }
-`;
-
-document.head.appendChild(style);
 
 // Update fragment count
 async function updateFragmentCount() {
