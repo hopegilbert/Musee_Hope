@@ -293,7 +293,7 @@ app.get('/api/fragments', (req, res) => {
                COUNT(r.id) as reaction_count 
         FROM fragments f 
         LEFT JOIN reactions r ON f.id = r.fragment_id
-        WHERE f.user_id = 1 AND f.is_draft = 0
+        WHERE f.user_id = 1
         GROUP BY f.id
         ORDER BY f.created_at DESC
     `, [], (err, fragments) => {

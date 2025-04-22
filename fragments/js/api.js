@@ -66,17 +66,16 @@ export async function getFragments() {
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
-        const fragments = await response.json();
-        return {
-            success: true,
-            fragments: fragments
-        };
+        const data = await response.json();
+        console.log('API Response:', data); // Debug log
+        
+        if (!data.success) {
+            throw new Error(data.error || 'Failed to fetch fragments');
+        }
+        return data.fragments;
     } catch (error) {
         console.error('Error fetching fragments:', error);
-        return {
-            success: false,
-            error: error.message
-        };
+        throw error;
     }
 }
 

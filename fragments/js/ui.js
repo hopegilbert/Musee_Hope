@@ -60,19 +60,48 @@ style.textContent = `
 
     .fragment {
         margin-bottom: 2rem;
-        padding: 1rem;
+        padding: 1.5rem;
+        background: white;
         border: 1px solid #eee;
         border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     }
 
     .fragment-content {
         margin-bottom: 1rem;
     }
 
+    .fragment-text {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        margin-bottom: 1rem;
+        white-space: pre-wrap;
+    }
+
     .fragment-content img {
         max-width: 100%;
-        border-radius: 4px;
+        border-radius: 8px;
         margin-top: 1rem;
+    }
+
+    .fragment-meta {
+        font-size: 0.9rem;
+        color: #666;
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid #eee;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .fragment-date {
+        color: #888;
+    }
+
+    .reaction-count {
+        color: #e74c3c;
+        font-weight: 500;
     }
 
     .loading-message {
@@ -215,6 +244,7 @@ async function loadAndDisplayFragments() {
 
     try {
         const fragments = await getFragments();
+        console.log('Loaded fragments:', fragments); // Debug log
         
         if (!fragments || fragments.length === 0) {
             container.innerHTML = `
@@ -227,7 +257,6 @@ async function loadAndDisplayFragments() {
         }
 
         displayFragments(fragments);
-        updateFragmentCount(fragments.length);
     } catch (error) {
         console.error('Error loading fragments:', error);
         container.innerHTML = `
@@ -246,8 +275,17 @@ function displayFragments(fragments) {
 
     try {
         container.innerHTML = '';
+        console.log('Displaying fragments:', fragments); // Debug log
+        
+        if (!Array.isArray(fragments)) {
+            console.error('Expected fragments to be an array, got:', typeof fragments);
+            container.innerHTML = '<div class="error-message">Error displaying fragments. Invalid data format.</div>';
+            return;
+        }
+
         fragments.forEach(fragment => {
             try {
+                console.log('Creating element for fragment:', fragment); // Debug log
                 const fragmentElement = createFragmentElement(fragment);
                 container.appendChild(fragmentElement);
             } catch (error) {
@@ -268,12 +306,28 @@ function displayFragments(fragments) {
 }
 
 function createFragmentElement(fragment) {
+    if (!fragment) throw new Error('Fragment data is missing');
+    
     const div = document.createElement('div');
     div.className = 'fragment';
+    div.dataset.fragmentId = fragment.id;
+    
+    const date = new Date(fragment.created_at).toLocaleString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+    });
+    
     div.innerHTML = `
         <div class="fragment-content">
-            ${fragment.content || ''}
+            <div class="fragment-text">${fragment.content || ''}</div>
             ${fragment.media_url ? `<img src="${fragment.media_url}" alt="Fragment media">` : ''}
+            <div class="fragment-meta">
+                <span class="fragment-date">${date}</span>
+                ${fragment.reaction_count > 0 ? `<span class="reaction-count">♥ ${fragment.reaction_count}</span>` : ''}
+            </div>
         </div>
     `;
     return div;
@@ -356,23 +410,30 @@ function makeEditable(element, field) {
     
     async function saveChanges() {
         const newText = input.value.trim();
+        const newElement = document.createElement(element.tagName);
+        newElement.className = originalClassName;
+        
         if (newText !== currentText) {
             try {
                 const result = await updateProfile({ [field]: newText });
                 if (result.success) {
-                    element.textContent = newText;
+                    newElement.textContent = newText;
                 } else {
-                    element.textContent = currentText;
+                    newElement.textContent = currentText;
                     console.error('Failed to update profile');
                 }
             } catch (error) {
                 console.error('Error updating profile:', error);
-                element.textContent = currentText;
+                newElement.textContent = currentText;
             }
         } else {
-            element.textContent = currentText;
+            newElement.textContent = currentText;
         }
-        element.className = originalClassName;  // Restore original classes
+        
+        // Add the click listener to the new element
+        newElement.addEventListener('click', () => makeEditable(newElement, field));
+        
+        input.replaceWith(newElement);
     }
     
     input.addEventListener('blur', saveChanges);
