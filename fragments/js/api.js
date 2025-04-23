@@ -109,11 +109,8 @@ export async function createFragment(content, mediaFile = null) {
     }
 }
 
-export async function uploadProfilePhoto(file) {
+export async function uploadProfilePhoto(formData) {
     try {
-        const formData = new FormData();
-        formData.append('profile_photo', file);
-
         const response = await fetch(`${API_URL}/profile/photo`, {
             method: 'POST',
             body: formData

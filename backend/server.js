@@ -202,77 +202,38 @@ app.put('/api/profile', (req, res) => {
 // Upload profile photo
 app.post('/api/profile/photo', upload.single('profile_photo'), (req, res) => {
     if (!req.file) {
-        return res.status(400).json({ 
-            success: false, 
-            error: 'No file uploaded or invalid file type' 
-        });
+        return res.status(400).json({ success: false, error: 'No file uploaded' });
     }
-    
+
     const photoPath = `/uploads/${req.file.filename}`;
     
     db.run(
-        `UPDATE users SET profile_photo = ? WHERE id = 1`,
+        'UPDATE users SET profile_photo = ? WHERE id = 1',
         [photoPath],
         function(err) {
             if (err) {
                 console.error('Error updating profile photo:', err);
-                return res.status(500).json({ 
-                    success: false, 
-                    error: 'Failed to update profile photo in database' 
-                });
+                return res.status(500).json({ success: false, error: err.message });
             }
-            
-            res.json({ 
-                success: true, 
-                photo_url: photoPath,
-                message: 'Profile photo updated successfully' 
-            });
+            res.json({ success: true, photo_url: photoPath });
         }
     );
 });
 
 // Create new fragment
 app.post('/api/fragments', upload.single('media'), (req, res) => {
-    console.log('Creating fragment:', req.body);
     const { content } = req.body;
-    
-    if (!content) {
-        res.status(400).json({ success: false, error: 'Content is required' });
-        return;
-    }
-    
     const mediaUrl = req.file ? `/uploads/${req.file.filename}` : null;
-    
+
     db.run(
-        `INSERT INTO fragments (user_id, content, media_url, draft) VALUES (?, ?, ?, 0)`,
+        'INSERT INTO fragments (user_id, content, media_url) VALUES (?, ?, ?)',
         [1, content, mediaUrl],
         function(err) {
             if (err) {
                 console.error('Error creating fragment:', err);
-                res.status(500).json({ success: false, error: err.message });
-                return;
+                return res.status(500).json({ success: false, error: err.message });
             }
-            
-            // Get the newly created fragment
-            db.get(
-                `SELECT * FROM fragments WHERE id = ?`,
-                [this.lastID],
-                (err, fragment) => {
-                    if (err) {
-                        console.error('Error fetching new fragment:', err);
-                        res.status(500).json({ success: false, error: err.message });
-                        return;
-                    }
-                    
-                    res.json({ 
-                        success: true, 
-                        fragment: {
-                            ...fragment,
-                            created_at: new Date(fragment.created_at).toISOString()
-                        }
-                    });
-                }
-            );
+            res.json({ success: true, id: this.lastID });
         }
     );
 });
@@ -281,49 +242,20 @@ app.post('/api/fragments', upload.single('media'), (req, res) => {
 app.put('/api/currently/:type', (req, res) => {
     const { type } = req.params;
     const { value } = req.body;
-    
+
     if (!['reading', 'listening'].includes(type)) {
-        res.status(400).json({ success: false, error: 'Invalid type' });
-        return;
+        return res.status(400).json({ success: false, error: 'Invalid type' });
     }
 
-    // First, check if currently record exists
-    db.get(
-        'SELECT id FROM currently WHERE user_id = 1',
-        [],
-        (err, row) => {
+    db.run(
+        `INSERT OR REPLACE INTO currently (user_id, ${type}) VALUES (?, ?)`,
+        [1, value],
+        function(err) {
             if (err) {
-                res.status(500).json({ success: false, error: err.message });
-                return;
+                console.error(`Error updating currently ${type}:`, err);
+                return res.status(500).json({ success: false, error: err.message });
             }
-
-            if (row) {
-                // Update existing record
-                db.run(
-                    `UPDATE currently SET ${type} = ?, updated_at = CURRENT_TIMESTAMP WHERE user_id = 1`,
-                    [value],
-                    function(err) {
-                        if (err) {
-                            res.status(500).json({ success: false, error: err.message });
-                            return;
-                        }
-                        res.json({ success: true });
-                    }
-                );
-            } else {
-                // Create new record
-                db.run(
-                    `INSERT INTO currently (user_id, ${type}) VALUES (1, ?)`,
-                    [value],
-                    function(err) {
-                        if (err) {
-                            res.status(500).json({ success: false, error: err.message });
-                            return;
-                        }
-                        res.json({ success: true });
-                    }
-                );
-            }
+            res.json({ success: true });
         }
     );
 });

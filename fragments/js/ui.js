@@ -586,17 +586,14 @@ function setupPhotoUpload(container) {
 
         try {
             const formData = new FormData();
-            formData.append('photo', file);
+            formData.append('profile_photo', file);
 
             const response = await uploadProfilePhoto(formData);
             if (response && response.photo_url) {
-                // Update the image source with the new URL
                 profileImage.src = response.photo_url;
-                // Force a reload of the image
-                profileImage.onload = () => {
-                    // Clear the file input
-                    photoInput.value = '';
-                };
+                photoInput.value = '';
+            } else {
+                throw new Error('Failed to upload photo');
             }
         } catch (error) {
             console.error('Error uploading profile photo:', error);
@@ -693,7 +690,7 @@ function setupModals() {
 function showAddFragmentModal() {
     const modal = document.getElementById('add-fragment-modal');
     if (!modal) {
-        console.error('Add Fragment modal element not found');
+        console.error('Add Fragment modal not found');
         return;
     }
     modal.style.display = 'block';
@@ -767,8 +764,9 @@ async function handleFormSubmit(event) {
     const form = event.target;
     const submitBtn = form.querySelector('.submit-btn');
     const content = form.querySelector('.fragment-textarea').value.trim();
+    const mediaFile = form.querySelector('#media-upload').files[0];
 
-    if (!content && !selectedFile) {
+    if (!content && !mediaFile) {
         showError('Please enter content or upload an image');
         return;
     }
@@ -776,28 +774,12 @@ async function handleFormSubmit(event) {
     setLoading(submitBtn, true);
 
     try {
-        const result = await createFragment(content, selectedFile);
-        
+        const result = await createFragment(content, mediaFile);
         if (result.success) {
-            // Reset form and close modal
             form.reset();
-            document.querySelector('.media-preview').innerHTML = '';
-            selectedFile = null;
             const modal = document.getElementById('add-fragment-modal');
-            modal.style.display = 'none';
-            
-            // Refresh fragments display
+            if (modal) modal.style.display = 'none';
             await loadAndDisplayFragments();
-            
-            // Show success message
-            const successMessage = document.createElement('div');
-            successMessage.className = 'success-message';
-            successMessage.textContent = 'Fragment posted successfully!';
-            document.querySelector('.fragments-container').prepend(successMessage);
-            
-            setTimeout(() => {
-                successMessage.remove();
-            }, 3000);
         } else {
             throw new Error(result.error || 'Failed to create fragment');
         }
