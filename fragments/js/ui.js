@@ -289,7 +289,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeUI();
     setupAddFragmentButton();
     setupModals();
-    setupCurrentlySection('feeling');
+    setupCurrentlySection();
 
     const uploadBtn = document.querySelector('.upload-btn');
     const fileInput = document.getElementById('media-upload');
@@ -317,7 +317,7 @@ export async function initializeUI() {
     setupProfileListeners();
     setupAddFragmentButton();
     setupModals();
-    setupCurrentlySection('feeling');
+    setupCurrentlySection();
     loadProfile();
     loadAndDisplayFragments();
 }
@@ -377,7 +377,7 @@ function loadProfile() {
             }
 
             if (profileElements.currentlySection) {
-                const feelingInput = document.querySelector('.currently-feeling input');
+                const feelingInput = document.querySelector('.feeling input');
                 
                 if (feelingInput) {
                     feelingInput.value = profile.feeling || '';
@@ -569,7 +569,7 @@ function updateProfileDisplay(profile) {
     }
     
     // Update currently section
-    const feelingInput = document.querySelector('.currently-feeling input');
+    const feelingInput = document.querySelector('.feeling input');
     
     if (feelingInput) feelingInput.value = profile.feeling || '';
     
@@ -600,12 +600,11 @@ function setupProfileListeners() {
     }
     
     // Setup currently section
-    setupCurrentlySection('feeling');
+    setupCurrentlySection();
 }
 
 function makeEditable(element, field) {
     const currentText = element.textContent;
-    const originalClassName = element.className;
     const input = document.createElement('input');
     input.type = 'text';
     input.value = currentText;
@@ -613,41 +612,40 @@ function makeEditable(element, field) {
     
     async function saveChanges() {
         const newText = input.value.trim();
-        const newElement = document.createElement(element.tagName);
-        newElement.className = originalClassName;
+        console.log('Saving profile field:', field, '→', newText);
         
         if (newText !== currentText) {
             try {
                 const result = await updateProfile({ [field]: newText });
                 if (result.success) {
-                    newElement.textContent = newText;
+                    element.textContent = newText;
+                    showMessage('Profile updated successfully', 'success');
                 } else {
-                    newElement.textContent = currentText;
-                    console.error('Failed to update profile');
+                    throw new Error(result.error || 'Failed to update profile');
                 }
             } catch (error) {
                 console.error('Error updating profile:', error);
-                newElement.textContent = currentText;
+                element.textContent = currentText;
+                showMessage(error.message || 'Failed to update profile', 'error');
             }
         } else {
-            newElement.textContent = currentText;
+            element.textContent = currentText;
         }
-        
-        // Add the click listener to the new element
-        newElement.addEventListener('click', () => makeEditable(newElement, field));
-        
-        input.replaceWith(newElement);
     }
     
+    // Replace the element with the input
+    element.replaceWith(input);
+    input.focus();
+    
+    // Save on blur
     input.addEventListener('blur', saveChanges);
+    
+    // Save on Enter key
     input.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
             input.blur();
         }
     });
-    
-    element.replaceWith(input);
-    input.focus();
 }
 
 function setupPhotoUpload(container) {
@@ -688,7 +686,12 @@ function setupPhotoUpload(container) {
 }
 
 function setupCurrentlySection() {
-    const currentlyInput = document.querySelector('.currently-feeling input');
+    const currentlyInput = document.querySelector('.feeling input');
+    if (!currentlyInput) {
+        console.warn('Currently feeling input element not found');
+        return;
+    }
+
     const statusMessage = document.createElement('span');
     statusMessage.className = 'status-message';
     currentlyInput.parentNode.appendChild(statusMessage);
@@ -777,6 +780,7 @@ function showAddFragmentModal() {
         return;
     }
     modal.style.display = 'block';
+    modal.querySelector('textarea')?.focus();
 }
 
 function showCollectionModal() {
@@ -786,6 +790,7 @@ function showCollectionModal() {
         return;
     }
     modal.style.display = 'block';
+    modal.querySelector('textarea')?.focus();
 }
 
 // Form submission handling
@@ -970,6 +975,15 @@ if (mediaInput) {
 window.showAddFragmentModal = showAddFragmentModal;
 window.showCollectionModal = showCollectionModal;
 
+// Add Escape key handler to close modals
+window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.style.display = 'none';
+        });
+    }
+});
+
 function openEditModal(fragment) {
     const modal = document.getElementById('edit-modal');
     const textarea = modal.querySelector('#edit-content');
@@ -999,6 +1013,7 @@ function openEditModal(fragment) {
             await updateFragment(fragment.id, updatedContent, file);
             modal.style.display = 'none';
             await loadAndDisplayFragments();
+            await loadProfile();
             showMessage('Fragment updated successfully', 'success');
         } catch (err) {
             console.error('Edit failed:', err);
@@ -1007,6 +1022,7 @@ function openEditModal(fragment) {
     };
 
     modal.style.display = 'block';
+    textarea.focus();
 }
 
 async function handleDelete(id) {
