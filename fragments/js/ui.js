@@ -566,78 +566,41 @@ function makeEditable(element, field) {
 }
 
 function setupPhotoUpload(container) {
-    const photoContainer = container.querySelector('.profile-photo-container');
-    const fileInput = container.querySelector('input[type="file"]');
-    const overlay = container.querySelector('.photo-upload-overlay');
-    const uploadProgress = container.querySelector('.upload-progress');
-    const progressBar = container.querySelector('.progress-bar');
-    const img = container.querySelector('img');
-    
-    if (!photoContainer || !fileInput || !overlay || !uploadProgress || !progressBar || !img) return;
-    
-    photoContainer.addEventListener('click', () => fileInput.click());
-    
-    fileInput.addEventListener('change', async () => {
-        const file = fileInput.files[0];
+    const photoInput = document.createElement('input');
+    photoInput.type = 'file';
+    photoInput.accept = 'image/*';
+    photoInput.style.display = 'none';
+    document.body.appendChild(photoInput);
+
+    const profileImage = container.querySelector('img');
+    if (!profileImage) return;
+
+    container.addEventListener('click', async (e) => {
+        if (e.target === photoInput) return;
+        photoInput.click();
+    });
+
+    photoInput.addEventListener('change', async (e) => {
+        const file = e.target.files[0];
         if (!file) return;
-        
-        // Validate file type
-        if (!file.type.startsWith('image/')) {
-            alert('Please select an image file.');
-            return;
-        }
-        
-        // Validate file size (max 5MB)
-        if (file.size > 5 * 1024 * 1024) {
-            alert('Please select an image smaller than 5MB.');
-            return;
-        }
-        
-        // Show upload progress
-        overlay.style.display = 'none';
-        uploadProgress.style.display = 'block';
-        progressBar.style.width = '0%';
-        
+
         try {
-            // Create a preview
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                img.src = e.target.result;
-            };
-            reader.readAsDataURL(file);
-            
-            // Simulate upload progress
-            const progressInterval = setInterval(() => {
-                const currentWidth = parseInt(progressBar.style.width) || 0;
-                if (currentWidth < 90) {
-                    progressBar.style.width = `${currentWidth + 10}%`;
-                }
-            }, 100);
-            
-            // Upload the file
-            const result = await uploadProfilePhoto(file);
-            
-            // Complete the progress bar
-            clearInterval(progressInterval);
-            progressBar.style.width = '100%';
-            
-            if (result.success) {
-                // Update the image with the new URL after a short delay
-                setTimeout(() => {
-                    img.src = result.photo_url;
-                    uploadProgress.style.display = 'none';
-                    overlay.style.display = 'flex';
-                }, 500);
-            } else {
-                throw new Error(result.error || 'Failed to upload photo');
+            const formData = new FormData();
+            formData.append('photo', file);
+
+            const response = await uploadProfilePhoto(formData);
+            if (response && response.photo_url) {
+                // Update the image source with the new URL
+                profileImage.src = response.photo_url;
+                // Force a reload of the image
+                profileImage.onload = () => {
+                    // Clear the file input
+                    photoInput.value = '';
+                };
             }
         } catch (error) {
-            console.error('Error uploading photo:', error);
-            alert('Failed to upload photo. Please try again.');
-            
-            // Reset the UI
-            uploadProgress.style.display = 'none';
-            overlay.style.display = 'flex';
+            console.error('Error uploading profile photo:', error);
+            showError('Failed to upload profile photo. Please try again.');
         }
     });
 }
@@ -900,4 +863,23 @@ mediaInput.addEventListener('input', async (e) => {
 
 // Make modal functions available globally
 window.showAddFragmentModal = showAddFragmentModal;
-window.showCollectionModal = showCollectionModal; 
+window.showCollectionModal = showCollectionModal;
+
+async function uploadProfilePhoto(formData) {
+    try {
+        const response = await fetch(`${API_URL}/profile/photo`, {
+            method: 'POST',
+            body: formData
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to upload photo');
+        }
+
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error uploading profile photo:', error);
+        throw error;
+    }
+} 
