@@ -185,55 +185,52 @@ app.get('/api/profile', (req, res) => {
 
         res.json({ 
             success: true, 
-            profile: formattedProfile 
+            ...formattedProfile
         });
     });
 });
 
 // Update user profile
-app.put('/api/profile', async (req, res) => {
-    try {
-        const { name, subtitle, feeling } = req.body;
+app.put('/api/profile', (req, res) => {
+    const { name, subtitle, feeling } = req.body;
 
-        if (!name && !subtitle && !feeling) {
-            res.status(400).json({ success: false, error: 'No update data provided' });
-            return;
-        }
+    if (!name && !subtitle && !feeling) {
+        res.status(400).json({ success: false, error: 'No update data provided' });
+        return;
+    }
 
-        const updates = [];
-        const values = [];
+    const updates = [];
+    const values = [];
 
-        if (name !== undefined) {
-            updates.push('name = ?');
-            values.push(name);
-        }
-        if (subtitle !== undefined) {
-            updates.push('subtitle = ?');
-            values.push(subtitle);
-        }
-        if (feeling !== undefined) {
-            updates.push('feeling = ?');
-            values.push(feeling);
-        }
+    if (name !== undefined) {
+        updates.push('name = ?');
+        values.push(name);
+    }
+    if (subtitle !== undefined) {
+        updates.push('subtitle = ?');
+        values.push(subtitle);
+    }
+    if (feeling !== undefined) {
+        updates.push('feeling = ?');
+        values.push(feeling);
+    }
 
-        if (updates.length > 0) {
-            const updateQuery = `UPDATE users SET ${updates.join(', ')} WHERE id = ?`;
-            values.push(req.user.id);
-            await db.run(updateQuery, values);
-        }
+    if (updates.length > 0) {
+        const updateQuery = `UPDATE users SET ${updates.join(', ')} WHERE id = ?`;
+        values.push(1);
+        db.run(updateQuery, values, function (err) {
+            if (err) {
+                console.error('Error updating profile:', err);
+                return res.status(500).json({ success: false, error: 'Failed to update profile' });
+            }
 
-        // Get the updated profile
-        const profile = await db.get(`
-            SELECT u.*, c.feeling 
-            FROM users u 
-            LEFT JOIN currently c ON u.id = c.user_id 
-            WHERE u.id = ?
-        `, [req.user.id]);
-
-        res.json({ success: true, profile });
-    } catch (error) {
-        console.error('Error updating profile:', error);
-        res.status(500).json({ success: false, error: 'Failed to update profile' });
+            db.get('SELECT * FROM users WHERE id = 1', [], (err, profile) => {
+                if (err) {
+                    return res.status(500).json({ success: false, error: 'Failed to fetch updated profile' });
+                }
+                res.json({ success: true, profile });
+            });
+        });
     }
 });
 

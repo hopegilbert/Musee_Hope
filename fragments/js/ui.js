@@ -713,7 +713,7 @@ function setupCurrentlySection() {
         // Debounce the update
         updateTimeout = setTimeout(async () => {
             try {
-                await updateCurrently(feeling);
+                await updateProfile({ feeling });
                 statusMessage.textContent = 'Saved';
                 statusMessage.className = 'status-message saved';
                 
