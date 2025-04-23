@@ -247,17 +247,42 @@ app.put('/api/currently/:type', (req, res) => {
         return res.status(400).json({ success: false, error: 'Invalid type' });
     }
 
-    db.run(
-        `INSERT OR REPLACE INTO currently (user_id, ${type}) VALUES (?, ?)`,
-        [1, value],
-        function(err) {
-            if (err) {
-                console.error(`Error updating currently ${type}:`, err);
-                return res.status(500).json({ success: false, error: err.message });
-            }
-            res.json({ success: true });
+    // First, get the current values
+    db.get('SELECT * FROM currently WHERE user_id = 1', [], (err, row) => {
+        if (err) {
+            console.error(`Error fetching currently data:`, err);
+            return res.status(500).json({ success: false, error: err.message });
         }
-    );
+
+        // If no row exists, create new with just this value
+        if (!row) {
+            db.run(
+                `INSERT INTO currently (user_id, ${type}) VALUES (?, ?)`,
+                [1, value],
+                function(err) {
+                    if (err) {
+                        console.error(`Error updating currently ${type}:`, err);
+                        return res.status(500).json({ success: false, error: err.message });
+                    }
+                    res.json({ success: true });
+                }
+            );
+        } else {
+            // Update existing row
+            const updates = { ...row, [type]: value };
+            db.run(
+                `UPDATE currently SET reading = ?, listening = ? WHERE user_id = 1`,
+                [updates.reading, updates.listening],
+                function(err) {
+                    if (err) {
+                        console.error(`Error updating currently ${type}:`, err);
+                        return res.status(500).json({ success: false, error: err.message });
+                    }
+                    res.json({ success: true });
+                }
+            );
+        }
+    });
 });
 
 // Get all fragments for a user

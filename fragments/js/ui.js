@@ -33,10 +33,16 @@ style.textContent = `
     .profile-photo-container {
         position: relative;
         display: inline-block;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        overflow: hidden;
     }
     
-    .profile-photo-container:hover .photo-upload-overlay {
-        opacity: 1;
+    .profile-photo-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
     
     .photo-upload-overlay {
@@ -55,9 +61,44 @@ style.textContent = `
         border-radius: 50%;
     }
     
+    .photo-upload-overlay input[type="file"] {
+        display: none !important;
+        position: absolute;
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
+    
+    .profile-photo-container:hover .photo-upload-overlay {
+        opacity: 1;
+    }
+    
     .photo-upload-overlay span {
         color: white;
         font-size: 0.8rem;
+    }
+
+    .upload-btn, .submit-btn {
+        display: inline-block !important;
+        padding: 8px 16px;
+        background: #2c2c2c;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 1rem;
+        opacity: 1 !important;
+        margin: 10px 0;
+        transition: background-color 0.2s ease;
+    }
+
+    .upload-btn:hover, .submit-btn:hover {
+        background: #404040;
+    }
+
+    .upload-btn.loading, .submit-btn.loading {
+        background: #cccccc;
+        cursor: not-allowed;
     }
 
     .fragment {
@@ -203,62 +244,6 @@ style.textContent = `
 
     .retry-button:hover {
         background: #c82333;
-    }
-
-    .profile-photo-container {
-        position: relative;
-        width: 200px;
-        height: 200px;
-        border-radius: 50%;
-        overflow: hidden;
-        cursor: pointer;
-    }
-    
-    .profile-photo-container img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: filter 0.3s ease;
-    }
-    
-    .photo-upload-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.5);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-    }
-    
-    .profile-photo-container:hover .photo-upload-overlay {
-        opacity: 1;
-    }
-    
-    .photo-upload-overlay span {
-        color: white;
-        font-size: 0.9rem;
-        font-weight: 500;
-    }
-    
-    .upload-progress {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
-        background: rgba(0, 0, 0, 0.2);
-    }
-    
-    .progress-bar {
-        height: 100%;
-        background: var(--accent);
-        width: 0;
-        transition: width 0.3s ease;
     }
 
     .preview-wrapper {
@@ -467,7 +452,7 @@ function updateProfileDisplay(profile) {
     if (photoContainer) {
         photoContainer.innerHTML = `
             <div class="profile-photo-container" title="Click to change profile photo">
-                <img src="${profile.profile_photo || './images/default-profile.jpg'}" alt="Profile Photo">
+                <img src="${profile.profile_photo || '/fragments/images/default-profile.jpg'}" alt="Profile Photo">
                 <div class="photo-upload-overlay">
                     <span>Update Photo</span>
                     <input type="file" accept="image/*" style="display: none;">
@@ -845,23 +830,4 @@ mediaInput.addEventListener('input', async (e) => {
 
 // Make modal functions available globally
 window.showAddFragmentModal = showAddFragmentModal;
-window.showCollectionModal = showCollectionModal;
-
-async function uploadProfilePhoto(formData) {
-    try {
-        const response = await fetch(`${API_URL}/profile/photo`, {
-            method: 'POST',
-            body: formData
-        });
-
-        if (!response.ok) {
-            throw new Error('Failed to upload photo');
-        }
-
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error('Error uploading profile photo:', error);
-        throw error;
-    }
-} 
+window.showCollectionModal = showCollectionModal; 

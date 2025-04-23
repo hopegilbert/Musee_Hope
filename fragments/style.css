@@ -6,7 +6,7 @@
     --primary: #FFE8A3;
     --secondary: #f6c5e1;
     --accent: #C4DDEA;
-    --grey-line: #D9D9D9;
+    --grey-line: #e1e4e8;
     --lilac: #EBD7F2;
     --soft-pink: #f6c5e1;
     --sky-blue: #C4DDEA;
@@ -19,7 +19,7 @@
   
     --font-serif: 'EB Garamond', Georgia, serif;
     --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-    --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow: 0 2px 4px rgba(0,0,0,0.1);
     --shadow-hover: 0 4px 8px rgba(0, 0, 0, 0.15);
     --transition: all 0.3s ease;
     --border: #e1e4e8;
@@ -167,7 +167,7 @@
     display: flex;
     justify-content: center;
     gap: 2rem;
-    max-width: 800px;
+    max-width: 900px;
     width: 100%;
     box-sizing: border-box;
   }
@@ -176,7 +176,7 @@
   .currently-listening {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 0.5rem;
     flex: 1;
     max-width: 300px;
   }
@@ -194,7 +194,7 @@
     padding: 0.5rem 1rem;
     border: none;
     font-family: var(--font-serif);
-    font-size: 1.1rem;
+    font-size: 1rem;
     border-radius: 999px;
     transition: all 0.2s ease;
     width: 100%;
@@ -519,37 +519,6 @@
     padding-left: 1rem;
     padding-right: 1rem;
     box-sizing: border-box;
-  }
-
-  .stats-section {
-    display: flex;
-    justify-content: flex-end;
-    gap: 2rem;
-  }
-  
-  .stat-card {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end; /* 👈 correctly aligns text to the right */
-      text-align: right;
-  }
-  
-  .stat-card .stat-number {
-    font-family: var(--font-serif);
-    font-size: 1rem;
-    color: var(--text);
-    margin: 0;
-    line-height: 1;
-  }
-  
-  .stat-card h3 {
-    font-family: var(--font-sans);
-    font-size: 0.875rem;
-    color: var(--text);
-    margin: 0;
-    padding: 0;
-    font-weight: 400;
-    opacity: 0.8;
   }
 
   /* Update collections section */
@@ -1564,6 +1533,49 @@
     font-size: 0.9rem;
     font-family: var(--font-sans);
 }
+
+.profile-image-and-stats {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.stats-box {
+    background: var(--block-bg);
+    border-radius: 12px;
+    padding: 1rem;
+    width: 160px;
+    text-align: center;
+}
+
+.stats-box .stats-section {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.stats-box .stat-card {
+    align-items: center;
+    text-align: center;
+}
+
+.stats-box .stat-card h3 {
+    font-size: 0.8rem;
+    color: #666;
+    margin: 0;
+    align-items: center;
+}
+
+.stats-box .stat-card .stat-number {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #2c2c2c;
+    margin: 0;
+    align-items: center;
+}
   
+ 
  
  
