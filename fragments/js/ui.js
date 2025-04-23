@@ -4,7 +4,8 @@ import {
     getFragments,
     uploadProfilePhoto,
     createFragment,
-    updateFeeling
+    updateFeeling,
+    updateFragment
 } from './api.js';
 
 // Basic styles for profile management
@@ -315,8 +316,50 @@ export async function initializeUI() {
     setupProfileListeners();
     setupAddFragmentButton();
     setupModals();
+    setupFragmentForm();
     loadProfile();
     loadAndDisplayFragments();
+}
+
+function setupFragmentForm() {
+    const fragmentForm = document.getElementById('new-fragment-form');
+    const submitButton = fragmentForm?.querySelector('.submit-btn');
+    const mediaInput = document.getElementById('media-upload');
+    const mediaPreview = document.querySelector('.media-preview');
+
+    if (fragmentForm) {
+        fragmentForm.addEventListener('submit', handleFormSubmit);
+    }
+
+    if (mediaInput) {
+        mediaInput.addEventListener('input', async (e) => {
+            const url = e.target.value.trim();
+            if (mediaPreview) {
+                mediaPreview.innerHTML = '';
+                
+                if (!url) return;
+                
+                try {
+                    const response = await fetch(url, { method: 'HEAD' });
+                    if (response.ok) {
+                        const type = response.headers.get('content-type');
+                        if (type.startsWith('image/')) {
+                            const img = document.createElement('img');
+                            img.src = url;
+                            mediaPreview.appendChild(img);
+                        } else if (type.startsWith('video/')) {
+                            const video = document.createElement('video');
+                            video.src = url;
+                            video.controls = true;
+                            mediaPreview.appendChild(video);
+                        }
+                    }
+                } catch (err) {
+                    console.warn('Invalid media URL:', err);
+                }
+            }
+        });
+    }
 }
 
 function loadProfile() {
@@ -780,14 +823,10 @@ function showCollectionModal() {
 }
 
 // Form submission handling
-const fragmentForm = document.getElementById('new-fragment-form');
-const submitButton = fragmentForm?.querySelector('.submit-btn');
-const mediaInput = document.getElementById('fragment-media');
-const mediaPreview = document.querySelector('.media-preview');
-
 let selectedFile = null;
+let selectedEditFile = null;
 
-function handleImageUpload(event) {
+function handleImageUpload(event, isEdit = false) {
     const file = event.target.files[0];
     if (!file) return;
 
@@ -803,19 +842,23 @@ function handleImageUpload(event) {
         return;
     }
 
-    selectedFile = file;
-    displayImagePreview(file);
+    if (isEdit) {
+        selectedEditFile = file;
+    } else {
+        selectedFile = file;
+    }
+    displayImagePreview(file, isEdit);
 }
 
-function displayImagePreview(file) {
+function displayImagePreview(file, isEdit = false) {
     const reader = new FileReader();
-    const previewContainer = document.querySelector('.media-preview');
+    const previewContainer = document.querySelector(isEdit ? '.edit-media-preview' : '.media-preview');
     
     reader.onload = function(e) {
         previewContainer.innerHTML = `
             <div class="preview-wrapper">
                 <img src="${e.target.result}" alt="Preview">
-                <button type="button" class="remove-image" onclick="removeImagePreview()">×</button>
+                <button type="button" class="remove-image" onclick="removeImagePreview(${isEdit})">×</button>
             </div>
         `;
     };
@@ -823,13 +866,22 @@ function displayImagePreview(file) {
     reader.readAsDataURL(file);
 }
 
-function removeImagePreview() {
-    const previewContainer = document.querySelector('.media-preview');
+function removeImagePreview(isEdit = false) {
+    const previewContainer = document.querySelector(isEdit ? '.edit-media-preview' : '.media-preview');
     previewContainer.innerHTML = '';
-    selectedFile = null;
-    const fileInput = document.getElementById('media-upload');
-    if (fileInput) {
-        fileInput.value = '';
+    
+    if (isEdit) {
+        selectedEditFile = null;
+        const fileInput = document.getElementById('edit-media');
+        if (fileInput) {
+            fileInput.value = '';
+        }
+    } else {
+        selectedFile = null;
+        const fileInput = document.getElementById('media-upload');
+        if (fileInput) {
+            fileInput.value = '';
+        }
     }
 }
 
@@ -838,7 +890,7 @@ async function handleFormSubmit(event) {
     const form = event.target;
     const submitBtn = form.querySelector('.submit-btn');
     const content = form.querySelector('.fragment-textarea').value.trim();
-    const mediaFile = form.querySelector('#media-upload').files[0];
+    const mediaFile = selectedFile;  // Use the stored selectedFile instead of querying the input
 
     if (!content && !mediaFile) {
         showError('Please enter content or upload an image');
@@ -851,6 +903,7 @@ async function handleFormSubmit(event) {
         const result = await createFragment(content, mediaFile);
         if (result.success) {
             form.reset();
+            removeImagePreview();  // Clear the preview
             const modal = document.getElementById('add-fragment-modal');
             if (modal) modal.style.display = 'none';
             await loadAndDisplayFragments();
@@ -860,6 +913,40 @@ async function handleFormSubmit(event) {
     } catch (error) {
         console.error('Error creating fragment:', error);
         showError(error.message || 'Failed to create fragment. Please try again.');
+    } finally {
+        setLoading(submitBtn, false);
+    }
+}
+
+async function handleEditFormSubmit(event) {
+    event.preventDefault();
+    const form = event.target;
+    const submitBtn = form.querySelector('.submit-btn');
+    const content = form.querySelector('.fragment-textarea').value.trim();
+    const mediaFile = selectedEditFile;  // Use the stored selectedEditFile
+    const fragmentId = form.dataset.fragmentId;
+
+    if (!content && !mediaFile) {
+        showError('Please enter content or upload an image');
+        return;
+    }
+
+    setLoading(submitBtn, true);
+
+    try {
+        const result = await updateFragment(fragmentId, content, mediaFile);
+        if (result.success) {
+            form.reset();
+            removeImagePreview(true);  // Clear the preview
+            const modal = document.getElementById('edit-fragment-modal');
+            if (modal) modal.style.display = 'none';
+            await loadAndDisplayFragments();
+        } else {
+            throw new Error(result.error || 'Failed to update fragment');
+        }
+    } catch (error) {
+        console.error('Error updating fragment:', error);
+        showError(error.message || 'Failed to update fragment. Please try again.');
     } finally {
         setLoading(submitBtn, false);
     }
@@ -924,37 +1011,7 @@ function showMessage(message, type = 'info') {
     }, 3000);
 }
 
-// Only add event listener if mediaInput exists
-if (mediaInput) {
-    mediaInput.addEventListener('input', async (e) => {
-        const url = e.target.value.trim();
-        if (mediaPreview) {
-            mediaPreview.innerHTML = '';
-            
-            if (!url) return;
-            
-            try {
-                const response = await fetch(url, { method: 'HEAD' });
-                if (response.ok) {
-                    const type = response.headers.get('content-type');
-                    if (type.startsWith('image/')) {
-                        const img = document.createElement('img');
-                        img.src = url;
-                        mediaPreview.appendChild(img);
-                    } else if (type.startsWith('video/')) {
-                        const video = document.createElement('video');
-                        video.src = url;
-                        video.controls = true;
-                        mediaPreview.appendChild(video);
-                    }
-                }
-            } catch (err) {
-                console.warn('Invalid media URL:', err);
-            }
-        }
-    });
-}
-
 // Make modal functions available globally
 window.showAddFragmentModal = showAddFragmentModal;
-window.showCollectionModal = showCollectionModal; 
+window.showCollectionModal = showCollectionModal;
+window.removeImagePreview = removeImagePreview; 

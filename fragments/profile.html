@@ -20,7 +20,7 @@
                     </svg>
                     Add Fragment
                 </button>
-                <button class="drafts-btn" onclick="showDraftsModal()">
+                <button class="add-fragment-btn" onclick="showDraftsModal()">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
                         <polyline points="13 2 13 9 20 9"></polyline>
@@ -32,40 +32,31 @@
 
         <div class="profile-section">
             <div class="profile-header">
-                <div class="profile-info-wrapper">
-                  <div class="profile-info">
-                    <h1 class="editable">Hope Gilbert</h1>
-                    <p class="subtitle editable">girly girl</p>
-                  </div>
+                <div class="profile-info">
+                    <h1 class="profile-name" contenteditable="true">Your Name</h1>
+                    <p class="profile-subtitle" contenteditable="true">Your Subtitle</p>
+                    <div class="feeling">
+                        <input type="text" placeholder="What are you feeling?" />
+                        <span class="status-message"></span>
+                    </div>
                 </div>
-              
-                <div class="profile-image-and-stats">
-                  <div class="profile-image" title="Click to change profile photo">
-                    <img src="./images/default-profile.jpg" alt="Profile Photo" />
-                  </div>
-                  <div class="stats-box">
-                    <div class="stats-section">
-                      <div class="stat-card">
+                <div class="profile-photo-container">
+                    <img src="images/default-profile.jpg" alt="Profile Photo" class="profile-photo">
+                    <input type="file" id="photo-upload" accept="image/*" style="display: none;">
+                    <button class="photo-upload-btn">Change Photo</button>
+                </div>
+            </div>
+
+            <div class="stats-box">
+                <div class="stats-section">
+                    <div class="stat-card">
                         <p class="stat-number">2</p>
                         <h3>Fragments</h3>
-                      </div>
-                      <div class="stat-card">
+                    </div>
+                    <div class="stat-card">
                         <p class="stat-number">318</p>
                         <h3>Following</h3>
-                      </div>
                     </div>
-                  </div>
-                </div>
-              </div>
-
-            <div class="currently-section">
-                <div class="currently-feeling">
-                    <strong>Feeling</strong>
-                    <input type="text" placeholder="How are you feeling?">
-                </div>
-                <div class="currently-listening">
-                    <strong>Listening to</strong>
-                    <input type="text" placeholder="What are you listening to?">
                 </div>
             </div>
 

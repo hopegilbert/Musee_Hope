@@ -22,6 +22,14 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads'), {
     }
 }));
 
+// Configure static file serving for images
+app.use('/images', express.static(path.join(__dirname, 'images'), {
+    setHeaders: (res, path) => {
+        res.setHeader('Cache-Control', 'no-cache');
+        res.setHeader('Access-Control-Allow-Origin', '*');
+    }
+}));
+
 // Configure multer for file uploads
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -76,7 +84,9 @@ function initializeDatabase() {
             name TEXT NOT NULL,
             subtitle TEXT,
             profile_photo TEXT,
-            created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+            feeling TEXT,
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+            updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
         )`);
 
         // Posts (Fragments) table
@@ -87,16 +97,6 @@ function initializeDatabase() {
             media_url TEXT,
             draft BOOLEAN DEFAULT 0,
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-            updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-            FOREIGN KEY (user_id) REFERENCES users (id)
-        )`);
-
-        // Currently table
-        db.run(`CREATE TABLE IF NOT EXISTS currently (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            user_id INTEGER,
-            feeling TEXT,
-            listening TEXT,
             updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
             FOREIGN KEY (user_id) REFERENCES users (id)
         )`);
@@ -137,43 +137,72 @@ function initializeDatabase() {
         db.get("SELECT id FROM users WHERE id = 1", [], (err, row) => {
             if (!row) {
                 db.run(`INSERT INTO users (name, subtitle) VALUES (?, ?)`,
-                    ['Hope Gilbert', 'girly girl']);
+                    ['Hope Gilbert', 'girly girl'],
+                    function(err) {
+                        if (err) {
+                            console.error('Error creating default user:', err);
+                        }
+                    });
             }
         });
     });
 }
 
-// Basic routes
+// Get user profile
 app.get('/api/profile', (req, res) => {
     db.get(`
-        SELECT u.*, 
-               c.feeling, 
-               c.listening,
-               (SELECT COUNT(*) FROM fragments f WHERE f.user_id = u.id) as fragment_count
+        SELECT 
+            u.*,
+            (SELECT COUNT(*) FROM fragments WHERE user_id = u.id AND draft = 0) as fragment_count
         FROM users u
-        LEFT JOIN currently c ON u.id = c.user_id
         WHERE u.id = 1
     `, [], (err, profile) => {
         if (err) {
             console.error('Error fetching profile:', err);
-            res.status(500).json({ success: false, error: err.message });
-            return;
+            return res.status(500).json({ 
+                success: false, 
+                error: err.message 
+            });
         }
-        res.json({ success: true, ...profile });
+        
+        if (!profile) {
+            return res.status(404).json({ 
+                success: false, 
+                error: 'User not found' 
+            });
+        }
+
+        // Ensure all required fields exist
+        const formattedProfile = {
+            id: profile.id,
+            name: profile.name || '',
+            subtitle: profile.subtitle || '',
+            profile_photo: profile.profile_photo || '/images/default-profile.jpg',
+            fragment_count: profile.fragment_count || 0,
+            feeling: profile.feeling || null,
+            created_at: profile.created_at
+        };
+
+        res.json({ 
+            success: true, 
+            profile: formattedProfile 
+        });
     });
 });
 
-// Update profile
+// Update user profile
 app.put('/api/profile', (req, res) => {
     const { name, subtitle } = req.body;
+    
     if (!name && !subtitle) {
-        res.status(400).json({ success: false, error: 'No data provided for update' });
+        res.status(400).json({ success: false, error: 'No update data provided' });
         return;
     }
 
+    let query = 'UPDATE users SET ';
     const updates = [];
     const values = [];
-    
+
     if (name) {
         updates.push('name = ?');
         values.push(name);
@@ -182,21 +211,45 @@ app.put('/api/profile', (req, res) => {
         updates.push('subtitle = ?');
         values.push(subtitle);
     }
-    
-    values.push(1); // user_id
-    
-    db.run(
-        `UPDATE users SET ${updates.join(', ')} WHERE id = ?`,
-        values,
-        function(err) {
+    updates.push('updated_at = CURRENT_TIMESTAMP');
+
+    query += updates.join(', ');
+    query += ' WHERE id = 1';
+
+    db.run(query, values, function(err) {
+        if (err) {
+            console.error('Error updating profile:', err);
+            res.status(500).json({ success: false, error: err.message });
+            return;
+        }
+
+        // Fetch and return the updated profile with all necessary fields
+        db.get(`
+            SELECT 
+                u.*,
+                (SELECT COUNT(*) FROM fragments WHERE user_id = u.id AND draft = 0) as fragment_count
+            FROM users u
+            WHERE u.id = 1
+        `, [], (err, profile) => {
             if (err) {
-                console.error('Error updating profile:', err);
                 res.status(500).json({ success: false, error: err.message });
                 return;
             }
-            res.json({ success: true });
-        }
-    );
+
+            // Ensure all required fields exist
+            const formattedProfile = {
+                id: profile.id,
+                name: profile.name || '',
+                subtitle: profile.subtitle || '',
+                profile_photo: profile.profile_photo || '/images/default-profile.jpg',
+                fragment_count: profile.fragment_count || 0,
+                feeling: profile.feeling || null,
+                created_at: profile.created_at
+            };
+
+            res.json({ success: true, profile: formattedProfile });
+        });
+    });
 });
 
 // Upload profile photo
@@ -226,7 +279,7 @@ app.post('/api/fragments', upload.single('media'), (req, res) => {
     const mediaUrl = req.file ? `/uploads/${req.file.filename}` : null;
 
     db.run(
-        'INSERT INTO fragments (user_id, content, media_url, created_at, updated_at) VALUES (?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)',
+        'INSERT INTO fragments (user_id, content, media_url) VALUES (?, ?, ?)',
         [1, content, mediaUrl],
         function(err) {
             if (err) {
@@ -234,67 +287,42 @@ app.post('/api/fragments', upload.single('media'), (req, res) => {
                 return res.status(500).json({ success: false, error: err.message });
             }
 
-            // Get the created fragment to return
-            db.get('SELECT * FROM fragments WHERE id = ?', [this.lastID], (err, fragment) => {
+            // Return full fragment
+            db.get(`SELECT * FROM fragments WHERE id = ?`, [this.lastID], (err, row) => {
                 if (err) {
-                    console.error('Error fetching created fragment:', err);
                     return res.status(500).json({ success: false, error: err.message });
                 }
-
-                res.json({ 
-                    success: true, 
-                    fragment
-                });
+                res.json({ success: true, fragment: row });
             });
         }
     );
 });
 
-// Update currently feeling/listening
-app.put('/api/currently/:type', (req, res) => {
-    const { type } = req.params;
-    const { value } = req.body;
-
-    if (!['feeling', 'listening'].includes(type)) {
-        return res.status(400).json({ success: false, error: 'Invalid type' });
+// Update feeling status
+app.put('/api/feeling', async (req, res) => {
+    const { feeling } = req.body;
+    
+    if (!feeling) {
+        return res.status(400).json({ message: 'Feeling is required' });
     }
 
-    // First, get the current values
-    db.get('SELECT * FROM currently WHERE user_id = 1', [], (err, row) => {
-        if (err) {
-            console.error(`Error fetching currently data:`, err);
-            return res.status(500).json({ success: false, error: err.message });
-        }
+    try {
+        // Update the feeling directly in the users table
+        await db.run(
+            `UPDATE users SET feeling = ? WHERE id = 1`,
+            [feeling]
+        );
 
-        // If no row exists, create new with just this value
-        if (!row) {
-            db.run(
-                `INSERT INTO currently (user_id, ${type}) VALUES (?, ?)`,
-                [1, value],
-                function(err) {
-                    if (err) {
-                        console.error(`Error updating currently ${type}:`, err);
-                        return res.status(500).json({ success: false, error: err.message });
-                    }
-                    res.json({ success: true });
-                }
-            );
-        } else {
-            // Update existing row
-            const updates = { ...row, [type]: value };
-            db.run(
-                `UPDATE currently SET feeling = ?, listening = ? WHERE user_id = 1`,
-                [updates.feeling, updates.listening],
-                function(err) {
-                    if (err) {
-                        console.error(`Error updating currently ${type}:`, err);
-                        return res.status(500).json({ success: false, error: err.message });
-                    }
-                    res.json({ success: true });
-                }
-            );
-        }
-    });
+        // Get the updated profile
+        const profile = await db.get(
+            `SELECT * FROM users WHERE id = 1`
+        );
+
+        res.json(profile);
+    } catch (error) {
+        console.error('Error updating feeling:', error);
+        res.status(500).json({ message: 'Failed to update feeling' });
+    }
 });
 
 // Get all fragments for a user
@@ -417,112 +445,6 @@ app.put('/api/fragments/:id/publish', (req, res) => {
             }
             res.json({ success: true });
         });
-});
-
-// Update fragment
-app.put('/api/fragments/:id', upload.single('media'), (req, res) => {
-    const fragmentId = req.params.id;
-    const { content } = req.body;
-    const mediaUrl = req.file ? `/uploads/${req.file.filename}` : null;
-    const shouldRemoveMedia = req.body.remove_media === 'true';
-
-    // Start a transaction
-    db.serialize(() => {
-        db.run('BEGIN TRANSACTION');
-
-        // If there's a new media file or we should remove the old one, get the old one to delete it
-        if (mediaUrl || shouldRemoveMedia) {
-            db.get('SELECT media_url FROM fragments WHERE id = ?', [fragmentId], (err, row) => {
-                if (row && row.media_url) {
-                    const oldFilePath = path.join(__dirname, '..', row.media_url);
-                    fs.unlink(oldFilePath, (err) => {
-                        if (err && err.code !== 'ENOENT') {
-                            console.error('Error deleting old media file:', err);
-                        }
-                    });
-                }
-            });
-        }
-
-        // Update the fragment
-        const updateQuery = shouldRemoveMedia || mediaUrl
-            ? 'UPDATE fragments SET content = ?, media_url = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ? AND user_id = 1'
-            : 'UPDATE fragments SET content = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ? AND user_id = 1';
-        
-        const updateParams = shouldRemoveMedia
-            ? [content, null, fragmentId]
-            : mediaUrl
-                ? [content, mediaUrl, fragmentId]
-                : [content, fragmentId];
-
-        db.run(updateQuery, updateParams, function(err) {
-            if (err) {
-                db.run('ROLLBACK');
-                console.error('Error updating fragment:', err);
-                res.status(500).json({ success: false, error: err.message });
-                return;
-            }
-
-            // Get the updated fragment to return
-            db.get('SELECT * FROM fragments WHERE id = ?', [fragmentId], (err, fragment) => {
-                if (err) {
-                    db.run('ROLLBACK');
-                    console.error('Error fetching updated fragment:', err);
-                    res.status(500).json({ success: false, error: err.message });
-                    return;
-                }
-
-                db.run('COMMIT');
-                res.json({ 
-                    success: true, 
-                    fragment
-                });
-            });
-        });
-    });
-});
-
-// Delete fragment
-app.delete('/api/fragments/:id', (req, res) => {
-    const fragmentId = req.params.id;
-
-    // Start a transaction
-    db.serialize(() => {
-        db.run('BEGIN TRANSACTION');
-
-        // Get the media URL before deleting
-        db.get('SELECT media_url FROM fragments WHERE id = ?', [fragmentId], (err, row) => {
-            if (err) {
-                db.run('ROLLBACK');
-                console.error('Error fetching fragment:', err);
-                res.status(500).json({ success: false, error: err.message });
-                return;
-            }
-
-            // Delete the fragment
-            db.run('DELETE FROM fragments WHERE id = ?', [fragmentId], function(err) {
-                if (err) {
-                    db.run('ROLLBACK');
-                    console.error('Error deleting fragment:', err);
-                    res.status(500).json({ success: false, error: err.message });
-                    return;
-                }
-
-                // If successful and there was a media file, delete it
-                if (row && row.media_url) {
-                    const filePath = path.join(__dirname, '..', row.media_url);
-                    fs.unlink(filePath, (err) => {
-                        if (err && err.code !== 'ENOENT') {
-                            console.error('Error deleting media file:', err);
-                        }
-                    });
-                }
-
-                db.run('COMMIT');
-                res.json({ success: true });
-            });
-        });
-    });
 });
 
 // Error handler for multer
