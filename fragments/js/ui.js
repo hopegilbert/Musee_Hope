@@ -5,7 +5,8 @@ import {
     uploadProfilePhoto,
     createFragment,
     updateFeeling,
-    updateFragment
+    updateFragment,
+    deleteFragment
 } from './api.js';
 
 // Basic styles for profile management
@@ -550,12 +551,24 @@ function createFragmentElement(fragment) {
         <div class="fragment-content">
             <div class="fragment-text">${fragment.content || ''}</div>
             ${fragment.media_url ? `<img src="${fragment.media_url}" alt="Fragment media">` : ''}
-            <div class="fragment-meta">
-                <span class="fragment-date">${date}</span>
-                ${fragment.reaction_count > 0 ? `<span class="reaction-count">♥ ${fragment.reaction_count}</span>` : ''}
-            </div>
+        </div>
+        <div class="fragment-actions">
+            <button class="edit-btn" data-id="${fragment.id}">Edit</button>
+            <button class="delete-btn" data-id="${fragment.id}">Delete</button>
+        </div>
+        <div class="fragment-meta">
+            <span class="fragment-date">${date}</span>
+            ${fragment.reaction_count > 0 ? `<span class="reaction-count">♥ ${fragment.reaction_count}</span>` : ''}
         </div>
     `;
+
+    // Hook up buttons
+    const editBtn = div.querySelector('.edit-btn');
+    editBtn?.addEventListener('click', () => openEditModal(fragment));
+
+    const deleteBtn = div.querySelector('.delete-btn');
+    deleteBtn?.addEventListener('click', () => handleDelete(fragment.id));
+
     return div;
 }
 
@@ -1014,4 +1027,46 @@ function showMessage(message, type = 'info') {
 // Make modal functions available globally
 window.showAddFragmentModal = showAddFragmentModal;
 window.showCollectionModal = showCollectionModal;
-window.removeImagePreview = removeImagePreview; 
+window.removeImagePreview = removeImagePreview;
+
+function openEditModal(fragment) {
+    const modal = document.getElementById('edit-modal');
+    const textarea = modal.querySelector('#edit-content');
+    const fileInput = modal.querySelector('#edit-media');
+    const saveBtn = modal.querySelector('#edit-save');
+
+    textarea.value = fragment.content;
+    modal.dataset.fragmentId = fragment.id;
+
+    // Hook the save handler
+    saveBtn.onclick = async () => {
+        const updatedContent = textarea.value.trim();
+        const file = fileInput.files[0] || null;
+        try {
+            await updateFragment(fragment.id, updatedContent, file);
+            modal.style.display = 'none';
+            await loadAndDisplayFragments();
+            showMessage('Fragment updated successfully', 'success');
+        } catch (err) {
+            console.error('Edit failed:', err);
+            showMessage('Failed to update fragment: ' + err.message, 'error');
+        }
+    };
+
+    modal.style.display = 'block';
+}
+
+async function handleDelete(id) {
+    if (!confirm('Are you sure you want to delete this fragment?')) {
+        return;
+    }
+
+    try {
+        await deleteFragment(id);
+        await loadAndDisplayFragments();
+        showMessage('Fragment deleted successfully', 'success');
+    } catch (err) {
+        console.error('Delete failed:', err);
+        showMessage('Failed to delete fragment: ' + err.message, 'error');
+    }
+} 
