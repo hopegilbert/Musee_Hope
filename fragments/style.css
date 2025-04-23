@@ -425,6 +425,7 @@
     margin: 0 auto;
     box-sizing: border-box;
     position: relative;
+    padding-bottom: 0;
   }
 
   .add-fragment-btn {
@@ -518,10 +519,11 @@
   .stats-section {
     display: grid;
     grid-template-columns: repeat(2, 0.1fr);
-    gap: 0.2rem;
-    margin: -2px 0 0 3rem;
+    gap: 0.1rem;
     padding: 0;
     justify-content: left;
+    position: relative;
+    top: -50px;  
   }
 
   .stat-card {
@@ -1113,7 +1115,7 @@
     .collections-section,
     .drafts-section,
     .stats-section {
-        padding: 0 0.5rem;
+        padding: 0 1rem;
     }
 
     .profile-gallery,
@@ -1124,7 +1126,7 @@
     }
 
     .stats-section {
-        grid-template-columns: 1fr;
+        grid-template-columns: 0.1fr;
     }
   }
   
