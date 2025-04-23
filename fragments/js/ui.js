@@ -339,13 +339,13 @@ function updateProfileDisplay(profile) {
     const subtitleElement = document.querySelector('.profile-info .subtitle');
     
     if (nameElement) {
-        nameElement.textContent = profile.name || '';
-        nameElement.className = 'editable';  // Reset classes
+        nameElement.textContent = profile.name || 'Your Name';
+        nameElement.className = 'editable';
     }
     
     if (subtitleElement) {
-        subtitleElement.textContent = profile.subtitle || '';
-        subtitleElement.className = 'subtitle editable';  // Reset classes
+        subtitleElement.textContent = profile.subtitle || 'Add a subtitle';
+        subtitleElement.className = 'subtitle editable';
     }
     
     // Update profile photo

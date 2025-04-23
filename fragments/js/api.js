@@ -5,12 +5,11 @@ const API_URL = 'http://localhost:3003/api';
 export async function getProfile() {
     try {
         const response = await fetch(`${API_URL}/profile`);
-        const data = await response.json();
-        if (data.success) {
-            return data;
-        } else {
-            throw new Error(data.error || 'Failed to fetch profile');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
+        const data = await response.json();
+        return data;
     } catch (error) {
         console.error('Error in getProfile:', error);
         throw error;
@@ -26,12 +25,11 @@ export async function updateProfile(updates) {
             },
             body: JSON.stringify(updates)
         });
-        const data = await response.json();
-        if (data.success) {
-            return data;
-        } else {
-            throw new Error(data.error || 'Failed to update profile');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
+        const data = await response.json();
+        return data;
     } catch (error) {
         console.error('Error in updateProfile:', error);
         throw error;
