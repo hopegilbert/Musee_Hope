@@ -168,7 +168,7 @@ export async function deleteFragment(fragmentId) {
 
 export async function updateFeeling(feeling) {
     try {
-        const response = await fetch(`${API_URL}/api/feeling`, {
+        const response = await fetch(`${API_URL}/feeling`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -181,7 +181,8 @@ export async function updateFeeling(feeling) {
             throw new Error(errorData.error || 'Failed to update feeling');
         }
 
-        return await response.json();
+        const data = await response.json();
+        return data;
     } catch (error) {
         console.error('Error updating feeling:', error);
         throw error;
