@@ -20,42 +20,48 @@
                     </svg>
                     Add Fragment
                 </button>
+                <button class="drafts-btn" onclick="showDraftsModal()">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
+                        <polyline points="13 2 13 9 20 9"></polyline>
+                    </svg>
+                    View Drafts
+                </button>
             </div>
         </nav>
 
         <div class="profile-section">
             <div class="profile-header">
                 <div class="profile-info-wrapper">
-                    <div class="profile-info">
-                        <h1 class="editable">Hope Gilbert</h1>
-                        <p class="subtitle editable">girly girl</p>
-                    </div>
+                  <div class="profile-info">
+                    <h1 class="editable">Hope Gilbert</h1>
+                    <p class="subtitle editable">girly girl</p>
+                  </div>
                 </div>
-                
+              
                 <div class="profile-image-and-stats">
-                    <div class="profile-image" title="Click to change profile photo">
-                        <img src="./images/default-profile.jpg" alt="Profile Photo" />
-                    </div>
-                </div>
-            </div>
-
-            <div class="stats-box">
-                <div class="stats-section">
-                    <div class="stat-card">
+                  <div class="profile-image" title="Click to change profile photo">
+                    <img src="./images/default-profile.jpg" alt="Profile Photo" />
+                  </div>
+                  <div class="stats-box">
+                    <div class="stats-section">
+                      <div class="stat-card">
                         <p class="stat-number">2</p>
                         <h3>Fragments</h3>
-                    </div>
-                    <div class="stat-card">
+                      </div>
+                      <div class="stat-card">
                         <p class="stat-number">318</p>
                         <h3>Following</h3>
+                      </div>
                     </div>
+                  </div>
                 </div>
-            </div>
+              </div>
 
             <div class="currently-section">
-                <div class="currently-reading">
-                    <strong>Reading</strong>
-                    <input type="text" placeholder="What are you reading?">
+                <div class="currently-feeling">
+                    <strong>Feeling</strong>
+                    <input type="text" placeholder="How are you feeling?">
                 </div>
                 <div class="currently-listening">
                     <strong>Listening to</strong>
@@ -124,11 +130,34 @@
         </div>
     </div>
 
-    <script type="module" src="js/api.js"></script>
-    <script type="module" src="js/ui.js"></script>
-    <script src="js/collections.js" type="module"></script>
-    <script src="js/reactions.js" type="module"></script>
-    <script src="js/drafts.js" type="module"></script>
+    <!-- Message Template -->
+    <div id="message-template" style="display: none;">
+        <div class="message">
+            <span class="message-text"></span>
+        </div>
+    </div>
+
+    <!-- Drafts Modal -->
+    <div id="drafts-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Drafts</h2>
+            <div class="drafts-container">
+                <!-- Drafts will be displayed here -->
+            </div>
+        </div>
+    </div>
+    <script type="module" src="./js/api.js"></script>
+    <script type="module">
+        import { initializeUI } from './js/ui.js';
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('DOM fully loaded, initializing UI...');
+            initializeUI();
+        });
+    </script>
+    <script src="./js/collections.js" type="module"></script>
+    <script src="./js/reactions.js" type="module"></script>
+    <script src="./js/drafts.js" type="module"></script>
 </body>
 </html> 
  

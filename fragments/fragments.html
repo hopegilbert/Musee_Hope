@@ -33,11 +33,68 @@
         </div>
     </section>
 
-    <script src="js/api.js" type="module"></script>
-    <script src="js/ui.js" type="module"></script>
-    <script src="js/collections.js" type="module"></script>
-    <script src="js/reactions.js" type="module"></script>
-    <script src="js/drafts.js" type="module"></script>
+    <!-- Edit Modal -->
+    <div id="edit-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Edit Fragment</h2>
+            <textarea id="edit-content" class="fragment-textarea"></textarea>
+            <div class="media-upload-container">
+                <input type="file" id="edit-media" accept="image/*" style="display: none;">
+                <button class="upload-btn" id="edit-media-btn">Upload Media</button>
+                <div id="edit-media-preview" class="media-preview"></div>
+            </div>
+            <button id="edit-save" class="submit-btn">Save Changes</button>
+        </div>
+    </div>
+
+    <!-- Fragment Template -->
+    <div id="fragment-template" style="display: none;">
+        <div class="fragment">
+            <div class="fragment-content">
+                <p class="fragment-text"></p>
+                <div class="fragment-media"></div>
+            </div>
+            <div class="fragment-actions">
+                <button class="edit-btn">Edit</button>
+                <button class="delete-btn">Delete</button>
+            </div>
+            <div class="fragment-meta">
+                <span class="timestamp"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Fragment Modal -->
+    <div id="add-fragment-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Create New Fragment</h2>
+            <form id="new-fragment-form" class="fragment-form">
+                <textarea class="fragment-textarea" placeholder="What's on your mind?"></textarea>
+                <div class="media-upload-container">
+                    <input type="file" id="fragment-media" accept="image/*" style="display: none;">
+                    <button type="button" class="upload-btn" onclick="document.getElementById('fragment-media').click()">Upload Image</button>
+                    <p class="upload-hint">or drag and drop an image here</p>
+                    <div class="media-preview"></div>
+                </div>
+                <button type="submit" class="submit-btn">Post Fragment</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Load scripts -->
+    <script type="module" src="./js/api.js"></script>
+    <script type="module">
+      import { initializeUI } from './js/ui.js';
+      window.addEventListener('DOMContentLoaded', () => {
+        console.log('DOM fully loaded, initializing UI...');
+        initializeUI();
+      });
+    </script>
+    <script type="module" src="./js/collections.js"></script>
+    <script type="module" src="./js/reactions.js"></script>
+    <script type="module" src="./js/drafts.js"></script>
 </body>
 </html>
 

@@ -51,4 +51,25 @@ export async function publishDraft(draftId) {
         console.error('Error publishing draft:', error);
         throw error;
     }
+}
+
+export async function deleteDraft(draftId) {
+    try {
+        const response = await fetch(`${API_URL}/fragments/${draftId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+        
+        if (!response.ok) {
+            const result = await response.json();
+            throw new Error(result.error || 'Failed to delete draft');
+        }
+        
+        return true;
+    } catch (error) {
+        console.error('Error deleting draft:', error);
+        throw error;
+    }
 } 

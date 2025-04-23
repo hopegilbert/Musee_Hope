@@ -95,7 +95,7 @@ function initializeDatabase() {
         db.run(`CREATE TABLE IF NOT EXISTS currently (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             user_id INTEGER,
-            reading TEXT,
+            feeling TEXT,
             listening TEXT,
             updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
             FOREIGN KEY (user_id) REFERENCES users (id)
@@ -147,7 +147,7 @@ function initializeDatabase() {
 app.get('/api/profile', (req, res) => {
     db.get(`
         SELECT u.*, 
-               c.reading, 
+               c.feeling, 
                c.listening,
                (SELECT COUNT(*) FROM fragments f WHERE f.user_id = u.id) as fragment_count
         FROM users u
@@ -226,24 +226,36 @@ app.post('/api/fragments', upload.single('media'), (req, res) => {
     const mediaUrl = req.file ? `/uploads/${req.file.filename}` : null;
 
     db.run(
-        'INSERT INTO fragments (user_id, content, media_url) VALUES (?, ?, ?)',
+        'INSERT INTO fragments (user_id, content, media_url, created_at, updated_at) VALUES (?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)',
         [1, content, mediaUrl],
         function(err) {
             if (err) {
                 console.error('Error creating fragment:', err);
                 return res.status(500).json({ success: false, error: err.message });
             }
-            res.json({ success: true, id: this.lastID });
+
+            // Get the created fragment to return
+            db.get('SELECT * FROM fragments WHERE id = ?', [this.lastID], (err, fragment) => {
+                if (err) {
+                    console.error('Error fetching created fragment:', err);
+                    return res.status(500).json({ success: false, error: err.message });
+                }
+
+                res.json({ 
+                    success: true, 
+                    fragment
+                });
+            });
         }
     );
 });
 
-// Update currently reading/listening
+// Update currently feeling/listening
 app.put('/api/currently/:type', (req, res) => {
     const { type } = req.params;
     const { value } = req.body;
 
-    if (!['reading', 'listening'].includes(type)) {
+    if (!['feeling', 'listening'].includes(type)) {
         return res.status(400).json({ success: false, error: 'Invalid type' });
     }
 
@@ -271,8 +283,8 @@ app.put('/api/currently/:type', (req, res) => {
             // Update existing row
             const updates = { ...row, [type]: value };
             db.run(
-                `UPDATE currently SET reading = ?, listening = ? WHERE user_id = 1`,
-                [updates.reading, updates.listening],
+                `UPDATE currently SET feeling = ?, listening = ? WHERE user_id = 1`,
+                [updates.feeling, updates.listening],
                 function(err) {
                     if (err) {
                         console.error(`Error updating currently ${type}:`, err);
@@ -405,6 +417,112 @@ app.put('/api/fragments/:id/publish', (req, res) => {
             }
             res.json({ success: true });
         });
+});
+
+// Update fragment
+app.put('/api/fragments/:id', upload.single('media'), (req, res) => {
+    const fragmentId = req.params.id;
+    const { content } = req.body;
+    const mediaUrl = req.file ? `/uploads/${req.file.filename}` : null;
+    const shouldRemoveMedia = req.body.remove_media === 'true';
+
+    // Start a transaction
+    db.serialize(() => {
+        db.run('BEGIN TRANSACTION');
+
+        // If there's a new media file or we should remove the old one, get the old one to delete it
+        if (mediaUrl || shouldRemoveMedia) {
+            db.get('SELECT media_url FROM fragments WHERE id = ?', [fragmentId], (err, row) => {
+                if (row && row.media_url) {
+                    const oldFilePath = path.join(__dirname, '..', row.media_url);
+                    fs.unlink(oldFilePath, (err) => {
+                        if (err && err.code !== 'ENOENT') {
+                            console.error('Error deleting old media file:', err);
+                        }
+                    });
+                }
+            });
+        }
+
+        // Update the fragment
+        const updateQuery = shouldRemoveMedia || mediaUrl
+            ? 'UPDATE fragments SET content = ?, media_url = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ? AND user_id = 1'
+            : 'UPDATE fragments SET content = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ? AND user_id = 1';
+        
+        const updateParams = shouldRemoveMedia
+            ? [content, null, fragmentId]
+            : mediaUrl
+                ? [content, mediaUrl, fragmentId]
+                : [content, fragmentId];
+
+        db.run(updateQuery, updateParams, function(err) {
+            if (err) {
+                db.run('ROLLBACK');
+                console.error('Error updating fragment:', err);
+                res.status(500).json({ success: false, error: err.message });
+                return;
+            }
+
+            // Get the updated fragment to return
+            db.get('SELECT * FROM fragments WHERE id = ?', [fragmentId], (err, fragment) => {
+                if (err) {
+                    db.run('ROLLBACK');
+                    console.error('Error fetching updated fragment:', err);
+                    res.status(500).json({ success: false, error: err.message });
+                    return;
+                }
+
+                db.run('COMMIT');
+                res.json({ 
+                    success: true, 
+                    fragment
+                });
+            });
+        });
+    });
+});
+
+// Delete fragment
+app.delete('/api/fragments/:id', (req, res) => {
+    const fragmentId = req.params.id;
+
+    // Start a transaction
+    db.serialize(() => {
+        db.run('BEGIN TRANSACTION');
+
+        // Get the media URL before deleting
+        db.get('SELECT media_url FROM fragments WHERE id = ?', [fragmentId], (err, row) => {
+            if (err) {
+                db.run('ROLLBACK');
+                console.error('Error fetching fragment:', err);
+                res.status(500).json({ success: false, error: err.message });
+                return;
+            }
+
+            // Delete the fragment
+            db.run('DELETE FROM fragments WHERE id = ?', [fragmentId], function(err) {
+                if (err) {
+                    db.run('ROLLBACK');
+                    console.error('Error deleting fragment:', err);
+                    res.status(500).json({ success: false, error: err.message });
+                    return;
+                }
+
+                // If successful and there was a media file, delete it
+                if (row && row.media_url) {
+                    const filePath = path.join(__dirname, '..', row.media_url);
+                    fs.unlink(filePath, (err) => {
+                        if (err && err.code !== 'ENOENT') {
+                            console.error('Error deleting media file:', err);
+                        }
+                    });
+                }
+
+                db.run('COMMIT');
+                res.json({ success: true });
+            });
+        });
+    });
 });
 
 // Error handler for multer
