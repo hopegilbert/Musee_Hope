@@ -2,7 +2,9 @@ import {
     getProfile, 
     updateProfile, 
     updateCurrently,
-    getFragments 
+    getFragments,
+    uploadProfilePhoto,
+    createFragment
 } from './api.js';
 
 // Basic styles for profile management
@@ -202,12 +204,124 @@ style.textContent = `
     .retry-button:hover {
         background: #c82333;
     }
+
+    .profile-photo-container {
+        position: relative;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        overflow: hidden;
+        cursor: pointer;
+    }
+    
+    .profile-photo-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: filter 0.3s ease;
+    }
+    
+    .photo-upload-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    
+    .profile-photo-container:hover .photo-upload-overlay {
+        opacity: 1;
+    }
+    
+    .photo-upload-overlay span {
+        color: white;
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
+    
+    .upload-progress {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: rgba(0, 0, 0, 0.2);
+    }
+    
+    .progress-bar {
+        height: 100%;
+        background: var(--accent);
+        width: 0;
+        transition: width 0.3s ease;
+    }
+
+    .preview-wrapper {
+        position: relative;
+        display: inline-block;
+        max-width: 100%;
+    }
+
+    .preview-wrapper img {
+        max-width: 100%;
+        max-height: 300px;
+        object-fit: contain;
+        border-radius: 8px;
+    }
+
+    .remove-image {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        background: #ff4444;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .remove-image:hover {
+        background: #cc0000;
+    }
 `;
 document.head.appendChild(style);
 
 // Initialize UI when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     initializeUI();
+    setupAddFragmentButton();
+    setupModals();
+
+    const uploadBtn = document.querySelector('.upload-btn');
+    const fileInput = document.getElementById('media-upload');
+    const fragmentForm = document.querySelector('.fragment-form');
+
+    if (uploadBtn) {
+        uploadBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            fileInput.click();
+        });
+    }
+
+    if (fileInput) {
+        fileInput.addEventListener('change', handleImageUpload);
+    }
+
+    if (fragmentForm) {
+        fragmentForm.addEventListener('submit', handleFormSubmit);
+    }
 });
 
 async function initializeUI() {
@@ -349,17 +463,21 @@ function updateProfileDisplay(profile) {
     }
     
     // Update profile photo
-    const photoContainer = document.querySelector('.profile-photo');
+    const photoContainer = document.querySelector('.profile-image');
     if (photoContainer) {
         photoContainer.innerHTML = `
-            <div class="profile-photo-container">
-                <img src="${profile.profile_photo || '/images/default-profile.jpg'}" alt="Profile Photo">
+            <div class="profile-photo-container" title="Click to change profile photo">
+                <img src="${profile.profile_photo || './images/default-profile.jpg'}" alt="Profile Photo">
                 <div class="photo-upload-overlay">
                     <span>Update Photo</span>
                     <input type="file" accept="image/*" style="display: none;">
                 </div>
+                <div class="upload-progress" style="display: none;">
+                    <div class="progress-bar"></div>
+                </div>
             </div>
         `;
+        setupPhotoUpload(photoContainer);
     }
     
     // Update currently section
@@ -390,7 +508,7 @@ function setupProfileListeners() {
     }
     
     // Setup photo upload
-    const photoContainer = document.querySelector('.profile-photo');
+    const photoContainer = document.querySelector('.profile-image');
     if (photoContainer) {
         setupPhotoUpload(photoContainer);
     }
@@ -448,46 +566,80 @@ function makeEditable(element, field) {
 }
 
 function setupPhotoUpload(container) {
+    const photoContainer = container.querySelector('.profile-photo-container');
     const fileInput = container.querySelector('input[type="file"]');
     const overlay = container.querySelector('.photo-upload-overlay');
+    const uploadProgress = container.querySelector('.upload-progress');
+    const progressBar = container.querySelector('.progress-bar');
+    const img = container.querySelector('img');
     
-    if (overlay && fileInput) {
-        overlay.addEventListener('click', () => fileInput.click());
+    if (!photoContainer || !fileInput || !overlay || !uploadProgress || !progressBar || !img) return;
+    
+    photoContainer.addEventListener('click', () => fileInput.click());
+    
+    fileInput.addEventListener('change', async () => {
+        const file = fileInput.files[0];
+        if (!file) return;
         
-        fileInput.addEventListener('change', async () => {
-            const file = fileInput.files[0];
-            if (!file) return;
+        // Validate file type
+        if (!file.type.startsWith('image/')) {
+            alert('Please select an image file.');
+            return;
+        }
+        
+        // Validate file size (max 5MB)
+        if (file.size > 5 * 1024 * 1024) {
+            alert('Please select an image smaller than 5MB.');
+            return;
+        }
+        
+        // Show upload progress
+        overlay.style.display = 'none';
+        uploadProgress.style.display = 'block';
+        progressBar.style.width = '0%';
+        
+        try {
+            // Create a preview
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
             
-            // Show loading state
-            overlay.style.opacity = '0.5';
-            overlay.style.cursor = 'wait';
-            
-            const formData = new FormData();
-            formData.append('profile_photo', file);
-            
-            try {
-                const response = await fetch('/api/profile/photo', {
-                    method: 'POST',
-                    body: formData
-                });
-                
-                const result = await response.json();
-                if (result.success) {
-                    loadProfile(); // Reload profile to show new photo
-                    alert('Photo updated successfully!');
-                } else {
-                    alert(result.message || 'Failed to upload photo. Please try again.');
+            // Simulate upload progress
+            const progressInterval = setInterval(() => {
+                const currentWidth = parseInt(progressBar.style.width) || 0;
+                if (currentWidth < 90) {
+                    progressBar.style.width = `${currentWidth + 10}%`;
                 }
-            } catch (error) {
-                console.error('Error uploading photo:', error);
-                alert('An error occurred while uploading the photo. Please try again.');
-            } finally {
-                // Reset loading state
-                overlay.style.opacity = '1';
-                overlay.style.cursor = 'pointer';
+            }, 100);
+            
+            // Upload the file
+            const result = await uploadProfilePhoto(file);
+            
+            // Complete the progress bar
+            clearInterval(progressInterval);
+            progressBar.style.width = '100%';
+            
+            if (result.success) {
+                // Update the image with the new URL after a short delay
+                setTimeout(() => {
+                    img.src = result.photo_url;
+                    uploadProgress.style.display = 'none';
+                    overlay.style.display = 'flex';
+                }, 500);
+            } else {
+                throw new Error(result.error || 'Failed to upload photo');
             }
-        });
-    }
+        } catch (error) {
+            console.error('Error uploading photo:', error);
+            alert('Failed to upload photo. Please try again.');
+            
+            // Reset the UI
+            uploadProgress.style.display = 'none';
+            overlay.style.display = 'flex';
+        }
+    });
 }
 
 function setupCurrentlySection(type) {
@@ -531,4 +683,221 @@ function setupCurrentlySection(type) {
             }
         }, 500); // Debounce updates
     });
-} 
+}
+
+function setupAddFragmentButton() {
+    const addButton = document.querySelector('.add-fragment-btn');
+    if (addButton) {
+        addButton.addEventListener('click', showAddFragmentModal);
+    }
+}
+
+function setupModals() {
+    // Setup Add Fragment Modal
+    const addFragmentModal = document.getElementById('add-fragment-modal');
+    const addFragmentCloseBtn = addFragmentModal?.querySelector('.close');
+    
+    if (addFragmentModal && addFragmentCloseBtn) {
+        addFragmentCloseBtn.addEventListener('click', () => {
+            addFragmentModal.style.display = 'none';
+            const form = addFragmentModal.querySelector('form');
+            if (form) form.reset();
+        });
+    }
+    
+    // Setup Collection Modal
+    const collectionModal = document.getElementById('collection-modal');
+    const collectionCloseBtn = collectionModal?.querySelector('.close');
+    
+    if (collectionModal && collectionCloseBtn) {
+        collectionCloseBtn.addEventListener('click', () => {
+            collectionModal.style.display = 'none';
+            const form = collectionModal.querySelector('form');
+            if (form) form.reset();
+        });
+    }
+    
+    // Close modals when clicking outside
+    window.addEventListener('click', (e) => {
+        if (e.target.classList.contains('modal')) {
+            e.target.style.display = 'none';
+            const form = e.target.querySelector('form');
+            if (form) form.reset();
+        }
+    });
+}
+
+function showAddFragmentModal() {
+    const modal = document.getElementById('add-fragment-modal');
+    if (!modal) {
+        console.error('Add Fragment modal element not found');
+        return;
+    }
+    modal.style.display = 'block';
+}
+
+function showCollectionModal() {
+    const modal = document.getElementById('collection-modal');
+    if (!modal) {
+        console.error('Collection modal element not found');
+        return;
+    }
+    modal.style.display = 'block';
+}
+
+// Form submission handling
+const fragmentForm = document.getElementById('new-fragment-form');
+const submitButton = fragmentForm.querySelector('.submit-btn');
+const mediaInput = document.getElementById('fragment-media');
+const mediaPreview = document.querySelector('.media-preview');
+
+let selectedFile = null;
+
+function handleImageUpload(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    // Validate file type
+    if (!file.type.startsWith('image/')) {
+        showError('Please select an image file');
+        return;
+    }
+
+    // Validate file size (max 5MB)
+    if (file.size > 5 * 1024 * 1024) {
+        showError('Image size should be less than 5MB');
+        return;
+    }
+
+    selectedFile = file;
+    displayImagePreview(file);
+}
+
+function displayImagePreview(file) {
+    const reader = new FileReader();
+    const previewContainer = document.querySelector('.media-preview');
+    
+    reader.onload = function(e) {
+        previewContainer.innerHTML = `
+            <div class="preview-wrapper">
+                <img src="${e.target.result}" alt="Preview">
+                <button type="button" class="remove-image" onclick="removeImagePreview()">×</button>
+            </div>
+        `;
+    };
+    
+    reader.readAsDataURL(file);
+}
+
+function removeImagePreview() {
+    const previewContainer = document.querySelector('.media-preview');
+    previewContainer.innerHTML = '';
+    selectedFile = null;
+    const fileInput = document.getElementById('media-upload');
+    if (fileInput) {
+        fileInput.value = '';
+    }
+}
+
+async function handleFormSubmit(event) {
+    event.preventDefault();
+    const form = event.target;
+    const submitBtn = form.querySelector('.submit-btn');
+    const content = form.querySelector('.fragment-textarea').value.trim();
+
+    if (!content && !selectedFile) {
+        showError('Please enter content or upload an image');
+        return;
+    }
+
+    setLoading(submitBtn, true);
+
+    try {
+        const result = await createFragment(content, selectedFile);
+        
+        if (result.success) {
+            // Reset form and close modal
+            form.reset();
+            document.querySelector('.media-preview').innerHTML = '';
+            selectedFile = null;
+            const modal = document.getElementById('add-fragment-modal');
+            modal.style.display = 'none';
+            
+            // Refresh fragments display
+            await loadAndDisplayFragments();
+            
+            // Show success message
+            const successMessage = document.createElement('div');
+            successMessage.className = 'success-message';
+            successMessage.textContent = 'Fragment posted successfully!';
+            document.querySelector('.fragments-container').prepend(successMessage);
+            
+            setTimeout(() => {
+                successMessage.remove();
+            }, 3000);
+        } else {
+            throw new Error(result.error || 'Failed to create fragment');
+        }
+    } catch (error) {
+        console.error('Error creating fragment:', error);
+        showError(error.message || 'Failed to create fragment. Please try again.');
+    } finally {
+        setLoading(submitBtn, false);
+    }
+}
+
+function setLoading(button, isLoading) {
+    button.disabled = isLoading;
+    button.textContent = isLoading ? 'Posting...' : 'Post Fragment';
+    if (isLoading) {
+        button.classList.add('loading');
+    } else {
+        button.classList.remove('loading');
+    }
+}
+
+function showError(message) {
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'error-message';
+    errorDiv.textContent = message;
+    errorDiv.style.color = 'red';
+    errorDiv.style.marginTop = '0.5rem';
+    
+    const form = document.getElementById('new-fragment-form');
+    form.insertBefore(errorDiv, form.firstChild);
+    
+    setTimeout(() => {
+        errorDiv.remove();
+    }, 5000);
+}
+
+// Preview media if URL is valid
+mediaInput.addEventListener('input', async (e) => {
+    const url = e.target.value.trim();
+    mediaPreview.innerHTML = '';
+    
+    if (!url) return;
+    
+    try {
+        const response = await fetch(url, { method: 'HEAD' });
+        if (response.ok) {
+            const type = response.headers.get('content-type');
+            if (type.startsWith('image/')) {
+                const img = document.createElement('img');
+                img.src = url;
+                mediaPreview.appendChild(img);
+            } else if (type.startsWith('video/')) {
+                const video = document.createElement('video');
+                video.src = url;
+                video.controls = true;
+                mediaPreview.appendChild(video);
+            }
+        }
+    } catch (err) {
+        console.warn('Invalid media URL:', err);
+    }
+});
+
+// Make modal functions available globally
+window.showAddFragmentModal = showAddFragmentModal;
+window.showCollectionModal = showCollectionModal; 

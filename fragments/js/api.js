@@ -65,7 +65,6 @@ export async function getFragments() {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        console.log('API Response:', data); // Debug log
         
         if (!data.success) {
             throw new Error(data.error || 'Failed to fetch fragments');
@@ -77,34 +76,57 @@ export async function getFragments() {
     }
 }
 
-export async function createFragment(content, mediaUrl = null) {
+export async function createFragment(content, mediaFile = null) {
     try {
+        const formData = new FormData();
+        formData.append('content', content);
+        
+        if (mediaFile) {
+            formData.append('media', mediaFile);
+        }
+
         const response = await fetch(`${API_URL}/fragments`, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                content,
-                media_url: mediaUrl,
-                user_id: 1  // Using default user
-            })
+            body: formData
         });
         
         if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            const result = await response.json();
+            throw new Error(result.error || `HTTP error! status: ${response.status}`);
         }
         
-        const fragment = await response.json();
+        const result = await response.json();
         return {
             success: true,
-            fragment: fragment
+            fragment: result.fragment || result
         };
     } catch (error) {
         console.error('Error creating fragment:', error);
         return {
             success: false,
-            error: error.message
+            error: error.message || 'Failed to create fragment'
         };
+    }
+}
+
+export async function uploadProfilePhoto(file) {
+    try {
+        const formData = new FormData();
+        formData.append('profile_photo', file);
+
+        const response = await fetch(`${API_URL}/profile/photo`, {
+            method: 'POST',
+            body: formData
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const result = await response.json();
+        return result;
+    } catch (error) {
+        console.error('Error uploading profile photo:', error);
+        throw error;
     }
 } 

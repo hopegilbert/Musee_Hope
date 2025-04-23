@@ -13,54 +13,58 @@
         <nav class="nav-menu">
             <h1><a href="fragments.html" class="logo">Fragments</a></h1>
             <div class="nav-actions">
-                <a href="#" class="add-fragment-btn">
+                <button class="add-fragment-btn">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="12" y1="5" x2="12" y2="19"></line>
                         <line x1="5" y1="12" x2="19" y2="12"></line>
                     </svg>
                     Add Fragment
-                </a>
+                </button>
             </div>
         </nav>
 
         <div class="profile-section">
             <div class="profile-header">
-                <div class="profile-info">
-                    <h1 class="editable">Hope Gilbert</h1>
-                    <p class="subtitle editable">girly girl</p>
+                <div class="profile-info-wrapper">
+                    <div class="profile-info">
+                        <h1 class="editable">Hope Gilbert</h1>
+                        <p class="subtitle editable">girly girl</p>
+                    </div>
                 </div>
                 <div class="profile-image" title="Click to change profile photo">
                     <img src="./images/post.jpg" alt="Profile Photo" />
                 </div>
             </div>
-
-            <div class="stats-section">
+          
+            <div class="profile-info-wrapper">
+                <div class="stats-section">
                 <div class="stat-card">
-                    <p class="stat-number">124</p>
-                    <h3>Fragments</h3>
+                  <p class="stat-number">2</p>
+                  <h3>Fragments</h3>
                 </div>
                 <div class="stat-card">
-                    <p class="stat-number">318</p>
-                    <h3>Following</h3>
+                  <p class="stat-number">318</p>
+                  <h3>Following</h3>
                 </div>
+              </div>
             </div>
+        </div>
 
-            <div class="currently-section">
-                <div class="currently-reading">
-                    <strong>Reading</strong>
-                    <input type="text" placeholder="What are you reading?">
-                </div>
-                <div class="currently-listening">
-                    <strong>Listening to</strong>
-                    <input type="text" placeholder="What are you listening to?">
-                </div>
+        <div class="currently-section">
+            <div class="currently-reading">
+                <strong>Reading</strong>
+                <input type="text" placeholder="What are you reading?">
             </div>
+            <div class="currently-listening">
+                <strong>Listening to</strong>
+                <input type="text" placeholder="What are you listening to?">
+            </div>
+        </div>
 
-            <div class="posts-section">
-                <h2>Posts</h2>
-                <div class="fragments-container">
-                    <!-- Fragments will be displayed here -->
-                </div>
+        <div class="posts-section">
+            <h2>Posts</h2>
+            <div class="fragments-container">
+                <!-- Fragments will be displayed here -->
             </div>
         </div>
     </div>
@@ -73,26 +77,52 @@
         <!-- Collections Section -->
         <section class="collections-section">
             <h2>Collections</h2>
-            <button class="btn-new" onclick="document.getElementById('collection-modal').style.display='block'">New Collection</button>
+            <button class="btn-new" onclick="window.showCollectionModal()">New Collection</button>
             <div id="collections-container" class="collections-grid"></div>
         </section>
 
-        <!-- Modals -->
+        <!-- Collection Modal -->
         <div id="collection-modal" class="modal" style="display: none;">
             <div class="modal-content">
-                <span class="close" onclick="this.parentElement.parentElement.style.display='none'">&times;</span>
-                <h3>Create New Collection</h3>
+                <span class="close">&times;</span>
+                <h2>Create New Collection</h2>
                 <form id="new-collection-form">
-                    <input type="text" name="name" placeholder="Collection Name" required>
-                    <textarea name="description" placeholder="Description (optional)"></textarea>
-                    <button type="submit" class="btn-primary">Create Collection</button>
+                    <div class="form-group">
+                        <label for="collection-name">Name</label>
+                        <input type="text" id="collection-name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="collection-description">Description</label>
+                        <textarea id="collection-description" name="description"></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="submit-btn">Create Collection</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Add Fragment Modal -->
+        <div id="add-fragment-modal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Create New Fragment</h2>
+                <form id="new-fragment-form" class="fragment-form">
+                    <textarea class="fragment-textarea" placeholder="What's on your mind?"></textarea>
+                    <div class="media-upload-container">
+                        <input type="file" id="media-upload" accept="image/*" style="display: none;">
+                        <button type="button" class="upload-btn">Upload Image</button>
+                        <p class="upload-hint">or drag and drop an image here</p>
+                        <div class="media-preview"></div>
+                    </div>
+                    <button type="submit" class="submit-btn">Post Fragment</button>
                 </form>
             </div>
         </div>
     </div>
 
-    <script src="js/api.js" type="module"></script>
-    <script src="js/ui.js" type="module"></script>
+    <script type="module" src="js/api.js"></script>
+    <script type="module" src="js/ui.js"></script>
     <script src="js/collections.js" type="module"></script>
     <script src="js/reactions.js" type="module"></script>
     <script src="js/drafts.js" type="module"></script>

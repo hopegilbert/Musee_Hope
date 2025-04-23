@@ -3,6 +3,7 @@ const cors = require('cors');
 const multer = require('multer');
 const path = require('path');
 const sqlite3 = require('sqlite3').verbose();
+const fs = require('fs');
 require('dotenv').config();
 
 const app = express();
@@ -12,19 +13,46 @@ const port = process.env.PORT || 3003;
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '..')));
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+// Configure static file serving for uploads
+app.use('/uploads', express.static(path.join(__dirname, 'uploads'), {
+    setHeaders: (res, path) => {
+        res.setHeader('Cache-Control', 'no-cache');
+        res.setHeader('Access-Control-Allow-Origin', '*');
+    }
+}));
 
 // Configure multer for file uploads
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, 'uploads/')
+        const uploadDir = path.join(__dirname, 'uploads');
+        // Ensure upload directory exists
+        if (!fs.existsSync(uploadDir)) {
+            fs.mkdirSync(uploadDir, { recursive: true });
+        }
+        cb(null, uploadDir);
     },
     filename: function (req, file, cb) {
-        cb(null, Date.now() + '-' + file.originalname)
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+        cb(null, uniqueSuffix + path.extname(file.originalname));
     }
 });
 
-const upload = multer({ storage: storage });
+const fileFilter = (req, file, cb) => {
+    // Accept images only
+    if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
+        return cb(new Error('Only image files are allowed!'), false);
+    }
+    cb(null, true);
+};
+
+const upload = multer({ 
+    storage: storage,
+    fileFilter: fileFilter,
+    limits: {
+        fileSize: 5 * 1024 * 1024 // 5MB max file size
+    }
+});
 
 // Database setup
 const db = new sqlite3.Database('./database/fragments.db', (err) => {
@@ -54,7 +82,7 @@ function initializeDatabase() {
             user_id INTEGER,
             content TEXT,
             media_url TEXT,
-            is_draft BOOLEAN DEFAULT 0,
+            draft BOOLEAN DEFAULT 0,
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
             updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
             FOREIGN KEY (user_id) REFERENCES users (id)
@@ -171,20 +199,31 @@ app.put('/api/profile', (req, res) => {
 // Upload profile photo
 app.post('/api/profile/photo', upload.single('profile_photo'), (req, res) => {
     if (!req.file) {
-        res.status(400).json({ error: 'No file uploaded' });
-        return;
+        return res.status(400).json({ 
+            success: false, 
+            error: 'No file uploaded or invalid file type' 
+        });
     }
     
     const photoPath = `/uploads/${req.file.filename}`;
+    
     db.run(
         `UPDATE users SET profile_photo = ? WHERE id = 1`,
         [photoPath],
         function(err) {
             if (err) {
-                res.status(500).json({ error: err.message });
-                return;
+                console.error('Error updating profile photo:', err);
+                return res.status(500).json({ 
+                    success: false, 
+                    error: 'Failed to update profile photo in database' 
+                });
             }
-            res.json({ success: true, photo_url: photoPath });
+            
+            res.json({ 
+                success: true, 
+                photo_url: photoPath,
+                message: 'Profile photo updated successfully' 
+            });
         }
     );
 });
@@ -202,7 +241,7 @@ app.post('/api/fragments', upload.single('media'), (req, res) => {
     const mediaUrl = req.file ? `/uploads/${req.file.filename}` : null;
     
     db.run(
-        `INSERT INTO fragments (user_id, content, media_url, is_draft) VALUES (?, ?, ?, 0)`,
+        `INSERT INTO fragments (user_id, content, media_url, draft) VALUES (?, ?, ?, 0)`,
         [1, content, mediaUrl],
         function(err) {
             if (err) {
@@ -373,7 +412,7 @@ app.delete('/api/fragments/:id/reactions/:type', (req, res) => {
 
 // Drafts endpoints
 app.get('/api/fragments/drafts', (req, res) => {
-    db.all('SELECT * FROM fragments WHERE user_id = 1 AND is_draft = 1', [], (err, rows) => {
+    db.all('SELECT * FROM fragments WHERE user_id = 1 AND draft = 1', [], (err, rows) => {
         if (err) {
             res.status(500).json({ error: err.message });
             return;
@@ -384,7 +423,7 @@ app.get('/api/fragments/drafts', (req, res) => {
 
 app.post('/api/fragments/drafts', (req, res) => {
     const { content, media_url } = req.body;
-    db.run('INSERT INTO fragments (user_id, content, media_url, is_draft) VALUES (?, ?, ?, 1)',
+    db.run('INSERT INTO fragments (user_id, content, media_url, draft) VALUES (?, ?, ?, 1)',
         [1, content, media_url],
         function(err) {
             if (err) {
@@ -397,7 +436,7 @@ app.post('/api/fragments/drafts', (req, res) => {
 
 app.put('/api/fragments/:id/publish', (req, res) => {
     const { id } = req.params;
-    db.run('UPDATE fragments SET is_draft = 0, updated_at = CURRENT_TIMESTAMP WHERE id = ? AND user_id = 1',
+    db.run('UPDATE fragments SET draft = 0, updated_at = CURRENT_TIMESTAMP WHERE id = ? AND user_id = 1',
         [id],
         function(err) {
             if (err) {
@@ -406,6 +445,23 @@ app.put('/api/fragments/:id/publish', (req, res) => {
             }
             res.json({ success: true });
         });
+});
+
+// Error handler for multer
+app.use((err, req, res, next) => {
+    if (err instanceof multer.MulterError) {
+        if (err.code === 'LIMIT_FILE_SIZE') {
+            return res.status(400).json({
+                success: false,
+                error: 'File size is too large. Maximum size is 5MB.'
+            });
+        }
+        return res.status(400).json({
+            success: false,
+            error: err.message
+        });
+    }
+    next(err);
 });
 
 // Start server
