@@ -4,7 +4,6 @@ import {
     getFragments,
     uploadProfilePhoto,
     createFragment,
-    updateFeeling,
     updateFragment,
     deleteFragment
 } from './api.js';
@@ -290,6 +289,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeUI();
     setupAddFragmentButton();
     setupModals();
+    setupCurrentlySection('feeling');
 
     const uploadBtn = document.querySelector('.upload-btn');
     const fileInput = document.getElementById('media-upload');
@@ -317,50 +317,9 @@ export async function initializeUI() {
     setupProfileListeners();
     setupAddFragmentButton();
     setupModals();
-    setupFragmentForm();
+    setupCurrentlySection('feeling');
     loadProfile();
     loadAndDisplayFragments();
-}
-
-function setupFragmentForm() {
-    const fragmentForm = document.getElementById('new-fragment-form');
-    const submitButton = fragmentForm?.querySelector('.submit-btn');
-    const mediaInput = document.getElementById('media-upload');
-    const mediaPreview = document.querySelector('.media-preview');
-
-    if (fragmentForm) {
-        fragmentForm.addEventListener('submit', handleFormSubmit);
-    }
-
-    if (mediaInput) {
-        mediaInput.addEventListener('input', async (e) => {
-            const url = e.target.value.trim();
-            if (mediaPreview) {
-                mediaPreview.innerHTML = '';
-                
-                if (!url) return;
-                
-                try {
-                    const response = await fetch(url, { method: 'HEAD' });
-                    if (response.ok) {
-                        const type = response.headers.get('content-type');
-                        if (type.startsWith('image/')) {
-                            const img = document.createElement('img');
-                            img.src = url;
-                            mediaPreview.appendChild(img);
-                        } else if (type.startsWith('video/')) {
-                            const video = document.createElement('video');
-                            video.src = url;
-                            video.controls = true;
-                            mediaPreview.appendChild(video);
-                        }
-                    }
-                } catch (err) {
-                    console.warn('Invalid media URL:', err);
-                }
-            }
-        });
-    }
 }
 
 function loadProfile() {
@@ -370,7 +329,7 @@ function loadProfile() {
         subtitle: document.querySelector('.profile-subtitle'),
         photo: document.querySelector('.profile-photo'),
         count: document.querySelector('.fragment-count'),
-        feelingSection: document.querySelector('.feeling-section')
+        currentlySection: document.querySelector('.currently-section')
     };
 
     // Show loading state
@@ -417,15 +376,15 @@ function loadProfile() {
                 profileElements.count.classList.remove('loading');
             }
 
-            if (profileElements.feelingSection) {
-                const feelingInput = document.querySelector('.feeling input');
+            if (profileElements.currentlySection) {
+                const feelingInput = document.querySelector('.currently-feeling input');
                 
                 if (feelingInput) {
                     feelingInput.value = profile.feeling || '';
                     feelingInput.classList.remove('loading');
                 }
                 
-                profileElements.feelingSection.classList.remove('loading');
+                profileElements.currentlySection.classList.remove('loading');
             }
 
             return profile;
@@ -552,22 +511,26 @@ function createFragmentElement(fragment) {
             <div class="fragment-text">${fragment.content || ''}</div>
             ${fragment.media_url ? `<img src="${fragment.media_url}" alt="Fragment media">` : ''}
         </div>
-        <div class="fragment-actions">
-            <button class="edit-btn" data-id="${fragment.id}">Edit</button>
-            <button class="delete-btn" data-id="${fragment.id}">Delete</button>
-        </div>
+        ${!fragment.draft ? `
+            <div class="fragment-actions">
+                <button class="edit-btn" data-id="${fragment.id}">Edit</button>
+                <button class="delete-btn" data-id="${fragment.id}">Delete</button>
+            </div>
+        ` : ''}
         <div class="fragment-meta">
             <span class="fragment-date">${date}</span>
             ${fragment.reaction_count > 0 ? `<span class="reaction-count">♥ ${fragment.reaction_count}</span>` : ''}
         </div>
     `;
 
-    // Hook up buttons
-    const editBtn = div.querySelector('.edit-btn');
-    editBtn?.addEventListener('click', () => openEditModal(fragment));
+    // Only hook up buttons for non-draft fragments
+    if (!fragment.draft) {
+        const editBtn = div.querySelector('.edit-btn');
+        editBtn?.addEventListener('click', () => openEditModal(fragment));
 
-    const deleteBtn = div.querySelector('.delete-btn');
-    deleteBtn?.addEventListener('click', () => handleDelete(fragment.id));
+        const deleteBtn = div.querySelector('.delete-btn');
+        deleteBtn?.addEventListener('click', () => handleDelete(fragment.id));
+    }
 
     return div;
 }
@@ -605,8 +568,8 @@ function updateProfileDisplay(profile) {
         setupPhotoUpload(photoContainer);
     }
     
-    // Update feeling section
-    const feelingInput = document.querySelector('.feeling input');
+    // Update currently section
+    const feelingInput = document.querySelector('.currently-feeling input');
     
     if (feelingInput) feelingInput.value = profile.feeling || '';
     
@@ -636,8 +599,8 @@ function setupProfileListeners() {
         setupPhotoUpload(photoContainer);
     }
     
-    // Setup feeling section
-    setupFeelingSection();
+    // Setup currently section
+    setupCurrentlySection('feeling');
 }
 
 function makeEditable(element, field) {
@@ -656,20 +619,15 @@ function makeEditable(element, field) {
         if (newText !== currentText) {
             try {
                 const result = await updateProfile({ [field]: newText });
-                // The result should be the updated profile object
-                if (result && result[field] === newText) {
+                if (result.success) {
                     newElement.textContent = newText;
-                    // Update other profile elements if needed
-                    updateProfileDisplay(result);
                 } else {
                     newElement.textContent = currentText;
                     console.error('Failed to update profile');
-                    showMessage('Failed to update profile', 'error');
                 }
             } catch (error) {
                 console.error('Error updating profile:', error);
                 newElement.textContent = currentText;
-                showMessage(error.message || 'Failed to update profile', 'error');
             }
         } else {
             newElement.textContent = currentText;
@@ -729,20 +687,15 @@ function setupPhotoUpload(container) {
     });
 }
 
-function setupFeelingSection() {
-    const feelingInput = document.querySelector('.feeling input');
-    if (!feelingInput) {
-        console.warn('Feeling input element not found');
-        return;
-    }
-
+function setupCurrentlySection() {
+    const currentlyInput = document.querySelector('.currently-feeling input');
     const statusMessage = document.createElement('span');
     statusMessage.className = 'status-message';
-    feelingInput.parentNode.appendChild(statusMessage);
+    currentlyInput.parentNode.appendChild(statusMessage);
 
     let updateTimeout;
 
-    feelingInput.addEventListener('input', async (e) => {
+    currentlyInput.addEventListener('input', async (e) => {
         const feeling = e.target.value.trim();
         
         // Show saving status
@@ -757,7 +710,7 @@ function setupFeelingSection() {
         // Debounce the update
         updateTimeout = setTimeout(async () => {
             try {
-                await updateFeeling(feeling);
+                await updateCurrently(feeling);
                 statusMessage.textContent = 'Saved';
                 statusMessage.className = 'status-message saved';
                 
@@ -836,10 +789,14 @@ function showCollectionModal() {
 }
 
 // Form submission handling
-let selectedFile = null;
-let selectedEditFile = null;
+const fragmentForm = document.getElementById('new-fragment-form');
+const submitButton = fragmentForm?.querySelector('.submit-btn');
+const mediaInput = document.getElementById('fragment-media');
+const mediaPreview = document.querySelector('.media-preview');
 
-function handleImageUpload(event, isEdit = false) {
+let selectedFile = null;
+
+function handleImageUpload(event) {
     const file = event.target.files[0];
     if (!file) return;
 
@@ -855,23 +812,19 @@ function handleImageUpload(event, isEdit = false) {
         return;
     }
 
-    if (isEdit) {
-        selectedEditFile = file;
-    } else {
-        selectedFile = file;
-    }
-    displayImagePreview(file, isEdit);
+    selectedFile = file;
+    displayImagePreview(file);
 }
 
-function displayImagePreview(file, isEdit = false) {
+function displayImagePreview(file) {
     const reader = new FileReader();
-    const previewContainer = document.querySelector(isEdit ? '.edit-media-preview' : '.media-preview');
+    const previewContainer = document.querySelector('.media-preview');
     
     reader.onload = function(e) {
         previewContainer.innerHTML = `
             <div class="preview-wrapper">
                 <img src="${e.target.result}" alt="Preview">
-                <button type="button" class="remove-image" onclick="removeImagePreview(${isEdit})">×</button>
+                <button type="button" class="remove-image" onclick="removeImagePreview()">×</button>
             </div>
         `;
     };
@@ -879,22 +832,13 @@ function displayImagePreview(file, isEdit = false) {
     reader.readAsDataURL(file);
 }
 
-function removeImagePreview(isEdit = false) {
-    const previewContainer = document.querySelector(isEdit ? '.edit-media-preview' : '.media-preview');
+function removeImagePreview() {
+    const previewContainer = document.querySelector('.media-preview');
     previewContainer.innerHTML = '';
-    
-    if (isEdit) {
-        selectedEditFile = null;
-        const fileInput = document.getElementById('edit-media');
-        if (fileInput) {
-            fileInput.value = '';
-        }
-    } else {
-        selectedFile = null;
-        const fileInput = document.getElementById('media-upload');
-        if (fileInput) {
-            fileInput.value = '';
-        }
+    selectedFile = null;
+    const fileInput = document.getElementById('media-upload');
+    if (fileInput) {
+        fileInput.value = '';
     }
 }
 
@@ -903,7 +847,7 @@ async function handleFormSubmit(event) {
     const form = event.target;
     const submitBtn = form.querySelector('.submit-btn');
     const content = form.querySelector('.fragment-textarea').value.trim();
-    const mediaFile = selectedFile;  // Use the stored selectedFile instead of querying the input
+    const mediaFile = form.querySelector('#media-upload').files[0];
 
     if (!content && !mediaFile) {
         showError('Please enter content or upload an image');
@@ -916,50 +860,17 @@ async function handleFormSubmit(event) {
         const result = await createFragment(content, mediaFile);
         if (result.success) {
             form.reset();
-            removeImagePreview();  // Clear the preview
             const modal = document.getElementById('add-fragment-modal');
             if (modal) modal.style.display = 'none';
             await loadAndDisplayFragments();
+            await loadProfile(); // Refresh profile count
+            showMessage('Fragment created successfully', 'success');
         } else {
             throw new Error(result.error || 'Failed to create fragment');
         }
     } catch (error) {
         console.error('Error creating fragment:', error);
         showError(error.message || 'Failed to create fragment. Please try again.');
-    } finally {
-        setLoading(submitBtn, false);
-    }
-}
-
-async function handleEditFormSubmit(event) {
-    event.preventDefault();
-    const form = event.target;
-    const submitBtn = form.querySelector('.submit-btn');
-    const content = form.querySelector('.fragment-textarea').value.trim();
-    const mediaFile = selectedEditFile;  // Use the stored selectedEditFile
-    const fragmentId = form.dataset.fragmentId;
-
-    if (!content && !mediaFile) {
-        showError('Please enter content or upload an image');
-        return;
-    }
-
-    setLoading(submitBtn, true);
-
-    try {
-        const result = await updateFragment(fragmentId, content, mediaFile);
-        if (result.success) {
-            form.reset();
-            removeImagePreview(true);  // Clear the preview
-            const modal = document.getElementById('edit-fragment-modal');
-            if (modal) modal.style.display = 'none';
-            await loadAndDisplayFragments();
-        } else {
-            throw new Error(result.error || 'Failed to update fragment');
-        }
-    } catch (error) {
-        console.error('Error updating fragment:', error);
-        showError(error.message || 'Failed to update fragment. Please try again.');
     } finally {
         setLoading(submitBtn, false);
     }
@@ -1024,10 +935,40 @@ function showMessage(message, type = 'info') {
     }, 3000);
 }
 
+// Only add event listener if mediaInput exists
+if (mediaInput) {
+    mediaInput.addEventListener('input', async (e) => {
+        const url = e.target.value.trim();
+        if (mediaPreview) {
+            mediaPreview.innerHTML = '';
+            
+            if (!url) return;
+            
+            try {
+                const response = await fetch(url, { method: 'HEAD' });
+                if (response.ok) {
+                    const type = response.headers.get('content-type');
+                    if (type.startsWith('image/')) {
+                        const img = document.createElement('img');
+                        img.src = url;
+                        mediaPreview.appendChild(img);
+                    } else if (type.startsWith('video/')) {
+                        const video = document.createElement('video');
+                        video.src = url;
+                        video.controls = true;
+                        mediaPreview.appendChild(video);
+                    }
+                }
+            } catch (err) {
+                console.warn('Invalid media URL:', err);
+            }
+        }
+    });
+}
+
 // Make modal functions available globally
 window.showAddFragmentModal = showAddFragmentModal;
 window.showCollectionModal = showCollectionModal;
-window.removeImagePreview = removeImagePreview;
 
 function openEditModal(fragment) {
     const modal = document.getElementById('edit-modal');
@@ -1037,6 +978,18 @@ function openEditModal(fragment) {
 
     textarea.value = fragment.content;
     modal.dataset.fragmentId = fragment.id;
+
+    // Show current image in preview
+    const previewContainer = document.getElementById('edit-media-preview');
+    previewContainer.innerHTML = '';
+
+    if (fragment.media_url) {
+        const img = document.createElement('img');
+        img.src = fragment.media_url;
+        img.alt = 'Current media';
+        img.style.maxWidth = '100%';
+        previewContainer.appendChild(img);
+    }
 
     // Hook the save handler
     saveBtn.onclick = async () => {
@@ -1064,6 +1017,7 @@ async function handleDelete(id) {
     try {
         await deleteFragment(id);
         await loadAndDisplayFragments();
+        await loadProfile(); // Refresh profile count
         showMessage('Fragment deleted successfully', 'success');
     } catch (err) {
         console.error('Delete failed:', err);
