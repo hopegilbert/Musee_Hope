@@ -36,89 +36,90 @@
                     <div class="profile-image" title="Click to change profile photo">
                         <img src="./images/default-profile.jpg" alt="Profile Photo" />
                     </div>
+                </div>
+            </div>
 
-                    <div class="stats-box">
-                        <div class="stats-section">
-                            <div class="stat-card">
-                                <p class="stat-number">0</p>
-                                <h3>Fragments</h3>
-                            </div>
-                            <div class="stat-card">
-                                <p class="stat-number">318</p>
-                                <h3>Following</h3>
-                            </div>
-                        </div>
+            <div class="stats-box">
+                <div class="stats-section">
+                    <div class="stat-card">
+                        <p class="stat-number">2</p>
+                        <h3>Fragments</h3>
+                    </div>
+                    <div class="stat-card">
+                        <p class="stat-number">318</p>
+                        <h3>Following</h3>
                     </div>
                 </div>
             </div>
 
-        <div class="currently-section">
-            <div class="currently-reading">
-                <strong>Reading</strong>
-                <input type="text" placeholder="What are you reading?">
+            <div class="currently-section">
+                <div class="currently-reading">
+                    <strong>Reading</strong>
+                    <input type="text" placeholder="What are you reading?">
+                </div>
+                <div class="currently-listening">
+                    <strong>Listening to</strong>
+                    <input type="text" placeholder="What are you listening to?">
+                </div>
             </div>
-            <div class="currently-listening">
-                <strong>Listening to</strong>
-                <input type="text" placeholder="What are you listening to?">
-            </div>
-        </div>
 
-        <div class="posts-section">
-            <h2>Posts</h2>
-            <div class="fragments-container">
-                <!-- Fragments will be displayed here -->
-            </div>
-        </div>
-    </div>
-
-    <div class="gallery">
-        <!-- Fragments will be displayed here -->
-    </div>
-
-    <div class="profile-content">
-        <!-- Collections Section -->
-        <section class="collections-section">
-            <h2>Collections</h2>
-            <button class="btn-new" onclick="window.showCollectionModal()">New Collection</button>
-            <div id="collections-container" class="collections-grid"></div>
-        </section>
-
-        <!-- Collection Modal -->
-        <div id="collection-modal" class="modal" style="display: none;">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <h2>Create New Collection</h2>
-                <form id="new-collection-form">
-                    <div class="form-group">
-                        <label for="collection-name">Name</label>
-                        <input type="text" id="collection-name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="collection-description">Description</label>
-                        <textarea id="collection-description" name="description"></textarea>
-                    </div>
-                    <div class="form-actions">
-                        <button type="submit" class="submit-btn">Create Collection</button>
-                    </div>
-                </form>
+            <div class="posts-section">
+                <h2>Posts</h2>
+                <div class="fragments-container">
+                    <!-- Fragments will be displayed here -->
+                </div>
             </div>
         </div>
 
-        <!-- Add Fragment Modal -->
-        <div id="add-fragment-modal" class="modal" style="display: none;">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <h2>Create New Fragment</h2>
-                <form id="new-fragment-form" class="fragment-form">
-                    <textarea class="fragment-textarea" placeholder="What's on your mind?"></textarea>
-                    <div class="media-upload-container">
-                        <input type="file" id="media-upload" accept="image/*" style="display: none;">
-                        <button type="button" class="upload-btn">Upload Image</button>
-                        <p class="upload-hint">or drag and drop an image here</p>
-                        <div class="media-preview"></div>
-                    </div>
-                    <button type="submit" class="submit-btn">Post Fragment</button>
-                </form>
+        <div class="gallery">
+            <!-- Fragments will be displayed here -->
+        </div>
+
+        <div class="profile-content">
+            <!-- Collections Section -->
+            <section class="collections-section">
+                <h2>Collections</h2>
+                <button class="btn-new" onclick="window.showCollectionModal()">New Collection</button>
+                <div id="collections-container" class="collections-grid"></div>
+            </section>
+
+            <!-- Collection Modal -->
+            <div id="collection-modal" class="modal" style="display: none;">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2>Create New Collection</h2>
+                    <form id="new-collection-form">
+                        <div class="form-group">
+                            <label for="collection-name">Name</label>
+                            <input type="text" id="collection-name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="collection-description">Description</label>
+                            <textarea id="collection-description" name="description"></textarea>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="submit-btn">Create Collection</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Add Fragment Modal -->
+            <div id="add-fragment-modal" class="modal" style="display: none;">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2>Create New Fragment</h2>
+                    <form id="new-fragment-form" class="fragment-form">
+                        <textarea class="fragment-textarea" placeholder="What's on your mind?"></textarea>
+                        <div class="media-upload-container">
+                            <input type="file" id="media-upload" accept="image/*" style="display: none;">
+                            <button type="button" class="upload-btn">Upload Image</button>
+                            <p class="upload-hint">or drag and drop an image here</p>
+                            <div class="media-preview"></div>
+                        </div>
+                        <button type="submit" class="submit-btn">Post Fragment</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
