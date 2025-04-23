@@ -191,65 +191,50 @@ app.get('/api/profile', (req, res) => {
 });
 
 // Update user profile
-app.put('/api/profile', (req, res) => {
-    const { name, subtitle } = req.body;
-    
-    if (!name && !subtitle) {
-        res.status(400).json({ success: false, error: 'No update data provided' });
-        return;
-    }
+app.put('/api/profile', async (req, res) => {
+    try {
+        const { name, subtitle, feeling } = req.body;
 
-    let query = 'UPDATE users SET ';
-    const updates = [];
-    const values = [];
-
-    if (name) {
-        updates.push('name = ?');
-        values.push(name);
-    }
-    if (subtitle) {
-        updates.push('subtitle = ?');
-        values.push(subtitle);
-    }
-    updates.push('updated_at = CURRENT_TIMESTAMP');
-
-    query += updates.join(', ');
-    query += ' WHERE id = 1';
-
-    db.run(query, values, function(err) {
-        if (err) {
-            console.error('Error updating profile:', err);
-            res.status(500).json({ success: false, error: err.message });
+        if (!name && !subtitle && !feeling) {
+            res.status(400).json({ success: false, error: 'No update data provided' });
             return;
         }
 
-        // Fetch and return the updated profile with all necessary fields
-        db.get(`
-            SELECT 
-                u.*,
-                (SELECT COUNT(*) FROM fragments WHERE user_id = u.id AND draft = 0) as fragment_count
-            FROM users u
-            WHERE u.id = 1
-        `, [], (err, profile) => {
-            if (err) {
-                res.status(500).json({ success: false, error: err.message });
-                return;
-            }
+        const updates = [];
+        const values = [];
 
-            // Ensure all required fields exist
-            const formattedProfile = {
-                id: profile.id,
-                name: profile.name || '',
-                subtitle: profile.subtitle || '',
-                profile_photo: profile.profile_photo || '/images/default-profile.jpg',
-                fragment_count: profile.fragment_count || 0,
-                feeling: profile.feeling || null,
-                created_at: profile.created_at
-            };
+        if (name !== undefined) {
+            updates.push('name = ?');
+            values.push(name);
+        }
+        if (subtitle !== undefined) {
+            updates.push('subtitle = ?');
+            values.push(subtitle);
+        }
+        if (feeling !== undefined) {
+            updates.push('feeling = ?');
+            values.push(feeling);
+        }
 
-            res.json({ success: true, profile: formattedProfile });
-        });
-    });
+        if (updates.length > 0) {
+            const updateQuery = `UPDATE users SET ${updates.join(', ')} WHERE id = ?`;
+            values.push(req.user.id);
+            await db.run(updateQuery, values);
+        }
+
+        // Get the updated profile
+        const profile = await db.get(`
+            SELECT u.*, c.feeling 
+            FROM users u 
+            LEFT JOIN currently c ON u.id = c.user_id 
+            WHERE u.id = ?
+        `, [req.user.id]);
+
+        res.json({ success: true, profile });
+    } catch (error) {
+        console.error('Error updating profile:', error);
+        res.status(500).json({ success: false, error: 'Failed to update profile' });
+    }
 });
 
 // Upload profile photo
