@@ -55,11 +55,14 @@ const upload = multer({
 });
 
 // Database setup
-const db = new sqlite3.Database('./database/fragments.db', (err) => {
+const db = new sqlite3.Database(path.join(__dirname, 'database', 'fragments.db'), (err) => {
     if (err) {
         console.error('Error opening database:', err);
     } else {
         console.log('Connected to SQLite database');
+        // Enable foreign keys and set journal mode
+        db.run('PRAGMA foreign_keys = ON');
+        db.run('PRAGMA journal_mode = WAL');
         initializeDatabase();
     }
 });
