@@ -261,13 +261,13 @@ app.post('/api/profile/photo', upload.single('profile_photo'), (req, res) => {
     );
 });
 
-// Create new fragment
+// Create new fragment as a draft (draft = 1 by default)
 app.post('/api/fragments', upload.single('media'), (req, res) => {
     const { content } = req.body;
     const mediaUrl = req.file ? `/uploads/${req.file.filename}` : null;
 
     db.run(
-        'INSERT INTO fragments (user_id, content, media_url) VALUES (?, ?, ?)',
+        'INSERT INTO fragments (user_id, content, media_url, draft) VALUES (?, ?, ?, 1)', // Save as draft by default
         [1, content, mediaUrl],
         function(err) {
             if (err) {
@@ -375,14 +375,14 @@ app.delete('/api/fragments/:id', (req, res) => {
     });
 });
 
-// Get all fragments for a user
+// Get all fragments for a user (excluding drafts)
 app.get('/api/fragments', (req, res) => {
     db.all(`
         SELECT f.*, 
                COUNT(r.id) as reaction_count 
         FROM fragments f 
         LEFT JOIN reactions r ON f.id = r.fragment_id
-        WHERE f.user_id = 1
+        WHERE f.user_id = 1 AND f.draft = 0
         GROUP BY f.id
         ORDER BY f.created_at DESC
     `, [], (err, fragments) => {
@@ -461,13 +461,22 @@ app.delete('/api/fragments/:id/reactions/:type', (req, res) => {
 });
 
 // Drafts endpoints
+// Get all drafts for a user
 app.get('/api/fragments/drafts', (req, res) => {
-    db.all('SELECT * FROM fragments WHERE user_id = 1 AND draft = 1', [], (err, rows) => {
+    db.all(`
+        SELECT f.*, 
+               COUNT(r.id) as reaction_count 
+        FROM fragments f 
+        LEFT JOIN reactions r ON f.id = r.fragment_id
+        WHERE f.user_id = 1 AND f.draft = 1
+        GROUP BY f.id
+        ORDER BY f.created_at DESC
+    `, [], (err, drafts) => {
         if (err) {
             res.status(500).json({ error: err.message });
             return;
         }
-        res.json(rows);
+        res.json({ success: true, drafts: drafts || [] });
     });
 });
 
@@ -518,23 +527,40 @@ app.use((err, req, res, next) => {
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
+// Save fragment to drafts (draft=1)
 app.post('/api/fragments/save_to_drafts', (req, res) => {
-    const { content } = req.body;
-    if (!content) {
-        return res.status(400).json({ error: 'Content is required' });
+    const { content, media_url } = req.body;
+    // Allow saving draft with either content or media_url
+    if (!content && !media_url) {
+        return res.status(400).json({ error: 'Content or media_url is required' });
     }
-
-    // Save fragment to drafts (set draft flag to true)
     db.run(
-        `INSERT INTO fragments (content, draft) VALUES (?, 1)`, 
-        [content],
+        `INSERT INTO fragments (user_id, content, media_url, draft) VALUES (?, ?, ?, 1)`,
+        [1, content || null, media_url || null],
         function (err) {
             if (err) {
                 console.error('Error saving fragment to drafts:', err);
                 return res.status(500).json({ error: 'Failed to save fragment to drafts' });
             }
-
-            res.json({ success: true });
+            db.get(`SELECT * FROM fragments WHERE id = ?`, [this.lastID], (err, row) => {
+                if (err) {
+                    return res.status(500).json({ error: 'Failed to retrieve saved draft' });
+                }
+                res.json({ success: true, draft: row });
+            });
         }
     );
+});
+// Publish draft fragment (set draft = 0)
+app.put('/api/fragments/:id/publish', (req, res) => {
+    const { id } = req.params;
+    db.run('UPDATE fragments SET draft = 0, updated_at = CURRENT_TIMESTAMP WHERE id = ? AND user_id = 1',
+        [id],
+        function(err) {
+            if (err) {
+                res.status(500).json({ error: err.message });
+                return;
+            }
+            res.json({ success: true });
+        });
 });

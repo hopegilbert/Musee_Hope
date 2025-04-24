@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const uploadBtn = document.querySelector('.upload-btn');
     const fileInput = document.getElementById('media-upload');
     const fragmentForm = document.querySelector('.fragment-form');
+    const saveDraftBtn = document.getElementById('save-draft-btn');
 
     if (uploadBtn) {
         uploadBtn.addEventListener('click', (e) => {
@@ -33,6 +34,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (fragmentForm) {
         fragmentForm.addEventListener('submit', handleFormSubmit);
+    }
+
+    // Save to Drafts button logic
+    if (saveDraftBtn) {
+        saveDraftBtn.addEventListener('click', handleSaveToDrafts);
     }
 });
 
@@ -143,6 +149,7 @@ function loadProfile() {
         });
 }
 
+// Function to load fragments for the profile gallery (only non-drafts)
 async function loadAndDisplayFragments() {
     const container = document.querySelector('.fragments-container');
     if (!container) return;
@@ -156,10 +163,15 @@ async function loadAndDisplayFragments() {
     `;
 
     try {
-        const fragments = await getFragments();
-        console.log('Loaded fragments:', fragments); // Debug log
-        
-        if (!fragments || fragments.length === 0) {
+        const fragments = await getFragments();  // Only fetch published fragments (draft = 0)
+        console.log('Loaded fragments:', fragments);
+
+        let fragmentsArray = fragments;
+        if (fragments && fragments.success && Array.isArray(fragments.fragments)) {
+            fragmentsArray = fragments.fragments;
+        }
+
+        if (!fragmentsArray || fragmentsArray.length === 0) {
             container.innerHTML = `
                 <div class="empty-state">
                     <p>No fragments yet</p>
@@ -169,7 +181,11 @@ async function loadAndDisplayFragments() {
             return;
         }
 
-        displayFragments(fragments);
+        // Explicitly filter out drafts from the fragments array
+        const publishedFragments = fragmentsArray.filter(fragment => fragment.draft === 0);
+
+        // Display the filtered fragments in the profile gallery
+        displayFragments(publishedFragments);
     } catch (error) {
         console.error('Error loading fragments:', error);
         container.innerHTML = `
@@ -179,6 +195,121 @@ async function loadAndDisplayFragments() {
                 <button onclick="loadAndDisplayFragments()" class="retry-button">Try Again</button>
             </div>
         `;
+    }
+}
+
+// Function to load drafts and display them in the Drafts modal
+async function loadDrafts() {
+    const container = document.querySelector('.drafts-container');
+    if (!container) return;
+
+    // Clear existing drafts to prevent duplicates
+    container.innerHTML = `
+        <div class="loading-state">
+            <div class="loading-spinner"></div>
+            <p>Loading drafts...</p>
+        </div>
+    `;
+
+    try {
+        const drafts = await getDrafts();  // Get only drafts (draft = 1)
+        console.log('Loaded drafts:', drafts);
+
+        let draftsArray = drafts;
+        if (drafts && drafts.success && Array.isArray(drafts.drafts)) {
+            draftsArray = drafts.drafts;
+        }
+
+        if (!draftsArray || draftsArray.length === 0) {
+            container.innerHTML = `
+                <div class="empty-state">
+                    <p>No drafts yet</p>
+                    <button onclick="showNewFragmentModal()" class="primary-button">Create your first draft</button>
+                </div>
+            `;
+            return;
+        }
+
+        // Display the drafts in the Drafts modal
+        displayDrafts(draftsArray);
+    } catch (error) {
+        console.error('Error loading drafts:', error);
+        container.innerHTML = `
+            <div class="error-state">
+                <p>Failed to load drafts</p>
+                <small>${error.message}</small>
+                <button onclick="loadDrafts()" class="retry-button">Try Again</button>
+            </div>
+        `;
+    }
+}
+
+// Function to display drafts in the Drafts modal
+function displayDrafts(drafts) {
+    const container = document.querySelector('.drafts-container');
+    container.innerHTML = '';  // Clear existing content
+
+    drafts.forEach(draft => {
+        const draftElement = document.createElement('div');
+        draftElement.className = 'draft-item';
+        draftElement.dataset.draftId = draft.id;
+        draftElement.innerHTML = `
+            <p>${draft.content}</p>
+            <button class="publish-draft-btn" data-id="${draft.id}">Publish</button>
+            <button class="delete-draft-btn" data-id="${draft.id}">Delete</button>
+        `;
+
+        // Add event listener for publishing draft
+        const publishButton = draftElement.querySelector('.publish-draft-btn');
+        publishButton.addEventListener('click', () => publishDraft(draft.id));
+
+        // Add event listener for deleting draft
+        const deleteButton = draftElement.querySelector('.delete-draft-btn');
+        deleteButton.addEventListener('click', () => deleteDraft(draft.id));
+
+        container.appendChild(draftElement);
+    });
+}
+
+// Function to publish a draft
+async function publishDraft(draftId) {
+    try {
+        const response = await fetch(`/api/fragments/${draftId}/publish`, {
+            method: 'PUT',
+        });
+
+        const result = await response.json();
+        if (result.success) {
+            console.log('Draft published');
+            await loadDrafts();  // Reload the drafts modal
+            await loadAndDisplayFragments();  // Refresh the profile gallery
+        } else {
+            console.error('Failed to publish draft');
+        }
+    } catch (error) {
+        console.error('Error publishing draft:', error);
+    }
+}
+
+// Function to delete a draft
+async function deleteDraft(draftId) {
+    try {
+        const response = await fetch(`/api/fragments/${draftId}`, {
+            method: 'DELETE',
+        });
+
+        if (response.ok) {
+            console.log('Draft deleted');
+            // Remove the draft element from the DOM immediately
+            const draftElement = document.querySelector(`[data-draft-id="${draftId}"]`);
+            if (draftElement) {
+                draftElement.remove();
+            }
+        } else {
+            console.error('Failed to delete draft');
+        }
+    } catch (error) {
+        console.error('Error deleting draft:', error);
     }
 }
 
@@ -640,13 +771,191 @@ async function handleFormSubmit(event) {
     }
 }
 
-function setLoading(button, isLoading) {
+// Function to handle saving to drafts
+async function handleSaveToDrafts(event) {
+    event.preventDefault();
+    const form = document.getElementById('new-fragment-form');
+    const saveDraftBtn = document.getElementById('save-draft-btn');
+    const content = form.querySelector('.fragment-textarea').value.trim();
+    const mediaFile = form.querySelector('#media-upload').files[0];
+
+    if (!content && !mediaFile) {
+        showError('Please enter content or upload an image to save as draft');
+        return;
+    }
+
+    setLoading(saveDraftBtn, true, 'Saving...');
+    try {
+        let media_url = null;
+        if (mediaFile) {
+            media_url = await uploadImageAndGetUrl(mediaFile);
+        }
+
+        const resp = await fetch('/api/fragments/save_to_drafts', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                content,
+                media_url,
+            }),
+        });
+
+        const data = await resp.json();
+        if (data.success) {
+            form.reset();
+            const modal = document.getElementById('add-fragment-modal');
+            if (modal) modal.style.display = 'none';
+            await loadDrafts();
+            showMessage('Saved to drafts!', 'success');
+        } else {
+            throw new Error(data.error || 'Failed to save draft');
+        }
+    } catch (error) {
+        console.error('Error saving draft:', error);
+        showError(error.message || 'Failed to save draft. Please try again.');
+    } finally {
+        setLoading(saveDraftBtn, false, 'Save to Drafts');
+    }
+}
+
+// Helper to upload image file and get the media_url
+async function uploadImageAndGetUrl(file) {
+    const formData = new FormData();
+    formData.append('media', file);
+    // Post to an endpoint that handles media uploading and returns the URL
+    const resp = await fetch('/api/fragments', {
+        method: 'POST',
+        body: formData
+    });
+    const data = await resp.json();
+    if (data && data.success && data.fragment && data.fragment.media_url) {
+        return data.fragment.media_url;
+    }
+    throw new Error('Failed to upload image');
+}
+
+function setLoading(button, isLoading, textIfLoading) {
+    if (!button) return;
     button.disabled = isLoading;
-    button.textContent = isLoading ? 'Posting...' : 'Post Fragment';
     if (isLoading) {
         button.classList.add('loading');
+        button.textContent = textIfLoading || button.textContent || 'Loading...';
     } else {
         button.classList.remove('loading');
+        // Restore button text based on class
+        if (button.classList.contains('submit-btn')) {
+            button.textContent = 'Post Fragment';
+        } else if (button.classList.contains('save-to-drafts-btn')) {
+            button.textContent = 'Save to Drafts';
+        }
+    }
+}
+// --- DRAFTS SECTION ---
+// Fetch and display drafts in the drafts modal
+async function loadAndDisplayDrafts() {
+    const draftsModal = document.getElementById('drafts-modal');
+    const draftsContainer = draftsModal?.querySelector('.drafts-container');
+    if (!draftsContainer) return;
+    draftsContainer.innerHTML = '<div class="loading-state"><div class="loading-spinner"></div><p>Loading drafts...</p></div>';
+    try {
+        const resp = await fetch('/api/fragments/drafts');
+        const data = await resp.json();
+        let drafts = [];
+        if (data && data.success && Array.isArray(data.drafts)) {
+            drafts = data.drafts;
+        } else if (Array.isArray(data)) {
+            drafts = data; // fallback for old API
+        }
+        if (drafts.length === 0) {
+            draftsContainer.innerHTML = '<div class="empty-state"><p>No drafts yet.</p></div>';
+            return;
+        }
+        draftsContainer.innerHTML = '';
+        drafts.forEach(draft => {
+            const el = createDraftElement(draft);
+            draftsContainer.appendChild(el);
+        });
+    } catch (error) {
+        draftsContainer.innerHTML = `<div class="error-state"><p>Failed to load drafts</p><small>${error.message}</small></div>`;
+    }
+}
+
+function createDraftElement(draft) {
+    const div = document.createElement('div');
+    div.className = 'fragment draft';
+    div.dataset.fragmentId = draft.id;
+    const date = new Date(draft.created_at).toLocaleString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+    });
+    div.innerHTML = `
+        <div class="fragment-content">
+            <div class="fragment-text">${draft.content || ''}</div>
+            ${draft.media_url ? `<img src="${draft.media_url}" alt="Draft media">` : ''}
+        </div>
+        <div class="fragment-actions">
+            <button class="publish-btn" data-id="${draft.id}">Publish</button>
+            <button class="delete-btn" data-id="${draft.id}">Delete</button>
+        </div>
+        <div class="fragment-meta">
+            <span class="fragment-date">${date}</span>
+        </div>
+    `;
+    // Publish handler
+    div.querySelector('.publish-btn')?.addEventListener('click', () => handlePublishDraft(draft.id));
+    // Delete handler
+    div.querySelector('.delete-btn')?.addEventListener('click', () => handleDelete(draft.id, true));
+    return div;
+}
+
+// Handler to publish a draft
+async function handlePublishDraft(draftId) {
+    try {
+        const resp = await fetch(`/api/fragments/${draftId}/publish`, { method: 'PUT' });
+        const data = await resp.json();
+        if (data && data.success) {
+            await loadAndDisplayDrafts();
+            await loadAndDisplayFragments();
+            await loadProfile();
+            showMessage('Draft published!', 'success');
+        } else {
+            throw new Error(data.error || 'Failed to publish draft');
+        }
+    } catch (error) {
+        showError(error.message || 'Failed to publish draft');
+    }
+}
+
+// Show drafts modal
+function showDraftsModal() {
+    const modal = document.getElementById('drafts-modal');
+    if (!modal) return;
+    modal.style.display = 'block';
+    loadAndDisplayDrafts();
+}
+
+// Make showDraftsModal globally available
+window.showDraftsModal = showDraftsModal;
+
+// Also reload drafts modal when opening
+const draftsModalBtn = document.querySelector('.add-fragment-btn[onclick*="showDraftsModal"]');
+if (draftsModalBtn) {
+    draftsModalBtn.addEventListener('click', showDraftsModal);
+}
+
+// If modal close button exists, hook up close
+const draftsModal = document.getElementById('drafts-modal');
+if (draftsModal) {
+    const closeBtn = draftsModal.querySelector('.close');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            draftsModal.style.display = 'none';
+        });
     }
 }
 
@@ -822,65 +1131,55 @@ async function handleDelete(id) {
         showMessage('Failed to delete fragment: ' + err.message, 'error');
     }
 }// Save the fragment as a draft when clicking the "Save to Drafts" button
-document.getElementById('save-draft-btn').addEventListener('click', async () => {
-    const content = document.getElementById('new-fragment-content').value.trim();
+const saveDraftBtn = document.getElementById('save-draft-btn');
+if (saveDraftBtn) {
+    saveDraftBtn.addEventListener('click', async () => {
+        const contentInput = document.getElementById('new-fragment-content');
+        const content = contentInput ? contentInput.value.trim() : '';
 
-    if (!content) {
-        showMessage('Content cannot be empty', 'error');
-        return;
-    }
+        if (!content) {
+            showMessage('Content cannot be empty', 'error');
+            return;
+        }
 
-    try {
-        // Call API to save the fragment as a draft
-        await saveFragmentToDrafts(content);
-        
-        // Close the modal after saving the draft
-        document.getElementById('add-fragment-modal').style.display = 'none';
+        try {
+            // Call API to save the fragment as a draft
+            await saveFragmentToDrafts(content);
 
-        // Show drafts in the modal after saving
-        await showDraftsModal();
+            // Close the modal after saving the draft
+            const addFragmentModal = document.getElementById('add-fragment-modal');
+            if (addFragmentModal) addFragmentModal.style.display = 'none';
 
-        showMessage('Fragment saved to drafts', 'success');
-    } catch (error) {
-        console.error('Error saving fragment to drafts:', error);
-        showMessage('Failed to save fragment to drafts', 'error');
-    }
-});
+            // Show drafts in the modal after saving
+            if (typeof showDraftsModal === 'function') {
+                await showDraftsModal();
+            }
+
+            showMessage('Fragment saved to drafts', 'success');
+        } catch (error) {
+            console.error('Error saving fragment to drafts:', error);
+            showMessage('Failed to save fragment to drafts', 'error');
+        }
+    });
+}
 
 // Function to save fragment to drafts via the API
 async function saveFragmentToDrafts(content) {
-    const response = await fetch(`${API_URL}/fragments/save_to_drafts`, {
+    // You may need to set API_URL somewhere globally or import it
+    const API_URL = window.API_URL || '/api';
+    const response = await fetch(`${API_URL}/fragments/drafts`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ content })
     });
 
     if (!response.ok) {
-        const errorData = await response.json();
+        let errorData;
+        try {
+            errorData = await response.json();
+        } catch {
+            errorData = {};
+        }
         throw new Error(errorData.error || 'Failed to save fragment to drafts');
-    }
-}
-// Function to show the drafts modal and fetch drafts
-async function showDraftsModal() {
-    const modal = document.getElementById('drafts-modal');
-    const draftsContainer = modal.querySelector('.drafts-container');
-    
-    try {
-        // Fetch drafts from the backend
-        const drafts = await getDrafts();
-        draftsContainer.innerHTML = '';  // Clear any previous drafts
-
-        drafts.forEach(draft => {
-            const draftElement = document.createElement('div');
-            draftElement.classList.add('draft-item');
-            draftElement.textContent = draft.content;  // Display content of draft
-            draftsContainer.appendChild(draftElement);
-        });
-
-        // Show the modal
-        modal.style.display = 'block';
-    } catch (error) {
-        console.error('Error fetching drafts:', error);
-        showMessage('Failed to load drafts', 'error');
     }
 }
