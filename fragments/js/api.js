@@ -71,11 +71,12 @@ export async function getFragments() {
     }
 }
 
-export async function createFragment(content, mediaFile = null) {
+// Accepts draft parameter: 0 = published, 1 = draft
+export async function createFragment(content, mediaFile = null, draft = 0) {
     try {
         const formData = new FormData();
         formData.append('content', content);
-        
+        formData.append('draft', draft); // Ensure draft status is sent
         if (mediaFile) {
             formData.append('media', mediaFile);
         }
@@ -84,12 +85,12 @@ export async function createFragment(content, mediaFile = null) {
             method: 'POST',
             body: formData
         });
-        
+
         if (!response.ok) {
             const result = await response.json();
             throw new Error(result.error || `HTTP error! status: ${response.status}`);
         }
-        
+
         const result = await response.json();
         return {
             success: true,

@@ -33,13 +33,86 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (fragmentForm) {
-        fragmentForm.addEventListener('submit', handleFormSubmit);
+        fragmentForm.addEventListener('submit', handlePostFragment);
     }
 
     // Save to Drafts button logic
     if (saveDraftBtn) {
         saveDraftBtn.addEventListener('click', handleSaveToDrafts);
     }
+
+// Handle Saving a Draft (draft = 1)
+// Handle Saving a Draft (draft = 1)
+async function handleSaveToDrafts(e) {
+    e.preventDefault();
+    const content = document.querySelector('.fragment-textarea').value;
+    const mediaInput = document.querySelector('#media-upload');
+    const mediaFile = mediaInput && mediaInput.files[0] ? mediaInput.files[0] : null;
+
+    if (!content) {
+        showMessage('Content is required to save a draft!', 'error');
+        return;
+    }
+
+    try {
+        const response = await createFragment(content, mediaFile, 1); // 1 = draft
+        if (response.success) {
+            showMessage('Fragment saved to drafts.', 'success');
+            loadDrafts(); // Refresh the drafts modal with the newly saved draft
+
+            // Reset the media preview after saving to drafts
+            const mediaPreview = document.querySelector('.media-preview');
+            if (mediaPreview) {
+                mediaPreview.innerHTML = '';  // Clear any existing media preview
+            }
+
+            // Close the modal and reset form
+            const addFragmentModal = document.getElementById('add-fragment-modal');
+            if (addFragmentModal) addFragmentModal.style.display = 'none';
+            if (e.target && typeof e.target.reset === 'function') e.target.reset();
+        } else {
+            showMessage('Error saving draft.', 'error');
+        }
+    } catch (error) {
+        showMessage('Error saving draft.', 'error');
+    }
+}
+// Handle Posting a Fragment (draft = 0)
+// Handle Posting a Fragment (draft = 0)
+async function handlePostFragment(e) {
+    e.preventDefault();
+    const content = document.querySelector('.fragment-textarea').value;
+    const mediaInput = document.querySelector('#media-upload');
+    const mediaFile = mediaInput && mediaInput.files[0] ? mediaInput.files[0] : null;
+
+    if (!content) {
+        showMessage('Content is required to post a fragment!', 'error');
+        return;
+    }
+
+    try {
+        const response = await createFragment(content, mediaFile, 0); // 0 = published
+        if (response.success) {
+            showMessage('Fragment posted successfully!', 'success');
+            loadAndDisplayFragments(); // Refresh the profile gallery to show the new fragment
+            
+            // Reset the media preview after posting
+            const mediaPreview = document.querySelector('.media-preview');
+            if (mediaPreview) {
+                mediaPreview.innerHTML = '';  // Clear any existing media preview
+            }
+
+            // Close the modal and reset form
+            const addFragmentModal = document.getElementById('add-fragment-modal');
+            if (addFragmentModal) addFragmentModal.style.display = 'none';
+            if (e.target && typeof e.target.reset === 'function') e.target.reset();
+        } else {
+            showMessage('Error posting fragment.', 'error');
+        }
+    } catch (error) {
+        showMessage('Error posting fragment.', 'error');
+    }
+}
 });
 
 // Export the initialization function
@@ -300,10 +373,24 @@ async function deleteDraft(draftId) {
 
         if (response.ok) {
             console.log('Draft deleted');
-            // Remove the draft element from the DOM immediately
+
+            // Immediately remove the draft element from the DOM
             const draftElement = document.querySelector(`[data-draft-id="${draftId}"]`);
             if (draftElement) {
-                draftElement.remove();
+                draftElement.remove();  // Remove the draft from the drafts list in the modal
+            }
+
+            // If there are no drafts left in the container, show the message
+            const draftsContainer = document.querySelector('.drafts-container');
+            if (draftsContainer && draftsContainer.children.length === 0) {
+                draftsContainer.innerHTML = `<p>No drafts left</p>`;
+            }
+
+            // Ensure modal refresh without closing it
+            const draftsModal = document.getElementById('drafts-modal');
+            if (draftsModal && draftsModal.style.display !== 'none') {
+                // Re-fetch and reload drafts if the modal is still visible
+                loadDrafts();  // Refresh drafts list
             }
         } else {
             console.error('Failed to delete draft');
@@ -364,35 +451,84 @@ function createFragmentElement(fragment) {
         minute: '2-digit'
     });
     
+    // The dropdown menu is outside the fragment-actions for pop-out
     div.innerHTML = `
         <div class="fragment-content">
             <div class="fragment-text">${fragment.content || ''}</div>
             ${fragment.media_url ? `<img src="${fragment.media_url}" alt="Fragment media">` : ''}
         </div>
         ${!fragment.draft ? `
-            <div class="fragment-actions">
+            <div class="fragment-actions" style="position: relative;">
+                <button class="more-options-btn" data-id="${fragment.id}">...</button>
+            </div>
+            <div class="dropdown-menu" data-id="${fragment.id}">
                 <button class="edit-btn" data-id="${fragment.id}">Edit</button>
                 <button class="delete-btn" data-id="${fragment.id}">Delete</button>
             </div>
         ` : ''}
-        <div class="fragment-meta">
-            <span class="fragment-date">${date}</span>
-            ${fragment.reaction_count > 0 ? `<span class="reaction-count">♥ ${fragment.reaction_count}</span>` : ''}
-        </div>
+        <!-- fragment-meta removed for now -->
     `;
 
     // Only hook up buttons for non-draft fragments
     if (!fragment.draft) {
+        // Edit button
         const editBtn = div.querySelector('.edit-btn');
-        // Ensure the edit button triggers the modal with correct data and makes it visible
-        editBtn?.addEventListener('click', () => openEditModal(fragment));
-
+        editBtn?.addEventListener('click', function(e) {
+            openEditModal(fragment);
+            // Hide the dropdown menu after selecting an option
+            const dropdownMenu = e.target.closest('.dropdown-menu');
+            if (dropdownMenu) dropdownMenu.style.display = 'none';
+        });
+        // Delete button
         const deleteBtn = div.querySelector('.delete-btn');
-        deleteBtn?.addEventListener('click', () => handleDelete(fragment.id));
+        deleteBtn?.addEventListener('click', function(e) {
+            handleDelete(fragment.id);
+            // Hide the dropdown menu after selecting an option
+            const dropdownMenu = e.target.closest('.dropdown-menu');
+            if (dropdownMenu) dropdownMenu.style.display = 'none';
+        });
     }
 
     return div;
 }
+
+document.body.addEventListener('click', (e) => {
+    // Only show dropdown if 'menu-trigger' is clicked
+    if (e.target.classList.contains('menu-trigger')) {
+        e.stopPropagation(); // Prevent click propagation
+
+        const fragmentId = e.target.dataset.id;
+        const dropdownMenu = document.querySelector(`.fragment-menu[data-id="${fragmentId}"]`); // Correcting to fragment-menu
+
+        // Close all other dropdowns
+        document.querySelectorAll('.fragment-menu').forEach(menu => {
+            if (menu !== dropdownMenu) {
+                menu.classList.remove('active');
+            }
+        });
+
+        // Toggle visibility of the dropdown
+        dropdownMenu.classList.toggle('active');
+
+        // Set dropdown position to be relative to the button
+        const btnRect = e.target.getBoundingClientRect();
+        dropdownMenu.style.left = `${btnRect.left + btnRect.width / 2 - dropdownMenu.offsetWidth / 2}px`;
+        dropdownMenu.style.top = `${btnRect.bottom}px`;
+    } else {
+        document.querySelectorAll('.fragment-menu').forEach(menu => {
+            menu.classList.remove('active');
+        });
+    }
+
+    document.addEventListener('keydown', (e) => {
+        // Close all dropdowns when the escape key is pressed
+        if (e.key === 'Escape') {
+            document.querySelectorAll('.menu-content').forEach(menu => {
+                menu.classList.remove('active');
+            });
+        }
+    });
+});
 
 function updateProfileDisplay(profile) {
     // Update name and subtitle
@@ -1181,5 +1317,134 @@ async function saveFragmentToDrafts(content) {
             errorData = {};
         }
         throw new Error(errorData.error || 'Failed to save fragment to drafts');
+    }
+}
+document.addEventListener('DOMContentLoaded', () => {
+    // Initialize all dropdown menus
+    initializeDropdowns();
+
+    // Setup profile, fragment, and draft modal functionality
+    setupModals();
+});
+
+function initializeDropdowns() {
+    // Setup the dropdown trigger (ellipsis button)
+    const menuTriggers = document.querySelectorAll('.menu-trigger');
+    menuTriggers.forEach(trigger => {
+        trigger.addEventListener('click', (event) => {
+            // Prevent the event from bubbling up
+            event.stopPropagation();
+
+            // Get the ID of the fragment
+            const fragmentId = trigger.getAttribute('data-id');
+            const dropdownMenu = document.querySelector(`.menu-content[data-id="${fragmentId}"]`);
+
+            // Close all other dropdowns before toggling this one
+            document.querySelectorAll('.menu-content').forEach(menu => {
+                if (menu !== dropdownMenu) {
+                    menu.classList.remove('active');
+                }
+            });
+
+            // Toggle the dropdown visibility
+            dropdownMenu.classList.toggle('active');
+        });
+    });
+
+    // Close the dropdown menu if the user clicks anywhere outside the dropdown
+    document.addEventListener('click', () => {
+        document.querySelectorAll('.menu-content').forEach(menu => {
+            menu.classList.remove('active');
+        });
+    });
+
+    // Prevent clicks inside the dropdown from closing it
+    const dropdownMenus = document.querySelectorAll('.menu-content');
+    dropdownMenus.forEach(menu => {
+        menu.addEventListener('click', (event) => {
+            event.stopPropagation();
+        });
+    });
+}
+
+// Handle deleting the fragment
+async function deleteFragment(fragmentId) {
+    try {
+        const response = await fetch(`/api/fragments/${fragmentId}`, {
+            method: 'DELETE',
+        });
+
+        if (response.ok) {
+            console.log('Fragment deleted');
+            document.querySelector(`[data-fragment-id="${fragmentId}"]`).remove();
+        } else {
+            console.error('Error deleting fragment');
+        }
+    } catch (error) {
+        console.error('Error deleting fragment:', error);
+    }
+}
+
+// Handle editing the fragment
+function editFragment(fragmentId) {
+    const contentElement = document.querySelector(`.fragment-content[data-id="${fragmentId}"]`);
+    const content = contentElement ? contentElement.textContent.trim() : '';
+
+    // Set up the modal for editing
+    const editModal = document.getElementById('edit-fragment-modal');
+    const editTextArea = document.getElementById('edit-content');
+    const editMediaPreview = document.getElementById('edit-media-preview');
+
+    // Set the current content into the text area for editing
+    editTextArea.value = content;
+
+    // Show the edit modal
+    editModal.style.display = 'block';
+
+    // Update the fragment when saved
+    const saveButton = document.getElementById('edit-save');
+    saveButton.addEventListener('click', async () => {
+        const newContent = editTextArea.value;
+        if (newContent !== content) {
+            try {
+                const response = await updateFragment(fragmentId, newContent);
+                if (response.success) {
+                    console.log('Fragment updated');
+                    editModal.style.display = 'none';
+                    loadAndDisplayFragments(); // Refresh the fragments
+                } else {
+                    console.error('Failed to update fragment');
+                }
+            } catch (error) {
+                console.error('Error updating fragment:', error);
+            }
+        }
+    });
+
+    // Close modal functionality
+    const closeModalButton = document.querySelector('.close');
+    closeModalButton.addEventListener('click', () => {
+        editModal.style.display = 'none';
+    });
+}
+
+// Function to update fragment after editing
+async function updateFragment(fragmentId, content) {
+    try {
+        const response = await fetch(`/api/fragments/${fragmentId}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ content }),
+        });
+
+        const result = await response.json();
+        if (response.ok) {
+            return { success: true, fragment: result.fragment };
+        } else {
+            return { success: false, error: result.error };
+        }
+    } catch (error) {
+        console.error('Error updating fragment:', error);
+        return { success: false, error: error.message };
     }
 }

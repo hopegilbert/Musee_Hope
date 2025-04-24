@@ -149,6 +149,9 @@ function initializeDatabase() {
     });
 }
 
+// All route definitions go here after initialization
+// ... existing code ...
+
 // Get user profile
 app.get('/api/profile', (req, res) => {
     db.get(`
@@ -261,14 +264,17 @@ app.post('/api/profile/photo', upload.single('profile_photo'), (req, res) => {
     );
 });
 
-// Create new fragment as a draft (draft = 1 by default)
+// Create new fragment (accepts draft flag: 0 = published, 1 = draft)
 app.post('/api/fragments', upload.single('media'), (req, res) => {
     const { content } = req.body;
+    // Allow draft status to be set via form-data (default to 1 for backwards compatibility)
+    let draft = typeof req.body.draft !== 'undefined' ? parseInt(req.body.draft) : 1;
+    if (isNaN(draft)) draft = 1;
     const mediaUrl = req.file ? `/uploads/${req.file.filename}` : null;
 
     db.run(
-        'INSERT INTO fragments (user_id, content, media_url, draft) VALUES (?, ?, ?, 1)', // Save as draft by default
-        [1, content, mediaUrl],
+        'INSERT INTO fragments (user_id, content, media_url, draft) VALUES (?, ?, ?, ?)',
+        [1, content, mediaUrl, draft],
         function(err) {
             if (err) {
                 console.error('Error creating fragment:', err);
@@ -527,6 +533,7 @@ app.use((err, req, res, next) => {
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
+
 // Save fragment to drafts (draft=1)
 app.post('/api/fragments/save_to_drafts', (req, res) => {
     const { content, media_url } = req.body;
@@ -551,6 +558,7 @@ app.post('/api/fragments/save_to_drafts', (req, res) => {
         }
     );
 });
+
 // Publish draft fragment (set draft = 0)
 app.put('/api/fragments/:id/publish', (req, res) => {
     const { id } = req.params;

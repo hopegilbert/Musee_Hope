@@ -1749,75 +1749,67 @@
 
 /* Fragment Menu Styles */
 .fragment-menu {
-    position: relative;
+  position: relative;
 }
 
 .menu-trigger {
-    background: transparent;
-    border: none;
-    font-size: 20px;
-    padding: 5px 10px;
-    cursor: pointer;
-    color: var(--text-color);
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  padding: 5px 10px;
+  cursor: pointer;
+  color: var(--text-color);
 }
 
 .menu-trigger:hover {
-    color: var(--accent-color);
+  color: var(--accent-color);
 }
 
 .menu-content {
-    display: none;
-    position: absolute;
-    right: 0;
-    top: 100%;
-    background: var(--block-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-    min-width: 150px;
-     border-radius: 8px;
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background: var(--block-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  min-width: 150px;
+  border-radius: 8px;
 }
 
 .menu-content.active {
-    display: block;
+  display: block;
 }
 
 .menu-item {
-    display: block;
-    width: 100%;
-    padding: 8px 16px;
-    text-align: left;
-    background: var(--background-color);
-    border: none;
-    color: var(--text-color);
-    cursor: pointer;
-    font-size: 14px;
+  display: block;
+  width: 100%;
+  padding: 8px 16px;
+  text-align: left;
+  background: var(--background-color);
+  border: none;
+  color: var(--text-color);
+  cursor: pointer;
+  font-size: 14px;
 }
 
 .menu-item:hover {
-    background: var(--grey-line);
-    color: var(--block-bg);
-     border-radius: 8px;
-}
-
-
-.menu-item i {
-    margin-right: 8px;
-    width: 16px
-    b;
-     border-radius: 8px;
+  background: var(--grey-line);
+  color: var(--block-bg);
+  border-radius: 8px;
 }
 
 .menu-item.delete {
-    color: var(--text);
-    background: var(--block-bg);
-     border-radius: 8px;
+  color: var(--text);
+  background: var(--block-bg);
+  border-radius: 8px;
 }
 
 .menu-item.delete:hover {
-    background: var(--grey-line);
-    color: red;
+  background: var(--grey-line);
+  color: red;
 }
 
 /* Message Styles */

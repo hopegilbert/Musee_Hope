@@ -68,7 +68,32 @@
             <div class="posts-section">
                 <h2>Posts</h2>
                 <div class="fragments-container">
-                    <!-- Fragments will be displayed here -->
+                    <!--
+                        Each fragment will be rendered as:
+                        <div class="fragment" data-fragment-id="${fragment.id}">
+                            <div class="fragment-content">
+                                <div class="fragment-text">${fragment.content || ''}</div>
+                                ${fragment.media_url ? `<img src="${fragment.media_url}" alt="Fragment media">` : ''}
+                            </div>
+                            <div class="fragment-actions">
+                                <!-- Ellipsis Button -->
+                                <div class="fragment" data-fragment-id="${fragment.id}">
+                                    <div class="fragment-content">
+                                        <div class="fragment-text">${fragment.content || ''}</div>
+                                        ${fragment.media_url ? `<img src="${fragment.media_url}" alt="Fragment media">` : ''}
+                                    </div>
+                                    <div class="fragment-menu" data-id="${fragment.id}">
+                                        <!-- Ellipsis Button -->
+                                        <button class="menu-trigger" data-id="${fragment.id}">...</button>
+                                        <!-- Dropdown Menu -->
+                                        <div class="menu-content" data-id="${fragment.id}">
+                                            <button class="menu-item edit" data-id="${fragment.id}">Edit</button>
+                                            <button class="menu-item delete" data-id="${fragment.id}">Delete</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            <!-- fragment-meta removed for now -->
+                        </div>
                 </div>
             </div>
         </div>
