@@ -529,39 +529,6 @@
     margin-top: 1rem;
   }
 
-  /* Drafts Section */
-  .drafts-section {
-    margin: 2rem 0;
-  }
-
-  .drafts-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.5rem;
-    margin-top: 1rem;
-  }
-
-  .draft-card {
-    background: var(--card-bg);
-    border-radius: 8px;
-    padding: 1.5rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-
-  .draft-content img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 4px;
-    margin-bottom: 1rem;
-  }
-
-  .draft-actions {
-    display: flex;
-    gap: 0.5rem;
-    margin-top: 1rem;
-  }
-
   /* Reactions */
   .reactions {
     display: flex;
@@ -735,6 +702,7 @@
     margin-top: 1rem;
     width: 100%;
     max-width: 200px;
+    text-align: center; 
   }
 
   .submit-btn:hover {
@@ -774,8 +742,7 @@
 
   /* Responsive Design */
   @media (max-width: 768px) {
-    .collections-grid,
-    .drafts-grid {
+    .collections-grid {
         grid-template-columns: 1fr;
     }
 
@@ -1097,44 +1064,6 @@
     font-family: var(--font-sans);
   }
 
-  /* Drafts Section */
-  .drafts-section {
-    margin: 2rem 0;
-    padding: 0 1rem;
-  }
-
-  .drafts-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.5rem;
-    margin-top: 1rem;
-  }
-
-  .draft-card {
-    background: var(--card-bg);
-    border-radius: 8px;
-    padding: 1.5rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-
-  .draft-content {
-    margin-bottom: 1rem;
-  }
-
-  .draft-content img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 4px;
-    margin-bottom: 1rem;
-  }
-
-  .draft-content p {
-    color: var(--text-primary);
-    margin: 0;
-    font-family: var(--font-sans);
-  }
-
   /* Stats Section */
   .stats-section {
     display: grid;
@@ -1172,14 +1101,12 @@
   @media (max-width: 768px) {
     .posts-section,
     .collections-section,
-    .drafts-section,
     .stats-section {
         padding: 0 1rem;
     }
 
     .profile-gallery,
-    .collections-grid,
-    .drafts-grid {
+    .collections-grid {
         grid-template-columns: 1fr;
         gap: 1rem;
     }
@@ -1196,7 +1123,6 @@
     margin-top: 12px;
 }
 
-.save-draft-btn,
 .add-to-collection-btn {
     background-color: #f0f0f0;
     border: none;
@@ -1207,7 +1133,6 @@
     transition: background-color 0.2s;
 }
 
-.save-draft-btn:hover,
 .add-to-collection-btn:hover {
     background-color: #e0e0e0;
 }
@@ -1323,28 +1248,29 @@
     object-fit: cover;
 }
 
+/* Fragment Action Buttons */
 .fragment-actions {
-    display: flex;
-    gap: 0.75rem;
-    margin-top: 1rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--border);
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
 }
 
 .fragment-actions button {
-    font-family: var(--font-sans);
-    font-size: 0.875rem;
-    padding: 0.5rem 1rem;
-    border-radius: 6px;
-    border: 1px solid var(--border);
-    background: white;
-    color: var(--text);
-    cursor: pointer;
-    transition: var(--transition);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: white;
+  color: var(--text);
+  cursor: pointer;
+  transition: var(--transition);
 }
 
 .fragment-actions button:hover {
-    background: var(--background);
+  background: var(--background);
 }
 
 .fragment-timestamp {
@@ -1496,6 +1422,7 @@
     align-items: center;
     gap: 0.4rem;
     transition: all 0.2s ease;
+    text-align: center; 
 }
 
 .submit-btn:hover {
@@ -1543,6 +1470,10 @@
     overflow: hidden;
     cursor: pointer;
     transition: transform 0.2s ease;
+  }
+
+.profile-photo-container {
+  margin-top: -20px;
 }
 
 .profile-image:hover {
@@ -1562,6 +1493,8 @@
     background: none;
     border: none;
     box-shadow: none;
+    margin-right: 3rem;
+    width: 1650px
 }
 
 .stats-section {
@@ -1632,35 +1565,52 @@
     width: 100%;
 }
 
+/* Profile Photo Container with hover/scale effect */
 .profile-photo-container {
     position: relative;
+    z-index: 1;
     display: inline-block;
     width: 200px;
     height: 200px;
     border-radius: 50%;
     overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.profile-photo-container:hover {
+    transform: scale(1.05);
 }
 
 .profile-photo-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: relative;
+  z-index: 1;
 }
 
+/* Photo upload overlay with fade-in on hover */
+/* Photo upload overlay with fade-in on hover */
 .photo-upload-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.2s;
-    cursor: pointer;
-    border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  border-radius: 50%;
+  z-index: 2;
+}
+
+.profile-photo-container:hover .photo-upload-overlay {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .photo-upload-overlay input[type="file"] {
@@ -2070,21 +2020,23 @@
 
 /* Button Styles */
 .upload-btn, .submit-btn {
-    display: inline-block !important;
-    padding: 8px 16px;
-    background: #2c2c2c;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 1rem;
-    opacity: 1 !important;
-    margin: 10px 0;
-    transition: background-color 0.2s ease;
+  background: var(--text);
+  color: var(--bg);
+  border: 1px solid var(--text);
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  transition: all 0.3s ease;
+  width: 100%;
+  max-width: 200px;
+  margin-top: 1rem;
 }
 
 .upload-btn:hover, .submit-btn:hover {
-    background: #404040;
+  background: var(--highlight);
+  color: var(--text);
 }
 
 .upload-btn.loading, .submit-btn.loading {
@@ -2189,117 +2141,285 @@
 .align-items-center {
     align-items: center;
 }
-  
 
-  
-.feeling-section {
-    margin-top: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+.currently-section input[name="feeling"] {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  color: rgba(44, 44, 44, 0.7);
+  border: none;
+  background: transparent;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  display: block;
+  padding-top: 1rem;
 }
-
-.feeling-item {
-    flex: 1;
-}
-
-.feeling-item label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: #666;
-}
-
-.feeling-item input {
-    width: 100%;
-    padding: 0.5rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 1rem;
-}
-
-.feeling-item input:focus {
-    outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
-}
-
-.feeling-item input::placeholder {
-    color: #999;
-}
-
-.status-message {
-    font-size: 0.8rem;
-    margin-left: 0.5rem;
-    transition: all 0.2s ease;
-    opacity: 0;
-}
-
-.status-message.saving {
-    color: #666;
-    opacity: 1;
-}
-
-.status-message.saved {
-    color: #28a745;
-    opacity: 1;
-}
-
-.status-message.error {
-    color: #dc3545;
-    opacity: 1;
-}
-  
-.feeling {
-    margin-top: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.feeling input {
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid var(--text);
-    padding: 0.5rem 0;
-    font-family: var(--font-serif);
-    font-size: 1rem;
-    color: var(--text);
-    width: 100%;
-    max-width: 300px;
-}
-
-.feeling input:focus {
-    outline: none;
-    border-color: var(--text);
-}
-
-.feeling input::placeholder {
-    color: rgba(44, 44, 44, 0.5);
-}
-
-.status-message {
-    font-size: 0.8rem;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.status-message.visible {
-    opacity: 1;
-}
-
-.status-message.saving {
-    color: #666;
-}
-
-.status-message.saved {
-    color: #28a745;
-}
-
-.status-message.error {
-    color: #dc3545;
-}
-
-  
  
  
  
+/* Profile Image Overlay and Upload Styles */
+.profile-photo-container {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.profile-photo-container:hover {
+  transform: scale(1.05);
+}
+
+.profile-photo-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.photo-upload-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  border-radius: 50%;
+  z-index: 2;
+}
+
+.profile-photo-container:hover .photo-upload-overlay {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.photo-upload-overlay span {
+  color: white;
+  font-size: 0.8rem;
+}
+
+.photo-upload-overlay input[type="file"] {
+  display: none !important;
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+/* Adjusted modal width and centered content */
+.modal-content {
+  padding: 2rem;  /* Reduced padding */
+  background: var(--bg);
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 40%; /* Decrease the width of the modal */
+  max-width: 600px;  /* Add a max-width to prevent it from being too wide on larger screens */
+  margin: 0 auto;  /* Center the modal */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
+}
+
+/* Image preview inside the modal */
+#edit-media-preview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;  /* Full width of the modal content */
+  margin-bottom: 1rem;
+}
+
+#edit-media-preview img {
+  width: 60%;  /* Make the image smaller */
+  height: auto;
+  object-fit: contain; /* Ensure the image scales correctly */
+  border-radius: 8px;
+}
+
+/* Textarea styling inside modal */
+#edit-content {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  resize: vertical;
+  width: 90%;
+  transition: all 0.3s ease;
+  margin-bottom: 1rem;
+}
+
+#edit-content:focus {
+  outline: none;
+  border-color: var(--highlight);
+}
+
+/* Save Button Styling */
+#edit-save {
+  background: var(--text);
+  color: var(--bg);
+  border: 1px solid var(--text);
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  transition: all 0.3s ease;
+  width: 100%;
+  max-width: 200px;  /* Ensure button is appropriately sized */
+}
+
+#edit-save:hover {
+  background: var(--highlight);
+  color: var(--text);
+}
+
+/* Close button style */
+.close {
+  font-size: 1.5rem;
+  color: var(--text);
+  cursor: pointer;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+/* Modal Overlay */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center;     /* Center vertically */
+}
+
+@media (max-width: 768px) {
+  .modal-content {
+      width: 90%;
+      max-width: 95%;
+  }
+  #edit-save {
+      width: 100%;
+  }
+}
+/* Save to Drafts Button */
+.save-to-drafts-btn {
+  background: var(--text);
+  color: var(--bg);
+  border: 1px solid var(--text);
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  transition: all 0.3s ease;
+  width: 100%;
+  max-width: 200px;
+  margin-top: 1rem;
+}
+
+.save-to-drafts-btn:hover {
+  background: var(--highlight);
+  color: var(--text);
+}
+
+/* Modal Content */
+.modal-content {
+  padding: 2rem;  /* Reduced padding */
+  background: var(--bg);
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 40%; /* Decrease the width of the modal */
+  max-width: 600px;  /* Add a max-width to prevent it from being too wide on larger screens */
+  margin: 0 auto;  /* Center the modal */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
+}
+
+/* Image preview inside the modal */
+#edit-media-preview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;  /* Full width of the modal content */
+  margin-bottom: 1rem;
+}
+
+#edit-media-preview img {
+  width: 60%;  /* Make the image smaller */
+  height: auto;
+  object-fit: contain; /* Ensure the image scales correctly */
+  border-radius: 8px;
+}
+
+/* Textarea styling inside modal */
+#edit-content {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  resize: vertical;
+  width: 90%;
+  transition: all 0.3s ease;
+  margin-bottom: 1rem;
+}
+
+#edit-content:focus {
+  outline: none;
+  border-color: var(--highlight);
+}
+
+/* Save Button Styling */
+#edit-save {
+  background: var(--text);
+  color: var(--bg);
+  border: 1px solid var(--text);
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  transition: all 0.3s ease;
+  width: 100%;
+  max-width: 200px;  /* Ensure button is appropriately sized */
+}
+
+#edit-save:hover {
+  background: var(--highlight);
+  color: var(--text);
+}
+/* Button Container for Submit and Save to Drafts */
+.button-container {
+  display: flex;
+  justify-content: space-between;  /* Space buttons evenly */
+  gap: 10px;  /* Add some space between the buttons */
+  margin-top: 1rem;
+  width: 100%;
+}
+
+/* Ensure buttons are appropriately sized */
+.submit-btn,
+.save-to-drafts-btn {
+  width: 48%;  /* Ensure both buttons take up almost half of the available space */
+}

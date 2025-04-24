@@ -35,21 +35,26 @@
                 <div class="profile-info">
                     <h1 class="profile-name" contenteditable="true">Your Name</h1>
                     <p class="profile-subtitle" contenteditable="true">Your Subtitle</p>
-                    <div class="feeling">
-                        <input type="text" placeholder="What are you feeling?" />
+                    <div class="currently-section">
+                        <input type="text" name="feeling" placeholder="What are you feeling?" />
                         <span class="status-message"></span>
                     </div>
                 </div>
                 <div class="profile-photo-container">
                     <img src="images/default-profile.jpg" alt="Profile Photo" class="profile-photo">
-                    <input type="file" id="photo-upload" accept="image/*" style="display: none;">
-                    <button class="photo-upload-btn">Change Photo</button>
+                    <div class="photo-upload-overlay">
+                        <span>Update Photo</span>
+                        <input type="file" id="photo-upload" accept="image/*" style="display: none;">
+                    </div>
+                    <div class="upload-progress" style="display: none;">
+                        <div class="progress-bar"></div>
+                    </div>
                 </div>
             </div>
 
             <div class="stats-box">
                 <div class="stats-section">
-                    <div class="stat-card">
+                    <div class="stat-card fragments-count">
                         <p class="stat-number">2</p>
                         <h3>Fragments</h3>
                     </div>
@@ -114,12 +119,27 @@
                             <p class="upload-hint">or drag and drop an image here</p>
                             <div class="media-preview"></div>
                         </div>
-                        <button type="submit" class="submit-btn">Post Fragment</button>
+                        
+                        <!-- Button Container for Submit and Save to Drafts -->
+                        <div class="button-container">
+                            <button type="submit" class="submit-btn">Post Fragment</button>
+                            <button class="save-to-drafts-btn" id="save-draft-btn">Save to Drafts</button>
+                        </div>
                     </form>
                 </div>
             </div>
-        </div>
+
+<!-- Edit Fragment Modal -->
+<div id="edit-fragment-modal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Edit Fragment</h2>
+        <textarea id="edit-content" placeholder="Edit your fragment..."></textarea>
+        <div id="edit-media-preview" class="media-preview"></div> <!-- for previewing media -->
+        <button id="edit-save">Save</button>
     </div>
+</div>
+
 
     <!-- Message Template -->
     <div id="message-template" style="display: none;">
@@ -151,5 +171,3 @@
     <script src="./js/drafts.js" type="module"></script>
 </body>
 </html> 
- 
- 

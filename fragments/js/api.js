@@ -18,10 +18,11 @@ export async function getProfile() {
         }
         
         const data = await response.json();
+        console.log('Fragment count received:', (data.profile || data).fragment_count);
         console.log('Profile data received:', data);
         
-        // Return the data directly since the server already validates the response
-        return data;
+        // Normalize the response to always return the actual profile object
+        return data.profile || data;
     } catch (error) {
         console.error('Error in getProfile:', error);
         throw error;
@@ -30,6 +31,7 @@ export async function getProfile() {
 
 export async function updateProfile(data) {
     try {
+        console.log('Updating profile with data:', data);
         const response = await fetch(`${API_URL}/profile`, {
             method: 'PUT',
             headers: {
@@ -130,6 +132,8 @@ export async function updateFragment(fragmentId, content, mediaFile = null, shou
         }
         formData.append('remove_media', shouldRemoveMedia ? 'true' : 'false');
 
+        console.log('Updating fragment with content:', content); // Add this for debugging
+
         const response = await fetch(`${API_URL}/fragments/${fragmentId}`, {
             method: 'PUT',
             body: formData
@@ -158,33 +162,14 @@ export async function deleteFragment(fragmentId) {
             throw new Error(result.error || `Failed to delete fragment: ${response.statusText}`);
         }
 
-        const result = await response.json();
-        return result;
-    } catch (error) {
-        console.error('Error deleting fragment:', error);
-        throw error;
-    }
-}
-
-export async function updateFeeling(feeling) {
-    try {
-        const response = await fetch(`${API_URL}/feeling`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ feeling })
-        });
-
-        if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.error || 'Failed to update feeling');
+        if (response.status !== 204) {
+            const result = await response.json();
+            return result;
         }
 
-        const data = await response.json();
-        return data;
+        return { success: true };  // Success response for 204 No Content
     } catch (error) {
-        console.error('Error updating feeling:', error);
+        console.error('Error deleting fragment:', error);
         throw error;
     }
 }

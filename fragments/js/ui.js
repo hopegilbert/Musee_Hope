@@ -8,281 +8,6 @@ import {
     deleteFragment
 } from './api.js';
 
-// Basic styles for profile management
-const style = document.createElement('style');
-style.textContent = `
-    .editable {
-        cursor: pointer;
-        font-family: inherit;
-        font-size: inherit;
-    }
-    
-    .editable:hover {
-        background: rgba(0, 0, 0, 0.05);
-    }
-    
-    .editable-input {
-        font-family: inherit;
-        font-size: inherit;
-        border: none;
-        border-bottom: 2px solid #000;
-        background: transparent;
-        padding: 0.2rem;
-        width: 100%;
-    }
-
-    .profile-photo-container {
-        position: relative;
-        display: inline-block;
-        width: 200px;
-        height: 200px;
-        border-radius: 50%;
-        overflow: hidden;
-    }
-    
-    .profile-photo-container img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-    
-    .photo-upload-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.5);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        opacity: 0;
-        transition: opacity 0.2s;
-        cursor: pointer;
-        border-radius: 50%;
-    }
-    
-    .photo-upload-overlay input[type="file"] {
-        display: none !important;
-        position: absolute;
-        width: 0;
-        height: 0;
-        opacity: 0;
-    }
-    
-    .profile-photo-container:hover .photo-upload-overlay {
-        opacity: 1;
-    }
-    
-    .photo-upload-overlay span {
-        color: white;
-        font-size: 0.8rem;
-    }
-
-    .upload-btn, .submit-btn {
-        display: inline-block !important;
-        padding: 8px 16px;
-        background: #2c2c2c;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 1rem;
-        opacity: 1 !important;
-        margin: 10px 0;
-        transition: background-color 0.2s ease;
-    }
-
-    .upload-btn:hover, .submit-btn:hover {
-        background: #404040;
-    }
-
-    .upload-btn.loading, .submit-btn.loading {
-        background: #cccccc;
-        cursor: not-allowed;
-    }
-
-    .fragment {
-        margin-bottom: 2rem;
-        padding: 1.5rem;
-        background: white;
-        border: 1px solid #eee;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    }
-
-    .fragment-content {
-        margin-bottom: 1rem;
-    }
-
-    .fragment-text {
-        font-size: 1.1rem;
-        line-height: 1.6;
-        margin-bottom: 1rem;
-        white-space: pre-wrap;
-    }
-
-    .fragment-content img {
-        max-width: 100%;
-        border-radius: 8px;
-        margin-top: 1rem;
-    }
-
-    .fragment-meta {
-        font-size: 0.9rem;
-        color: #666;
-        margin-top: 1rem;
-        padding-top: 1rem;
-        border-top: 1px solid #eee;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .fragment-date {
-        color: #888;
-    }
-
-    .reaction-count {
-        color: #e74c3c;
-        font-weight: 500;
-    }
-
-    .loading-message {
-        text-align: center;
-        padding: 2rem;
-        color: #666;
-    }
-
-    .empty-state {
-        text-align: center;
-        padding: 2rem;
-        color: #666;
-        font-style: italic;
-    }
-
-    .error-message {
-        text-align: center;
-        padding: 2rem;
-        color: #dc3545;
-    }
-
-    .retry-button {
-        margin-top: 1rem;
-        padding: 0.5rem 1rem;
-        background: #dc3545;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-
-    .retry-button:hover {
-        background: #c82333;
-    }
-
-    .fragment-error {
-        margin: 1rem 0;
-        padding: 1rem;
-        background: #fff3f3;
-        border: 1px solid #dc3545;
-        border-radius: 4px;
-        color: #dc3545;
-    }
-
-    .fragment-error p {
-        margin: 0 0 0.5rem 0;
-        font-weight: bold;
-    }
-
-    .fragment-error small {
-        color: #666;
-    }
-
-    .loading-state, .empty-state, .error-state {
-        text-align: center;
-        padding: 2rem;
-        margin: 1rem 0;
-        background: #f8f9fa;
-        border-radius: 8px;
-    }
-
-    .loading-spinner {
-        width: 40px;
-        height: 40px;
-        margin: 0 auto 1rem;
-        border: 4px solid #f3f3f3;
-        border-top: 4px solid #3498db;
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-    }
-
-    @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-    }
-
-    .empty-state p, .error-state p {
-        margin-bottom: 1rem;
-        color: #666;
-    }
-
-    .error-state small {
-        display: block;
-        margin-bottom: 1rem;
-        color: #dc3545;
-    }
-
-    .retry-button {
-        padding: 0.5rem 1rem;
-        background: #dc3545;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: background 0.2s;
-    }
-
-    .retry-button:hover {
-        background: #c82333;
-    }
-
-    .preview-wrapper {
-        position: relative;
-        display: inline-block;
-        max-width: 100%;
-    }
-
-    .preview-wrapper img {
-        max-width: 100%;
-        max-height: 300px;
-        object-fit: contain;
-        border-radius: 8px;
-    }
-
-    .remove-image {
-        position: absolute;
-        top: -10px;
-        right: -10px;
-        background: #ff4444;
-        color: white;
-        border: none;
-        border-radius: 50%;
-        width: 24px;
-        height: 24px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 16px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    }
-
-    .remove-image:hover {
-        background: #cc0000;
-    }
-`;
-document.head.appendChild(style);
 
 // Initialize UI when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
@@ -328,7 +53,7 @@ function loadProfile() {
         name: document.querySelector('.profile-name'),
         subtitle: document.querySelector('.profile-subtitle'),
         photo: document.querySelector('.profile-photo'),
-        count: document.querySelector('.fragment-count'),
+        count: document.querySelector('.fragments-count .stat-number'),
         currentlySection: document.querySelector('.currently-section')
     };
 
@@ -340,9 +65,11 @@ function loadProfile() {
     return getProfile()
         .then(data => {
             console.log('Profile response:', data);
-            
-            // Handle case where data is not in expected format
-            if (!data || !data.success) {
+            // Log final feeling value from profile
+            console.log('Final feeling value from profile:', data.feeling);
+
+            // Accept profile data if it has a name property, not requiring a 'success' flag
+            if (!data || typeof data.name === 'undefined') {
                 throw new Error('Invalid profile data received');
             }
 
@@ -353,7 +80,7 @@ function loadProfile() {
                 fragment_count: data.fragment_count,
                 feeling: data.feeling
             };
-            
+
             // Update profile elements if they exist
             if (profileElements.name) {
                 profileElements.name.textContent = profile.name || 'Unnamed Profile';
@@ -372,18 +99,18 @@ function loadProfile() {
             }
 
             if (profileElements.count) {
-                profileElements.count.textContent = profile.fragment_count || '0';
+                profileElements.count.textContent = String(profile.fragment_count ?? '0');
                 profileElements.count.classList.remove('loading');
             }
 
             if (profileElements.currentlySection) {
-                const feelingInput = document.querySelector('.feeling input');
-                
+                const feelingInput = document.querySelector('.currently-section input[name="feeling"]');
+
                 if (feelingInput) {
                     feelingInput.value = profile.feeling || '';
                     feelingInput.classList.remove('loading');
                 }
-                
+
                 profileElements.currentlySection.classList.remove('loading');
             }
 
@@ -526,6 +253,7 @@ function createFragmentElement(fragment) {
     // Only hook up buttons for non-draft fragments
     if (!fragment.draft) {
         const editBtn = div.querySelector('.edit-btn');
+        // Ensure the edit button triggers the modal with correct data and makes it visible
         editBtn?.addEventListener('click', () => openEditModal(fragment));
 
         const deleteBtn = div.querySelector('.delete-btn');
@@ -551,30 +279,27 @@ function updateProfileDisplay(profile) {
     }
     
     // Update profile photo
-    const photoContainer = document.querySelector('.profile-image');
+    const photoContainer = document.querySelector('.profile-photo-container');
     if (photoContainer) {
         photoContainer.innerHTML = `
-            <div class="profile-photo-container" title="Click to change profile photo">
-                <img src="${profile.profile_photo || '/fragments/images/default-profile.jpg'}" alt="Profile Photo">
-                <div class="photo-upload-overlay">
-                    <span>Update Photo</span>
-                    <input type="file" accept="image/*" style="display: none;">
-                </div>
-                <div class="upload-progress" style="display: none;">
-                    <div class="progress-bar"></div>
-                </div>
+            <img src="${profile.profile_photo || '/fragments/images/default-profile.jpg'}" alt="Profile Photo">
+            <div class="photo-upload-overlay">
+                <span>Update Photo</span>
+                <input type="file" accept="image/*" style="display: none;">
+            </div>
+            <div class="upload-progress" style="display: none;">
+                <div class="progress-bar"></div>
             </div>
         `;
         setupPhotoUpload(photoContainer);
     }
     
     // Update currently section
-    const feelingInput = document.querySelector('.feeling input');
-    
+    const feelingInput = document.querySelector('.currently-section input[name="feeling"]');
     if (feelingInput) feelingInput.value = profile.feeling || '';
     
     // Update stats
-    const statsElement = document.querySelector('.stat-number');
+    const statsElement = document.querySelector('.fragments-count .stat-number');
     if (statsElement) {
         statsElement.textContent = profile.fragment_count || '0';
     }
@@ -594,13 +319,12 @@ function setupProfileListeners() {
     }
     
     // Setup photo upload
-    const photoContainer = document.querySelector('.profile-image');
+    const photoContainer = document.querySelector('.profile-photo-container');
     if (photoContainer) {
         setupPhotoUpload(photoContainer);
     }
     
-    // Setup currently section
-    setupCurrentlySection();
+    // Removed duplicate call to setupCurrentlySection()
 }
 
 function makeEditable(element, field) {
@@ -613,23 +337,41 @@ function makeEditable(element, field) {
     async function saveChanges() {
         const newText = input.value.trim();
         console.log('Saving profile field:', field, '→', newText);
-        
+
+        // Create a new element of the same tag, with editable class, and set content
+        function createEditableElement(tag, text, className) {
+            const updatedElement = document.createElement(tag.toLowerCase());
+            updatedElement.textContent = text;
+            updatedElement.className = className || 'editable';
+            return updatedElement;
+        }
+
+        let updatedElement;
         if (newText !== currentText) {
             try {
                 const result = await updateProfile({ [field]: newText });
-                if (result.success) {
-                    element.textContent = newText;
-                    showMessage('Profile updated successfully', 'success');
-                } else {
-                    throw new Error(result.error || 'Failed to update profile');
-                }
+                updatedElement = createEditableElement(element.tagName, newText, element.className || 'editable');
+                showMessage('Profile updated successfully', 'success');
+                input.replaceWith(updatedElement);
+                // Reattach the click handler so it's editable again
+                updatedElement.addEventListener('click', () => makeEditable(updatedElement, field));
+                await loadProfile(); // Always refresh from server
+                return;
             } catch (error) {
                 console.error('Error updating profile:', error);
-                element.textContent = currentText;
+                updatedElement = createEditableElement(element.tagName, currentText, element.className || 'editable');
                 showMessage(error.message || 'Failed to update profile', 'error');
+                input.replaceWith(updatedElement);
+                // Reattach the click handler so it's editable again
+                updatedElement.addEventListener('click', () => makeEditable(updatedElement, field));
+                return;
             }
         } else {
-            element.textContent = currentText;
+            updatedElement = createEditableElement(element.tagName, currentText, element.className || 'editable');
+            input.replaceWith(updatedElement);
+            // Reattach the click handler so it's editable again
+            updatedElement.addEventListener('click', () => makeEditable(updatedElement, field));
+            return;
         }
     }
     
@@ -638,7 +380,10 @@ function makeEditable(element, field) {
     input.focus();
     
     // Save on blur
-    input.addEventListener('blur', saveChanges);
+    input.addEventListener('blur', () => {
+        // After saving, reapply the editable class to the element
+        saveChanges();
+    });
     
     // Save on Enter key
     input.addEventListener('keypress', (e) => {
@@ -686,49 +431,63 @@ function setupPhotoUpload(container) {
 }
 
 function setupCurrentlySection() {
-    const currentlyInput = document.querySelector('.feeling input');
+    // Setup "currently feeling" input
+    const currentlyInput = document.querySelector('.currently-section input[name="feeling"]');
     if (!currentlyInput) {
         console.warn('Currently feeling input element not found');
         return;
     }
-
+    if (!currentlyInput.hasAttribute('name')) {
+        currentlyInput.setAttribute('name', 'feeling');
+    }
     const statusMessage = document.createElement('span');
     statusMessage.className = 'status-message';
     currentlyInput.parentNode.appendChild(statusMessage);
-
     let updateTimeout;
-
     currentlyInput.addEventListener('input', async (e) => {
         const feeling = e.target.value.trim();
-        
-        // Show saving status
-        statusMessage.textContent = 'Saving...';
-        statusMessage.className = 'status-message saving';
-
-        // Clear any existing timeout
-        if (updateTimeout) {
-            clearTimeout(updateTimeout);
-        }
-
-        // Debounce the update
+        statusMessage.textContent = '';
+        statusMessage.className = 'status-message';
+        if (updateTimeout) clearTimeout(updateTimeout);
         updateTimeout = setTimeout(async () => {
             try {
+                console.log('Feeling value before update:', feeling);
                 await updateProfile({ feeling });
-                statusMessage.textContent = 'Saved';
-                statusMessage.className = 'status-message saved';
-                
-                // Clear the saved message after 2 seconds
-                setTimeout(() => {
-                    statusMessage.textContent = '';
-                    statusMessage.className = 'status-message';
-                }, 2000);
+                // After update, get profile and log it
+                const updatedProfile = await getProfile();
+                console.log('Profile after update:', updatedProfile);
+                console.log('Feeling update complete');
+                statusMessage.textContent = '';
+                statusMessage.className = 'status-message';
             } catch (error) {
                 console.error('Failed to update feeling:', error);
                 statusMessage.textContent = 'Failed to save';
                 statusMessage.className = 'status-message error';
             }
-        }, 1000); // 1 second delay
+        }, 1000);
     });
+    // Use keydown instead of keypress for Enter key, and ensure we don't interfere with composition/input
+    currentlyInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && !e.isComposing) {
+            e.preventDefault();
+            currentlyInput.blur();
+        }
+    });
+
+    // Setup editable subtitle field with updateProfile API call
+    const subtitleElement = document.querySelector('.profile-subtitle');
+    if (subtitleElement) {
+        // Only add if not already editable
+        if (!subtitleElement.classList.contains('editable')) {
+            subtitleElement.classList.add('editable');
+        }
+        // Remove any previous event listeners by cloning
+        const newSubtitle = subtitleElement.cloneNode(true);
+        subtitleElement.parentNode.replaceChild(newSubtitle, subtitleElement);
+        newSubtitle.addEventListener('click', () => {
+            makeEditable(newSubtitle, 'subtitle');
+        });
+    }
 }
 
 function setupAddFragmentButton() {
@@ -985,58 +744,143 @@ window.addEventListener('keydown', (e) => {
 });
 
 function openEditModal(fragment) {
-    const modal = document.getElementById('edit-modal');
-    const textarea = modal.querySelector('#edit-content');
-    const fileInput = modal.querySelector('#edit-media');
-    const saveBtn = modal.querySelector('#edit-save');
-
-    textarea.value = fragment.content;
-    modal.dataset.fragmentId = fragment.id;
-
-    // Show current image in preview
-    const previewContainer = document.getElementById('edit-media-preview');
-    previewContainer.innerHTML = '';
-
-    if (fragment.media_url) {
-        const img = document.createElement('img');
-        img.src = fragment.media_url;
-        img.alt = 'Current media';
-        img.style.maxWidth = '100%';
-        previewContainer.appendChild(img);
+    const modal = document.getElementById('edit-fragment-modal');
+    if (!modal) {
+        console.error('Edit modal not found');
+        return;
     }
 
-    // Hook the save handler
-    saveBtn.onclick = async () => {
-        const updatedContent = textarea.value.trim();
-        const file = fileInput.files[0] || null;
-        try {
-            await updateFragment(fragment.id, updatedContent, file);
-            modal.style.display = 'none';
-            await loadAndDisplayFragments();
-            await loadProfile();
-            showMessage('Fragment updated successfully', 'success');
-        } catch (err) {
-            console.error('Edit failed:', err);
-            showMessage('Failed to update fragment: ' + err.message, 'error');
-        }
-    };
+    const textarea = modal.querySelector('#edit-content');
+    const saveBtn = modal.querySelector('#edit-save');
+    const previewContainer = document.getElementById('edit-media-preview');
 
+    // Set fragment content in modal
+    if (textarea) {
+        textarea.value = fragment.content || ''; // Populate textarea
+    }
+
+    // Set fragment media preview
+    if (previewContainer) {
+        previewContainer.innerHTML = '';  // Clear any previous preview
+        if (fragment.media_url) {
+            const img = document.createElement('img');
+            img.src = fragment.media_url;
+            img.alt = 'Fragment Media';
+            img.style.maxWidth = '100%';
+            previewContainer.appendChild(img);
+        }
+    }
+
+    // Show the modal
     modal.style.display = 'block';
-    textarea.focus();
+    console.log('Opening edit modal for fragment ID:', fragment.id);
+
+    // Save handler when clicking "Save"
+    if (saveBtn) {
+        saveBtn.onclick = async () => {
+            const updatedContent = textarea ? textarea.value.trim() : '';
+
+            if (!updatedContent) {
+                showMessage('Content cannot be empty', 'error');
+                return;
+            }
+
+            try {
+                const file = null;  // Handle media if needed
+                await updateFragment(fragment.id, updatedContent, file);  // Save the fragment
+                modal.style.display = 'none';  // Close modal after saving
+                await loadAndDisplayFragments();  // Reload fragments
+                await loadProfile();  // Update the profile info with the new fragment count
+                showMessage('Fragment updated successfully', 'success');
+            } catch (err) {
+                console.error('Edit failed:', err);
+                showMessage('Failed to update fragment: ' + err.message, 'error');
+            }
+        };
+    }
+
+    // Close the modal on 'X' button click
+    const closeBtn = modal.querySelector('.close');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        }, { once: true });
+    }
+    if (textarea) textarea.focus();
 }
 
 async function handleDelete(id) {
-    if (!confirm('Are you sure you want to delete this fragment?')) {
-        return;
-    }
+    if (!confirm('Are you sure you want to delete this fragment?')) return;
 
     try {
         await deleteFragment(id);
         await loadAndDisplayFragments();
-        await loadProfile(); // Refresh profile count
+        await loadProfile(); // This updates the fragment count
         showMessage('Fragment deleted successfully', 'success');
     } catch (err) {
         console.error('Delete failed:', err);
         showMessage('Failed to delete fragment: ' + err.message, 'error');
     }
-} 
+}// Save the fragment as a draft when clicking the "Save to Drafts" button
+document.getElementById('save-draft-btn').addEventListener('click', async () => {
+    const content = document.getElementById('new-fragment-content').value.trim();
+
+    if (!content) {
+        showMessage('Content cannot be empty', 'error');
+        return;
+    }
+
+    try {
+        // Call API to save the fragment as a draft
+        await saveFragmentToDrafts(content);
+        
+        // Close the modal after saving the draft
+        document.getElementById('add-fragment-modal').style.display = 'none';
+
+        // Show drafts in the modal after saving
+        await showDraftsModal();
+
+        showMessage('Fragment saved to drafts', 'success');
+    } catch (error) {
+        console.error('Error saving fragment to drafts:', error);
+        showMessage('Failed to save fragment to drafts', 'error');
+    }
+});
+
+// Function to save fragment to drafts via the API
+async function saveFragmentToDrafts(content) {
+    const response = await fetch(`${API_URL}/fragments/save_to_drafts`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ content })
+    });
+
+    if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to save fragment to drafts');
+    }
+}
+// Function to show the drafts modal and fetch drafts
+async function showDraftsModal() {
+    const modal = document.getElementById('drafts-modal');
+    const draftsContainer = modal.querySelector('.drafts-container');
+    
+    try {
+        // Fetch drafts from the backend
+        const drafts = await getDrafts();
+        draftsContainer.innerHTML = '';  // Clear any previous drafts
+
+        drafts.forEach(draft => {
+            const draftElement = document.createElement('div');
+            draftElement.classList.add('draft-item');
+            draftElement.textContent = draft.content;  // Display content of draft
+            draftsContainer.appendChild(draftElement);
+        });
+
+        // Show the modal
+        modal.style.display = 'block';
+    } catch (error) {
+        console.error('Error fetching drafts:', error);
+        showMessage('Failed to load drafts', 'error');
+    }
+}
