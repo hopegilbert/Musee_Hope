@@ -5,15 +5,41 @@ const path = require('path');
 const sqlite3 = require('sqlite3').verbose();
 const fs = require('fs');
 const util = require('util');
+const session = require('express-session');
+const SQLiteStore = require('connect-sqlite3')(session);
 require('dotenv').config();
 
 const app = express();
 const port = process.env.PORT || 3003;
 
 // Middleware
-app.use(cors());
+app.use(cors({
+    origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+    credentials: true
+}));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '..')));
+
+// Session middleware
+app.use(session({
+    store: new SQLiteStore({
+        db: 'sessions.db',
+        dir: path.join(__dirname, 'database')
+    }),
+    secret: process.env.SESSION_SECRET || 'your-session-secret',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        secure: process.env.NODE_ENV === 'production',
+        maxAge: 24 * 60 * 60 * 1000 // 24 hours
+    }
+}));
+
+// Import routes
+const authRoutes = require('./routes/auth');
+
+// Use routes
+app.use('/api/auth', authRoutes);
 
 // Configure static file serving for uploads
 app.use('/uploads', express.static(path.join(__dirname, 'uploads'), {
@@ -35,7 +61,6 @@ app.use('/images', express.static(path.join(__dirname, 'images'), {
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         const uploadDir = path.join(__dirname, 'uploads');
-        // Ensure upload directory exists
         if (!fs.existsSync(uploadDir)) {
             fs.mkdirSync(uploadDir, { recursive: true });
         }
@@ -48,7 +73,6 @@ const storage = multer.diskStorage({
 });
 
 const fileFilter = (req, file, cb) => {
-    // Accept images only
     if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
         return cb(new Error('Only image files are allowed!'), false);
     }
@@ -69,7 +93,6 @@ const db = new sqlite3.Database(path.join(__dirname, 'database', 'fragments.db')
         console.error('Error opening database:', err);
     } else {
         console.log('Connected to SQLite database');
-        // Enable foreign keys and set journal mode
         db.run('PRAGMA foreign_keys = ON');
         db.run('PRAGMA journal_mode = WAL');
         initializeDatabase();
@@ -82,12 +105,27 @@ function initializeDatabase() {
         // Users table
         db.run(`CREATE TABLE IF NOT EXISTS users (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
+            email TEXT UNIQUE NOT NULL,
+            password_hash TEXT NOT NULL,
             name TEXT NOT NULL,
             subtitle TEXT,
             profile_photo TEXT,
             feeling TEXT,
+            reset_token TEXT,
+            reset_token_expires DATETIME,
+            email_verified BOOLEAN DEFAULT 0,
+            verification_token TEXT,
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
             updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+        )`);
+
+        // Sessions table for persistent sessions
+        db.run(`CREATE TABLE IF NOT EXISTS sessions (
+            id TEXT PRIMARY KEY,
+            user_id INTEGER NOT NULL,
+            expires_at DATETIME NOT NULL,
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (user_id) REFERENCES users (id)
         )`);
 
         // Posts (Fragments) table
@@ -149,8 +187,53 @@ function initializeDatabase() {
     });
 }
 
-// All route definitions go here after initialization
-// ... existing code ...
+// Start the server
+app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
+});
+
+// API Routes
+app.get('/api/fragments/drafts', (req, res) => {
+    db.all(`
+        SELECT f.*, 
+               COUNT(r.id) as reaction_count 
+        FROM fragments f 
+        LEFT JOIN reactions r ON f.id = r.fragment_id
+        WHERE f.user_id = 1 AND f.draft = 1
+        GROUP BY f.id
+        ORDER BY f.created_at DESC
+    `, [], (err, drafts) => {
+        if (err) {
+            console.error('Error fetching drafts:', err);
+            return res.status(500).json({ success: false, error: err.message });
+        }
+        res.json({ success: true, drafts: drafts || [] });
+    });
+});
+
+app.post('/api/fragments/drafts', (req, res) => {
+    const { content, media_url } = req.body;
+    db.run('INSERT INTO fragments (user_id, content, media_url, draft) VALUES (?, ?, ?, 1)',
+        [1, content, media_url],
+        function(err) {
+            if (err) {
+                return res.status(500).json({ success: false, error: err.message });
+            }
+            res.json({ success: true, id: this.lastID });
+        });
+});
+
+app.put('/api/fragments/:id/publish', (req, res) => {
+    const { id } = req.params;
+    db.run('UPDATE fragments SET draft = 0, updated_at = CURRENT_TIMESTAMP WHERE id = ? AND user_id = 1',
+        [id],
+        function(err) {
+            if (err) {
+                return res.status(500).json({ success: false, error: err.message });
+            }
+            res.json({ success: true });
+        });
+});
 
 // Get user profile
 app.get('/api/profile', (req, res) => {
@@ -272,9 +355,17 @@ app.post('/api/fragments', upload.single('media'), (req, res) => {
     if (isNaN(draft)) draft = 1;
     const mediaUrl = req.file ? `/uploads/${req.file.filename}` : null;
 
+    // Get userId from session or token if available, else fallback to 1
+    let userId = 1;
+    if (req.session && req.session.userId) {
+        userId = req.session.userId;
+    } else if (req.user && req.user.id) {
+        userId = req.user.id;
+    }
+
     db.run(
         'INSERT INTO fragments (user_id, content, media_url, draft) VALUES (?, ?, ?, ?)',
-        [1, content, mediaUrl, draft],
+        [userId, content, mediaUrl, draft],
         function(err) {
             if (err) {
                 console.error('Error creating fragment:', err);
@@ -401,6 +492,28 @@ app.get('/api/fragments', (req, res) => {
     });
 });
 
+// Get a single fragment by ID
+app.get('/api/fragments/:id', (req, res) => {
+    const { id } = req.params;
+    db.get(`
+        SELECT f.*, 
+               COUNT(r.id) as reaction_count 
+        FROM fragments f 
+        LEFT JOIN reactions r ON f.id = r.fragment_id
+        WHERE f.id = ? AND f.user_id = 1
+        GROUP BY f.id
+    `, [id], (err, fragment) => {
+        if (err) {
+            console.error('Error fetching fragment:', err);
+            return res.status(500).json({ success: false, error: err.message });
+        }
+        if (!fragment) {
+            return res.status(404).json({ success: false, error: 'Fragment not found' });
+        }
+        res.json(fragment);
+    });
+});
+
 // Collections endpoints
 app.get('/api/collections', (req, res) => {
     db.all('SELECT * FROM collections WHERE user_id = 1', [], (err, rows) => {
@@ -466,52 +579,6 @@ app.delete('/api/fragments/:id/reactions/:type', (req, res) => {
         });
 });
 
-// Drafts endpoints
-// Get all drafts for a user
-app.get('/api/fragments/drafts', (req, res) => {
-    db.all(`
-        SELECT f.*, 
-               COUNT(r.id) as reaction_count 
-        FROM fragments f 
-        LEFT JOIN reactions r ON f.id = r.fragment_id
-        WHERE f.user_id = 1 AND f.draft = 1
-        GROUP BY f.id
-        ORDER BY f.created_at DESC
-    `, [], (err, drafts) => {
-        if (err) {
-            res.status(500).json({ error: err.message });
-            return;
-        }
-        res.json({ success: true, drafts: drafts || [] });
-    });
-});
-
-app.post('/api/fragments/drafts', (req, res) => {
-    const { content, media_url } = req.body;
-    db.run('INSERT INTO fragments (user_id, content, media_url, draft) VALUES (?, ?, ?, 1)',
-        [1, content, media_url],
-        function(err) {
-            if (err) {
-                res.status(500).json({ error: err.message });
-                return;
-            }
-            res.json({ id: this.lastID });
-        });
-});
-
-app.put('/api/fragments/:id/publish', (req, res) => {
-    const { id } = req.params;
-    db.run('UPDATE fragments SET draft = 0, updated_at = CURRENT_TIMESTAMP WHERE id = ? AND user_id = 1',
-        [id],
-        function(err) {
-            if (err) {
-                res.status(500).json({ error: err.message });
-                return;
-            }
-            res.json({ success: true });
-        });
-});
-
 // Error handler for multer
 app.use((err, req, res, next) => {
     if (err instanceof multer.MulterError) {
@@ -527,48 +594,4 @@ app.use((err, req, res, next) => {
         });
     }
     next(err);
-});
-
-// Start server
-app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
-});
-
-// Save fragment to drafts (draft=1)
-app.post('/api/fragments/save_to_drafts', (req, res) => {
-    const { content, media_url } = req.body;
-    // Allow saving draft with either content or media_url
-    if (!content && !media_url) {
-        return res.status(400).json({ error: 'Content or media_url is required' });
-    }
-    db.run(
-        `INSERT INTO fragments (user_id, content, media_url, draft) VALUES (?, ?, ?, 1)`,
-        [1, content || null, media_url || null],
-        function (err) {
-            if (err) {
-                console.error('Error saving fragment to drafts:', err);
-                return res.status(500).json({ error: 'Failed to save fragment to drafts' });
-            }
-            db.get(`SELECT * FROM fragments WHERE id = ?`, [this.lastID], (err, row) => {
-                if (err) {
-                    return res.status(500).json({ error: 'Failed to retrieve saved draft' });
-                }
-                res.json({ success: true, draft: row });
-            });
-        }
-    );
-});
-
-// Publish draft fragment (set draft = 0)
-app.put('/api/fragments/:id/publish', (req, res) => {
-    const { id } = req.params;
-    db.run('UPDATE fragments SET draft = 0, updated_at = CURRENT_TIMESTAMP WHERE id = ? AND user_id = 1',
-        [id],
-        function(err) {
-            if (err) {
-                res.status(500).json({ error: err.message });
-                return;
-            }
-            res.json({ success: true });
-        });
 });
