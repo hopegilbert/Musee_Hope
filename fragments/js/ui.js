@@ -1,13 +1,18 @@
+// Define API URL constant
+const API_URL = 'http://localhost:3003/api';
+
 import { 
     getProfile, 
     updateProfile,
     getFragments,
+    getDrafts,
     uploadProfilePhoto,
     createFragment,
     updateFragment,
-    deleteFragment
+    deleteFragment,
 } from './api.js';
 
+import { addReaction, removeReaction } from './reactions.js';
 
 // Initialize UI when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
@@ -42,7 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 // Handle Saving a Draft (draft = 1)
-// Handle Saving a Draft (draft = 1)
 async function handleSaveToDrafts(e) {
     e.preventDefault();
     const content = document.querySelector('.fragment-textarea').value;
@@ -56,6 +60,7 @@ async function handleSaveToDrafts(e) {
 
     try {
         const response = await createFragment(content, mediaFile, 1); // 1 = draft
+        console.log(response);  // Ensure it returns success and fragment data
         if (response.success) {
             showMessage('Fragment saved to drafts.', 'success');
             loadDrafts(); // Refresh the drafts modal with the newly saved draft
@@ -77,6 +82,23 @@ async function handleSaveToDrafts(e) {
         showMessage('Error saving draft.', 'error');
     }
 }
+
+// Helper to upload image file and get the media_url
+async function uploadImageAndGetUrl(file) {
+    const formData = new FormData();
+    formData.append('media', file);
+    // Post to an endpoint that handles media uploading and returns the URL
+    const resp = await fetch('/api/fragments', {
+        method: 'POST',
+        body: formData
+    });
+    const data = await resp.json();
+    if (data && data.success && data.fragment && data.fragment.media_url) {
+        return data.fragment.media_url;
+    }
+    throw new Error('Failed to upload image');
+}
+
 // Handle Posting a Fragment (draft = 0)
 // Handle Posting a Fragment (draft = 0)
 async function handlePostFragment(e) {
@@ -114,6 +136,40 @@ async function handlePostFragment(e) {
     }
 }
 });
+async function handlePostDraft(e) {
+    e.preventDefault();
+    const content = document.querySelector('.fragment-textarea').value;
+    const mediaInput = document.querySelector('#media-upload');
+    const mediaFile = mediaInput && mediaInput.files[0] ? mediaInput.files[0] : null;
+
+    if (!content) {
+        showMessage('Content is required to post a draft!', 'error');
+        return;
+    }
+
+    try {
+        const response = await createFragment(content, mediaFile, 0); // 0 = published
+        if (response.success) {
+            showMessage('Draft posted successfully!', 'success');
+            loadDrafts(); // Refresh the drafts modal with the newly posted draft
+
+            // Reset the media preview after posting
+            const mediaPreview = document.querySelector('.media-preview');
+            if (mediaPreview) {
+                mediaPreview.innerHTML = '';  // Clear any existing media preview
+            }
+
+            // Close the modal and reset form
+            const addFragmentModal = document.getElementById('add-fragment-modal');
+            if (addFragmentModal) addFragmentModal.style.display = 'none';
+            if (e.target && typeof e.target.reset === 'function') e.target.reset();
+        } else {
+            showMessage('Error posting draft.', 'error');
+        }
+    } catch (error) {
+        showMessage('Error posting draft.', 'error');
+    }
+}
 
 // Export the initialization function
 export async function initializeUI() {
@@ -271,134 +327,104 @@ async function loadAndDisplayFragments() {
     }
 }
 
-// Function to load drafts and display them in the Drafts modal
 async function loadDrafts() {
     const container = document.querySelector('.drafts-container');
     if (!container) return;
 
-    // Clear existing drafts to prevent duplicates
-    container.innerHTML = `
-        <div class="loading-state">
-            <div class="loading-spinner"></div>
-            <p>Loading drafts...</p>
-        </div>
-    `;
-
     try {
-        const drafts = await getDrafts();  // Get only drafts (draft = 1)
-        console.log('Loaded drafts:', drafts);
-
-        let draftsArray = drafts;
-        if (drafts && drafts.success && Array.isArray(drafts.drafts)) {
-            draftsArray = drafts.drafts;
+        const response = await getDrafts();
+        let drafts = [];
+        if (Array.isArray(response)) {
+            drafts = response;
+        } else if (response && response.success && Array.isArray(response.drafts)) {
+            drafts = response.drafts;
+        } else if (response && Array.isArray(response.drafts)) {
+            drafts = response.drafts;
         }
 
-        if (!draftsArray || draftsArray.length === 0) {
-            container.innerHTML = `
-                <div class="empty-state">
-                    <p>No drafts yet</p>
-                    <button onclick="showNewFragmentModal()" class="primary-button">Create your first draft</button>
-                </div>
-            `;
+        if (drafts.length === 0) {
+            container.innerHTML = `<p>No drafts yet</p>`;
             return;
         }
 
-        // Display the drafts in the Drafts modal
-        displayDrafts(draftsArray);
+        container.innerHTML = '';
+        drafts.forEach(draft => {
+            const draftElement = document.createElement('div');
+            draftElement.className = 'draft-item';
+            draftElement.dataset.draftId = draft.id;
+            draftElement.innerHTML = `
+                <p>${draft.content}</p>
+                <button class="publish-draft-btn" data-id="${draft.id}">Publish</button>
+                <button class="edit-draft-btn" data-id="${draft.id}">Edit</button>
+                <button class="delete-draft-btn" data-id="${draft.id}">Delete</button>
+            `;
+
+            // Add event listeners for buttons
+            draftElement.querySelector('.publish-draft-btn').addEventListener('click', () => publishDraft(draft.id));
+            draftElement.querySelector('.edit-draft-btn').addEventListener('click', () => openEditDraftModal(draft));
+            draftElement.querySelector('.delete-draft-btn').addEventListener('click', () => deleteDraft(draft.id));
+
+            container.appendChild(draftElement);
+        });
     } catch (error) {
         console.error('Error loading drafts:', error);
-        container.innerHTML = `
-            <div class="error-state">
-                <p>Failed to load drafts</p>
-                <small>${error.message}</small>
-                <button onclick="loadDrafts()" class="retry-button">Try Again</button>
-            </div>
-        `;
+        container.innerHTML = `<p>Failed to load drafts</p>`;
     }
 }
 
-// Function to display drafts in the Drafts modal
-function displayDrafts(drafts) {
-    const container = document.querySelector('.drafts-container');
-    container.innerHTML = '';  // Clear existing content
+function openEditDraftModal(draft) {
+    const editModal = document.getElementById('edit-fragment-modal');
+    const contentField = document.getElementById('edit-content');
+    const mediaPreview = document.getElementById('edit-media-preview');
 
-    drafts.forEach(draft => {
-        const draftElement = document.createElement('div');
-        draftElement.className = 'draft-item';
-        draftElement.dataset.draftId = draft.id;
-        draftElement.innerHTML = `
-            <p>${draft.content}</p>
-            <button class="publish-draft-btn" data-id="${draft.id}">Publish</button>
-            <button class="delete-draft-btn" data-id="${draft.id}">Delete</button>
-        `;
+    // Load draft content into the modal
+    contentField.value = draft.content;
+    mediaPreview.innerHTML = draft.media_url ? `<img src="${draft.media_url}" alt="Draft Media">` : '';
 
-        // Add event listener for publishing draft
-        const publishButton = draftElement.querySelector('.publish-draft-btn');
-        publishButton.addEventListener('click', () => publishDraft(draft.id));
+    // Show the modal
+    editModal.style.display = 'block';
 
-        // Add event listener for deleting draft
-        const deleteButton = draftElement.querySelector('.delete-draft-btn');
-        deleteButton.addEventListener('click', () => deleteDraft(draft.id));
-
-        container.appendChild(draftElement);
-    });
+    // Add event listener to the Save button
+    const saveBtn = document.getElementById('edit-save');
+    const newSaveBtn = saveBtn.cloneNode(true);
+    saveBtn.parentNode.replaceChild(newSaveBtn, saveBtn);
+    newSaveBtn.addEventListener('click', () => saveDraftChanges(draft.id));
 }
 
-// Function to publish a draft
-async function publishDraft(draftId) {
+async function saveDraftChanges(draftId) {
+    const content = document.getElementById('edit-content').value;
+    const mediaInput = document.getElementById('media-upload');
+    const mediaFile = mediaInput && mediaInput.files[0] ? mediaInput.files[0] : null;
+
     try {
-        const response = await fetch(`/api/fragments/${draftId}/publish`, {
-            method: 'PUT',
-        });
-
-        const result = await response.json();
-        if (result.success) {
-            console.log('Draft published');
-            await loadDrafts();  // Reload the drafts modal
-            await loadAndDisplayFragments();  // Refresh the profile gallery
-        } else {
-            console.error('Failed to publish draft');
-        }
-    } catch (error) {
-        console.error('Error publishing draft:', error);
-    }
-}
-
-// Function to delete a draft
-async function deleteDraft(draftId) {
-    try {
-        const response = await fetch(`/api/fragments/${draftId}`, {
-            method: 'DELETE',
-        });
-
-        if (response.ok) {
-            console.log('Draft deleted');
-
-            // Immediately remove the draft element from the DOM
-            const draftElement = document.querySelector(`[data-draft-id="${draftId}"]`);
-            if (draftElement) {
-                draftElement.remove();  // Remove the draft from the drafts list in the modal
-            }
-
-            // If there are no drafts left in the container, show the message
-            const draftsContainer = document.querySelector('.drafts-container');
-            if (draftsContainer && draftsContainer.children.length === 0) {
-                draftsContainer.innerHTML = `<p>No drafts left</p>`;
-            }
-
-            // Ensure modal refresh without closing it
+        const response = await updateFragment(draftId, content, mediaFile);
+        if (response.success) {
+            showMessage('Draft updated successfully!', 'success');
+            // Close both modals
+            const editModal = document.getElementById('edit-fragment-modal');
             const draftsModal = document.getElementById('drafts-modal');
-            if (draftsModal && draftsModal.style.display !== 'none') {
-                // Re-fetch and reload drafts if the modal is still visible
-                loadDrafts();  // Refresh drafts list
-            }
+            if (editModal) editModal.style.display = 'none';
+            if (draftsModal) draftsModal.style.display = 'none';
         } else {
-            console.error('Failed to delete draft');
+            showMessage('Error updating draft.', 'error');
         }
     } catch (error) {
-        console.error('Error deleting draft:', error);
+        showMessage('Error updating draft.', 'error');
     }
 }
+
+// Add event listener for the close button in edit modal
+document.addEventListener('DOMContentLoaded', () => {
+    const editModal = document.getElementById('edit-fragment-modal');
+    if (editModal) {
+        const closeBtn = editModal.querySelector('.close');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => {
+                editModal.style.display = 'none';
+            });
+        }
+    }
+});
 
 function displayFragments(fragments) {
     const container = document.querySelector('.fragments-container');
@@ -437,12 +463,10 @@ function displayFragments(fragments) {
 }
 
 function createFragmentElement(fragment) {
-    if (!fragment) throw new Error('Fragment data is missing');
-    
-    const div = document.createElement('div');
-    div.className = 'fragment';
-    div.dataset.fragmentId = fragment.id;
-    
+    const fragmentElement = document.createElement('div');
+    fragmentElement.className = 'fragment';
+    fragmentElement.dataset.fragmentId = fragment.id;
+
     const date = new Date(fragment.created_at).toLocaleString('en-US', {
         year: 'numeric',
         month: 'long',
@@ -450,85 +474,158 @@ function createFragmentElement(fragment) {
         hour: '2-digit',
         minute: '2-digit'
     });
+
+    const reactionsDiv = document.createElement('div');
+    reactionsDiv.className = 'fragment-reactions';
     
-    // The dropdown menu is outside the fragment-actions for pop-out
-    div.innerHTML = `
+    const likeButton = document.createElement('button');
+    likeButton.className = `reaction-button like-button ${fragment.reactions?.like ? 'active' : ''}`;
+    likeButton.innerHTML = `
+        <i class="fa-solid fa-heart"></i>
+        <span class="reaction-count">${fragment.reaction_count || 0}</span>
+    `;
+    likeButton.onclick = () => handleReaction(fragment.id, 'like');
+    
+    const saveButton = document.createElement('button');
+    saveButton.className = `reaction-button save-button ${fragment.reactions?.bookmark ? 'active' : ''}`;
+    saveButton.innerHTML = '<i class="fa-solid fa-bookmark"></i>';
+    saveButton.onclick = () => handleReaction(fragment.id, 'bookmark');
+    
+    reactionsDiv.appendChild(likeButton);
+    reactionsDiv.appendChild(saveButton);
+
+    const content = `
         <div class="fragment-content">
             <div class="fragment-text">${fragment.content || ''}</div>
-            ${fragment.media_url ? `<img src="${fragment.media_url}" alt="Fragment media">` : ''}
+            ${fragment.media_url ? `<div class="fragment-media"><img src="${fragment.media_url}" alt="Fragment media"></div>` : ''}
         </div>
-        ${!fragment.draft ? `
-            <div class="fragment-actions" style="position: relative;">
-                <button class="more-options-btn" data-id="${fragment.id}">...</button>
+        <div class="fragment-actions">
+            <div class="fragment-menu">
+                <button class="menu-trigger">...</button>
+                <div class="menu-content">
+                    <button class="menu-item edit">Edit</button>
+                    <button class="menu-item delete">Delete</button>
+                </div>
             </div>
-            <div class="dropdown-menu" data-id="${fragment.id}">
-                <button class="edit-btn" data-id="${fragment.id}">Edit</button>
-                <button class="delete-btn" data-id="${fragment.id}">Delete</button>
-            </div>
-        ` : ''}
-        <!-- fragment-meta removed for now -->
+        </div>
+        <div class="fragment-meta">
+            <span class="fragment-date">${date}</span>
+        </div>
     `;
 
-    // Only hook up buttons for non-draft fragments
-    if (!fragment.draft) {
-        // Edit button
-        const editBtn = div.querySelector('.edit-btn');
-        editBtn?.addEventListener('click', function(e) {
-            openEditModal(fragment);
-            // Hide the dropdown menu after selecting an option
-            const dropdownMenu = e.target.closest('.dropdown-menu');
-            if (dropdownMenu) dropdownMenu.style.display = 'none';
-        });
-        // Delete button
-        const deleteBtn = div.querySelector('.delete-btn');
-        deleteBtn?.addEventListener('click', function(e) {
-            handleDelete(fragment.id);
-            // Hide the dropdown menu after selecting an option
-            const dropdownMenu = e.target.closest('.dropdown-menu');
-            if (dropdownMenu) dropdownMenu.style.display = 'none';
-        });
-    }
-
-    return div;
+    fragmentElement.innerHTML = content;
+    fragmentElement.querySelector('.fragment-meta').prepend(reactionsDiv);
+    setupFragmentMenu(fragmentElement);
+    return fragmentElement;
 }
 
-document.body.addEventListener('click', (e) => {
-    // Only show dropdown if 'menu-trigger' is clicked
-    if (e.target.classList.contains('menu-trigger')) {
-        e.stopPropagation(); // Prevent click propagation
+function setupFragmentMenu(fragmentElement) {
+    const menuTrigger = fragmentElement.querySelector('.menu-trigger');
+    const menuContent = fragmentElement.querySelector('.menu-content');
+    const editButton = fragmentElement.querySelector('.menu-item.edit');
+    const deleteButton = fragmentElement.querySelector('.menu-item.delete');
+    const fragmentId = fragmentElement.dataset.fragmentId;
 
-        const fragmentId = e.target.dataset.id;
-        const dropdownMenu = document.querySelector(`.fragment-menu[data-id="${fragmentId}"]`); // Correcting to fragment-menu
+    // Toggle menu visibility
+    menuTrigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        menuContent.classList.toggle('show');
+    });
 
-        // Close all other dropdowns
-        document.querySelectorAll('.fragment-menu').forEach(menu => {
-            if (menu !== dropdownMenu) {
-                menu.classList.remove('active');
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!fragmentElement.contains(e.target)) {
+            menuContent.classList.remove('show');
+        }
+    });
+
+    // Handle edit action
+    editButton.addEventListener('click', async () => {
+        menuContent.classList.remove('show');
+        await openEditModal(fragmentId);
+    });
+
+    // Handle delete action
+    deleteButton.addEventListener('click', async () => {
+        menuContent.classList.remove('show');
+        handleDelete(fragmentId);
+    });
+}
+
+function setupReactionButtons(fragmentElement) {
+    const reactionButtons = fragmentElement.querySelectorAll('.reaction-btn');
+    const fragmentId = fragmentElement.dataset.fragmentId;
+
+    reactionButtons.forEach(button => {
+        button.addEventListener('click', async () => {
+            const type = button.dataset.type;
+            const isActive = button.classList.contains('active');
+            
+            try {
+                if (isActive) {
+                    await removeReaction(fragmentId, type);
+                    button.classList.remove('active');
+                    const countElement = button.querySelector('.reaction-count');
+                    countElement.textContent = parseInt(countElement.textContent) - 1;
+                } else {
+                    await addReaction(fragmentId, type);
+                    button.classList.add('active');
+                    const countElement = button.querySelector('.reaction-count');
+                    countElement.textContent = parseInt(countElement.textContent) + 1;
+                }
+            } catch (error) {
+                console.error('Error handling reaction:', error);
+                showMessage('Failed to update reaction', 'error');
             }
         });
+    });
+}
 
-        // Toggle visibility of the dropdown
-        dropdownMenu.classList.toggle('active');
+// Dropdown menu logic for fragment actions
+document.addEventListener('DOMContentLoaded', () => {
+    initializeDropdowns();
+});
 
-        // Set dropdown position to be relative to the button
-        const btnRect = e.target.getBoundingClientRect();
-        dropdownMenu.style.left = `${btnRect.left + btnRect.width / 2 - dropdownMenu.offsetWidth / 2}px`;
-        dropdownMenu.style.top = `${btnRect.bottom}px`;
-    } else {
-        document.querySelectorAll('.fragment-menu').forEach(menu => {
+function initializeDropdowns() {
+    // Attach click event to all menu triggers (ellipsis buttons)
+    document.addEventListener('click', (event) => {
+        const trigger = event.target.closest('.menu-trigger');
+        if (trigger) {
+            event.stopPropagation();
+            const fragmentId = trigger.getAttribute('data-id');
+            const dropdownMenu = document.querySelector(`.menu-content[data-id="${fragmentId}"]`);
+            // Close all other dropdowns
+            document.querySelectorAll('.menu-content').forEach(menu => {
+                if (menu !== dropdownMenu) {
+                    menu.classList.remove('active');
+                }
+            });
+            // Toggle this one
+            if (dropdownMenu) {
+                dropdownMenu.classList.toggle('active');
+            }
+            return;
+        }
+        // If click is not on a menu trigger, close all dropdowns
+        document.querySelectorAll('.menu-content').forEach(menu => {
             menu.classList.remove('active');
         });
-    }
-
-    document.addEventListener('keydown', (e) => {
-        // Close all dropdowns when the escape key is pressed
-        if (e.key === 'Escape') {
+    });
+    // Prevent closing when clicking inside dropdown
+    document.querySelectorAll('.menu-content').forEach(menu => {
+        menu.addEventListener('click', (event) => {
+            event.stopPropagation();
+        });
+    });
+    // Close dropdowns on Escape key
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
             document.querySelectorAll('.menu-content').forEach(menu => {
                 menu.classList.remove('active');
             });
         }
     });
-});
+}
 
 function updateProfileDisplay(profile) {
     // Update name and subtitle
@@ -956,22 +1053,6 @@ async function handleSaveToDrafts(event) {
     }
 }
 
-// Helper to upload image file and get the media_url
-async function uploadImageAndGetUrl(file) {
-    const formData = new FormData();
-    formData.append('media', file);
-    // Post to an endpoint that handles media uploading and returns the URL
-    const resp = await fetch('/api/fragments', {
-        method: 'POST',
-        body: formData
-    });
-    const data = await resp.json();
-    if (data && data.success && data.fragment && data.fragment.media_url) {
-        return data.fragment.media_url;
-    }
-    throw new Error('Failed to upload image');
-}
-
 function setLoading(button, isLoading, textIfLoading) {
     if (!button) return;
     button.disabled = isLoading;
@@ -1036,6 +1117,7 @@ function createDraftElement(draft) {
         </div>
         <div class="fragment-actions">
             <button class="publish-btn" data-id="${draft.id}">Publish</button>
+            <button class="edit-btn" data-id="${draft.id}">Edit</button>
             <button class="delete-btn" data-id="${draft.id}">Delete</button>
         </div>
         <div class="fragment-meta">
@@ -1044,6 +1126,8 @@ function createDraftElement(draft) {
     `;
     // Publish handler
     div.querySelector('.publish-btn')?.addEventListener('click', () => handlePublishDraft(draft.id));
+    // Edit handler
+    div.querySelector('.edit-btn')?.addEventListener('click', () => openEditDraftModal(draft));
     // Delete handler
     div.querySelector('.delete-btn')?.addEventListener('click', () => handleDelete(draft.id, true));
     return div;
@@ -1052,7 +1136,7 @@ function createDraftElement(draft) {
 // Handler to publish a draft
 async function handlePublishDraft(draftId) {
     try {
-        const resp = await fetch(`/api/fragments/${draftId}/publish`, { method: 'PUT' });
+        const resp = await fetch(`${API_URL}/fragments/${draftId}/publish`, { method: 'PUT' });
         const data = await resp.json();
         if (data && data.success) {
             await loadAndDisplayDrafts();
@@ -1188,70 +1272,82 @@ window.addEventListener('keydown', (e) => {
     }
 });
 
-function openEditModal(fragment) {
+async function openEditModal(fragmentId) {
     const modal = document.getElementById('edit-fragment-modal');
     if (!modal) {
         console.error('Edit modal not found');
         return;
     }
 
-    const textarea = modal.querySelector('#edit-content');
-    const saveBtn = modal.querySelector('#edit-save');
-    const previewContainer = document.getElementById('edit-media-preview');
-
-    // Set fragment content in modal
-    if (textarea) {
-        textarea.value = fragment.content || ''; // Populate textarea
-    }
-
-    // Set fragment media preview
-    if (previewContainer) {
-        previewContainer.innerHTML = '';  // Clear any previous preview
-        if (fragment.media_url) {
-            const img = document.createElement('img');
-            img.src = fragment.media_url;
-            img.alt = 'Fragment Media';
-            img.style.maxWidth = '100%';
-            previewContainer.appendChild(img);
+    try {
+        // Fetch the fragment data
+        const response = await fetch(`${API_URL}/fragments/${fragmentId}`);
+        if (!response.ok) {
+            throw new Error('Failed to fetch fragment data');
         }
-    }
+        const fragment = await response.json();
 
-    // Show the modal
-    modal.style.display = 'block';
-    console.log('Opening edit modal for fragment ID:', fragment.id);
+        const textarea = modal.querySelector('#edit-content');
+        const saveBtn = modal.querySelector('#edit-save');
+        const previewContainer = document.getElementById('edit-media-preview');
 
-    // Save handler when clicking "Save"
-    if (saveBtn) {
-        saveBtn.onclick = async () => {
-            const updatedContent = textarea ? textarea.value.trim() : '';
+        // Set fragment content in modal
+        if (textarea) {
+            textarea.value = fragment.content || ''; // Populate textarea
+        }
 
-            if (!updatedContent) {
-                showMessage('Content cannot be empty', 'error');
-                return;
+        // Set fragment media preview
+        if (previewContainer) {
+            previewContainer.innerHTML = '';  // Clear any previous preview
+            if (fragment.media_url) {
+                const img = document.createElement('img');
+                img.src = fragment.media_url;
+                img.alt = 'Fragment Media';
+                img.style.maxWidth = '100%';
+                previewContainer.appendChild(img);
             }
+        }
 
-            try {
-                const file = null;  // Handle media if needed
-                await updateFragment(fragment.id, updatedContent, file);  // Save the fragment
-                modal.style.display = 'none';  // Close modal after saving
-                await loadAndDisplayFragments();  // Reload fragments
-                await loadProfile();  // Update the profile info with the new fragment count
-                showMessage('Fragment updated successfully', 'success');
-            } catch (err) {
-                console.error('Edit failed:', err);
-                showMessage('Failed to update fragment: ' + err.message, 'error');
-            }
-        };
-    }
+        // Show the modal
+        modal.style.display = 'block';
+        console.log('Opening edit modal for fragment ID:', fragmentId);
 
-    // Close the modal on 'X' button click
-    const closeBtn = modal.querySelector('.close');
-    if (closeBtn) {
-        closeBtn.addEventListener('click', () => {
-            modal.style.display = 'none';
-        }, { once: true });
+        // Save handler when clicking "Save"
+        if (saveBtn) {
+            saveBtn.onclick = async () => {
+                const updatedContent = textarea ? textarea.value.trim() : '';
+
+                if (!updatedContent) {
+                    showMessage('Content cannot be empty', 'error');
+                    return;
+                }
+
+                try {
+                    const file = null;  // Handle media if needed
+                    await updateFragment(fragmentId, updatedContent, file);  // Save the fragment
+                    modal.style.display = 'none';  // Close modal after saving
+                    await loadAndDisplayFragments();  // Reload fragments
+                    await loadProfile();  // Update the profile info with the new fragment count
+                    showMessage('Fragment updated successfully', 'success');
+                } catch (err) {
+                    console.error('Edit failed:', err);
+                    showMessage('Failed to update fragment: ' + err.message, 'error');
+                }
+            };
+        }
+
+        // Close the modal on 'X' button click
+        const closeBtn = modal.querySelector('.close');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => {
+                modal.style.display = 'none';
+            }, { once: true });
+        }
+        if (textarea) textarea.focus();
+    } catch (error) {
+        console.error('Error opening edit modal:', error);
+        showMessage('Failed to load fragment data', 'error');
     }
-    if (textarea) textarea.focus();
 }
 
 async function handleDelete(id) {
@@ -1266,7 +1362,9 @@ async function handleDelete(id) {
         console.error('Delete failed:', err);
         showMessage('Failed to delete fragment: ' + err.message, 'error');
     }
-}// Save the fragment as a draft when clicking the "Save to Drafts" button
+}
+
+// Save the fragment as a draft when clicking the "Save to Drafts" button
 const saveDraftBtn = document.getElementById('save-draft-btn');
 if (saveDraftBtn) {
     saveDraftBtn.addEventListener('click', async () => {
@@ -1301,8 +1399,6 @@ if (saveDraftBtn) {
 
 // Function to save fragment to drafts via the API
 async function saveFragmentToDrafts(content) {
-    // You may need to set API_URL somewhere globally or import it
-    const API_URL = window.API_URL || '/api';
     const response = await fetch(`${API_URL}/fragments/drafts`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -1317,5 +1413,33 @@ async function saveFragmentToDrafts(content) {
             errorData = {};
         }
         throw new Error(errorData.error || 'Failed to save fragment to drafts');
+    }
+}
+
+async function handleReaction(fragmentId, type) {
+    const button = event.target.closest('.reaction-button');
+    if (!button) return;
+
+    const isActive = button.classList.contains('active');
+    const countSpan = button.querySelector('.reaction-count');
+    const currentCount = countSpan ? parseInt(countSpan.textContent) || 0 : 0;
+    
+    try {
+        if (isActive) {
+            await removeReaction(fragmentId, type);
+            button.classList.remove('active');
+            if (countSpan) {
+                countSpan.textContent = Math.max(0, currentCount - 1);
+            }
+        } else {
+            await addReaction(fragmentId, type);
+            button.classList.add('active');
+            if (countSpan) {
+                countSpan.textContent = currentCount + 1;
+            }
+        }
+    } catch (error) {
+        console.error('Error handling reaction:', error);
+        showMessage('Failed to update reaction', 'error');
     }
 }

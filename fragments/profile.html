@@ -6,6 +6,7 @@
     <title>Profile - Fragments</title>
     <link rel="icon" href="images/butterfly.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -68,32 +69,33 @@
             <div class="posts-section">
                 <h2>Posts</h2>
                 <div class="fragments-container">
-                    <!--
-                        Each fragment will be rendered as:
-                        <div class="fragment" data-fragment-id="${fragment.id}">
-                            <div class="fragment-content">
-                                <div class="fragment-text">${fragment.content || ''}</div>
-                                ${fragment.media_url ? `<img src="${fragment.media_url}" alt="Fragment media">` : ''}
-                            </div>
-                            <div class="fragment-actions">
-                                <!-- Ellipsis Button -->
-                                <div class="fragment" data-fragment-id="${fragment.id}">
-                                    <div class="fragment-content">
-                                        <div class="fragment-text">${fragment.content || ''}</div>
-                                        ${fragment.media_url ? `<img src="${fragment.media_url}" alt="Fragment media">` : ''}
-                                    </div>
-                                    <div class="fragment-menu" data-id="${fragment.id}">
-                                        <!-- Ellipsis Button -->
-                                        <button class="menu-trigger" data-id="${fragment.id}">...</button>
-                                        <!-- Dropdown Menu -->
-                                        <div class="menu-content" data-id="${fragment.id}">
-                                            <button class="menu-item edit" data-id="${fragment.id}">Edit</button>
-                                            <button class="menu-item delete" data-id="${fragment.id}">Delete</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            <!-- fragment-meta removed for now -->
+                    <!-- Fragments will be dynamically added here -->
+                    <div class="fragment" data-fragment-id="template">
+                        <div class="fragment-content">
+                            <div class="fragment-text"></div>
+                            <div class="fragment-media"></div>
                         </div>
+                        <div class="fragment-actions">
+                            <div class="fragment-menu">
+                                <button class="menu-trigger">...</button>
+                                <div class="menu-content">
+                                    <button class="menu-item edit">Edit</button>
+                                    <button class="menu-item delete">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="fragment-meta">
+                            <div class="fragment-reactions">
+                                <button class="reaction-button like-button">
+                                    <i class="fa-solid fa-heart"></i>
+                                </button>
+                                <button class="reaction-button save-button">
+                                    <i class="fa-solid fa-bookmark"></i>
+                                </button>
+                            </div>
+                            <span class="fragment-date"></span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -139,9 +141,9 @@
                     <form id="new-fragment-form" class="fragment-form">
                         <textarea class="fragment-textarea" placeholder="What's on your mind?"></textarea>
                         <div class="media-upload-container">
-                            <input type="file" id="media-upload" accept="image/*" style="display: none;">
-                            <button type="button" class="upload-btn">Upload Image</button>
-                            <p class="upload-hint">or drag and drop an image here</p>
+                            <input type="file" id="media-upload" style="display: none;">
+                            <button type="button" class="upload-btn">Choose from Photo Library</button>
+                            <p class="upload-hint">Select an image from your photo library</p>
                             <div class="media-preview"></div>
                         </div>
                         
@@ -179,16 +181,18 @@
             <span class="close">&times;</span>
             <h2>Drafts</h2>
             <div class="drafts-container">
-                <!-- Drafts will be displayed here -->
+                <!-- Draft content will be dynamically added here -->
             </div>
         </div>
     </div>
     <script type="module" src="./js/api.js"></script>
     <script type="module">
         import { initializeUI } from './js/ui.js';
+        import { setupMediaUpload } from './js/media-upload.js';
         document.addEventListener('DOMContentLoaded', () => {
             console.log('DOM fully loaded, initializing UI...');
             initializeUI();
+            setupMediaUpload();
         });
     </script>
     <script src="./js/collections.js" type="module"></script>

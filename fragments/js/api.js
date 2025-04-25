@@ -71,6 +71,22 @@ export async function getFragments() {
     }
 }
 
+// Get only drafts (draft = 1)
+export async function getDrafts() {
+    try {
+        const response = await fetch(`${API_URL}/fragments/drafts`);
+        if (!response.ok) {
+            throw new Error('Failed to fetch drafts');
+        }
+        const data = await response.json();
+        console.log('Drafts API response:', data); // Debug log
+        return data;
+    } catch (error) {
+        console.error('Error fetching drafts:', error);
+        throw error;
+    }
+}
+
 // Accepts draft parameter: 0 = published, 1 = draft
 export async function createFragment(content, mediaFile = null, draft = 0) {
     try {
@@ -124,32 +140,23 @@ export async function uploadProfilePhoto(formData) {
     }
 }
 
-export async function updateFragment(fragmentId, content, mediaFile = null, shouldRemoveMedia = false) {
-    try {
-        const formData = new FormData();
-        formData.append('content', content);
-        if (mediaFile) {
-            formData.append('media', mediaFile);
-        }
-        formData.append('remove_media', shouldRemoveMedia ? 'true' : 'false');
-
-        console.log('Updating fragment with content:', content); // Add this for debugging
-
-        const response = await fetch(`${API_URL}/fragments/${fragmentId}`, {
-            method: 'PUT',
-            body: formData
-        });
-
-        if (!response.ok) {
-            const result = await response.json();
-            throw new Error(result.error || `Failed to update fragment: ${response.statusText}`);
-        }
-
-        return await response.json();
-    } catch (error) {
-        console.error('Error updating fragment:', error);
-        throw error;
+export async function updateFragment(fragmentId, content, mediaFile = null) {
+    const formData = new FormData();
+    formData.append('content', content);
+    if (mediaFile) {
+        formData.append('media', mediaFile);
     }
+
+    const response = await fetch(`${API_URL}/fragments/${fragmentId}`, {
+        method: 'PUT',
+        body: formData
+    });
+
+    const result = await response.json();
+    if (!response.ok || !result.success) {
+        throw new Error(result.error || `Failed to update fragment: ${response.statusText}`);
+    }
+    return result;
 }
 
 export async function deleteFragment(fragmentId) {
