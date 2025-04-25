@@ -198,5 +198,34 @@
     <script src="./js/collections.js" type="module"></script>
     <script src="./js/reactions.js" type="module"></script>
     <script src="./js/drafts.js" type="module"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check auth status and handle protected content
+            checkAuthStatus().then(() => {
+                if (currentUser) {
+                    // Load user's profile data
+                    loadProfileData();
+                }
+            });
+        });
+
+        async function loadProfileData() {
+            try {
+                const response = await fetch('/api/profile', {
+                    credentials: 'include'
+                });
+                if (response.ok) {
+                    const data = await response.json();
+                    // Update profile content with user data
+                    document.querySelector('.profile-name').textContent = data.name;
+                    document.querySelector('.profile-email').textContent = data.email;
+                    // Load other profile data...
+                }
+            } catch (error) {
+                console.error('Error loading profile data:', error);
+            }
+        }
+    </script>
 </body>
 </html> 

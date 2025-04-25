@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
+require('dotenv').config();
 
 // JWT secret key - should be moved to environment variables
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
@@ -17,20 +18,24 @@ const transporter = nodemailer.createTransport({
 });
 
 // Password hashing
-const hashPassword = async (password) => {
-    const salt = await bcrypt.genSalt(10);
-    return bcrypt.hash(password, salt);
-};
+async function hashPassword(password) {
+    const saltRounds = 10;
+    return await bcrypt.hash(password, saltRounds);
+}
 
 // Password verification
-const verifyPassword = async (password, hash) => {
-    return bcrypt.compare(password, hash);
-};
+async function verifyPassword(password, hash) {
+    return await bcrypt.compare(password, hash);
+}
 
 // Generate JWT token
-const generateToken = (userId) => {
-    return jwt.sign({ userId }, JWT_SECRET, { expiresIn: '24h' });
-};
+function generateToken(userId) {
+    return jwt.sign(
+        { userId },
+        process.env.JWT_SECRET,
+        { expiresIn: '7d' }
+    );
+}
 
 // Verify JWT token
 const verifyToken = (token) => {
@@ -42,42 +47,59 @@ const verifyToken = (token) => {
 };
 
 // Generate reset token
-const generateResetToken = () => {
-    return crypto.randomBytes(32).toString('hex');
-};
+function generateResetToken() {
+    return Math.random().toString(36).substring(2, 15) + 
+           Math.random().toString(36).substring(2, 15);
+}
 
 // Send verification email
-const sendVerificationEmail = async (email, token) => {
+async function sendVerificationEmail(email, token) {
     const verificationUrl = `${process.env.FRONTEND_URL}/verify-email?token=${token}`;
     
-    await transporter.sendMail({
+    const mailOptions = {
         from: process.env.EMAIL_USER,
         to: email,
-        subject: 'Verify your email',
+        subject: 'Verify your email address',
         html: `
             <h1>Welcome to Fragments!</h1>
-            <p>Please click the link below to verify your email:</p>
-            <a href="${verificationUrl}">Verify Email</a>
+            <p>Please click the link below to verify your email address:</p>
+            <a href="${verificationUrl}">${verificationUrl}</a>
+            <p>If you did not create an account, please ignore this email.</p>
         `
-    });
-};
+    };
+
+    try {
+        await transporter.sendMail(mailOptions);
+    } catch (error) {
+        console.error('Error sending verification email:', error);
+        throw error;
+    }
+}
 
 // Send password reset email
-const sendPasswordResetEmail = async (email, token) => {
+async function sendPasswordResetEmail(email, token) {
     const resetUrl = `${process.env.FRONTEND_URL}/reset-password?token=${token}`;
     
-    await transporter.sendMail({
+    const mailOptions = {
         from: process.env.EMAIL_USER,
         to: email,
-        subject: 'Password Reset Request',
+        subject: 'Reset your password',
         html: `
             <h1>Password Reset Request</h1>
-            <p>You requested a password reset. Click the link below to reset your password:</p>
-            <a href="${resetUrl}">Reset Password</a>
+            <p>You have requested to reset your password. Click the link below to proceed:</p>
+            <a href="${resetUrl}">${resetUrl}</a>
             <p>This link will expire in 1 hour.</p>
+            <p>If you did not request a password reset, please ignore this email.</p>
         `
-    });
-};
+    };
+
+    try {
+        await transporter.sendMail(mailOptions);
+    } catch (error) {
+        console.error('Error sending password reset email:', error);
+        throw error;
+    }
+}
 
 // Authentication middleware
 const authenticateToken = (req, res, next) => {

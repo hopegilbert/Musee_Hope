@@ -2,11 +2,11 @@ const express = require('express');
 const cors = require('cors');
 const multer = require('multer');
 const path = require('path');
-const sqlite3 = require('sqlite3').verbose();
 const fs = require('fs');
 const util = require('util');
 const session = require('express-session');
 const SQLiteStore = require('connect-sqlite3')(session);
+const bcrypt = require('bcrypt');
 require('dotenv').config();
 
 const app = express();
@@ -24,19 +24,22 @@ app.use(express.static(path.join(__dirname, '..')));
 app.use(session({
     store: new SQLiteStore({
         db: 'sessions.db',
-        dir: path.join(__dirname, 'database')
+        table: 'sessions'
     }),
-    secret: process.env.SESSION_SECRET || 'your-session-secret',
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     cookie: {
+        maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
         secure: process.env.NODE_ENV === 'production',
-        maxAge: 24 * 60 * 60 * 1000 // 24 hours
+        httpOnly: true,
+        sameSite: 'lax'
     }
 }));
 
-// Import routes
+// Import routes and database
 const authRoutes = require('./routes/auth');
+const { db } = require('./database');
 
 // Use routes
 app.use('/api/auth', authRoutes);
@@ -87,109 +90,46 @@ const upload = multer({
     }
 });
 
-// Database setup
-const db = new sqlite3.Database(path.join(__dirname, 'database', 'fragments.db'), (err) => {
-    if (err) {
-        console.error('Error opening database:', err);
-    } else {
-        console.log('Connected to SQLite database');
-        db.run('PRAGMA foreign_keys = ON');
-        db.run('PRAGMA journal_mode = WAL');
-        initializeDatabase();
-    }
+// Start the server
+const server = app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
 });
 
-// Initialize database tables
-function initializeDatabase() {
-    db.serialize(() => {
-        // Users table
-        db.run(`CREATE TABLE IF NOT EXISTS users (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            email TEXT UNIQUE NOT NULL,
-            password_hash TEXT NOT NULL,
-            name TEXT NOT NULL,
-            subtitle TEXT,
-            profile_photo TEXT,
-            feeling TEXT,
-            reset_token TEXT,
-            reset_token_expires DATETIME,
-            email_verified BOOLEAN DEFAULT 0,
-            verification_token TEXT,
-            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-            updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
-        )`);
-
-        // Sessions table for persistent sessions
-        db.run(`CREATE TABLE IF NOT EXISTS sessions (
-            id TEXT PRIMARY KEY,
-            user_id INTEGER NOT NULL,
-            expires_at DATETIME NOT NULL,
-            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-            FOREIGN KEY (user_id) REFERENCES users (id)
-        )`);
-
-        // Posts (Fragments) table
-        db.run(`CREATE TABLE IF NOT EXISTS fragments (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            user_id INTEGER,
-            content TEXT,
-            media_url TEXT,
-            draft BOOLEAN DEFAULT 0,
-            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-            updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-            FOREIGN KEY (user_id) REFERENCES users (id)
-        )`);
-
-        // Collections table
-        db.run(`CREATE TABLE IF NOT EXISTS collections (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            user_id INTEGER,
-            name TEXT NOT NULL,
-            description TEXT,
-            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-            FOREIGN KEY (user_id) REFERENCES users (id)
-        )`);
-
-        // Collection items table
-        db.run(`CREATE TABLE IF NOT EXISTS collection_items (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            collection_id INTEGER,
-            fragment_id INTEGER,
-            added_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-            FOREIGN KEY (collection_id) REFERENCES collections (id),
-            FOREIGN KEY (fragment_id) REFERENCES fragments (id)
-        )`);
-
-        // Reactions table
-        db.run(`CREATE TABLE IF NOT EXISTS reactions (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            user_id INTEGER,
-            fragment_id INTEGER,
-            type TEXT NOT NULL,
-            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-            FOREIGN KEY (user_id) REFERENCES users (id),
-            FOREIGN KEY (fragment_id) REFERENCES fragments (id),
-            UNIQUE(user_id, fragment_id, type)
-        )`);
-
-        // Insert default user if not exists
-        db.get("SELECT id FROM users WHERE id = 1", [], (err, row) => {
-            if (!row) {
-                db.run(`INSERT INTO users (name, subtitle) VALUES (?, ?)`,
-                    ['Hope Gilbert', 'girly girl'],
-                    function(err) {
-                        if (err) {
-                            console.error('Error creating default user:', err);
-                        }
-                    });
+// Graceful shutdown
+process.on('SIGTERM', () => {
+    console.log('SIGTERM signal received: closing HTTP server');
+    server.close(() => {
+        console.log('HTTP server closed');
+        db.close((err) => {
+            if (err) {
+                console.error('Error closing database:', err);
+            } else {
+                console.log('Database connection closed');
             }
+            process.exit(0);
         });
     });
-}
+});
 
-// Start the server
-app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
+process.on('SIGINT', () => {
+    console.log('SIGINT signal received: closing HTTP server');
+    server.close(() => {
+        console.log('HTTP server closed');
+        db.close((err) => {
+            if (err) {
+                console.error('Error closing database:', err);
+            } else {
+                console.log('Database connection closed');
+            }
+            process.exit(0);
+        });
+    });
+});
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).json({ success: false, error: 'Something broke!' });
 });
 
 // API Routes
@@ -578,6 +518,75 @@ app.delete('/api/fragments/:id/reactions/:type', (req, res) => {
             res.json({ success: true });
         });
 });
+
+// Authentication middleware
+const requireAuth = (req, res, next) => {
+    if (req.session.userId) {
+        next();
+    } else {
+        res.status(401).json({ message: 'Authentication required' });
+    }
+};
+
+// Auth status endpoint
+app.get('/api/auth/status', (req, res) => {
+    if (req.session.userId) {
+        db.get('SELECT id, name, email FROM users WHERE id = ?', [req.session.userId], (err, user) => {
+            if (err) {
+                res.status(500).json({ message: 'Error checking auth status' });
+            } else if (user) {
+                res.json({ user });
+            } else {
+                res.status(401).json({ message: 'Not authenticated' });
+            }
+        });
+    } else {
+        res.status(401).json({ message: 'Not authenticated' });
+    }
+});
+
+// Login endpoint
+app.post('/api/auth/login', (req, res) => {
+    const { email, password } = req.body;
+    
+    db.get('SELECT * FROM users WHERE email = ?', [email], (err, user) => {
+        if (err) {
+            res.status(500).json({ message: 'Error during login' });
+        } else if (!user) {
+            res.status(401).json({ message: 'Invalid credentials' });
+        } else {
+            bcrypt.compare(password, user.password, (err, result) => {
+                if (err || !result) {
+                    res.status(401).json({ message: 'Invalid credentials' });
+                } else {
+                    req.session.userId = user.id;
+                    res.json({ 
+                        user: {
+                            id: user.id,
+                            name: user.name,
+                            email: user.email
+                        }
+                    });
+                }
+            });
+        }
+    });
+});
+
+// Logout endpoint
+app.post('/api/auth/logout', (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            res.status(500).json({ message: 'Error during logout' });
+        } else {
+            res.json({ message: 'Logged out successfully' });
+        }
+    });
+});
+
+// Protected routes
+app.use('/api/fragments', requireAuth);
+app.use('/api/profile', requireAuth);
 
 // Error handler for multer
 app.use((err, req, res, next) => {

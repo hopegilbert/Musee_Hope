@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../server').db;
+const { query, get, run } = require('../database');
 const {
     hashPassword,
     verifyPassword,
@@ -20,12 +20,7 @@ router.post('/register', async (req, res) => {
 
     try {
         // Check if email already exists
-        const existingUser = await new Promise((resolve, reject) => {
-            db.get('SELECT id FROM users WHERE email = ?', [email], (err, row) => {
-                if (err) reject(err);
-                resolve(row);
-            });
-        });
+        const existingUser = await get('SELECT id FROM users WHERE email = ?', [email]);
 
         if (existingUser) {
             return res.status(400).json({ success: false, error: 'Email already registered' });
@@ -36,16 +31,10 @@ router.post('/register', async (req, res) => {
         const verificationToken = generateResetToken();
 
         // Insert new user
-        const result = await new Promise((resolve, reject) => {
-            db.run(
-                'INSERT INTO users (email, password_hash, name, verification_token) VALUES (?, ?, ?, ?)',
-                [email, passwordHash, name, verificationToken],
-                function(err) {
-                    if (err) reject(err);
-                    resolve(this.lastID);
-                }
-            );
-        });
+        const result = await run(
+            'INSERT INTO users (email, password_hash, name, verification_token) VALUES (?, ?, ?, ?)',
+            [email, passwordHash, name, verificationToken]
+        );
 
         // Send verification email
         await sendVerificationEmail(email, verificationToken);
@@ -70,12 +59,7 @@ router.post('/login', async (req, res) => {
 
     try {
         // Get user from database
-        const user = await new Promise((resolve, reject) => {
-            db.get('SELECT * FROM users WHERE email = ?', [email], (err, row) => {
-                if (err) reject(err);
-                resolve(row);
-            });
-        });
+        const user = await get('SELECT * FROM users WHERE email = ?', [email]);
 
         if (!user) {
             return res.status(401).json({ success: false, error: 'Invalid email or password' });
@@ -123,12 +107,7 @@ router.post('/forgot-password', async (req, res) => {
 
     try {
         // Get user
-        const user = await new Promise((resolve, reject) => {
-            db.get('SELECT * FROM users WHERE email = ?', [email], (err, row) => {
-                if (err) reject(err);
-                resolve(row);
-            });
-        });
+        const user = await get('SELECT * FROM users WHERE email = ?', [email]);
 
         if (!user) {
             return res.status(404).json({ success: false, error: 'Email not found' });
@@ -139,16 +118,10 @@ router.post('/forgot-password', async (req, res) => {
         const resetTokenExpires = new Date(Date.now() + 3600000); // 1 hour from now
 
         // Update user with reset token
-        await new Promise((resolve, reject) => {
-            db.run(
-                'UPDATE users SET reset_token = ?, reset_token_expires = ? WHERE id = ?',
-                [resetToken, resetTokenExpires, user.id],
-                (err) => {
-                    if (err) reject(err);
-                    resolve();
-                }
-            );
-        });
+        await run(
+            'UPDATE users SET reset_token = ?, reset_token_expires = ? WHERE id = ?',
+            [resetToken, resetTokenExpires, user.id]
+        );
 
         // Send reset email
         await sendPasswordResetEmail(email, resetToken);
@@ -170,16 +143,10 @@ router.post('/reset-password', async (req, res) => {
 
     try {
         // Get user with valid reset token
-        const user = await new Promise((resolve, reject) => {
-            db.get(
-                'SELECT * FROM users WHERE reset_token = ? AND reset_token_expires > ?',
-                [token, new Date()],
-                (err, row) => {
-                    if (err) reject(err);
-                    resolve(row);
-                }
-            );
-        });
+        const user = await get(
+            'SELECT * FROM users WHERE reset_token = ? AND reset_token_expires > ?',
+            [token, new Date()]
+        );
 
         if (!user) {
             return res.status(400).json({ success: false, error: 'Invalid or expired reset token' });
@@ -189,16 +156,10 @@ router.post('/reset-password', async (req, res) => {
         const passwordHash = await hashPassword(password);
 
         // Update password and clear reset token
-        await new Promise((resolve, reject) => {
-            db.run(
-                'UPDATE users SET password_hash = ?, reset_token = NULL, reset_token_expires = NULL WHERE id = ?',
-                [passwordHash, user.id],
-                (err) => {
-                    if (err) reject(err);
-                    resolve();
-                }
-            );
-        });
+        await run(
+            'UPDATE users SET password_hash = ?, reset_token = NULL, reset_token_expires = NULL WHERE id = ?',
+            [passwordHash, user.id]
+        );
 
         res.json({ success: true, message: 'Password reset successfully' });
     } catch (error) {
@@ -217,28 +178,17 @@ router.post('/verify-email', async (req, res) => {
 
     try {
         // Get user with verification token
-        const user = await new Promise((resolve, reject) => {
-            db.get('SELECT * FROM users WHERE verification_token = ?', [token], (err, row) => {
-                if (err) reject(err);
-                resolve(row);
-            });
-        });
+        const user = await get('SELECT * FROM users WHERE verification_token = ?', [token]);
 
         if (!user) {
             return res.status(400).json({ success: false, error: 'Invalid verification token' });
         }
 
         // Update user as verified
-        await new Promise((resolve, reject) => {
-            db.run(
-                'UPDATE users SET email_verified = 1, verification_token = NULL WHERE id = ?',
-                [user.id],
-                (err) => {
-                    if (err) reject(err);
-                    resolve();
-                }
-            );
-        });
+        await run(
+            'UPDATE users SET email_verified = 1, verification_token = NULL WHERE id = ?',
+            [user.id]
+        );
 
         res.json({ success: true, message: 'Email verified successfully' });
     } catch (error) {
